@@ -262,17 +262,17 @@
           "id": "coil",
           "name": "몸 감기",
           "intent": "buff_defend",
-          "block": 10,
+          "block": 8,
           "effects": [
             { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
           ],
-          "description": "방어도 10 + 힘 1."
+          "description": "방어도 8 + 힘 1."
         },
         {
           "id": "crushing_squeeze",
           "name": "압착",
           "intent": "attack",
-          "damage": 18,
+          "damage": 15,
           "times": 1,
           "description": "치명적인 일격. coil 이후 사용."
         }
@@ -285,7 +285,8 @@
         "gold": { "min": 25, "max": 40 },
         "card_chance": 0.6,
         "relic_chance": 0.25
-      }
+      },
+      "balance_note": "[ZER-115 조정] crushing_squeeze 18→15, coil 방어도 10→8. 힘+1 적용 후 압착 16피해(이전 19). 문관(HP65) 기준 24.6%(이전 29.2%) — 독+압착 콤보 2~3턴 연속 생존 가능하도록 완화. coil 방어도 감소로 공격 집중 시 돌파 여지 확보."
     }
   ],
   "bosses": [
