@@ -667,6 +667,18 @@ func _on_effect_removed(target: String, effect_id: String) -> void:
 
 
 func _on_effect_triggered(target: String, effect_id: String, value: int) -> void:
+	# 사망선고 만료: 플레이어 현재 HP의 35% 감소
+	if effect_id == "death_countdown" and value == -1 and target == "player":
+		var penalty: int = int(player_hp * 0.35)
+		penalty = maxi(penalty, 1)
+		player_hp -= penalty
+		player_hp = maxi(player_hp, 0)
+		hp_changed.emit(player_hp, player_max_hp)
+		dot_damage_dealt.emit(target, effect_id, penalty)
+		if player_hp <= 0:
+			_change_state(BattleState.BATTLE_LOSE)
+			battle_ended.emit(false)
+		return
 	dot_damage_dealt.emit(target, effect_id, value)
 
 
