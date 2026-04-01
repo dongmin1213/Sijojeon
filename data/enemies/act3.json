@@ -1,0 +1,318 @@
+{
+  "version": "0.1",
+  "type": "enemy_pool",
+  "act": 3,
+  "act_name": {
+    "ko": "경복궁",
+    "description": "왕조의 심장부. 역모의 불꽃이 타오르는 궁궐 내전. 역적 무사, 배신한 금위군, 왕좌를 노리는 자객이 판을 치고 있다."
+  },
+  "balance_ref": "ZER-12. 플레이어 기준: HP 25~45(3막 진입 후), 덱 규모 16~22장, 턴당 평균 피해 16~20, 방어도 10~14.",
+  "balance_targets": {
+    "player_hp_estimate_entering_act3": "25~45",
+    "player_energy_per_turn": 3,
+    "player_avg_damage_per_turn_late_deck": 18,
+    "player_avg_block_per_turn_late_deck": 12,
+    "desired_combat_length_turns": "5~8",
+    "note": "3막 일반 몬스터는 7턴 내 처치 목표. 엘리트는 9~12턴. 턴당 최대 피해 22."
+  },
+  "regular_enemies": [
+    {
+      "id": "E301",
+      "name": {
+        "ko": "역적 무사",
+        "hanja": "逆賊武士",
+        "romanized": "Yeokjeok Musa"
+      },
+      "description": "역모에 가담한 궁궐의 정예 무사. 오랜 수련으로 다져진 강한 체력과 화력을 자랑한다.",
+      "hp": { "min": 50, "max": 65 },
+      "moves": [
+        {
+          "id": "precision_cut",
+          "name": "정밀 베기",
+          "intent": "attack",
+          "damage": 14,
+          "times": 1,
+          "description": "급소를 노린 강력한 단발 공격."
+        },
+        {
+          "id": "rapid_assault",
+          "name": "속전속결",
+          "intent": "attack",
+          "damage": 7,
+          "times": 2,
+          "description": "7피해 × 2회 = 14 총피해. 빠른 연속 공격."
+        },
+        {
+          "id": "battle_cry",
+          "name": "역적의 함성",
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" }
+          ],
+          "description": "힘 3 획득. 이후 모든 공격 피해 +3."
+        },
+        {
+          "id": "finishing_blow",
+          "name": "결정타",
+          "intent": "attack",
+          "damage": 20,
+          "times": 1,
+          "description": "battle_cry 후 사용. 힘+3 시 23피해. 전력을 다한 일격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["precision_cut", "rapid_assault", "battle_cry", "finishing_blow", "precision_cut", "rapid_assault", "finishing_blow"]
+      },
+      "rewards": {
+        "gold": { "min": 25, "max": 40 },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "balance_note": "battle_cry(힘+3) 후 finishing_blow(20+3=23)는 3막 일반 적 최대 피해. battle_cry 전 처치 권장. rapid_assault(7×2=14)는 방어도 분산 위협. 방어도 14+ 유지 목표."
+    },
+    {
+      "id": "E302",
+      "name": {
+        "ko": "역모 문관",
+        "hanja": "逆謀文官",
+        "romanized": "Yeokmo Mungwan"
+      },
+      "description": "역모에 가담한 간신 문관. 음모와 저주로 상대를 무력화하며, 직접 싸우지 않고 방해한다.",
+      "hp": { "min": 42, "max": 55 },
+      "moves": [
+        {
+          "id": "conspiracy",
+          "name": "음모",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" },
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+          ],
+          "description": "약화 2 + 취약 2 부여. 플레이어 전투력 대폭 감소."
+        },
+        {
+          "id": "scroll_curse",
+          "name": "저주 문서",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 4, "target": "player" },
+            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+          ],
+          "description": "출혈 4 + 냉기 1 부여. 다음 턴 드로우 방해 + 지속 피해."
+        },
+        {
+          "id": "iron_brush",
+          "name": "철필 공격",
+          "intent": "attack",
+          "damage": 11,
+          "times": 1,
+          "description": "붓으로 내리치는 의외로 강한 공격."
+        },
+        {
+          "id": "bureaucratic_shield",
+          "name": "관료적 방어막",
+          "intent": "defend",
+          "block": 12,
+          "description": "문서와 관인으로 만든 방어막. 방어도 12 획득."
+        },
+        {
+          "id": "treacherous_orders",
+          "name": "역명 하달",
+          "intent": "attack_debuff",
+          "damage": 9,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 3, "target": "player" }
+          ],
+          "description": "9피해 + 약화 3. 최대 공격력 감소."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["conspiracy", "iron_brush", "scroll_curse", "bureaucratic_shield", "treacherous_orders", "conspiracy", "iron_brush"]
+      },
+      "rewards": {
+        "gold": { "min": 22, "max": 36 },
+        "card_chance": 0.3,
+        "relic_chance": 0.08
+      },
+      "balance_note": "디버프 누적이 핵심 위협. conspiracy+scroll_curse 콤비로 약화2+취약2+출혈4+냉기1이 한 사이클에 쌓임. 출혈4 상태에서 공격 받으면 회당 +8 피해 추가. HP 낮지만 빠른 처치 안 하면 패배 확률 상승."
+    },
+    {
+      "id": "E303",
+      "name": {
+        "ko": "자객",
+        "hanja": "刺客",
+        "romanized": "Jagaek"
+      },
+      "description": "역적에게 고용된 검은 그림자. 독침과 기습을 활용하며, 항상 급소를 노린다.",
+      "hp": { "min": 44, "max": 58 },
+      "moves": [
+        {
+          "id": "poison_needle",
+          "name": "독침",
+          "intent": "attack_debuff",
+          "damage": 6,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "독", "stacks": 5, "target": "player", "note": "독: 매 턴 시작 시 n피해 후 n 감소, 0이 되면 소멸" }
+          ],
+          "description": "6피해 + 독 5 부여. 누적 독 피해: 5+4+3+2+1=15."
+        },
+        {
+          "id": "shadow_strike",
+          "name": "암습",
+          "intent": "attack",
+          "damage": 16,
+          "times": 1,
+          "description": "그림자 속에서 기습하는 치명적 일격."
+        },
+        {
+          "id": "vanish",
+          "name": "은신",
+          "intent": "buff_defend",
+          "block": 10,
+          "effects": [
+            { "type": "apply_buff", "buff": "은신", "stacks": 1, "target": "self", "note": "은신: 다음 공격 피해 +50%, 1회 발동 후 소멸" }
+          ],
+          "description": "방어도 10 + 은신(다음 공격 +50%) 획득."
+        },
+        {
+          "id": "death_touch",
+          "name": "급소 찌르기",
+          "intent": "attack",
+          "damage": 12,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player" }
+          ],
+          "description": "12피해 + 출혈 3. 은신 상태에서 사용 시 18피해."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["poison_needle", "vanish", "shadow_strike", "death_touch", "poison_needle", "shadow_strike"]
+      },
+      "rewards": {
+        "gold": { "min": 24, "max": 38 },
+        "card_chance": 0.3,
+        "relic_chance": 0.1
+      },
+      "balance_note": "poison_needle(독5) 누적 피해는 총 15이나 장기전 시 치명적. vanish 후 shadow_strike(16+50%=24) 또는 death_touch(12+50%=18)가 핵심 위협. 독 해제 카드 또는 빠른 처치 권장. 방어도로 shadow_strike 방어 필수."
+    }
+  ],
+  "elite_enemies": [
+    {
+      "id": "EL301",
+      "name": {
+        "ko": "역적 장수",
+        "hanja": "逆賊將帥",
+        "romanized": "Yeokjeok Jangsu"
+      },
+      "description": "역모를 이끄는 핵심 장수. 강한 개인 전투력과 함께 부하를 지휘하는 능력도 갖추고 있다.",
+      "hp": { "min": 100, "max": 125 },
+      "note": "엘리트 — 유물 보상 확정. 소환 메커니즘과 강력한 단타를 동시 보유.",
+      "moves": [
+        {
+          "id": "general_strike",
+          "name": "장수의 일격",
+          "intent": "attack",
+          "damage": 16,
+          "times": 1,
+          "description": "장수의 강력한 단발 공격."
+        },
+        {
+          "id": "command_charge",
+          "name": "돌격 명령",
+          "intent": "summon",
+          "summons": "E301",
+          "summon_count": 1,
+          "description": "역적 무사 1명 소환. 처치 시 재소환 없음."
+        },
+        {
+          "id": "war_banner",
+          "name": "역모 군기",
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 4, "target": "self" }
+          ],
+          "description": "힘 4 획득. 군기를 세워 전의를 고취."
+        },
+        {
+          "id": "iron_will",
+          "name": "철의 의지",
+          "intent": "buff_defend",
+          "block": 16,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "방어도 16 + 힘 2. 강인한 의지로 버텨냄."
+        },
+        {
+          "id": "cleave",
+          "name": "횡단 베기",
+          "intent": "attack",
+          "damage": 10,
+          "times": 2,
+          "description": "10피해 × 2회 = 20 총피해. 횡으로 두 번 베기."
+        },
+        {
+          "id": "warlord_wrath",
+          "name": "장수의 분노",
+          "intent": "attack",
+          "damage": 22,
+          "times": 1,
+          "description": "HP 50% 미만 시만 사용. 힘+4 기준 26피해. 절박한 최강 일격."
+        }
+      ],
+      "move_pattern": {
+        "type": "conditional_sequential",
+        "sequence": ["general_strike", "command_charge", "war_banner", "iron_will", "cleave", "general_strike", "cleave"],
+        "hp_conditional": {
+          "threshold_percent": 50,
+          "inject_move": "warlord_wrath",
+          "inject_after": "war_banner",
+          "once_only": false,
+          "cooldown_turns": 3
+        }
+      },
+      "rewards": {
+        "gold": { "min": 40, "max": 60 },
+        "card_chance": 0.7,
+        "relic_chance": 0.35
+      },
+      "balance_note": "HP 100-125. war_banner(힘+4) 후 cleave(10+4=14×2=28) 및 warlord_wrath(22+4=26) 위협. iron_will(방어16)은 플레이어 딜로 뚫기 어려울 수 있음. 소환 무사와 동시 처리 전략 필요. 방어도 18+ + 취약 활용 추천."
+    }
+  ],
+  "status_conditions_referenced": [
+    {
+      "id": "약화",
+      "description": "공격 피해 25% 감소. 1회 발동 후 소멸."
+    },
+    {
+      "id": "취약",
+      "description": "받는 피해 50% 증가. 턴 카운트로 해제."
+    },
+    {
+      "id": "냉기",
+      "description": "다음 턴 드로우 1장 감소. 1턴 후 해제."
+    },
+    {
+      "id": "출혈",
+      "description": "피해 받을 때마다 추가 2피해. 스택 1 감소, 0에서 소멸."
+    },
+    {
+      "id": "독",
+      "description": "매 턴 시작 시 n피해 후 n이 1 감소. 0이 되면 소멸."
+    },
+    {
+      "id": "strength",
+      "description": "이 버프의 스택 수만큼 모든 공격 피해 증가 (영구)."
+    },
+    {
+      "id": "은신",
+      "description": "다음 공격 피해 +50%. 1회 발동 후 소멸. (3막 신규)"
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "version": "0.1",
+  "type": "enemy_pool",
+  "act": 2,
+  "act_name": {
+    "ko": "지리산",
+    "description": "신라의 피가 스민 산줄기. 산채를 차린 도적, 오랜 원한을 품은 귀신, 산신의 화신이 뒤섞인 험준한 영역."
+  },
+  "balance_ref": "ZER-12 (카드 밸런스 스펙). 플레이어 기준: HP 40~55(1막 소모 후), 덱 규모 12~16장, 턴당 평균 피해 10~14, 방어도 7~10.",
+  "balance_targets": {
+    "player_hp_estimate_entering_act2": "40~55",
+    "player_energy_per_turn": 3,
+    "player_avg_damage_per_turn_mid_deck": 12,
+    "player_avg_block_per_turn_mid_deck": 8,
+    "desired_combat_length_turns": "6~9",
+    "note": "2막 일반 몬스터는 8턴 내 처치 목표. 엘리트는 10~13턴. 턴당 최대 피해 15."
+  },
+  "regular_enemies": [
+    {
+      "id": "E201",
+      "name": {
+        "ko": "산적",
+        "hanja": "山賊",
+        "romanized": "Sanjok"
+      },
+      "description": "지리산 산채에 은거하는 도적 두목의 부하. 빠른 연타와 기습에 능하다.",
+      "hp": { "min": 36, "max": 48 },
+      "moves": [
+        {
+          "id": "slash_combo",
+          "name": "칼 연타",
+          "intent": "attack",
+          "damage": 5,
+          "times": 2,
+          "description": "5피해 × 2회 = 10 총피해."
+        },
+        {
+          "id": "ambush_strike",
+          "name": "기습",
+          "intent": "attack",
+          "damage": 13,
+          "times": 1,
+          "description": "강력한 단발 기습. 2막 기준 단일 최대 피해."
+        },
+        {
+          "id": "sharpen",
+          "name": "칼 갈기",
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "힘 2 획득. 이후 공격 피해 +2씩 증가."
+        },
+        {
+          "id": "quick_slash",
+          "name": "빠른 베기",
+          "intent": "attack",
+          "damage": 8,
+          "times": 1,
+          "description": "단순한 단발 공격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["slash_combo", "quick_slash", "sharpen", "ambush_strike", "slash_combo", "ambush_strike"]
+      },
+      "rewards": {
+        "gold": { "min": 18, "max": 30 },
+        "card_chance": 0.25,
+        "relic_chance": 0.0
+      },
+      "balance_note": "sharpen 후 ambush_strike(13+2=15)는 2막 일반 몬스터 최대치. sharpen 전 처치 또는 방어도 13+ 유지 권장. 칼 연타(5×2=10)는 방어도 분산."
+    },
+    {
+      "id": "E202",
+      "name": {
+        "ko": "처녀귀신",
+        "hanja": "處女鬼神",
+        "romanized": "Cheonyeo Gwisin"
+      },
+      "description": "한 많은 죽음을 맞이한 처녀의 원혼. 저주와 울음으로 플레이어의 의지를 꺾는다.",
+      "hp": { "min": 30, "max": 42 },
+      "moves": [
+        {
+          "id": "lamentation",
+          "name": "원한의 울부짖음",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" },
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+          ],
+          "description": "플레이어에게 약화 2 + 취약 1 부여. 공격력 크게 감소."
+        },
+        {
+          "id": "spirit_grasp",
+          "name": "손길",
+          "intent": "attack_debuff",
+          "damage": 9,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player", "note": "냉기: 다음 턴 드로우 1장 감소" }
+          ],
+          "description": "9피해 + 냉기 1 부여."
+        },
+        {
+          "id": "curse",
+          "name": "저주",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player", "note": "출혈: 피해 받을 때마다 +2 추가 피해, 스택 1 감소" }
+          ],
+          "description": "플레이어에게 출혈 3 부여."
+        },
+        {
+          "id": "wail_strike",
+          "name": "귀신 강습",
+          "intent": "attack",
+          "damage": 11,
+          "times": 1,
+          "description": "원한이 담긴 강습 공격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["lamentation", "spirit_grasp", "curse", "wail_strike", "lamentation", "spirit_grasp", "wail_strike"]
+      },
+      "rewards": {
+        "gold": { "min": 16, "max": 26 },
+        "card_chance": 0.25,
+        "relic_chance": 0.08
+      },
+      "balance_note": "약화+취약+출혈+냉기 조합으로 플레이어 시조 완성 방해가 핵심. 귀신 강습(11) + 출혈(+2) = 실질 13피해. HP 낮지만 디버프 누적 전에 처치 어려움. 상태이상 제거 카드나 방어 우선 권장."
+    },
+    {
+      "id": "E203",
+      "name": {
+        "ko": "산사 승병",
+        "hanja": "山寺 僧兵",
+        "romanized": "Sansa Seungbyeong"
+      },
+      "description": "지리산 절에서 무예를 닦은 승려 병사. 수비와 반격을 동시에 구사하며, 인내심이 강하다.",
+      "hp": { "min": 42, "max": 55 },
+      "moves": [
+        {
+          "id": "iron_defense",
+          "name": "철벽 수비",
+          "intent": "defend",
+          "block": 14,
+          "description": "방어도 14 획득. 강력한 방어 자세."
+        },
+        {
+          "id": "staff_strike",
+          "name": "석장 타격",
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "description": "묵직한 석장 공격."
+        },
+        {
+          "id": "counterflow",
+          "name": "역류",
+          "intent": "attack_buff",
+          "damage": 7,
+          "times": 1,
+          "effects": [
+            { "type": "apply_buff", "buff": "thorns", "stacks": 3, "target": "self", "note": "가시: 근접 공격 받을 때마다 공격자에게 3피해" }
+          ],
+          "description": "7피해 + 가시 3 획득. 근접 공격을 위험하게 만듦."
+        },
+        {
+          "id": "meditate",
+          "name": "좌선",
+          "intent": "buff_defend",
+          "block": 8,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+          ],
+          "description": "방어도 8 + 힘 1 획득. 수행으로 내공 쌓기."
+        },
+        {
+          "id": "sweeping_staff",
+          "name": "광풍 석장",
+          "intent": "attack",
+          "damage": 14,
+          "times": 1,
+          "description": "힘 쌓인 후 사용하는 강력한 일격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["iron_defense", "staff_strike", "counterflow", "meditate", "sweeping_staff", "iron_defense", "staff_strike", "counterflow"]
+      },
+      "rewards": {
+        "gold": { "min": 20, "max": 32 },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "balance_note": "가시(3) 중 근접 연타 카드 사용 시 역피해 주의. iron_defense(14) + counterflow(가시3) 콤비가 위험. 마법·원거리 효과나 AoE 카드 활용 유도. meditate 후 sweeping_staff(14+1=15)가 턴당 최대치."
+    }
+  ],
+  "elite_enemies": [
+    {
+      "id": "EL201",
+      "name": {
+        "ko": "백호",
+        "hanja": "白虎",
+        "romanized": "Baekho"
+      },
+      "description": "지리산 산신의 사자로 여겨지는 거대한 흰 호랑이. 야수적 본능과 분노로 싸운다.",
+      "hp": { "min": 80, "max": 100 },
+      "note": "엘리트 — 유물 보상 확정. 높은 HP와 압도적 피해.",
+      "moves": [
+        {
+          "id": "lunge",
+          "name": "도약 강습",
+          "intent": "attack",
+          "damage": 12,
+          "times": 1,
+          "description": "빠른 도약으로 내리치는 공격."
+        },
+        {
+          "id": "claw_flurry",
+          "name": "발톱 난타",
+          "intent": "attack",
+          "damage": 5,
+          "times": 3,
+          "description": "5피해 × 3회 = 15 총피해. 방어도 분산."
+        },
+        {
+          "id": "roar",
+          "name": "포효",
+          "intent": "debuff_buff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "플레이어에게 취약 2 부여 + 자신이 힘 2 획득."
+        },
+        {
+          "id": "savage_pounce",
+          "name": "맹렬한 돌진",
+          "intent": "attack",
+          "damage": 18,
+          "times": 1,
+          "description": "HP 60% 미만 시만 사용. 분노한 호랑이의 전력 공격."
+        },
+        {
+          "id": "territorial_growl",
+          "name": "영역 수호",
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" }
+          ],
+          "description": "힘 3 획득. 영역 침범에 분노."
+        }
+      ],
+      "move_pattern": {
+        "type": "conditional_sequential",
+        "sequence": ["lunge", "roar", "claw_flurry", "territorial_growl", "lunge", "claw_flurry"],
+        "hp_conditional": {
+          "threshold_percent": 60,
+          "inject_move": "savage_pounce",
+          "inject_after": "claw_flurry",
+          "once_only": true
+        }
+      },
+      "rewards": {
+        "gold": { "min": 30, "max": 50 },
+        "card_chance": 0.65,
+        "relic_chance": 0.3
+      },
+      "balance_note": "territorial_growl 후 claw_flurry(5+3=8×3=24총피해). roar 취약(+50% 피해) 시 방어도로 커버 필수. HP 60% 이하 savage_pounce(18+strength)가 즉사급 — 버프 박탈 카드 또는 방어도 18+ 확보 권장."
+    }
+  ],
+  "status_conditions_referenced": [
+    {
+      "id": "약화",
+      "description": "다음 공격 피해 25% 감소. 1회 발동 후 소멸."
+    },
+    {
+      "id": "취약",
+      "description": "받는 피해 50% 증가. 턴 카운트로 해제."
+    },
+    {
+      "id": "냉기",
+      "description": "다음 턴 드로우 1장 감소. 1턴 후 해제."
+    },
+    {
+      "id": "출혈",
+      "description": "피해 받을 때마다 추가 2피해. 스택 1 감소, 0에서 소멸."
+    },
+    {
+      "id": "strength",
+      "description": "이 버프의 스택 수만큼 모든 공격 피해 증가 (영구)."
+    },
+    {
+      "id": "thorns",
+      "description": "근접 공격 받을 때마다 공격자에게 3피해."
+    }
+  ]
+}
