@@ -295,8 +295,17 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 		sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
 
 
-func _on_sijo_completed(_final_card_id: String) -> void:
-	# 시조 완성 보상: 기 1 회복 + 카드 1장 드로우
+func _on_sijo_completed(final_card_id: String) -> void:
+	# 시조 완성 보상: 마지막 카드 효과 2배 + 기 1 회복 + 카드 1장 드로우
+	var card: CardData = battle_manager._get_battle_card(final_card_id)
+	if card:
+		# 마지막 카드 효과를 한 번 더 적용 (정상 플레이 + 보너스 = 2배)
+		var target_index := 0
+		for i in battle_manager.enemies.size():
+			if battle_manager.enemies[i]["current_hp"] > 0:
+				target_index = i
+				break
+		battle_manager._resolve_card_effect(card, target_index)
 	battle_manager.current_qi += 1
 	battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
 	battle_manager.draw_cards(1)
