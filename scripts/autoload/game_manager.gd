@@ -66,6 +66,7 @@ func start_new_run(character_id: String) -> void:
 	run_data = RunData.new()
 	run_data.character_id = character_id
 	run_data.map_seed = randi()
+	RelicManager.reset_run_state()
 
 	# DataLoader에서 캐릭터 데이터로 HP 설정
 	var skills_data := DataLoader.get_character_skills(character_id)

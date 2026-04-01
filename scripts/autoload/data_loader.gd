@@ -6,6 +6,10 @@ extends Node
 var _cards: Dictionary = {}
 # 적 데이터 (id → Dictionary)
 var _enemies: Dictionary = {}
+# 유물 데이터 (id → Dictionary)
+var _relics: Dictionary = {}
+# 희귀도별 드롭 가중치
+var _relic_rarity_table: Dictionary = {}
 # 캐릭터 스킬 데이터
 var _skills_data: Dictionary = {}
 
@@ -33,6 +37,7 @@ const STARTER_DECKS := {
 func _ready() -> void:
 	_load_all_cards()
 	_load_all_enemies()
+	_load_relics()
 	_load_skills()
 
 
@@ -115,6 +120,28 @@ func _load_enemy_file(path: String) -> void:
 				_enemies[item["id"]] = item
 
 
+func _load_relics() -> void:
+	var path := "res://data/relics/relics.json"
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return
+	var json := JSON.new()
+	var err := json.parse(file.get_as_text())
+	file.close()
+	if err != OK or not (json.data is Dictionary):
+		push_warning("DataLoader: 유물 JSON 파싱 실패 — %s" % path)
+		return
+
+	var data: Dictionary = json.data
+	# 희귀도 테이블 저장
+	_relic_rarity_table = data.get("rarity_table", {})
+
+	var relics_array: Array = data.get("relics", [])
+	for relic_dict in relics_array:
+		if relic_dict is Dictionary and relic_dict.has("id"):
+			_relics[relic_dict["id"]] = relic_dict
+
+
 func _load_skills() -> void:
 	var path := "res://data/skills/special_skills.json"
 	var file := FileAccess.open(path, FileAccess.READ)
@@ -152,6 +179,55 @@ func get_starter_deck(character_id: String) -> Array[String]:
 
 func get_enemy(enemy_id: String) -> Dictionary:
 	return _enemies.get(enemy_id, {})
+
+
+func get_relic(relic_id: String) -> Dictionary:
+	return _relics.get(relic_id, {})
+
+
+func get_all_relics() -> Dictionary:
+	return _relics
+
+
+func get_relics_by_rarity(rarity: int) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for relic in _relics.values():
+		if relic.get("rarity", 0) == rarity:
+			result.append(relic)
+	return result
+
+
+func get_available_relics(owned_ids: Array[String], character_id: String) -> Array[Dictionary]:
+	## 소유하지 않은 유물 중 획득 가능한 것만 반환 (직업 제한 확인)
+	var result: Array[Dictionary] = []
+	for relic in _relics.values():
+		var relic_id: String = relic.get("id", "")
+		if relic_id in owned_ids:
+			continue
+		var restriction = relic.get("class_restriction", null)
+		if restriction != null and restriction is String:
+			# 직업 제한이 있는데 현재 캐릭터와 불일치
+			if not _matches_class(restriction, character_id):
+				continue
+		result.append(relic)
+	return result
+
+
+func _matches_class(restriction: String, character_id: String) -> bool:
+	## 직업 제한 문자열(한글)과 캐릭터 ID 매칭
+	var class_map := {
+		"무관": "mugwan",
+		"문관": "dosa",
+		"의원": "physician",
+		"무당": "shaman",
+		"궁수": "archer",
+		"상인": "merchant",
+	}
+	return class_map.get(restriction, "") == character_id
+
+
+func get_relic_rarity_table() -> Dictionary:
+	return _relic_rarity_table
 
 
 func get_character_skills(character_id: String) -> Dictionary:

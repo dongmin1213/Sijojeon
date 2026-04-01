@@ -74,6 +74,15 @@ func _on_choice_selected(choice: Dictionary) -> void:
 			GameManager.run_data.current_hp + hp_change, 0, GameManager.run_data.max_hp
 		)
 		GameManager.run_data.gold += gold_change
+
+		# 유물 획득 처리
+		var effect_type: String = effects.get("effect_type", "")
+		if effect_type == "relic_gain":
+			var count: int = effects.get("count", 1)
+			for i in count:
+				var relic_id := RelicManager.roll_relic_reward("event")
+				if relic_id != "":
+					RelicManager.acquire_relic(relic_id)
 	_return_to_map()
 
 

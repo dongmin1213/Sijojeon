@@ -357,8 +357,12 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 			for i in enemies.size():
 				if enemies[i]["current_hp"] > 0:
 					deal_damage_to_enemy(i, card.damage)
+					# 유물 트리거: 공격 카드 사용 시 (저주받은 투구)
+					RelicManager.trigger_on_attack_card_played(self, i)
 		else:
 			deal_damage_to_enemy(target_enemy_index, card.damage)
+			# 유물 트리거: 공격 카드 사용 시 (저주받은 투구)
+			RelicManager.trigger_on_attack_card_played(self, target_enemy_index)
 
 	# 방어도
 	if card.block_value > 0:
@@ -397,6 +401,8 @@ func _reshuffle_discard() -> void:
 	draw_pile.append_array(discard_pile)
 	discard_pile.clear()
 	_shuffle_draw_pile()
+	# 유물 트리거: 덱 셔플 (봉황 깃털)
+	RelicManager.trigger_on_deck_shuffle(self)
 
 
 func _get_enemy_intent(enemy_index: int) -> Dictionary:

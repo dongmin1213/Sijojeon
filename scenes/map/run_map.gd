@@ -63,8 +63,15 @@ func _ready() -> void:
 	_build_map()
 	_update_hud()
 	_update_node_states()
+	_init_relic_bar()
 	# 스크롤을 현재 위치로 이동
 	call_deferred("_scroll_to_current")
+
+
+func _init_relic_bar() -> void:
+	var relic_bar := RelicBar.new()
+	relic_bar.name = "RelicBar"
+	$HUD.add_child(relic_bar)
 
 
 func _update_hud() -> void:

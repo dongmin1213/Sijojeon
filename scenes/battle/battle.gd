@@ -59,6 +59,12 @@ func _ready() -> void:
 	# 시조 슬롯 UI 초기화
 	_init_sijo_slots()
 
+	# 유물 바 UI 추가
+	_init_relic_bar()
+
+	# 유물 트리거 시그널 연결
+	RelicManager.relic_triggered.connect(_on_relic_triggered)
+
 	# 전투 시작
 	_start_battle()
 
@@ -87,7 +93,17 @@ func _start_battle() -> void:
 		if not fallback.is_empty():
 			enemy_data.append(fallback)
 
+	# 보스 전투 진입 시 유물 트리거 (만파식적 등)
+	var is_boss := false
+	if rd.has_meta("current_node_type"):
+		is_boss = (rd.get_meta("current_node_type") == MapData.NodeType.BOSS)
+	if is_boss:
+		RelicManager.trigger_boss_enter()
+
 	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
+
+	# 전투 시작 유물 트리거 (편자, 호신검, 어사마패 등)
+	RelicManager.trigger_battle_start(battle_manager)
 
 	# 기력 UI 초기화 (무관 전용)
 	if battle_manager.is_mugwan:
@@ -217,6 +233,8 @@ func _on_block_changed(new_block: int) -> void:
 
 func _on_turn_started(turn: int) -> void:
 	turn_label.text = "%d턴" % turn
+	# 매 턴 시작 유물 트리거 (삼족오 깃털 등)
+	RelicManager.trigger_turn_start(battle_manager)
 
 
 func _on_enemy_hp_changed(_enemy_index: int, _current: int, _max_val: int) -> void:
@@ -258,6 +276,29 @@ func _on_stamina_changed(current: int, max_val: int) -> void:
 	if _stamina_label:
 		_stamina_label.text = "氣力: %d/%d" % [current, max_val]
 	_refresh_hand_ui()
+
+
+func _init_relic_bar() -> void:
+	var relic_bar := RelicBar.new()
+	relic_bar.name = "RelicBar"
+	$BattleHUD.add_child(relic_bar)
+
+
+func _on_relic_triggered(relic_id: String, description: String) -> void:
+	# 유물 발동 시 간단한 플래시 텍스트 표시
+	var relic_name := RelicManager.get_relic_display_name(relic_id)
+	var popup := Label.new()
+	popup.text = "%s: %s" % [relic_name, description]
+	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	popup.anchors_preset = Control.PRESET_CENTER_TOP
+	popup.position.y = 60
+	popup.add_theme_font_size_override("font_size", 16)
+	popup.add_theme_color_override("font_color", RelicManager.get_relic_rarity_color(relic_id))
+	add_child(popup)
+	# 1.5초 후 자동 제거
+	var tween := create_tween()
+	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
+	tween.tween_callback(popup.queue_free)
 
 
 func _init_stamina_ui() -> void:
@@ -368,6 +409,13 @@ func _on_battle_ended(victory: bool) -> void:
 	var timer := get_tree().create_timer(1.5)
 	await timer.timeout
 	if victory:
+		# 유물 트리거: 전투 승리
+		RelicManager.trigger_combat_victory()
+		# 정예 전투 승리 유물 트리거
+		if GameManager.run_data and GameManager.run_data.has_meta("current_node_type"):
+			if GameManager.run_data.get_meta("current_node_type") == MapData.NodeType.ELITE:
+				RelicManager.trigger_elite_victory()
+
 		# 적 보상 데이터 수집 → 보상 씬으로 전달
 		var rewards := _collect_enemy_rewards()
 		if GameManager.run_data:

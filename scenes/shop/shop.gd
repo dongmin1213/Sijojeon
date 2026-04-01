@@ -55,6 +55,9 @@ func _ready() -> void:
 
 	deck_scroll.visible = false
 
+	# 상점 입장 유물 트리거 (상단 장부)
+	RelicManager.trigger_enter_shop()
+
 	_generate_shop_cards()
 	_display_shop_cards()
 	_update_gold_display()

@@ -7,6 +7,8 @@ const CARD_OFFER_COUNT := 3
 var reward_gold: int = 0
 var card_offers: Array[String] = []  # 제시된 카드 ID 목록
 var card_selected: bool = false
+var relic_offer_id: String = ""  # 유물 보상 ID (빈 문자열이면 유물 없음)
+var relic_claimed: bool = false
 
 @onready var title_label: Label = $VBoxContainer/TitleLabel
 @onready var gold_label: Label = $VBoxContainer/GoldLabel
@@ -23,6 +25,7 @@ func _ready() -> void:
 
 	_load_rewards()
 	_apply_gold()
+	_try_relic_reward()
 	_generate_card_offers()
 	_display_card_offers()
 
@@ -35,6 +38,69 @@ func _load_rewards() -> void:
 		reward_gold = rewards.get("gold", 0)
 		# card_chance는 항상 카드 선택 제공 (Slay the Spire 스타일)
 		# relic_chance는 향후 확장
+
+
+func _try_relic_reward() -> void:
+	## 전투 보상에서 유물 드롭을 시도한다.
+	var rewards = GameManager.run_data.get_meta("battle_rewards", {}) if GameManager.run_data else {}
+	var relic_chance: float = rewards.get("relic_chance", 0.0)
+	if relic_chance <= 0.0:
+		return
+
+	# 확률 체크
+	if randf() > relic_chance:
+		return
+
+	# 노드 타입에 따라 소스 결정
+	var source := "elite"
+	if GameManager.run_data and GameManager.run_data.has_meta("current_node_type"):
+		var node_type = GameManager.run_data.get_meta("current_node_type")
+		if node_type == MapData.NodeType.BOSS:
+			source = "boss"
+
+	relic_offer_id = RelicManager.roll_relic_reward(source)
+	if relic_offer_id != "":
+		_display_relic_offer()
+
+
+func _display_relic_offer() -> void:
+	## 유물 보상 UI를 카드 섹션 위에 추가한다.
+	var relic_section := VBoxContainer.new()
+	relic_section.name = "RelicSection"
+
+	var relic_label := Label.new()
+	relic_label.text = "유물 획득!"
+	relic_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	relic_label.add_theme_font_size_override("font_size", 20)
+	relic_label.add_theme_color_override("font_color", RelicManager.get_relic_rarity_color(relic_offer_id))
+	relic_section.add_child(relic_label)
+
+	var relic_btn := Button.new()
+	relic_btn.custom_minimum_size = Vector2(300, 80)
+	var relic_name := RelicManager.get_relic_display_name(relic_offer_id)
+	var relic_desc := RelicManager.get_relic_description(relic_offer_id)
+	relic_btn.text = "%s\n%s" % [relic_name, relic_desc]
+	relic_btn.pressed.connect(_on_relic_claimed)
+	relic_section.add_child(relic_btn)
+
+	# 카드 섹션 앞에 삽입
+	$VBoxContainer.add_child(relic_section)
+	$VBoxContainer.move_child(relic_section, $VBoxContainer.get_children().find(card_section))
+
+
+func _on_relic_claimed() -> void:
+	if relic_claimed:
+		return
+	relic_claimed = true
+	RelicManager.acquire_relic(relic_offer_id)
+
+	# UI 비활성화
+	var relic_section = $VBoxContainer.get_node_or_null("RelicSection")
+	if relic_section:
+		for child in relic_section.get_children():
+			if child is Button:
+				child.disabled = true
+				child.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
 
 
 func _apply_gold() -> void:
