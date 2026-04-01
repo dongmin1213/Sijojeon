@@ -1,0 +1,223 @@
+{
+  "version": "0.1",
+  "type": "event_pool",
+  "act": 2,
+  "act_name": {
+    "ko": "지리산",
+    "description": "험준한 산세와 깊은 숲. 산적, 요괴, 수도하는 승려가 공존하는 위험한 길."
+  },
+  "events": [
+    {
+      "id": "EVT_A2_001",
+      "title": {
+        "ko": "산사의 승려",
+        "description": "지리산 깊은 곳의 작은 암자에서 한 승려가 좌선하고 있다. 다가가자 눈을 뜬다."
+      },
+      "flavor_text": "\"산을 오르는 자에게는 반드시 이유가 있는 법.\"",
+      "choices": [
+        {
+          "id": "meditate",
+          "text": "함께 좌선에 들어간다.",
+          "effect_type": "max_hp_gain",
+          "effect_value": 4,
+          "result_text": "깊은 명상으로 심신이 단련된다. 최대 HP +4."
+        },
+        {
+          "id": "ask_teaching",
+          "text": "무예의 가르침을 청한다.",
+          "effect_type": "card_gain",
+          "effect_value": 1,
+          "result_text": "승려가 비전의 한 수를 알려준다. 카드 1장 획득."
+        },
+        {
+          "id": "rob",
+          "text": "암자의 보물을 훔친다.",
+          "effect_type": "gold_gain",
+          "effect_value": 45,
+          "result_text": "금불상을 챙겼다. 엽전 45 획득. 하지만 죄업이 깊어진다.",
+          "effect_type_bonus": "max_hp_loss",
+          "effect_value_bonus": 3,
+          "result_text_full": "엽전 45 획득 → 최대 HP -3."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A2_002",
+      "title": {
+        "ko": "산적의 매복",
+        "description": "숲 사이로 무장한 산적들이 길을 막는다. 두목이 앞으로 나선다."
+      },
+      "flavor_text": "\"재물을 놓고 가면 목숨은 살려주마.\"",
+      "choices": [
+        {
+          "id": "pay",
+          "text": "순순히 통행료를 낸다. (엽전 25)",
+          "effect_type": "gold_loss",
+          "effect_value": 25,
+          "result_text": "산적들이 비켜선다. 엽전 25 소비."
+        },
+        {
+          "id": "fight",
+          "text": "산적들과 맞서 싸운다.",
+          "effect_type": "hp_loss",
+          "effect_value": 15,
+          "result_text": "격전 끝에 산적을 물리쳤다. HP 15 손실, 엽전 40 획득.",
+          "effect_type_bonus": "gold_gain",
+          "effect_value_bonus": 40,
+          "result_text_full": "HP 15 손실 → 엽전 40 획득."
+        },
+        {
+          "id": "negotiate",
+          "text": "두목과 담판을 짓는다.",
+          "effect_type": "hp_loss",
+          "effect_value": 8,
+          "result_text": "구타를 당한 후 겨우 풀려났다. HP 8 손실."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A2_003",
+      "title": {
+        "ko": "약초 채집터",
+        "description": "산 중턱에 희귀 약초가 자라는 곳을 발견했다."
+      },
+      "flavor_text": "산삼의 향기가 코끝을 스친다.",
+      "choices": [
+        {
+          "id": "gather_carefully",
+          "text": "조심스럽게 약초를 채집한다.",
+          "effect_type": "hp_gain",
+          "effect_value": 20,
+          "result_text": "산삼으로 기운을 보충했다. HP 20 회복."
+        },
+        {
+          "id": "gather_all",
+          "text": "욕심내어 전부 캐낸다.",
+          "effect_type": "hp_gain",
+          "effect_value": 10,
+          "result_text": "서두르다 독초와 섞었다. HP 10 회복, 다음 전투 시작 시 독 3.",
+          "effect_type_bonus": "debuff",
+          "debuff_type": "독",
+          "effect_value_bonus": 3,
+          "result_text_full": "HP 10 회복 → 다음 전투 독 3."
+        },
+        {
+          "id": "sell_location",
+          "text": "채집터 위치를 약장수에게 판다.",
+          "effect_type": "gold_gain",
+          "effect_value": 35,
+          "result_text": "약장수가 큰 값에 위치 정보를 사간다. 엽전 35 획득."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A2_004",
+      "title": {
+        "ko": "산신령의 시련",
+        "description": "안개가 자욱한 고갯길에서 호랑이 형상의 산신령이 나타난다."
+      },
+      "flavor_text": "\"이 산을 지나려면 시련을 통과해야 하느니라.\"",
+      "choices": [
+        {
+          "id": "accept_trial",
+          "text": "시련을 받아들인다.",
+          "effect_type": "hp_loss",
+          "effect_value": 10,
+          "result_text": "시련을 통과했다. HP 10 손실, 최대 HP +6.",
+          "effect_type_bonus": "max_hp_gain",
+          "effect_value_bonus": 6,
+          "result_text_full": "HP 10 손실 → 최대 HP +6."
+        },
+        {
+          "id": "offer_respect",
+          "text": "경의를 표하고 제물을 바친다. (엽전 20)",
+          "effect_type": "gold_loss",
+          "effect_value": 20,
+          "result_text": "산신령이 흡족히 여기며 축복을 내린다. 다음 전투 힘 +3.",
+          "effect_type_bonus": "buff_next_combat",
+          "effect_value_bonus": { "buff": "strength", "stacks": 3 }
+        },
+        {
+          "id": "flee",
+          "text": "무시하고 도망친다.",
+          "effect_type": "debuff",
+          "debuff_type": "약화",
+          "effect_value": 2,
+          "result_text": "산신령의 분노로 기운이 빠진다. 다음 전투 약화 2."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A2_005",
+      "title": {
+        "ko": "폭포 수련장",
+        "description": "거대한 폭포 아래에서 무인이 수련하고 있다. 자리를 권한다."
+      },
+      "flavor_text": "\"폭포 아래 서 보시오. 심신이 단련될 것이오.\"",
+      "choices": [
+        {
+          "id": "train",
+          "text": "폭포 아래에서 수련한다.",
+          "effect_type": "hp_loss",
+          "effect_value": 8,
+          "result_text": "고된 수련이었지만 한층 강해진 느낌이다. HP 8 손실, 카드 1장 획득.",
+          "effect_type_bonus": "card_gain",
+          "effect_value_bonus": 1,
+          "result_text_full": "HP 8 손실 → 카드 1장 획득."
+        },
+        {
+          "id": "rest",
+          "text": "폭포 옆에서 쉬어간다.",
+          "effect_type": "hp_gain",
+          "effect_value": 12,
+          "result_text": "맑은 물로 갈증을 해소하고 쉬었다. HP 12 회복."
+        },
+        {
+          "id": "challenge",
+          "text": "무인에게 대련을 청한다.",
+          "effect_type": "hp_loss",
+          "effect_value": 18,
+          "result_text": "무인이 너무 강했다. HP 18 손실, 하지만 엽전 50 획득.",
+          "effect_type_bonus": "gold_gain",
+          "effect_value_bonus": 50,
+          "result_text_full": "HP 18 손실 → 엽전 50 획득."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A2_006",
+      "title": {
+        "ko": "버려진 광산",
+        "description": "산 중턱에 폐광이 보인다. 입구에서 희미한 빛이 새어나온다."
+      },
+      "flavor_text": "깊은 곳에서 금속 부딪히는 소리가 들린다.",
+      "choices": [
+        {
+          "id": "explore",
+          "text": "광산 안으로 들어간다.",
+          "effect_type": "random",
+          "outcomes": [
+            { "weight": 40, "effect_type": "gold_gain", "effect_value": 55, "text": "금맥을 발견했다! 엽전 55 획득." },
+            { "weight": 30, "effect_type": "relic_gain", "effect_value": 1, "text": "광부가 남긴 유물을 발견했다." },
+            { "weight": 30, "effect_type": "hp_loss", "effect_value": 15, "text": "갱도가 무너졌다! HP 15 손실." }
+          ],
+          "result_text": "광산 속으로 발걸음을 옮긴다."
+        },
+        {
+          "id": "mine_entrance",
+          "text": "입구 근처만 살펴본다.",
+          "effect_type": "gold_gain",
+          "effect_value": 20,
+          "result_text": "입구에서 잡광석을 주웠다. 엽전 20 획득."
+        },
+        {
+          "id": "ignore",
+          "text": "위험해 보여 지나친다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "안전하게 길을 계속한다."
+        }
+      ]
+    }
+  ]
+}

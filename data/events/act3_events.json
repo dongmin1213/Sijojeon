@@ -1,0 +1,213 @@
+{
+  "version": "0.1",
+  "type": "event_pool",
+  "act": 3,
+  "act_name": {
+    "ko": "경복궁",
+    "description": "왕조의 심장부. 역모의 불꽃이 타오르는 궁궐 내전."
+  },
+  "events": [
+    {
+      "id": "EVT_A3_001",
+      "title": {
+        "ko": "충신의 밀서",
+        "description": "궁궐 복도에서 한 관리가 몰래 다가와 밀서를 건넨다."
+      },
+      "flavor_text": "\"역적의 배치도를 입수했소. 이것이 도움이 될 것이오.\"",
+      "choices": [
+        {
+          "id": "accept",
+          "text": "밀서를 받아 역적 배치를 파악한다.",
+          "effect_type": "buff_next_combat",
+          "effect_value_bonus": { "buff": "strength", "stacks": 3 },
+          "result_text": "역적의 약점을 파악했다. 다음 전투 힘 +3."
+        },
+        {
+          "id": "demand_more",
+          "text": "더 많은 정보를 요구한다.",
+          "effect_type": "card_gain",
+          "effect_value": 1,
+          "result_text": "관리가 비밀 무공 서적을 건넨다. 카드 1장 획득."
+        },
+        {
+          "id": "refuse",
+          "text": "함정일 수 있다며 거절한다.",
+          "effect_type": "gold_gain",
+          "effect_value": 25,
+          "result_text": "관리가 보상으로 엽전을 놓고 간다. 엽전 25 획득."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A3_002",
+      "title": {
+        "ko": "궁녀의 부탁",
+        "description": "떨고 있는 궁녀가 길을 막는다. 역적에게 쫓기고 있는 듯하다."
+      },
+      "flavor_text": "\"제발 숨겨주세요... 그들이 오고 있어요.\"",
+      "choices": [
+        {
+          "id": "hide",
+          "text": "궁녀를 숨겨주고 역적을 따돌린다.",
+          "effect_type": "hp_gain",
+          "effect_value": 15,
+          "result_text": "궁녀가 감사히 여기며 비장의 약을 건넨다. HP 15 회복."
+        },
+        {
+          "id": "fight_guards",
+          "text": "추격하는 역적 병사를 상대한다.",
+          "effect_type": "hp_loss",
+          "effect_value": 12,
+          "result_text": "병사를 물리쳤다. HP 12 손실, 엽전 40 + 카드 1장 획득.",
+          "effect_type_bonus": "gold_gain",
+          "effect_value_bonus": 40,
+          "result_text_full": "HP 12 손실 → 엽전 40 + 카드 1장 획득."
+        },
+        {
+          "id": "betray",
+          "text": "궁녀의 위치를 역적에게 알린다.",
+          "effect_type": "gold_gain",
+          "effect_value": 60,
+          "result_text": "역적이 보상으로 엽전을 건넨다. 엽전 60 획득, 최대 HP -5.",
+          "effect_type_bonus": "max_hp_loss",
+          "effect_value_bonus": 5,
+          "result_text_full": "엽전 60 획득 → 최대 HP -5."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A3_003",
+      "title": {
+        "ko": "어의의 치료실",
+        "description": "궁궐 한쪽에 어의의 치료실이 아직 남아 있다. 약재가 풍부하다."
+      },
+      "flavor_text": "\"아직 쓸 수 있는 약재가 남아있소.\"",
+      "choices": [
+        {
+          "id": "full_heal",
+          "text": "어의의 치료를 받는다. (엽전 50)",
+          "effect_type": "gold_loss",
+          "effect_value": 50,
+          "result_text": "어의의 명의술로 몸이 완전히 회복된다. 엽전 50 소비, HP 완전 회복.",
+          "effect_type_bonus": "hp_full_heal",
+          "effect_value_bonus": 0
+        },
+        {
+          "id": "max_hp",
+          "text": "영약을 복용한다. (엽전 30)",
+          "effect_type": "gold_loss",
+          "effect_value": 30,
+          "result_text": "영약의 효과로 체질이 강화된다. 엽전 30 소비, 최대 HP +5.",
+          "effect_type_bonus": "max_hp_gain",
+          "effect_value_bonus": 5
+        },
+        {
+          "id": "steal",
+          "text": "약재를 훔쳐 달아난다.",
+          "effect_type": "hp_gain",
+          "effect_value": 25,
+          "result_text": "약재로 자가 치료했다. HP 25 회복."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A3_004",
+      "title": {
+        "ko": "역적의 함정",
+        "description": "궁궐 통로에 설치된 역적의 함정. 앞서간 자의 흔적이 남아 있다."
+      },
+      "flavor_text": "바닥에 미세한 실이 걸려 있다.",
+      "choices": [
+        {
+          "id": "disarm",
+          "text": "조심스럽게 함정을 해제한다.",
+          "effect_type": "gold_gain",
+          "effect_value": 30,
+          "result_text": "함정 장치를 분해하여 값진 부품을 얻었다. 엽전 30 획득."
+        },
+        {
+          "id": "trigger",
+          "text": "일부러 함정을 작동시켜 적을 유인한다.",
+          "effect_type": "hp_loss",
+          "effect_value": 10,
+          "result_text": "함정에 맞았지만 달려온 역적 병사의 물건을 빼앗았다.",
+          "effect_type_bonus": "relic_gain",
+          "effect_value_bonus": 1,
+          "result_text_full": "HP 10 손실 → 유물 1개 획득."
+        },
+        {
+          "id": "detour",
+          "text": "우회한다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "안전하게 다른 길로 돌아간다."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A3_005",
+      "title": {
+        "ko": "왕의 서재",
+        "description": "역적이 미처 약탈하지 못한 왕의 서재를 발견했다."
+      },
+      "flavor_text": "서가에는 비전서와 왕실의 보물이 남아 있다.",
+      "choices": [
+        {
+          "id": "study",
+          "text": "비전서를 연구한다.",
+          "effect_type": "card_gain",
+          "effect_value": 1,
+          "result_text": "강력한 무공의 비급을 깨달았다. 카드 1장 획득."
+        },
+        {
+          "id": "treasure",
+          "text": "보물을 챙긴다.",
+          "effect_type": "gold_gain",
+          "effect_value": 50,
+          "result_text": "왕실 보물을 챙겼다. 엽전 50 획득."
+        },
+        {
+          "id": "both",
+          "text": "전부 가져간다.",
+          "effect_type": "gold_gain",
+          "effect_value": 30,
+          "result_text": "욕심에 서두르다 일부만 챙겼다. 엽전 30 + HP 8 손실.",
+          "effect_type_bonus": "hp_loss",
+          "effect_value_bonus": 8,
+          "result_text_full": "엽전 30 획득 → HP 8 손실."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A3_006",
+      "title": {
+        "ko": "전투 전야",
+        "description": "최후의 결전을 앞두고 잠시 쉴 수 있는 방을 찾았다."
+      },
+      "flavor_text": "마지막 준비를 할 시간이다.",
+      "choices": [
+        {
+          "id": "rest",
+          "text": "몸을 쉬어 체력을 회복한다.",
+          "effect_type": "hp_gain",
+          "effect_value": 20,
+          "result_text": "잠시나마 몸을 추스렸다. HP 20 회복."
+        },
+        {
+          "id": "sharpen",
+          "text": "무기를 갈고 정신을 가다듬는다.",
+          "effect_type": "buff_next_combat",
+          "effect_value_bonus": { "buff": "strength", "stacks": 4 },
+          "result_text": "결의를 다졌다. 다음 전투 힘 +4."
+        },
+        {
+          "id": "pray",
+          "text": "왕실 사당에서 기도한다.",
+          "effect_type": "max_hp_gain",
+          "effect_value": 5,
+          "result_text": "선왕의 가호가 느껴진다. 최대 HP +5."
+        }
+      ]
+    }
+  ]
+}

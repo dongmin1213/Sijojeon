@@ -12,9 +12,12 @@ enum GameState {
 	SHOP,
 	REST,
 	REWARD,
+	ACT_TRANSITION,
 	RUN_OVER,
 	RUN_WIN,
 }
+
+const MAX_ACT := 3
 
 var current_state: GameState = GameState.TITLE
 var run_data: RunData = null
@@ -41,6 +44,8 @@ func _get_scene_path(state: GameState) -> String:
 			return "res://scenes/rest/rest.tscn"
 		GameState.REWARD:
 			return "res://scenes/reward/reward.tscn"
+		GameState.ACT_TRANSITION:
+			return "res://scenes/act_transition/act_transition.tscn"
 	return ""
 
 

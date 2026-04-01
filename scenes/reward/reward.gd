@@ -148,10 +148,26 @@ func _on_skip_pressed() -> void:
 
 func _on_proceed_pressed() -> void:
 	# 메타 데이터 정리
-	if GameManager.run_data and GameManager.run_data.has_meta("battle_rewards"):
-		GameManager.run_data.remove_meta("battle_rewards")
+	var was_boss := false
+	if GameManager.run_data:
+		if GameManager.run_data.has_meta("current_node_type"):
+			was_boss = (GameManager.run_data.get_meta("current_node_type") == MapData.NodeType.BOSS)
+		if GameManager.run_data.has_meta("battle_rewards"):
+			GameManager.run_data.remove_meta("battle_rewards")
 
-	# 층 진행 후 맵으로 복귀
 	GameManager.advance_floor()
-	GameManager.save_current_run()
-	GameManager.change_state(GameManager.GameState.MAP)
+
+	if was_boss:
+		# 보스 처치: 막 전환 또는 런 승리
+		if GameManager.run_data and GameManager.run_data.current_act >= GameManager.MAX_ACT:
+			# 마지막 막 보스 처치 → 런 승리
+			GameManager.end_run(true)
+		else:
+			# 다음 막으로 전환
+			GameManager.advance_act()
+			GameManager.save_current_run()
+			GameManager.change_state(GameManager.GameState.ACT_TRANSITION)
+	else:
+		# 일반 전투 → 맵으로 복귀
+		GameManager.save_current_run()
+		GameManager.change_state(GameManager.GameState.MAP)

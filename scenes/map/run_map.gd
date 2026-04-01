@@ -35,6 +35,13 @@ const MAP_PADDING_X := 80.0
 const MAP_PADDING_TOP := 100.0
 const MAP_PADDING_BOTTOM := 160.0
 
+## 막별 맵 배경 색상 (그라데이션 기반)
+const ACT_BG_COLORS := {
+	1: Color(0.08, 0.06, 0.12),  # 한양 — 어두운 보라
+	2: Color(0.05, 0.1, 0.06),   # 지리산 — 어두운 녹색
+	3: Color(0.12, 0.04, 0.04),  # 경복궁 — 어두운 적색
+}
+
 @onready var scroll_container: ScrollContainer = $ScrollContainer
 @onready var map_container: Control = $ScrollContainer/MapContainer
 @onready var node_layer: Control = $ScrollContainer/MapContainer/NodeLayer
@@ -53,8 +60,8 @@ func _ready() -> void:
 		push_warning("RunMap: run_data 또는 run_map이 없음")
 		return
 
-	_update_hud()
 	_build_map()
+	_update_hud()
 	_update_node_states()
 	# 스크롤을 현재 위치로 이동
 	call_deferred("_scroll_to_current")
@@ -64,7 +71,25 @@ func _update_hud() -> void:
 	var rd := GameManager.run_data
 	hp_label.text = "HP: %d/%d" % [rd.current_hp, rd.max_hp]
 	gold_label.text = "금화: %d" % rd.gold
-	act_label.text = "%d막" % rd.current_act
+	var act_name: String = MapGenerator.get_act_name(rd.current_act)
+	act_label.text = "%d막 — %s" % [rd.current_act, act_name]
+
+	# 막별 배경색 적용
+	var bg_color: Color = ACT_BG_COLORS.get(rd.current_act, ACT_BG_COLORS[1])
+	_apply_map_background(bg_color)
+
+
+func _apply_map_background(color: Color) -> void:
+	# MapContainer에 배경색 적용
+	var bg := map_container.get_node_or_null("Background")
+	if bg == null:
+		bg = ColorRect.new()
+		bg.name = "Background"
+		map_container.add_child(bg)
+		map_container.move_child(bg, 0)
+	bg.color = color
+	bg.anchors_preset = Control.PRESET_FULL_RECT
+	bg.size = map_container.custom_minimum_size
 
 
 func _build_map() -> void:
