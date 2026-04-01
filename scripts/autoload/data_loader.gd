@@ -49,22 +49,24 @@ func _ready() -> void:
 
 
 func _load_all_cards() -> void:
-	var dir := DirAccess.open("res://data/cards/")
-	if dir == null:
-		return
-	dir.list_dir_begin()
-	var file_name := dir.get_next()
-	while file_name != "":
-		if file_name.ends_with(".json"):
-			var full_path := "res://data/cards/" + file_name
-			_load_card_file(full_path)
-		file_name = dir.get_next()
-	dir.list_dir_end()
+	# Android APK에서는 DirAccess.open("res://")이 null을 반환하므로
+	# 카드 파일 경로를 명시적으로 지정
+	var card_files := [
+		"res://data/cards/common.json",
+		"res://data/cards/dosa.json",
+		"res://data/cards/mugwan.json",
+		"res://data/cards/mungwan.json",
+	]
+	for path in card_files:
+		_load_card_file(path)
+	if _cards.is_empty():
+		push_error("DataLoader: 카드 데이터 로드 실패 — _cards 비어있음")
 
 
 func _load_card_file(path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
+		push_warning("DataLoader: 카드 파일 열기 실패 — %s" % path)
 		return
 	var json := JSON.new()
 	var err := json.parse(file.get_as_text())
@@ -89,22 +91,26 @@ func _load_card_file(path: String) -> void:
 
 
 func _load_all_enemies() -> void:
-	var dir := DirAccess.open("res://data/enemies/")
-	if dir == null:
-		return
-	dir.list_dir_begin()
-	var file_name := dir.get_next()
-	while file_name != "":
-		if file_name.ends_with(".json"):
-			var full_path := "res://data/enemies/" + file_name
-			_load_enemy_file(full_path)
-		file_name = dir.get_next()
-	dir.list_dir_end()
+	# Android APK에서는 DirAccess.open("res://")이 null을 반환하므로
+	# 적 파일 경로를 명시적으로 지정
+	var enemy_files := [
+		"res://data/enemies/act1.json",
+		"res://data/enemies/act1_boss.json",
+		"res://data/enemies/act2.json",
+		"res://data/enemies/act2_boss.json",
+		"res://data/enemies/act3.json",
+		"res://data/enemies/act3_boss.json",
+	]
+	for path in enemy_files:
+		_load_enemy_file(path)
+	if _enemies.is_empty():
+		push_error("DataLoader: 적 데이터 로드 실패 — _enemies 비어있음")
 
 
 func _load_enemy_file(path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
+		push_warning("DataLoader: 적 파일 열기 실패 — %s" % path)
 		return
 	var json := JSON.new()
 	var err := json.parse(file.get_as_text())

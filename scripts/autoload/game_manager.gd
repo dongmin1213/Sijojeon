@@ -82,6 +82,8 @@ func start_new_run(character_id: String) -> void:
 
 	# 기본 덱 로드
 	run_data.deck = DataLoader.get_starter_deck(character_id)
+	if run_data.deck.is_empty():
+		push_error("GameManager: 스타터 덱이 비어있음 — character_id=%s" % character_id)
 
 	# 시작 유물
 	if skills_data and skills_data.has("starting_relic"):
