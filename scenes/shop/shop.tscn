@@ -1,0 +1,102 @@
+[gd_scene load_steps=2 format=3 uid="uid://shop_scene"]
+
+[ext_resource type="Script" path="res://scenes/shop/shop.gd" id="1"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.1, 0.15, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.03
+anchor_right = 0.95
+anchor_bottom = 0.97
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "상점"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 36
+
+[node name="GoldLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "보유 금화: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+
+[node name="CardSection" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CardSectionLabel" type="Label" parent="VBoxContainer/CardSection"]
+layout_mode = 2
+text = "판매 카드"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+
+[node name="CardContainer" type="HBoxContainer" parent="VBoxContainer/CardSection"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="RefreshButton" type="Button" parent="VBoxContainer/CardSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "새로고침 (50 금화)"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RemoveSection" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RemoveButton" type="Button" parent="VBoxContainer/RemoveSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "카드 제거 (75 금화)"
+
+[node name="RemoveInfo" type="Label" parent="VBoxContainer/RemoveSection"]
+layout_mode = 2
+text = "덱에서 카드 1장을 영구 제거합니다"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="DeckScrollContainer" type="ScrollContainer" parent="VBoxContainer/RemoveSection"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 180)
+visible = false
+
+[node name="DeckContainer" type="GridContainer" parent="VBoxContainer/RemoveSection/DeckScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="LeaveButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "상점 나가기"

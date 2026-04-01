@@ -12,6 +12,7 @@ extends Resource
 @export var current_floor: int = 0
 @export var deck: Array[String] = []
 @export var relics: Array[String] = []
+@export var card_removals_count: int = 0
 @export var map_seed: int = 0
 @export var visited_nodes: Array[int] = []
 var run_map: MapData.RunMap = null
@@ -28,6 +29,7 @@ func to_dict() -> Dictionary:
 		"current_floor": current_floor,
 		"deck": deck,
 		"relics": relics,
+		"card_removals_count": card_removals_count,
 		"map_seed": map_seed,
 		"visited_nodes": visited_nodes,
 		"run_map": run_map.to_dict() if run_map else {},
@@ -45,6 +47,7 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.current_floor = data.get("current_floor", 0)
 	rd.deck = Array(data.get("deck", []), TYPE_STRING, "", null)
 	rd.relics = Array(data.get("relics", []), TYPE_STRING, "", null)
+	rd.card_removals_count = data.get("card_removals_count", 0)
 	rd.map_seed = data.get("map_seed", 0)
 	rd.visited_nodes = Array(data.get("visited_nodes", []), TYPE_INT, "", null)
 	var map_dict: Dictionary = data.get("run_map", {})
