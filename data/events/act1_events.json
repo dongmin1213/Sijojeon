@@ -1,0 +1,335 @@
+{
+  "version": "0.1",
+  "type": "event_pool",
+  "act": 1,
+  "act_name": {
+    "ko": "한양",
+    "description": "조선의 수도. 부패한 관리, 거리의 불량배, 억울한 귀신이 뒤섞인 도시."
+  },
+  "events": [
+    {
+      "id": "EVT_A1_001",
+      "title": {
+        "ko": "늙은 행인",
+        "description": "지팡이에 의지한 노인이 길목에 쓰러져 있다. 가까이 다가가니 눈을 뜨며 말을 건넨다."
+      },
+      "flavor_text": "\"젊은이, 이 늙은이를 도와주겠소?\"",
+      "choices": [
+        {
+          "id": "help",
+          "text": "노인을 일으켜 부축해준다.",
+          "effect_type": "hp_gain",
+          "effect_value": 8,
+          "result_text": "노인이 감사히 여기며 호주머니에서 상처 치료약을 꺼내준다. HP 8 회복.",
+          "note": "선행 선택. 중간 HP 회복."
+        },
+        {
+          "id": "gold",
+          "text": "\"괜찮으시오?\" 물으며 엽전을 건넨다.",
+          "effect_type": "gold_loss",
+          "effect_value": 15,
+          "result_text": "노인이 엽전을 받고 보답으로 귀한 유물 조각을 건넨다.",
+          "effect_type_bonus": "relic_gain",
+          "effect_value_bonus": 1,
+          "result_text_full": "엽전 15 소비 → 유물 1개 획득.",
+          "note": "금전 소비 후 유물 획득."
+        },
+        {
+          "id": "ignore",
+          "text": "못 본 척 지나친다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "노인의 원망스러운 시선이 등 뒤를 찌른다. 아무 일도 일어나지 않는다.",
+          "note": "중립 결과."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A1_002",
+      "title": {
+        "ko": "포졸의 검문",
+        "description": "포도청 포졸 두 명이 길목을 막고 서 있다. \"거기 서시오! 신분을 밝히시오.\""
+      },
+      "flavor_text": "\"통행 허가증이 없으면 묶어가야겠소.\"",
+      "choices": [
+        {
+          "id": "bribe",
+          "text": "엽전을 쥐어주며 넘어간다.",
+          "effect_type": "gold_loss",
+          "effect_value": 20,
+          "result_text": "포졸들이 슬쩍 엽전을 집어넣고 길을 비워준다. 엽전 20 소비.",
+          "note": "금전 소비로 무사 통과."
+        },
+        {
+          "id": "talk",
+          "text": "당당하게 신분을 밝히고 설득한다.",
+          "effect_type": "hp_loss",
+          "effect_value": 5,
+          "result_text": "말다툼이 길어지더니 포졸이 곤봉을 들어 한 대 친다. HP 5 손실.",
+          "note": "설득 실패. 소량 HP 손실."
+        },
+        {
+          "id": "fight",
+          "text": "포졸들을 제압하고 지나간다.",
+          "effect_type": "hp_loss",
+          "effect_value": 12,
+          "result_text": "포졸을 쓰러뜨렸지만 싸움 중 부상을 입었다. HP 12 손실. 엽전 25 획득.",
+          "effect_type_bonus": "gold_gain",
+          "effect_value_bonus": 25,
+          "result_text_full": "HP 12 손실 + 엽전 25 획득.",
+          "note": "전투 결과. HP 손실 + 골드 획득."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A1_003",
+      "title": {
+        "ko": "억울한 원혼",
+        "description": "한 여인의 귀신이 골목 어귀에 서 있다. 눈물을 흘리며 억울함을 호소하는 눈빛이다."
+      },
+      "flavor_text": "\"...억울해요. 저 좀 도와주세요.\"",
+      "choices": [
+        {
+          "id": "listen",
+          "text": "원혼의 이야기를 들어준다.",
+          "effect_type": "max_hp_gain",
+          "effect_value": 5,
+          "result_text": "원혼의 사연을 들어주자 한이 조금 풀렸는지 은혜로 최대 HP +5를 내려준다.",
+          "note": "최대 HP 영구 증가."
+        },
+        {
+          "id": "exorcise",
+          "text": "부적을 사용해 원혼을 진정시킨다.",
+          "effect_type": "card_gain",
+          "effect_value": 1,
+          "effect_card_pool": "blessing",
+          "result_text": "원혼이 감사히 떠나며 강력한 부적 카드를 남긴다. 카드 1장 획득.",
+          "note": "특수 카드 획득. 부적(blessing) 유형."
+        },
+        {
+          "id": "flee",
+          "text": "겁에 질려 도망친다.",
+          "effect_type": "debuff",
+          "effect_value": 1,
+          "debuff_type": "약화",
+          "result_text": "도망치다 넘어져 다음 전투 시작 시 약화 1 상태로 돌입한다.",
+          "note": "다음 전투 시작 시 약화 1 적용."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A1_004",
+      "title": {
+        "ko": "수상한 약장수",
+        "description": "알록달록한 약들을 늘어놓은 행상인이 노점을 펼쳐놓고 있다. \"좋은 약 있소이다!\""
+      },
+      "flavor_text": "\"이 약 하나면 만병통치! 단돈 30냥!\"",
+      "choices": [
+        {
+          "id": "buy_heal",
+          "text": "회복약을 구입한다. (엽전 30)",
+          "effect_type": "gold_loss",
+          "effect_value": 30,
+          "result_text": "회복약이 효과가 있었다! 엽전 30 소비, HP 15 회복.",
+          "effect_type_bonus": "hp_gain",
+          "effect_value_bonus": 15,
+          "result_text_full": "엽전 30 소비 → HP 15 회복.",
+          "note": "금전 소비 + HP 회복."
+        },
+        {
+          "id": "buy_potion",
+          "text": "정체불명의 강장제를 구입한다. (엽전 20)",
+          "effect_type": "gold_loss",
+          "effect_value": 20,
+          "result_text": "강장제를 마시자 힘이 솟는 것 같다. 엽전 20 소비, 최대 HP +3.",
+          "effect_type_bonus": "max_hp_gain",
+          "effect_value_bonus": 3,
+          "result_text_full": "엽전 20 소비 → 최대 HP +3.",
+          "note": "저렴한 대신 최대 HP 소폭 증가."
+        },
+        {
+          "id": "ignore",
+          "text": "관심 없다며 지나친다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "행상인이 야유를 퍼붓는다. 신경 쓰지 않는다.",
+          "note": "중립."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A1_005",
+      "title": {
+        "ko": "신당 (神堂)",
+        "description": "길가에 작은 신당이 있다. 촛불이 켜져 있고 제물이 놓여 있다."
+      },
+      "flavor_text": "신당 앞에 서면 어딘지 모르게 기운이 느껴진다.",
+      "choices": [
+        {
+          "id": "pray",
+          "text": "정성껏 절을 올린다.",
+          "effect_type": "hp_gain",
+          "effect_value": 12,
+          "result_text": "신령이 감응하여 몸의 기운이 회복된다. HP 12 회복.",
+          "note": "HP 회복."
+        },
+        {
+          "id": "offer_gold",
+          "text": "제물로 엽전 10냥을 바친다.",
+          "effect_type": "gold_loss",
+          "effect_value": 10,
+          "result_text": "신령의 은혜로 다음 전투에 강화된 상태로 임한다. 엽전 10 소비, 다음 전투 시작 시 힘 2 버프.",
+          "effect_type_bonus": "buff_next_combat",
+          "effect_value_bonus": { "buff": "strength", "stacks": 2 },
+          "result_text_full": "엽전 10 소비 → 다음 전투 힘(strength) +2.",
+          "note": "금전 소비 → 전투 버프."
+        },
+        {
+          "id": "desecrate",
+          "text": "제물 음식을 집어먹는다.",
+          "effect_type": "hp_gain",
+          "effect_value": 5,
+          "result_text": "배는 채웠지만 신령이 노하여 저주를 내린다. HP 5 회복, 최대 HP -5.",
+          "effect_type_bonus": "max_hp_loss",
+          "effect_value_bonus": 5,
+          "result_text_full": "HP +5 회복 → 최대 HP -5 (영구).",
+          "note": "단기 이득 + 영구 손해. 리스크 선택."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A1_006",
+      "title": {
+        "ko": "도박판",
+        "description": "뒷골목에서 상인들이 투전판을 벌이고 있다. \"한 판 끼어보시겠소?\""
+      },
+      "flavor_text": "\"한 번만 더! 이번엔 반드시!\"",
+      "choices": [
+        {
+          "id": "gamble_small",
+          "text": "소판에 끼어든다. (엽전 15 베팅)",
+          "effect_type": "gold_random",
+          "effect_value_win": 30,
+          "effect_value_lose": -15,
+          "win_chance": 0.5,
+          "result_text_win": "패가 좋았다! 엽전 30 획득.",
+          "result_text_lose": "패가 나빴다. 엽전 15 소실.",
+          "note": "50% 확률로 2배 반환. 도박."
+        },
+        {
+          "id": "gamble_big",
+          "text": "대판에 올인한다. (엽전 30 베팅)",
+          "effect_type": "gold_random",
+          "effect_value_win": 75,
+          "effect_value_lose": -30,
+          "win_chance": 0.35,
+          "result_text_win": "대박! 엽전 75 획득!",
+          "result_text_lose": "빈털터리가 됐다. 엽전 30 소실.",
+          "note": "35% 확률로 2.5배 반환. 고위험 고수익."
+        },
+        {
+          "id": "walk_away",
+          "text": "구경만 하다 자리를 뜬다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "현명한 선택이다. 아무 일도 없었다.",
+          "note": "중립."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A1_007",
+      "title": {
+        "ko": "버려진 행낭",
+        "description": "길 한쪽에 누군가 버리고 간 낡은 행낭이 놓여 있다."
+      },
+      "flavor_text": "행낭 안에서 무언가 묵직한 것이 느껴진다.",
+      "choices": [
+        {
+          "id": "open",
+          "text": "행낭을 열어본다.",
+          "effect_type": "random",
+          "outcomes": [
+            { "weight": 40, "effect_type": "gold_gain", "effect_value": 35, "text": "엽전 35냥이 들어 있었다!" },
+            { "weight": 35, "effect_type": "card_gain", "effect_value": 1, "text": "낡은 두루마리 — 카드 1장 획득." },
+            { "weight": 25, "effect_type": "hp_loss", "effect_value": 10, "text": "함정이었다! 독이 뿜어져 나온다. HP 10 손실." }
+          ],
+          "result_text": "행낭을 열어 내용물을 확인한다.",
+          "note": "40% 금전, 35% 카드, 25% HP 손실 트랩."
+        },
+        {
+          "id": "take_whole",
+          "text": "행낭째 들고 간다.",
+          "effect_type": "gold_gain",
+          "effect_value": 20,
+          "result_text": "나중에 열어보니 잡동사니와 엽전 20냥이 섞여 있었다.",
+          "note": "안전하지만 소량 금전."
+        },
+        {
+          "id": "ignore",
+          "text": "남의 물건이니 그냥 지나친다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "미련 없이 걸음을 옮긴다.",
+          "note": "중립."
+        }
+      ]
+    },
+    {
+      "id": "EVT_A1_008",
+      "title": {
+        "ko": "거리의 의원",
+        "description": "초라한 행색의 의원이 무료로 진맥을 봐주겠다고 한다. \"어디 불편한 곳 없으시오?\""
+      },
+      "flavor_text": "\"명의라면 모르겠지만 이 정도 실력으로...\"",
+      "choices": [
+        {
+          "id": "full_treatment",
+          "text": "전체 치료를 받는다. (엽전 40)",
+          "effect_type": "gold_loss",
+          "effect_value": 40,
+          "result_text": "의원의 침 치료로 몸이 한결 가뿐해진다. 엽전 40 소비, HP 완전 회복.",
+          "effect_type_bonus": "hp_full_heal",
+          "effect_value_bonus": 0,
+          "result_text_full": "엽전 40 소비 → HP 완전 회복.",
+          "note": "비용이 높지만 완전 회복."
+        },
+        {
+          "id": "partial_treatment",
+          "text": "간단한 처치만 받는다. (엽전 15)",
+          "effect_type": "gold_loss",
+          "effect_value": 15,
+          "result_text": "간단한 응급처치를 받는다. 엽전 15 소비, HP 20 회복.",
+          "effect_type_bonus": "hp_gain",
+          "effect_value_bonus": 20,
+          "result_text_full": "엽전 15 소비 → HP 20 회복.",
+          "note": "중간 비용, 중간 회복."
+        },
+        {
+          "id": "refuse",
+          "text": "괜찮다며 거절한다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "의원이 아쉬운 표정으로 고개를 끄덕인다.",
+          "note": "중립."
+        }
+      ]
+    }
+  ],
+  "effect_types_used": [
+    { "id": "hp_gain", "description": "현재 HP 회복." },
+    { "id": "hp_loss", "description": "현재 HP 감소." },
+    { "id": "hp_full_heal", "description": "현재 HP를 최대 HP까지 완전 회복." },
+    { "id": "max_hp_gain", "description": "최대 HP 영구 증가." },
+    { "id": "max_hp_loss", "description": "최대 HP 영구 감소." },
+    { "id": "gold_gain", "description": "엽전(골드) 획득." },
+    { "id": "gold_loss", "description": "엽전(골드) 소비." },
+    { "id": "gold_random", "description": "결과가 랜덤인 도박형 엽전 변동." },
+    { "id": "card_gain", "description": "덱에 카드 1장 추가." },
+    { "id": "relic_gain", "description": "유물 1개 획득." },
+    { "id": "debuff", "description": "플레이어에게 디버프 부여 (다음 전투 시작 시 적용)." },
+    { "id": "buff_next_combat", "description": "다음 전투 시작 시 버프 적용." },
+    { "id": "random", "description": "outcomes 배열 중 weight 기반 랜덤 결과 선택." },
+    { "id": "none", "description": "아무 효과 없음." }
+  ]
+}
