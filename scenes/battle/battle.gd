@@ -70,11 +70,22 @@ func _start_battle() -> void:
 	var rd := GameManager.run_data
 	var deck := rd.deck.duplicate()
 
-	# TODO: 적 선택 로직 (현재는 임시로 첫 번째 적 사용)
+	# 맵 노드에서 전달된 encounter_id 사용, 없으면 랜덤 적 선택
 	var enemy_data: Array[Dictionary] = []
-	var test_enemy := DataLoader.get_enemy("E001")
-	if not test_enemy.is_empty():
-		enemy_data.append(test_enemy)
+	var encounter_id: String = ""
+	if rd.has_meta("current_encounter_id"):
+		encounter_id = rd.get_meta("current_encounter_id")
+
+	if encounter_id != "":
+		var enemy := DataLoader.get_enemy(encounter_id)
+		if not enemy.is_empty():
+			enemy_data.append(enemy)
+
+	# encounter_id가 비어있거나 로드 실패 시 랜덤 적 선택
+	if enemy_data.is_empty():
+		var fallback := DataLoader.get_enemy("E001")
+		if not fallback.is_empty():
+			enemy_data.append(fallback)
 
 	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
 
