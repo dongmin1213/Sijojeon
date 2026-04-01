@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systems version="0.1" last_updated="2026-04-01" sprint_coverage="Sprint 1-2">
+
+  <!--
+    시조전 (Sijojeon) 구현 시스템 문서
+    Sprint 1-2에서 구현된 핵심 시스템의 구조, API, 데이터 흐름을 정리한다.
+    구현 파일 경로는 모두 Godot 4 프로젝트 루트 기준.
+  -->
+
+  <!-- ====================================================================== -->
+  <!-- 1. GameManager — 게임 전체 상태 머신                                    -->
+  <!-- ====================================================================== -->
+  <system id="game_manager">
+    <name>GameManager</name>
+    <file>scripts/autoload/game_manager.gd</file>
+    <type>Autoload Singleton</type>
+    <description>게임 전체 상태를 관리하는 오토로드 싱글톤. 씬 전환과 런 데이터 생명주기를 담당한다.</description>
+
+    <state_machine>
+      <description>상태 전이: TITLE → CHARACTER_SELECT → MAP ↔ BATTLE/EVENT/SHOP/REST → REWARD → MAP. 런 종료 시 RUN_WIN 또는 RUN_OVER.</description>
+      <states>
+        <state id="TITLE" scene="scenes/title/title_screen.tscn" />
+        <state id="CHARACTER_SELECT" scene="scenes/character_select/character_select.tscn" />
+        <state id="MAP" scene="scenes/map/run_map.tscn" />
+        <state id="BATTLE" scene="scenes/battle/battle.tscn" />
+        <state id="EVENT" scene="scenes/event/event.tscn" />
+        <state id="SHOP" scene="scenes/shop/shop.tscn" />
+        <state id="REST" scene="scenes/rest/rest.tscn" />
+        <state id="REWARD" scene="scenes/reward/reward.tscn" />
+        <state id="RUN_OVER" scene="(없음 — 씬 전환 없이 UI 처리)" />
+        <state id="RUN_WIN" scene="(없음 — 씬 전환 없이 UI 처리)" />
+      </states>
+    </state_machine>
+
+    <key_vars>
+      <var name="current_state" type="GameState" desc="현재 게임 상태" />
+      <var name="run_data" type="RunData" desc="현재 런 상태 데이터 (null이면 런 없음)" />
+    </key_vars>
+
+    <signals>
+      <signal name="state_changed(new_state: GameState)" desc="상태 전이 시 발생" />
+    </signals>
+
+    <key_methods>
+      <method name="start_new_run(character_id)" desc="새 런 시작. RunData 초기화, 덱·HP·기(氣) 설정 후 MAP 상태로 전환." />
+      <method name="load_saved_run()" desc="SaveManager에서 런 데이터 복원. 성공 시 true 반환." />
+      <method name="end_run(victory)" desc="런 종료. victory=true이면 RUN_WIN, false면 RUN_OVER. 세이브 파일 삭제." />
+      <method name="save_current_run()" desc="현재 run_data를 SaveManager를 통해 파일에 저장." />
+      <method name="change_state(new_state)" desc="상태 전이 + 해당 씬으로 전환 (씬 파일 존재 시)." />
+      <method name="advance_floor()" desc="run_data.current_floor += 1" />
+      <method name="advance_act()" desc="act 증가, floor 초기화, visited_nodes 초기화." />
+    </key_methods>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 2. BattleManager — 전투 흐름 제어                                       -->
+  <!-- ====================================================================== -->
+  <system id="battle_manager">
+    <name>BattleManager</name>
+    <file>scripts/battle/battle_manager.gd</file>
+    <type>class_name Node (씬에 추가)</type>
+    <description>턴 루프와 전투 상태 전환을 관리한다. 카드 플레이, 피해 계산, 적 AI, 상태이상 처리를 담당.</description>
+
+    <state_machine>
+      <states>
+        <state id="BATTLE_START" desc="전투 시작 — 덱 셔플, 참여자 초기화" />
+        <state id="PLAYER_TURN_START" desc="플레이어 턴 시작 — 기 회복, 카드 드로우, DoT 처리" />
+        <state id="PLAYER_ACTION" desc="플레이어 행동 대기 (카드 플레이 가능)" />
+        <state id="PLAYER_TURN_END" desc="플레이어 턴 종료 — 손패 버리기, 적 턴 시작" />
+        <state id="ENEMY_TURN" desc="적 AI 행동 순차 처리" />
+        <state id="BATTLE_WIN" desc="전투 승리" />
+        <state id="BATTLE_LOSE" desc="전투 패배" />
+      </states>
+    </state_machine>
+
+    <key_vars>
+      <var name="current_qi / max_qi" type="int" desc="현재/최대 기(氣). 턴 시작 시 max_qi로 회복, 이월 없음." />
+      <var name="current_stamina / is_mugwan" type="int/bool" desc="무관 전용 기력(氣力). 턴 간 유지. MAX_STAMINA=10." />
+      <var name="draw_pile / hand / discard_pile / exhaust_pile" type="Array[String]" desc="카드 더미. String = card_id." />
+      <var name="player_hp / player_max_hp / player_block" type="int" desc="플레이어 HP와 방어도." />
+      <var name="enemies" type="Array[Dictionary]" desc="적 데이터 배열. 각 항목: hp, max_hp, block, move_index 등." />
+      <var name="sijo_system" type="SijoSystem" desc="시조 리듬 시스템 참조." />
+      <var name="status_effects" type="StatusEffectManager" desc="상태이상 관리자 (자동 생성)." />
+    </key_vars>
+
+    <constants>
+      <const name="HAND_SIZE" value="5" desc="기본 드로우 장 수" />
+      <const name="STARTING_QI" value="3" desc="턴당 기(氣) 기본값" />
+      <const name="MAX_STAMINA" value="10" desc="무관 기력 상한" />
+    </constants>
+
+    <signals>
+      <signal name="state_changed(new_state)" />
+      <signal name="qi_changed(current, max_val)" />
+      <signal name="stamina_changed(current, max_val)" desc="무관 전용" />
+      <signal name="hand_changed(new_hand)" />
+      <signal name="block_changed(new_block)" />
+      <signal name="hp_changed(current, max_val)" />
+      <signal name="card_drawn(card_id)" />
+      <signal name="turn_started(turn)" />
+      <signal name="enemy_intent_shown(enemy_index, intent)" />
+      <signal name="enemy_hp_changed(enemy_index, current, max_val)" />
+      <signal name="battle_ended(victory)" />
+      <signal name="status_effect_changed(target, effect_id, stacks)" />
+      <signal name="dot_damage_dealt(target, effect_id, amount)" />
+    </signals>
+
+    <key_methods>
+      <method name="start_battle(deck, enemy_data, hp, max_hp, qi, character_id)" desc="전투 시작. 덱 셔플, 적 초기화, 상태이상 클리어 후 begin_player_turn()." />
+      <method name="try_play_card(hand_index, target_enemy_index)" desc="기/기력 확인 후 카드 효과 적용. 시조 슬롯 시도 포함. 성공 시 true 반환." />
+      <method name="end_player_turn()" desc="손패 버리고 execute_enemy_turn() 호출." />
+      <method name="draw_cards(count)" desc="드로우 파일에서 count장 드로우. 파일 소진 시 discard 재셔플." />
+      <method name="take_damage(amount)" desc="취약 수정 → 방어도 차감 → HP 감소 처리." />
+      <method name="gain_block(amount)" desc="방어도 획득. 출혈 상태이면 추가 피해 처리." />
+      <method name="deal_damage_to_enemy(enemy_index, amount)" desc="플레이어 strength/약화 + 적 취약 보정 후 피해 적용." />
+      <method name="can_play_card(card)" desc="기 + 기력 충분 여부 확인." />
+    </key_methods>
+
+    <mugwan_stamina_system>
+      <description>무관(武官) 전용 자원. 기(氣)와 독립적으로 관리되며 턴 간 이월된다. 전투 시작 시 0으로 초기화.</description>
+      <gain>진형 전환(G001) 등 기력_gain 카드 사용 시 증가</gain>
+      <cost>돌격(G002) 등 stamina_cost가 있는 카드 사용 시 소비</cost>
+      <cap>MAX_STAMINA = 10</cap>
+    </mugwan_stamina_system>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 3. SijoSystem — 시조 리듬 시스템 (핵심 메카닉)                          -->
+  <!-- ====================================================================== -->
+  <system id="sijo_system">
+    <name>SijoSystem</name>
+    <file>scripts/battle/sijo_system.gd</file>
+    <type>class_name Node</type>
+    <description>시조전의 핵심 메카닉. 6슬롯(초장3, 초장4, 중장3, 중장4, 종장3, 종장4)을 채우면 시조 완성.</description>
+
+    <pattern>
+      <slot index="0" beat="3" jang="초장" />
+      <slot index="1" beat="4" jang="초장" />
+      <slot index="2" beat="3" jang="중장" />
+      <slot index="3" beat="4" jang="중장" />
+      <slot index="4" beat="3" jang="종장" />
+      <slot index="5" beat="4" jang="종장" />
+    </pattern>
+
+    <completion_bonus>
+      <effect>마지막 카드 효과 ×2</effect>
+      <effect>기(氣) 1 회복</effect>
+      <effect>카드 1장 드로우</effect>
+    </completion_bonus>
+
+    <rules>
+      <rule>슬롯 순서 엄수 — 현재 슬롯의 beat와 카드의 beat가 불일치하면 슬롯 채우기 실패 (카드 효과는 정상 발동)</rule>
+      <rule>전투 종료 시 슬롯 초기화 (reset())</rule>
+      <rule>턴 사이 슬롯 유지 — 턴 종료 후에도 진행 상태 유지</rule>
+    </rules>
+
+    <signals>
+      <signal name="slot_filled(index, card_id, jang_name)" desc="슬롯 채워질 때마다 발생" />
+      <signal name="sijo_completed(final_card_id)" desc="6슬롯 모두 채워질 때 발생" />
+    </signals>
+
+    <key_methods>
+      <method name="try_fill_slot(card_beat, card_id)" desc="현재 슬롯 요구 beat와 일치하면 채운다. 완성 시 sijo_completed 발생. 반환: bool (채워졌으면 true)" />
+      <method name="get_next_required_beat()" desc="다음 슬롯에 필요한 beat 반환. 완성됐으면 -1" />
+      <method name="get_filled_count()" desc="현재 채워진 슬롯 수" />
+      <method name="is_complete()" desc="6슬롯 모두 채워졌는지" />
+      <method name="reset()" desc="전투 종료 시 호출. 슬롯 초기화." />
+    </key_methods>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 4. StatusEffectManager — 상태이상(버프/디버프) 관리                     -->
+  <!-- ====================================================================== -->
+  <system id="status_effect_manager">
+    <name>StatusEffectManager</name>
+    <file>scripts/battle/status_effect_manager.gd</file>
+    <type>class_name Node (BattleManager가 자동 생성)</type>
+    <description>플레이어와 적의 버프/디버프 스택을 추적하고, 턴 시작/종료 시 효과를 처리한다.</description>
+
+    <target_keys>
+      <key value="player" desc="플레이어" />
+      <key value="enemy_0, enemy_1, ..." desc="각 적 (인덱스 기준)" />
+    </target_keys>
+
+    <effects>
+      <!-- DoT (지속 피해) -->
+      <effect id="독" type="DOT" icon="☠" color="#66CC33">턴 시작 시 N 피해, 매 턴 1씩 감소. 0이면 소멸.</effect>
+      <effect id="화상" type="DOT" icon="🔥" color="#FF6619">턴 시작 시 N 피해, 매 턴 1씩 감소.</effect>
+      <effect id="출혈" type="DOT" icon="🩸" color="#CC1A1A">턴 시작 시 N 피해, 매 턴 1씩 감소. 방어도 획득 시 스택만큼 추가 피해.</effect>
+      <effect id="death_mark" type="DOT" icon="💀" color="#800080">매 턴 5 피해, 스택 1씩 감소.</effect>
+      <!-- 디버프 -->
+      <effect id="약화" type="DEBUFF" icon="⬇" color="#FF9933">다음 공격 피해 25% 감소. 1회 발동 후 소멸.</effect>
+      <effect id="취약" type="DEBUFF" icon="🔻" color="#FF4D4D">받는 피해 25% 증가. 턴 종료 시 1 감소.</effect>
+      <effect id="냉기" type="DEBUFF" icon="❄" color="#80CCFF">드로우 1장 감소. 1턴 후 자동 해제.</effect>
+      <effect id="death_countdown" type="DEBUFF" icon="⏳" color="#4D0080">N턴 후 HP 40% 강제 감소. 매 턴 1씩 감소. 0이 되면 발동.</effect>
+      <!-- 버프 -->
+      <effect id="strength" type="BUFF" icon="⚔" color="#FF4D4D" permanent="true">공격 피해 +N (영구).</effect>
+      <effect id="thorns" type="BUFF" icon="🌹" color="#994D1A" permanent="true">피격 시 공격자에게 N 피해 반사.</effect>
+      <effect id="갑주" type="BUFF" icon="🛡" color="#4D99FF" permanent="true">턴 시작 시 사라지지 않는 방어막 (block에 갑주 값 추가).</effect>
+    </effects>
+
+    <signals>
+      <signal name="effect_applied(target, effect_id, stacks)" />
+      <signal name="effect_removed(target, effect_id)" />
+      <signal name="effect_triggered(target, effect_id, value)" desc="DoT 피해 발생, 사망 카운트다운 발동(-1) 등" />
+    </signals>
+
+    <key_methods>
+      <method name="apply_effect(target, effect_id, stacks)" desc="스택 누적 적용." />
+      <method name="remove_effect(target, effect_id)" desc="효과 제거." />
+      <method name="process_turn_start(target)" desc="DoT 처리 + 갑주 반환. 반환: {damage: int, armor: int}" />
+      <method name="process_turn_end(target)" desc="취약·냉기 등 턴 기반 디버프 기간 감소." />
+      <method name="calculate_outgoing_damage(attacker, base_damage)" desc="strength 보정 + 약화 25% 감소 적용." />
+      <method name="calculate_incoming_damage(defender, damage)" desc="취약 25% 증가 적용." />
+      <method name="calculate_bleed_on_block(target, block_amount)" desc="출혈 상태에서 방어도 획득 시 추가 피해 반환." />
+      <method name="get_thorns_damage(defender)" desc="가시 반사 피해량 반환." />
+      <method name="get_draw_modifier(target)" desc="냉기 시 -1 등 드로우 수 수정자 반환." />
+    </key_methods>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 5. StatusEffectData — 상태이상 메타데이터 레지스트리                     -->
+  <!-- ====================================================================== -->
+  <system id="status_effect_data">
+    <name>StatusEffectData</name>
+    <file>scripts/data/status_effect_data.gd</file>
+    <type>class_name RefCounted</type>
+    <description>각 상태이상의 UI 메타데이터(이름, 아이콘, 색상, 설명)를 정의하는 정적 레지스트리.</description>
+    <usage>StatusEffectData.get_definition("독") → StatusEffectData 인스턴스. UI에서 아이콘/색상/설명 표시에 사용.</usage>
+    <key_methods>
+      <method name="get_definition(effect_id)" desc="(static) effect_id에 해당하는 StatusEffectData 반환." />
+      <method name="get_all_definitions()" desc="(static) 전체 레지스트리 Dictionary 반환." />
+    </key_methods>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 6. CardData — 카드 데이터 클래스                                        -->
+  <!-- ====================================================================== -->
+  <system id="card_data">
+    <name>CardData</name>
+    <file>scripts/data/card_data.gd</file>
+    <type>class_name Resource</type>
+    <description>JSON에서 파싱된 카드 한 장의 데이터. DataLoader가 from_dict()로 생성.</description>
+
+    <fields>
+      <field name="id" type="String" desc="카드 고유 ID (예: D001, M003, G002)" />
+      <field name="name_ko / name_hanja / name_romanized" type="String" desc="카드 이름" />
+      <field name="beat" type="int" desc="시조 음보. 3 또는 4" />
+      <field name="cost" type="int" desc="기(氣) 소비량" />
+      <field name="type" type="String" desc="카드 타입 (attack, defense, movement, formation, 술법 등)" />
+      <field name="subtypes" type="Array[String]" desc="부가 타입 목록" />
+      <field name="rarity" type="int" desc="1~5 희귀도" />
+      <field name="pool" type="String" desc="카드 풀: common, dosa, mugwan" />
+      <field name="effect / effect_upgraded" type="String" desc="카드 효과 텍스트" />
+      <field name="damage / block_value / draw_count / qi_gain" type="int" desc="구조화된 수치 효과" />
+      <field name="is_aoe" type="bool" desc="광역 피해 여부" />
+      <field name="tokens" type="int" desc="병사 토큰 생성 수 (무관 전용)" />
+      <field name="stamina_cost / stamina_gain" type="int" desc="무관 전용 기력 소비/획득량" />
+    </fields>
+
+    <json_schema>
+      <description>data/cards/*.json 파일 스키마</description>
+      <field name="version" type="string" />
+      <field name="type" value="card_pool" />
+      <field name="class" type="string" desc="common | dosa | mugwan" />
+      <field name="cards" type="Array" desc="카드 객체 배열">
+        <card_object>
+          <field name="id" required="true" />
+          <field name="name" type="{ko, hanja, romanized}" />
+          <field name="beat" type="int" />
+          <field name="cost" type="int" />
+          <field name="type" type="string" />
+          <field name="subtypes" type="Array[string]" />
+          <field name="rarity" type="int" />
+          <field name="effect" type="string" />
+          <field name="effect_upgraded" type="string" />
+          <field name="flavor_text" type="string" />
+          <field name="upgrade_cost" type="int" />
+          <field name="values" type="{damage, block, draw, qi_gain, is_aoe, tokens, stamina_cost, stamina_gain}" />
+        </card_object>
+      </field>
+    </json_schema>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 7. CardHand UI — 카드 핸드 UI (부채꼴 배치 + 인터랙션)                  -->
+  <!-- ====================================================================== -->
+  <system id="card_hand_ui">
+    <name>CardHand</name>
+    <file>scenes/ui/card_hand.gd + card_hand.tscn</file>
+    <type>class_name Control</type>
+    <description>손패 카드를 부채꼴로 배치하고 선택/드래그/플레이 인터랙션을 처리하는 UI 컴포넌트.</description>
+
+    <layout_params>
+      <param name="fan_spread_degrees" default="5.0" desc="카드 간 회전 각도" />
+      <param name="fan_y_curve" default="20.0" desc="부채꼴 높이 커브" />
+      <param name="card_spacing" default="145.0" desc="카드 간 가로 간격" />
+      <param name="hover_lift" default="30.0" desc="호버 시 위로 올라가는 높이" />
+      <param name="select_lift" default="50.0" desc="선택 시 위로 올라가는 높이" />
+    </layout_params>
+
+    <interaction>
+      <mode name="클릭 선택">카드 클릭 → 선택됨 상태. 두 번째 클릭 또는 적 클릭 → 플레이.</mode>
+      <mode name="드래그 플레이">카드를 드래그하여 플레이 존 위에 드롭 → 플레이.</mode>
+    </interaction>
+
+    <signals>
+      <signal name="card_played(hand_index, target_enemy_index)" desc="카드가 플레이될 때 발생. battle.gd에서 수신하여 BattleManager.try_play_card() 호출." />
+    </signals>
+
+    <key_methods>
+      <method name="update_hand(hand_ids, qi, sijo_beat, bm)" desc="손패 전체 업데이트. 기존 위젯 제거 후 재생성. sijo_beat: 다음 시조 슬롯 요구 beat(-1이면 비활성)." />
+    </key_methods>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 8. CardUI — 개별 카드 위젯                                              -->
+  <!-- ====================================================================== -->
+  <system id="card_ui">
+    <name>CardUI</name>
+    <file>scenes/ui/card_ui.gd + card_ui.tscn</file>
+    <type>class_name Control</type>
+    <description>개별 카드 한 장의 UI. 카드 데이터를 받아 표시하고 인터랙션 시그널을 발생시킨다.</description>
+    <signals>
+      <signal name="card_clicked(index)" />
+      <signal name="card_hovered(index)" />
+      <signal name="card_unhovered(index)" />
+      <signal name="card_drag_started(index)" />
+    </signals>
+    <key_methods>
+      <method name="setup(card, hand_index, playable, matches_sijo)" desc="카드 데이터 설정. playable=false이면 회색 처리. matches_sijo=true이면 시조 하이라이트." />
+    </key_methods>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 9. DataLoader — JSON 데이터 로더                                        -->
+  <!-- ====================================================================== -->
+  <system id="data_loader">
+    <name>DataLoader</name>
+    <file>scripts/autoload/data_loader.gd</file>
+    <type>Autoload Singleton</type>
+    <description>data/ 폴더의 JSON 파일을 게임 실행 시 로드하여 메모리에 캐시한다.</description>
+
+    <data_sources>
+      <source path="data/cards/*.json" target="_cards: Dictionary" desc="id → CardData 매핑" />
+      <source path="data/enemies/act1.json" target="_enemies: Dictionary" desc="id → Dictionary 매핑" />
+      <source path="data/enemies/act1_boss.json" target="_enemies: Dictionary" desc="보스 데이터" />
+      <source path="data/skills/special_skills.json" target="_skills_data: Dictionary" desc="캐릭터별 스킬·패시브 데이터" />
+    </data_sources>
+
+    <starter_decks>
+      <deck class="dosa">M003×2, M005, D001×2, D002, D003, D007×3 (총 11장)</deck>
+      <deck class="mugwan">M003×2, M005, G001×2, G002×2, G003, M002×2 (총 10장)</deck>
+    </starter_decks>
+
+    <key_methods>
+      <method name="get_card(card_id)" desc="캐시에서 CardData 반환. 없으면 null." />
+      <method name="get_enemy(enemy_id)" desc="적 데이터 Dictionary 반환." />
+      <method name="get_starter_deck(character_id)" desc="스타터 덱 카드 ID 배열 반환." />
+      <method name="get_character_skills(character_id)" desc="캐릭터 스킬 데이터 Dictionary 반환." />
+    </key_methods>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- 10. RunData — 런 상태 데이터                                            -->
+  <!-- ====================================================================== -->
+  <system id="run_data">
+    <name>RunData</name>
+    <file>scripts/data/run_data.gd</file>
+    <type>class_name Resource</type>
+    <description>현재 런의 전체 상태를 추적. GameManager.run_data에 보관. to_dict()/from_dict()로 직렬화.</description>
+    <fields>
+      <field name="character_id" type="String" />
+      <field name="current_hp / max_hp" type="int" desc="기본 70 (도사), 80 (무관)" />
+      <field name="gold" type="int" desc="시작 골드 99" />
+      <field name="qi_per_turn" type="int" desc="턴당 기(氣). 기본 3" />
+      <field name="current_act / current_floor" type="int" />
+      <field name="deck" type="Array[String]" desc="현재 덱 카드 ID 목록" />
+      <field name="relics" type="Array[String]" desc="획득한 유물 ID 목록" />
+      <field name="map_seed" type="int" desc="맵 생성 시드" />
+      <field name="visited_nodes" type="Array[int]" desc="방문한 맵 노드 인덱스" />
+    </fields>
+  </system>
+
+  <!-- ====================================================================== -->
+  <!-- data/ 폴더 JSON 파일 목록 및 스키마 요약                                -->
+  <!-- ====================================================================== -->
+  <data_files>
+    <file path="data/cards/common.json" schema="card_pool" class="common" desc="공통 이동 카드 5종 (M001-M005)" />
+    <file path="data/cards/dosa.json" schema="card_pool" class="dosa" desc="도사 전용 카드 6종 (D001-D007, D005 포함)" />
+    <file path="data/cards/mugwan.json" schema="card_pool" class="mugwan" desc="무관 전용 이동·진형 카드 5종 (G001-G005)" />
+    <file path="data/enemies/act1.json" schema="enemy_pool" act="1" desc="Act 1 일반/정예 몬스터 (E001-E004, EL001)" />
+    <file path="data/enemies/act1_boss.json" schema="boss" act="1" desc="Act 1 최종 보스: 판서 이무령 (B_ACT1_FINAL), 3페이즈" />
+    <file path="data/events/act1_events.json" schema="events" act="1" desc="Act 1 랜덤 이벤트 8종 (2-3선택지씩)" />
+    <file path="data/shop/economy.json" schema="shop_economy" desc="상점 가격표, 카드 제거 비용, 골드 보상 공식" />
+    <file path="data/skills/special_skills.json" schema="special_skills" desc="캐릭터별 패시브/액티브 스킬, HP/기 기본값" />
+
+    <schema id="card_pool">version, type, class, cards[]: {id, name{ko,hanja,romanized}, beat, cost, type, subtypes[], rarity, effect, effect_upgraded, flavor_text, upgrade_cost, values{damage,block,draw,qi_gain,is_aoe,tokens,stamina_cost,stamina_gain}}</schema>
+    <schema id="enemy_pool">version, type, act, act_name, balance_targets{}, regular_enemies[], elite_enemies[], bosses[]</schema>
+    <schema id="boss">version, type, act, id, name{ko,hanja,romanized}, hp, phases[]{phase, hp_threshold_min, description, phase_trigger{}, moves[], move_pattern{type,sequence[]}}, rewards{gold{min,max}, relic, relic_candidates[]}</schema>
+    <schema id="shop_economy">version, type, shop{card_prices{common,uncommon,rare}, card_removal{base_cost,cost_schedule[]}, shop_layout{}}, gold_rewards{regular_battle{}, elite_battle{}, boss_battle{}, event_gold{}}</schema>
+    <schema id="special_skills">version, type, core_systems{hp{}, energy{}, sijo_slot{}}, character_special_skills[]{class_id, class_ko, passive_name{}, active_skill{}, base_hp, base_qi, starter_relic, starting_deck}</schema>
+  </data_files>
+
+</systems>

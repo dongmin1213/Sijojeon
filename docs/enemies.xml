@@ -151,6 +151,58 @@
         <balance_note>사망 카운트다운(3턴 내 처치 강요)은 강한 압박. 시조 완성으로 폭딜이 핵심.</balance_note>
       </enemy>
 
+      <!-- Sprint 2 확정 보스: 판서 이무령 (B_ACT1_FINAL) — act1_boss.json -->
+      <enemy id="B_ACT1_FINAL">
+        <name ko="판서 이무령" hanja="判書 李茂令" romanized="Panseo Yi Mu-ryeong" />
+        <description>한양을 손아귀에 쥐고 있는 부패한 이조판서. 왕명을 빙자해 백성을 착취하며, 격식을 무기로 삼고 권력으로 방패를 친다.</description>
+        <flavor>"감히 누가 판서의 앞을 막느냐. 이 인장이 곧 법이니라."</flavor>
+        <hp>115</hp>
+        <design_theme>부패한 권위 — 페이즈마다 다른 압박 형태: 1페이즈=디버프 누적, 2페이즈=딜+가시, 3페이즈=타임어택+버프 파괴.</design_theme>
+
+        <phase id="1" hp_range="100%→65%" hp_threshold_min="75">
+          <description>권세 모드. 관료적 위엄으로 압박하고 호위 병력을 소환.</description>
+          <moves>
+            <move id="authority_gaze" name="권위의 눈초리" intent="debuff">약화 1 + 취약 1 부여.</move>
+            <move id="seal_strike" name="인장 타격" intent="attack" damage="10" times="1">묵직한 관인 공격.</move>
+            <move id="official_shield" name="관인 방패" intent="defend" block="14">방어도 14 획득.</move>
+            <move id="summon_guard" name="금의위 소환" intent="summon" summons="E002" count="1">포졸 1명 소환. 재소환 없음.</move>
+            <move id="red_tape" name="문서 지옥" intent="debuff">냉기 1(다음 턴 드로우 -1) + 약화 1 부여.</move>
+          </moves>
+          <move_pattern>authority_gaze → seal_strike → official_shield → seal_strike → red_tape → summon_guard → seal_strike</move_pattern>
+        </phase>
+
+        <phase id="2" hp_range="65%→30%" hp_threshold_min="35">
+          <description>진노 모드. HP 65% 진입 시: 힘 3 + 가시 2 획득. 공격성 급증.</description>
+          <phase_trigger>HP 65% 시: 힘 3, 가시 2 획득 + 대사 "감히 판서를 건드려! 목이 열 개라도 모자라겠구나!"</phase_trigger>
+          <moves>
+            <move id="golden_seal_slam" name="금인 강타" intent="attack" damage="14" times="1">힘 보너스 적용 강타. (힘 3 획득 후 17피해)</move>
+            <move id="abuse_of_power" name="권력 남용" intent="attack_debuff" damage="8">8피해 + 약화 2 + 취약 1.</move>
+            <move id="double_seal" name="이중 인장" intent="attack" damage="9" times="2">9×2=18 총피해. 방어도 분산.</move>
+            <move id="enraged_fortify" name="분노 강화" intent="buff">힘 2 추가 획득.</move>
+          </moves>
+          <move_pattern>golden_seal_slam → abuse_of_power → double_seal → golden_seal_slam → enraged_fortify → double_seal → abuse_of_power</move_pattern>
+        </phase>
+
+        <phase id="3" hp_range="30%→0%">
+          <description>최후 모드. HP 30% 진입 시: 디버프 클렌즈 + 힘 2 + 사망 카운트다운 4 발동. 4턴 내 처치 못하면 HP 40% 강제 감소.</description>
+          <phase_trigger>HP 30% 시: 자신 디버프 클렌즈 + 힘 2 + 플레이어에게 사망 카운트다운 4 + 대사 "왕명이니라! 이 자를 당장 처형하라!"</phase_trigger>
+          <moves>
+            <move id="royal_decree_strike" name="왕명 집행" intent="attack" damage="8" times="3">8×3=24 총피해 + 플레이어 버프 1개 박탈.</move>
+            <move id="seal_of_wrath" name="진노의 인장" intent="attack" damage="22" times="1">단발 최대 피해.</move>
+            <move id="final_authority" name="최후의 권위" intent="defend_buff" block="10">방어도 10 + 힘 1.</move>
+          </moves>
+          <move_pattern>royal_decree_strike → seal_of_wrath → final_authority → royal_decree_strike → seal_of_wrath</move_pattern>
+        </phase>
+
+        <rewards gold_min="70" gold_max="90" relic="보스 유물 1개 (확정)">
+          <relic_candidates>
+            <relic id="corrupt_seal" name="부패한 인장" hanja="腐敗印章">전투 시작 시 힘 2 획득. 첫 번째 카드 사용 시 약화 1 자신에게 부여.</relic>
+            <relic id="ministerial_ledger" name="판서의 장부" hanja="判書帳簿">전투 시작 시 금화 10 획득. 적 처치마다 금화 5 추가.</relic>
+          </relic_candidates>
+        </rewards>
+        <balance_note>총 HP 115, 목표 전투 14~17턴. 페이즈 2: golden_seal_slam 최대 17피해(힘3), double_seal 24총피해. 페이즈 3: 사망 카운트다운 4턴 내 처치 강요 → 시조 완성 DPS 레이스 필수.</balance_note>
+      </enemy>
+
     </bosses>
 
   </act>
