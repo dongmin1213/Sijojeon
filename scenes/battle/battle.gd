@@ -1,0 +1,199 @@
+extends Control
+
+## 전투 씬 메인 스크립트. UI와 BattleManager를 연결한다.
+
+@onready var hp_label: Label = $BattleHUD/PlayerInfo/HPLabel
+@onready var qi_label: Label = $BattleHUD/PlayerInfo/QiLabel
+@onready var block_label: Label = $BattleHUD/PlayerInfo/BlockLabel
+@onready var turn_label: Label = $BattleHUD/TurnLabel
+@onready var hand_container: HBoxContainer = $HandArea/HandContainer
+@onready var enemy_container: HBoxContainer = $EnemyArea/EnemyContainer
+@onready var sijo_container: HBoxContainer = $SijoArea/SijoContainer
+@onready var end_turn_button: Button = $BattleHUD/EndTurnButton
+@onready var draw_pile_label: Label = $BattleHUD/DeckInfo/DrawPileLabel
+@onready var discard_pile_label: Label = $BattleHUD/DeckInfo/DiscardPileLabel
+
+var battle_manager: BattleManager
+var sijo_system: SijoSystem
+
+# 시조 슬롯 UI 라벨
+var sijo_slot_labels: Array[Label] = []
+
+
+func _ready() -> void:
+	# 매니저 초기화
+	battle_manager = BattleManager.new()
+	sijo_system = SijoSystem.new()
+	battle_manager.sijo_system = sijo_system
+	add_child(battle_manager)
+	add_child(sijo_system)
+
+	# 시그널 연결
+	battle_manager.hand_changed.connect(_on_hand_changed)
+	battle_manager.qi_changed.connect(_on_qi_changed)
+	battle_manager.hp_changed.connect(_on_hp_changed)
+	battle_manager.block_changed.connect(_on_block_changed)
+	battle_manager.turn_started.connect(_on_turn_started)
+	battle_manager.battle_ended.connect(_on_battle_ended)
+	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
+	sijo_system.sijo_completed.connect(_on_sijo_completed)
+	end_turn_button.pressed.connect(_on_end_turn_pressed)
+
+	# 시조 슬롯 UI 초기화
+	_init_sijo_slots()
+
+	# 전투 시작
+	_start_battle()
+
+
+func _start_battle() -> void:
+	if GameManager.run_data == null:
+		return
+
+	var rd := GameManager.run_data
+	var deck := rd.deck.duplicate()
+
+	# TODO: 적 선택 로직 (현재는 임시로 첫 번째 적 사용)
+	var enemy_data: Array[Dictionary] = []
+	var test_enemy := DataLoader.get_enemy("E001")
+	if not test_enemy.is_empty():
+		enemy_data.append(test_enemy)
+
+	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn)
+
+
+func _init_sijo_slots() -> void:
+	sijo_slot_labels.clear()
+	for child in sijo_container.get_children():
+		child.queue_free()
+
+	for i in SijoSystem.PATTERN.size():
+		var label := Label.new()
+		label.text = "[%d]" % SijoSystem.PATTERN[i]
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.custom_minimum_size = Vector2(120, 60)
+		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+		sijo_container.add_child(label)
+		sijo_slot_labels.append(label)
+
+
+func _update_hand_ui() -> void:
+	for child in hand_container.get_children():
+		child.queue_free()
+
+	for i in battle_manager.hand.size():
+		var card_id: String = battle_manager.hand[i]
+		var card: CardData = DataLoader.get_card(card_id)
+		var btn := Button.new()
+		if card:
+			btn.text = "%s\n[%d] %d氣" % [card.name_ko, card.beat, card.cost]
+		else:
+			btn.text = card_id
+		btn.custom_minimum_size = Vector2(150, 200)
+		var idx := i
+		btn.pressed.connect(func(): _on_card_pressed(idx))
+
+		# 코스트 부족 시 비활성화
+		if card and card.cost > battle_manager.current_qi:
+			btn.disabled = true
+
+		hand_container.add_child(btn)
+
+	# 덱 정보 갱신
+	draw_pile_label.text = "드로우: %d" % battle_manager.draw_pile.size()
+	discard_pile_label.text = "버림: %d" % battle_manager.discard_pile.size()
+
+
+func _update_enemy_ui() -> void:
+	for child in enemy_container.get_children():
+		child.queue_free()
+
+	for i in battle_manager.enemies.size():
+		var enemy: Dictionary = battle_manager.enemies[i]
+		if enemy["current_hp"] <= 0:
+			continue
+		var name_data = enemy.get("name", {})
+		var enemy_name: String = ""
+		if name_data is Dictionary:
+			enemy_name = name_data.get("ko", "적")
+		elif name_data is String:
+			enemy_name = name_data
+
+		var panel := PanelContainer.new()
+		var vbox := VBoxContainer.new()
+		var name_label := Label.new()
+		name_label.text = enemy_name
+		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		var hp_lbl := Label.new()
+		hp_lbl.text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
+		hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+
+		vbox.add_child(name_label)
+		vbox.add_child(hp_lbl)
+		panel.add_child(vbox)
+		panel.custom_minimum_size = Vector2(200, 150)
+		enemy_container.add_child(panel)
+
+
+# --- 시그널 핸들러 ---
+
+func _on_hand_changed(_new_hand: Array[String]) -> void:
+	_update_hand_ui()
+	_update_enemy_ui()
+
+
+func _on_qi_changed(current: int, max_val: int) -> void:
+	qi_label.text = "氣: %d/%d" % [current, max_val]
+	# 손패 카드 활성화/비활성화 갱신
+	_update_hand_ui()
+
+
+func _on_hp_changed(current: int, max_val: int) -> void:
+	hp_label.text = "HP: %d/%d" % [current, max_val]
+
+
+func _on_block_changed(new_block: int) -> void:
+	block_label.text = "방어: %d" % new_block
+	block_label.visible = new_block > 0
+
+
+func _on_turn_started(turn: int) -> void:
+	turn_label.text = "%d턴" % turn
+
+
+func _on_card_pressed(hand_index: int) -> void:
+	battle_manager.try_play_card(hand_index, 0)
+
+
+func _on_end_turn_pressed() -> void:
+	battle_manager.end_player_turn()
+
+
+func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> void:
+	if index < sijo_slot_labels.size():
+		var card: CardData = DataLoader.get_card(card_id)
+		if card:
+			sijo_slot_labels[index].text = card.name_ko
+		else:
+			sijo_slot_labels[index].text = card_id
+		sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+
+
+func _on_sijo_completed(_final_card_id: String) -> void:
+	# 시조 완성 보상: 기 1 회복 + 카드 1장 드로우
+	battle_manager.current_qi += 1
+	battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+	battle_manager.draw_cards(1)
+	sijo_system.reset()
+	_init_sijo_slots()
+
+
+func _on_battle_ended(victory: bool) -> void:
+	end_turn_button.disabled = true
+	if victory:
+		# HP 동기화 → 보상 씬으로
+		if GameManager.run_data:
+			GameManager.run_data.current_hp = battle_manager.player_hp
+		GameManager.change_state(GameManager.GameState.REWARD)
+	else:
+		GameManager.end_run(false)
