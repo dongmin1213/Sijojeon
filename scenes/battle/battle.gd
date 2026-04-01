@@ -44,6 +44,9 @@ func _ready() -> void:
 	# CardHand 시그널 연결
 	card_hand.card_played.connect(_on_card_played)
 
+	# 상태이상 시그널 연결
+	battle_manager.status_effect_changed.connect(_on_status_effect_changed)
+
 	# 시조 슬롯 UI 초기화
 	_init_sijo_slots()
 
@@ -130,9 +133,18 @@ func _update_enemy_ui() -> void:
 		enemy_block_label.text = "방어: %d" % block_val
 		enemy_block_label.visible = block_val > 0
 
+		# 적 상태이상 표시
+		var enemy_target := "enemy_%d" % i
+		var status_label := Label.new()
+		status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		status_label.add_theme_font_size_override("font_size", 12)
+		status_label.text = _format_status_effects(enemy_target)
+		status_label.visible = not status_label.text.is_empty()
+
 		vbox.add_child(name_label)
 		vbox.add_child(hp_lbl)
 		vbox.add_child(enemy_block_label)
+		vbox.add_child(status_label)
 		vbox.add_child(intent_label)
 		panel.add_child(vbox)
 		panel.custom_minimum_size = Vector2(200, 180)
@@ -218,6 +230,54 @@ func _on_sijo_completed(_final_card_id: String) -> void:
 	battle_manager.draw_cards(1)
 	sijo_system.reset()
 	_init_sijo_slots()
+
+
+func _on_status_effect_changed(_target: String, _effect_id: String, _stacks: int) -> void:
+	_update_player_status_ui()
+	_update_enemy_ui()
+
+
+func _update_player_status_ui() -> void:
+	var status_text := _format_status_effects("player")
+	if status_text.is_empty():
+		block_label.text = "방어: %d" % battle_manager.player_block
+		block_label.visible = battle_manager.player_block > 0
+	else:
+		# 방어도 뒤에 상태이상 표시
+		var display := ""
+		if battle_manager.player_block > 0:
+			display = "방어: %d  " % battle_manager.player_block
+		display += status_text
+		block_label.text = display
+		block_label.visible = true
+
+
+func _format_status_effects(target: String) -> String:
+	if battle_manager.status_effects == null:
+		return ""
+	var effects := battle_manager.status_effects.get_all_effects(target)
+	if effects.is_empty():
+		return ""
+
+	var parts: Array[String] = []
+	# 상태이상 아이콘 매핑
+	var icons := {
+		"약화": "약화",
+		"취약": "취약",
+		"화상": "화상",
+		"독": "독",
+		"냉기": "냉기",
+		"strength": "힘",
+		"thorns": "가시",
+		"death_mark": "사망표식",
+		"death_countdown": "카운트다운",
+	}
+	for effect_id in effects:
+		var stacks: int = effects[effect_id]
+		var display_name: String = icons.get(effect_id, effect_id)
+		parts.append("%s×%d" % [display_name, stacks])
+
+	return " ".join(parts)
 
 
 func _on_battle_ended(victory: bool) -> void:

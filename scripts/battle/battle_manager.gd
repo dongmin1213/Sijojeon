@@ -36,6 +36,9 @@ var enemies: Array[Dictionary] = []
 # 시조 시스템
 var sijo_system: SijoSystem = null
 
+# 상태이상 시스템
+var status_effects: StatusEffectManager = null
+
 signal state_changed(new_state: BattleState)
 signal qi_changed(current: int, max_val: int)
 signal hand_changed(new_hand: Array[String])
@@ -46,6 +49,18 @@ signal turn_started(turn: int)
 signal enemy_intent_shown(enemy_index: int, intent: Dictionary)
 signal enemy_hp_changed(enemy_index: int, current: int, max_val: int)
 signal battle_ended(victory: bool)
+signal status_effect_changed(target: String, effect_id: String, stacks: int)
+signal dot_damage_dealt(target: String, effect_id: String, amount: int)
+
+
+func _ready() -> void:
+	# StatusEffectManager 자동 생성
+	if status_effects == null:
+		status_effects = StatusEffectManager.new()
+		add_child(status_effects)
+		status_effects.effect_applied.connect(_on_effect_applied)
+		status_effects.effect_removed.connect(_on_effect_removed)
+		status_effects.effect_triggered.connect(_on_effect_triggered)
 
 
 func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, max_hp: int, qi: int) -> void:
@@ -57,6 +72,9 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	hand.clear()
 	discard_pile.clear()
 	exhaust_pile.clear()
+
+	# 상태이상 초기화
+	status_effects.clear_all()
 
 	# 덱 셔플
 	draw_pile = deck.duplicate()
@@ -95,8 +113,21 @@ func begin_player_turn() -> void:
 
 	_change_state(BattleState.PLAYER_TURN_START)
 
-	# 카드 드로우
-	draw_cards(HAND_SIZE)
+	# 플레이어 턴 시작 시 지속 피해 처리 (독, 화상 등)
+	var dot_result := status_effects.process_turn_start("player")
+	if dot_result["damage"] > 0:
+		player_hp -= dot_result["damage"]
+		player_hp = maxi(player_hp, 0)
+		hp_changed.emit(player_hp, player_max_hp)
+		if player_hp <= 0:
+			_change_state(BattleState.BATTLE_LOSE)
+			battle_ended.emit(false)
+			return
+
+	# 카드 드로우 (냉기 등 드로우 수정자 적용)
+	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player")
+	draw_count = maxi(draw_count, 1)  # 최소 1장은 드로우
+	draw_cards(draw_count)
 
 	# 적 인텐트 표시
 	for i in enemies.size():
@@ -152,6 +183,9 @@ func end_player_turn() -> void:
 
 	_change_state(BattleState.PLAYER_TURN_END)
 
+	# 플레이어 턴 종료 시 디버프 기간 감소
+	status_effects.process_turn_end("player")
+
 	# 손패 → 버린 카드 더미
 	for card_id in hand:
 		discard_pile.append(card_id)
@@ -170,7 +204,22 @@ func execute_enemy_turn() -> void:
 		if enemy["current_hp"] <= 0:
 			continue
 
+		# 적 턴 시작 시 방어도 리셋
 		enemy["block"] = 0
+
+		# 적 지속 피해 처리 (독, 화상 등 — 플레이어가 건 디버프)
+		var enemy_target := "enemy_%d" % i
+		var dot_result := status_effects.process_turn_start(enemy_target)
+		if dot_result["damage"] > 0:
+			enemy["current_hp"] -= dot_result["damage"]
+			enemy["current_hp"] = maxi(enemy["current_hp"], 0)
+			enemy_hp_changed.emit(i, enemy["current_hp"], enemy["max_hp"])
+			if enemy["current_hp"] <= 0:
+				continue
+
+		# 적 디버프 기간 감소
+		status_effects.process_turn_end(enemy_target)
+
 		var intent := _get_enemy_intent(i)
 		_execute_enemy_action(i, intent)
 
@@ -209,7 +258,10 @@ func draw_cards(count: int) -> void:
 
 
 func take_damage(amount: int) -> void:
-	var remaining := amount
+	# 취약 적용 (받는 피해 증가)
+	var final_amount := status_effects.calculate_incoming_damage("player", amount)
+
+	var remaining := final_amount
 	if player_block > 0:
 		var blocked := mini(player_block, remaining)
 		player_block -= blocked
@@ -233,7 +285,14 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 	if enemy["current_hp"] <= 0:
 		return
 
-	var remaining := amount
+	# 플레이어 공격력 수정 (strength, 약화)
+	var final_damage := status_effects.calculate_outgoing_damage("player", amount)
+
+	# 적의 취약 적용
+	var enemy_target := "enemy_%d" % enemy_index
+	final_damage = status_effects.calculate_incoming_damage(enemy_target, final_damage)
+
+	var remaining := final_damage
 	var eblock: int = enemy.get("block", 0)
 	if eblock > 0:
 		var blocked := mini(eblock, remaining)
@@ -317,19 +376,80 @@ func _get_enemy_intent(enemy_index: int) -> Dictionary:
 
 func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
 	var action_type: String = intent.get("intent", intent.get("type", "attack"))
+	var enemy_target := "enemy_%d" % enemy_index
+
 	match action_type:
-		"attack", "attack_debuff":
-			var damage: int = intent.get("damage", 0)
-			var times: int = intent.get("times", 1)
-			for t in times:
-				take_damage(damage)
-		"defend", "defend_buff", "buff_defend":
+		"attack":
+			_execute_enemy_attack(enemy_index, intent)
+		"attack_debuff":
+			_execute_enemy_attack(enemy_index, intent)
+			_apply_intent_effects(enemy_index, intent)
+		"defend":
 			var block: int = intent.get("block", 0)
 			enemies[enemy_index]["block"] += block
+		"defend_buff", "buff_defend":
+			var block: int = intent.get("block", 0)
+			enemies[enemy_index]["block"] += block
+			_apply_intent_effects(enemy_index, intent)
 		"buff":
-			pass  # TODO: 상태이상 시스템에서 처리
+			_apply_intent_effects(enemy_index, intent)
 		"debuff":
-			pass  # TODO: 플레이어 디버프 적용
+			_apply_intent_effects(enemy_index, intent)
+
+
+func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
+	var base_damage: int = intent.get("damage", 0)
+	var times: int = intent.get("times", 1)
+	var enemy_target := "enemy_%d" % enemy_index
+
+	# 적 공격력 수정 (strength, 약화)
+	var final_damage := status_effects.calculate_outgoing_damage(enemy_target, base_damage)
+
+	for t in times:
+		take_damage(final_damage)
+		if player_hp <= 0:
+			break
+
+
+func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
+	var effects: Array = intent.get("effects", [])
+	var enemy_target := "enemy_%d" % enemy_index
+
+	for effect in effects:
+		if effect is not Dictionary:
+			continue
+		var effect_type: String = effect.get("type", "")
+		var stacks: int = effect.get("stacks", 1)
+		var target_str: String = effect.get("target", "player")
+
+		match effect_type:
+			"apply_debuff":
+				var debuff_id: String = effect.get("debuff", "")
+				if debuff_id.is_empty():
+					continue
+				var resolved_target := _resolve_effect_target(target_str, enemy_target)
+				status_effects.apply_effect(resolved_target, debuff_id, stacks)
+
+			"apply_buff":
+				var buff_id: String = effect.get("buff", "")
+				if buff_id.is_empty():
+					continue
+				var resolved_target := _resolve_effect_target(target_str, enemy_target)
+				status_effects.apply_effect(resolved_target, buff_id, stacks)
+
+			"cleanse_buffs":
+				var resolved_target := _resolve_effect_target(target_str, enemy_target)
+				status_effects.clear_target(resolved_target)
+
+
+func _resolve_effect_target(target_str: String, enemy_target: String) -> String:
+	match target_str:
+		"player":
+			return "player"
+		"self":
+			return enemy_target
+		_:
+			return target_str
 
 
 func _all_enemies_dead() -> bool:
@@ -337,3 +457,17 @@ func _all_enemies_dead() -> bool:
 		if enemy["current_hp"] > 0:
 			return false
 	return true
+
+
+# --- 상태이상 시그널 핸들러 ---
+
+func _on_effect_applied(target: String, effect_id: String, stacks: int) -> void:
+	status_effect_changed.emit(target, effect_id, stacks)
+
+
+func _on_effect_removed(target: String, effect_id: String) -> void:
+	status_effect_changed.emit(target, effect_id, 0)
+
+
+func _on_effect_triggered(target: String, effect_id: String, value: int) -> void:
+	dot_damage_dealt.emit(target, effect_id, value)
