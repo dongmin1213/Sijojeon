@@ -191,7 +191,11 @@ data/*.json
 
 - **렌더러:** GL Compatibility (OpenGL ES 3.0)
 - **이유:** Vulkan 미지원 Android 에뮬레이터 및 Galaxy Z Flip 3 호환
-- **해상도:** 멀티 해상도 대응 (Sprint 7, ZER-73)
+- **기준 해상도:** 1080 × 1920 (세로 Portrait)
+- **스트레치 모드:** `canvas_items` (UI 포함 전체 스케일링)
+- **비율 유지:** `keep_width` (가로폭 고정, 세로 여백 허용)
+- **방향:** `orientation = 1` (세로 고정)
+- **멀티 해상도 대응:** Sprint 7 작업 (Galaxy Z Flip 3 등 다양한 종횡비 지원)
 
 ---
 

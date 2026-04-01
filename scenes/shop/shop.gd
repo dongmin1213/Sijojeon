@@ -55,6 +55,11 @@ func _ready() -> void:
 
 	deck_scroll.visible = false
 
+	if GameManager.run_data == null:
+		push_warning("Shop: run_data가 null — 맵으로 복귀")
+		leave_button.visible = true
+		return
+
 	# 상점 입장 유물 트리거 (상단 장부)
 	RelicManager.trigger_enter_shop()
 
@@ -231,10 +236,12 @@ func _on_remove_toggle_pressed() -> void:
 	if removal_mode:
 		remove_button.text = "취소"
 		deck_scroll.visible = true
+		leave_button.text = "제거 취소하고 나가기"
 		_display_deck_for_removal()
 	else:
 		remove_button.text = "카드 제거 (%d 금화)" % _get_removal_cost()
 		deck_scroll.visible = false
+		leave_button.text = "상점 나가기"
 
 
 func _display_deck_for_removal() -> void:
@@ -315,5 +322,7 @@ func _update_remove_section() -> void:
 
 
 func _on_leave_pressed() -> void:
+	# 제거 모드 중이어도 나갈 수 있도록 리셋
+	removal_mode = false
 	GameManager.save_current_run()
 	GameManager.change_state(GameManager.GameState.MAP)

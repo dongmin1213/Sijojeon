@@ -28,6 +28,7 @@ func _ready() -> void:
 	_build_character_list()
 	_build_character_cards()
 	_build_achievement_button()
+	_show_first_play_guide()
 
 
 func _load_unlock_conditions() -> void:
@@ -445,3 +446,67 @@ func _create_achievement_panel() -> PanelContainer:
 	panel.add_child(margin)
 
 	return panel
+
+
+func _show_first_play_guide() -> void:
+	## 첫 플레이 시 간단한 게임 가이드 오버레이를 표시한다.
+	var meta := SaveManager.load_meta()
+	if meta.get("tutorial_shown", false):
+		return
+
+	# 튜토리얼 표시 플래그 저장
+	meta["tutorial_shown"] = true
+	SaveManager.save_meta(meta)
+
+	var overlay := ColorRect.new()
+	overlay.color = Color(0.0, 0.0, 0.0, 0.85)
+	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+
+	var margin := MarginContainer.new()
+	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin.add_theme_constant_override("margin_left", 60)
+	margin.add_theme_constant_override("margin_right", 60)
+	margin.add_theme_constant_override("margin_top", 80)
+	margin.add_theme_constant_override("margin_bottom", 80)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 24)
+	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+
+	var guide_title := Label.new()
+	guide_title.text = "시조전에 오신 것을 환영합니다!"
+	guide_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	guide_title.add_theme_font_size_override("font_size", 32)
+	guide_title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	vbox.add_child(guide_title)
+
+	var guide_text := Label.new()
+	guide_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	guide_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	guide_text.add_theme_font_size_override("font_size", 20)
+	guide_text.text = """조선 시대를 배경으로 한 덱빌딩 로그라이크입니다.
+
+▶ 캐릭터를 선택하고 고유한 카드와 능력으로 전투하세요
+▶ 맵에서 경로를 선택하여 전투, 이벤트, 상점, 휴식처를 탐험합니다
+▶ 전투에서 승리하면 새 카드를 획득할 수 있습니다
+▶ 상점에서 카드를 구매하거나 불필요한 카드를 제거하세요
+▶ 각 막의 보스를 처치하면 다음 막으로 진행합니다
+▶ 3막 보스를 처치하면 게임 클리어!
+
+전투 팁:
+  • 기(氣)를 소비하여 카드를 사용합니다
+  • 음보(拍) 시스템: 카드마다 박자가 있어 순서가 중요합니다
+  • 방어력은 매 턴 초기화됩니다"""
+	vbox.add_child(guide_text)
+
+	var close_btn := Button.new()
+	close_btn.text = "게임 시작하기"
+	close_btn.add_theme_font_size_override("font_size", 24)
+	close_btn.custom_minimum_size = Vector2(300, 60)
+	close_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	close_btn.pressed.connect(func(): overlay.queue_free())
+	vbox.add_child(close_btn)
+
+	margin.add_child(vbox)
+	overlay.add_child(margin)
+	add_child(overlay)

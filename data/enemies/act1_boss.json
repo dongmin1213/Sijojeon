@@ -154,7 +154,6 @@
         "hp_percent": 30,
         "on_trigger": [
           { "type": "cleanse_debuffs", "target": "self" },
-          { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" },
           {
             "type": "apply_debuff",
             "debuff": "death_countdown",
@@ -163,7 +162,8 @@
             "note": "사망 카운트다운: 4턴 후 플레이어 현재 HP 40% 강제 감소. 판서 처치 시 즉시 해제."
           },
           { "type": "dialogue", "text": "왕명이니라! 이 자를 당장 처형하라!" }
-        ]
+        ],
+        "balance_note": "[ZER-84 수정] 페이즈 3 진입 시 힘 +2 제거. 기존: 힘 5(페이즈 2)+2=7 → 왕명 집행 45피해 즉사 위험. 수정 후: 힘 최대 5 유지 → 왕명 집행 최대 39피해. 카운트다운(4턴) 긴장감이 페이즈 3 핵심 압박 수단으로 충분."
       },
       "moves": [
         {

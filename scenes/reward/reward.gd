@@ -23,6 +23,13 @@ func _ready() -> void:
 	proceed_button.pressed.connect(_on_proceed_pressed)
 	proceed_button.visible = false
 
+	if GameManager.run_data == null:
+		push_warning("Reward: run_data가 null — 맵으로 복귀")
+		proceed_button.visible = true
+		skip_button.visible = false
+		card_section.visible = false
+		return
+
 	_load_rewards()
 	_apply_gold()
 	_try_relic_reward()

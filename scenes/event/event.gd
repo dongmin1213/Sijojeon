@@ -20,6 +20,13 @@ func _ready() -> void:
 	continue_button.pressed.connect(_return_to_map)
 	continue_button.visible = false
 	result_label.visible = false
+
+	if GameManager.run_data == null:
+		push_warning("Event: run_data가 null — 맵으로 복귀")
+		continue_button.visible = true
+		continue_button.text = "돌아가기"
+		return
+
 	_load_random_event()
 	_build_ui()
 	_update_status_bar()
