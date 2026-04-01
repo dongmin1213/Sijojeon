@@ -1,56 +1,119 @@
 extends Node
 
 ## 게임 전체 상태를 관리하는 오토로드 싱글톤.
+## 상태 머신: TITLE → CHARACTER_SELECT → MAP ↔ BATTLE/EVENT/SHOP/REST → REWARD → MAP
 
 enum GameState {
 	TITLE,
 	CHARACTER_SELECT,
 	MAP,
 	BATTLE,
-	REWARD,
-	SHOP,
 	EVENT,
+	SHOP,
 	REST,
-	RUN_RESULT,
+	REWARD,
+	RUN_OVER,
+	RUN_WIN,
 }
 
 var current_state: GameState = GameState.TITLE
-
-# 런 데이터
-var current_character: String = ""
-var current_act: int = 1
-var max_acts: int = 3
-var player_hp: int = 80
-var player_max_hp: int = 80
-var player_gold: int = 99
-var deck: Array = []
-var relics: Array = []
+var run_data: RunData = null
 
 signal state_changed(new_state: GameState)
+
+
+## 상태별 씬 경로를 반환한다. 매핑이 없으면 빈 문자열.
+func _get_scene_path(state: GameState) -> String:
+	match state:
+		GameState.TITLE:
+			return "res://scenes/title/title_screen.tscn"
+		GameState.CHARACTER_SELECT:
+			return "res://scenes/character_select/character_select.tscn"
+		GameState.MAP:
+			return "res://scenes/map/run_map.tscn"
+		GameState.BATTLE:
+			return "res://scenes/battle/battle.tscn"
+		GameState.EVENT:
+			return "res://scenes/event/event.tscn"
+		GameState.SHOP:
+			return "res://scenes/shop/shop.tscn"
+		GameState.REST:
+			return "res://scenes/rest/rest.tscn"
+		GameState.REWARD:
+			return "res://scenes/reward/reward.tscn"
+	return ""
 
 
 func change_state(new_state: GameState) -> void:
 	current_state = new_state
 	state_changed.emit(new_state)
 
+	# 씬 전환 (매핑된 씬이 있을 때만)
+	var scene_path := _get_scene_path(new_state)
+	if scene_path != "":
+		if ResourceLoader.exists(scene_path):
+			get_tree().change_scene_to_file(scene_path)
+		else:
+			push_warning("GameManager: 씬 파일 없음 — %s (상태: %s)" % [scene_path, GameState.keys()[new_state]])
 
-func start_new_run(character: String) -> void:
-	current_character = character
-	current_act = 1
-	player_hp = player_max_hp
-	player_gold = 99
-	deck.clear()
-	relics.clear()
-	# 기본 덱은 DataLoader에서 로드
-	deck = DataLoader.get_starter_deck(character)
+
+func start_new_run(character_id: String) -> void:
+	run_data = RunData.new()
+	run_data.character_id = character_id
+	run_data.map_seed = randi()
+
+	# DataLoader에서 캐릭터 데이터로 HP 설정
+	var skills_data := DataLoader.get_character_skills(character_id)
+	if skills_data:
+		run_data.max_hp = skills_data.get("base_hp", 70)
+		run_data.current_hp = run_data.max_hp
+		run_data.qi_per_turn = skills_data.get("base_qi", 3)
+
+	# 기본 덱 로드
+	run_data.deck = DataLoader.get_starter_deck(character_id)
+
+	# 시작 유물
+	if skills_data and skills_data.has("starting_relic"):
+		run_data.relics.append(skills_data["starting_relic"])
+
 	change_state(GameState.MAP)
 
 
+func load_saved_run() -> bool:
+	var save_dict: Dictionary = SaveManager.load_run()
+	if save_dict.is_empty():
+		return false
+	run_data = RunData.from_dict(save_dict)
+	change_state(GameState.MAP)
+	return true
+
+
+func end_run(victory: bool) -> void:
+	if victory:
+		change_state(GameState.RUN_WIN)
+	else:
+		change_state(GameState.RUN_OVER)
+	# 런 세이브 삭제 (런 종료 시)
+	SaveManager.delete_run_save()
+
+
+func save_current_run() -> void:
+	if run_data:
+		SaveManager.save_run(run_data.to_dict())
+
+
 func reset_to_title() -> void:
-	current_character = ""
-	current_act = 1
-	player_hp = player_max_hp
-	player_gold = 99
-	deck.clear()
-	relics.clear()
+	run_data = null
 	change_state(GameState.TITLE)
+
+
+func advance_floor() -> void:
+	if run_data:
+		run_data.current_floor += 1
+
+
+func advance_act() -> void:
+	if run_data:
+		run_data.current_act += 1
+		run_data.current_floor = 0
+		run_data.visited_nodes.clear()

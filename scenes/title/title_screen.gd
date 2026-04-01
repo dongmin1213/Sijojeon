@@ -14,13 +14,10 @@ func _ready() -> void:
 
 func _on_start_pressed() -> void:
 	GameManager.change_state(GameManager.GameState.CHARACTER_SELECT)
-	# TODO: character_select 씬으로 전환
 
 
 func _on_continue_pressed() -> void:
-	if SaveManager.load_run():
-		GameManager.change_state(GameManager.GameState.MAP)
-		# TODO: map 씬으로 전환
+	GameManager.load_saved_run()
 
 
 func _on_quit_pressed() -> void:

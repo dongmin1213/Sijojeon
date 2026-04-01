@@ -6,11 +6,13 @@ var _card_data: Dictionary = {}
 var _enemy_data: Dictionary = {}
 var _event_data: Dictionary = {}
 var _relic_data: Dictionary = {}
+var _skills_data: Dictionary = {}
 
 
 func _ready() -> void:
 	_load_all_cards()
 	_load_all_enemies()
+	_load_skills()
 
 
 func _load_all_cards() -> void:
@@ -68,3 +70,31 @@ func get_starter_deck(character: String) -> Array:
 
 func get_enemy(enemy_id: String) -> Dictionary:
 	return _enemy_data.get(enemy_id, {})
+
+
+func get_character_skills(character_id: String) -> Dictionary:
+	if not _skills_data.has("character_special_skills"):
+		return {}
+	for entry in _skills_data["character_special_skills"]:
+		if entry.get("class_id", "") == character_id:
+			var hp_data: Dictionary = _skills_data.get("core_systems", {}).get("hp", {}).get("base_hp_by_class", {}).get(character_id, {})
+			var energy_data: Dictionary = _skills_data.get("core_systems", {}).get("energy", {})
+			return {
+				"base_hp": hp_data.get("hp", 70),
+				"base_qi": energy_data.get("base_energy_per_turn", 3),
+				"starting_relic": entry.get("starting_relic", {}).get("id", ""),
+				"passive": entry.get("passive_name", {}),
+				"active_skill": entry.get("active_skill", {}),
+			}
+	return {}
+
+
+func _load_skills() -> void:
+	var path := "res://data/skills/special_skills.json"
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file:
+		var json := JSON.new()
+		var err := json.parse(file.get_as_text())
+		if err == OK and json.data is Dictionary:
+			_skills_data = json.data
+		file.close()
