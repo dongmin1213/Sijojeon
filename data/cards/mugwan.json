@@ -22,14 +22,14 @@
       "subtypes": ["movement", "token"],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "병사 토큰 1개를 생성한다. 병사 토큰: 피해를 1회 대신 받고 소멸. 소멸 시 기(氣) 1 회복.",
-      "effect_upgraded": "병사 토큰 2개를 생성한다.",
+      "effect": "병사 토큰 1개를 생성한다. 기력 2 획득. 병사 토큰: 피해를 1회 대신 받고 소멸. 소멸 시 기(氣) 1 회복.",
+      "effect_upgraded": "병사 토큰 2개를 생성한다. 기력 3 획득.",
       "flavor_text": "한 발 앞에 병사를 세워 — 나를 향한 칼끝을 막아낸다.",
       "balance_rationale": "1코스트 토큰 생성. 둔갑술(2코스트 분신)의 무관 버전. 1코스트로 완전 피해 무효화 + 기 회복은 강력하나, 무관 덱에서 진형 시너지 카드들과의 조합을 전제로 설계. 업그레이드 후 2토큰은 2코스트 카드 상당.",
       "sijo_position": "중장 첫 슬롯 [3] — 진형 준비 단계",
       "class_synergy": ["G002 (돌격 토큰 보너스)", "G004 (학익진 토큰 배수)"],
       "upgrade_cost": 75,
-      "values": { "tokens": 1 }
+      "values": { "tokens": 1, "stamina_gain": 2 }
     },
     {
       "id": "G002",
@@ -44,14 +44,14 @@
       "subtypes": ["movement", "formation"],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "적에게 12 피해를 입힌다. 병사 토큰이 1개 이상 있으면 피해를 5 추가로 입힌다.",
-      "effect_upgraded": "16 피해. 병사 토큰 보너스 피해 +7.",
+      "effect": "기력 2 소비. 적에게 12 피해를 입힌다. 병사 토큰이 1개 이상 있으면 피해를 5 추가로 입힌다.",
+      "effect_upgraded": "기력 2 소비. 16 피해. 병사 토큰 보너스 피해 +7.",
       "flavor_text": "병사들을 앞세운 일제 돌격 — 진형이 살아있을 때 가장 강하다.",
       "balance_rationale": "2코스트 공격. 기본 12피해는 2코스트 기준 약간 우위. 토큰 보너스 +5로 최대 17피해. G001과 자연스러운 1+2코스트 콤보(3기 소비). 진형 덱 핵심 피니셔.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
       "class_synergy": ["G001 (진형 전환 토큰 소스)"],
       "upgrade_cost": 75,
-      "values": { "damage": 12 }
+      "values": { "damage": 12, "stamina_cost": 2 }
     },
     {
       "id": "G003",
@@ -73,7 +73,7 @@
       "sijo_position": "중장 둘째 슬롯 [4]",
       "class_synergy": ["G004 (학익진 포위됨 배수 피해)"],
       "upgrade_cost": 100,
-      "values": {}
+      "values": { "stamina_gain": 1 }
     },
     {
       "id": "G004",
@@ -95,7 +95,7 @@
       "sijo_position": "종장 둘째 슬롯 [4] — 진형 완성 피날레",
       "class_synergy": ["G001 (토큰 소스)", "G003 (포위됨으로 적 약화 후 사용 시 피해 시너지)"],
       "upgrade_cost": 150,
-      "values": { "damage": 8, "is_aoe": true }
+      "values": { "damage": 8, "is_aoe": true, "stamina_cost": 3 }
     },
     {
       "id": "G005",
@@ -117,7 +117,7 @@
       "sijo_position": "종장 첫 슬롯 [3] — 방어 완성 피날레",
       "class_synergy": ["G001 (같은 턴 2배 토큰 시너지)", "G004 (토큰 배수로 학익진 폭발 준비)"],
       "upgrade_cost": 150,
-      "values": { "block": 18, "tokens": 2 }
+      "values": { "block": 18, "tokens": 2, "stamina_gain": 3 }
     }
   ],
   "status_conditions_defined": [

@@ -1,0 +1,80 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      export_type:
+        description: "Export type"
+        required: true
+        default: "debug"
+        type: choice
+        options:
+          - debug
+          - release
+
+env:
+  GODOT_VERSION: "4.3"
+  PROJECT_NAME: "Sijojeon"
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Android SDK and export templates
+        run: |
+          mkdir -p /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable/* /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ || true
+          mkdir -p /root/.config/godot
+
+      - name: Setup Android keystore
+        run: |
+          mkdir -p /root/.android
+          if [ "${{ inputs.export_type }}" = "debug" ]; then
+            keytool -genkeypair -v \
+              -keystore /root/.android/debug.keystore \
+              -alias androiddebugkey \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass android -keypass android \
+              -dname "CN=Android Debug,O=Android,C=US"
+          fi
+
+      - name: Configure Godot editor settings for Android
+        run: |
+          mkdir -p /root/.config/godot
+          cat > /root/.config/godot/editor_settings-4.tres <<EOF
+          [gd_resource type="EditorSettings"]
+          [resource]
+          export/android/android_sdk_path = "/usr/lib/android-sdk"
+          export/android/debug_keystore = "/root/.android/debug.keystore"
+          export/android/debug_keystore_user = "androiddebugkey"
+          export/android/debug_keystore_pass = "android"
+          EOF
+
+      - name: Import project assets
+        run: |
+          cd $GITHUB_WORKSPACE
+          godot --headless --import 2>&1 || true
+          sleep 5
+
+      - name: Build APK
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/build/android
+          cd $GITHUB_WORKSPACE
+          if [ "${{ inputs.export_type }}" = "debug" ]; then
+            godot --headless --export-debug "Android" build/android/${PROJECT_NAME}.apk 2>&1
+          else
+            godot --headless --export-release "Android" build/android/${PROJECT_NAME}.apk 2>&1
+          fi
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PROJECT_NAME }}-${{ inputs.export_type }}-apk
+          path: build/android/*.apk
+          retention-days: 14

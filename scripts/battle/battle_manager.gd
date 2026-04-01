@@ -15,11 +15,16 @@ enum BattleState {
 
 const HAND_SIZE := 5
 const STARTING_QI := 3
+const MAX_STAMINA := 10  # 기력 최대치
 
 var state: BattleState = BattleState.BATTLE_START
 var current_qi: int = 0
 var max_qi: int = STARTING_QI
 var turn_number: int = 0
+
+# 기력 (무관 전용 자원) — 턴 간 유지, 전투 시작 시 0
+var current_stamina: int = 0
+var is_mugwan: bool = false  # 무관 클래스 여부
 
 # 카드 더미
 var draw_pile: Array[String] = []   # 드로우 파일 (card IDs)
@@ -51,6 +56,7 @@ signal enemy_hp_changed(enemy_index: int, current: int, max_val: int)
 signal battle_ended(victory: bool)
 signal status_effect_changed(target: String, effect_id: String, stacks: int)
 signal dot_damage_dealt(target: String, effect_id: String, amount: int)
+signal stamina_changed(current: int, max_val: int)
 
 
 func _ready() -> void:
@@ -63,7 +69,7 @@ func _ready() -> void:
 		status_effects.effect_triggered.connect(_on_effect_triggered)
 
 
-func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, max_hp: int, qi: int) -> void:
+func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, max_hp: int, qi: int, character_id: String = "") -> void:
 	player_hp = hp
 	player_max_hp = max_hp
 	max_qi = qi
@@ -72,6 +78,12 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	hand.clear()
 	discard_pile.clear()
 	exhaust_pile.clear()
+
+	# 기력 초기화 (무관 전용)
+	is_mugwan = character_id == "mugwan"
+	current_stamina = 0
+	if is_mugwan:
+		stamina_changed.emit(current_stamina, MAX_STAMINA)
 
 	# 상태이상 초기화
 	status_effects.clear_all()
@@ -161,9 +173,19 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if card.cost > current_qi:
 		return false
 
+	# 기력 확인 (무관 전용)
+	if is_mugwan and card.stamina_cost > 0 and card.stamina_cost > current_stamina:
+		return false
+
 	# 기 소비
 	current_qi -= card.cost
 	qi_changed.emit(current_qi, max_qi)
+
+	# 기력 소비 (무관 전용)
+	if is_mugwan and card.stamina_cost > 0:
+		current_stamina -= card.stamina_cost
+		current_stamina = maxi(current_stamina, 0)
+		stamina_changed.emit(current_stamina, MAX_STAMINA)
 
 	# 시조 슬롯 시도
 	if sijo_system:
@@ -351,6 +373,12 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	if card.draw_count > 0:
 		draw_cards(card.draw_count)
 
+	# 기력 획득 (무관 전용)
+	if is_mugwan and card.stamina_gain > 0:
+		current_stamina += card.stamina_gain
+		current_stamina = mini(current_stamina, MAX_STAMINA)
+		stamina_changed.emit(current_stamina, MAX_STAMINA)
+
 
 func _change_state(new_state: BattleState) -> void:
 	state = new_state
@@ -478,6 +506,14 @@ func _resolve_effect_target(target_str: String, enemy_target: String) -> String:
 			return enemy_target
 		_:
 			return target_str
+
+
+func can_play_card(card: CardData) -> bool:
+	if card.cost > current_qi:
+		return false
+	if is_mugwan and card.stamina_cost > 0 and card.stamina_cost > current_stamina:
+		return false
+	return true
 
 
 func _all_enemies_dead() -> bool:

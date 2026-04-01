@@ -26,6 +26,8 @@ extends Resource
 @export var qi_gain: int = 0
 @export var is_aoe: bool = false
 @export var tokens: int = 0
+@export var stamina_cost: int = 0   # 기력 소비량 (무관 전용)
+@export var stamina_gain: int = 0   # 기력 획득량 (무관 전용)
 
 
 static func from_dict(data: Dictionary, card_pool: String) -> CardData:
@@ -64,6 +66,8 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.qi_gain = values.get("qi_gain", 0)
 		card.is_aoe = values.get("is_aoe", false)
 		card.tokens = values.get("tokens", 0)
+		card.stamina_cost = values.get("stamina_cost", 0)
+		card.stamina_gain = values.get("stamina_gain", 0)
 
 	return card
 
@@ -103,4 +107,6 @@ func duplicate_card() -> CardData:
 	copy.qi_gain = qi_gain
 	copy.is_aoe = is_aoe
 	copy.tokens = tokens
+	copy.stamina_cost = stamina_cost
+	copy.stamina_gain = stamina_gain
 	return copy

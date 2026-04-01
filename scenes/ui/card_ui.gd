@@ -121,8 +121,13 @@ func _update_display() -> void:
 	# 카드 이름
 	card_name_label.text = card_data.get_display_name()
 
-	# 비트 + 코스트
-	beat_cost_label.text = "[%d] %d氣" % [card_data.beat, card_data.cost]
+	# 비트 + 코스트 + 기력
+	var cost_text := "[%d] %d氣" % [card_data.beat, card_data.cost]
+	if card_data.stamina_cost > 0:
+		cost_text += " %d力" % card_data.stamina_cost
+	elif card_data.stamina_gain > 0:
+		cost_text += " +%d力" % card_data.stamina_gain
+	beat_cost_label.text = cost_text
 
 	# 타입 표시
 	var type_names := {

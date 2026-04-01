@@ -1,0 +1,131 @@
+{
+  "version": "0.1",
+  "type": "shop_economy",
+  "balance_ref": "ZER-47 (상점 가격표 확정). ZER-12 (카드 밸런스 스펙) 연계.",
+  "description": "시조전 Act 1 경제 기준표. 카드 구매/제거 비용 및 골드 획득량 공식 수치.",
+
+  "design_rationale": {
+    "act1_gold_flow_estimate": {
+      "starting_gold": 99,
+      "regular_battles": { "count": 9, "avg_per_battle": 17, "subtotal": 153 },
+      "elite_battles": { "count": 2, "avg_per_battle": 32, "subtotal": 64 },
+      "boss": { "count": 1, "avg": 70, "subtotal": 70 },
+      "event_gold_bonus": 30,
+      "act1_total_estimate": 416,
+      "note": "플레이어는 Act 1에서 약 400~420골드를 획득. 주요 지출: 카드 2~3장(220~300), 카드 제거 1회(75~100), 유물(나머지). 이 기준으로 가격 설계."
+    }
+  },
+
+  "shop": {
+    "card_prices": {
+      "common": {
+        "name_ko": "일반카드",
+        "rarity_range": [1, 2],
+        "rarity_stars": "★☆☆☆☆ ~ ★★☆☆☆",
+        "base_price": 75,
+        "price_range": { "min": 50, "max": 100 },
+        "price_note": "기본 75골드. 상점마다 ±25 랜덤 변동. 이동/방어 위주의 입문 카드."
+      },
+      "uncommon": {
+        "name_ko": "고급카드",
+        "rarity_range": [3],
+        "rarity_stars": "★★★☆☆",
+        "base_price": 110,
+        "price_range": { "min": 85, "max": 135 },
+        "price_note": "기본 110골드. 조건부 효과나 이중 효과를 가진 중급 카드."
+      },
+      "rare": {
+        "name_ko": "희귀카드",
+        "rarity_range": [4, 5],
+        "rarity_stars": "★★★★☆ ~ ★★★★★",
+        "base_price": 150,
+        "price_range": { "min": 120, "max": 175 },
+        "price_note": "기본 150골드. 강력한 단독 효과 또는 덱 시너지 핵심 카드. Act 1에서는 희귀도 4만 등장."
+      }
+    },
+
+    "card_removal": {
+      "name_ko": "카드 제거",
+      "description": "덱에서 카드 1장을 영구 제거. 덱 압축 핵심 서비스.",
+      "base_cost": 75,
+      "cost_increase_per_removal": 25,
+      "max_cost": 200,
+      "cost_schedule": [75, 100, 125, 150, 175, 200],
+      "cost_note": "런 시작 후 첫 제거 75골드. 이후 제거할 때마다 25골드씩 증가, 200골드에서 고정. 초반 제거를 장려하되 무한 제거 방지."
+    },
+
+    "shop_layout": {
+      "card_slots": 3,
+      "rarity_distribution": {
+        "common_weight": 0.50,
+        "uncommon_weight": 0.35,
+        "rare_weight": 0.15,
+        "note": "3슬롯 중 평균 1.5장 일반, 1장 고급, 0.45장 희귀 기대. Act 1 기준."
+      },
+      "refresh_cost": 50,
+      "refresh_note": "상점 카드 목록 새로고침 1회 50골드. 런당 1~2회 사용 기대."
+    }
+  },
+
+  "gold_rewards": {
+    "regular_battle": {
+      "name_ko": "일반 전투",
+      "base_range": { "min": 10, "max": 28 },
+      "tier_breakdown": {
+        "weak": {
+          "label": "약한 일반 몬스터 (HP 20~30)",
+          "range": { "min": 10, "max": 22 },
+          "examples": ["불량배 E001 (10~20)", "원혼 E003 (12~22)"]
+        },
+        "strong": {
+          "label": "강한 일반 몬스터 (HP 30~40)",
+          "range": { "min": 15, "max": 28 },
+          "examples": ["포졸 E002 (15~25)", "도깨비 E004 (18~28)"]
+        }
+      },
+      "card_drop_chance": { "min": 0.20, "max": 0.35 },
+      "relic_drop_chance": { "min": 0.00, "max": 0.05 },
+      "note": "몬스터별 세부 수치는 enemies/act1.json 참조. 이 기준표는 상·하한 가이드라인."
+    },
+
+    "elite_battle": {
+      "name_ko": "정예 전투",
+      "range": { "min": 25, "max": 40 },
+      "avg": 32,
+      "card_drop_chance": 0.60,
+      "relic_drop_chance": 0.25,
+      "note": "정예는 일반보다 골드가 50~100% 많고, 카드 드롭률이 높음. 위험 대비 보상 명확화."
+    },
+
+    "boss_battle": {
+      "name_ko": "보스 전투",
+      "range": { "min": 60, "max": 80 },
+      "avg": 70,
+      "relic_drop": "보스 유물 1개 (확정)",
+      "card_drop_chance": 0.0,
+      "note": "보스는 골드 + 확정 유물. 카드 드롭 없음. 보스 유물이 주요 보상."
+    },
+
+    "event_gold": {
+      "name_ko": "이벤트 골드",
+      "typical_range": { "min": 10, "max": 30 },
+      "note": "무작위 이벤트 골드 보상 기준치. 이벤트 설계 시 이 범위 내 권장."
+    }
+  },
+
+  "economy_health_checks": {
+    "affordable_card_per_act": {
+      "target": "2~3장",
+      "calculation": "Act 1 총 획득 골드 ~400골드 / 일반카드 평균 75골드 = 약 5장 가능. 카드 제거 1회(75) + 기타 지출 고려 시 실질 2~3장 구매가 이상적.",
+      "verdict": "pass"
+    },
+    "removal_affordability": {
+      "target": "첫 제거는 조기 전투 2~3회 후 가능",
+      "calculation": "전투 2~3회 골드(35~60) + 시작 골드 없이도 달성 가능. 첫 제거(75)는 약 4~5회 전투 후 자연스럽게 가능.",
+      "verdict": "pass"
+    },
+    "gold_feel": {
+      "note": "매 전투 후 소량 획득 → 소소한 성장감. 정예·보스 후 큰 획득 → 성취감. 상점에서 선택 압박(카드 vs 제거 vs 유물) → 의사결정 재미."
+    }
+  }
+}

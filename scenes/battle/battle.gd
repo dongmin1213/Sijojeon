@@ -22,6 +22,9 @@ var sijo_slot_labels: Array[Label] = []
 # 플레이어 상태이상 UI 컨테이너
 var _player_status_container: HBoxContainer = null
 
+# 기력 UI (무관 전용)
+var _stamina_label: Label = null
+
 
 func _ready() -> void:
 	# 매니저 초기화
@@ -50,6 +53,9 @@ func _ready() -> void:
 	# 상태이상 시그널 연결
 	battle_manager.status_effect_changed.connect(_on_status_effect_changed)
 
+	# 기력 시그널 연결
+	battle_manager.stamina_changed.connect(_on_stamina_changed)
+
 	# 시조 슬롯 UI 초기화
 	_init_sijo_slots()
 
@@ -70,7 +76,11 @@ func _start_battle() -> void:
 	if not test_enemy.is_empty():
 		enemy_data.append(test_enemy)
 
-	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn)
+	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
+
+	# 기력 UI 초기화 (무관 전용)
+	if battle_manager.is_mugwan:
+		_init_stamina_ui()
 
 
 func _init_sijo_slots() -> void:
@@ -90,7 +100,7 @@ func _init_sijo_slots() -> void:
 
 func _refresh_hand_ui() -> void:
 	var sijo_beat := sijo_system.get_next_required_beat() if sijo_system else -1
-	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat)
+	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat, battle_manager)
 
 	# 덱 정보 갱신
 	draw_pile_label.text = "드로우: %d" % battle_manager.draw_pile.size()
@@ -231,6 +241,19 @@ func _on_sijo_completed(_final_card_id: String) -> void:
 	battle_manager.draw_cards(1)
 	sijo_system.reset()
 	_init_sijo_slots()
+
+
+func _on_stamina_changed(current: int, max_val: int) -> void:
+	if _stamina_label:
+		_stamina_label.text = "氣力: %d/%d" % [current, max_val]
+	_refresh_hand_ui()
+
+
+func _init_stamina_ui() -> void:
+	_stamina_label = Label.new()
+	_stamina_label.text = "氣力: 0/%d" % BattleManager.MAX_STAMINA
+	_stamina_label.add_theme_color_override("font_color", Color(0.9, 0.6, 0.2))
+	$BattleHUD/PlayerInfo.add_child(_stamina_label)
 
 
 func _on_status_effect_changed(_target: String, _effect_id: String, _stacks: int) -> void:

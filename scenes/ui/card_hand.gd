@@ -28,7 +28,7 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int) -> void:
+func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleManager = null) -> void:
 	current_qi = qi
 	next_sijo_beat = sijo_beat
 	selected_index = -1
@@ -50,7 +50,7 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int) -> void:
 		var widget: CardUI = CardUIScene.instantiate()
 		add_child(widget)
 
-		var playable := card.cost <= qi
+		var playable := bm.can_play_card(card) if bm else card.cost <= qi
 		var matches_sijo := (sijo_beat > 0 and card.beat == sijo_beat)
 		widget.setup(card, i, playable, matches_sijo)
 
