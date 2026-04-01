@@ -24,12 +24,12 @@ color = Color(0.08, 0.12, 0.1, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
-anchor_top = 0.1
+anchor_top = 0.05
 anchor_right = 0.9
-anchor_bottom = 0.9
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
@@ -38,6 +38,14 @@ text = "이벤트"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 32
 theme_override_colors/font_color = Color(0.3, 0.85, 0.4, 1)
+
+[node name="FlavorLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.7, 0.7, 0.5, 1)
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -48,4 +56,36 @@ theme_override_font_sizes/font_size = 18
 
 [node name="ChoiceContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 12
+
+[node name="ResultLabel" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1.0, 0.9, 0.6, 1)
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "계속"
+theme_override_font_sizes/font_size = 20
+
+[node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 40
+
+[node name="HPLabel" type="Label" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
+text = "HP: --/--"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.9, 0.3, 0.3, 1)
+
+[node name="GoldLabel" type="Label" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
+text = "엽전: --"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1.0, 0.85, 0.3, 1)
