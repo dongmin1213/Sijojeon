@@ -1,0 +1,172 @@
+class_name CardHand
+extends Control
+
+## 카드 핸드 UI. 카드를 부채꼴로 배치하고 선택/드래그/플레이 인터랙션을 관리한다.
+
+signal card_played(hand_index: int, target_enemy_index: int)
+
+const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
+
+# 부채꼴 배치 파라미터
+@export var fan_spread_degrees: float = 5.0   # 카드 간 회전 각도
+@export var fan_y_curve: float = 20.0         # 부채꼴 높이 커브
+@export var card_spacing: float = 145.0       # 카드 간 가로 간격
+@export var hover_lift: float = 30.0          # 호버 시 위로 올라가는 높이
+@export var select_lift: float = 50.0         # 선택 시 위로 올라가는 높이
+
+var card_widgets: Array[CardUI] = []
+var selected_index: int = -1
+var hovered_index: int = -1
+var dragging_index: int = -1
+
+# 외부에서 참조할 상태
+var current_qi: int = 0
+var next_sijo_beat: int = -1  # 시조 시스템의 다음 필요 비트
+
+
+func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int) -> void:
+	current_qi = qi
+	next_sijo_beat = sijo_beat
+	selected_index = -1
+	hovered_index = -1
+	dragging_index = -1
+
+	# 기존 위젯 제거
+	for widget in card_widgets:
+		widget.queue_free()
+	card_widgets.clear()
+
+	# 새 카드 위젯 생성
+	for i in hand_ids.size():
+		var card_id: String = hand_ids[i]
+		var card: CardData = DataLoader.get_card(card_id)
+		if card == null:
+			continue
+
+		var widget: CardUI = CardUIScene.instantiate()
+		add_child(widget)
+
+		var playable := card.cost <= qi
+		var matches_sijo := (sijo_beat > 0 and card.beat == sijo_beat)
+		widget.setup(card, i, playable, matches_sijo)
+
+		widget.card_clicked.connect(_on_card_clicked)
+		widget.card_hovered.connect(_on_card_hovered)
+		widget.card_unhovered.connect(_on_card_unhovered)
+		widget.card_drag_started.connect(_on_card_drag_started)
+		widget.card_drag_ended.connect(_on_card_drag_ended)
+
+		card_widgets.append(widget)
+
+	_arrange_cards()
+
+
+func _arrange_cards() -> void:
+	var count := card_widgets.size()
+	if count == 0:
+		return
+
+	var center_x := size.x / 2.0
+	var base_y := size.y * 0.3
+	var total_width := (count - 1) * card_spacing
+	var start_x := center_x - total_width / 2.0
+
+	for i in count:
+		var widget := card_widgets[i]
+
+		# 드래그 중인 카드는 배치에서 제외
+		if i == dragging_index:
+			continue
+
+		var t := 0.0 if count == 1 else float(i) / float(count - 1)
+		var centered_t := t - 0.5  # -0.5 ~ 0.5
+
+		# 위치 계산
+		var x := start_x + i * card_spacing - widget.size.x / 2.0
+		var y := base_y + fan_y_curve * (centered_t * centered_t * 4.0)
+
+		# 호버/선택 시 올림
+		if i == selected_index:
+			y -= select_lift
+		elif i == hovered_index:
+			y -= hover_lift
+
+		# 회전 계산 (부채꼴)
+		var rotation_deg := centered_t * fan_spread_degrees * (count - 1)
+
+		widget.position = Vector2(x, y)
+		widget.rotation_degrees = rotation_deg
+		widget.z_index = i
+		if i == hovered_index or i == selected_index:
+			widget.z_index = count + 1
+
+
+func _on_card_clicked(hand_index: int) -> void:
+	if dragging_index >= 0:
+		return  # 드래그 중에는 클릭 무시
+
+	if selected_index == hand_index:
+		# 이미 선택된 카드를 다시 클릭 → 첫 번째 적에게 플레이
+		card_played.emit(hand_index, 0)
+		selected_index = -1
+		_deselect_all()
+		_arrange_cards()
+	else:
+		# 카드 선택
+		_deselect_all()
+		selected_index = hand_index
+		if hand_index >= 0 and hand_index < card_widgets.size():
+			card_widgets[hand_index].set_selected(true)
+		_arrange_cards()
+
+
+func _on_card_hovered(hand_index: int) -> void:
+	if dragging_index >= 0:
+		return
+	hovered_index = hand_index
+	_arrange_cards()
+
+
+func _on_card_unhovered(_hand_index: int) -> void:
+	if dragging_index >= 0:
+		return
+	hovered_index = -1
+	_arrange_cards()
+
+
+func _on_card_drag_started(hand_index: int) -> void:
+	dragging_index = hand_index
+	# 드래그 시작 시 선택 해제
+	_deselect_all()
+	selected_index = -1
+	hovered_index = -1
+
+
+func _on_card_drag_ended(hand_index: int, played: bool) -> void:
+	dragging_index = -1
+	if played:
+		# 위로 드래그 → 카드 플레이 (첫 번째 적 타겟)
+		card_played.emit(hand_index, 0)
+	else:
+		# 원래 위치로 복원
+		_arrange_cards()
+
+
+func play_selected_on_target(target_enemy_index: int) -> void:
+	if selected_index >= 0:
+		card_played.emit(selected_index, target_enemy_index)
+		selected_index = -1
+		_deselect_all()
+
+
+func _deselect_all() -> void:
+	for widget in card_widgets:
+		widget.set_selected(false)
+
+
+func get_selected_index() -> int:
+	return selected_index

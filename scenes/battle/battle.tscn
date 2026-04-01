@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://battle_scene"]
+[gd_scene load_steps=3 format=3 uid="uid://battle_scene"]
 
 [ext_resource type="Script" path="res://scenes/battle/battle.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://card_hand_scene" path="res://scenes/ui/card_hand.tscn" id="2"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -110,7 +111,5 @@ anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HandContainer" type="HBoxContainer" parent="HandArea"]
+[node name="CardHand" parent="HandArea" instance=ExtResource("2")]
 layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 10

@@ -6,7 +6,7 @@ extends Control
 @onready var qi_label: Label = $BattleHUD/PlayerInfo/QiLabel
 @onready var block_label: Label = $BattleHUD/PlayerInfo/BlockLabel
 @onready var turn_label: Label = $BattleHUD/TurnLabel
-@onready var hand_container: HBoxContainer = $HandArea/HandContainer
+@onready var card_hand: CardHand = $HandArea/CardHand
 @onready var enemy_container: HBoxContainer = $EnemyArea/EnemyContainer
 @onready var sijo_container: HBoxContainer = $SijoArea/SijoContainer
 @onready var end_turn_button: Button = $BattleHUD/EndTurnButton
@@ -40,6 +40,9 @@ func _ready() -> void:
 	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
 	sijo_system.sijo_completed.connect(_on_sijo_completed)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
+
+	# CardHand 시그널 연결
+	card_hand.card_played.connect(_on_card_played)
 
 	# 시조 슬롯 UI 초기화
 	_init_sijo_slots()
@@ -79,27 +82,9 @@ func _init_sijo_slots() -> void:
 		sijo_slot_labels.append(label)
 
 
-func _update_hand_ui() -> void:
-	for child in hand_container.get_children():
-		child.queue_free()
-
-	for i in battle_manager.hand.size():
-		var card_id: String = battle_manager.hand[i]
-		var card: CardData = DataLoader.get_card(card_id)
-		var btn := Button.new()
-		if card:
-			btn.text = "%s\n[%d] %d氣" % [card.name_ko, card.beat, card.cost]
-		else:
-			btn.text = card_id
-		btn.custom_minimum_size = Vector2(150, 200)
-		var idx := i
-		btn.pressed.connect(func(): _on_card_pressed(idx))
-
-		# 코스트 부족 시 비활성화
-		if card and card.cost > battle_manager.current_qi:
-			btn.disabled = true
-
-		hand_container.add_child(btn)
+func _refresh_hand_ui() -> void:
+	var sijo_beat := sijo_system.get_next_required_beat() if sijo_system else -1
+	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat)
 
 	# 덱 정보 갱신
 	draw_pile_label.text = "드로우: %d" % battle_manager.draw_pile.size()
@@ -178,14 +163,13 @@ func _format_intent(intent: Dictionary) -> String:
 # --- 시그널 핸들러 ---
 
 func _on_hand_changed(_new_hand: Array[String]) -> void:
-	_update_hand_ui()
+	_refresh_hand_ui()
 	_update_enemy_ui()
 
 
 func _on_qi_changed(current: int, max_val: int) -> void:
 	qi_label.text = "氣: %d/%d" % [current, max_val]
-	# 손패 카드 활성화/비활성화 갱신
-	_update_hand_ui()
+	_refresh_hand_ui()
 
 
 func _on_hp_changed(current: int, max_val: int) -> void:
@@ -209,8 +193,8 @@ func _on_enemy_intent_shown(_enemy_index: int, _intent: Dictionary) -> void:
 	_update_enemy_ui()
 
 
-func _on_card_pressed(hand_index: int) -> void:
-	battle_manager.try_play_card(hand_index, 0)
+func _on_card_played(hand_index: int, target_enemy_index: int) -> void:
+	battle_manager.try_play_card(hand_index, target_enemy_index)
 
 
 func _on_end_turn_pressed() -> void:
