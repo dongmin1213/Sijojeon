@@ -223,6 +223,17 @@
 
   ],
 
+  "status_conditions_referenced": [
+    {
+      "id": "출혈",
+      "ko": "출혈",
+      "hanja": "出血",
+      "description": "매 턴 시작 시 스택 수만큼 피해. 중첩 가능 (최대 10). 전투 종료 시 소멸. R014 저주받은 투구가 공격 카드 사용 시 적에게 1스택씩 적용.",
+      "duration_type": "until_combat_end",
+      "visual_note": "붉은 핏방울 아이콘. [ZER-56에서 공식 정의 추가]"
+    }
+  ],
+
   "curse_cards_reference": {
     "note": "저주 카드(呪牌)는 R015 등 일부 유물·이벤트로 덱에 추가되는 부정적 카드. 사용 불가이며 핸드를 차지함.",
     "examples": [

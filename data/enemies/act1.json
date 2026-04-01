@@ -6,9 +6,11 @@
     "ko": "한양",
     "description": "조선의 수도. 부패한 관리, 거리의 불량배, 억울한 귀신이 뒤섞인 도시."
   },
-  "balance_ref": "ZER-12 (카드 밸런스 스펙). 플레이어 기준: HP 70, 기/턴 3, 스타터 덱 평균 1턴 피해 6~8.",
+  "balance_ref": "ZER-12 (카드 밸런스 스펙). 플레이어 기준: 도사 HP 70 / 무관 HP 80, 기/턴 3, 스타터 덱 평균 1턴 피해 6~8.",
   "balance_targets": {
-    "player_hp_at_start": 70,
+    "player_hp_at_start_dosa": 70,
+    "player_hp_at_start_mugwan": 80,
+    "player_hp_reference": "70(도사) / 80(무관) — ZER-56 밸런스 1차 조정으로 직업별 분리",
     "player_energy_per_turn": 3,
     "player_avg_damage_per_turn_starter": 7,
     "player_avg_block_per_turn_starter": 5,
@@ -86,8 +88,8 @@
           "id": "brace",
           "name": "방패 막기",
           "intent": "defend",
-          "block": 8,
-          "description": "방어도 8 획득."
+          "block": 6,
+          "description": "방어도 6 획득."
         },
         {
           "id": "heavy_blow",
@@ -116,7 +118,7 @@
         "card_chance": 0.3,
         "relic_chance": 0.0
       },
-      "balance_note": "방어형 일반 몬스터. brace로 8방어도 획득 시 플레이어 스타터 덱으로 방어도 뚫기 어려움 — 진언(AoE) 혹은 결인+베기 콤보 활용 유도. 힘 쌓이면 club_strike가 8+피해로 증가하므로 장기전 금지."
+      "balance_note": "[ZER-56 조정] brace 8→6: 스타터 블록(5)과 격차 2로 축소. 공격 집중 시 방어 돌파 가능하게 개선. 힘 쌓이면 club_strike가 8+피해로 증가하므로 장기전 금지 압박은 유지."
     },
     {
       "id": "E003",
@@ -215,21 +217,21 @@
           "id": "slam",
           "name": "도깨비 박치기",
           "intent": "attack",
-          "damage": 14,
+          "damage": 12,
           "times": 1,
           "description": "힘 쌓인 후 사용. 위력적인 일격."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["club_bash", "trick", "strengthen", "slam", "club_bash", "slam"]
+        "sequence": ["club_bash", "trick", "club_bash", "strengthen", "slam", "club_bash", "slam"]
       },
       "rewards": {
         "gold": { "min": 18, "max": 28 },
         "card_chance": 0.35,
         "relic_chance": 0.05
       },
-      "balance_note": "상급 일반 몬스터. strengthen 후 slam(14 + strength 보너스 = 18+)은 위험. 힘 쌓이기 전 처치 유도 → 공격 우선도 판단 훈련. 화상도 누적되므로 2-3턴 내 처치가 이상적."
+      "balance_note": "[ZER-56 조정] slam 14→12, 패턴에 club_bash 1회 추가로 strengthen이 4턴으로 지연. 힘+2 후 slam(12+2=14) — 이전(14+2=16) 대비 위험도 완화. 화상도 누적되므로 4-5턴 내 처치가 이상적."
     }
   ],
   "elite_enemies": [
@@ -346,7 +348,7 @@
             "type": "hp_threshold",
             "hp_percent": 50,
             "on_trigger": [
-              { "type": "apply_buff", "buff": "strength", "stacks": 5, "target": "self" },
+              { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" },
               { "type": "dialogue", "text": "이 방망이 맛을 똑똑히 봐라!" }
             ]
           },
@@ -362,9 +364,9 @@
               "id": "triple_slam",
               "name": "연속 강타",
               "intent": "attack",
-              "damage": 8,
+              "damage": 7,
               "times": 3,
-              "description": "8피해 × 3회 = 24 총피해."
+              "description": "7피해 × 3회 = 21 총피해."
             },
             {
               "id": "last_stand",
@@ -385,7 +387,7 @@
         "gold": { "min": 60, "max": 80 },
         "relic": "보스 유물 1개 (확정)"
       },
-      "balance_note": "보스 기준 HP 120. 페이즈 2 진입 시 힘+5로 rage_strike(16+5=21), triple_slam(8+5=13×3=39총피해). 시조 완성 활용 필수. 방어도 20+ 유지 목표. fortify 전 처치 시도 권장."
+      "balance_note": "[ZER-56 조정] 페이즈 2 힘 5→3 / triple_slam 8→7. 결과: rage_strike(16+3=19), triple_slam((7+3)×3=30총피해). 이전(39총피해)보다 9 감소 — 방어도 15 기준 순피해 15→15유지하면서 극단적 즉사 회피. 시조 완성 활용 여전히 필수. fortify 전 처치 시도 권장."
     },
     {
       "id": "B002",
@@ -452,7 +454,7 @@
             "hp_percent": 40,
             "on_trigger": [
               { "type": "cleanse_buffs", "target": "self" },
-              { "type": "apply_debuff", "debuff": "death_countdown", "stacks": 3, "target": "player", "note": "사망 카운트다운: 3턴 후 플레이어 HP 50% 감소. 저승사자 처치로 해제." },
+              { "type": "apply_debuff", "debuff": "death_countdown", "stacks": 4, "target": "player", "note": "사망 카운트다운: 4턴 후 플레이어 현재 HP의 35% 감소. 저승사자 처치로 해제." },
               { "type": "dialogue", "text": "이미 이 세상 사람이 아니니라." }
             ]
           },
@@ -484,7 +486,7 @@
         "gold": { "min": 60, "max": 80 },
         "relic": "보스 유물 1개 (확정)"
       },
-      "balance_note": "사망 카운트다운(3턴 내 처치 강요)은 플레이어에게 강한 압박. 페이즈 2는 DPS 레이스. 시조 완성으로 폭딜이 핵심. 플레이어 덱이 강하면 도전적이지 않을 수 있으므로 난이도 조정 여지 남김."
+      "balance_note": "[ZER-56 조정] death_countdown 스택 3→4, HP 감소 50%→35%. 이전: 3턴 내 처치 실패 시 즉사급(HP50 기준 25피해). 조정 후: 4턴 여유 + 35% 감소(HP50 기준 17.5피해)로 극단적 즉사 완화. DPS 레이스 긴장감은 유지."
     }
   ],
   "status_conditions_referenced": [
@@ -522,9 +524,17 @@
       "description": "스택이 줄어들 때마다 (매 턴 1씩 감소) 플레이어에게 5피해. 전투 종료 시 소멸."
     },
     {
+      "id": "출혈",
+      "ko": "출혈",
+      "hanja": "出血",
+      "description": "매 턴 시작 시 스택 수만큼 피해. 중첩 가능 (최대 10). 전투 종료 시 소멸. ZER-56 에서 정의 추가 (R014 저주받은 투구 연동).",
+      "duration_type": "until_combat_end",
+      "visual_note": "붉은 핏방울 아이콘"
+    },
+    {
       "id": "death_countdown",
       "ko": "사망 카운트다운",
-      "description": "3턴 후 플레이어 현재 HP 50% 감소. 저승사자(B002) 처치 시 즉시 해제."
+      "description": "4턴 후 플레이어 현재 HP의 35% 감소. 저승사자(B002) 처치 시 즉시 해제. [ZER-56 조정: 3턴→4턴, 50%→35%]"
     }
   ]
 }
