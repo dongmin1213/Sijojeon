@@ -65,10 +65,10 @@ func consume_stacks(target: String, effect_id: String, amount: int = 1) -> int:
 	return consumed
 
 
-## 턴 시작 시 효과 처리 (독, 화상, 사망표식 등의 지속 피해)
-## 반환: { "damage": int } — 이 턴에 받을 지속 피해 합계
+## 턴 시작 시 효과 처리 (독, 화상, 출혈, 사망표식 등의 지속 피해)
+## 반환: { "damage": int, "armor": int } — 이 턴에 받을 지속 피해 합계와 갑주 방어도
 func process_turn_start(target: String) -> Dictionary:
-	var result := {"damage": 0}
+	var result := {"damage": 0, "armor": 0}
 	var effects := get_all_effects(target)
 
 	# 독: 매 턴 n피해 후 n 1 감소, 0이면 소멸
@@ -93,6 +93,17 @@ func process_turn_start(target: String) -> Dictionary:
 		else:
 			_effects[target]["화상"] = remaining
 
+	# 출혈: 매 턴 n피해, 1턴씩 감소. 방어도 획득 시 피해 2배 (별도 처리)
+	if effects.has("출혈"):
+		var bleed_stacks: int = effects["출혈"]
+		result["damage"] += bleed_stacks
+		effect_triggered.emit(target, "출혈", bleed_stacks)
+		var remaining := bleed_stacks - 1
+		if remaining <= 0:
+			remove_effect(target, "출혈")
+		else:
+			_effects[target]["출혈"] = remaining
+
 	# 사망 표식: 매 턴 1씩 감소, 줄어들 때 5피해
 	if effects.has("death_mark"):
 		var stacks: int = effects["death_mark"]
@@ -103,6 +114,21 @@ func process_turn_start(target: String) -> Dictionary:
 			remove_effect(target, "death_mark")
 		else:
 			_effects[target]["death_mark"] = remaining
+
+	# 사망선고: 매 턴 1씩 감소, 0이 되면 HP 50% 감소 트리거
+	if effects.has("death_countdown"):
+		var stacks: int = effects["death_countdown"]
+		var remaining := stacks - 1
+		if remaining <= 0:
+			remove_effect(target, "death_countdown")
+			# -1 = 사망선고 발동 시그널 (BattleManager에서 HP 50% 처리)
+			effect_triggered.emit(target, "death_countdown", -1)
+		else:
+			_effects[target]["death_countdown"] = remaining
+
+	# 갑주: 영구 방어막 (턴 시작 시 block에 추가)
+	if effects.has("갑주"):
+		result["armor"] = effects["갑주"]
 
 	return result
 
@@ -144,6 +170,23 @@ func calculate_incoming_damage(defender: String, damage: int) -> int:
 		final_damage = int(final_damage * 1.25)
 
 	return final_damage
+
+
+## 출혈 시 방어도 획득 추가 피해 계산 (block 획득 시 출혈 스택만큼 추가 피해)
+func calculate_bleed_on_block(target: String, block_amount: int) -> int:
+	if block_amount <= 0:
+		return 0
+	var bleed_stacks := get_stacks(target, "출혈")
+	if bleed_stacks <= 0:
+		return 0
+	# 출혈 상태에서 방어도 획득 시 출혈 스택만큼 추가 피해
+	effect_triggered.emit(target, "출혈", bleed_stacks)
+	return bleed_stacks
+
+
+## 가시(thorns) 반사 피해 계산
+func get_thorns_damage(defender: String) -> int:
+	return get_stacks(defender, "thorns")
 
 
 ## 드로우 수 수정자 (냉기 등)

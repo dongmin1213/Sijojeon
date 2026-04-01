@@ -19,6 +19,9 @@ var sijo_system: SijoSystem
 # 시조 슬롯 UI 라벨
 var sijo_slot_labels: Array[Label] = []
 
+# 플레이어 상태이상 UI 컨테이너
+var _player_status_container: HBoxContainer = null
+
 
 func _ready() -> void:
 	# 매니저 초기화
@@ -133,18 +136,16 @@ func _update_enemy_ui() -> void:
 		enemy_block_label.text = "방어: %d" % block_val
 		enemy_block_label.visible = block_val > 0
 
-		# 적 상태이상 표시
+		# 적 상태이상 표시 (아이콘 + 턴 카운터)
 		var enemy_target := "enemy_%d" % i
-		var status_label := Label.new()
-		status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		status_label.add_theme_font_size_override("font_size", 12)
-		status_label.text = _format_status_effects(enemy_target)
-		status_label.visible = not status_label.text.is_empty()
+		var status_hbox := HBoxContainer.new()
+		status_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		_build_status_icons(status_hbox, enemy_target)
 
 		vbox.add_child(name_label)
 		vbox.add_child(hp_lbl)
 		vbox.add_child(enemy_block_label)
-		vbox.add_child(status_label)
+		vbox.add_child(status_hbox)
 		vbox.add_child(intent_label)
 		panel.add_child(vbox)
 		panel.custom_minimum_size = Vector2(200, 180)
@@ -238,18 +239,60 @@ func _on_status_effect_changed(_target: String, _effect_id: String, _stacks: int
 
 
 func _update_player_status_ui() -> void:
-	var status_text := _format_status_effects("player")
-	if status_text.is_empty():
-		block_label.text = "방어: %d" % battle_manager.player_block
-		block_label.visible = battle_manager.player_block > 0
-	else:
-		# 방어도 뒤에 상태이상 표시
-		var display := ""
-		if battle_manager.player_block > 0:
-			display = "방어: %d  " % battle_manager.player_block
-		display += status_text
-		block_label.text = display
-		block_label.visible = true
+	block_label.text = "방어: %d" % battle_manager.player_block
+	block_label.visible = battle_manager.player_block > 0
+
+	# 플레이어 상태이상 표시 (전용 컨테이너)
+	if not is_instance_valid(_player_status_container):
+		_player_status_container = HBoxContainer.new()
+		_player_status_container.alignment = BoxContainer.ALIGNMENT_CENTER
+		$BattleHUD/PlayerInfo.add_child(_player_status_container)
+	_build_status_icons(_player_status_container, "player")
+
+
+func _build_status_icons(container: HBoxContainer, target: String) -> void:
+	## 상태이상 아이콘 + 턴 카운터를 HBoxContainer에 배치
+	for child in container.get_children():
+		child.queue_free()
+
+	if battle_manager.status_effects == null:
+		return
+	var effects := battle_manager.status_effects.get_all_effects(target)
+	if effects.is_empty():
+		return
+
+	for effect_id in effects:
+		var stacks: int = effects[effect_id]
+		var def := StatusEffectData.get_definition(effect_id)
+
+		var icon_panel := PanelContainer.new()
+		var stylebox := StyleBoxFlat.new()
+		stylebox.bg_color = Color(0.15, 0.15, 0.15, 0.9)
+		stylebox.border_color = def.color if def else Color.GRAY
+		stylebox.set_border_width_all(1)
+		stylebox.set_corner_radius_all(4)
+		stylebox.set_content_margin_all(4)
+		icon_panel.add_theme_stylebox_override("panel", stylebox)
+
+		var label := Label.new()
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.add_theme_font_size_override("font_size", 11)
+
+		if def:
+			label.add_theme_color_override("font_color", def.color)
+			if def.is_permanent:
+				label.text = "%s%d" % [def.icon_text, stacks]
+			elif def.show_duration:
+				label.text = "%s%d" % [def.icon_text, stacks]
+			else:
+				label.text = def.icon_text
+			label.tooltip_text = "%s: %s" % [def.name_ko, def.description]
+		else:
+			label.text = "%s×%d" % [effect_id, stacks]
+			label.add_theme_color_override("font_color", Color.GRAY)
+
+		icon_panel.add_child(label)
+		container.add_child(icon_panel)
 
 
 func _format_status_effects(target: String) -> String:
@@ -260,22 +303,18 @@ func _format_status_effects(target: String) -> String:
 		return ""
 
 	var parts: Array[String] = []
-	# 상태이상 아이콘 매핑
-	var icons := {
-		"약화": "약화",
-		"취약": "취약",
-		"화상": "화상",
-		"독": "독",
-		"냉기": "냉기",
-		"strength": "힘",
-		"thorns": "가시",
-		"death_mark": "사망표식",
-		"death_countdown": "카운트다운",
-	}
 	for effect_id in effects:
 		var stacks: int = effects[effect_id]
-		var display_name: String = icons.get(effect_id, effect_id)
-		parts.append("%s×%d" % [display_name, stacks])
+		var def := StatusEffectData.get_definition(effect_id)
+		if def:
+			if def.is_permanent:
+				parts.append("%s%s %d" % [def.icon_text, def.name_ko, stacks])
+			elif def.show_duration:
+				parts.append("%s%s (%d)" % [def.icon_text, def.name_ko, stacks])
+			else:
+				parts.append("%s%s" % [def.icon_text, def.name_ko])
+		else:
+			parts.append("%s×%d" % [effect_id, stacks])
 
 	return " ".join(parts)
 

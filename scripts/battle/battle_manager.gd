@@ -105,16 +105,24 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 
 func begin_player_turn() -> void:
 	turn_number += 1
-	player_block = 0
+
+	# 갑주(영구 방어막) 처리: 갑주가 있으면 block을 갑주 값으로 유지, 없으면 리셋
+	var dot_result := status_effects.process_turn_start("player")
+	var armor: int = dot_result.get("armor", 0)
+	if armor > 0:
+		# 갑주: 기존 block을 리셋하되 갑주만큼 유지
+		player_block = armor
+	else:
+		player_block = 0
 	block_changed.emit(player_block)
+
 	current_qi = max_qi
 	qi_changed.emit(current_qi, max_qi)
 	turn_started.emit(turn_number)
 
 	_change_state(BattleState.PLAYER_TURN_START)
 
-	# 플레이어 턴 시작 시 지속 피해 처리 (독, 화상 등)
-	var dot_result := status_effects.process_turn_start("player")
+	# 플레이어 턴 시작 시 지속 피해 처리 (독, 화상, 출혈 등)
 	if dot_result["damage"] > 0:
 		player_hp -= dot_result["damage"]
 		player_hp = maxi(player_hp, 0)
@@ -204,12 +212,17 @@ func execute_enemy_turn() -> void:
 		if enemy["current_hp"] <= 0:
 			continue
 
-		# 적 턴 시작 시 방어도 리셋
-		enemy["block"] = 0
-
-		# 적 지속 피해 처리 (독, 화상 등 — 플레이어가 건 디버프)
+		# 적 지속 피해/갑주 처리
 		var enemy_target := "enemy_%d" % i
 		var dot_result := status_effects.process_turn_start(enemy_target)
+
+		# 갑주(영구 방어막) 처리: 갑주가 있으면 block 유지, 없으면 리셋
+		var enemy_armor: int = dot_result.get("armor", 0)
+		if enemy_armor > 0:
+			enemy["block"] = enemy_armor
+		else:
+			enemy["block"] = 0
+
 		if dot_result["damage"] > 0:
 			enemy["current_hp"] -= dot_result["damage"]
 			enemy["current_hp"] = maxi(enemy["current_hp"], 0)
@@ -276,6 +289,13 @@ func take_damage(amount: int) -> void:
 func gain_block(amount: int) -> void:
 	player_block += amount
 	block_changed.emit(player_block)
+
+	# 출혈: 방어도 획득 시 출혈 스택만큼 추가 피해
+	var bleed_damage := status_effects.calculate_bleed_on_block("player", amount)
+	if bleed_damage > 0:
+		player_hp -= bleed_damage
+		player_hp = maxi(player_hp, 0)
+		hp_changed.emit(player_hp, player_max_hp)
 
 
 func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
@@ -407,6 +427,14 @@ func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
 
 	for t in times:
 		take_damage(final_damage)
+
+		# 가시(thorns): 플레이어가 피격 시 공격자에게 반사 피해
+		var thorns_dmg := status_effects.get_thorns_damage("player")
+		if thorns_dmg > 0 and enemies[enemy_index]["current_hp"] > 0:
+			enemies[enemy_index]["current_hp"] -= thorns_dmg
+			enemies[enemy_index]["current_hp"] = maxi(enemies[enemy_index]["current_hp"], 0)
+			enemy_hp_changed.emit(enemy_index, enemies[enemy_index]["current_hp"], enemies[enemy_index]["max_hp"])
+
 		if player_hp <= 0:
 			break
 
