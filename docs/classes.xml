@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classes version="0.1" last_updated="2026-04-01">
+
+  <!-- 확정된 플레이어블 직업 -->
+  <playable_classes>
+
+    <class id="dosa">
+      <name ko="도사" hanja="道士" />
+      <priority>★★★★☆ — 첫 번째 플레이어블 캐릭터</priority>
+      <concept>전우치형 트릭스터. 기(氣)를 다루는 조선의 방술가.</concept>
+      <mechanic>기(氣) 조작, 도술(DoT·버프·광역), 시조 완성 보상 극대화</mechanic>
+      <hp>70</hp>
+      <hp_rationale>술법형 캐릭터는 방어보다 디버프/회피로 생존 — 낮은 HP로 긴장감 유지</hp_rationale>
+      <passive name="천지기(天地氣)">턴 종료 시 시조 슬롯이 3칸 이상 채워져 있으면 기(氣) 1을 회복한다.</passive>
+      <active name="방술 개방(方術開放)" cooldown="전투당 1회">
+        전투 시작 시 1회 발동. 시조 슬롯 처음 2칸을 [기공 3] → [결인 4] 순서로 자동으로 채운다.
+      </active>
+      <starting_relic id="RS001" name="부적 낭(符籍囊)">
+        전투 시작 시 손패에 무작위 부적 카드(T001~T005 중 1장) 1장 추가.
+      </starting_relic>
+      <keywords>술법(Spell), 기(氣) 관리, 원거리 공격</keywords>
+      <playstyle>기 관리 + 시조 리듬 완성 + 개인 폭딜</playstyle>
+    </class>
+
+    <class id="mugwan">
+      <name ko="무관" hanja="武官" />
+      <priority>★★★☆☆ — 두 번째 플레이어블 캐릭터 후보</priority>
+      <concept>진형(陣形) 카드로 전투 패턴 변환, 병력 토큰 지휘</concept>
+      <mechanic>병사 토큰 생성 → 진형 강화 → AoE 폭딜의 3단계 반복 사이클</mechanic>
+      <hp>80</hp>
+      <hp_rationale>진형과 병사 토큰으로 실질 피해를 줄이는 구조. 높은 HP로 방어 플레이에 적합</hp_rationale>
+      <passive name="지휘통솔(指揮統率)">병사 토큰이 1개 이상 있으면 매 턴 시작 시 방어도 2를 추가로 획득한다.</passive>
+      <active name="군령 하달(軍令 下達)" cooldown="전투당 1회">
+        현재 보유한 병사 토큰 수만큼 기(氣)를 즉시 회복한다. (최대 3기)
+      </active>
+      <starting_relic id="RS002" name="마패(馬牌)">
+        전투 시작 시 병사 토큰 1개를 자동으로 생성한다.
+      </starting_relic>
+      <keywords>진형(Formation), 병사 토큰, AoE 공격</keywords>
+      <playstyle>토큰 축적 + 광역 폭딜</playstyle>
+    </class>
+
+  </playable_classes>
+
+  <!-- 미래 직업 후보 목록 (출시 범위 미결) -->
+  <candidate_classes>
+
+    <group priority="1" label="최우선 후보 — 조선만의 독창적 메카닉">
+      <class id="amhaengeosa">
+        <name ko="암행어사" />
+        <mechanic>평민으로 위장하다 마패 공개 시 "출도!" — 신분 전환으로 완전히 다른 카드군 해제</mechanic>
+      </class>
+      <class id="mudang">
+        <name ko="무당/무녀" />
+        <mechanic>런마다 다른 신(神) 선택 → 빙의로 덱 성향 자체가 바뀌는 멀티 덱 시스템</mechanic>
+      </class>
+      <class id="pansu">
+        <name ko="판수" />
+        <mechanic>적 정보 전혀 안 보이는 대신 덱 미리보기 능력 — 맹목과 예지의 역설</mechanic>
+      </class>
+      <class id="jeongisu">
+        <name ko="전기수" />
+        <mechanic>소설 낭독으로 적을 멈추게 함 — 이야기로 싸우는 완전히 새로운 컨셉</mechanic>
+      </class>
+    </group>
+
+    <group priority="2" label="2순위 후보 — 독창적">
+      <class id="dosa_jeon"><name ko="도사(전우치형)" /><mechanic>둔갑술·분신·축지법 — 트릭스터형, 기(氣) 자원으로 술법 발동</mechanic></class>
+      <class id="geomgye"><name ko="검계 자객" /><mechanic>처치한 적의 기술을 영구 습득 — 서얼·중인 출신 지하 검객 조직</mechanic></class>
+      <class id="yeokgwan"><name ko="역관" /><mechanic>적 카드를 복사·번역해서 역이용하는 정보 비대칭 플레이</mechanic></class>
+      <class id="seoeorl"><name ko="서얼" /><mechanic>불리한 상황일수록 원한(怨恨)이 쌓여 강해지는 역설 성장</mechanic></class>
+      <class id="gisaeng"><name ko="기생(예기)" /><mechanic>시·음악·무용으로 적 매혹/혼란 — 예술을 무기화</mechanic></class>
+    </group>
+
+    <group priority="3" label="3순위 후보 — 활용 가능">
+      <class id="uigwan"><name ko="의관/의녀" /><mechanic>독·해독·치료 3중 트리</mechanic></class>
+      <class id="eumyanggwan"><name ko="음양관" /><mechanic>음(陰)/양(陽) 게이지 균형 → 합체 스킬 발동</mechanic></class>
+      <class id="bobugang"><name ko="보부상" /><mechanic>전투 중 상점 카드 구매, 물물교환으로 적 카드 전환</mechanic></class>
+      <class id="seungbyeong"><name ko="승병" /><mechanic>불심(佛心) 게이지 — 방어와 공격 전환 하이브리드</mechanic></class>
+      <class id="posu"><name ko="포수" /><mechanic>장전-발사 2단계 카드, 탄약 자원 관리 시스템</mechanic></class>
+      <class id="baekjeong"><name ko="백정" /><mechanic>적 처치 시 부위별 재료 획득 → 아이템 제작</mechanic></class>
+      <class id="gwangdae"><name ko="광대/재인" /><mechanic>흥(興) 게이지 — 무작위성 높은 공연 카드, 변장 스킬</mechanic></class>
+      <class id="hwawon"><name ko="화원" /><mechanic>전투 전 맵에 함정 배치, 적 약점 스케치로 디버프</mechanic></class>
+      <class id="cheonmungwan"><name ko="천문관" /><mechanic>별자리 배열로 이번 턴 덱 순서 예측·조작</mechanic></class>
+      <class id="jigwan"><name ko="지관" /><mechanic>지맥(地脈) 카드로 전투 지형 변경, 묘자리 저주</mechanic></class>
+      <class id="haenyeo"><name ko="해녀" /><mechanic>숨(산소) 자원 관리 — 수중에서 강하지만 지속 시간 제한</mechanic></class>
+      <class id="honggildonghyeong"><name ko="홍길동형 의적" /><mechanic>분신술 카드, 적 카드/아이템 탈취</mechanic></class>
+      <class id="baridaegihyeong"><name ko="바리데기형" /><mechanic>HP 0에서 저승 덱 발동 — 죽음 직전 역전 메카닉</mechanic></class>
+    </group>
+
+  </candidate_classes>
+
+</classes>

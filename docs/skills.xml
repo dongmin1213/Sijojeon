@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skills version="0.1" last_updated="2026-04-01">
+
+  <!-- 직업별 특수 스킬·패시브 -->
+  <character_skills>
+
+    <character id="dosa" ko="도사" hanja="道士">
+      <passive name="천지기(天地氣)">
+        <description>턴 종료 시 시조 슬롯이 3칸 이상 채워져 있으면 기(氣) 1을 회복한다.</description>
+        <rationale>시조 리듬 진행 자체를 보상. 완성 못 해도 반쯤 채웠다면 약간의 자원 회복 — 리듬 유지 동기 부여.</rationale>
+      </passive>
+      <active name="방술 개방(方術開放)" cooldown="전투당 1회" unlock="기본 보유">
+        <description>전투 시작 시 1회 발동. 시조 슬롯 처음 2칸을 [기공 3] → [결인 4] 순서로 자동으로 채운다.</description>
+        <rationale>첫 턴 진입 장벽 완화. 초장 구성 없이도 중장부터 진행 가능.</rationale>
+      </active>
+      <starting_relic id="RS001" name_ko="부적 낭" name_hanja="符籍囊">
+        <effect>전투 시작 시 손패에 무작위 부적 카드(T001~T005 중 1장) 1장 추가.</effect>
+        <flavor>천 주머니에 담긴 부적이 전투 시작을 알린다.</flavor>
+        <rationale>0코스트 카드 1장 선물 — 시조 초장 슬롯을 채우거나 기 관리에 활용 가능.</rationale>
+      </starting_relic>
+      <tactical_loop name="도사 기동 루프">
+        <step order="1">후퇴(M003) 또는 기공(D001)으로 [3] 슬롯 채우며 기 절약/확보</step>
+        <step order="2">결인(D002) 또는 도약(M002)으로 [4] 슬롯 채우며 다음 공격 버프 준비</step>
+        <step order="3">수결(D007) 또는 축지법(D004)으로 중장 [3] 슬롯 채우며 약화/방어 설치</step>
+        <step order="4">화염구(D006) 또는 오행지법(D012)으로 중장 [4] 슬롯 채우며 딜 시작</step>
+        <step order="5">포복(M005) 또는 분신(D008)으로 종장 [3] 준비</step>
+        <step order="6">태산붕(D009) 또는 진언(D003)으로 종장 [4] — 시조 완성! 효과 2배 폭발</step>
+        <decision_points>
+          <point>기 부족 시 기공/후퇴 우선 vs 시조 슬롯 순서 맞추기</point>
+          <point>태산붕(기 0리셋) vs 분신(복사)으로 종장 마무리 선택</point>
+          <point>완성 불가 턴: 방어 카드로 생존 집중</point>
+        </decision_points>
+      </tactical_loop>
+    </character>
+
+    <character id="mugwan" ko="무관" hanja="武官">
+      <passive name="지휘통솔(指揮統率)">
+        <description>병사 토큰이 1개 이상 있으면 매 턴 시작 시 방어도 2를 추가로 획득한다.</description>
+        <rationale>진형 구성(병사 토큰 생성)을 유지하는 보상. 토큰 소모 후 재생성 사이클을 강화.</rationale>
+      </passive>
+      <active name="군령 하달(軍令 下達)" cooldown="전투당 1회" unlock="기본 보유">
+        <description>전투 중 1회 사용 가능. 현재 보유한 병사 토큰 수만큼 기(氣)를 즉시 회복한다. (최대 3기)</description>
+        <rationale>대형 진형 카드(G004, G005)의 비용(3기)을 지원. 토큰 축적 후 한 번에 기를 마련해 학익진/천하무적진 시전.</rationale>
+      </active>
+      <starting_relic id="RS002" name_ko="마패" name_hanja="馬牌">
+        <effect>전투 시작 시 병사 토큰 1개를 자동으로 생성한다.</effect>
+        <flavor>국왕의 명을 받은 장수의 마패 — 출전과 동시에 부하가 집결한다.</flavor>
+        <rationale>첫 턴부터 지휘통솔 패시브 발동. 방어도 2 보너스 + 첫 토큰으로 G002(돌격) 즉시 보너스 가능.</rationale>
+      </starting_relic>
+      <tactical_loop name="무관 기동 루프 (진형 사이클)">
+        <step order="1">진형 전환(G001) [3] 슬롯 → 병사 토큰 1개 생성 (지휘통솔 패시브 발동)</step>
+        <step order="2">포위(G003) [4] 슬롯 → 전체 적 공격력 -25%, 방어 국면 확보</step>
+        <step order="3">도약(M002) or 포복(M005) [3] 슬롯 → 방어도 확보 + 이동 리듬 유지</step>
+        <step order="4">돌격(G002) [4] 슬롯 → 토큰 있으면 17피해 (12+5 보너스)</step>
+        <step order="5">군령 하달 액티브 → 토큰 수만큼 기 회복 (2~3기)</step>
+        <step order="6">학익진(G004) [4] 슬롯 → 전체 피해 폭발. 토큰 2개 시 14 AoE. 시조 완성 시 28 AoE</step>
+        <ideal_6turn_example>
+          <turn n="1">진형 전환 → 토큰 1, 지휘통솔: 방어도 2</turn>
+          <turn n="2">포위 → 전체 약화. 포복 → 방어도 5</turn>
+          <turn n="3">돌격 → 17피해 (토큰 보너스). 군령 하달 → 기 1 회복</turn>
+          <turn n="4">진형 전환(업글) → 토큰 2, 방어도 2</turn>
+          <turn n="5">천하무적진 → 방어도 18 + 토큰 폭증 (이번 턴 토큰 2배)</turn>
+          <turn n="6">군령 하달 → 기 3 회복. 학익진 → 토큰 4개 시 27 AoE. 시조 완성 시 54 AoE</turn>
+        </ideal_6turn_example>
+        <decision_points>
+          <point>G003 포위 타이밍: 적 공격 직전 사용 vs 포위 유지 턴 낭비 최소화</point>
+          <point>토큰 소모 시점: 돌격 보너스용 유지 vs 학익진 배수 최대화</point>
+          <point>군령 하달 타이밍: 학익진 직전 기 확보 vs 돌격 연속 시전</point>
+        </decision_points>
+      </tactical_loop>
+    </character>
+
+  </character_skills>
+
+  <!-- 이동 카드의 직업별 통합 역할 -->
+  <movement_integration>
+    <card id="M003" ko="후퇴">
+      <dosa_role>기공 대체 또는 병용. 약화 부여로 적 피해 감소. 0코스트 리듬 스타터.</dosa_role>
+      <mugwan_role>0코스트로 기를 아끼며 [3] 슬롯 채움. 포위+후퇴 콤보로 약화 중첩.</mugwan_role>
+    </card>
+    <card id="M002" ko="도약">
+      <dosa_role>결인(+4 공격)과 같은 [3] 슬롯 경쟁자. 방어도가 필요한 상황에서 선택.</dosa_role>
+      <mugwan_role>중장 [3] 슬롯에서 돌격 직전 배치. 도약+돌격 = 방어도 3 + 21피해.</mugwan_role>
+    </card>
+    <card id="M005" ko="포복">
+      <dosa_role>포복→결인→베기 순서로 중장까지 자연스럽게 채우며 손패 보충.</dosa_role>
+      <mugwan_role>진형 카드 드로우 확률 상승. 토큰 생성 후 포복으로 학익진/천하무적진 서치.</mugwan_role>
+    </card>
+    <card id="M004" ko="측면 강타">
+      <dosa_role>포복+도약으로 방어도 확보 후 측면 강타 발동 시 15피해. 화염구 대안.</dosa_role>
+      <mugwan_role>천하무적진(18방어도) 후 측면 강타 = 21피해. 포위 상태 적에게 체감 피해 증가.</mugwan_role>
+    </card>
+  </movement_integration>
+
+  <!-- 직업 간 밸런스 비교 -->
+  <balance_comparison>
+    <metric name="최대 1턴 단일 피해 (시조 완성)">
+      <dosa>태산붕 40피해 (기 0 리셋)</dosa>
+      <mugwan>학익진 54 AoE (토큰 4개 + 시조 완성)</mugwan>
+    </metric>
+    <metric name="평균 방어도/턴">
+      <dosa>수호 5 기준. 삼재방어(12) 사용 시 최대</dosa>
+      <mugwan>지휘통솔 +2 + 포복 5 + 천하무적진 18 (특정 턴)</mugwan>
+    </metric>
+    <metric name="적 디버프">
+      <dosa>약화·화상 중심. 수결·화염구·오행지법</dosa>
+      <mugwan>포위됨(전체 -25%) 중심. 광역 방어형</mugwan>
+    </metric>
+    <metric name="리소스 회복">
+      <dosa>기공(기+드로우), 천지기 패시브(슬롯 3칸 시 기 1)</dosa>
+      <mugwan>군령 하달(토큰당 기 1), 진형 전환 소멸(기 1)</mugwan>
+    </metric>
+    <verdict>도사는 기 관리 + 개인 폭딜. 무관은 토큰 축적 + AoE 폭딜. 무관 최대 AoE(54)가 도사(40)보다 높지만 복잡한 전제 조건 필요 — 실제 빈도는 낮음.</verdict>
+  </balance_comparison>
+
+  <!-- 미래 설계 과제 -->
+  <todo>
+    <item>보스 처치 후 유물(부적) 3개 이상 설계</item>
+    <item>카드 업그레이드 비용 및 강화소 시스템</item>
+    <item>시조 완성 실패 시 위로 보상 설계 (패배 보상으로 긴장감 유지)</item>
+    <item>2번째 직업 (암행어사) 스킬/패시브 설계</item>
+  </todo>
+
+</skills>

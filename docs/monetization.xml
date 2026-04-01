@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monetization version="0.1" last_updated="2026-04-01">
+
+  <model>
+    <type>무료 + AdMob 광고</type>
+    <no_gacha>가챠 없음. 순수 덱빌딩 — 런마다 리셋.</no_gacha>
+    <business_registration_required>불필요 (구글 플레이 기준)</business_registration_required>
+  </model>
+
+  <stores>
+
+    <store id="google_play">
+      <name>구글 플레이</name>
+      <revenue_model>무료 + AdMob 광고</revenue_model>
+      <notes>사업자 불필요. AdMob 연결 기준 스토어.</notes>
+    </store>
+
+    <store id="onestore">
+      <name>원스토어</name>
+      <revenue_model>무료 + AdMob 광고</revenue_model>
+      <notes>구글 플레이 동시 출시 시 작동 가능.</notes>
+      <fallback>AdMob 미작동 시 → ONE AdMax SDK로 코드 분기 대응</fallback>
+    </store>
+
+  </stores>
+
+  <cross_publishing>
+    <rule>같은 패키지명으로 양쪽 동시 출시 → AdMob 구글 플레이 기준 연결</rule>
+    <rule>원스토어 AdMob 미작동 시 → ONE AdMax SDK로 코드 분기 대응</rule>
+    <rule>사업자 등록 없이 운영 가능한 구조</rule>
+  </cross_publishing>
+
+</monetization>

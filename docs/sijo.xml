@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sijo_system version="0.1" last_updated="2026-04-01">
+
+  <overview>
+    카드마다 음보 수 [3] 또는 [4]가 붙어있음.
+    턴 안에서 초장(3→4) + 중장(3→4) + 종장(3→4) 패턴을 완성하면
+    시조 완성 → 마지막 카드 효과 폭발 증폭.
+  </overview>
+
+  <slot_structure>
+    <slot index="1" position="초장-1" required_beat="3" />
+    <slot index="2" position="초장-2" required_beat="4" />
+    <slot index="3" position="중장-1" required_beat="3" />
+    <slot index="4" position="중장-2" required_beat="4" />
+    <slot index="5" position="종장-1" required_beat="3" />
+    <slot index="6" position="종장-2" required_beat="4" />
+    <rule>슬롯 순서 엄수. 해당 슬롯 음보와 다른 카드를 내면 슬롯이 채워지지 않음.</rule>
+    <reset_rule>전투 종료 시 슬롯 초기화. 턴 사이 슬롯 유지.</reset_rule>
+  </slot_structure>
+
+  <completion_bonus>
+    <effect>마지막 카드 효과 2배</effect>
+    <effect>기(氣) 1 회복</effect>
+    <effect>카드 1장 드로우</effect>
+    <frequency_target>전투당 1~2회 완성이 목표</frequency_target>
+  </completion_bonus>
+
+  <core_resources>
+    <resource name="기(氣)">
+      <base_per_turn>3</base_per_turn>
+      <carry_over>false</carry_over>
+      <cap>없음 (기공·유물로 최대 5~6기 가능)</cap>
+    </resource>
+    <resource name="시조 슬롯">
+      <count>6</count>
+      <structure>초장×2, 중장×2, 종장×2</structure>
+    </resource>
+    <resource name="HP">
+      <default>캐릭터별 상이 (도사 70, 무관 80)</default>
+      <inter_combat_regen>없음. 아이템·특수 노드에서만 회복</inter_combat_regen>
+      <post_boss_regen>보스 처치 후 최대치의 20% 회복</post_boss_regen>
+    </resource>
+  </core_resources>
+
+  <combo_examples>
+    <example name="기본 완성">
+      <step slot="초장-1" card="기공" beat="3" cost="0" />
+      <step slot="초장-2" card="결인" beat="4" cost="1" />
+      <step slot="중장-1" card="수결" beat="3" cost="1" />
+      <step slot="중장-2" card="화염구" beat="4" cost="2" />
+      <step slot="종장-1" card="축지법" beat="3" cost="1" />
+      <step slot="종장-2" card="진언" beat="4" cost="2" result="💥 시조 완성 — 진언 효과 2배(모든 적 8피해) + 기 1 회복 + 카드 드로우" />
+      <total_cost>7기 (기본 3기 불충분, 드로우/기공으로 기 확보 필요)</total_cost>
+    </example>
+    <example name="태산붕 폭발">
+      <step slot="초장-1" card="베기" beat="3" cost="1" />
+      <step slot="초장-2" card="결인" beat="4" cost="1" />
+      <step slot="중장-1" card="수결" beat="3" cost="1" />
+      <step slot="중장-2" card="오행지법" beat="4" cost="2" />
+      <step slot="종장-1" card="축지법" beat="3" cost="1" />
+      <step slot="종장-2" card="태산붕" beat="4" cost="3" result="💥 시조 완성 — 태산붕 40피해 + 기 0으로 초기화" />
+    </example>
+    <example name="틀린 예시">
+      <error>초장-1에 [4] 음보 카드를 내면 슬롯 불성립 — 시조 불완성</error>
+      <error>초장-1에 [기공 3] 후 초장-2에도 [기공 3]을 내면 음보 규칙 위반</error>
+    </example>
+  </combo_examples>
+
+  <balance_targets>
+    <target name="평균 전투 턴 수">5~8턴 (너무 빠르면 시조 완성 기회 감소)</target>
+    <target name="시조 완성 빈도">전투당 1~2회</target>
+    <target name="스타터 덱 1턴 평균 피해">6~8</target>
+    <target name="1라운드 생존 기준 HP">60+ (HP 70 기준)</target>
+  </balance_targets>
+
+  <ui_notes>
+    <note>음보 패턴을 시각적 게이지/슬롯으로 표현 → 텍스트 의존 최소화</note>
+    <note>카드 위에 숫자(3/4) 하나만 표시 → 작은 화면에 유리</note>
+    <note>종장 완성 시 화면 전체 이펙트 + 꽹과리/가야금 히트음</note>
+    <note>초장/중장/종장을 3개 슬롯으로 시각화하여 글로벌 유저도 직관적 이해</note>
+  </ui_notes>
+
+</sijo_system>

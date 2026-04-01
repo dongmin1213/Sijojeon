@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<enemies version="0.1" last_updated="2026-04-01">
+
+  <!-- 플레이어 기준 밸런스 참조 -->
+  <balance_reference>
+    <player_hp>70</player_hp>
+    <player_energy_per_turn>3</player_energy_per_turn>
+    <player_avg_damage_per_turn_starter>7</player_avg_damage_per_turn_starter>
+    <player_avg_block_per_turn_starter>5</player_avg_block_per_turn_starter>
+    <note>일반 몬스터는 7턴 내 처치 목표. 엘리트는 8~10턴. 보스는 12~15턴.</note>
+  </balance_reference>
+
+  <!-- Act 1: 한양 -->
+  <act id="1" name_ko="한양">
+    <description>조선의 수도. 부패한 관리, 거리의 불량배, 억울한 귀신이 뒤섞인 도시.</description>
+
+    <regular_enemies>
+
+      <enemy id="E001">
+        <name ko="불량배" hanja="不良輩" romanized="Bullyangbae" />
+        <description>한양 골목의 건달. 빠르고 거칠지만 무모하다.</description>
+        <hp min="20" max="28" />
+        <moves>
+          <move id="slash" name="난도질" intent="attack" damage="6" times="1">단순 근접 공격.</move>
+          <move id="reckless_flurry" name="난타" intent="attack" damage="3" times="3">3회 연타. 총 9피해. 방어도 관통 불가.</move>
+          <move id="taunt" name="도발" intent="debuff">플레이어에게 약화 1 부여. 다음 공격 피해 25% 감소.</move>
+        </moves>
+        <move_pattern type="sequential">slash → reckless_flurry → taunt → slash → reckless_flurry</move_pattern>
+        <rewards gold_min="10" gold_max="20" card_chance="0.2" relic_chance="0.0" />
+        <balance_note>약한 초반 일반 몬스터. 난타(3×3=9)가 방어도를 뚫을 수 있어 긴장감 유지.</balance_note>
+      </enemy>
+
+      <enemy id="E002">
+        <name ko="포졸" hanja="捕卒" romanized="Pojol" />
+        <description>부패한 포도청 관리. 방패와 곤봉을 사용한다.</description>
+        <hp min="28" max="36" />
+        <moves>
+          <move id="club_strike" name="곤봉 타격" intent="attack" damage="7" times="1">묵직한 곤봉 공격.</move>
+          <move id="brace" name="방패 막기" intent="defend" block="8">방어도 8 획득.</move>
+          <move id="heavy_blow" name="철퇴 강타" intent="attack" damage="11" times="1">강력한 일격.</move>
+          <move id="rally" name="기합" intent="buff">힘(strength) 1 획득. 이후 공격 피해 +1.</move>
+        </moves>
+        <move_pattern type="sequential">club_strike → brace → heavy_blow → rally → club_strike → brace → heavy_blow</move_pattern>
+        <rewards gold_min="15" gold_max="25" card_chance="0.3" relic_chance="0.0" />
+        <balance_note>방어형 일반 몬스터. brace(8방어도) 시 진언(AoE)·결인+베기 콤보 활용 유도. 장기전 금지.</balance_note>
+      </enemy>
+
+      <enemy id="E003">
+        <name ko="원혼" hanja="冤魂" romanized="Wonhon" />
+        <description>억울하게 죽어 한양을 떠돌고 있는 귀신. 저주와 공포를 무기로 삼는다.</description>
+        <hp min="22" max="30" />
+        <moves>
+          <move id="wail" name="통곡" intent="debuff">플레이어에게 약화 1 + 취약 1 부여.</move>
+          <move id="cold_touch" name="냉기 접촉" intent="attack" damage="5" times="1">5피해 + 냉기(다음 턴 드로우 -1) 부여.</move>
+          <move id="possession_attempt" name="빙의 시도" intent="attack_debuff" damage="8" times="1">8피해 + 약화 2.</move>
+        </moves>
+        <move_pattern type="sequential">wail → cold_touch → cold_touch → possession_attempt → wail → possession_attempt</move_pattern>
+        <rewards gold_min="12" gold_max="22" card_chance="0.25" relic_chance="0.05" />
+        <balance_note>디버프형 특수 몬스터. 냉기+약화 누적으로 시조 리듬 방해. 빠른 처치 압박.</balance_note>
+      </enemy>
+
+      <enemy id="E004">
+        <name ko="도깨비" hanja="道鬼" romanized="Dokkaebi" />
+        <description>한양 외곽을 배회하는 장난기 많은 도깨비. 예측하기 어렵고 방망이가 강력하다.</description>
+        <hp min="30" max="40" />
+        <moves>
+          <move id="club_bash" name="방망이 강타" intent="attack" damage="9" times="1">단순하지만 아픈 방망이 공격.</move>
+          <move id="trick" name="도깨비불" intent="attack_debuff" damage="4" times="1">4피해 + 화상 2 (매 턴 2피해, 2턴).</move>
+          <move id="strengthen" name="기합" intent="buff">힘 2 획득. 이후 공격 피해 +2씩 증가.</move>
+          <move id="slam" name="도깨비 박치기" intent="attack" damage="14" times="1">힘 쌓인 후 사용. 위력적인 일격.</move>
+        </moves>
+        <move_pattern type="sequential">club_bash → trick → strengthen → slam → club_bash → slam</move_pattern>
+        <rewards gold_min="18" gold_max="28" card_chance="0.35" relic_chance="0.05" />
+        <balance_note>상급 일반 몬스터. strengthen 후 slam(14+힘) 위험. 힘 쌓이기 전 처치 유도.</balance_note>
+      </enemy>
+
+    </regular_enemies>
+
+    <elite_enemies>
+
+      <enemy id="EL001">
+        <name ko="이무기" hanja="離龍" romanized="Imugi" />
+        <description>아직 용이 되지 못한 뱀 정령. 독과 위압으로 싸운다.</description>
+        <hp min="55" max="65" />
+        <note>엘리트 — 보스와 일반 몬스터의 중간 단계.</note>
+        <moves>
+          <move id="poison_bite" name="독아 물기" intent="attack_debuff" damage="7" times="1">7피해 + 독 3 부여. (독: 매 턴 n피해 후 1 감소, 0이면 소멸)</move>
+          <move id="coil" name="몸 감기" intent="buff_defend" block="10">방어도 10 + 힘 1 획득.</move>
+          <move id="crushing_squeeze" name="압착" intent="attack" damage="18" times="1">치명적인 일격. coil 이후 사용.</move>
+        </moves>
+        <move_pattern type="sequential">poison_bite → coil → crushing_squeeze → poison_bite → poison_bite → coil → crushing_squeeze</move_pattern>
+        <rewards gold_min="25" gold_max="40" card_chance="0.6" relic_chance="0.25" />
+      </enemy>
+
+    </elite_enemies>
+
+    <bosses>
+
+      <enemy id="B001">
+        <name ko="대장 도깨비" hanja="大將道鬼" romanized="Daejang Dokkaebi" />
+        <description>한양을 지배하는 도깨비 두목. 황금 방망이를 휘두르며 부하를 이끈다.</description>
+        <hp>120</hp>
+        <phase id="1" hp_range="100%→50%">
+          <description>정상 모드. 방망이 공격 + 부하 소환.</description>
+          <moves>
+            <move id="golden_club" name="황금 방망이" intent="attack" damage="12" />
+            <move id="summon_minion" name="부하 소환" intent="summon" summons="E001" count="1" />
+            <move id="area_slam" name="광역 방망이" intent="attack" damage="8" aoe="true" />
+            <move id="fortify" name="강화" intent="buff">힘 3 획득.</move>
+          </moves>
+          <move_pattern>golden_club → summon_minion → golden_club → area_slam → fortify → golden_club → area_slam</move_pattern>
+        </phase>
+        <phase id="2" hp_range="50%→0%">
+          <description>분노 모드. 힘 추가 획득 후 피해 대폭 증가.</description>
+          <phase_trigger>HP 50% 시: 힘 5 추가 획득 + 대사 "이 방망이 맛을 똑똑히 봐라!"</phase_trigger>
+          <moves>
+            <move id="rage_strike" name="분노 강타" intent="attack" damage="16" />
+            <move id="triple_slam" name="연속 강타" intent="attack" damage="8" times="3">8×3=24 총피해.</move>
+            <move id="last_stand" name="최후의 일격" intent="attack" damage="28" condition="HP < 20%">단발 최대 피해.</move>
+          </moves>
+          <move_pattern>rage_strike → triple_slam → rage_strike → triple_slam → last_stand</move_pattern>
+        </phase>
+        <rewards gold_min="60" gold_max="80" relic="보스 유물 1개 (확정)" />
+        <balance_note>페이즈 2: rage_strike(21), triple_slam(39총피해). 시조 완성 활용 필수. fortify 전 처치 권장.</balance_note>
+      </enemy>
+
+      <enemy id="B002">
+        <name ko="저승사자" hanja="冥使" romanized="Jeoseungsaja" />
+        <description>때이른 죽음을 거두러 온 저승의 사자. 낫을 든 검은 그림자.</description>
+        <hp>110</hp>
+        <phase id="1" hp_range="100%→40%">
+          <description>심판 모드. 플레이어를 관찰하며 디버프를 쌓는다.</description>
+          <moves>
+            <move id="judgement_gaze" name="심판의 눈" intent="debuff">약화 1 + 취약 1 부여.</move>
+            <move id="reaping_slash" name="낫 베기" intent="attack" damage="13" />
+            <move id="death_mark" name="사망 표식" intent="debuff">사망 표식 3 부여. (스택 줄 때마다 5피해, 전투 종료 소멸)</move>
+            <move id="counter_stance" name="반격 태세" intent="defend_buff" block="12">가시 3 획득. (근접 공격 받을 때마다 공격자에게 3피해)</move>
+          </moves>
+          <move_pattern>judgement_gaze → reaping_slash → death_mark → counter_stance → reaping_slash → judgement_gaze → reaping_slash</move_pattern>
+        </phase>
+        <phase id="2" hp_range="40%→0%">
+          <description>절명 모드. 즉사기 준비 시작.</description>
+          <phase_trigger>HP 40% 시: 버프 전부 클렌즈 + 사망 카운트다운 3 부여(3턴 내 처치 못하면 HP 50% 감소) + 대사 "이미 이 세상 사람이 아니니라."</phase_trigger>
+          <moves>
+            <move id="scythe_whirlwind" name="낫 회오리" intent="attack" damage="6" times="4">6×4=24 총피해. 방어도 분산.</move>
+            <move id="final_judgement" name="최후의 심판" intent="attack" damage="20" />
+          </moves>
+          <move_pattern>scythe_whirlwind → final_judgement → scythe_whirlwind → final_judgement</move_pattern>
+        </phase>
+        <rewards gold_min="60" gold_max="80" relic="보스 유물 1개 (확정)" />
+        <balance_note>사망 카운트다운(3턴 내 처치 강요)은 강한 압박. 시조 완성으로 폭딜이 핵심.</balance_note>
+      </enemy>
+
+    </bosses>
+
+  </act>
+
+  <!-- 후보 적 소재 (Act 2+ 예정) -->
+  <future_enemies>
+    <candidate>구미호 (Act 2 — 산속)</candidate>
+    <candidate>호랑이 (Act 2 — 산속)</candidate>
+    <candidate>염라대왕 (Act 4 최종 보스 — 저승)</candidate>
+  </future_enemies>
+
+</enemies>
