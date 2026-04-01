@@ -13,6 +13,7 @@ extends Resource
 @export var deck: Array[String] = []
 @export var relics: Array[String] = []
 @export var card_removals_count: int = 0
+@export var upgraded_cards: Array[String] = []  # 강화된 카드 ID 목록
 @export var map_seed: int = 0
 @export var visited_nodes: Array[int] = []
 var run_map: MapData.RunMap = null
@@ -30,6 +31,7 @@ func to_dict() -> Dictionary:
 		"deck": deck,
 		"relics": relics,
 		"card_removals_count": card_removals_count,
+		"upgraded_cards": upgraded_cards,
 		"map_seed": map_seed,
 		"visited_nodes": visited_nodes,
 		"run_map": run_map.to_dict() if run_map else {},
@@ -48,6 +50,7 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.deck = Array(data.get("deck", []), TYPE_STRING, "", null)
 	rd.relics = Array(data.get("relics", []), TYPE_STRING, "", null)
 	rd.card_removals_count = data.get("card_removals_count", 0)
+	rd.upgraded_cards = Array(data.get("upgraded_cards", []), TYPE_STRING, "", null)
 	rd.map_seed = data.get("map_seed", 0)
 	rd.visited_nodes = Array(data.get("visited_nodes", []), TYPE_INT, "", null)
 	var map_dict: Dictionary = data.get("run_map", {})

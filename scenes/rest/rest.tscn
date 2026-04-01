@@ -18,39 +18,88 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1, 0.08, 0.06, 1)
+color = Color(0.12, 0.08, 0.05, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
-anchor_top = 0.2
+anchor_top = 0.05
 anchor_right = 0.9
-anchor_bottom = 0.8
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "휴식"
+text = "휴식처"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 36
-theme_override_colors/font_color = Color(0.6, 0.85, 0.6, 1)
+theme_override_colors/font_color = Color(0.9, 0.6, 0.3, 1)
 
-[node name="HPLabel" type="Label" parent="VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "HP: --/--"
+text = "모닥불 앞에서 잠시 쉬어간다."
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.7, 0.7, 0.5, 1)
 
-[node name="RestButton" type="Button" parent="VBoxContainer"]
+[node name="ActionContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RestButton" type="Button" parent="VBoxContainer/ActionContainer"]
 layout_mode = 2
 text = "휴식 (HP 30% 회복)"
 theme_override_font_sizes/font_size = 20
 
-[node name="RemoveButton" type="Button" parent="VBoxContainer"]
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/ActionContainer"]
 layout_mode = 2
-text = "카드 제거 (랜덤 1장)"
+text = "카드 강화 (카드 1장 선택)"
 theme_override_font_sizes/font_size = 20
+
+[node name="CardListContainer" type="VBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "← 돌아가기"
+theme_override_font_sizes/font_size = 16
+
+[node name="ResultLabel" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1.0, 0.9, 0.6, 1)
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "계속"
+theme_override_font_sizes/font_size = 20
+
+[node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 40
+
+[node name="HPLabel" type="Label" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
+text = "HP: --/--"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.9, 0.3, 0.3, 1)
+
+[node name="GoldLabel" type="Label" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
+text = "엽전: --"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1.0, 0.85, 0.3, 1)

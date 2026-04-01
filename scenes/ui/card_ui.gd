@@ -118,8 +118,11 @@ func _update_display() -> void:
 	if card_data == null:
 		return
 
-	# 카드 이름
-	card_name_label.text = card_data.get_display_name()
+	# 카드 이름 (강화 시 + 표시)
+	var display_name := card_data.get_display_name()
+	if card_data.upgraded:
+		display_name += "+"
+	card_name_label.text = display_name
 
 	# 비트 + 코스트 + 기력
 	var cost_text := "[%d] %d氣" % [card_data.beat, card_data.cost]

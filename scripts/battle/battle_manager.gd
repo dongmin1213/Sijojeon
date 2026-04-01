@@ -165,7 +165,7 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 		return false
 
 	var card_id: String = hand[hand_index]
-	var card: CardData = DataLoader.get_card(card_id)
+	var card: CardData = _get_battle_card(card_id)
 	if card == null:
 		return false
 
@@ -541,3 +541,28 @@ func _on_effect_removed(target: String, effect_id: String) -> void:
 
 func _on_effect_triggered(target: String, effect_id: String, value: int) -> void:
 	dot_damage_dealt.emit(target, effect_id, value)
+
+
+## 카드 ID로 전투용 CardData를 반환한다. 강화 상태를 반영한 복사본.
+func _get_battle_card(card_id: String) -> CardData:
+	var base: CardData = DataLoader.get_card(card_id)
+	if base == null:
+		return null
+	if GameManager.run_data == null:
+		return base
+
+	# 강화 여부 확인
+	if not card_id in GameManager.run_data.upgraded_cards:
+		return base
+
+	# 강화된 카드: 복사본에 보너스 적용
+	var card := base.duplicate_card()
+	card.upgraded = true
+	# 기본 강화 보너스: 피해 +25%(최소 +2), 방어도 +25%(최소 +2)
+	if card.damage > 0:
+		card.damage += maxi(ceili(base.damage * 0.25), 2)
+	if card.block_value > 0:
+		card.block_value += maxi(ceili(base.block_value * 0.25), 2)
+	if card.draw_count > 0:
+		card.draw_count += 1
+	return card

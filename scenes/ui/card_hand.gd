@@ -47,6 +47,11 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleMan
 		if card == null:
 			continue
 
+		# 강화 상태 반영
+		if GameManager.run_data and card_id in GameManager.run_data.upgraded_cards:
+			card = card.duplicate_card()
+			card.upgraded = true
+
 		var widget: CardUI = CardUIScene.instantiate()
 		add_child(widget)
 
