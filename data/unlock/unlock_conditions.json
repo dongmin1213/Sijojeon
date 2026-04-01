@@ -1,0 +1,35 @@
+{
+  "version": "0.1",
+  "type": "unlock_conditions",
+  "description": "캐릭터 해금 조건 정의. SaveManager의 meta_data 통계를 기반으로 판정한다.",
+  "characters": [
+    {
+      "id": "mugwan",
+      "name_ko": "무관",
+      "name_hanja": "武官",
+      "unlock_type": "default",
+      "unlock_description": "기본 해금"
+    },
+    {
+      "id": "mungwan",
+      "name_ko": "문관",
+      "name_hanja": "文官",
+      "unlock_type": "character_act_clear",
+      "unlock_params": {
+        "character_id": "mugwan",
+        "min_act": 1
+      },
+      "unlock_description": "무관으로 1막 보스 처치"
+    },
+    {
+      "id": "dosa",
+      "name_ko": "도사",
+      "name_hanja": "道士",
+      "unlock_type": "total_runs",
+      "unlock_params": {
+        "min_runs": 3
+      },
+      "unlock_description": "총 3회 런 완료"
+    }
+  ]
+}
