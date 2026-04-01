@@ -5,6 +5,7 @@ extends Control
 const CHARACTER_NAMES := {
 	"dosa": "도사 (道士)",
 	"mugwan": "무관 (武官)",
+	"mungwan": "문관 (文官)",
 }
 
 var _is_victory: bool = false
@@ -25,6 +26,7 @@ func _ready() -> void:
 
 	_setup_display()
 	_populate_stats()
+	_populate_achievements()
 	_play_entrance_animation()
 
 
@@ -66,6 +68,28 @@ func _populate_stats() -> void:
 		_add_stat_row("총 도전 횟수", "%d 회" % s.get("total_runs", 0))
 		_add_stat_row("총 승리", "%d 회" % s.get("victories", 0))
 		_add_stat_row("총 패배", "%d 회" % s.get("deaths", 0))
+
+
+func _populate_achievements() -> void:
+	## 이번 런에서 달성된 업적을 표시한다.
+	var meta := SaveManager.load_meta()
+	var unlocked_ids: Array = meta.get("unlocked_achievements", [])
+	if unlocked_ids.is_empty():
+		return
+
+	_add_stat_row("", "")
+	_add_stat_row("── 업적 ──", "")
+
+	var all_achs := AchievementManager.get_all_achievements()
+	var unlocked_count := 0
+	for ach in all_achs:
+		var ach_id: String = ach.get("id", "")
+		if ach_id in unlocked_ids:
+			unlocked_count += 1
+			var name_text: String = "★ " + ach.get("name", "")
+			_add_stat_row(name_text, ach.get("description", ""))
+
+	_add_stat_row("달성률", "%d / %d" % [unlocked_count, all_achs.size()])
 
 
 func _add_stat_row(label_text: String, value_text: String) -> void:

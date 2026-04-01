@@ -16,6 +16,10 @@ var _unlock_data: Array[Dictionary] = []
 @onready var back_button: Button = $VBoxContainer/ButtonRow/BackButton
 
 
+var _achievement_panel: PanelContainer = null
+var _achievement_visible := false
+
+
 func _ready() -> void:
 	start_button.disabled = true
 	start_button.pressed.connect(_on_start_pressed)
@@ -23,6 +27,7 @@ func _ready() -> void:
 	_load_unlock_conditions()
 	_build_character_list()
 	_build_character_cards()
+	_build_achievement_button()
 
 
 func _load_unlock_conditions() -> void:
@@ -291,3 +296,146 @@ func _on_start_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	GameManager.change_state(GameManager.GameState.TITLE)
+
+
+func _build_achievement_button() -> void:
+	## 업적 목록 토글 버튼을 버튼 행에 추가한다.
+	var unlocked_ids := AchievementManager.get_unlocked_ids()
+	var total := AchievementManager.get_all_achievements().size()
+
+	var ach_button := Button.new()
+	ach_button.text = "업적 (%d/%d)" % [unlocked_ids.size(), total]
+	ach_button.pressed.connect(_toggle_achievement_panel)
+	$VBoxContainer/ButtonRow.add_child(ach_button)
+
+
+func _toggle_achievement_panel() -> void:
+	if _achievement_panel and is_instance_valid(_achievement_panel):
+		_achievement_panel.queue_free()
+		_achievement_panel = null
+		_achievement_visible = false
+		return
+
+	_achievement_visible = true
+	_achievement_panel = _create_achievement_panel()
+	add_child(_achievement_panel)
+
+
+func _create_achievement_panel() -> PanelContainer:
+	var panel := PanelContainer.new()
+	panel.anchor_left = 0.05
+	panel.anchor_right = 0.95
+	panel.anchor_top = 0.1
+	panel.anchor_bottom = 0.9
+
+	# 반투명 배경용 스타일
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.05, 0.05, 0.1, 0.95)
+	style.corner_radius_top_left = 12
+	style.corner_radius_top_right = 12
+	style.corner_radius_bottom_left = 12
+	style.corner_radius_bottom_right = 12
+	style.border_color = Color(0.6, 0.5, 0.3)
+	style.border_width_top = 2
+	style.border_width_bottom = 2
+	style.border_width_left = 2
+	style.border_width_right = 2
+	panel.add_theme_stylebox_override("panel", style)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 24)
+	margin.add_theme_constant_override("margin_right", 24)
+	margin.add_theme_constant_override("margin_top", 20)
+	margin.add_theme_constant_override("margin_bottom", 20)
+
+	var outer_vbox := VBoxContainer.new()
+	outer_vbox.add_theme_constant_override("separation", 12)
+
+	# 제목 행
+	var title_row := HBoxContainer.new()
+	var title := Label.new()
+	title.text = "업적 목록"
+	title.add_theme_font_size_override("font_size", 26)
+	title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title_row.add_child(title)
+
+	var close_btn := Button.new()
+	close_btn.text = "닫기"
+	close_btn.pressed.connect(_toggle_achievement_panel)
+	title_row.add_child(close_btn)
+	outer_vbox.add_child(title_row)
+
+	outer_vbox.add_child(HSeparator.new())
+
+	# 스크롤 컨테이너
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+
+	var list_vbox := VBoxContainer.new()
+	list_vbox.add_theme_constant_override("separation", 8)
+	list_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+	var all_achs := AchievementManager.get_all_achievements()
+	var meta := SaveManager.load_meta()
+	var unlocked_list: Array = meta.get("unlocked_achievements", [])
+
+	for ach in all_achs:
+		var ach_id: String = ach.get("id", "")
+		var is_unlocked: bool = ach_id in unlocked_list
+		var progress := AchievementManager.get_progress(ach_id)
+
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 12)
+
+		# 달성 표시
+		var status_label := Label.new()
+		if is_unlocked:
+			status_label.text = "★"
+			status_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+		else:
+			status_label.text = "☆"
+			status_label.add_theme_color_override("font_color", Color(0.4, 0.4, 0.4))
+		status_label.add_theme_font_size_override("font_size", 24)
+		row.add_child(status_label)
+
+		# 업적 정보
+		var info_vbox := VBoxContainer.new()
+		info_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		info_vbox.add_theme_constant_override("separation", 2)
+
+		var name_label := Label.new()
+		name_label.text = ach.get("name", "")
+		name_label.add_theme_font_size_override("font_size", 18)
+		if is_unlocked:
+			name_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
+		else:
+			name_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+		info_vbox.add_child(name_label)
+
+		var desc_label := Label.new()
+		desc_label.text = ach.get("description", "")
+		desc_label.add_theme_font_size_override("font_size", 14)
+		desc_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+		info_vbox.add_child(desc_label)
+
+		row.add_child(info_vbox)
+
+		# 진행도 표시
+		var progress_label := Label.new()
+		progress_label.text = "%d / %d" % [progress["current"], progress["target"]]
+		progress_label.add_theme_font_size_override("font_size", 16)
+		if is_unlocked:
+			progress_label.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
+		else:
+			progress_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+		row.add_child(progress_label)
+
+		list_vbox.add_child(row)
+
+	scroll.add_child(list_vbox)
+	outer_vbox.add_child(scroll)
+	margin.add_child(outer_vbox)
+	panel.add_child(margin)
+
+	return panel

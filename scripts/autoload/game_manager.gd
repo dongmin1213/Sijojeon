@@ -105,6 +105,9 @@ func end_run(victory: bool) -> void:
 	if run_data:
 		SaveManager.record_run_result(victory, run_data.character_id, run_data.current_act)
 
+	# 새 업적 달성 여부 확인
+	AchievementManager.check_new_achievements()
+
 	if victory:
 		change_state(GameState.RUN_WIN)
 	else:

@@ -1,0 +1,100 @@
+{
+	"achievements": [
+		{
+			"id": "ACH_FIRST_RUN",
+			"name": "첫 발걸음",
+			"description": "첫 번째 런을 완료하다",
+			"type": "total_runs",
+			"params": { "min_runs": 1 },
+			"icon": "foot"
+		},
+		{
+			"id": "ACH_RUNS_3",
+			"name": "반복되는 도전",
+			"description": "총 3회 런을 완료하다",
+			"type": "total_runs",
+			"params": { "min_runs": 3 },
+			"icon": "repeat"
+		},
+		{
+			"id": "ACH_RUNS_10",
+			"name": "불굴의 의지",
+			"description": "총 10회 런을 완료하다",
+			"type": "total_runs",
+			"params": { "min_runs": 10 },
+			"icon": "flame"
+		},
+		{
+			"id": "ACH_FIRST_VICTORY",
+			"name": "왕조의 수호자",
+			"description": "최초 승리를 거두다",
+			"type": "total_victories",
+			"params": { "min_victories": 1 },
+			"icon": "crown"
+		},
+		{
+			"id": "ACH_VICTORIES_3",
+			"name": "삼전삼승 (三戰三勝)",
+			"description": "총 3회 승리를 거두다",
+			"type": "total_victories",
+			"params": { "min_victories": 3 },
+			"icon": "star"
+		},
+		{
+			"id": "ACH_VICTORIES_5",
+			"name": "백전노장 (百戰老將)",
+			"description": "총 5회 승리를 거두다",
+			"type": "total_victories",
+			"params": { "min_victories": 5 },
+			"icon": "medal"
+		},
+		{
+			"id": "ACH_REACH_ACT2",
+			"name": "제 2막 진입",
+			"description": "제 2막에 도달하다",
+			"type": "best_act",
+			"params": { "min_act": 2 },
+			"icon": "gate"
+		},
+		{
+			"id": "ACH_REACH_ACT3",
+			"name": "최후의 관문",
+			"description": "제 3막에 도달하다",
+			"type": "best_act",
+			"params": { "min_act": 3 },
+			"icon": "castle"
+		},
+		{
+			"id": "ACH_MUGWAN_VICTORY",
+			"name": "무관의 길",
+			"description": "무관으로 승리하다",
+			"type": "character_victory",
+			"params": { "character_id": "mugwan" },
+			"icon": "sword"
+		},
+		{
+			"id": "ACH_MUNGWAN_VICTORY",
+			"name": "문관의 길",
+			"description": "문관으로 승리하다",
+			"type": "character_victory",
+			"params": { "character_id": "mungwan" },
+			"icon": "scroll"
+		},
+		{
+			"id": "ACH_DOSA_VICTORY",
+			"name": "도사의 길",
+			"description": "도사로 승리하다",
+			"type": "character_victory",
+			"params": { "character_id": "dosa" },
+			"icon": "talisman"
+		},
+		{
+			"id": "ACH_ALL_CHARACTERS",
+			"name": "만능 관리 (萬能官吏)",
+			"description": "모든 캐릭터로 승리하다",
+			"type": "all_characters_victory",
+			"params": { "character_ids": ["mugwan", "mungwan", "dosa"] },
+			"icon": "trophy"
+		}
+	]
+}

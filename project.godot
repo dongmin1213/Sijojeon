@@ -28,6 +28,7 @@ AudioManager="*res://scripts/autoload/audio_manager.gd"
 DataLoader="*res://scripts/autoload/data_loader.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 RelicManager="*res://scripts/autoload/relic_manager.gd"
+AchievementManager="*res://scripts/autoload/achievement_manager.gd"
 
 [display]
 
