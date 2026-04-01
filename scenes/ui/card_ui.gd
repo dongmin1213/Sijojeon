@@ -221,9 +221,11 @@ func _on_gui_input(event: InputEvent) -> void:
 					# 드래그 아님 → 클릭으로 처리
 					card_clicked.emit(hand_index)
 
-	elif event is InputEventMouseMotion and event.button_mask & MOUSE_BUTTON_MASK_LEFT:
+	elif event is InputEventMouseMotion:
+		if not (event.button_mask & MOUSE_BUTTON_MASK_LEFT):
+			return
 		if is_playable and not is_dragging:
-			var delta := event.global_position - drag_start_pos
+			var delta: Vector2 = event.global_position - drag_start_pos
 			if delta.length() > DRAG_THRESHOLD:
 				_start_drag()
 		if is_dragging:

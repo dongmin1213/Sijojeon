@@ -19,8 +19,11 @@ class MapNode:
 	var row: int                      # 행 (0 = 시작, 마지막 = 보스)
 	var column: int                   # 열 위치 (같은 행 내 순서)
 	var type: NodeType                # 노드 종류
-	var connections: Array[int] = []  # 다음 행으로 연결되는 노드 ID 목록
+	var connections: Array[int]       # 다음 행으로 연결되는 노드 ID 목록
 	var encounter_id: String = ""     # 적/이벤트 등 구체적 데이터 ID
+
+	func _init() -> void:
+		connections = []
 
 	func to_dict() -> Dictionary:
 		return {
@@ -48,8 +51,12 @@ class RunMap:
 	var act: int = 1
 	var seed_value: int = 0
 	var total_rows: int = 0           # 보스 행 포함
-	var nodes: Dictionary = {}        # id → MapNode
-	var rows: Array = []              # row_index → Array[int] (노드 ID 배열)
+	var nodes: Dictionary             # id → MapNode
+	var rows: Array                   # row_index → Array[int] (노드 ID 배열)
+
+	func _init() -> void:
+		nodes = {}
+		rows = []
 
 	func get_node(node_id: int) -> MapNode:
 		return nodes.get(node_id)

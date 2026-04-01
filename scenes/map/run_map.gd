@@ -136,7 +136,7 @@ func _draw_connections() -> void:
 				continue
 			var to_pos: Vector2 = _node_positions[conn_id]
 
-			var is_visited_path := nid in visited and conn_id in visited
+			var is_visited_path: bool = (nid in visited) and (conn_id in visited)
 			var color: Color
 			var width: float
 			if is_visited_path:
