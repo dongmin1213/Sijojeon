@@ -29,11 +29,13 @@ const NODE_ICONS := {
 	MapData.NodeType.BOSS: "👹",
 }
 
-const NODE_SIZE := Vector2(120, 60)
-const ROW_SPACING := 140.0
-const MAP_PADDING_X := 80.0
-const MAP_PADDING_TOP := 100.0
-const MAP_PADDING_BOTTOM := 160.0
+## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
+const BASE_VIEWPORT_WIDTH := 1080.0
+const BASE_NODE_SIZE := Vector2(120, 60)
+const BASE_ROW_SPACING := 140.0
+const BASE_MAP_PADDING_X := 80.0
+const BASE_MAP_PADDING_TOP := 100.0
+const BASE_MAP_PADDING_BOTTOM := 160.0
 
 ## 막별 맵 배경 색상 (그라데이션 기반)
 const ACT_BG_COLORS := {
@@ -102,44 +104,53 @@ func _apply_map_background(color: Color) -> void:
 func _build_map() -> void:
 	var run_map := GameManager.run_data.run_map
 	var viewport_width: float = get_viewport_rect().size.x
+	var scale_factor: float = viewport_width / BASE_VIEWPORT_WIDTH
+
+	# 스케일링된 상수
+	var node_size := BASE_NODE_SIZE * scale_factor
+	var row_spacing := BASE_ROW_SPACING * scale_factor
+	var padding_x := BASE_MAP_PADDING_X * scale_factor
+	var padding_top := BASE_MAP_PADDING_TOP * scale_factor
+	var padding_bottom := BASE_MAP_PADDING_BOTTOM * scale_factor
+	var font_size := int(16.0 * scale_factor)
 
 	# 맵 전체 높이 계산 (아래에서 위로: row 0 = 하단, boss = 상단)
-	var total_height: float = MAP_PADDING_TOP + MAP_PADDING_BOTTOM + (run_map.total_rows - 1) * ROW_SPACING + NODE_SIZE.y
+	var total_height: float = padding_top + padding_bottom + (run_map.total_rows - 1) * row_spacing + node_size.y
 	map_container.custom_minimum_size = Vector2(viewport_width, total_height)
 
 	# 노드 위치 계산 및 버튼 생성
 	for r in range(run_map.total_rows):
 		var row_nodes: Array = run_map.rows[r]
 		var node_count: int = row_nodes.size()
-		var usable_width: float = viewport_width - MAP_PADDING_X * 2
+		var usable_width: float = viewport_width - padding_x * 2
 
 		for i in range(node_count):
 			var node_id: int = row_nodes[i]
 			var map_node: MapData.MapNode = run_map.nodes[node_id]
 
 			# Y: 보스(마지막 행)가 위, 시작(0행)이 아래
-			var y: float = MAP_PADDING_TOP + (run_map.total_rows - 1 - r) * ROW_SPACING
+			var y: float = padding_top + (run_map.total_rows - 1 - r) * row_spacing
 			# X: 행 내 균등 분배
 			var x: float
 			if node_count == 1:
-				x = viewport_width / 2.0 - NODE_SIZE.x / 2.0
+				x = viewport_width / 2.0 - node_size.x / 2.0
 			else:
-				x = MAP_PADDING_X + (usable_width - NODE_SIZE.x) * i / (node_count - 1)
+				x = padding_x + (usable_width - node_size.x) * i / (node_count - 1)
 
-			var center := Vector2(x + NODE_SIZE.x / 2.0, y + NODE_SIZE.y / 2.0)
+			var center := Vector2(x + node_size.x / 2.0, y + node_size.y / 2.0)
 			_node_positions[node_id] = center
 
 			# 노드 버튼 생성
 			var btn := Button.new()
-			btn.custom_minimum_size = NODE_SIZE
-			btn.size = NODE_SIZE
+			btn.custom_minimum_size = node_size
+			btn.size = node_size
 			btn.position = Vector2(x, y)
 
 			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
 			var label_text: String = NODE_LABELS.get(map_node.type, "???")
 			btn.text = "%s\n%s" % [icon_text, label_text]
 
-			btn.add_theme_font_size_override("font_size", 16)
+			btn.add_theme_font_size_override("font_size", font_size)
 			btn.pressed.connect(_on_node_pressed.bind(node_id))
 
 			node_layer.add_child(btn)

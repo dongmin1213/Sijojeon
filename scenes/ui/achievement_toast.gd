@@ -5,6 +5,7 @@ extends PanelContainer
 
 const DISPLAY_DURATION := 3.0
 const SLIDE_DURATION := 0.4
+const BASE_VIEWPORT_WIDTH := 1080.0
 
 var _queue: Array[Dictionary] = []
 var _showing := false
@@ -30,45 +31,54 @@ func _show_next() -> void:
 	_display(ach)
 
 
+func _get_scale_factor() -> float:
+	var vp := get_viewport()
+	if vp == null:
+		return 1.0
+	return vp.get_visible_rect().size.x / BASE_VIEWPORT_WIDTH
+
+
 func _display(ach: Dictionary) -> void:
 	# 내부 컨텐츠 구성
 	for child in get_children():
 		child.queue_free()
 
+	var sf := _get_scale_factor()
+
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 20)
-	margin.add_theme_constant_override("margin_right", 20)
-	margin.add_theme_constant_override("margin_top", 12)
-	margin.add_theme_constant_override("margin_bottom", 12)
+	margin.add_theme_constant_override("margin_left", int(20.0 * sf))
+	margin.add_theme_constant_override("margin_right", int(20.0 * sf))
+	margin.add_theme_constant_override("margin_top", int(12.0 * sf))
+	margin.add_theme_constant_override("margin_bottom", int(12.0 * sf))
 
 	var hbox := HBoxContainer.new()
-	hbox.add_theme_constant_override("separation", 12)
+	hbox.add_theme_constant_override("separation", int(12.0 * sf))
 
 	# 업적 아이콘 (텍스트 대체)
 	var icon_label := Label.new()
 	icon_label.text = "★"
-	icon_label.add_theme_font_size_override("font_size", 28)
+	icon_label.add_theme_font_size_override("font_size", int(28.0 * sf))
 	icon_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	hbox.add_child(icon_label)
 
 	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 2)
+	vbox.add_theme_constant_override("separation", int(2.0 * sf))
 
 	var header := Label.new()
 	header.text = "업적 달성!"
-	header.add_theme_font_size_override("font_size", 14)
+	header.add_theme_font_size_override("font_size", int(14.0 * sf))
 	header.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	vbox.add_child(header)
 
 	var name_label := Label.new()
 	name_label.text = ach.get("name", "")
-	name_label.add_theme_font_size_override("font_size", 20)
+	name_label.add_theme_font_size_override("font_size", int(20.0 * sf))
 	name_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
 	vbox.add_child(name_label)
 
 	var desc_label := Label.new()
 	desc_label.text = ach.get("description", "")
-	desc_label.add_theme_font_size_override("font_size", 14)
+	desc_label.add_theme_font_size_override("font_size", int(14.0 * sf))
 	desc_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8))
 	vbox.add_child(desc_label)
 
@@ -80,7 +90,7 @@ func _display(ach: Dictionary) -> void:
 	visible = true
 	modulate.a = 0.0
 	var target_pos := position
-	position.y -= 60
+	position.y -= int(60.0 * sf)
 
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT)
