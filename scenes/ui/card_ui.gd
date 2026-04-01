@@ -34,6 +34,11 @@ var original_z_index: int = 0
 const DRAG_THRESHOLD := 15.0   # 드래그 시작 최소 거리 (px)
 const PLAY_THRESHOLD := 80.0   # 위로 드래그 시 카드 플레이 최소 거리 (px)
 
+# 뷰포트 기준 카드 크기 비율 (1080x1920 기본 해상도 기준)
+const BASE_CARD_WIDTH := 140.0
+const BASE_CARD_HEIGHT := 200.0
+const BASE_VIEWPORT_WIDTH := 1080.0
+
 # 카드 타입별 색상
 const TYPE_COLORS := {
 	"attack": Color(0.85, 0.25, 0.2),
@@ -66,7 +71,10 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 	gui_input.connect(_on_gui_input)
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	custom_minimum_size = Vector2(140, 200)
+	# 뷰포트 너비에 비례하여 카드 크기 조정
+	var vp_width := get_viewport().get_visible_rect().size.x
+	var scale := vp_width / BASE_VIEWPORT_WIDTH
+	custom_minimum_size = Vector2(BASE_CARD_WIDTH * scale, BASE_CARD_HEIGHT * scale)
 
 
 func setup(data: CardData, index: int, playable: bool, matches_sijo: bool) -> void:

@@ -86,7 +86,7 @@ theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 
 [node name="DeckScrollContainer" type="ScrollContainer" parent="VBoxContainer/RemoveSection"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 180)
+size_flags_vertical = 3
 visible = false
 
 [node name="DeckContainer" type="GridContainer" parent="VBoxContainer/RemoveSection/DeckScrollContainer"]

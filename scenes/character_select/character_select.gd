@@ -144,12 +144,18 @@ func _find_skill_entry(character_id: String) -> Dictionary:
 
 
 func _build_character_cards() -> void:
+	# 뷰포트 크기에 비례하여 패널 크기 조정
+	var vp_size := get_viewport().get_visible_rect().size
+	var scale := vp_size.x / 1080.0
+	var panel_min_w := 300.0 * scale
+	var panel_min_h := 420.0 * scale
+
 	for i in _character_list.size():
 		var character: Dictionary = _character_list[i]
 		var unlocked: bool = character["unlocked"]
 
 		var panel := PanelContainer.new()
-		panel.custom_minimum_size = Vector2(300, 420)
+		panel.custom_minimum_size = Vector2(panel_min_w, panel_min_h)
 		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		var margin := MarginContainer.new()

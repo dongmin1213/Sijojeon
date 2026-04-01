@@ -10,9 +10,12 @@ const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 # 부채꼴 배치 파라미터
 @export var fan_spread_degrees: float = 5.0   # 카드 간 회전 각도
 @export var fan_y_curve: float = 20.0         # 부채꼴 높이 커브
-@export var card_spacing: float = 145.0       # 카드 간 가로 간격
 @export var hover_lift: float = 30.0          # 호버 시 위로 올라가는 높이
 @export var select_lift: float = 50.0         # 선택 시 위로 올라가는 높이
+
+# 뷰포트 기준 비율 (1080x1920 기본 해상도 기준)
+const BASE_CARD_SPACING := 145.0
+const BASE_WIDTH := 1080.0
 
 var card_widgets: Array[CardUI] = []
 var selected_index: int = -1
@@ -75,10 +78,18 @@ func _arrange_cards() -> void:
 	if count == 0:
 		return
 
+	# 뷰포트 너비에 비례하여 카드 간격 계산
+	var scale_factor := size.x / BASE_WIDTH
+	var card_spacing := BASE_CARD_SPACING * scale_factor
+
 	var center_x := size.x / 2.0
 	var base_y := size.y * 0.3
 	var total_width := (count - 1) * card_spacing
 	var start_x := center_x - total_width / 2.0
+
+	# 부채꼴 커브도 높이에 비례
+	var height_scale := size.y / 1920.0
+	var scaled_y_curve := fan_y_curve * height_scale
 
 	for i in count:
 		var widget := card_widgets[i]
@@ -92,13 +103,13 @@ func _arrange_cards() -> void:
 
 		# 위치 계산
 		var x := start_x + i * card_spacing - widget.size.x / 2.0
-		var y := base_y + fan_y_curve * (centered_t * centered_t * 4.0)
+		var y := base_y + scaled_y_curve * (centered_t * centered_t * 4.0)
 
-		# 호버/선택 시 올림
+		# 호버/선택 시 올림 (뷰포트 높이에 비례)
 		if i == selected_index:
-			y -= select_lift
+			y -= select_lift * height_scale
 		elif i == hovered_index:
-			y -= hover_lift
+			y -= hover_lift * height_scale
 
 		# 회전 계산 (부채꼴)
 		var rotation_deg := centered_t * fan_spread_degrees * (count - 1)
