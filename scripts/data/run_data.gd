@@ -14,6 +14,7 @@ extends Resource
 @export var relics: Array[String] = []
 @export var map_seed: int = 0
 @export var visited_nodes: Array[int] = []
+var run_map: MapData.RunMap = null
 
 
 func to_dict() -> Dictionary:
@@ -29,6 +30,7 @@ func to_dict() -> Dictionary:
 		"relics": relics,
 		"map_seed": map_seed,
 		"visited_nodes": visited_nodes,
+		"run_map": run_map.to_dict() if run_map else {},
 	}
 
 
@@ -45,4 +47,7 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.relics = Array(data.get("relics", []), TYPE_STRING, "", null)
 	rd.map_seed = data.get("map_seed", 0)
 	rd.visited_nodes = Array(data.get("visited_nodes", []), TYPE_INT, "", null)
+	var map_dict: Dictionary = data.get("run_map", {})
+	if not map_dict.is_empty():
+		rd.run_map = MapData.RunMap.from_dict(map_dict)
 	return rd

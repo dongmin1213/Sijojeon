@@ -76,6 +76,10 @@ func start_new_run(character_id: String) -> void:
 	if skills_data and skills_data.has("starting_relic"):
 		run_data.relics.append(skills_data["starting_relic"])
 
+	# 맵 생성
+	var generator := MapGenerator.new()
+	run_data.run_map = generator.generate(run_data.map_seed, run_data.current_act)
+
 	change_state(GameState.MAP)
 
 
@@ -117,3 +121,7 @@ func advance_act() -> void:
 		run_data.current_act += 1
 		run_data.current_floor = 0
 		run_data.visited_nodes.clear()
+		var generator := MapGenerator.new()
+		run_data.run_map = generator.generate(
+			run_data.map_seed + run_data.current_act, run_data.current_act
+		)
