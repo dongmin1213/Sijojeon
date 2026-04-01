@@ -38,8 +38,18 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleMan
 	hovered_index = -1
 	dragging_index = -1
 
-	# 기존 위젯 제거
+	# 기존 위젯 제거 (시그널 정리 후 해제)
 	for widget in card_widgets:
+		if widget.card_clicked.is_connected(_on_card_clicked):
+			widget.card_clicked.disconnect(_on_card_clicked)
+		if widget.card_hovered.is_connected(_on_card_hovered):
+			widget.card_hovered.disconnect(_on_card_hovered)
+		if widget.card_unhovered.is_connected(_on_card_unhovered):
+			widget.card_unhovered.disconnect(_on_card_unhovered)
+		if widget.card_drag_started.is_connected(_on_card_drag_started):
+			widget.card_drag_started.disconnect(_on_card_drag_started)
+		if widget.card_drag_ended.is_connected(_on_card_drag_ended):
+			widget.card_drag_ended.disconnect(_on_card_drag_ended)
 		widget.queue_free()
 	card_widgets.clear()
 

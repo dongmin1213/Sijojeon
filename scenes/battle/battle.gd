@@ -28,6 +28,9 @@ var _class_resource_label: Label = null
 # 액티브 스킬 버튼
 var _active_skill_button: Button = null
 
+# 적 UI 캐시 (index → {panel, name_label, hp_label, block_label, intent_label, status_hbox})
+var _enemy_ui_cache: Dictionary = {}
+
 
 func _ready() -> void:
 	# 매니저 초기화
@@ -144,58 +147,79 @@ func _refresh_hand_ui() -> void:
 
 
 func _update_enemy_ui() -> void:
-	for child in enemy_container.get_children():
-		child.queue_free()
-
+	## 적 UI를 캐시 기반으로 업데이트. 노드를 매번 재생성하지 않는다.
+	var alive_indices: Array[int] = []
 	for i in battle_manager.enemies.size():
 		var enemy: Dictionary = battle_manager.enemies[i]
 		if enemy["current_hp"] <= 0:
+			# 죽은 적 패널 숨기기
+			if _enemy_ui_cache.has(i):
+				_enemy_ui_cache[i]["panel"].visible = false
 			continue
-		var name_data = enemy.get("name", {})
-		var enemy_name: String = ""
-		if name_data is Dictionary:
-			enemy_name = name_data.get("ko", "적")
-		elif name_data is String:
-			enemy_name = name_data
+		alive_indices.append(i)
 
-		var panel := PanelContainer.new()
-		var vbox := VBoxContainer.new()
-		var name_label := Label.new()
-		name_label.text = enemy_name
-		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		var hp_lbl := Label.new()
-		hp_lbl.text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
-		hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		if _enemy_ui_cache.has(i):
+			# 기존 캐시 업데이트
+			var cache: Dictionary = _enemy_ui_cache[i]
+			cache["panel"].visible = true
+			cache["hp_label"].text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
+			var block_val: int = enemy.get("block", 0)
+			cache["block_label"].text = "방어: %d" % block_val
+			cache["block_label"].visible = block_val > 0
+			var intent := battle_manager._get_enemy_intent(i)
+			cache["intent_label"].text = _format_intent(intent)
+			_build_status_icons(cache["status_hbox"], "enemy_%d" % i)
+		else:
+			# 새 적 패널 생성
+			var name_data = enemy.get("name", {})
+			var enemy_name: String = ""
+			if name_data is Dictionary:
+				enemy_name = name_data.get("ko", "적")
+			elif name_data is String:
+				enemy_name = name_data
 
-		# 적 인텐트 표시
-		var intent_label := Label.new()
-		intent_label.name = "IntentLabel"
-		intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		intent_label.add_theme_color_override("font_color", Color(1, 0.4, 0.4))
-		var intent := battle_manager._get_enemy_intent(i)
-		intent_label.text = _format_intent(intent)
+			var panel := PanelContainer.new()
+			var vbox := VBoxContainer.new()
+			var name_label := Label.new()
+			name_label.text = enemy_name
+			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			var hp_lbl := Label.new()
+			hp_lbl.text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
+			hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
-		# 방어도 표시
-		var block_val: int = enemy.get("block", 0)
-		var enemy_block_label := Label.new()
-		enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		enemy_block_label.text = "방어: %d" % block_val
-		enemy_block_label.visible = block_val > 0
+			var intent_label := Label.new()
+			intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			intent_label.add_theme_color_override("font_color", Color(1, 0.4, 0.4))
+			var intent := battle_manager._get_enemy_intent(i)
+			intent_label.text = _format_intent(intent)
 
-		# 적 상태이상 표시 (아이콘 + 턴 카운터)
-		var enemy_target := "enemy_%d" % i
-		var status_hbox := HBoxContainer.new()
-		status_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-		_build_status_icons(status_hbox, enemy_target)
+			var block_val: int = enemy.get("block", 0)
+			var enemy_block_label := Label.new()
+			enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			enemy_block_label.text = "방어: %d" % block_val
+			enemy_block_label.visible = block_val > 0
 
-		vbox.add_child(name_label)
-		vbox.add_child(hp_lbl)
-		vbox.add_child(enemy_block_label)
-		vbox.add_child(status_hbox)
-		vbox.add_child(intent_label)
-		panel.add_child(vbox)
-		panel.custom_minimum_size = Vector2(200, 180)
-		enemy_container.add_child(panel)
+			var status_hbox := HBoxContainer.new()
+			status_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+			_build_status_icons(status_hbox, "enemy_%d" % i)
+
+			vbox.add_child(name_label)
+			vbox.add_child(hp_lbl)
+			vbox.add_child(enemy_block_label)
+			vbox.add_child(status_hbox)
+			vbox.add_child(intent_label)
+			panel.add_child(vbox)
+			panel.custom_minimum_size = Vector2(200, 180)
+			enemy_container.add_child(panel)
+
+			_enemy_ui_cache[i] = {
+				"panel": panel,
+				"name_label": name_label,
+				"hp_label": hp_lbl,
+				"block_label": enemy_block_label,
+				"intent_label": intent_label,
+				"status_hbox": status_hbox,
+			}
 
 
 func _format_intent(intent: Dictionary) -> String:
@@ -223,7 +247,6 @@ func _format_intent(intent: Dictionary) -> String:
 
 func _on_hand_changed(_new_hand: Array[String]) -> void:
 	_refresh_hand_ui()
-	_update_enemy_ui()
 
 
 func _on_qi_changed(current: int, max_val: int) -> void:
