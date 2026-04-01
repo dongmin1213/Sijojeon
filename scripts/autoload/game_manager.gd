@@ -46,6 +46,8 @@ func _get_scene_path(state: GameState) -> String:
 			return "res://scenes/reward/reward.tscn"
 		GameState.ACT_TRANSITION:
 			return "res://scenes/act_transition/act_transition.tscn"
+		GameState.RUN_OVER, GameState.RUN_WIN:
+			return "res://scenes/run_result/run_result.tscn"
 	return ""
 
 
