@@ -232,6 +232,14 @@ func _on_proceed_pressed() -> void:
 	GameManager.advance_floor()
 
 	if was_boss:
+		# 보스 처치 후 HP 최대치의 20% 회복
+		if GameManager.run_data:
+			var heal_amount: int = int(GameManager.run_data.max_hp * 0.2)
+			GameManager.run_data.current_hp = mini(
+				GameManager.run_data.current_hp + heal_amount,
+				GameManager.run_data.max_hp
+			)
+
 		# 보스 처치: 막 전환 또는 런 승리
 		if GameManager.run_data and GameManager.run_data.current_act >= GameManager.MAX_ACT:
 			# 마지막 막 보스 처치 → 런 승리
