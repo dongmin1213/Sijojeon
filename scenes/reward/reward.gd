@@ -53,9 +53,8 @@ func _try_relic_reward() -> void:
 
 	# 노드 타입에 따라 소스 결정
 	var source := "elite"
-	if GameManager.run_data and GameManager.run_data.has_meta("current_node_type"):
-		var node_type = GameManager.run_data.get_meta("current_node_type")
-		if node_type == MapData.NodeType.BOSS:
+	if GameManager.run_data and GameManager.run_data.current_node_type >= 0:
+		if GameManager.run_data.current_node_type == MapData.NodeType.BOSS:
 			source = "boss"
 
 	relic_offer_id = RelicManager.roll_relic_reward(source)
@@ -216,10 +215,12 @@ func _on_proceed_pressed() -> void:
 	# 메타 데이터 정리
 	var was_boss := false
 	if GameManager.run_data:
-		if GameManager.run_data.has_meta("current_node_type"):
-			was_boss = (GameManager.run_data.get_meta("current_node_type") == MapData.NodeType.BOSS)
+		was_boss = (GameManager.run_data.current_node_type == MapData.NodeType.BOSS)
 		if GameManager.run_data.has_meta("battle_rewards"):
 			GameManager.run_data.remove_meta("battle_rewards")
+		# 노드 메타 초기화
+		GameManager.run_data.current_node_type = -1
+		GameManager.run_data.current_encounter_id = ""
 
 	GameManager.advance_floor()
 

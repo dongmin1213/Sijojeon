@@ -101,6 +101,10 @@ func load_saved_run() -> bool:
 
 
 func end_run(victory: bool) -> void:
+	# 런 통계 기록
+	if run_data:
+		SaveManager.record_run_result(victory, run_data.character_id, run_data.current_act)
+
 	if victory:
 		change_state(GameState.RUN_WIN)
 	else:
@@ -126,6 +130,13 @@ func advance_floor() -> void:
 
 func advance_act() -> void:
 	if run_data:
+		# 현재 막 맵을 이전 맵 목록에 보존
+		if run_data.run_map:
+			run_data.previous_maps.append({
+				"act": run_data.current_act,
+				"map": run_data.run_map.to_dict(),
+				"visited_nodes": Array(run_data.visited_nodes),
+			})
 		run_data.current_act += 1
 		run_data.current_floor = 0
 		run_data.visited_nodes.clear()

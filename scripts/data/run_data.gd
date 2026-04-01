@@ -17,9 +17,15 @@ extends Resource
 @export var map_seed: int = 0
 @export var visited_nodes: Array[int] = []
 var run_map: MapData.RunMap = null
+var previous_maps: Array = []  # 이전 막 맵 목록 [{act, map_dict, visited_nodes}]
+var current_node_type: int = -1  # 현재 노드 타입 (MapData.NodeType, -1은 없음)
+var current_encounter_id: String = ""  # 현재 조우 ID
 
 
 func to_dict() -> Dictionary:
+	var prev_maps_arr := []
+	for pm in previous_maps:
+		prev_maps_arr.append(pm)
 	return {
 		"character_id": character_id,
 		"current_hp": current_hp,
@@ -35,6 +41,9 @@ func to_dict() -> Dictionary:
 		"map_seed": map_seed,
 		"visited_nodes": visited_nodes,
 		"run_map": run_map.to_dict() if run_map else {},
+		"previous_maps": prev_maps_arr,
+		"current_node_type": current_node_type,
+		"current_encounter_id": current_encounter_id,
 	}
 
 
@@ -56,4 +65,7 @@ static func from_dict(data: Dictionary) -> RunData:
 	var map_dict: Dictionary = data.get("run_map", {})
 	if not map_dict.is_empty():
 		rd.run_map = MapData.RunMap.from_dict(map_dict)
+	rd.previous_maps = data.get("previous_maps", [])
+	rd.current_node_type = data.get("current_node_type", -1)
+	rd.current_encounter_id = data.get("current_encounter_id", "")
 	return rd

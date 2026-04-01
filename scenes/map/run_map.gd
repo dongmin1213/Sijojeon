@@ -287,9 +287,9 @@ func _on_node_pressed(node_id: int) -> void:
 	# 방문 기록 추가
 	GameManager.run_data.visited_nodes.append(node_id)
 
-	# 현재 노드 정보를 GameManager에 전달 (전투용)
-	GameManager.run_data.set_meta("current_node_type", map_node.type)
-	GameManager.run_data.set_meta("current_encounter_id", map_node.encounter_id)
+	# 현재 노드 정보를 RunData에 저장 (세이브 영속화)
+	GameManager.run_data.current_node_type = map_node.type
+	GameManager.run_data.current_encounter_id = map_node.encounter_id
 
 	# 자동 저장
 	GameManager.save_current_run()

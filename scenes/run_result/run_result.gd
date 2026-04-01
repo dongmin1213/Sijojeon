@@ -58,6 +58,15 @@ func _populate_stats() -> void:
 	_add_stat_row("제거한 카드", "%d 장" % rd.card_removals_count)
 	_add_stat_row("획득 유물", "%d 개" % rd.relics.size())
 
+	# 누적 런 통계
+	var meta := SaveManager.load_meta()
+	if meta.has("stats"):
+		var s: Dictionary = meta["stats"]
+		_add_stat_row("", "")  # 빈 줄 구분
+		_add_stat_row("총 도전 횟수", "%d 회" % s.get("total_runs", 0))
+		_add_stat_row("총 승리", "%d 회" % s.get("victories", 0))
+		_add_stat_row("총 패배", "%d 회" % s.get("deaths", 0))
+
 
 func _add_stat_row(label_text: String, value_text: String) -> void:
 	var row := HBoxContainer.new()

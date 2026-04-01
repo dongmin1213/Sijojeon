@@ -79,8 +79,8 @@ func _start_battle() -> void:
 	# 맵 노드에서 전달된 encounter_id 사용, 없으면 랜덤 적 선택
 	var enemy_data: Array[Dictionary] = []
 	var encounter_id: String = ""
-	if rd.has_meta("current_encounter_id"):
-		encounter_id = rd.get_meta("current_encounter_id")
+	if rd.current_encounter_id != "":
+		encounter_id = rd.current_encounter_id
 
 	if encounter_id != "":
 		var enemy := DataLoader.get_enemy(encounter_id)
@@ -95,8 +95,7 @@ func _start_battle() -> void:
 
 	# 보스 전투 진입 시 유물 트리거 (만파식적 등)
 	var is_boss := false
-	if rd.has_meta("current_node_type"):
-		is_boss = (rd.get_meta("current_node_type") == MapData.NodeType.BOSS)
+	is_boss = (rd.current_node_type == MapData.NodeType.BOSS)
 	if is_boss:
 		RelicManager.trigger_boss_enter()
 
@@ -412,9 +411,8 @@ func _on_battle_ended(victory: bool) -> void:
 		# 유물 트리거: 전투 승리
 		RelicManager.trigger_combat_victory()
 		# 정예 전투 승리 유물 트리거
-		if GameManager.run_data and GameManager.run_data.has_meta("current_node_type"):
-			if GameManager.run_data.get_meta("current_node_type") == MapData.NodeType.ELITE:
-				RelicManager.trigger_elite_victory()
+		if GameManager.run_data and GameManager.run_data.current_node_type == MapData.NodeType.ELITE:
+			RelicManager.trigger_elite_victory()
 
 		# 적 보상 데이터 수집 → 보상 씬으로 전달
 		var rewards := _collect_enemy_rewards()
