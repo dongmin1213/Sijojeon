@@ -1,0 +1,243 @@
+{
+  "version": "0.1",
+  "type": "relic_pool",
+  "description": "시조전 유물 풀 — 런 중 획득하는 영구 수동 효과 아이템 15종. 일반 3종, 고급 6종(직업 전용 포함), 희귀 4종, 전설 2종.",
+  "balance_ref": "ZER-12 (GDD 밸런스 기초). 기준: 무관 HP 80, 턴 AP 3, 1막 기준 공격 6/방어 6.",
+  "rarity_table": {
+    "1_common":    { "label_ko": "일반",  "color": "#aaaaaa", "drop_weight": { "elite": 50, "event": 30, "shop": 20 } },
+    "2_uncommon":  { "label_ko": "고급",  "color": "#4a90d9", "drop_weight": { "elite": 35, "event": 40, "shop": 30 } },
+    "3_rare":      { "label_ko": "희귀",  "color": "#f5c518", "drop_weight": { "elite": 15, "event": 25, "shop": 35 } },
+    "4_legendary": { "label_ko": "전설",  "color": "#e94f37", "drop_weight": { "boss": 100 } }
+  },
+  "relics": [
+
+    {
+      "id": "R001",
+      "name": { "ko": "편자", "hanja": "鞭子", "romanized": "Pyeonja" },
+      "rarity": 1,
+      "class_restriction": null,
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 방어도 5를 즉시 획득한다.",
+      "effect_description": "각 전투 첫 턴 전 방어도 5 생성",
+      "flavor_text": "낡은 채찍이지만, 몸을 감싸는 기세만큼은 새것이다.",
+      "balance_rationale": "일반 유물. 1막 적 최대 피해 8 기준, 방어도 5는 약 62% 흡수. 매 전투 안정성 제공. 수호(5) 카드 1장과 동등 — 그러나 핸드 1장을 쓰지 않아도 된다는 가치.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "block": 5 }
+    },
+
+    {
+      "id": "R002",
+      "name": { "ko": "평안 부적", "hanja": "平安符籍", "romanized": "Pyeongan Bujeok" },
+      "rarity": 1,
+      "class_restriction": null,
+      "trigger": "on_buff_apply_to_self",
+      "effect": "자신에게 버프(긍정 상태이상)를 부여할 때 지속 시간이 1턴 연장된다.",
+      "effect_description": "자기 버프 지속 턴 +1",
+      "flavor_text": "무속 선생이 써준 글귀 한 장 — 기도가 담겨 있어 더 오래 지속된다.",
+      "balance_rationale": "상태이상 버프 의존도가 높은 문관·무당에게 특히 유리. 단순 수치가 아닌 '지속 연장'으로 카드 순서 전략성을 높임. 직접 피해 없으므로 일반 등급 적합.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "buff_duration_bonus": 1 }
+    },
+
+    {
+      "id": "R003",
+      "name": { "ko": "행운의 엽전", "hanja": "幸運葉錢", "romanized": "Haengwun Yeopjeon" },
+      "rarity": 1,
+      "class_restriction": null,
+      "trigger": "on_combat_victory",
+      "effect": "전투 승리 시 골드 10을 추가 획득한다.",
+      "effect_description": "전투 승리마다 골드 +10",
+      "flavor_text": "동그란 구멍 사이로 복이 쌓인다. 이 돈은 쓰는 게 아니라 부르는 것이다.",
+      "balance_rationale": "런 당 전투 10~13회 기준 약 100~130G 추가. 상점 카드 1장 제거(75G) 또는 구매(75G) 1회분에 해당. 경제 순환 촉진. 일반 등급 적합.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "gold_on_victory": 10 }
+    },
+
+    {
+      "id": "R004",
+      "name": { "ko": "봉황 깃털", "hanja": "鳳凰羽", "romanized": "Bonghwang Gitteo" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "on_deck_shuffle",
+      "effect": "드로우 더미가 소진되어 셔플될 때마다 카드 1장을 추가로 드로우한다.",
+      "effect_description": "셔플 발동 시 무료 드로우 +1",
+      "flavor_text": "봉황은 천 년에 한 번 날갯짓한다. 그 깃털 하나에 시대가 담긴다.",
+      "balance_rationale": "덱이 얇을수록 셔플 빈도가 높아져 상시 +1 드로우에 가까워짐. 카드 제거 전략과 시너지. 드로우는 곧 행동력 — 고급 등급 적합. 과도한 드로우 엔진 방지를 위해 셔플 당 1회로 제한.",
+      "obtain_from": ["elite_reward", "event"],
+      "values": { "draw_on_shuffle": 1 }
+    },
+
+    {
+      "id": "R005",
+      "name": { "ko": "홍삼 뿌리", "hanja": "紅蔘根", "romanized": "Hongsam Ppuri" },
+      "rarity": 1,
+      "class_restriction": null,
+      "trigger": "on_elite_victory",
+      "effect": "정예 전투 승리 시 체력 8을 회복한다.",
+      "effect_description": "정예 전투 클리어 시 체력 +8",
+      "flavor_text": "조선 최고의 약재. 기운이 빠진 몸에 한 모금이면 생기가 돈다.",
+      "balance_rationale": "정예 전투(막당 1~2회)에서만 발동. 런 전체 약 4회 × 8 = 32 HP. 총 HP 대비 ~40% 수준의 '총 회복량'. 일반 회복 이벤트(휴식처 30%)보다 낮아 일반 등급 적합.",
+      "obtain_from": ["shop", "event"],
+      "values": { "heal_on_elite_victory": 8 }
+    },
+
+    {
+      "id": "R006",
+      "name": { "ko": "호신검", "hanja": "護身劍", "romanized": "Hosin Geom" },
+      "rarity": 2,
+      "class_restriction": "무관",
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 이번 전투 동안 기력(行動力) 최대치가 1 증가한다. (턴당 AP 4)",
+      "effect_description": "매 전투 AP 최대치 +1 (무관 전용)",
+      "flavor_text": "무관의 허리춤에는 반드시 비상용 단검 한 자루. 이것이 있으면 손이 하나 더 생긴다.",
+      "balance_rationale": "AP 1 = 기대 피해 약 6~8. 전투당 5~8턴 × 6~8 = 30~64 추가 피해 잠재. 다만 카드가 없으면 무용지물이라 '카드 수 확보' 전략을 요구. 무관 전용이므로 고급 등급 적합.",
+      "obtain_from": ["elite_reward", "boss_reward"],
+      "values": { "ap_bonus_per_battle": 1 }
+    },
+
+    {
+      "id": "R007",
+      "name": { "ko": "사서", "hanja": "四書", "romanized": "Saseo" },
+      "rarity": 2,
+      "class_restriction": "문관",
+      "trigger": "on_first_card_play_per_turn",
+      "effect": "매 턴 첫 번째 카드를 사용할 때 카드 1장을 추가로 드로우한다.",
+      "effect_description": "턴당 첫 카드 사용 시 드로우 +1 (문관 전용)",
+      "flavor_text": "대학·논어·맹자·중용. 넘기는 손이 빠를수록 지식이 쌓인다.",
+      "balance_rationale": "턴당 +1 드로우 = 사실상 시작 핸드 6장. 학식 누적 전략(콤보) 특성상 많은 카드가 필요한 문관에게 최적. 단, 첫 카드를 낭비할 유인이 생겨 의사결정 복잡도 증가.",
+      "obtain_from": ["elite_reward", "event"],
+      "values": { "draw_on_first_card_per_turn": 1 }
+    },
+
+    {
+      "id": "R008",
+      "name": { "ko": "동의보감", "hanja": "東醫寶鑑", "romanized": "Dongui Bogam" },
+      "rarity": 2,
+      "class_restriction": "의원",
+      "trigger": "on_apply_poison",
+      "effect": "독(毒)을 부여할 때 스택이 1 추가된다.",
+      "effect_description": "독 부여 스택 +1 (의원 전용)",
+      "flavor_text": "허준이 남긴 의학서. 독의 이름과 해독법이 나란히 적혀 있다.",
+      "balance_rationale": "독 1스택 = 첫 틱 1 피해 → 복리 누적. +1 스택은 독 카드 1장당 약 4~6 추가 피해로 환산. 의원 특화 자원이므로 다른 직업에게 무용. 고급 등급 적합.",
+      "obtain_from": ["elite_reward", "event"],
+      "values": { "poison_stack_bonus": 1 }
+    },
+
+    {
+      "id": "R009",
+      "name": { "ko": "무당 방울", "hanja": "巫鈴", "romanized": "Muring" },
+      "rarity": 2,
+      "class_restriction": "무당",
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 영력(靈力)을 2 추가 획득한다.",
+      "effect_description": "전투 시작 영력 +2 (무당 전용)",
+      "flavor_text": "소리를 낼수록 귀신이 더 가까이 온다.",
+      "balance_rationale": "영력 2 = 소환 카드 1~2회 추가 사용 가능. 초반 소환 전략을 앞당겨 전투 첫 번째 사이클을 강화. 영력 자원 의존성이 높은 무당에게 핵심 유물.",
+      "obtain_from": ["elite_reward", "event"],
+      "values": { "spirit_power_on_battle_start": 2 }
+    },
+
+    {
+      "id": "R010",
+      "name": { "ko": "각궁", "hanja": "角弓", "romanized": "Gakgung" },
+      "rarity": 2,
+      "class_restriction": "궁수",
+      "trigger": "passive",
+      "effect": "화살(矢) 최대 보유량이 3 증가하고, 전투 시작 시 화살 2개를 추가로 지급한다.",
+      "effect_description": "화살 최대 +3, 전투 시작 화살 +2 (궁수 전용)",
+      "flavor_text": "쇠뿔로 만든 활은 탄성이 뛰어나 멀리, 더 많이 쏠 수 있다.",
+      "balance_rationale": "궁수의 핵심 제약은 화살 고갈. 최대량 +3은 한 전투에서 2~3회 추가 발사 잠재. 시작 화살 +2는 초반 폭발력 강화. 궁수 전용 리소스라 직접 수치 비교가 무의미하지만, 의존 전략 활성화에 충분.",
+      "obtain_from": ["elite_reward"],
+      "values": { "arrow_max_bonus": 3, "arrows_on_battle_start": 2 }
+    },
+
+    {
+      "id": "R011",
+      "name": { "ko": "상단 장부", "hanja": "商團帳簿", "romanized": "Sangdan Jangbu" },
+      "rarity": 2,
+      "class_restriction": "상인",
+      "trigger": "on_enter_shop",
+      "effect": "상점에 입장할 때마다 골드 35를 추가로 획득한다. (런당 최대 2회)",
+      "effect_description": "상점 입장 시 골드 +35 (최대 2회, 상인 전용)",
+      "flavor_text": "상단의 신용장. 저잣거리 어디서나 통한다.",
+      "balance_rationale": "상점 2회 × 35G = 70G. 카드 제거 1회 분량(75G)에 가깝다. 상인의 골드→효과 전환 전략을 지원하되, '런당 2회' 제한으로 무한 골드 스노우볼 방지.",
+      "obtain_from": ["elite_reward", "event"],
+      "values": { "gold_on_enter_shop": 35, "max_activations_per_run": 2 }
+    },
+
+    {
+      "id": "R012",
+      "name": { "ko": "어사마패", "hanja": "御使馬牌", "romanized": "Eosamamapae" },
+      "rarity": 3,
+      "class_restriction": null,
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 가장 체력이 높은 적에게 취약(脆弱) 2를 부여한다.",
+      "effect_description": "전투 시작 강적에게 취약 2 (모든 직업)",
+      "flavor_text": "왕의 명을 받은 암행어사. 이 패 앞에서는 적도 잠시 멈칫한다.",
+      "balance_rationale": "취약 2 = 2턴간 받는 피해 +50%. 이미 가장 위협적인 적에게 적용되어 초반 집중 처리 전략 강화. 다인 전투에서는 타겟 우선순위를 자동 결정해 의사결정 보조. 희귀 등급 적합.",
+      "obtain_from": ["elite_reward", "boss_reward", "event"],
+      "values": { "vulnerable_stacks": 2, "target": "highest_hp_enemy" }
+    },
+
+    {
+      "id": "R013",
+      "name": { "ko": "만파식적", "hanja": "萬波息笛", "romanized": "Manpasikjeok" },
+      "rarity": 3,
+      "class_restriction": null,
+      "trigger": "on_enter_boss_combat",
+      "effect": "보스 전투에 진입할 때 현재 최대 체력의 25%를 회복한다.",
+      "effect_description": "보스 전입 시 최대 HP의 25% 회복 (모든 직업)",
+      "flavor_text": "신라의 피리 소리가 파도를 잠재웠듯, 이 소리는 죽어가는 용사를 일으킨다.",
+      "balance_rationale": "보스 전 3회 발동. 무관 기준 80 × 25% = 20 HP 회복. 이는 휴식처 회복(30%) 2/3 수준. 보스 직전에 발동하므로 의사결정에 영향 없음 — 단순 체력 버퍼. 희귀 등급 적합.",
+      "obtain_from": ["boss_reward", "event"],
+      "values": { "heal_percent_on_boss_enter": 25 }
+    },
+
+    {
+      "id": "R014",
+      "name": { "ko": "저주받은 투구", "hanja": "呪冑", "romanized": "Juchu" },
+      "rarity": 3,
+      "class_restriction": null,
+      "trigger": "dual",
+      "effect": "공격 카드 사용 시 대상에게 출혈(出血) 1을 추가로 부여한다. 단, 매 전투 시작 시 자신에게 독(毒) 3이 부여된다.",
+      "effect_description": "공격 카드마다 적에게 출혈 +1 / 전투 시작 독 3 자해 (모든 직업)",
+      "flavor_text": "전장에 떨어진 투구는 주인을 가리지 않는다. 다만 쓰는 자에게 반드시 대가를 요구한다.",
+      "balance_rationale": "위험-보상 유물. 출혈 1 × 공격 카드 수 = 상당한 누적 피해. 그러나 독 3 자해는 첫 3턴간 3+2+1=6 HP 손실. 빠른 처리 덱에서는 이득, 지구전 덱에서는 부담. 플레이스타일 선택 압박.",
+      "obtain_from": ["event", "boss_reward"],
+      "values": { "bleed_on_attack": 1, "self_poison_on_battle_start": 3 }
+    },
+
+    {
+      "id": "R015",
+      "name": { "ko": "삼족오 깃털", "hanja": "三足烏羽", "romanized": "Samjogo Gitteo" },
+      "rarity": 4,
+      "class_restriction": null,
+      "trigger": "on_turn_start",
+      "effect": "매 턴 시작 시 행동력(行動力) 1을 추가로 획득한다. 단, 시작 덱에 저주 카드 2장이 추가된다.",
+      "effect_description": "매 턴 AP +1 / 시작 덱에 저주 2장 추가 (모든 직업, 전설)",
+      "flavor_text": "세발 까마귀의 깃털에는 태양의 기운이 깃들어 있다. 하지만 태양은 모든 것을 태운다.",
+      "balance_rationale": "전설 등급. AP +1/턴은 약 30~50% 행동력 증가 — 매우 강력. 저주 카드 2장(무기력, 오물)은 핸드 오염 및 드로우 낭비를 유발. '카드 제거' 전략 또는 저주 내성 카드와의 시너지를 요구하는 고위험-고보상 설계.",
+      "obtain_from": ["boss_reward"],
+      "values": { "ap_per_turn_bonus": 1, "curse_cards_added_to_deck": 2 }
+    }
+
+  ],
+
+  "curse_cards_reference": {
+    "note": "저주 카드(呪牌)는 R015 등 일부 유물·이벤트로 덱에 추가되는 부정적 카드. 사용 불가이며 핸드를 차지함.",
+    "examples": [
+      {
+        "id": "CURSE_001",
+        "name": { "ko": "무기력", "hanja": "無氣力", "romanized": "Mugiryeok" },
+        "effect": "사용 불가. 핸드에 있는 동안 기력(AP) 회복량이 1 감소한다.",
+        "type": "curse"
+      },
+      {
+        "id": "CURSE_002",
+        "name": { "ko": "오물", "hanja": "汚物", "romanized": "Omul" },
+        "effect": "사용 불가. 뽑혔을 때 카드 1장 드로우가 막힌다(이번 뽑기 무효).",
+        "type": "curse"
+      }
+    ]
+  }
+}
