@@ -34,6 +34,8 @@ func _ready() -> void:
 	battle_manager.hp_changed.connect(_on_hp_changed)
 	battle_manager.block_changed.connect(_on_block_changed)
 	battle_manager.turn_started.connect(_on_turn_started)
+	battle_manager.enemy_hp_changed.connect(_on_enemy_hp_changed)
+	battle_manager.enemy_intent_shown.connect(_on_enemy_intent_shown)
 	battle_manager.battle_ended.connect(_on_battle_ended)
 	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
 	sijo_system.sijo_completed.connect(_on_sijo_completed)
@@ -128,11 +130,49 @@ func _update_enemy_ui() -> void:
 		hp_lbl.text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
 		hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
+		# 적 인텐트 표시
+		var intent_label := Label.new()
+		intent_label.name = "IntentLabel"
+		intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		intent_label.add_theme_color_override("font_color", Color(1, 0.4, 0.4))
+		var intent := battle_manager._get_enemy_intent(i)
+		intent_label.text = _format_intent(intent)
+
+		# 방어도 표시
+		var block_val: int = enemy.get("block", 0)
+		var enemy_block_label := Label.new()
+		enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		enemy_block_label.text = "방어: %d" % block_val
+		enemy_block_label.visible = block_val > 0
+
 		vbox.add_child(name_label)
 		vbox.add_child(hp_lbl)
+		vbox.add_child(enemy_block_label)
+		vbox.add_child(intent_label)
 		panel.add_child(vbox)
-		panel.custom_minimum_size = Vector2(200, 150)
+		panel.custom_minimum_size = Vector2(200, 180)
 		enemy_container.add_child(panel)
+
+
+func _format_intent(intent: Dictionary) -> String:
+	var intent_type: String = intent.get("intent", intent.get("type", ""))
+	var name_str: String = intent.get("name", "")
+	match intent_type:
+		"attack", "attack_debuff":
+			var dmg: int = intent.get("damage", 0)
+			var times: int = intent.get("times", 1)
+			if times > 1:
+				return "%s %d×%d" % [name_str, dmg, times] if name_str else "공격 %d×%d" % [dmg, times]
+			return "%s %d" % [name_str, dmg] if name_str else "공격 %d" % dmg
+		"defend", "defend_buff", "buff_defend":
+			var blk: int = intent.get("block", 0)
+			return "%s %d" % [name_str, blk] if name_str else "방어 %d" % blk
+		"buff":
+			return name_str if name_str else "강화"
+		"debuff":
+			return name_str if name_str else "디버프"
+		_:
+			return name_str if name_str else "???"
 
 
 # --- 시그널 핸들러 ---
@@ -159,6 +199,14 @@ func _on_block_changed(new_block: int) -> void:
 
 func _on_turn_started(turn: int) -> void:
 	turn_label.text = "%d턴" % turn
+
+
+func _on_enemy_hp_changed(_enemy_index: int, _current: int, _max_val: int) -> void:
+	_update_enemy_ui()
+
+
+func _on_enemy_intent_shown(_enemy_index: int, _intent: Dictionary) -> void:
+	_update_enemy_ui()
 
 
 func _on_card_pressed(hand_index: int) -> void:

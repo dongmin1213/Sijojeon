@@ -44,6 +44,7 @@ signal hp_changed(current: int, max_val: int)
 signal card_drawn(card_id: String)
 signal turn_started(turn: int)
 signal enemy_intent_shown(enemy_index: int, intent: Dictionary)
+signal enemy_hp_changed(enemy_index: int, current: int, max_val: int)
 signal battle_ended(victory: bool)
 
 
@@ -129,10 +130,18 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if sijo_system:
 		sijo_system.try_fill_slot(card.beat, card_id)
 
+	# 카드 효과 적용
+	_resolve_card_effect(card, target_enemy_index)
+
 	# 손패에서 제거 → 버린 카드로
 	hand.remove_at(hand_index)
 	discard_pile.append(card_id)
 	hand_changed.emit(hand)
+
+	# 전투 종료 확인 (적 사망)
+	if _all_enemies_dead():
+		_change_state(BattleState.BATTLE_WIN)
+		battle_ended.emit(true)
 
 	return true
 
@@ -166,9 +175,11 @@ func execute_enemy_turn() -> void:
 		_execute_enemy_action(i, intent)
 
 		# 행동 인덱스 진행
-		var moves: Array = enemy.get("moves", [])
-		if moves.size() > 0:
-			enemy["move_index"] = (enemy["move_index"] + 1) % moves.size()
+		var pattern = enemy.get("move_pattern", {})
+		var sequence: Array = pattern.get("sequence", []) if pattern is Dictionary else []
+		var total: int = sequence.size() if not sequence.is_empty() else enemy.get("moves", []).size()
+		if total > 0:
+			enemy["move_index"] = (enemy["move_index"] + 1) % total
 
 	# 전투 종료 확인
 	if player_hp <= 0:
@@ -215,7 +226,52 @@ func gain_block(amount: int) -> void:
 	block_changed.emit(player_block)
 
 
+func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
+	if enemy_index < 0 or enemy_index >= enemies.size():
+		return
+	var enemy := enemies[enemy_index]
+	if enemy["current_hp"] <= 0:
+		return
+
+	var remaining := amount
+	var eblock: int = enemy.get("block", 0)
+	if eblock > 0:
+		var blocked := mini(eblock, remaining)
+		enemy["block"] = eblock - blocked
+		remaining -= blocked
+
+	if remaining > 0:
+		enemy["current_hp"] -= remaining
+		enemy["current_hp"] = maxi(enemy["current_hp"], 0)
+
+	enemy_hp_changed.emit(enemy_index, enemy["current_hp"], enemy["max_hp"])
+
+
 # --- 내부 함수 ---
+
+func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
+	# 피해
+	if card.damage > 0:
+		if card.is_aoe:
+			for i in enemies.size():
+				if enemies[i]["current_hp"] > 0:
+					deal_damage_to_enemy(i, card.damage)
+		else:
+			deal_damage_to_enemy(target_enemy_index, card.damage)
+
+	# 방어도
+	if card.block_value > 0:
+		gain_block(card.block_value)
+
+	# 기(氣) 획득
+	if card.qi_gain > 0:
+		current_qi += card.qi_gain
+		qi_changed.emit(current_qi, max_qi)
+
+	# 카드 드로우
+	if card.draw_count > 0:
+		draw_cards(card.draw_count)
+
 
 func _change_state(new_state: BattleState) -> void:
 	state = new_state
@@ -240,23 +296,34 @@ func _get_enemy_intent(enemy_index: int) -> Dictionary:
 	var enemy := enemies[enemy_index]
 	var moves: Array = enemy.get("moves", [])
 	if moves.is_empty():
-		return {"type": "attack", "damage": 6}
+		return {"intent": "attack", "damage": 6, "times": 1}
+
+	# move_pattern.sequence가 있으면 move ID로 조회
+	var pattern = enemy.get("move_pattern", {})
+	var sequence: Array = pattern.get("sequence", []) if pattern is Dictionary else []
+	if not sequence.is_empty():
+		var seq_idx: int = enemy.get("move_index", 0) % sequence.size()
+		var move_id: String = sequence[seq_idx]
+		for move in moves:
+			if move.get("id", "") == move_id:
+				return move
+		# ID를 못 찾으면 fallback
+		return moves[0]
+
+	# sequence가 없으면 순서대로
 	var idx: int = enemy.get("move_index", 0) % moves.size()
 	return moves[idx]
 
 
 func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
-	var action_type: String = intent.get("type", "attack")
+	var action_type: String = intent.get("intent", intent.get("type", "attack"))
 	match action_type:
-		"attack":
+		"attack", "attack_debuff":
 			var damage: int = intent.get("damage", 0)
-			take_damage(damage)
-		"multi_attack":
-			var damage: int = intent.get("damage", 0)
-			var hits: int = intent.get("hits", 1)
-			for h in hits:
+			var times: int = intent.get("times", 1)
+			for t in times:
 				take_damage(damage)
-		"defend":
+		"defend", "defend_buff", "buff_defend":
 			var block: int = intent.get("block", 0)
 			enemies[enemy_index]["block"] += block
 		"buff":

@@ -19,6 +19,14 @@ extends Resource
 @export var upgrade_cost: int = 75
 @export var upgraded: bool = false
 
+# 구조화된 효과 수치
+@export var damage: int = 0
+@export var block_value: int = 0
+@export var draw_count: int = 0
+@export var qi_gain: int = 0
+@export var is_aoe: bool = false
+@export var tokens: int = 0
+
 
 static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 	var card := CardData.new()
@@ -47,6 +55,16 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 	card.effect_upgraded = data.get("effect_upgraded", "")
 	card.flavor_text = data.get("flavor_text", "")
 	card.upgrade_cost = data.get("upgrade_cost", 75)
+
+	var values = data.get("values", {})
+	if values is Dictionary:
+		card.damage = values.get("damage", 0)
+		card.block_value = values.get("block", 0)
+		card.draw_count = values.get("draw", 0)
+		card.qi_gain = values.get("qi_gain", 0)
+		card.is_aoe = values.get("is_aoe", false)
+		card.tokens = values.get("tokens", 0)
+
 	return card
 
 
@@ -79,4 +97,10 @@ func duplicate_card() -> CardData:
 	copy.flavor_text = flavor_text
 	copy.upgrade_cost = upgrade_cost
 	copy.upgraded = upgraded
+	copy.damage = damage
+	copy.block_value = block_value
+	copy.draw_count = draw_count
+	copy.qi_gain = qi_gain
+	copy.is_aoe = is_aoe
+	copy.tokens = tokens
 	return copy

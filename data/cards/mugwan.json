@@ -28,7 +28,8 @@
       "balance_rationale": "1코스트 토큰 생성. 둔갑술(2코스트 분신)의 무관 버전. 1코스트로 완전 피해 무효화 + 기 회복은 강력하나, 무관 덱에서 진형 시너지 카드들과의 조합을 전제로 설계. 업그레이드 후 2토큰은 2코스트 카드 상당.",
       "sijo_position": "중장 첫 슬롯 [3] — 진형 준비 단계",
       "class_synergy": ["G002 (돌격 토큰 보너스)", "G004 (학익진 토큰 배수)"],
-      "upgrade_cost": 75
+      "upgrade_cost": 75,
+      "values": { "tokens": 1 }
     },
     {
       "id": "G002",
@@ -49,7 +50,8 @@
       "balance_rationale": "2코스트 공격. 기본 12피해는 2코스트 기준 약간 우위. 토큰 보너스 +5로 최대 17피해. G001과 자연스러운 1+2코스트 콤보(3기 소비). 진형 덱 핵심 피니셔.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
       "class_synergy": ["G001 (진형 전환 토큰 소스)"],
-      "upgrade_cost": 75
+      "upgrade_cost": 75,
+      "values": { "damage": 12 }
     },
     {
       "id": "G003",
@@ -70,7 +72,8 @@
       "balance_rationale": "2코스트 광역 디버프. 적 전체의 피해를 2턴간 25% 감소. HP 70 기준 적 1회 공격 10피해라면 2.5씩 절약 × 2턴 = 5 실질 회복 가치. 다수 적 전투에서 극강. 약화(단일 25%, 1회)의 광역 지속형 버전.",
       "sijo_position": "중장 둘째 슬롯 [4]",
       "class_synergy": ["G004 (학익진 포위됨 배수 피해)"],
-      "upgrade_cost": 100
+      "upgrade_cost": 100,
+      "values": {}
     },
     {
       "id": "G004",
@@ -91,7 +94,8 @@
       "balance_rationale": "3코스트 광역 공격. 기본 8 AoE는 진언(2코스트 4 AoE)보다 높지만 1코스트 더 소비. 토큰 2개 시 14 AoE, 3개 시 17 AoE — 진형 빌드 피니셔. 시조 종장 완성 시 최대 28(2토큰 기준) AoE 폭발.",
       "sijo_position": "종장 둘째 슬롯 [4] — 진형 완성 피날레",
       "class_synergy": ["G001 (토큰 소스)", "G003 (포위됨으로 적 약화 후 사용 시 피해 시너지)"],
-      "upgrade_cost": 150
+      "upgrade_cost": 150,
+      "values": { "damage": 8, "is_aoe": true }
     },
     {
       "id": "G005",
@@ -112,7 +116,8 @@
       "balance_rationale": "3코스트 방어 희귀 카드. 18방어도 + 2토큰(+ 이번 턴 토큰 2배 효과). 태산붕(3코스트 20피해)의 방어 버전. 강력하나 공격력이 없어 긴 전투에서만 진가 발휘. 이번 턴 토큰 2배 효과는 G001과 같은 턴 사용 시 총 4토큰 생성 가능.",
       "sijo_position": "종장 첫 슬롯 [3] — 방어 완성 피날레",
       "class_synergy": ["G001 (같은 턴 2배 토큰 시너지)", "G004 (토큰 배수로 학익진 폭발 준비)"],
-      "upgrade_cost": 150
+      "upgrade_cost": 150,
+      "values": { "block": 18, "tokens": 2 }
     }
   ],
   "status_conditions_defined": [

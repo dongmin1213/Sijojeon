@@ -27,7 +27,8 @@
       "flavor_text": "호흡을 가다듬어 기를 모은다 — 고요함 속에 힘이 충전된다.",
       "balance_rationale": "0코스트 기 회복 + 드로우. 후퇴(0코스트 2방어+약화)와 대등한 0코스트 가치. 기 1 회복은 실질 1코스트 카드 1장 사용 가능 = 간접 행동력. 덱 가속 역할.",
       "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 리듬 스타터",
-      "upgrade_cost": 50
+      "upgrade_cost": 50,
+      "values": { "qi_gain": 1, "draw": 1 }
     },
     {
       "id": "D002",
@@ -47,7 +48,8 @@
       "flavor_text": "손끝에 인(印)을 맺으니 — 다음 술법에 힘이 실린다.",
       "balance_rationale": "1코스트 공격 버프. 도약(1코스트 3방어+4버프)과 유사하나 방어도가 2로 낮은 대신 도사 주문 카드와의 시너지를 위해 spell 타입. 도약의 도사 버전.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
-      "upgrade_cost": 75
+      "upgrade_cost": 75,
+      "values": { "block": 2 }
     },
     {
       "id": "D003",
@@ -68,7 +70,8 @@
       "balance_rationale": "2코스트 광역 공격. 기본 4 AoE는 낮지만 기공(D001)과 콤보 시 7 AoE. 도사의 0코스트→2코스트 콤보를 유도하는 핵심 카드. 포위(G003)가 디버프라면 진언은 직접 피해 광역.",
       "sijo_position": "중장 둘째 슬롯 [4]",
       "class_synergy": ["D001 (기공 기 획득 조건 충족)", "D002 (결인 버프 후 사용 시 피해 증가)"],
-      "upgrade_cost": 75
+      "upgrade_cost": 75,
+      "values": { "damage": 4, "is_aoe": true }
     },
     {
       "id": "D004",
@@ -89,7 +92,8 @@
       "balance_rationale": "1코스트 피해 + DoT. 즉시 5피해 + 화상3(3+2+1=6 총 추가 피해) = 총 11피해 가치. 3턴에 걸쳐 분산되므로 즉시 피해 카드보다 총량은 높지만 느림. 도사의 지구전 특성 반영.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": ["D003 (진언 AoE + 부적 단일 DoT 조합)"],
-      "upgrade_cost": 100
+      "upgrade_cost": 100,
+      "values": { "damage": 5 }
     },
     {
       "id": "D005",
@@ -110,7 +114,8 @@
       "balance_rationale": "3코스트 드로우 + 비용 감소. 3장 드로우 + 1코스트 감소는 실질 3기 투자로 3장+α 행동을 가능하게 함. 도사의 콤보 확장 피니셔. 시조 종장 완성 시 6장 드로우 + 추가 기 = 폭발적 턴.",
       "sijo_position": "종장 첫 슬롯 [3] — 콤보 폭발 피날레",
       "class_synergy": ["D001 (기공으로 비용 감소 카드 활용)", "D004 (드로우로 부적 추가 확보)"],
-      "upgrade_cost": 150
+      "upgrade_cost": 150,
+      "values": { "draw": 3 }
     },
     {
       "id": "D007",
@@ -130,7 +135,8 @@
       "flavor_text": "손가락으로 결(訣)을 맺어 기를 날린다 — 검 없이도 베는 도사의 기본기.",
       "balance_rationale": "1코스트 기본 공격. 베기(6피해)의 도사 버전. 도사는 물리 무기 대신 기공 발사로 공격. 완전히 동일한 효율로 클래스 간 밸런스 유지. 스타터 덱 3장 포함.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "upgrade_cost": 50
+      "upgrade_cost": 50,
+      "values": { "damage": 6 }
     }
   ],
   "status_conditions_defined": [
