@@ -57,6 +57,11 @@ func _ready() -> void:
 		add_child(p)
 		_sfx_players.append(p)
 
+	# 저장된 볼륨 설정 로드
+	var settings := SaveManager.load_settings()
+	bgm_volume = settings.get("bgm_volume", 0.8)
+	sfx_volume = settings.get("sfx_volume", 0.8)
+
 	# GameManager 상태 변경 시 BGM 자동 전환
 	GameManager.state_changed.connect(_on_game_state_changed)
 

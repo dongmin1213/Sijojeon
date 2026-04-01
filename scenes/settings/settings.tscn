@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=3 uid="uid://settings_screen"]
+
+[ext_resource type="Script" path="res://scenes/settings/settings.gd" id="1"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.06, 0.04, 0.1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "설정"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="BGMContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BGMLabel" type="Label" parent="VBoxContainer/BGMContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+theme_override_font_sizes/font_size = 24
+text = "배경음악"
+vertical_alignment = 1
+
+[node name="BGMSlider" type="HSlider" parent="VBoxContainer/BGMContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.8
+custom_minimum_size = Vector2(0, 50)
+
+[node name="SFXContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SFXLabel" type="Label" parent="VBoxContainer/SFXContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+theme_override_font_sizes/font_size = 24
+text = "효과음"
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="VBoxContainer/SFXContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.8
+custom_minimum_size = Vector2(0, 50)
+
+[node name="VibrationContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VibrationLabel" type="Label" parent="VBoxContainer/VibrationContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+theme_override_font_sizes/font_size = 24
+text = "진동"
+vertical_alignment = 1
+
+[node name="VibrationCheck" type="CheckButton" parent="VBoxContainer/VibrationContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_font_sizes/font_size = 28
+text = "돌아가기"

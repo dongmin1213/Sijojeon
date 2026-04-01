@@ -44,8 +44,7 @@ func _on_chronicle_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	# 설정 화면 (ZER-78에서 구현 예정, 현재는 placeholder)
-	push_warning("TitleScreen: 설정 화면 미구현")
+	GameManager.change_state(GameManager.GameState.SETTINGS)
 
 
 func _on_quit_pressed() -> void:

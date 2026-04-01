@@ -7,6 +7,7 @@ enum GameState {
 	TITLE,
 	CHARACTER_SELECT,
 	CHRONICLE,
+	SETTINGS,
 	MAP,
 	BATTLE,
 	EVENT,
@@ -35,6 +36,8 @@ func _get_scene_path(state: GameState) -> String:
 			return "res://scenes/character_select/character_select.tscn"
 		GameState.CHRONICLE:
 			return "res://scenes/chronicle/chronicle.tscn"
+		GameState.SETTINGS:
+			return "res://scenes/settings/settings.tscn"
 		GameState.MAP:
 			return "res://scenes/map/run_map.tscn"
 		GameState.BATTLE:

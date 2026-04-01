@@ -5,6 +5,7 @@ extends Node
 
 const SAVE_PATH := "user://save_data.json"
 const META_PATH := "user://meta_data.json"
+const SETTINGS_PATH := "user://settings.json"
 
 signal save_completed(success: bool)
 
@@ -77,6 +78,28 @@ func record_run_result(victory: bool, character_id: String, act_reached: int) ->
 		meta["character_stats"][character_id]["victories"] += 1
 
 	save_meta(meta)
+
+
+# --- 설정 저장/로드 ---
+
+const DEFAULT_SETTINGS := {
+	"bgm_volume": 0.8,
+	"sfx_volume": 0.8,
+	"vibration": true,
+}
+
+
+func save_settings(settings: Dictionary) -> bool:
+	return _write_json(SETTINGS_PATH, settings)
+
+
+func load_settings() -> Dictionary:
+	var data := _read_json(SETTINGS_PATH)
+	# 기본값 병합
+	for key in DEFAULT_SETTINGS:
+		if not data.has(key):
+			data[key] = DEFAULT_SETTINGS[key]
+	return data
 
 
 # --- 내부 유틸 ---
