@@ -1,0 +1,22 @@
+# Godot 4 specific
+.godot/
+
+# Godot exported builds
+export/
+exports/
+build/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / editor
+.vscode/
+*.swp
+*.swo
+*~
+
+# Paperclip local
+.paperclip/
+.claude/
