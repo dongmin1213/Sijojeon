@@ -1,0 +1,119 @@
+{
+  "version": "0.1",
+  "type": "card_pool",
+  "class": "common",
+  "category": "movement",
+  "description": "공통 이동 카드 풀 — 모든 직업이 사용 가능한 이동/회피 카드 5종.",
+  "balance_ref": "ZER-12 (카드 밸런스 디자인 스펙). 기준: 1코스트 공격 6피해(베기), 1코스트 방어 5방어도(수호). 기(氣) 기본 3/턴.",
+  "cards": [
+    {
+      "id": "M001",
+      "name": {
+        "ko": "회피",
+        "hanja": "回避",
+        "romanized": "Hoepi"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "defense",
+      "subtypes": ["movement"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "방어도 4를 획득한다. 이번 턴에 이미 카드를 1장 이상 사용했다면 방어도를 3 추가 획득한다.",
+      "effect_upgraded": "방어도 5를 획득한다. 이미 카드를 사용했다면 방어도를 4 추가 획득한다.",
+      "flavor_text": "적의 칼끝을 한 발짝 비켜서면 — 흘려내는 것이 막는 것보다 강하다.",
+      "balance_rationale": "1코스트 기본 4방어도. 수호(5)보다 1 낮지만, 두 번째 이상 사용 시 최대 7방어도로 수호를 초과. 이동 카드의 포지셔닝 특성상 후반 슬롯에 배치되는 경향을 반영.",
+      "sijo_position": "초장·중장 둘째 슬롯 [4]",
+      "upgrade_cost": 75
+    },
+    {
+      "id": "M002",
+      "name": {
+        "ko": "도약",
+        "hanja": "跳躍",
+        "romanized": "Doyak"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "movement",
+      "subtypes": ["defense", "attack_buff"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "방어도 3을 획득한다. 이번 턴 다음에 사용하는 공격 카드의 피해를 +4 증가시킨다.",
+      "effect_upgraded": "방어도 4를 획득한다. 다음 공격 카드 피해 +6 증가.",
+      "flavor_text": "땅을 박차고 솟구쳐 — 올라가는 순간, 적은 나의 칼끝을 잃는다.",
+      "balance_rationale": "1코스트로 방어(3) + 공격버프(+4) 이중 효과. 단독 가치는 낮지만 이동→공격 연계의 핵심 카드. 결인(+4)과 유사하나 방어도가 붙어 더 유연. 시조 포지션상 초장 [3]에서 리듬 오프너 역할.",
+      "sijo_position": "초장 첫 슬롯 [3] — 이동 시퀀스 오프너",
+      "upgrade_cost": 75
+    },
+    {
+      "id": "M003",
+      "name": {
+        "ko": "후퇴",
+        "hanja": "後退",
+        "romanized": "Hutoe"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "movement",
+      "subtypes": ["defense", "debuff"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "방어도 2를 획득한다. 대상 적에게 약화(弱化) 1을 부여한다.",
+      "effect_upgraded": "방어도 3을 획득한다. 약화 2를 부여한다.",
+      "flavor_text": "물러서는 것은 도망이 아니다 — 적의 힘을 빼앗는 계략이다.",
+      "balance_rationale": "0코스트. 기공(0코스트 기+드로우)과 유사한 포지션이나 방어형. 2방어도 + 약화1은 기공과 대등. 덱 20장 기준 최대 2장 권장.",
+      "sijo_position": "초장 첫 슬롯 [3] — 무료 리듬 스타터",
+      "upgrade_cost": 50
+    },
+    {
+      "id": "M004",
+      "name": {
+        "ko": "측면 강타",
+        "hanja": "側面强打",
+        "romanized": "Eukmyeon Gangta"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": ["movement"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "적에게 10 피해를 입힌다. 현재 방어도가 1 이상이면 피해를 5 추가로 입힌다.",
+      "effect_upgraded": "적에게 14 피해를 입힌다. 방어도가 있으면 피해 7 추가.",
+      "flavor_text": "허리를 낮춰 측면으로 파고드는 한 발 — 막을 틈도 없이 파고든다.",
+      "balance_rationale": "2코스트 조건부 공격. 기본 10피해는 2코스트 기준 적정. 방어도 조건(이동 콤보 후 자연스럽게 충족)으로 최대 15피해. 총 기대 피해 약 12~15로 화염구(10+6=16총피해) 대비 즉시 피해에 특화.",
+      "sijo_position": "중장·종장 둘째 슬롯 [4]",
+      "upgrade_cost": 75
+    },
+    {
+      "id": "M005",
+      "name": {
+        "ko": "포복",
+        "hanja": "匍匐",
+        "romanized": "Pobok"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "movement",
+      "subtypes": ["defense", "draw"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "방어도 5를 획득하고 카드 1장을 드로우한다.",
+      "effect_upgraded": "방어도 7을 획득하고 카드 1장을 드로우한다.",
+      "flavor_text": "낮게 기어 적의 시야를 벗어나며 — 다음 수를 준비한다.",
+      "balance_rationale": "1코스트 수호(5방어도)와 동일한 방어도에 드로우 1장 추가. 수호보다 약간 강하나 [3] 음보라 시조 포지션이 달라 직접 경쟁하지 않음. 덱 가속 + 방어를 동시에 처리하는 범용 이동 카드.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "upgrade_cost": 50
+    }
+  ],
+  "status_conditions_referenced": [
+    {
+      "id": "약화",
+      "ko": "약화",
+      "hanja": "弱化",
+      "description": "다음 공격 피해 25% 감소. 1회 발동 후 소멸.",
+      "source": "ZER-12 정의 준수"
+    }
+  ]
+}

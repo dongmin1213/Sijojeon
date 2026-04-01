@@ -1,0 +1,136 @@
+{
+  "version": "0.1",
+  "type": "card_pool",
+  "class": "mugwan",
+  "class_ko": "무관",
+  "class_hanja": "武官",
+  "category": "movement",
+  "description": "무관(武官) 전용 이동 카드 풀. 진형(陣形) 조작과 병사 토큰을 활용하는 군사 이동 카드 3종 + 희귀 2종.",
+  "class_mechanic": "병사 토큰(兵士 Token): 피해를 1회 대신 받고 소멸. 소멸 시 기(氣) 1 회복. 진형 전환으로 생성.",
+  "balance_ref": "ZER-12 (카드 밸런스 디자인 스펙). 무관 고유 메카닉: 진형 카드로 전투 패턴 변환, 병사 토큰 지휘.",
+  "cards": [
+    {
+      "id": "G001",
+      "name": {
+        "ko": "진형 전환",
+        "hanja": "陣形轉換",
+        "romanized": "Jinhyeong Jeonhwan"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "formation",
+      "subtypes": ["movement", "token"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "병사 토큰 1개를 생성한다. 병사 토큰: 피해를 1회 대신 받고 소멸. 소멸 시 기(氣) 1 회복.",
+      "effect_upgraded": "병사 토큰 2개를 생성한다.",
+      "flavor_text": "한 발 앞에 병사를 세워 — 나를 향한 칼끝을 막아낸다.",
+      "balance_rationale": "1코스트 토큰 생성. 둔갑술(2코스트 분신)의 무관 버전. 1코스트로 완전 피해 무효화 + 기 회복은 강력하나, 무관 덱에서 진형 시너지 카드들과의 조합을 전제로 설계. 업그레이드 후 2토큰은 2코스트 카드 상당.",
+      "sijo_position": "중장 첫 슬롯 [3] — 진형 준비 단계",
+      "class_synergy": ["G002 (돌격 토큰 보너스)", "G004 (학익진 토큰 배수)"],
+      "upgrade_cost": 75
+    },
+    {
+      "id": "G002",
+      "name": {
+        "ko": "돌격",
+        "hanja": "突擊",
+        "romanized": "Dolgyeok"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": ["movement", "formation"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "적에게 12 피해를 입힌다. 병사 토큰이 1개 이상 있으면 피해를 5 추가로 입힌다.",
+      "effect_upgraded": "16 피해. 병사 토큰 보너스 피해 +7.",
+      "flavor_text": "병사들을 앞세운 일제 돌격 — 진형이 살아있을 때 가장 강하다.",
+      "balance_rationale": "2코스트 공격. 기본 12피해는 2코스트 기준 약간 우위. 토큰 보너스 +5로 최대 17피해. G001과 자연스러운 1+2코스트 콤보(3기 소비). 진형 덱 핵심 피니셔.",
+      "sijo_position": "중장·종장 둘째 슬롯 [4]",
+      "class_synergy": ["G001 (진형 전환 토큰 소스)"],
+      "upgrade_cost": 75
+    },
+    {
+      "id": "G003",
+      "name": {
+        "ko": "포위",
+        "hanja": "包圍",
+        "romanized": "Powi"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "spell",
+      "subtypes": ["movement", "formation", "debuff"],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": "모든 적에게 포위됨(包圍됨) 상태를 2턴 부여한다. 포위됨: 공격 피해 25% 감소.",
+      "effect_upgraded": "포위됨 지속 시간 3턴.",
+      "flavor_text": "사방을 막으면 적은 힘을 잃는다 — 포위된 자는 싸우기 전에 이미 진다.",
+      "balance_rationale": "2코스트 광역 디버프. 적 전체의 피해를 2턴간 25% 감소. HP 70 기준 적 1회 공격 10피해라면 2.5씩 절약 × 2턴 = 5 실질 회복 가치. 다수 적 전투에서 극강. 약화(단일 25%, 1회)의 광역 지속형 버전.",
+      "sijo_position": "중장 둘째 슬롯 [4]",
+      "class_synergy": ["G004 (학익진 포위됨 배수 피해)"],
+      "upgrade_cost": 100
+    },
+    {
+      "id": "G004",
+      "name": {
+        "ko": "학익진",
+        "hanja": "鶴翼陣",
+        "romanized": "Hagikjin"
+      },
+      "beat": 4,
+      "cost": 3,
+      "type": "attack",
+      "subtypes": ["formation", "rare", "aoe"],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": "모든 적에게 8 피해를 입힌다. 보유한 병사 토큰 1개당 모든 적에게 피해를 3 추가로 입힌다.",
+      "effect_upgraded": "모든 적에게 11 피해. 토큰당 +4 추가 피해.",
+      "flavor_text": "학의 날개처럼 양익을 펼쳐 — 한 번의 진격으로 전장을 쓸어버린다.",
+      "balance_rationale": "3코스트 광역 공격. 기본 8 AoE는 진언(2코스트 4 AoE)보다 높지만 1코스트 더 소비. 토큰 2개 시 14 AoE, 3개 시 17 AoE — 진형 빌드 피니셔. 시조 종장 완성 시 최대 28(2토큰 기준) AoE 폭발.",
+      "sijo_position": "종장 둘째 슬롯 [4] — 진형 완성 피날레",
+      "class_synergy": ["G001 (토큰 소스)", "G003 (포위됨으로 적 약화 후 사용 시 피해 시너지)"],
+      "upgrade_cost": 150
+    },
+    {
+      "id": "G005",
+      "name": {
+        "ko": "천하무적진",
+        "hanja": "天下無敵陣",
+        "romanized": "Cheonha Mujeokjin"
+      },
+      "beat": 3,
+      "cost": 3,
+      "type": "formation",
+      "subtypes": ["defense", "rare", "token"],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": "방어도 18을 획득한다. 병사 토큰 2개를 생성한다. 이번 턴 병사 토큰 생성량이 2배가 된다.",
+      "effect_upgraded": "방어도 24를 획득한다. 병사 토큰 3개를 생성한다.",
+      "flavor_text": "진형은 완벽하다 — 어떤 적도 이 철옹성을 뚫을 수 없다.",
+      "balance_rationale": "3코스트 방어 희귀 카드. 18방어도 + 2토큰(+ 이번 턴 토큰 2배 효과). 태산붕(3코스트 20피해)의 방어 버전. 강력하나 공격력이 없어 긴 전투에서만 진가 발휘. 이번 턴 토큰 2배 효과는 G001과 같은 턴 사용 시 총 4토큰 생성 가능.",
+      "sijo_position": "종장 첫 슬롯 [3] — 방어 완성 피날레",
+      "class_synergy": ["G001 (같은 턴 2배 토큰 시너지)", "G004 (토큰 배수로 학익진 폭발 준비)"],
+      "upgrade_cost": 150
+    }
+  ],
+  "status_conditions_defined": [
+    {
+      "id": "포위됨",
+      "ko": "포위됨",
+      "hanja": "包圍됨",
+      "description": "이 상태의 적은 공격 피해가 25% 감소한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
+      "duration_type": "turns",
+      "visual_note": "적 캐릭터 주변에 포위 링 이펙트"
+    },
+    {
+      "id": "병사_토큰",
+      "ko": "병사 토큰",
+      "hanja": "兵士 Token",
+      "description": "플레이어 대신 피해를 1회 받고 소멸. 소멸 시 기(氣) 1 회복. 중첩 가능 — 각 토큰이 순서대로 피해를 흡수.",
+      "duration_type": "hit_based",
+      "visual_note": "플레이어 옆에 소형 병사 토큰 아이콘 표시"
+    }
+  ]
+}
