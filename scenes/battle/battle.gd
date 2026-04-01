@@ -282,10 +282,60 @@ func _format_status_effects(target: String) -> String:
 
 func _on_battle_ended(victory: bool) -> void:
 	end_turn_button.disabled = true
+	card_hand.visible = false
+
+	# HP 동기화
+	if GameManager.run_data:
+		GameManager.run_data.current_hp = battle_manager.player_hp
+
+	# 전투 결과 오버레이 표시
+	_show_battle_result(victory)
+
+	# 1.5초 후 씬 전환
+	var timer := get_tree().create_timer(1.5)
+	await timer.timeout
 	if victory:
-		# HP 동기화 → 보상 씬으로
+		# 적 보상 데이터 수집 → 보상 씬으로 전달
+		var rewards := _collect_enemy_rewards()
 		if GameManager.run_data:
-			GameManager.run_data.current_hp = battle_manager.player_hp
+			GameManager.run_data.set_meta("battle_rewards", rewards)
 		GameManager.change_state(GameManager.GameState.REWARD)
 	else:
 		GameManager.end_run(false)
+
+
+func _show_battle_result(victory: bool) -> void:
+	var overlay := ColorRect.new()
+	overlay.anchors_preset = Control.PRESET_FULL_RECT
+	overlay.color = Color(0, 0, 0, 0.6)
+	add_child(overlay)
+
+	var label := Label.new()
+	label.text = "승리!" if victory else "패배..."
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.anchors_preset = Control.PRESET_FULL_RECT
+	label.add_theme_font_size_override("font_size", 48)
+	label.add_theme_color_override("font_color", Color(1, 0.85, 0.3) if victory else Color(1, 0.3, 0.3))
+	overlay.add_child(label)
+
+
+func _collect_enemy_rewards() -> Dictionary:
+	var total_gold := 0
+	var card_chance := 0.0
+	var relic_chance := 0.0
+	for enemy in battle_manager.enemies:
+		var rewards = enemy.get("rewards", {})
+		if rewards is Dictionary:
+			var gold_data = rewards.get("gold", {})
+			if gold_data is Dictionary:
+				total_gold += randi_range(gold_data.get("min", 10), gold_data.get("max", 20))
+			elif gold_data is int:
+				total_gold += gold_data
+			card_chance = maxf(card_chance, rewards.get("card_chance", 0.0))
+			relic_chance = maxf(relic_chance, rewards.get("relic_chance", 0.0))
+	return {
+		"gold": total_gold,
+		"card_chance": card_chance,
+		"relic_chance": relic_chance,
+	}
