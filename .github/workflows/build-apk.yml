@@ -28,16 +28,23 @@ jobs:
 
       - name: Setup Android SDK and export templates
         run: |
-          mkdir -p /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable/* /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ || true
-          mkdir -p /root/.config/godot
+          mkdir -p $HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          if [ -d "/root/.local/share/godot/templates/${GODOT_VERSION}.stable" ]; then
+            cp /root/.local/share/godot/templates/${GODOT_VERSION}.stable/* \
+               $HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ 2>/dev/null || true
+          fi
+          if [ -d "/root/.local/share/godot/export_templates/${GODOT_VERSION}.stable" ]; then
+            cp /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable/* \
+               $HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ 2>/dev/null || true
+          fi
+          ls -la $HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ || echo "WARNING: No export templates found"
 
       - name: Setup Android keystore
         run: |
-          mkdir -p /root/.android
+          mkdir -p $HOME/.android
           if [ "${{ inputs.export_type }}" = "debug" ]; then
             keytool -genkeypair -v \
-              -keystore /root/.android/debug.keystore \
+              -keystore $HOME/.android/debug.keystore \
               -alias androiddebugkey \
               -keyalg RSA -keysize 2048 -validity 10000 \
               -storepass android -keypass android \
@@ -46,15 +53,18 @@ jobs:
 
       - name: Configure Godot editor settings for Android
         run: |
-          mkdir -p /root/.config/godot
-          cat > /root/.config/godot/editor_settings-4.tres <<EOF
+          mkdir -p $HOME/.config/godot
+          JAVA_PATH=$(which java | xargs dirname | xargs dirname)
+          cat > $HOME/.config/godot/editor_settings-4.tres <<EOF
           [gd_resource type="EditorSettings"]
           [resource]
           export/android/android_sdk_path = "/usr/lib/android-sdk"
-          export/android/debug_keystore = "/root/.android/debug.keystore"
+          export/android/java_sdk_path = "$JAVA_PATH"
+          export/android/debug_keystore = "$HOME/.android/debug.keystore"
           export/android/debug_keystore_user = "androiddebugkey"
           export/android/debug_keystore_pass = "android"
           EOF
+          sed -i 's/^[[:space:]]*//' $HOME/.config/godot/editor_settings-4.tres
 
       - name: Import project assets
         run: |
