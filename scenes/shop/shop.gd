@@ -293,7 +293,9 @@ func _on_remove_card(deck_index: int) -> void:
 
 	# 제거 모드 종료 후 UI 갱신
 	removal_mode = false
+	remove_button.text = "카드 제거 (%d 금화)" % _get_removal_cost()
 	deck_scroll.visible = false
+	leave_button.text = "상점 나가기"
 	_update_remove_section()
 	_update_gold_display()
 
