@@ -70,8 +70,8 @@
         "type": "sequential",
         "sequence": [
           "authority_gaze",
-          "seal_strike",
           "official_shield",
+          "seal_strike",
           "seal_strike",
           "red_tape",
           "summon_guard",
