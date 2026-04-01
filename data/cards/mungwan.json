@@ -1,0 +1,281 @@
+{
+  "version": "0.1",
+  "type": "card_pool",
+  "class": "mungwan",
+  "class_ko": "문관",
+  "class_hanja": "文官",
+  "category": "academic",
+  "description": "문관(文官) 전용 카드 풀. 학식(學識) 자원을 축적하고 소비하여 강력한 효과를 발휘하는 학술형 직업. 공격 3종, 방어 2종, 학술 3종, 이동 2종.",
+  "class_mechanic": "학식(學識): 학술·방어 카드 사용 시 획득. 최대 6. 전투 시작 시 0으로 초기화. 공격 카드의 학식 소비 효과를 통해 취약(脆弱) 부여 및 폭발적 광역 피해를 실현.",
+  "balance_ref": "ZER-27 (밸런스 시트). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴. 학식 소비 시 2코스트 상당 효과 추가 목표.",
+  "resource": {
+    "id": "학식",
+    "ko": "학식",
+    "hanja": "學識",
+    "description": "문관 전용 자원. 카드 사용으로 축적되며 특정 카드에서 소비해 강화 효과를 발동한다.",
+    "max": 6,
+    "initial": 0,
+    "carry_over": false,
+    "reset_trigger": "combat_start",
+    "visual_note": "화면 상단 붓과 책 아이콘, 최대 6칸 게이지"
+  },
+  "cards": [
+    {
+      "id": "W001",
+      "name": {
+        "ko": "직언",
+        "hanja": "直言",
+        "romanized": "Jigeon"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": ["basic"],
+      "rarity": 1,
+      "rarity_stars": "★☆☆☆☆",
+      "effect": "적에게 6 피해를 입힌다.",
+      "effect_upgraded": "적에게 9 피해를 입힌다.",
+      "flavor_text": "거리낌 없이 아뢰는 한 마디 — 칼 대신 붓 끝에 실린 진실이 적을 관통한다.",
+      "balance_rationale": "1코스트 기본 공격. 베기(무관 6피해)·수결(도사 6피해)과 완전히 동일한 효율. 문관 스타터 덱 3장 포함. 직언은 무기 없이 문자의 힘으로 공격하는 문관의 정체성 반영.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "upgrade_cost": 50,
+      "values": { "damage": 6 }
+    },
+    {
+      "id": "W002",
+      "name": {
+        "ko": "탄핵",
+        "hanja": "彈劾",
+        "romanized": "Tanhaek"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": ["debuff"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "적에게 10 피해를 입힌다. 학식 1을 소비하면 대상에게 취약(脆弱) 2턴을 부여한다. (취약: 받는 피해 50% 증가)",
+      "effect_upgraded": "적에게 14 피해를 입힌다. 학식 소비 시 취약 3턴 부여.",
+      "flavor_text": "왕 앞에 죄상을 낱낱이 고하면 — 적은 벌벌 떨며 모든 것에 취약해진다.",
+      "balance_rationale": "2코스트 조건부 공격. 기본 10피해는 측면강타(10)와 동급. 학식 1 소비 시 취약 2턴 — 이후 공격 피해가 50% 증가하므로 상소·직언 콤보 기대값이 크게 오름. 학식 없이도 기본 피해가 충분해 어느 상황에서나 플레이 가능.",
+      "sijo_position": "중장·종장 둘째 슬롯 [4]",
+      "class_synergy": ["W003 (취약 적에게 상소 AoE → 피해 1.5배)", "W001 (직언으로 취약 스택 소비)"],
+      "upgrade_cost": 75,
+      "values": { "damage": 10, "optional_resource_cost": 1, "apply_debuff_on_resource": "vulnerable", "debuff_duration": 2 }
+    },
+    {
+      "id": "W003",
+      "name": {
+        "ko": "상소",
+        "hanja": "上疏",
+        "romanized": "Sangso"
+      },
+      "beat": 4,
+      "cost": 3,
+      "type": "attack",
+      "subtypes": ["aoe", "rare"],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": "학식을 모두 소비한다. 모든 적에게 소비한 학식×3 피해를 입힌다 (최소 6).",
+      "effect_upgraded": "학식을 모두 소비한다. 모든 적에게 소비한 학식×4 피해를 입힌다 (최소 8).",
+      "flavor_text": "왕에게 올리는 간곡한 글 한 통 — 글자 하나하나에 담긴 학식이 번개처럼 적진을 휩쓴다.",
+      "balance_rationale": "3코스트 학식 소비형 AoE 피니셔. 학식 4 = 12 AoE, 학식 6 = 18 AoE. 시조 완성 보너스(효과 2배) 시 최대 36 AoE (학식 6 기준) — 도사 태산붕(40)보다 낮으나 광역. 단, 학식 6 축적 조건 충족이 어려워 실전 평균치는 12~18 AoE. 취약 적에게 사용 시 27~54 AoE로 무관(54)과 어깨를 나란히 함.",
+      "sijo_position": "종장 둘째 슬롯 [4] — 학식 전소 피날레",
+      "class_synergy": ["W008 (박학다식으로 학식 4 충전 후 즉시 시전)", "W002 (탄핵 취약 부여 후 상소로 1.5배 폭딜)"],
+      "upgrade_cost": 150,
+      "values": { "damage_per_hakshik": 3, "min_damage": 6, "is_aoe": true, "consume_all_resource": true }
+    },
+    {
+      "id": "W004",
+      "name": {
+        "ko": "경연",
+        "hanja": "經筵",
+        "romanized": "Gyeongyeon"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "defense",
+      "subtypes": ["academic"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "방어도 5를 획득한다. 학식 1을 획득한다.",
+      "effect_upgraded": "방어도 7을 획득한다. 학식 2를 획득한다.",
+      "flavor_text": "경연청에서 학문을 강론하니 — 몸과 마음이 모두 단단해진다.",
+      "balance_rationale": "1코스트 방어. 수호(5방어도)와 동일한 방어도에 학식 1 추가. 수호의 문관 버전. 학식 1은 간접적으로 이후 공격 카드 효과 강화로 이어짐. 방어하면서 학식을 축적하는 핵심 루프 카드.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "upgrade_cost": 50,
+      "values": { "block": 5, "hakshik_gain": 1 }
+    },
+    {
+      "id": "W005",
+      "name": {
+        "ko": "예제",
+        "hanja": "禮制",
+        "romanized": "Yeoje"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "defense",
+      "subtypes": ["academic"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "방어도 10을 획득한다. 학식 2를 획득한다.",
+      "effect_upgraded": "방어도 14를 획득한다. 학식 3을 획득한다.",
+      "flavor_text": "예법의 울타리는 그 어떤 갑옷보다 강하다 — 규범이 몸을 감싸면 적의 칼이 튕겨나간다.",
+      "balance_rationale": "2코스트 방어. 순수 방어 카드 중 2코스트 기준 최고치(10방어도). 학식 2 추가로 경연 2번 대비 방어도 1 추가 + 학식 동일(2). 2코스트 기준 상당히 강력하지만 학식 적립 수단으로서도 가치가 있어 밸런스 확보.",
+      "sijo_position": "초장·중장·종장 둘째 슬롯 [4]",
+      "upgrade_cost": 75,
+      "values": { "block": 10, "hakshik_gain": 2 }
+    },
+    {
+      "id": "W006",
+      "name": {
+        "ko": "독서",
+        "hanja": "讀書",
+        "romanized": "Dokseo"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "spell",
+      "subtypes": ["academic", "draw"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "학식 1을 획득한다. 카드 1장을 드로우한다.",
+      "effect_upgraded": "학식 2를 획득한다. 카드 1장을 드로우한다.",
+      "flavor_text": "잠시 책을 펼쳐 마음을 고르니 — 다음 수가 자연히 보인다.",
+      "balance_rationale": "0코스트 학식 적립 + 드로우. 기공(0코스트 기+드로우)의 문관 버전. 0코스트라는 점에서 기 비용 없이 시조 슬롯을 채우고 드로우까지 해결. 학식 1 획득은 이후 탄핵/상소 효과 강화로 이어지는 핵심 루프 스타터. 덱 20장 기준 최대 2장 권장.",
+      "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 리듬 스타터",
+      "upgrade_cost": 50,
+      "values": { "hakshik_gain": 1, "draw": 1 }
+    },
+    {
+      "id": "W007",
+      "name": {
+        "ko": "격물치지",
+        "hanja": "格物致知",
+        "romanized": "Gyeongmul Chiji"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "spell",
+      "subtypes": ["academic", "cost_reduce"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "학식 2를 획득한다. 이번 턴 다음에 사용하는 카드의 비용을 1 감소시킨다 (최소 0).",
+      "effect_upgraded": "학식 3을 획득한다. 이번 턴 다음에 사용하는 카드의 비용을 2 감소시킨다.",
+      "flavor_text": "사물의 이치를 꿰뚫으니 — 다음 행동이 더 쉬워진다.",
+      "balance_rationale": "1코스트 학식 + 다음 카드 비용 감소. 결인(1코스트 방어2+공격+4)과 비슷한 포지션이나 방어 대신 학식을 제공. 학식 2 = 미래 탄핵/상소 강화. 비용 감소로 상소(3코스트)→격물치지(1코스트) 후 상소 2코스트 시전 가능한 콤보 루트 열어줌.",
+      "sijo_position": "초장·중장 둘째 슬롯 [4]",
+      "class_synergy": ["W003 (격물치지 → 상소 비용 2로 경감)", "W008 (박학다식 직전 연계로 학식 5 확보)"],
+      "upgrade_cost": 75,
+      "values": { "hakshik_gain": 2, "cost_reduce_next": 1 }
+    },
+    {
+      "id": "W008",
+      "name": {
+        "ko": "박학다식",
+        "hanja": "博學多識",
+        "romanized": "Bakak Dasik"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "spell",
+      "subtypes": ["academic", "draw", "rare"],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": "학식 3을 획득한다. 카드 1장을 드로우한다.",
+      "effect_upgraded": "학식 4를 획득한다. 카드 2장을 드로우한다.",
+      "flavor_text": "널리 배우고 많이 아는 자 — 한순간에 온 세상의 이치가 손아귀에 들어온다.",
+      "balance_rationale": "[ZER-71 조정] 학식 4→3. 기존: 박학다식 1장으로 상소 12 AoE 준비 완료 = 준비 사이클이 너무 빠름. 조정 후: 박학다식(3) + 독서(1) = 학식 4 이상을 위해 추가 드로우·플레이 필요. 전략적 깊이 증가. 업그레이드 시 학식 4로 즉시 상소 12 AoE 준비 — 업그레이드 목표가치 유지.",
+      "sijo_position": "중장·종장 둘째 슬롯 [4]",
+      "class_synergy": ["W003 (박학다식 후 상소 → 12~18 AoE 즉시 발사)", "W007 (격물치지 후 박학다식 → 학식 5 이상 확보)"],
+      "upgrade_cost": 100,
+      "values": { "hakshik_gain": 3, "draw": 1 }
+    },
+    {
+      "id": "W009",
+      "name": {
+        "ko": "행차",
+        "hanja": "行次",
+        "romanized": "Haengcha"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "movement",
+      "subtypes": ["defense", "academic"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "방어도 3을 획득한다. 학식 1을 획득한다.",
+      "effect_upgraded": "방어도 4를 획득한다. 학식 2를 획득한다.",
+      "flavor_text": "관복을 갖춰 입고 거리를 행차하니 — 위세가 적을 위축시키고 학문이 몸을 지킨다.",
+      "balance_rationale": "1코스트 이동 카드. 방어도 3은 수호(5)보다 낮지만 학식 1을 추가로 획득. 경연(방어5+학식1)과 비교 시 방어도 2 낮은 대신 이동 서브타입으로 무관 이동 시너지 유물과 호환. 시조 [3] 슬롯 채우며 방어+학식을 동시에 처리하는 범용 이동 카드.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "upgrade_cost": 50,
+      "values": { "block": 3, "hakshik_gain": 1 }
+    },
+    {
+      "id": "W010",
+      "name": {
+        "ko": "피화",
+        "hanja": "避禍",
+        "romanized": "Pihwa"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "movement",
+      "subtypes": ["defense", "conditional"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "방어도 5를 획득한다. 이번 턴 시조 슬롯에 카드가 3장 이상 채워져 있으면 학식 2를 추가로 획득한다.",
+      "effect_upgraded": "방어도 7을 획득한다. 시조 3칸 이상 시 학식 3 추가 획득.",
+      "flavor_text": "화를 미리 알고 피해가니 — 닥쳐오는 재앙도 학문 앞에서 방향을 잃는다.",
+      "balance_rationale": "1코스트 이동 카드. 기본 5방어도는 수호와 동일. 시조 슬롯 3칸 이상(중장 완성 직전) 조건 충족 시 학식 2 추가 — 시조 리듬 유지를 직접적으로 보상. 조건 불충족 시 그냥 수호 수준으로도 쓸 만함. 회피(M001)의 문관 변형으로 조건 기반 학식 적립 라인 담당.",
+      "sijo_position": "초장·중장 둘째 슬롯 [4]",
+      "class_synergy": ["W003 (시조 리듬 유지 중 학식 확보 → 상소 준비 가속)", "W007 (격물치지와 같은 [4] 슬롯 경쟁 — 상황에 따라 선택)"],
+      "upgrade_cost": 75,
+      "values": { "block": 5, "hakshik_gain_conditional": 2, "conditional_threshold": 3 }
+    }
+  ],
+  "status_conditions_defined": [
+    {
+      "id": "취약",
+      "ko": "취약",
+      "hanja": "脆弱",
+      "description": "이 상태인 적이 피해를 받으면 피해량이 50% 증가한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
+      "duration_type": "turns",
+      "visual_note": "적 캐릭터에 금 가는 갑옷 이펙트. 탄핵(W002)으로 부여."
+    }
+  ],
+  "tactical_loop": {
+    "name": "문관 기동 루프 (학식 적립-소비 사이클)",
+    "description": "학식을 차곡차곡 쌓아 취약 디버프 + 상소 AoE로 터뜨리는 전략적 준비-폭발 패턴.",
+    "loop_steps": [
+      "1. 독서(W006) 또는 행차(W009) [3] 슬롯 → 0~1코스트로 학식 1 + 드로우/방어 확보",
+      "2. 격물치지(W007) 또는 피화(W010) [4] 슬롯 → 학식 2 + 다음 카드 비용 감소 / 방어도 5",
+      "3. 경연(W004) [3] 슬롯 → 방어도 5 + 학식 1 (중장까지 학식 4 이상 목표)",
+      "4. 탄핵(W002) [4] 슬롯 → 10피해 + 학식 1 소비하여 적에게 취약 2턴 부여",
+      "5. 박학다식(W008) [4] 슬롯 → 학식 4 대충전 + 드로우로 상소 서치",
+      "6. 상소(W003) [4] 종장 → 학식 전소 AoE (취약 적에게 1.5배). 시조 완성 시 효과 2배 폭발!"
+    ],
+    "key_decision_points": [
+      "탄핵 학식 소비 타이밍: 취약 선행 vs 학식 아껴서 상소 위력 극대화",
+      "상소 발동 시점: 학식 4(12 AoE)에서 즉시 vs 학식 6(18 AoE)까지 기다리기",
+      "격물치지 비용 감소 활용: 상소(3코스트→2코스트) 또는 박학다식(2코스트→1코스트)"
+    ],
+    "ideal_combo_example": {
+      "setup": "학식 4 축적, 취약 적 상태",
+      "turn_sequence": [
+        "독서(0코스트) → 학식 1, 드로우",
+        "격물치지(1코스트) → 학식 2 더해 합계 4, 다음 카드 비용 1 감소",
+        "탄핵(2코스트→1코스트, 비용 감소 적용) → 10피해 + 학식 1 소비(취약 2턴 부여)",
+        "상소(3코스트) → 학식 3 소비, 모든 적에게 9피해 × 1.5(취약) = 13.5피해. 시조 완성 시 27피해"
+      ],
+      "total_resource_spent": "4기. 학식 0→4→소비.",
+      "note": "격물치지 비용 감소로 4기(3+1+0+3=7 → 4기)로 강력한 연계 달성 가능."
+    }
+  },
+  "balance_comparison": {
+    "vs_dosa": "도사가 기 조작과 개인 폭딜(태산붕 40)에 특화된 반면, 문관은 학식 축적 → 취약 디버프 → 광역 폭발의 준비-실행 리듬. 도사보다 한 박자 느리지만 광역 피해와 취약 시너지로 다수 적 전투에 강점.",
+    "vs_mugwan": "무관이 병사 토큰 즉시 전투형이라면 문관은 학식 축적 후 타이밍 폭발형. 무관의 최대 AoE(54)에 대응하는 문관 최대 AoE = 학식 6 + 취약 + 시조 완성: 18×1.5×2 = 54로 이론상 동일."
+  }
+}

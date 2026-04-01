@@ -22,8 +22,11 @@ var sijo_slot_labels: Array[Label] = []
 # 플레이어 상태이상 UI 컨테이너
 var _player_status_container: HBoxContainer = null
 
-# 기력 UI (무관 전용)
-var _stamina_label: Label = null
+# 클래스 고유 자원 UI (무관: 기력, 문관: 학식)
+var _class_resource_label: Label = null
+
+# 액티브 스킬 버튼
+var _active_skill_button: Button = null
 
 
 func _ready() -> void:
@@ -53,8 +56,11 @@ func _ready() -> void:
 	# 상태이상 시그널 연결
 	battle_manager.status_effect_changed.connect(_on_status_effect_changed)
 
-	# 기력 시그널 연결
-	battle_manager.stamina_changed.connect(_on_stamina_changed)
+	# 클래스 고유 자원 시그널 연결
+	battle_manager.class_resource_changed.connect(_on_class_resource_changed)
+
+	# 패시브/액티브 스킬 시그널 연결
+	battle_manager.passive_triggered.connect(_on_passive_triggered)
 
 	# 시조 슬롯 UI 초기화
 	_init_sijo_slots()
@@ -104,9 +110,13 @@ func _start_battle() -> void:
 	# 전투 시작 유물 트리거 (편자, 호신검, 어사마패 등)
 	RelicManager.trigger_battle_start(battle_manager)
 
-	# 기력 UI 초기화 (무관 전용)
-	if battle_manager.is_mugwan:
-		_init_stamina_ui()
+	# 클래스 고유 자원 UI 초기화 (무관: 기력, 문관: 학식)
+	if battle_manager.has_class_resource:
+		_init_class_resource_ui()
+
+	# 액티브 스킬 버튼 초기화 (도사 제외 — 방술 개방은 자동 발동)
+	if battle_manager.character_id != "dosa":
+		_init_active_skill_button()
 
 
 func _init_sijo_slots() -> void:
@@ -271,9 +281,10 @@ func _on_sijo_completed(_final_card_id: String) -> void:
 	_init_sijo_slots()
 
 
-func _on_stamina_changed(current: int, max_val: int) -> void:
-	if _stamina_label:
-		_stamina_label.text = "氣力: %d/%d" % [current, max_val]
+func _on_class_resource_changed(current: int, max_val: int) -> void:
+	if _class_resource_label:
+		var name := battle_manager.get_class_resource_name()
+		_class_resource_label.text = "%s: %d/%d" % [name, current, max_val]
 	_refresh_hand_ui()
 
 
@@ -300,11 +311,42 @@ func _on_relic_triggered(relic_id: String, description: String) -> void:
 	tween.tween_callback(popup.queue_free)
 
 
-func _init_stamina_ui() -> void:
-	_stamina_label = Label.new()
-	_stamina_label.text = "氣力: 0/%d" % BattleManager.MAX_STAMINA
-	_stamina_label.add_theme_color_override("font_color", Color(0.9, 0.6, 0.2))
-	$BattleHUD/PlayerInfo.add_child(_stamina_label)
+func _init_class_resource_ui() -> void:
+	_class_resource_label = Label.new()
+	var res_name := battle_manager.get_class_resource_name()
+	_class_resource_label.text = "%s: 0/%d" % [res_name, battle_manager.max_class_resource]
+	_class_resource_label.add_theme_color_override("font_color", battle_manager.get_class_resource_color())
+	$BattleHUD/PlayerInfo.add_child(_class_resource_label)
+
+
+func _init_active_skill_button() -> void:
+	_active_skill_button = Button.new()
+	var skill_name := battle_manager.get_active_skill_name()
+	_active_skill_button.text = skill_name
+	_active_skill_button.pressed.connect(_on_active_skill_pressed)
+	_active_skill_button.custom_minimum_size = Vector2(120, 40)
+	$BattleHUD.add_child(_active_skill_button)
+
+
+func _on_active_skill_pressed() -> void:
+	if battle_manager.use_active_skill():
+		_active_skill_button.disabled = true
+		_active_skill_button.text = "%s (사용됨)" % battle_manager.get_active_skill_name()
+
+
+func _on_passive_triggered(skill_name: String, description: String) -> void:
+	# 패시브 발동 시 플래시 텍스트 표시
+	var popup := Label.new()
+	popup.text = "[패시브] %s: %s" % [skill_name, description]
+	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	popup.anchors_preset = Control.PRESET_CENTER_TOP
+	popup.position.y = 90
+	popup.add_theme_font_size_override("font_size", 14)
+	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.6))
+	add_child(popup)
+	var tween := create_tween()
+	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
+	tween.tween_callback(popup.queue_free)
 
 
 func _on_status_effect_changed(_target: String, _effect_id: String, _stacks: int) -> void:

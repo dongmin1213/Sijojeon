@@ -31,6 +31,13 @@ const STARTER_DECKS := {
 		"G003",          # 포위 ×1
 		"M002", "M002",  # 도약 ×2
 	],
+	"mungwan": [
+		"M003", "M003",  # 후퇴 ×2
+		"M005",          # 포복 ×1
+		"W001", "W001", "W001",  # 직언 ×3
+		"W004", "W004",  # 경연 ×2
+		"W006", "W006",  # 독서 ×2
+	],
 }
 
 
@@ -216,8 +223,9 @@ func get_available_relics(owned_ids: Array[String], character_id: String) -> Arr
 func _matches_class(restriction: String, character_id: String) -> bool:
 	## 직업 제한 문자열(한글)과 캐릭터 ID 매칭
 	var class_map := {
+		"도사": "dosa",
 		"무관": "mugwan",
-		"문관": "dosa",
+		"문관": "mungwan",
 		"의원": "physician",
 		"무당": "shaman",
 		"궁수": "archer",

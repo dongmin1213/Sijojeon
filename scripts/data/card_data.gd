@@ -26,8 +26,19 @@ extends Resource
 @export var qi_gain: int = 0
 @export var is_aoe: bool = false
 @export var tokens: int = 0
-@export var stamina_cost: int = 0   # 기력 소비량 (무관 전용)
-@export var stamina_gain: int = 0   # 기력 획득량 (무관 전용)
+@export var stamina_cost: int = 0   # 클래스 고유 자원 소비량 (무관: 기력, 문관: 학식)
+@export var stamina_gain: int = 0   # 클래스 고유 자원 획득량
+
+# 문관 전용 특수 효과
+@export var consume_all_resource: bool = false  # 학식 전량 소비 (상소)
+@export var resource_damage_multiplier: int = 0  # 소비 학식당 피해 배수
+@export var min_resource_damage: int = 0  # 최소 피해 (학식 0일 때)
+@export var cost_reduce_next: int = 0  # 다음 카드 비용 감소 (격물치지)
+@export var conditional_resource_gain: int = 0  # 조건부 자원 획득량 (피화)
+@export var conditional_resource_threshold: int = 0  # 조건 충족 기준 (시조 슬롯 수)
+@export var optional_resource_cost: int = 0  # 선택적 자원 소비 (탄핵: 학식 있으면 소비하여 추가 효과)
+@export var apply_debuff_on_resource: String = ""  # 선택적 자원 소비 시 부여할 디버프 (탄핵 등)
+@export var debuff_duration: int = 0  # 디버프 지속 턴
 
 
 static func from_dict(data: Dictionary, card_pool: String) -> CardData:
@@ -69,6 +80,23 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.stamina_cost = values.get("stamina_cost", 0)
 		card.stamina_gain = values.get("stamina_gain", 0)
 
+		# 문관 전용: 학식 관련 값도 stamina로 매핑
+		if values.has("hakshik_cost"):
+			card.stamina_cost = values.get("hakshik_cost", 0)
+		if values.has("hakshik_gain"):
+			card.stamina_gain = values.get("hakshik_gain", 0)
+
+		# 문관 전용 특수 효과
+		card.consume_all_resource = values.get("consume_all_resource", false)
+		card.resource_damage_multiplier = values.get("damage_per_hakshik", 0)
+		card.min_resource_damage = values.get("min_damage", 0)
+		card.cost_reduce_next = values.get("cost_reduce_next", 0)
+		card.conditional_resource_gain = values.get("hakshik_gain_conditional", 0)
+		card.conditional_resource_threshold = values.get("conditional_threshold", 3)
+		card.optional_resource_cost = values.get("optional_resource_cost", 0)
+		card.apply_debuff_on_resource = values.get("apply_debuff_on_resource", "")
+		card.debuff_duration = values.get("debuff_duration", 0)
+
 	return card
 
 
@@ -109,4 +137,13 @@ func duplicate_card() -> CardData:
 	copy.tokens = tokens
 	copy.stamina_cost = stamina_cost
 	copy.stamina_gain = stamina_gain
+	copy.consume_all_resource = consume_all_resource
+	copy.resource_damage_multiplier = resource_damage_multiplier
+	copy.min_resource_damage = min_resource_damage
+	copy.cost_reduce_next = cost_reduce_next
+	copy.conditional_resource_gain = conditional_resource_gain
+	copy.conditional_resource_threshold = conditional_resource_threshold
+	copy.optional_resource_cost = optional_resource_cost
+	copy.apply_debuff_on_resource = apply_debuff_on_resource
+	copy.debuff_duration = debuff_duration
 	return copy

@@ -219,6 +219,48 @@
       "balance_rationale": "전설 등급. AP +1/턴은 약 30~50% 행동력 증가 — 매우 강력. 저주 카드 2장(무기력, 오물)은 핸드 오염 및 드로우 낭비를 유발. '카드 제거' 전략 또는 저주 내성 카드와의 시너지를 요구하는 고위험-고보상 설계.",
       "obtain_from": ["boss_reward"],
       "values": { "ap_per_turn_bonus": 1, "curse_cards_added_to_deck": 2 }
+    },
+
+    {
+      "id": "RS001",
+      "name": { "ko": "부적 낭", "hanja": "符籍囊", "romanized": "Bujeok Nang" },
+      "rarity": 2,
+      "class_restriction": "도사",
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 손패에 무작위 부적 카드 1장 추가.",
+      "effect_description": "전투 시작 시 부적 카드 1장 추가 (도사 전용, 시작 유물)",
+      "flavor_text": "천 주머니에 담긴 부적이 전투 시작을 알린다.",
+      "balance_rationale": "도사 시작 유물. 0코스트 카드 1장 선물 — 시조 초장 슬롯을 채우거나 기 관리에 활용 가능.",
+      "obtain_from": ["starting_relic"],
+      "values": {}
+    },
+
+    {
+      "id": "RS002",
+      "name": { "ko": "마패", "hanja": "馬牌", "romanized": "Mapae" },
+      "rarity": 2,
+      "class_restriction": "무관",
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 병사 토큰 1개를 자동으로 생성한다.",
+      "effect_description": "전투 시작 시 병사 토큰 1개 생성 (무관 전용, 시작 유물)",
+      "flavor_text": "국왕의 명을 받은 장수의 마패 — 출전과 동시에 부하가 집결한다.",
+      "balance_rationale": "무관 시작 유물. 첫 턴부터 지휘통솔 패시브 발동. 방어도 2 보너스 + 첫 토큰으로 돌격 보너스 가능.",
+      "obtain_from": ["starting_relic"],
+      "values": { "tokens": 1 }
+    },
+
+    {
+      "id": "RS003",
+      "name": { "ko": "필연", "hanja": "筆硯", "romanized": "Pilyeon" },
+      "rarity": 2,
+      "class_restriction": "문관",
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 학식 2를 획득한다.",
+      "effect_description": "전투 시작 시 학식 +2 (문관 전용, 시작 유물)",
+      "flavor_text": "붓과 벼루를 항상 곁에 두는 관료 — 전장에서도 학문을 게을리하지 않는다.",
+      "balance_rationale": "문관 시작 유물. 첫 턴부터 학식 2로 시작. 탄핵(학식 1 소비) 즉시 사용 가능. 독서 1장이면 학식 3으로 상소 준비 완료.",
+      "obtain_from": ["starting_relic"],
+      "values": { "scholarship_on_battle_start": 2 }
     }
 
   ],

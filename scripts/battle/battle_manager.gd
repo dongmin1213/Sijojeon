@@ -15,16 +15,24 @@ enum BattleState {
 
 const HAND_SIZE := 5
 const STARTING_QI := 3
-const MAX_STAMINA := 10  # 기력 최대치
+const DEFAULT_MAX_CLASS_RESOURCE := 10  # 클래스 고유 자원 기본 최대치
 
 var state: BattleState = BattleState.BATTLE_START
 var current_qi: int = 0
 var max_qi: int = STARTING_QI
 var turn_number: int = 0
 
-# 기력 (무관 전용 자원) — 턴 간 유지, 전투 시작 시 0
-var current_stamina: int = 0
-var is_mugwan: bool = false  # 무관 클래스 여부
+# 클래스 고유 자원 — 턴 간 유지, 전투 시작 시 0
+# 무관: 기력(氣力), 문관: 학식(學識)
+var current_class_resource: int = 0
+var max_class_resource: int = DEFAULT_MAX_CLASS_RESOURCE
+var has_class_resource: bool = false  # 고유 자원 보유 여부
+var character_id: String = ""  # 현재 캐릭터 클래스 ID
+var _next_card_cost_reduce: int = 0  # 다음 카드 비용 감소 (격물치지 등)
+
+# 패시브/액티브 스킬 시스템
+var cards_played_this_turn: int = 0  # 이번 턴 사용한 카드 수 (문관 패시브용)
+var active_skill_used: bool = false  # 액티브 스킬 사용 여부 (전투당 1회)
 
 # 카드 더미
 var draw_pile: Array[String] = []   # 드로우 파일 (card IDs)
@@ -56,7 +64,9 @@ signal enemy_hp_changed(enemy_index: int, current: int, max_val: int)
 signal battle_ended(victory: bool)
 signal status_effect_changed(target: String, effect_id: String, stacks: int)
 signal dot_damage_dealt(target: String, effect_id: String, amount: int)
-signal stamina_changed(current: int, max_val: int)
+signal class_resource_changed(current: int, max_val: int)
+signal passive_triggered(skill_name: String, description: String)
+signal active_skill_available_changed(available: bool)
 
 
 func _ready() -> void:
@@ -79,11 +89,24 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	discard_pile.clear()
 	exhaust_pile.clear()
 
-	# 기력 초기화 (무관 전용)
-	is_mugwan = character_id == "mugwan"
-	current_stamina = 0
-	if is_mugwan:
-		stamina_changed.emit(current_stamina, MAX_STAMINA)
+	# 클래스 고유 자원 초기화 (무관: 기력 최대 10, 문관: 학식 최대 6)
+	self.character_id = character_id
+	has_class_resource = character_id in ["mugwan", "mungwan"]
+	current_class_resource = 0
+	_next_card_cost_reduce = 0
+	match character_id:
+		"mugwan":
+			max_class_resource = 10
+		"mungwan":
+			max_class_resource = 6
+		_:
+			max_class_resource = DEFAULT_MAX_CLASS_RESOURCE
+	if has_class_resource:
+		class_resource_changed.emit(current_class_resource, max_class_resource)
+
+	# 스킬 초기화
+	cards_played_this_turn = 0
+	active_skill_used = false
 
 	# 상태이상 초기화
 	status_effects.clear_all()
@@ -112,11 +135,29 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 		sijo_system.reset()
 
 	_change_state(BattleState.BATTLE_START)
+
+	# 도사 액티브: 방술 개방 — 전투 시작 시 시조 첫 2칸 자동 채움
+	if character_id == "dosa" and sijo_system:
+		sijo_system.try_fill_slot(3, "D001")  # 기공 [3]
+		sijo_system.try_fill_slot(4, "D002")  # 결인 [4]
+		active_skill_used = true
+		passive_triggered.emit("방술 개방", "시조 초장 자동 채움: 기공→결인")
+
 	begin_player_turn()
 
 
 func begin_player_turn() -> void:
 	turn_number += 1
+	_next_card_cost_reduce = 0  # 턴 시작 시 비용 감소 초기화
+	cards_played_this_turn = 0  # 턴 시작 시 카드 사용 수 초기화
+
+	# 무관 패시브: 지휘통솔 — 병사 토큰 보유 시 방어도 2
+	if character_id == "mugwan":
+		var effects := status_effects.get_all_effects("player")
+		var token_stacks: int = effects.get("병사_토큰", 0)
+		if token_stacks > 0:
+			gain_block(2)
+			passive_triggered.emit("지휘통솔", "병사 토큰 보유 → 방어도 +2")
 
 	# 갑주(영구 방어막) 처리: 갑주가 있으면 block을 갑주 값으로 유지, 없으면 리셋
 	var dot_result := status_effects.process_turn_start("player")
@@ -169,23 +210,32 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if card == null:
 		return false
 
+	# 비용 감소 적용 (격물치지 등)
+	var effective_cost := card.cost
+	if _next_card_cost_reduce > 0:
+		effective_cost = maxi(effective_cost - _next_card_cost_reduce, 0)
+
 	# 기(氣) 확인
-	if card.cost > current_qi:
+	if effective_cost > current_qi:
 		return false
 
-	# 기력 확인 (무관 전용)
-	if is_mugwan and card.stamina_cost > 0 and card.stamina_cost > current_stamina:
+	# 클래스 고유 자원 확인 (무관: 기력, 문관: 학식)
+	if has_class_resource and card.stamina_cost > 0 and card.stamina_cost > current_class_resource:
 		return false
+
+	# 비용 감소 소비
+	if _next_card_cost_reduce > 0:
+		_next_card_cost_reduce = 0
 
 	# 기 소비
-	current_qi -= card.cost
+	current_qi -= effective_cost
 	qi_changed.emit(current_qi, max_qi)
 
-	# 기력 소비 (무관 전용)
-	if is_mugwan and card.stamina_cost > 0:
-		current_stamina -= card.stamina_cost
-		current_stamina = maxi(current_stamina, 0)
-		stamina_changed.emit(current_stamina, MAX_STAMINA)
+	# 클래스 고유 자원 소비 (무관: 기력, 문관: 학식)
+	if has_class_resource and card.stamina_cost > 0:
+		current_class_resource -= card.stamina_cost
+		current_class_resource = maxi(current_class_resource, 0)
+		class_resource_changed.emit(current_class_resource, max_class_resource)
 
 	# 시조 슬롯 시도
 	if sijo_system:
@@ -193,6 +243,9 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 
 	# 카드 효과 적용
 	_resolve_card_effect(card, target_enemy_index)
+
+	# 카드 사용 수 추적 (문관 패시브용)
+	cards_played_this_turn += 1
 
 	# 손패에서 제거 → 버린 카드로
 	hand.remove_at(hand_index)
@@ -212,6 +265,20 @@ func end_player_turn() -> void:
 		return
 
 	_change_state(BattleState.PLAYER_TURN_END)
+
+	# 도사 패시브: 천지기 — 시조 슬롯 3칸 이상이면 기 1 회복
+	if character_id == "dosa" and sijo_system:
+		if sijo_system.get_filled_count() >= 3:
+			current_qi += 1
+			qi_changed.emit(current_qi, max_qi)
+			passive_triggered.emit("천지기", "시조 슬롯 3칸 이상 → 기 +1")
+
+	# 문관 패시브: 학식충전 — 카드 3장 이상 사용 시 학식 1 획득
+	if character_id == "mungwan" and cards_played_this_turn >= 3:
+		current_class_resource += 1
+		current_class_resource = mini(current_class_resource, max_class_resource)
+		class_resource_changed.emit(current_class_resource, max_class_resource)
+		passive_triggered.emit("학식충전", "카드 3장 이상 사용 → 학식 +1")
 
 	# 플레이어 턴 종료 시 디버프 기간 감소
 	status_effects.process_turn_end("player")
@@ -377,11 +444,46 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	if card.draw_count > 0:
 		draw_cards(card.draw_count)
 
-	# 기력 획득 (무관 전용)
-	if is_mugwan and card.stamina_gain > 0:
-		current_stamina += card.stamina_gain
-		current_stamina = mini(current_stamina, MAX_STAMINA)
-		stamina_changed.emit(current_stamina, MAX_STAMINA)
+	# 클래스 고유 자원 획득 (무관: 기력, 문관: 학식)
+	if has_class_resource and card.stamina_gain > 0:
+		current_class_resource += card.stamina_gain
+		current_class_resource = mini(current_class_resource, max_class_resource)
+		class_resource_changed.emit(current_class_resource, max_class_resource)
+
+	# 문관 전용: 상소(W003) — 학식 전부 소비, 소비량×배수 피해
+	if character_id == "mungwan" and card.consume_all_resource:
+		var consumed := current_class_resource
+		current_class_resource = 0
+		class_resource_changed.emit(current_class_resource, max_class_resource)
+		var bonus_damage := consumed * card.resource_damage_multiplier
+		var total := maxi(bonus_damage, card.min_resource_damage)
+		if card.is_aoe:
+			for i in enemies.size():
+				if enemies[i]["current_hp"] > 0:
+					deal_damage_to_enemy(i, total)
+		else:
+			deal_damage_to_enemy(target_enemy_index, total)
+
+	# 선택적 자원 소비 + 디버프 부여 (탄핵 등: 학식이 있으면 소비하고 추가 효과 발동)
+	if has_class_resource and card.optional_resource_cost > 0 and card.apply_debuff_on_resource != "":
+		if current_class_resource >= card.optional_resource_cost:
+			current_class_resource -= card.optional_resource_cost
+			current_class_resource = maxi(current_class_resource, 0)
+			class_resource_changed.emit(current_class_resource, max_class_resource)
+			var target_id := "enemy_%d" % target_enemy_index
+			status_effects.apply_effect(target_id, card.apply_debuff_on_resource, card.debuff_duration)
+
+	# 문관 전용: 격물치지(W007) — 다음 카드 비용 감소
+	if card.cost_reduce_next > 0:
+		_next_card_cost_reduce += card.cost_reduce_next
+
+	# 문관 전용: 피화(W010) — 시조 슬롯 조건부 학식 획득
+	if has_class_resource and card.conditional_resource_gain > 0 and sijo_system:
+		var filled_count := sijo_system.get_filled_count()
+		if filled_count >= card.conditional_resource_threshold:
+			current_class_resource += card.conditional_resource_gain
+			current_class_resource = mini(current_class_resource, max_class_resource)
+			class_resource_changed.emit(current_class_resource, max_class_resource)
 
 
 func _change_state(new_state: BattleState) -> void:
@@ -515,11 +617,36 @@ func _resolve_effect_target(target_str: String, enemy_target: String) -> String:
 
 
 func can_play_card(card: CardData) -> bool:
-	if card.cost > current_qi:
+	var effective_cost := card.cost
+	if _next_card_cost_reduce > 0:
+		effective_cost = maxi(effective_cost - _next_card_cost_reduce, 0)
+	if effective_cost > current_qi:
 		return false
-	if is_mugwan and card.stamina_cost > 0 and card.stamina_cost > current_stamina:
+	if has_class_resource and card.stamina_cost > 0 and card.stamina_cost > current_class_resource:
 		return false
 	return true
+
+
+## 클래스 고유 자원의 표시 이름을 반환한다.
+func get_class_resource_name() -> String:
+	match character_id:
+		"mugwan":
+			return "氣力"
+		"mungwan":
+			return "學識"
+		_:
+			return ""
+
+
+## 클래스 고유 자원의 UI 색상을 반환한다.
+func get_class_resource_color() -> Color:
+	match character_id:
+		"mugwan":
+			return Color(0.9, 0.6, 0.2)  # 주황 (기력)
+		"mungwan":
+			return Color(0.3, 0.7, 1.0)  # 파랑 (학식)
+		_:
+			return Color.WHITE
 
 
 func _all_enemies_dead() -> bool:
@@ -566,3 +693,66 @@ func _get_battle_card(card_id: String) -> CardData:
 	if card.draw_count > 0:
 		card.draw_count += 1
 	return card
+
+
+# --- 액티브 스킬 ---
+
+## 액티브 스킬 사용 가능 여부를 반환한다.
+func can_use_active_skill() -> bool:
+	if state != BattleState.PLAYER_ACTION:
+		return false
+	if active_skill_used:
+		return false
+	match character_id:
+		"dosa":
+			# 방술 개방: 전투 시작 시 자동 발동 → 수동 사용 불가
+			return false
+		"mugwan":
+			# 군령 하달: 토큰 수만큼 기 회복
+			var effects := status_effects.get_all_effects("player")
+			return effects.get("병사_토큰", 0) > 0
+		"mungwan":
+			# 경연개설: 학식 3 즉시 획득
+			return current_class_resource < max_class_resource
+		_:
+			return false
+
+
+## 액티브 스킬을 사용한다.
+func use_active_skill() -> bool:
+	if not can_use_active_skill():
+		return false
+
+	active_skill_used = true
+	active_skill_available_changed.emit(false)
+
+	match character_id:
+		"mugwan":
+			# 군령 하달: 보유 병사 토큰 수만큼 기 회복 (최대 3)
+			var effects := status_effects.get_all_effects("player")
+			var tokens: int = effects.get("병사_토큰", 0)
+			var qi_recovered := mini(tokens, 3)
+			current_qi += qi_recovered
+			qi_changed.emit(current_qi, max_qi)
+			passive_triggered.emit("군령 하달", "토큰 %d개 → 기 +%d" % [tokens, qi_recovered])
+		"mungwan":
+			# 경연개설: 학식 3 즉시 획득
+			current_class_resource += 3
+			current_class_resource = mini(current_class_resource, max_class_resource)
+			class_resource_changed.emit(current_class_resource, max_class_resource)
+			passive_triggered.emit("경연개설", "학식 +3")
+
+	return true
+
+
+## 액티브 스킬 이름을 반환한다.
+func get_active_skill_name() -> String:
+	match character_id:
+		"dosa":
+			return "방술 개방"
+		"mugwan":
+			return "군령 하달"
+		"mungwan":
+			return "경연개설"
+		_:
+			return ""

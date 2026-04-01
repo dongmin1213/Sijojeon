@@ -137,6 +137,14 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 	if values.has("spirit_power_on_battle_start"):
 		relic_triggered.emit(relic_id, "영력 +%d" % values["spirit_power_on_battle_start"])
 
+	# RS003 필연: 문관 전투 시작 시 학식 2 획득
+	if values.has("scholarship_on_battle_start") and battle_manager.has_class_resource and battle_manager.character_id == "mungwan":
+		var amount: int = values["scholarship_on_battle_start"]
+		battle_manager.current_class_resource += amount
+		battle_manager.current_class_resource = mini(battle_manager.current_class_resource, battle_manager.max_class_resource)
+		battle_manager.class_resource_changed.emit(battle_manager.current_class_resource, battle_manager.max_class_resource)
+		relic_triggered.emit(relic_id, "학식 +%d" % amount)
+
 	# R012 어사마패: 최고 HP 적에게 취약 2
 	if values.has("vulnerable_stacks"):
 		var stacks: int = values["vulnerable_stacks"]

@@ -6,11 +6,12 @@
     "ko": "한양",
     "description": "조선의 수도. 부패한 관리, 거리의 불량배, 억울한 귀신이 뒤섞인 도시."
   },
-  "balance_ref": "ZER-12 (카드 밸런스 스펙). 플레이어 기준: 도사 HP 70 / 무관 HP 80, 기/턴 3, 스타터 덱 평균 1턴 피해 6~8.",
+  "balance_ref": "ZER-12 (카드 밸런스 스펙). 플레이어 기준: 도사 HP 70 / 무관 HP 80 / 문관 HP 65, 기/턴 3, 스타터 덱 평균 1턴 피해 6~8.",
   "balance_targets": {
     "player_hp_at_start_dosa": 70,
     "player_hp_at_start_mugwan": 80,
-    "player_hp_reference": "70(도사) / 80(무관) — ZER-56 밸런스 1차 조정으로 직업별 분리",
+    "player_hp_at_start_mungwan": 65,
+    "player_hp_reference": "70(도사) / 80(무관) / 65(문관) — ZER-71 문관 추가. 문관은 방어 카드(경연·예제)로 생존하는 설계.",
     "player_energy_per_turn": 3,
     "player_avg_damage_per_turn_starter": 7,
     "player_avg_block_per_turn_starter": 5,
