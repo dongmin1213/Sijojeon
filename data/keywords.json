@@ -1,0 +1,161 @@
+{
+  "version": "0.1",
+  "type": "keyword_dictionary",
+  "description": "상태효과, 메카닉, 게임 용어의 키워드 사전",
+  "keywords": [
+    {
+      "id": "독",
+      "name": "독(毒)",
+      "category": "status_effect",
+      "description": "턴 시작 시 스택 수만큼 피해를 입고, 매 턴 1씩 감소합니다.",
+      "color": "#66CC33"
+    },
+    {
+      "id": "화상",
+      "name": "화상(火傷)",
+      "category": "status_effect",
+      "description": "턴 시작 시 스택 수만큼 피해를 입고, 매 턴 1씩 감소합니다.",
+      "color": "#FF6619"
+    },
+    {
+      "id": "출혈",
+      "name": "출혈(出血)",
+      "category": "status_effect",
+      "description": "턴 시작 시 스택 수만큼 피해를 입고, 매 턴 1씩 감소합니다. 방어도를 획득하면 출혈 스택만큼 추가 피해를 받습니다.",
+      "color": "#CC1919"
+    },
+    {
+      "id": "약화",
+      "name": "약화(弱化)",
+      "category": "status_effect",
+      "description": "다음 공격의 피해가 25% 감소합니다. 1회 발동 후 1스택 소모됩니다.",
+      "color": "#FF9933"
+    },
+    {
+      "id": "취약",
+      "name": "취약(脆弱)",
+      "category": "status_effect",
+      "description": "받는 피해가 50% 증가합니다. 턴 종료 시 1씩 감소합니다.",
+      "color": "#FF4D4D"
+    },
+    {
+      "id": "strength",
+      "name": "힘(力)",
+      "category": "status_effect",
+      "description": "모든 공격의 피해가 스택 수만큼 증가합니다. 영구 효과입니다.",
+      "color": "#FF4D4D"
+    },
+    {
+      "id": "갑주",
+      "name": "갑주(甲冑)",
+      "category": "status_effect",
+      "description": "턴 시작 시 사라지지 않는 영구 방어막입니다.",
+      "color": "#4D99FF"
+    },
+    {
+      "id": "thorns",
+      "name": "가시(荊棘)",
+      "category": "status_effect",
+      "description": "피격 시 공격자에게 3의 반사 피해를 줍니다.",
+      "color": "#994D19"
+    },
+    {
+      "id": "냉기",
+      "name": "냉기(冷氣)",
+      "category": "status_effect",
+      "description": "다음 턴 드로우가 1장 감소합니다. 턴 종료 시 해제됩니다.",
+      "color": "#80CCFF"
+    },
+    {
+      "id": "구금",
+      "name": "구금(拘禁)",
+      "category": "status_effect",
+      "description": "카드 사용 비용이 1 증가합니다. 턴 종료 시 1씩 감소합니다.",
+      "color": "#996633"
+    },
+    {
+      "id": "주박",
+      "name": "주박(呪縛)",
+      "category": "status_effect",
+      "description": "받는 지속 피해(DoT)가 1.5배가 됩니다. 턴 종료 시 1씩 감소합니다.",
+      "color": "#8033B3"
+    },
+    {
+      "id": "병사_토큰",
+      "name": "병사 토큰",
+      "category": "status_effect",
+      "description": "무관 전용. 진형 카드로 생성됩니다. 턴 시작 시 보유하면 방어도 +2를 얻습니다.",
+      "color": "#E6B333"
+    },
+    {
+      "id": "death_mark",
+      "name": "사망표식",
+      "category": "status_effect",
+      "description": "매 턴 5의 피해를 입고, 1씩 감소합니다.",
+      "color": "#800080"
+    },
+    {
+      "id": "death_countdown",
+      "name": "사망선고",
+      "category": "status_effect",
+      "description": "카운트다운이 0이 되면 HP가 50% 감소합니다.",
+      "color": "#4D0066"
+    },
+    {
+      "id": "qi",
+      "name": "氣(기)",
+      "category": "mechanic",
+      "description": "카드를 사용할 때 소비되는 자원입니다. 매 턴 시작 시 최대치로 회복됩니다.",
+      "color": "#FFD966"
+    },
+    {
+      "id": "block",
+      "name": "방어도",
+      "category": "mechanic",
+      "description": "받는 피해를 흡수합니다. 매 턴 시작 시 0으로 초기화됩니다. (갑주 제외)",
+      "color": "#4D99FF"
+    },
+    {
+      "id": "beat",
+      "name": "음보(拍)",
+      "category": "mechanic",
+      "description": "카드가 가진 리듬 값(3 또는 4)입니다. 시조 슬롯의 다음 패턴과 일치하면 슬롯이 채워집니다.",
+      "color": "#FFD966"
+    },
+    {
+      "id": "sijo",
+      "name": "시조(時調)",
+      "category": "mechanic",
+      "description": "6슬롯 리듬 시스템 [3,4,3,4,3,4]. 카드의 음보가 일치하면 슬롯이 채워집니다.\n• 초장 완성(3/6): 氣 +1\n• 중장 완성(4/6): 카드 1장 드로우\n• 시조 완성(6/6): 마지막 카드 효과 ×2 + 氣 +1 + 카드 드로우",
+      "color": "#FFD966"
+    },
+    {
+      "id": "giryeok",
+      "name": "기력(氣力)",
+      "category": "mechanic",
+      "description": "무관 전용 자원. 최대 10. 특정 카드 사용 시 소비/획득되며, 기력을 소비하여 강력한 효과를 발동합니다.",
+      "color": "#FF6633"
+    },
+    {
+      "id": "haksik",
+      "name": "학식(學識)",
+      "category": "mechanic",
+      "description": "문관 전용 자원. 최대 6. 카드 사용 시 축적되며, 학식을 소비하여 효과를 증폭합니다.",
+      "color": "#6699FF"
+    },
+    {
+      "id": "bangsul",
+      "name": "방술(方術)",
+      "category": "mechanic",
+      "description": "도사 전용 능력. 전투 시작 시 시조 초장 2칸을 자동으로 채웁니다.",
+      "color": "#CC66FF"
+    },
+    {
+      "id": "exhaust",
+      "name": "소멸",
+      "category": "mechanic",
+      "description": "카드가 버린 카드 더미 대신 소멸 더미로 이동합니다. 이번 전투에서 다시 사용할 수 없습니다.",
+      "color": "#999999"
+    }
+  ]
+}

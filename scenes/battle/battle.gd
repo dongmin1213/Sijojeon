@@ -4,6 +4,7 @@ extends Control
 
 var vfx: VfxManager = null
 var _prev_player_hp: int = 0  # HP 변화 감지용
+var _keyword_tooltip: KeywordTooltip = null  # 키워드 툴팁
 
 @onready var hp_label: Label = $BattleHUD/PlayerInfo/HPLabel
 @onready var qi_label: Label = $BattleHUD/PlayerInfo/QiLabel
@@ -76,6 +77,10 @@ func _ready() -> void:
 
 	# 패시브/액티브 스킬 시그널 연결
 	battle_manager.passive_triggered.connect(_on_passive_triggered)
+
+	# 키워드 툴팁 초기화
+	_keyword_tooltip = KeywordTooltip.new()
+	add_child(_keyword_tooltip)
 
 	# 시조 슬롯 UI 초기화 (토글 버튼 포함)
 	_init_sijo_toggle()
@@ -587,7 +592,7 @@ func _update_player_status_ui() -> void:
 
 
 func _build_status_icons(container: HBoxContainer, target: String) -> void:
-	## 상태이상 아이콘 + 턴 카운터를 HBoxContainer에 배치
+	## 상태이상 아이콘 + 턴 카운터를 HBoxContainer에 배치. 탭/클릭으로 키워드 툴팁 표시.
 	for child in container.get_children():
 		child.queue_free()
 
@@ -609,6 +614,7 @@ func _build_status_icons(container: HBoxContainer, target: String) -> void:
 		stylebox.set_corner_radius_all(4)
 		stylebox.set_content_margin_all(4)
 		icon_panel.add_theme_stylebox_override("panel", stylebox)
+		icon_panel.mouse_filter = Control.MOUSE_FILTER_STOP
 
 		var label := Label.new()
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -629,6 +635,14 @@ func _build_status_icons(container: HBoxContainer, target: String) -> void:
 
 		icon_panel.add_child(label)
 		container.add_child(icon_panel)
+
+		# 클릭/탭으로 키워드 툴팁 표시
+		var eid := effect_id  # 클로저 캡처용
+		icon_panel.gui_input.connect(func(event: InputEvent):
+			if event is InputEventMouseButton and event.pressed:
+				if _keyword_tooltip:
+					_keyword_tooltip.show_tooltip(eid, icon_panel.global_position + Vector2(0, icon_panel.size.y + 5))
+		)
 
 
 func _format_status_effects(target: String) -> String:
