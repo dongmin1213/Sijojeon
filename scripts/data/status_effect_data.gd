@@ -100,3 +100,15 @@ static func _init_registry() -> void:
 		"갑주", "갑주", "🛡", Color(0.3, 0.6, 1.0), EffectType.BUFF,
 		"턴 시작 시 사라지지 않는 방어막", false, true
 	)
+	_registry["병사_토큰"] = StatusEffectData.new(
+		"병사_토큰", "병사", "⚑", Color(0.9, 0.7, 0.2), EffectType.BUFF,
+		"무관 진형 토큰. 스택 수만큼 패시브/액티브 효과 적용", false, true
+	)
+	_registry["구금"] = StatusEffectData.new(
+		"구금", "구금", "⛓", Color(0.6, 0.4, 0.2), EffectType.DEBUFF,
+		"카드 사용 비용 +1. 지정 턴 수 후 해제", true, false
+	)
+	_registry["주박"] = StatusEffectData.new(
+		"주박", "주박", "🔮", Color(0.5, 0.2, 0.7), EffectType.DEBUFF,
+		"받는 DoT 피해 1.5배", true, false
+	)

@@ -133,6 +133,10 @@ func process_turn_start(target: String) -> Dictionary:
 		else:
 			_effects[target]["death_countdown"] = remaining
 
+	# 주박: DoT 피해 1.5배
+	if effects.has("주박") and result["damage"] > 0:
+		result["damage"] = int(result["damage"] * 1.5)
+
 	# 갑주: 영구 방어막 (턴 시작 시 block에 추가)
 	if effects.has("갑주"):
 		result["armor"] = effects["갑주"]
@@ -145,6 +149,12 @@ func process_turn_end(target: String) -> void:
 	# 취약: 매 턴 종료 시 1 감소
 	if has_effect(target, "취약"):
 		consume_stacks(target, "취약", 1)
+	# 구금: 매 턴 종료 시 1 감소
+	if has_effect(target, "구금"):
+		consume_stacks(target, "구금", 1)
+	# 주박: 매 턴 종료 시 1 감소
+	if has_effect(target, "주박"):
+		consume_stacks(target, "주박", 1)
 
 	# 냉기: 1턴 후 해제 (턴 종료 시 제거)
 	if has_effect(target, "냉기"):

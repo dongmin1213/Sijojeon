@@ -29,6 +29,9 @@ var max_class_resource: int = DEFAULT_MAX_CLASS_RESOURCE
 var has_class_resource: bool = false  # 고유 자원 보유 여부
 var character_id: String = ""  # 현재 캐릭터 클래스 ID
 var _next_card_cost_reduce: int = 0  # 다음 카드 비용 감소 (격물치지 등)
+var _cost_reduce_all_this_turn: int = 0  # 이번 턴 모든 카드 비용 감소 (축지법 등)
+var _double_token_this_turn: bool = false  # 이번 턴 토큰 생성량 2배 (천하무적진)
+var qi_gained_this_turn: int = 0  # 이번 턴 획득한 기 추적 (기폭용)
 
 # 패시브/액티브 스킬 시스템
 var cards_played_this_turn: int = 0  # 이번 턴 사용한 카드 수 (문관 패시브용)
@@ -158,6 +161,9 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 func begin_player_turn() -> void:
 	turn_number += 1
 	_next_card_cost_reduce = 0  # 턴 시작 시 비용 감소 초기화
+	_cost_reduce_all_this_turn = 0  # 턴 시작 시 전체 비용 감소 초기화
+	_double_token_this_turn = false  # 턴 시작 시 토큰 2배 초기화
+	qi_gained_this_turn = 0  # 턴 시작 시 기 획득량 초기화
 	cards_played_this_turn = 0  # 턴 시작 시 카드 사용 수 초기화
 
 	# 무관 패시브: 지휘통솔 — 병사 토큰 보유 시 방어도 2
@@ -220,10 +226,16 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if card == null:
 		return false
 
-	# 비용 감소 적용 (격물치지 등)
+	# 비용 계산: 구금(+1) → 축지법/격물치지(-N) 순서
 	var effective_cost := card.cost
+	var detention_stacks := status_effects.get_stacks("player", "구금")
+	if detention_stacks > 0:
+		effective_cost += detention_stacks
+	if _cost_reduce_all_this_turn > 0:
+		effective_cost -= _cost_reduce_all_this_turn
 	if _next_card_cost_reduce > 0:
-		effective_cost = maxi(effective_cost - _next_card_cost_reduce, 0)
+		effective_cost -= _next_card_cost_reduce
+	effective_cost = maxi(effective_cost, 0)
 
 	# 기(氣) 확인
 	if effective_cost > current_qi:
@@ -465,6 +477,7 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	# 기(氣) 획득
 	if card.qi_gain > 0:
 		current_qi += card.qi_gain
+		qi_gained_this_turn += card.qi_gain
 		qi_changed.emit(current_qi, max_qi)
 
 	# 카드 드로우
@@ -511,6 +524,81 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 			current_class_resource += card.conditional_resource_gain
 			current_class_resource = mini(current_class_resource, max_class_resource)
 			class_resource_changed.emit(current_class_resource, max_class_resource)
+
+	# 토큰 생성 (무관: 병사 토큰)
+	if card.tokens > 0:
+		var token_amount := card.tokens
+		if _double_token_this_turn:
+			token_amount *= 2
+		status_effects.apply_effect("player", "병사_토큰", token_amount)
+
+	# 이번 턴 토큰 2배 활성화 (천하무적진 G005)
+	if card.double_token_gen:
+		_double_token_this_turn = true
+
+	# 이번 턴 모든 카드 비용 감소 (축지법 D005)
+	if card.cost_reduce_this_turn > 0:
+		_cost_reduce_all_this_turn += card.cost_reduce_this_turn
+
+	# 기폭 D009: 이번 턴 획득한 기×배수 피해
+	if card.damage_per_qi_gained > 0:
+		var qi_dmg := qi_gained_this_turn * card.damage_per_qi_gained
+		qi_dmg = maxi(qi_dmg, card.min_damage)
+		if card.is_aoe:
+			for i in enemies.size():
+				if enemies[i]["current_hp"] > 0:
+					deal_damage_to_enemy(i, qi_dmg)
+		else:
+			deal_damage_to_enemy(target_enemy_index, qi_dmg)
+
+	# 흑염 D017: 대상 화상≥2 또는 독≥2 시 추가 피해
+	if card.bonus_on_burn > 0 or card.bonus_on_poison > 0:
+		var target_id := "enemy_%d" % target_enemy_index
+		var bonus := 0
+		if card.bonus_on_burn > 0 and status_effects.get_stacks(target_id, "화상") >= 2:
+			bonus += card.bonus_on_burn
+		if card.bonus_on_poison > 0 and status_effects.get_stacks(target_id, "독") >= 2:
+			bonus += card.bonus_on_poison
+		if bonus > 0:
+			deal_damage_to_enemy(target_enemy_index, bonus)
+
+	# 주박 D019: 취약 부여 + DoT 배율 디버프
+	if card.vulnerable_stacks > 0:
+		var target_id := "enemy_%d" % target_enemy_index
+		status_effects.apply_effect(target_id, "취약", card.vulnerable_stacks)
+	if card.dot_multiplier > 0.0:
+		var target_id := "enemy_%d" % target_enemy_index
+		status_effects.apply_effect(target_id, "주박", 1)
+
+	# 무관 전용: 기력 기반 피해 (역전의 기세 G014, 마지막 도박 G016)
+	if has_class_resource and card.damage_per_stamina > 0:
+		var stamina_used := current_class_resource
+		if card.consume_all_stamina:
+			current_class_resource = 0
+			class_resource_changed.emit(current_class_resource, max_class_resource)
+		var stam_dmg := stamina_used * card.damage_per_stamina
+		stam_dmg = maxi(stam_dmg, card.min_damage)
+		if card.is_aoe:
+			for i in enemies.size():
+				if enemies[i]["current_hp"] > 0:
+					deal_damage_to_enemy(i, stam_dmg)
+		else:
+			deal_damage_to_enemy(target_enemy_index, stam_dmg)
+
+	# 무관 전용: 기력당 추가 피해 (무쌍 G018 — 기본 데미지 + 기력×배수)
+	if has_class_resource and card.bonus_damage_per_stamina > 0:
+		var stamina_used := current_class_resource
+		if card.consume_all_stamina and current_class_resource > 0:
+			current_class_resource = 0
+			class_resource_changed.emit(current_class_resource, max_class_resource)
+		var bonus_dmg := stamina_used * card.bonus_damage_per_stamina
+		if bonus_dmg > 0:
+			if card.is_aoe:
+				for i in enemies.size():
+					if enemies[i]["current_hp"] > 0:
+						deal_damage_to_enemy(i, bonus_dmg)
+			else:
+				deal_damage_to_enemy(target_enemy_index, bonus_dmg)
 
 
 func _change_state(new_state: BattleState) -> void:
@@ -580,6 +668,12 @@ func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
 			_apply_intent_effects(enemy_index, intent)
 		"summon":
 			_execute_enemy_summon(enemy_index, intent)
+		"strip_buff":
+			# 플레이어 버프 제거
+			status_effects.clear_target("player")
+		"cleanse_debuffs":
+			# 자신의 디버프 제거
+			status_effects.clear_target(enemy_target)
 
 
 func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
@@ -683,8 +777,14 @@ func _resolve_effect_target(target_str: String, enemy_target: String) -> String:
 
 func can_play_card(card: CardData) -> bool:
 	var effective_cost := card.cost
+	var detention_stacks := status_effects.get_stacks("player", "구금")
+	if detention_stacks > 0:
+		effective_cost += detention_stacks
+	if _cost_reduce_all_this_turn > 0:
+		effective_cost -= _cost_reduce_all_this_turn
 	if _next_card_cost_reduce > 0:
-		effective_cost = maxi(effective_cost - _next_card_cost_reduce, 0)
+		effective_cost -= _next_card_cost_reduce
+	effective_cost = maxi(effective_cost, 0)
 	if effective_cost > current_qi:
 		return false
 	if has_class_resource and card.stamina_cost > 0 and card.stamina_cost > current_class_resource:
@@ -833,7 +933,7 @@ func _get_battle_card(card_id: String) -> CardData:
 		card.damage += maxi(ceili(base.damage * 0.25), 2)
 	if card.block_value > 0:
 		card.block_value += maxi(ceili(base.block_value * 0.25), 2)
-	if card.draw_count > 0:
+	if base.draw_count > 0:
 		card.draw_count += 1
 	return card
 

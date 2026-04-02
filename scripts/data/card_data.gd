@@ -40,6 +40,21 @@ extends Resource
 @export var apply_debuff_on_resource: String = ""  # 선택적 자원 소비 시 부여할 디버프 (탄핵 등)
 @export var debuff_duration: int = 0  # 디버프 지속 턴
 
+# 도사 전용 특수 효과
+@export var damage_per_qi_gained: int = 0  # 이번 턴 획득한 기당 피해 (기폭 D009)
+@export var min_damage: int = 0  # 최소 피해 (기폭 등)
+@export var cost_reduce_this_turn: int = 0  # 이번 턴 모든 카드 비용 감소 (축지법 D005)
+@export var bonus_on_burn: int = 0  # 대상 화상≥2 시 추가 피해 (흑염 D017)
+@export var bonus_on_poison: int = 0  # 대상 독≥2 시 추가 피해 (흑염 D017)
+@export var dot_multiplier: float = 0.0  # DoT 피해 배율 디버프 (주박 D019)
+@export var vulnerable_stacks: int = 0  # 취약 부여 스택 (주박 D019)
+
+# 무관 전용 특수 효과
+@export var damage_per_stamina: int = 0  # 기력당 피해 (역전의 기세 G014)
+@export var consume_all_stamina: bool = false  # 기력 전량 소비 (마지막 도박 G016)
+@export var bonus_damage_per_stamina: int = 0  # 기력당 추가 피해 (무쌍 G018)
+@export var double_token_gen: bool = false  # 이번 턴 토큰 생성량 2배 (천하무적진 G005)
+
 
 static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 	var card := CardData.new()
@@ -97,6 +112,23 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.apply_debuff_on_resource = values.get("apply_debuff_on_resource", "")
 		card.debuff_duration = values.get("debuff_duration", 0)
 
+		# 도사 전용
+		card.damage_per_qi_gained = values.get("damage_per_qi_gained_this_turn", 0)
+		card.min_damage = values.get("min_damage", 0)
+		card.cost_reduce_this_turn = values.get("cost_reduce_this_turn", 0)
+		card.bonus_on_burn = values.get("bonus_on_burn", 0)
+		card.bonus_on_poison = values.get("bonus_on_poison", 0)
+		card.dot_multiplier = values.get("dot_multiplier", 0.0)
+		card.vulnerable_stacks = values.get("vulnerable", 0)
+
+		# 무관 전용
+		card.damage_per_stamina = values.get("damage_per_stamina", 0)
+		card.consume_all_stamina = values.get("consume_all_stamina", false)
+		card.bonus_damage_per_stamina = values.get("bonus_damage_per_stamina", 0)
+		# G005 천하무적진: 토큰 2배는 subtypes에 "formation"이 있고 block+tokens가 있는 카드
+		if "token_double" in values:
+			card.double_token_gen = values["token_double"]
+
 	return card
 
 
@@ -146,4 +178,15 @@ func duplicate_card() -> CardData:
 	copy.optional_resource_cost = optional_resource_cost
 	copy.apply_debuff_on_resource = apply_debuff_on_resource
 	copy.debuff_duration = debuff_duration
+	copy.damage_per_qi_gained = damage_per_qi_gained
+	copy.min_damage = min_damage
+	copy.cost_reduce_this_turn = cost_reduce_this_turn
+	copy.bonus_on_burn = bonus_on_burn
+	copy.bonus_on_poison = bonus_on_poison
+	copy.dot_multiplier = dot_multiplier
+	copy.vulnerable_stacks = vulnerable_stacks
+	copy.damage_per_stamina = damage_per_stamina
+	copy.consume_all_stamina = consume_all_stamina
+	copy.bonus_damage_per_stamina = bonus_damage_per_stamina
+	copy.double_token_gen = double_token_gen
 	return copy
