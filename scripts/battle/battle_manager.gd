@@ -208,10 +208,12 @@ func begin_player_turn() -> void:
 		player_hp = maxi(player_hp, 0)
 		hp_changed.emit(player_hp, player_max_hp)
 		if player_hp <= 0:
-			AudioManager.play_sfx_by_key("defeat")
-			_change_state(BattleState.BATTLE_LOSE)
-			battle_ended.emit(false)
-			return
+			# 유물 트리거: 즉사 방지 (R028 불사신 부적)
+			if not RelicManager.trigger_on_lethal_damage(self):
+				AudioManager.play_sfx_by_key("defeat")
+				_change_state(BattleState.BATTLE_LOSE)
+				battle_ended.emit(false)
+				return
 
 	# 카드 드로우 (냉기 등 드로우 수정자 적용)
 	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player")
@@ -286,6 +288,22 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 
 	# 카드 효과 적용
 	_resolve_card_effect(card, target_enemy_index)
+
+	# 유물 트리거: 턴당 첫 번째 카드 사용 (R007 사서)
+	if cards_played_this_turn == 0:
+		RelicManager.trigger_on_first_card_play_per_turn(self)
+
+	# 유물 트리거: 진형 카드 사용 (RM001 병서)
+	if card.type == "formation" or "formation" in card.subtypes:
+		RelicManager.trigger_on_formation_card_play(self)
+
+	# 유물 트리거: 주문 카드 사용 (RD001 선단)
+	if card.type == "spell" or "spell" in card.subtypes:
+		RelicManager.trigger_on_spell_card_play(self)
+
+	# 유물 트리거: 와일드카드 사용 (RS005 장단 북)
+	if "wildcard" in card.subtypes:
+		RelicManager.trigger_on_wildcard_play(self)
 
 	# 카드 사용 수 추적 (문관 패시브용)
 	cards_played_this_turn += 1
@@ -379,10 +397,12 @@ func execute_enemy_turn() -> void:
 
 	# 전투 종료 확인
 	if player_hp <= 0:
-		AudioManager.play_sfx_by_key("defeat")
-		_change_state(BattleState.BATTLE_LOSE)
-		battle_ended.emit(false)
-		return
+		# 유물 트리거: 즉사 방지 (R028 불사신 부적)
+		if not RelicManager.trigger_on_lethal_damage(self):
+			AudioManager.play_sfx_by_key("defeat")
+			_change_state(BattleState.BATTLE_LOSE)
+			battle_ended.emit(false)
+			return
 
 	if _all_enemies_dead():
 		AudioManager.play_sfx_by_key("victory")
@@ -425,6 +445,9 @@ func take_damage(amount: int) -> void:
 		player_hp = maxi(player_hp, 0)
 		hp_changed.emit(player_hp, player_max_hp)
 		AudioManager.play_sfx_by_key("damage")
+		# 유물 트리거: 즉사 방지 (R028 불사신 부적)
+		if player_hp <= 0:
+			RelicManager.trigger_on_lethal_damage(self)
 
 
 func gain_block(amount: int) -> void:
@@ -474,6 +497,9 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 	elif enemy["current_hp"] <= 0:
 		# 적 사망 시 유물 트리거 (R018 등)
 		RelicManager.trigger_on_enemy_kill(self)
+		# 소환된 적 사망 시 유물 트리거 (RD002 음양패)
+		if enemy.get("_is_summoned", false):
+			RelicManager.trigger_on_summon_token_death(self)
 
 
 # --- 내부 함수 ---
@@ -517,6 +543,8 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 		var consumed := current_class_resource
 		current_class_resource = 0
 		class_resource_changed.emit(current_class_resource, max_class_resource)
+		# 유물 트리거: 학식 전소 시 (RW001 어진)
+		RelicManager.trigger_on_scholarship_exhaust(self, consumed)
 		var bonus_damage := consumed * card.resource_damage_multiplier
 		var total := maxi(bonus_damage, card.min_resource_damage)
 		if card.is_aoe:
@@ -785,6 +813,7 @@ func _execute_enemy_summon(_enemy_index: int, intent: Dictionary) -> void:
 				summoned["name"] = {"ko": name_override}
 			summoned["block"] = 0
 			summoned["move_index"] = 0
+			summoned["_is_summoned"] = true
 			enemies.append(summoned)
 			var new_idx := enemies.size() - 1
 			enemy_hp_changed.emit(new_idx, summoned["current_hp"], summoned["max_hp"])
@@ -931,9 +960,11 @@ func _on_effect_triggered(target: String, effect_id: String, value: int) -> void
 		hp_changed.emit(player_hp, player_max_hp)
 		dot_damage_dealt.emit(target, effect_id, penalty)
 		if player_hp <= 0:
-			AudioManager.play_sfx_by_key("defeat")
-			_change_state(BattleState.BATTLE_LOSE)
-			battle_ended.emit(false)
+			# 유물 트리거: 즉사 방지 (R028 불사신 부적)
+			if not RelicManager.trigger_on_lethal_damage(self):
+				AudioManager.play_sfx_by_key("defeat")
+				_change_state(BattleState.BATTLE_LOSE)
+				battle_ended.emit(false)
 		return
 	dot_damage_dealt.emit(target, effect_id, value)
 

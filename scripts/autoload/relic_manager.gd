@@ -347,6 +347,173 @@ func trigger_on_deck_shuffle(battle_manager: BattleManager) -> void:
 				relic_triggered.emit(relic_id, "셔플 드로우 +%d" % values["draw_on_shuffle"])
 
 
+func trigger_on_first_card_play_per_turn(battle_manager: BattleManager) -> void:
+	## 턴당 첫 번째 카드 사용 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_first_card_play_per_turn":
+			# R007 사서: 카드 1장 추가 드로우
+			if values.has("draw_on_first_card_per_turn"):
+				battle_manager.draw_cards(values["draw_on_first_card_per_turn"])
+				relic_triggered.emit(relic_id, "첫 카드 드로우 +%d" % values["draw_on_first_card_per_turn"])
+
+
+func trigger_on_apply_poison(target: String, stacks: int) -> int:
+	## 독 부여 시 추가 스택 보너스를 반환한다.
+	var bonus := 0
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_apply_poison":
+			# R008 동의보감: 독 스택 +1
+			if values.has("poison_stack_bonus"):
+				bonus += values["poison_stack_bonus"]
+				relic_triggered.emit(relic_id, "독 스택 +%d" % values["poison_stack_bonus"])
+	return stacks + bonus
+
+
+func trigger_boss_battle_start(battle_manager: BattleManager) -> void:
+	## 보스 전투 시작 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "boss_battle_start":
+			# R027 왕의 옥새: 방어도 +15
+			if values.has("block_on_boss_start"):
+				battle_manager.gain_block(values["block_on_boss_start"])
+				relic_triggered.emit(relic_id, "보스 전투 방어도 +%d" % values["block_on_boss_start"])
+
+
+func trigger_on_lethal_damage(battle_manager: BattleManager) -> bool:
+	## 치명적 피해 시 즉사 방지 유물을 확인한다. true 반환 시 생존.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_lethal_damage":
+			# R028 불사신 부적: HP 1로 생존 (런당 1회)
+			if values.has("death_prevention"):
+				var max_uses: int = values.get("uses_per_run", 1)
+				var count: int = _activation_counts.get(relic_id, 0)
+				if count < max_uses:
+					_activation_counts[relic_id] = count + 1
+					battle_manager.player_hp = 1
+					battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
+					relic_triggered.emit(relic_id, "즉사 방지! HP 1로 생존 (%d/%d회)" % [count + 1, max_uses])
+					return true
+	return false
+
+
+func trigger_on_formation_card_play(battle_manager: BattleManager) -> void:
+	## 진형 카드 사용 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_formation_card_play":
+			# RM001 병서: 기력 +1
+			if values.has("extra_stamina_on_formation_card") and battle_manager.has_class_resource:
+				var amount: int = values["extra_stamina_on_formation_card"]
+				battle_manager.current_class_resource += amount
+				battle_manager.current_class_resource = mini(battle_manager.current_class_resource, battle_manager.max_class_resource)
+				battle_manager.class_resource_changed.emit(battle_manager.current_class_resource, battle_manager.max_class_resource)
+				relic_triggered.emit(relic_id, "진형 카드 기력 +%d" % amount)
+
+
+func trigger_on_scholarship_exhaust(battle_manager: BattleManager, consumed: int) -> void:
+	## 학식 전소 시 발동하는 유물 효과를 처리한다.
+	if consumed <= 0:
+		return
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_scholarship_exhaust":
+			# RW001 어진: HP 최대치의 5% 회복
+			if values.has("hp_percent_on_scholarship_exhaust"):
+				var percent: int = values["hp_percent_on_scholarship_exhaust"]
+				var heal: int = battle_manager.player_max_hp * percent / 100
+				heal = maxi(heal, 1)
+				battle_manager.player_hp += heal
+				battle_manager.player_hp = mini(battle_manager.player_hp, battle_manager.player_max_hp)
+				battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
+				relic_triggered.emit(relic_id, "학식 전소 HP +%d (%d%%)" % [heal, percent])
+
+
+func trigger_on_spell_card_play(battle_manager: BattleManager) -> void:
+	## 주문 카드 사용 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_spell_card_play":
+			# RD001 선단: 기 +1
+			if values.has("extra_qi_on_spell_card"):
+				var amount: int = values["extra_qi_on_spell_card"]
+				battle_manager.current_qi += amount
+				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+				relic_triggered.emit(relic_id, "주문 카드 기 +%d" % amount)
+
+
+func trigger_on_summon_token_death(battle_manager: BattleManager) -> void:
+	## 소환 토큰 소멸 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_summon_token_death":
+			# RD002 음양패: 카드 1장 드로우
+			if values.has("draw_on_summon_death"):
+				battle_manager.draw_cards(values["draw_on_summon_death"])
+				relic_triggered.emit(relic_id, "소환 소멸 드로우 +%d" % values["draw_on_summon_death"])
+
+
+func trigger_on_wildcard_play(battle_manager: BattleManager) -> void:
+	## 와일드카드 사용 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_wildcard_play":
+			# RS005 장단 북: 기 +1
+			if values.has("qi_on_wildcard"):
+				var amount: int = values["qi_on_wildcard"]
+				battle_manager.current_qi += amount
+				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+				relic_triggered.emit(relic_id, "와일드카드 기 +%d" % amount)
+
+
 func reset_run_state() -> void:
 	## 런 시작 시 발동 횟수 초기화
 	_activation_counts.clear()

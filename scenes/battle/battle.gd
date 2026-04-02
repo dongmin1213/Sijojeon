@@ -135,6 +135,10 @@ func _start_battle() -> void:
 	# 전투 시작 유물 트리거 (편자, 호신검, 어사마패 등)
 	RelicManager.trigger_battle_start(battle_manager)
 
+	# 보스 전투 시작 유물 트리거 (R027 왕의 옥새 등)
+	if is_boss:
+		RelicManager.trigger_boss_battle_start(battle_manager)
+
 	# 어센션 전투 시작 디버프 (정예전 약화 등)
 	if rd.ascension_level > 0:
 		for mod in rd.ascension_modifiers:

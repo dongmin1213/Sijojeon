@@ -39,6 +39,9 @@ func apply_effect(target: String, effect_id: String, stacks: int) -> void:
 		var buff_def := StatusEffectData.get_definition(effect_id)
 		if buff_def and buff_def.type == StatusEffectData.EffectType.BUFF:
 			final_stacks = RelicManager.trigger_on_buff_apply(stacks)
+	# R008 동의보감: 독 부여 시 스택 보너스
+	if effect_id == "독":
+		final_stacks = RelicManager.trigger_on_apply_poison(target, final_stacks)
 	var current: int = _effects[target].get(effect_id, 0)
 	# 스택 오버플로 방지 (최대 999)
 	_effects[target][effect_id] = mini(current + final_stacks, 999)

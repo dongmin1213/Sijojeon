@@ -64,6 +64,15 @@ HANDLED_TRIGGERS = {
     "sijo_milestone_2",
     "sijo_complete",
     "passive",
+    "on_first_card_play_per_turn",
+    "on_apply_poison",
+    "boss_battle_start",
+    "on_lethal_damage",
+    "on_formation_card_play",
+    "on_scholarship_exhaust",
+    "on_spell_card_play",
+    "on_summon_token_death",
+    "on_wildcard_play",
 }
 
 
