@@ -107,7 +107,7 @@ func get_effect_texture(effect_name: String) -> Texture2D:
 
 func has_real_texture(category: AssetCategory, asset_id: String) -> bool:
 	## 실제 에셋 파일이 존재하는지 확인한다 (placeholder 아님).
-	var path := CATEGORY_PATHS[category] + asset_id + ".png"
+	var path: String = CATEGORY_PATHS[category] + asset_id + ".png"
 	return ResourceLoader.exists(path)
 
 

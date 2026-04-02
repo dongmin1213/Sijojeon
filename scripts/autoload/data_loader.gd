@@ -286,12 +286,12 @@ func _load_ascension() -> void:
 	if err == OK and json.data is Dictionary:
 		_ascension_data = json.data
 		# 저주 카드를 카드 풀에 등록
-		var curse := _ascension_data.get("curse_card", {})
+		var curse: Dictionary = _ascension_data.get("curse_card", {})
 		if curse.has("id"):
 			var card := CardData.from_dict(curse, "curse")
 			_cards[card.id] = card
 		# 미니 적(영혼 잔해)를 적 풀에 등록
-		var mini_enemy := _ascension_data.get("mini_enemy", {})
+		var mini_enemy: Dictionary = _ascension_data.get("mini_enemy", {})
 		if mini_enemy.has("id"):
 			_enemies[mini_enemy["id"]] = mini_enemy
 
