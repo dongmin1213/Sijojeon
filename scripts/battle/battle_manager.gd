@@ -181,6 +181,7 @@ func begin_player_turn() -> void:
 		player_hp = maxi(player_hp, 0)
 		hp_changed.emit(player_hp, player_max_hp)
 		if player_hp <= 0:
+			AudioManager.play_sfx_by_key("defeat")
 			_change_state(BattleState.BATTLE_LOSE)
 			battle_ended.emit(false)
 			return
@@ -237,6 +238,9 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 		current_class_resource = maxi(current_class_resource, 0)
 		class_resource_changed.emit(current_class_resource, max_class_resource)
 
+	# 카드 사용 SFX
+	AudioManager.play_sfx_by_key("card_play")
+
 	# 시조 슬롯 시도
 	if sijo_system:
 		sijo_system.try_fill_slot(card.beat, card_id)
@@ -254,6 +258,7 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 
 	# 전투 종료 확인 (적 사망)
 	if _all_enemies_dead():
+		AudioManager.play_sfx_by_key("victory")
 		_change_state(BattleState.BATTLE_WIN)
 		battle_ended.emit(true)
 
@@ -334,11 +339,13 @@ func execute_enemy_turn() -> void:
 
 	# 전투 종료 확인
 	if player_hp <= 0:
+		AudioManager.play_sfx_by_key("defeat")
 		_change_state(BattleState.BATTLE_LOSE)
 		battle_ended.emit(false)
 		return
 
 	if _all_enemies_dead():
+		AudioManager.play_sfx_by_key("victory")
 		_change_state(BattleState.BATTLE_WIN)
 		battle_ended.emit(true)
 		return
@@ -348,6 +355,7 @@ func execute_enemy_turn() -> void:
 
 
 func draw_cards(count: int) -> void:
+	var drew_any := false
 	for i in count:
 		if draw_pile.is_empty():
 			_reshuffle_discard()
@@ -356,6 +364,9 @@ func draw_cards(count: int) -> void:
 		var card_id: String = draw_pile.pop_back()
 		hand.append(card_id)
 		card_drawn.emit(card_id)
+		drew_any = true
+	if drew_any:
+		AudioManager.play_sfx_by_key("card_draw")
 	hand_changed.emit(hand)
 
 
@@ -373,11 +384,13 @@ func take_damage(amount: int) -> void:
 		player_hp -= remaining
 		player_hp = maxi(player_hp, 0)
 		hp_changed.emit(player_hp, player_max_hp)
+		AudioManager.play_sfx_by_key("damage")
 
 
 func gain_block(amount: int) -> void:
 	player_block += amount
 	block_changed.emit(player_block)
+	AudioManager.play_sfx_by_key("block")
 
 	# 출혈: 방어도 획득 시 출혈 스택만큼 추가 피해
 	var bleed_damage := status_effects.calculate_bleed_on_block("player", amount)
@@ -561,6 +574,7 @@ func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
 	# 적 공격력 수정 (strength, 약화)
 	var final_damage := status_effects.calculate_outgoing_damage(enemy_target, base_damage)
 
+	AudioManager.play_sfx_by_key("enemy_attack")
 	for t in times:
 		take_damage(final_damage)
 
@@ -676,6 +690,7 @@ func _on_effect_triggered(target: String, effect_id: String, value: int) -> void
 		hp_changed.emit(player_hp, player_max_hp)
 		dot_damage_dealt.emit(target, effect_id, penalty)
 		if player_hp <= 0:
+			AudioManager.play_sfx_by_key("defeat")
 			_change_state(BattleState.BATTLE_LOSE)
 			battle_ended.emit(false)
 		return

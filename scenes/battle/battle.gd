@@ -282,10 +282,12 @@ func _on_card_played(hand_index: int, target_enemy_index: int) -> void:
 
 
 func _on_end_turn_pressed() -> void:
+	AudioManager.play_sfx_by_key("end_turn")
 	battle_manager.end_player_turn()
 
 
 func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> void:
+	AudioManager.play_sfx_by_key("sijo_slot")
 	if index < sijo_slot_labels.size():
 		var card: CardData = DataLoader.get_card(card_id)
 		if card:
@@ -296,6 +298,7 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 
 
 func _on_sijo_completed(final_card_id: String) -> void:
+	AudioManager.play_sfx_by_key("sijo_complete")
 	# 시조 완성 보상: 마지막 카드 효과 2배 + 기 1 회복 + 카드 1장 드로우
 	var card: CardData = battle_manager._get_battle_card(final_card_id)
 	if card:

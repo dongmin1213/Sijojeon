@@ -84,6 +84,7 @@ func _on_rest() -> void:
 	var actual_heal: int = mini(heal_amount, rd.max_hp - rd.current_hp)
 	rd.current_hp = mini(rd.current_hp + heal_amount, rd.max_hp)
 
+	AudioManager.play_sfx_by_key("heal")
 	_show_result("휴식을 취해 HP %d 회복. (%d/%d)" % [actual_heal, rd.current_hp, rd.max_hp])
 
 
@@ -126,6 +127,7 @@ func _on_upgrade_card(entry: Dictionary) -> void:
 	var card: CardData = entry["card_data"]
 
 	# 강화 목록에 추가
+	AudioManager.play_sfx_by_key("upgrade")
 	GameManager.run_data.upgraded_cards.append(card_id)
 
 	_show_result("『%s』 강화 완료!\n%s" % [

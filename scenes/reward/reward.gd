@@ -112,6 +112,8 @@ func _on_relic_claimed() -> void:
 func _apply_gold() -> void:
 	if GameManager.run_data:
 		GameManager.run_data.gold += reward_gold
+		if reward_gold > 0:
+			AudioManager.play_sfx_by_key("coin")
 	gold_label.text = "금화 +%d (보유: %d)" % [reward_gold, GameManager.run_data.gold if GameManager.run_data else 0]
 
 
@@ -195,6 +197,7 @@ func _on_card_chosen(index: int) -> void:
 		var card_id: String = card_offers[index]
 		if GameManager.run_data:
 			GameManager.run_data.deck.append(card_id)
+			AudioManager.play_sfx_by_key("card_draw")
 
 		# 선택한 카드 하이라이트
 		var buttons := card_container.get_children()

@@ -27,6 +27,13 @@ func apply_effect(target: String, effect_id: String, stacks: int) -> void:
 	var current: int = _effects[target].get(effect_id, 0)
 	_effects[target][effect_id] = current + stacks
 	effect_applied.emit(target, effect_id, _effects[target][effect_id])
+	# 버프/디버프 SFX (플레이어 대상일 때만 재생)
+	if target == "player":
+		var def := StatusEffectData.get_definition(effect_id)
+		if def and def.type == StatusEffectData.EffectType.BUFF:
+			AudioManager.play_sfx_by_key("buff")
+		else:
+			AudioManager.play_sfx_by_key("debuff")
 
 
 func remove_effect(target: String, effect_id: String) -> void:

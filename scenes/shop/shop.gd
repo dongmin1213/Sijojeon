@@ -208,6 +208,7 @@ func _on_buy_card(index: int) -> void:
 		return
 
 	# 구매 실행
+	AudioManager.play_sfx_by_key("coin")
 	GameManager.run_data.gold -= entry["price"]
 	GameManager.run_data.deck.append(entry["card_id"])
 	shop_cards[index]["sold"] = true
@@ -224,6 +225,7 @@ func _on_refresh_pressed() -> void:
 	if GameManager.run_data.gold < REFRESH_COST:
 		return
 
+	AudioManager.play_sfx_by_key("coin")
 	GameManager.run_data.gold -= REFRESH_COST
 	_generate_shop_cards()
 	_display_shop_cards()
@@ -287,6 +289,7 @@ func _on_remove_card(deck_index: int) -> void:
 		return
 
 	# 제거 실행
+	AudioManager.play_sfx_by_key("coin")
 	GameManager.run_data.gold -= removal_cost
 	GameManager.run_data.deck.remove_at(deck_index)
 	GameManager.run_data.card_removals_count += 1
