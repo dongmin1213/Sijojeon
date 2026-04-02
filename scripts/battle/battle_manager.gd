@@ -118,17 +118,21 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	draw_pile = deck.duplicate()
 	_shuffle_draw_pile()
 
-	# 적 초기화
+	# 적 초기화 (어센션 HP 스케일링 적용)
+	var hp_mult := GameManager.get_ascension_enemy_hp_multiplier()
+	var is_boss_fight := GameManager.run_data and GameManager.run_data.current_node_type == 4  # BOSS
+	if is_boss_fight:
+		hp_mult = GameManager.get_ascension_boss_hp_multiplier()
 	enemies.clear()
 	for e in enemy_data:
 		var enemy := e.duplicate(true)
 		var hp_data = enemy.get("hp", {})
 		if hp_data is Dictionary:
-			enemy["current_hp"] = randi_range(hp_data.get("min", 20), hp_data.get("max", 30))
+			enemy["current_hp"] = int(randi_range(hp_data.get("min", 20), hp_data.get("max", 30)) * hp_mult)
 			enemy["max_hp"] = enemy["current_hp"]
 		elif hp_data is int:
-			enemy["current_hp"] = hp_data
-			enemy["max_hp"] = hp_data
+			enemy["current_hp"] = int(hp_data * hp_mult)
+			enemy["max_hp"] = enemy["current_hp"]
 		enemy["block"] = 0
 		enemy["move_index"] = 0
 		enemy["current_phase"] = 0

@@ -12,6 +12,8 @@ var _relics: Dictionary = {}
 var _relic_rarity_table: Dictionary = {}
 # 캐릭터 스킬 데이터
 var _skills_data: Dictionary = {}
+# 어센션 시스템 데이터
+var _ascension_data: Dictionary = {}
 
 # 스타터 덱 구성 (character_id → Array[card_id])
 const STARTER_DECKS := {
@@ -48,6 +50,7 @@ func _ready() -> void:
 	_load_all_enemies()
 	_load_relics()
 	_load_skills()
+	_load_ascension()
 
 
 func _load_all_cards() -> void:
@@ -98,10 +101,15 @@ func _load_all_enemies() -> void:
 	var enemy_files := [
 		"res://data/enemies/act1.json",
 		"res://data/enemies/act1_boss.json",
+		"res://data/enemies/act1_boss_alt.json",
+		"res://data/enemies/act1_boss_mid.json",
 		"res://data/enemies/act2.json",
 		"res://data/enemies/act2_boss.json",
+		"res://data/enemies/act2_boss_alt.json",
+		"res://data/enemies/act2_boss_mid.json",
 		"res://data/enemies/act3.json",
 		"res://data/enemies/act3_boss.json",
+		"res://data/enemies/act3_boss_mid.json",
 	]
 	for path in enemy_files:
 		_load_enemy_file(path)
@@ -244,6 +252,39 @@ func _matches_class(restriction: String, character_id: String) -> bool:
 
 func get_relic_rarity_table() -> Dictionary:
 	return _relic_rarity_table
+
+
+func get_ascension_data() -> Dictionary:
+	return _ascension_data
+
+
+func get_ascension_level(level: int) -> Dictionary:
+	var levels: Array = _ascension_data.get("levels", [])
+	for l in levels:
+		if l is Dictionary and l.get("level", -1) == level:
+			return l
+	return {}
+
+
+func _load_ascension() -> void:
+	var path := "res://data/unlock/ascension.json"
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return
+	var json := JSON.new()
+	var err := json.parse(file.get_as_text())
+	file.close()
+	if err == OK and json.data is Dictionary:
+		_ascension_data = json.data
+		# 저주 카드를 카드 풀에 등록
+		var curse := _ascension_data.get("curse_card", {})
+		if curse.has("id"):
+			var card := CardData.from_dict(curse, "curse")
+			_cards[card.id] = card
+		# 미니 적(영혼 잔해)를 적 풀에 등록
+		var mini_enemy := _ascension_data.get("mini_enemy", {})
+		if mini_enemy.has("id"):
+			_enemies[mini_enemy["id"]] = mini_enemy
 
 
 func get_character_skills(character_id: String) -> Dictionary:

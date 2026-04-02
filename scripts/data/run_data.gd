@@ -23,6 +23,8 @@ var current_encounter_id: String = ""  # 현재 조우 ID
 var is_daily_challenge: bool = false  # 일일 도전 모드 여부
 var daily_date: String = ""  # 일일 도전 날짜 (YYYY-MM-DD)
 var daily_score: int = 0  # 일일 도전 점수
+var ascension_level: int = 0  # 어센션(귀신 단계) 레벨
+var ascension_modifiers: Array = []  # 현재 적용 중인 수정자 목록
 
 
 func to_dict() -> Dictionary:
@@ -50,6 +52,8 @@ func to_dict() -> Dictionary:
 		"is_daily_challenge": is_daily_challenge,
 		"daily_date": daily_date,
 		"daily_score": daily_score,
+		"ascension_level": ascension_level,
+		"ascension_modifiers": ascension_modifiers,
 	}
 
 
@@ -77,4 +81,6 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.is_daily_challenge = data.get("is_daily_challenge", false)
 	rd.daily_date = data.get("daily_date", "")
 	rd.daily_score = data.get("daily_score", 0)
+	rd.ascension_level = data.get("ascension_level", 0)
+	rd.ascension_modifiers = data.get("ascension_modifiers", [])
 	return rd

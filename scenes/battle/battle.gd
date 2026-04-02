@@ -118,6 +118,22 @@ func _start_battle() -> void:
 	# 전투 시작 유물 트리거 (편자, 호신검, 어사마패 등)
 	RelicManager.trigger_battle_start(battle_manager)
 
+	# 어센션 전투 시작 디버프 (정예전 약화 등)
+	if rd.ascension_level > 0:
+		for mod in rd.ascension_modifiers:
+			if mod is Dictionary and mod.get("type", "") == "combat_start_effect":
+				var combat_type: String = mod.get("combat_type", "")
+				var should_apply := false
+				if combat_type == "elite" and rd.current_node_type == MapData.NodeType.ELITE:
+					should_apply = true
+				elif combat_type == "all":
+					should_apply = true
+				if should_apply:
+					var effect: String = mod.get("effect", "")
+					var duration: int = mod.get("duration", 1)
+					if effect == "weaken":
+						battle_manager.status_effects.apply_effect("player", "약화", duration)
+
 	# 클래스 고유 자원 UI 초기화 (무관: 기력, 문관: 학식)
 	if battle_manager.has_class_resource:
 		_init_class_resource_ui()

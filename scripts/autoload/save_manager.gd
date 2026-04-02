@@ -80,6 +80,27 @@ func record_run_result(victory: bool, character_id: String, act_reached: int) ->
 	save_meta(meta)
 
 
+# --- 어센션 진행도 ---
+
+func save_ascension_progress(character_id: String, level: int) -> void:
+	## 어센션 클리어 시 다음 레벨 해금
+	var meta := load_meta()
+	if not meta.has("ascension"):
+		meta["ascension"] = {}
+	var current_max: int = meta["ascension"].get(character_id, 0)
+	if level + 1 > current_max:
+		meta["ascension"][character_id] = level + 1
+	save_meta(meta)
+
+
+func get_max_ascension_level(character_id: String) -> int:
+	## 해금된 최고 어센션 레벨 반환
+	var meta := load_meta()
+	if meta.has("ascension"):
+		return meta["ascension"].get(character_id, 0)
+	return 0
+
+
 # --- 일일 도전 ---
 
 const DAILY_PATH := "user://daily_data.json"

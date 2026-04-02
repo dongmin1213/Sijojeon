@@ -70,10 +70,11 @@ func change_state(new_state: GameState) -> void:
 			push_warning("GameManager: 씬 파일 없음 — %s (상태: %s)" % [scene_path, GameState.keys()[new_state]])
 
 
-func start_new_run(character_id: String) -> void:
+func start_new_run(character_id: String, ascension_level: int = 0) -> void:
 	run_data = RunData.new()
 	run_data.character_id = character_id
 	run_data.map_seed = randi()
+	run_data.ascension_level = ascension_level
 	RelicManager.reset_run_state()
 
 	# DataLoader에서 캐릭터 데이터로 HP 설정
@@ -91,6 +92,10 @@ func start_new_run(character_id: String) -> void:
 	# 시작 유물
 	if skills_data and skills_data.has("starting_relic"):
 		run_data.relics.append(skills_data["starting_relic"])
+
+	# 어센션 수정자 적용
+	if ascension_level > 0:
+		_apply_ascension_modifiers(ascension_level)
 
 	# 맵 생성
 	var generator := MapGenerator.new()
@@ -144,6 +149,9 @@ func end_run(victory: bool) -> void:
 	# 런 통계 기록
 	if run_data:
 		SaveManager.record_run_result(victory, run_data.character_id, run_data.current_act)
+		# 어센션 클리어 시 다음 레벨 해금
+		if victory and run_data.ascension_level >= 0:
+			SaveManager.save_ascension_progress(run_data.character_id, run_data.ascension_level)
 		# 일일 도전 점수 저장
 		if run_data.is_daily_challenge:
 			var score := _calculate_daily_score(victory)
@@ -205,6 +213,101 @@ func _calculate_daily_score(victory: bool) -> int:
 	if victory:
 		score += 500  # 승리 보너스
 	return score
+
+
+func _apply_ascension_modifiers(level: int) -> void:
+	## 어센션 수정자를 run_data에 적용한다.
+	var asc_data := DataLoader.get_ascension_level(level)
+	if asc_data.is_empty():
+		return
+
+	var modifiers: Array = asc_data.get("modifiers", [])
+	run_data.ascension_modifiers = modifiers
+
+	for mod in modifiers:
+		if mod is not Dictionary:
+			continue
+		var mod_type: String = mod.get("type", "")
+
+		match mod_type:
+			"starter_deck":
+				# 저주 카드 추가
+				var card_id: String = mod.get("card_id", "")
+				var count: int = mod.get("count", 1)
+				for _i in count:
+					run_data.deck.append(card_id)
+			"player_stat":
+				# 플레이어 스탯 수정 (기 감소 등)
+				var stat: String = mod.get("stat", "")
+				var value = mod.get("value", 0)
+				match stat:
+					"starting_qi":
+						run_data.qi_per_turn = maxi(run_data.qi_per_turn + int(value), 1)
+
+
+func get_ascension_enemy_hp_multiplier() -> float:
+	## 현재 어센션의 적 HP 배율을 계산한다.
+	if run_data == null:
+		return 1.0
+	var multiplier := 1.0
+	for mod in run_data.ascension_modifiers:
+		if mod is not Dictionary:
+			continue
+		if mod.get("type", "") == "enemy_stat" and mod.get("stat", "") == "hp":
+			if mod.get("target", "") == "all_enemies":
+				multiplier *= mod.get("value", 1.0)
+	return multiplier
+
+
+func get_ascension_boss_hp_multiplier() -> float:
+	## 보스 전용 추가 HP 배율 (10단계)
+	if run_data == null:
+		return 1.0
+	var multiplier := get_ascension_enemy_hp_multiplier()
+	for mod in run_data.ascension_modifiers:
+		if mod is not Dictionary:
+			continue
+		if mod.get("type", "") == "enemy_stat" and mod.get("target", "") == "boss_only":
+			multiplier *= mod.get("value", 1.0)
+	return multiplier
+
+
+func get_ascension_shop_price_multiplier() -> float:
+	## 상점 가격 배율
+	if run_data == null:
+		return 1.0
+	var multiplier := 1.0
+	for mod in run_data.ascension_modifiers:
+		if mod is not Dictionary:
+			continue
+		if mod.get("type", "") == "shop_price" and mod.get("target", "") == "all":
+			if mod.get("operation", "") == "multiply":
+				multiplier *= mod.get("value", 1.0)
+	return multiplier
+
+
+func get_ascension_card_removal_extra_cost() -> int:
+	## 카드 제거 추가 비용
+	if run_data == null:
+		return 0
+	var extra := 0
+	for mod in run_data.ascension_modifiers:
+		if mod is not Dictionary:
+			continue
+		if mod.get("type", "") == "shop_price" and mod.get("target", "") == "card_removal":
+			if mod.get("operation", "") == "add":
+				extra += int(mod.get("value", 0))
+	return extra
+
+
+func has_ascension_modifier(mod_id: String) -> bool:
+	## 특정 수정자가 활성화되어 있는지 확인
+	if run_data == null:
+		return false
+	for mod in run_data.ascension_modifiers:
+		if mod is Dictionary and mod.get("id", "") == mod_id:
+			return true
+	return false
 
 
 func has_daily_challenge_today() -> bool:
