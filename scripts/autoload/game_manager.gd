@@ -8,6 +8,7 @@ enum GameState {
 	CHARACTER_SELECT,
 	CHRONICLE,
 	SETTINGS,
+	TUTORIAL,
 	MAP,
 	BATTLE,
 	EVENT,
@@ -38,6 +39,8 @@ func _get_scene_path(state: GameState) -> String:
 			return "res://scenes/chronicle/chronicle.tscn"
 		GameState.SETTINGS:
 			return "res://scenes/settings/settings.tscn"
+		GameState.TUTORIAL:
+			return "res://scenes/tutorial/tutorial_battle.tscn"
 		GameState.MAP:
 			return "res://scenes/map/run_map.tscn"
 		GameState.BATTLE:
@@ -314,3 +317,14 @@ func has_daily_challenge_today() -> bool:
 	## 오늘 일일 도전을 이미 완료했는지 확인
 	var today := Time.get_date_string_from_system()
 	return SaveManager.has_daily_result(today)
+
+
+func is_tutorial_completed() -> bool:
+	## 튜토리얼 완료 여부를 확인한다.
+	var meta := SaveManager.load_meta()
+	return meta.get("tutorial_completed", false)
+
+
+func start_tutorial() -> void:
+	## 튜토리얼 전투를 시작한다.
+	change_state(GameState.TUTORIAL)

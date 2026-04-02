@@ -449,14 +449,10 @@ func _create_achievement_panel() -> PanelContainer:
 
 
 func _show_first_play_guide() -> void:
-	## 첫 플레이 시 간단한 게임 가이드 오버레이를 표시한다.
-	var meta := SaveManager.load_meta()
-	if meta.get("tutorial_shown", false):
+	## 첫 플레이 시 인터랙티브 튜토리얼을 제안한다.
+	## 튜토리얼 미완료 시 전투 튜토리얼 또는 건너뛰기를 선택할 수 있다.
+	if GameManager.is_tutorial_completed():
 		return
-
-	# 튜토리얼 표시 플래그 저장
-	meta["tutorial_shown"] = true
-	SaveManager.save_meta(meta)
 
 	var overlay := ColorRect.new()
 	overlay.color = Color(0.0, 0.0, 0.0, 0.85)
@@ -486,41 +482,43 @@ func _show_first_play_guide() -> void:
 	guide_text.add_theme_font_size_override("font_size", 20)
 	guide_text.text = """조선 시대를 배경으로 한 덱빌딩 로그라이크입니다.
 
-▶ 캐릭터를 선택하고 고유한 카드와 능력으로 전투하세요
-▶ 맵에서 경로를 선택하여 전투, 이벤트, 상점, 휴식처를 탐험합니다
-▶ 전투에서 승리하면 새 카드를 획득할 수 있습니다
-▶ 상점에서 카드를 구매하거나 불필요한 카드를 제거하세요
-▶ 각 막의 보스를 처치하면 다음 막으로 진행합니다
-▶ 3막 보스를 처치하면 게임 클리어!
+처음 플레이하시나요?
+인터랙티브 튜토리얼에서 전투의 기본을 배울 수 있습니다.
 
-시조(時調) 리듬 시스템:
-  • 6슬롯 패턴 [3,4, 3,4, 3,4] — 초장·중장·종장 각 2박자
-  • 카드의 음보(拍)가 슬롯 순서와 일치해야 채워집니다
-  • 초장 완성(3/6): 기(氣) +1   • 중장 완성(4/6): 카드 1장 드로우
-  • 시조 완성(6/6): 마지막 카드 효과 ×2 + 기 +1 + 카드 드로우
-
-직업별 고유 자원:
-  • 무관(武官) — 기력(氣力) 최대 5: 공격 스킬이 기력을 소비하며 강화
-  • 문관(文官) — 학식(學識) 최대 5: 카드 사용 시 축적, 효과 증폭에 활용
-  • 도사(道士) — 방술(方術): 조건 충족 시 패시브로 자동 발동
-
-상태효과:
-  • 약화(弱化): 공격력 감소   • 강화(强化): 공격력 증가
-  • 취약(脆弱): 받는 피해 증가  • 방어 강화: 방어력 증가
-
-전투 팁:
-  • 기(氣)를 소비하여 카드를 사용합니다
-  • 방어력은 매 턴 초기화됩니다"""
+• 카드 사용법과 기(氣) 관리
+• 시조(時調) 리듬 시스템
+• 방어와 전투 전략"""
 	vbox.add_child(guide_text)
 
-	var close_btn := Button.new()
-	close_btn.text = "게임 시작하기"
-	close_btn.add_theme_font_size_override("font_size", 24)
-	close_btn.custom_minimum_size = Vector2(300, 60)
-	close_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	close_btn.pressed.connect(func(): overlay.queue_free())
-	vbox.add_child(close_btn)
+	var btn_container := HBoxContainer.new()
+	btn_container.alignment = BoxContainer.ALIGNMENT_CENTER
+	btn_container.add_theme_constant_override("separation", 20)
 
+	var tutorial_btn := Button.new()
+	tutorial_btn.text = "튜토리얼 시작"
+	tutorial_btn.add_theme_font_size_override("font_size", 24)
+	tutorial_btn.custom_minimum_size = Vector2(280, 60)
+	tutorial_btn.pressed.connect(func():
+		overlay.queue_free()
+		GameManager.start_tutorial()
+	)
+	btn_container.add_child(tutorial_btn)
+
+	var skip_btn := Button.new()
+	skip_btn.text = "건너뛰기"
+	skip_btn.add_theme_font_size_override("font_size", 20)
+	skip_btn.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+	skip_btn.custom_minimum_size = Vector2(200, 60)
+	skip_btn.pressed.connect(func():
+		# 튜토리얼 완료 플래그 설정
+		var meta := SaveManager.load_meta()
+		meta["tutorial_completed"] = true
+		SaveManager.save_meta(meta)
+		overlay.queue_free()
+	)
+	btn_container.add_child(skip_btn)
+
+	vbox.add_child(btn_container)
 	margin.add_child(vbox)
 	overlay.add_child(margin)
 	add_child(overlay)
