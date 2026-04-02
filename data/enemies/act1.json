@@ -157,12 +157,12 @@
           "id": "possession_attempt",
           "name": "빙의 시도",
           "intent": "attack_debuff",
-          "damage": 8,
+          "damage": 6,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
           ],
-          "description": "8피해 + 약화 2. 원혼의 주력 패턴."
+          "description": "6피해 + 약화 1. 원혼의 주력 패턴."
         }
       ],
       "move_pattern": {
@@ -174,7 +174,7 @@
         "card_chance": 0.25,
         "relic_chance": 0.05
       },
-      "balance_note": "디버프형 특수 몬스터. 냉기(드로우 감소)와 약화가 쌓이면 플레이어 시조 리듬 완성 방해 가능. 빙의 시도(8+약화2) 이후 플레이어 공격력이 반 토막 — 빠른 처치 압박."
+      "balance_note": "디버프형 특수 몬스터. 냉기(드로우 감소)와 약화가 쌓이면 플레이어 시조 리듬 완성 방해 가능. 빙의 시도(6+약화1)로 조정 — 취약 시 9데미지, 무관(HP65) 기준 13.8%/턴. 이전 8+약화2는 18.5%+스노우볼로 과도."
     },
     {
       "id": "E004",
@@ -233,6 +233,178 @@
         "relic_chance": 0.05
       },
       "balance_note": "[ZER-56 조정] slam 14→12, 패턴에 club_bash 1회 추가로 strengthen이 4턴으로 지연. 힘+2 후 slam(12+2=14) — 이전(14+2=16) 대비 위험도 완화. 화상도 누적되므로 4-5턴 내 처치가 이상적."
+    },
+    {
+      "id": "E005",
+      "name": {
+        "ko": "포졸 대장",
+        "hanja": "捕卒大將",
+        "romanized": "Pojol Daejang"
+      },
+      "description": "한양 순라군의 대장. 부하들을 이끌며 연타와 방어를 동시에 구사하는 노련한 전사.",
+      "hp": { "min": 32, "max": 42 },
+      "moves": [
+        {
+          "id": "rapid_clubs",
+          "name": "연속 곤봉",
+          "intent": "attack",
+          "damage": 4,
+          "times": 3,
+          "description": "4피해 × 3회 = 12 총피해. 방어도 분산 효과."
+        },
+        {
+          "id": "shield_wall",
+          "name": "방패 진형",
+          "intent": "defend",
+          "block": 9,
+          "description": "방패를 들어 방어도 9 획득."
+        },
+        {
+          "id": "captain_command",
+          "name": "대장의 호령",
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "기합을 질러 힘 2 획득. 이후 공격 피해 +2."
+        },
+        {
+          "id": "heavy_strike",
+          "name": "중검 타격",
+          "intent": "attack",
+          "damage": 13,
+          "times": 1,
+          "description": "단발 강타. 힘 쌓인 후 사용."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["rapid_clubs", "shield_wall", "captain_command", "heavy_strike", "rapid_clubs", "shield_wall", "heavy_strike"]
+      },
+      "rewards": {
+        "gold": { "min": 16, "max": 26 },
+        "card_chance": 0.3,
+        "relic_chance": 0.0
+      },
+      "ai_pattern": "방어를 우선시하며 방어도를 쌓은 뒤 반격한다. 연속 곤봉으로 방어도를 분산시키고 힘을 올린 후 중검 타격으로 마무리.",
+      "balance_note": "captain_command(힘+2) 후 heavy_strike(13+2=15)가 1막 일반 최대치. 연속 곤봉(4×3=12)은 방어도 분산. 힘 버프 전 처치 권장."
+    },
+    {
+      "id": "E006",
+      "name": {
+        "ko": "악귀",
+        "hanja": "惡鬼",
+        "romanized": "Akgwi"
+      },
+      "description": "원한이 너무 깊어 악으로 변한 귀신. 독과 저주로 적을 서서히 갉아먹는다.",
+      "hp": { "min": 18, "max": 25 },
+      "moves": [
+        {
+          "id": "venom_touch",
+          "name": "독기 접촉",
+          "intent": "attack_debuff",
+          "damage": 4,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "독", "stacks": 3, "target": "player" }
+          ],
+          "description": "4피해 + 독 3 부여. 누적 독 피해: 3+2+1=6."
+        },
+        {
+          "id": "curse_mark",
+          "name": "저주 낙인",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+          ],
+          "description": "취약 2 + 약화 1 부여."
+        },
+        {
+          "id": "spirit_drain",
+          "name": "기력 흡수",
+          "intent": "attack",
+          "damage": 7,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+          ],
+          "description": "7피해 + 냉기 1(다음 턴 드로우 -1) 부여."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["curse_mark", "venom_touch", "spirit_drain", "venom_touch", "curse_mark", "spirit_drain"]
+      },
+      "rewards": {
+        "gold": { "min": 10, "max": 20 },
+        "card_chance": 0.25,
+        "relic_chance": 0.08
+      },
+      "ai_pattern": "저주로 약화시킨 뒤 독을 중첩시켜 장기 피해를 노린다. HP가 낮아 빠른 처치가 가능하지만 저주+독 콤보가 방치되면 누적 피해가 위험.",
+      "balance_note": "HP가 낮지만 독+저주+냉기를 한 사이클에 모두 사용. 취약(+50%) 상태에서 spirit_drain(7)은 실질 10.5피해. 빠른 처치로 독 누적 차단 권장."
+    },
+    {
+      "id": "E007",
+      "name": {
+        "ko": "탐관오리",
+        "hanja": "貪官汚吏",
+        "romanized": "Tamgwan-oli"
+      },
+      "description": "부패한 조선 관리. 직접 싸우기보다 버프와 약화로 유리한 상황을 만든다.",
+      "hp": { "min": 28, "max": 38 },
+      "moves": [
+        {
+          "id": "bribe_power",
+          "name": "뇌물 축적",
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" },
+            { "type": "apply_buff", "buff": "thorns", "stacks": 2, "target": "self" }
+          ],
+          "description": "힘 2 + 가시 2 획득. 근접 공격자에게 역피해 유발."
+        },
+        {
+          "id": "extort",
+          "name": "착취",
+          "intent": "attack_debuff",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+          ],
+          "description": "8피해 + 약화 2. 플레이어 공격력을 크게 낮춘다."
+        },
+        {
+          "id": "decree",
+          "name": "압박 명령",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" },
+            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+          ],
+          "description": "취약 1 + 냉기 1 부여. 다음 턴 드로우 방해."
+        },
+        {
+          "id": "official_blow",
+          "name": "관인 타격",
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "description": "힘 쌓인 후 사용. 10+힘 피해."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["decree", "bribe_power", "extort", "official_blow", "decree", "extort", "official_blow"]
+      },
+      "rewards": {
+        "gold": { "min": 15, "max": 28 },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "ai_pattern": "약화·취약·냉기 디버프를 누적하고 가시로 근접 공격을 패널티화한다. 힘 2 쌓인 후 official_blow(10+2=12)는 취약(+50%) 상태에서 18피해.",
+      "balance_note": "bribe_power(가시2)로 인해 연타 카드 사용 시 자충 발생. extort(8)+약화2 콤비는 다음 플레이어 공격을 25% 감소시켜 실질 전투력 크게 저하. 마법 계열 공격이나 원거리 카드 활용 권장."
     }
   ],
   "elite_enemies": [
@@ -287,208 +459,149 @@
         "relic_chance": 0.25
       },
       "balance_note": "[ZER-115 조정] crushing_squeeze 18→15, coil 방어도 10→8. 힘+1 적용 후 압착 16피해(이전 19). 문관(HP65) 기준 24.6%(이전 29.2%) — 독+압착 콤보 2~3턴 연속 생존 가능하도록 완화. coil 방어도 감소로 공격 집중 시 돌파 여지 확보."
-    }
-  ],
-  "bosses": [
-    {
-      "id": "B001",
-      "name": {
-        "ko": "대장 도깨비",
-        "hanja": "大將道鬼",
-        "romanized": "Daejang Dokkaebi"
-      },
-      "description": "한양을 지배하는 도깨비 두목. 황금 방망이를 휘두르며 부하를 이끈다.",
-      "hp": 120,
-      "phases": [
-        {
-          "phase": 1,
-          "hp_threshold": "100% → 50%",
-          "description": "정상 모드. 방망이 공격 + 부하 소환.",
-          "moves": [
-            {
-              "id": "golden_club",
-              "name": "황금 방망이",
-              "intent": "attack",
-              "damage": 12,
-              "times": 1
-            },
-            {
-              "id": "summon_minion",
-              "name": "부하 소환",
-              "intent": "summon",
-              "summons": "E001",
-              "summon_count": 1,
-              "description": "불량배 1명을 소환. 처치 시 교체 없음."
-            },
-            {
-              "id": "area_slam",
-              "name": "광역 방망이",
-              "intent": "attack",
-              "damage": 8,
-              "aoe": true,
-              "description": "모든 플레이어 타겟에 8피해."
-            },
-            {
-              "id": "fortify",
-              "name": "강화",
-              "intent": "buff",
-              "effects": [
-                { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" }
-              ]
-            }
-          ],
-          "move_pattern": {
-            "type": "sequential",
-            "sequence": ["golden_club", "summon_minion", "golden_club", "area_slam", "fortify", "golden_club", "area_slam"]
-          }
-        },
-        {
-          "phase": 2,
-          "hp_threshold": "50% → 0%",
-          "description": "분노 모드. 힘 추가 획득 후 피해 대폭 증가.",
-          "phase_trigger": {
-            "type": "hp_threshold",
-            "hp_percent": 50,
-            "on_trigger": [
-              { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" },
-              { "type": "dialogue", "text": "이 방망이 맛을 똑똑히 봐라!" }
-            ]
-          },
-          "moves": [
-            {
-              "id": "rage_strike",
-              "name": "분노 강타",
-              "intent": "attack",
-              "damage": 16,
-              "times": 1
-            },
-            {
-              "id": "triple_slam",
-              "name": "연속 강타",
-              "intent": "attack",
-              "damage": 7,
-              "times": 3,
-              "description": "7피해 × 3회 = 21 총피해."
-            },
-            {
-              "id": "last_stand",
-              "name": "최후의 일격",
-              "intent": "attack",
-              "damage": 28,
-              "times": 1,
-              "description": "HP < 20%일 때만 사용. 단발 최대 피해."
-            }
-          ],
-          "move_pattern": {
-            "type": "sequential",
-            "sequence": ["rage_strike", "triple_slam", "rage_strike", "triple_slam", "last_stand"]
-          }
-        }
-      ],
-      "rewards": {
-        "gold": { "min": 60, "max": 80 },
-        "relic": "보스 유물 1개 (확정)"
-      },
-      "balance_note": "[ZER-56 조정] 페이즈 2 힘 5→3 / triple_slam 8→7. 결과: rage_strike(16+3=19), triple_slam((7+3)×3=30총피해). 이전(39총피해)보다 9 감소 — 방어도 15 기준 순피해 15→15유지하면서 극단적 즉사 회피. 시조 완성 활용 여전히 필수. fortify 전 처치 시도 권장."
     },
     {
-      "id": "B002",
+      "id": "EL002",
       "name": {
-        "ko": "저승사자",
-        "hanja": "冥使",
-        "romanized": "Jeoseungsaja"
+        "ko": "옥사장",
+        "hanja": "獄舍長",
+        "romanized": "Oksajang"
       },
-      "description": "때이른 죽음을 거두러 온 저승의 사자. 낫을 든 검은 그림자.",
-      "hp": 110,
-      "phases": [
+      "description": "한양 감옥을 관리하는 잔혹한 간수장. 죄수를 도구로 삼아 싸우며 구금 디버프로 적을 제압한다.",
+      "hp": { "min": 50, "max": 65 },
+      "note": "엘리트 — 소환 메커니즘과 구금 디버프 보유.",
+      "moves": [
         {
-          "phase": 1,
-          "hp_threshold": "100% → 40%",
-          "description": "심판 모드. 플레이어를 관찰하며 디버프를 쌓는다.",
-          "moves": [
-            {
-              "id": "judgement_gaze",
-              "name": "심판의 눈",
-              "intent": "debuff",
-              "effects": [
-                { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" },
-                { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
-              ],
-              "description": "약화 1 + 취약 1 부여."
-            },
-            {
-              "id": "reaping_slash",
-              "name": "낫 베기",
-              "intent": "attack",
-              "damage": 13,
-              "times": 1
-            },
-            {
-              "id": "death_mark",
-              "name": "사망 표식",
-              "intent": "debuff",
-              "effects": [
-                { "type": "apply_debuff", "debuff": "death_mark", "stacks": 3, "target": "player", "note": "사망 표식: 3 스택 이하로 남을 때마다 5피해. 전투 종료 시 소멸." }
-              ],
-              "description": "플레이어에게 사망 표식 3 부여."
-            },
-            {
-              "id": "counter_stance",
-              "name": "반격 태세",
-              "intent": "defend_buff",
-              "block": 12,
-              "effects": [
-                { "type": "apply_buff", "buff": "thorns", "stacks": 3, "target": "self", "note": "가시: 근접 공격 시 공격자에게 3피해" }
-              ]
-            }
-          ],
-          "move_pattern": {
-            "type": "sequential",
-            "sequence": ["judgement_gaze", "reaping_slash", "death_mark", "counter_stance", "reaping_slash", "judgement_gaze", "reaping_slash"]
-          }
+          "id": "prison_lash",
+          "name": "채찍질",
+          "intent": "attack",
+          "damage": 10,
+          "times": 2,
+          "description": "10피해 × 2회 = 20 총피해. 채찍으로 내리치는 연속 공격."
         },
         {
-          "phase": 2,
-          "hp_threshold": "40% → 0%",
-          "description": "절명 모드. 패턴이 바뀌며 즉사기 준비 시작.",
-          "phase_trigger": {
-            "type": "hp_threshold",
-            "hp_percent": 40,
-            "on_trigger": [
-              { "type": "cleanse_buffs", "target": "self" },
-              { "type": "apply_debuff", "debuff": "death_countdown", "stacks": 4, "target": "player", "note": "사망 카운트다운: 4턴 후 플레이어 현재 HP의 35% 감소. 저승사자 처치로 해제." },
-              { "type": "dialogue", "text": "이미 이 세상 사람이 아니니라." }
-            ]
-          },
-          "moves": [
-            {
-              "id": "scythe_whirlwind",
-              "name": "낫 회오리",
-              "intent": "attack",
-              "damage": 6,
-              "times": 4,
-              "description": "6피해 × 4회 = 24 총피해. 방어도 분산."
-            },
-            {
-              "id": "final_judgement",
-              "name": "최후의 심판",
-              "intent": "attack",
-              "damage": 20,
-              "times": 1,
-              "description": "치명타 위주 단발기."
-            }
+          "id": "shackle",
+          "name": "족쇄",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "구금", "stacks": 2, "target": "player", "note": "구금: 카드 사용 비용 +1, 2턴 지속" },
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
           ],
-          "move_pattern": {
-            "type": "sequential",
-            "sequence": ["scythe_whirlwind", "final_judgement", "scythe_whirlwind", "final_judgement"]
-          }
+          "description": "플레이어에게 구금 2(카드 비용 +1, 2턴) + 약화 1 부여."
+        },
+        {
+          "id": "summon_prisoner",
+          "name": "죄수 소환",
+          "intent": "summon",
+          "description": "죄수 토큰 2명을 전장에 소환한다. 각 HP 12.",
+          "summon": [
+            { "enemy_id": "E001", "count": 2, "hp_override": 12, "name_override": "죄수 토큰" }
+          ]
+        },
+        {
+          "id": "iron_cudgel",
+          "name": "철퇴 강타",
+          "intent": "attack",
+          "damage": 15,
+          "times": 1,
+          "description": "묵직한 철퇴 일격. 구금 상태에서 방어 대응 어려움."
+        },
+        {
+          "id": "warden_fortify",
+          "name": "간수 방비",
+          "intent": "buff_defend",
+          "block": 12,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+          ],
+          "description": "방어도 12 + 힘 1 획득."
         }
       ],
-      "rewards": {
-        "gold": { "min": 60, "max": 80 },
-        "relic": "보스 유물 1개 (확정)"
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["shackle", "summon_prisoner", "prison_lash", "iron_cudgel", "warden_fortify", "shackle", "prison_lash", "iron_cudgel"]
       },
-      "balance_note": "[ZER-56 조정] death_countdown 스택 3→4, HP 감소 50%→35%. 이전: 3턴 내 처치 실패 시 즉사급(HP50 기준 25피해). 조정 후: 4턴 여유 + 35% 감소(HP50 기준 17.5피해)로 극단적 즉사 완화. DPS 레이스 긴장감은 유지."
+      "rewards": {
+        "gold": { "min": 28, "max": 42 },
+        "card_chance": 0.6,
+        "relic_chance": 0.25
+      },
+      "ai_pattern": "구금 디버프로 플레이어 카드 비용을 높이고 죄수 소환으로 다수 대상 관리 부담을 강요한다. 죄수 처치에 기력을 소모하면 옥사장 처치 기력이 부족해지는 딜레마 유발.",
+      "balance_note": "구금(카드 비용 +1)은 기력 3 기준 사용 가능 카드 수를 대폭 줄임. 죄수 토큰 2명(HP 12×2)으로 추가 피해원 발생. iron_cudgel(15)은 구금 상태 플레이어 방어 어려운 타이밍에 사용 — 방어 카드 우선 사용 및 죄수 선처치 전략 필요."
+    },
+    {
+      "id": "EL003",
+      "name": {
+        "ko": "무당",
+        "hanja": "巫堂",
+        "romanized": "Mudang"
+      },
+      "description": "신령과 소통하는 무속인. 저주와 소환으로 싸우며 직접 전투는 피하지만 DoT와 소환 압박이 강력하다.",
+      "hp": { "min": 45, "max": 55 },
+      "note": "엘리트 — 소환과 DoT 복합 메커니즘.",
+      "moves": [
+        {
+          "id": "spirit_ritual",
+          "name": "신령 의식",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" },
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+          ],
+          "description": "독 4 + 취약 2 부여. 누적 독 피해: 4+3+2+1=10."
+        },
+        {
+          "id": "summon_spirit",
+          "name": "영혼 소환",
+          "intent": "summon",
+          "description": "원혼 2기를 전장에 소환한다. 각 HP 18.",
+          "summon": [
+            { "enemy_id": "E003", "count": 2, "hp_override": 18, "name_override": "소환 원혼" }
+          ]
+        },
+        {
+          "id": "curse_dance",
+          "name": "저주춤",
+          "intent": "attack_debuff",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player" },
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+          ],
+          "description": "8피해 + 출혈 3 + 약화 1."
+        },
+        {
+          "id": "shamanistic_ward",
+          "name": "부적 방어",
+          "intent": "defend",
+          "block": 11,
+          "description": "부적으로 방어도 11 획득."
+        },
+        {
+          "id": "possession_call",
+          "name": "빙의 부름",
+          "intent": "attack_debuff",
+          "damage": 12,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" },
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+          ],
+          "description": "12피해 + 냉기 1 + 취약 1. 빙의 직전 압박 공격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["spirit_ritual", "summon_spirit", "curse_dance", "shamanistic_ward", "possession_call", "spirit_ritual", "curse_dance", "possession_call"]
+      },
+      "rewards": {
+        "gold": { "min": 25, "max": 40 },
+        "card_chance": 0.65,
+        "relic_chance": 0.25
+      },
+      "ai_pattern": "의식으로 독과 취약을 먼저 쌓은 뒤 원혼을 소환하여 다수 전선을 형성한다. 원혼이 생성하는 추가 디버프와 직접 피해가 쌓이면 전투력이 급격히 저하.",
+      "balance_note": "spirit_ritual(독4+취약2) 이후 원혼 소환 → 취약 상태 플레이어에게 소환 원혼의 wail/cold_touch 추가 디버프 누적. 주요 대응: 소환 원혼 선처치 → 무당 집중 공략. 독 해제 카드 보유 시 spirit_ritual 직후 해제 권장."
     }
   ],
   "status_conditions_referenced": [
@@ -537,6 +650,12 @@
       "id": "death_countdown",
       "ko": "사망 카운트다운",
       "description": "4턴 후 플레이어 현재 HP의 35% 감소. 저승사자(B002) 처치 시 즉시 해제. [ZER-56 조정: 3턴→4턴, 50%→35%]"
+    },
+    {
+      "id": "구금",
+      "ko": "구금",
+      "hanja": "拘禁",
+      "description": "카드 사용 비용 +1. 지정 턴 수 후 해제. EL002 옥사장이 사용하는 신규 디버프."
     }
   ]
 }
