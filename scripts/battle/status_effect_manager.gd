@@ -24,8 +24,14 @@ func clear_target(target: String) -> void:
 func apply_effect(target: String, effect_id: String, stacks: int) -> void:
 	if not _effects.has(target):
 		_effects[target] = {}
+	# R002 평안 부적: 플레이어에게 버프 적용 시 지속 턴 +1
+	var final_stacks := stacks
+	if target == "player":
+		var def := StatusEffectData.get_definition(effect_id)
+		if def and def.type == StatusEffectData.EffectType.BUFF:
+			final_stacks = RelicManager.trigger_on_buff_apply(stacks)
 	var current: int = _effects[target].get(effect_id, 0)
-	_effects[target][effect_id] = current + stacks
+	_effects[target][effect_id] = current + final_stacks
 	effect_applied.emit(target, effect_id, _effects[target][effect_id])
 	# 버프/디버프 SFX (플레이어 대상일 때만 재생)
 	if target == "player":

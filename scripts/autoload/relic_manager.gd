@@ -154,6 +154,30 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 			battle_manager.status_effects.apply_effect(target, "취약", stacks)
 			relic_triggered.emit(relic_id, "적에게 취약 %d 부여" % stacks)
 
+	# R016: 전투 시작 시 독 제거
+	if values.has("cleanse_poison_on_battle_start") and values["cleanse_poison_on_battle_start"]:
+		battle_manager.status_effects.remove_effect("player", "독")
+		relic_triggered.emit(relic_id, "독 제거")
+
+	# R020: 전투 시작 시 방어도
+	if values.has("block_on_battle_start"):
+		battle_manager.gain_block(values["block_on_battle_start"])
+		relic_triggered.emit(relic_id, "방어도 +%d" % values["block_on_battle_start"])
+
+	# R025: 전투마다 공격력 +1 / 최대 기 +1
+	if values.has("strength_per_battle"):
+		battle_manager.status_effects.apply_effect("player", "strength", values["strength_per_battle"])
+		relic_triggered.emit(relic_id, "힘 +%d" % values["strength_per_battle"])
+	if values.has("max_qi_per_battle"):
+		battle_manager.max_qi += values["max_qi_per_battle"]
+		battle_manager.current_qi += values["max_qi_per_battle"]
+		battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+
+	# RS002: 무관 시작 유물 — 전투 시작 시 토큰 생성
+	if values.has("tokens") and battle_manager.character_id == "mugwan":
+		battle_manager.status_effects.apply_effect("player", "병사_토큰", values["tokens"])
+		relic_triggered.emit(relic_id, "병사 토큰 +%d" % values["tokens"])
+
 
 func _handle_passive_relic(_relic_id: String, _relic: Dictionary, values: Dictionary, battle_manager: BattleManager) -> void:
 	# R010 각궁: 전투 시작 화살 +2 (궁수 전용, 향후 확장)
@@ -168,12 +192,16 @@ func trigger_turn_start(battle_manager: BattleManager) -> void:
 		var trigger: String = relic.get("trigger", "")
 		var values: Dictionary = relic.get("values", {})
 
-		if trigger == "on_turn_start":
+		if trigger == "on_turn_start" or trigger == "turn_start":
 			# R015 삼족오 깃털: AP +1
 			if values.has("ap_per_turn_bonus"):
 				battle_manager.current_qi += values["ap_per_turn_bonus"]
 				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
 				relic_triggered.emit(relic_id, "턴 시작 AP +%d" % values["ap_per_turn_bonus"])
+			# R017: 턴 시작 시 방어도
+			if values.has("block_per_turn"):
+				battle_manager.gain_block(values["block_per_turn"])
+				relic_triggered.emit(relic_id, "방어도 +%d" % values["block_per_turn"])
 
 
 func trigger_combat_victory() -> void:
@@ -210,6 +238,10 @@ func trigger_elite_victory() -> void:
 					GameManager.run_data.max_hp
 				)
 				relic_triggered.emit(relic_id, "체력 +%d 회복" % heal)
+			# R024: 엘리트 승리 시 골드
+			if values.has("gold_on_elite_victory"):
+				GameManager.run_data.gold += values["gold_on_elite_victory"]
+				relic_triggered.emit(relic_id, "골드 +%d" % values["gold_on_elite_victory"])
 
 
 func trigger_boss_enter() -> void:
@@ -305,6 +337,85 @@ func reset_run_state() -> void:
 
 
 # --- 유틸 ---
+
+func trigger_on_enemy_kill(battle_manager: BattleManager) -> void:
+	## 적 제거 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_kill_enemy":
+			# R018: 적 제거 시 기 +1
+			if values.has("qi_on_kill"):
+				battle_manager.current_qi += values["qi_on_kill"]
+				battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
+				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+				relic_triggered.emit(relic_id, "기 +%d" % values["qi_on_kill"])
+
+
+func trigger_on_card_exhaust(battle_manager: BattleManager) -> void:
+	## 카드 소멸 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "on_card_exhaust":
+			# R021: 카드 소멸 시 기 +1
+			if values.has("qi_on_exhaust"):
+				battle_manager.current_qi += values["qi_on_exhaust"]
+				battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
+				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+				relic_triggered.emit(relic_id, "기 +%d" % values["qi_on_exhaust"])
+
+
+func trigger_on_sijo_milestone(battle_manager: BattleManager, filled_count: int) -> void:
+	## 시조 슬롯 마일스톤 달성 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		# R019: 시조 초장 완성 (2칸) 시 기 +1
+		if trigger == "sijo_milestone_2" and filled_count >= 2:
+			if values.has("extra_qi_on_sijo_chojang"):
+				battle_manager.current_qi += values["extra_qi_on_sijo_chojang"]
+				battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
+				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+				relic_triggered.emit(relic_id, "초장 완성 기 +%d" % values["extra_qi_on_sijo_chojang"])
+
+
+func trigger_on_sijo_complete(battle_manager: BattleManager) -> int:
+	## 시조 완성 시 발동하는 유물 효과를 처리한다. 추가 드로우 수를 반환.
+	var extra_draw := 0
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "sijo_complete":
+			# R023: 시조 완성 시 추가 드로우
+			if values.has("extra_draw_on_sijo_complete"):
+				extra_draw += values["extra_draw_on_sijo_complete"]
+				relic_triggered.emit(relic_id, "시조 완성 드로우 +%d" % values["extra_draw_on_sijo_complete"])
+	return extra_draw
+
+
+func get_card_removal_discount() -> int:
+	## 카드 제거 할인 금액을 반환한다.
+	var discount := 0
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "passive":
+			# R022: 카드 제거 비용 할인
+			if values.has("card_removal_discount"):
+				discount += values["card_removal_discount"]
+	return discount
+
 
 func _find_highest_hp_enemy(battle_manager: BattleManager) -> int:
 	var best_index := -1

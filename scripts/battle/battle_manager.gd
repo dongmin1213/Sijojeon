@@ -452,6 +452,9 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 	# 보스 페이즈 전환 체크
 	if enemy["current_hp"] > 0:
 		_check_phase_transition(enemy_index)
+	elif enemy["current_hp"] <= 0:
+		# 적 사망 시 유물 트리거 (R018 등)
+		RelicManager.trigger_on_enemy_kill(self)
 
 
 # --- 내부 함수 ---

@@ -350,6 +350,9 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 	if _sijo_collapsed:
 		_update_sijo_summary()
 
+	# 유물 트리거: 시조 슬롯 마일스톤 (R019 등)
+	RelicManager.trigger_on_sijo_milestone(battle_manager, index + 1)
+
 	# 부분 완성 보상
 	match index:
 		2:  # 3/6 슬롯 완성 (초장 완성): 기 +1
@@ -392,8 +395,11 @@ func _on_sijo_completed(final_card_id: String) -> void:
 				break
 		battle_manager._resolve_card_effect(card, target_index)
 	battle_manager.current_qi += 1
+	battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
 	battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-	battle_manager.draw_cards(1)
+	# 기본 드로우 1 + 유물 추가 드로우 (R023 등)
+	var extra_draw := RelicManager.trigger_on_sijo_complete(battle_manager)
+	battle_manager.draw_cards(1 + extra_draw)
 	sijo_system.reset()
 	_init_sijo_slots()
 
