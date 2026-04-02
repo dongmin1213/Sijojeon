@@ -4,6 +4,7 @@ extends Control
 ## 카드 핸드 UI. 카드를 부채꼴로 배치하고 선택/드래그/플레이 인터랙션을 관리한다.
 
 signal card_played(hand_index: int, target_enemy_index: int)
+signal card_zoom_requested(card_data: CardData)
 
 const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 
@@ -50,6 +51,8 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleMan
 			widget.card_drag_started.disconnect(_on_card_drag_started)
 		if widget.card_drag_ended.is_connected(_on_card_drag_ended):
 			widget.card_drag_ended.disconnect(_on_card_drag_ended)
+		if widget.card_zoom_requested.is_connected(_on_card_zoom_requested):
+			widget.card_zoom_requested.disconnect(_on_card_zoom_requested)
 		widget.queue_free()
 	card_widgets.clear()
 
@@ -77,6 +80,7 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleMan
 		widget.card_unhovered.connect(_on_card_unhovered)
 		widget.card_drag_started.connect(_on_card_drag_started)
 		widget.card_drag_ended.connect(_on_card_drag_ended)
+		widget.card_zoom_requested.connect(_on_card_zoom_requested)
 
 		card_widgets.append(widget)
 
@@ -192,6 +196,10 @@ func play_selected_on_target(target_enemy_index: int) -> void:
 func _deselect_all() -> void:
 	for widget in card_widgets:
 		widget.set_selected(false)
+
+
+func _on_card_zoom_requested(card_data: CardData) -> void:
+	card_zoom_requested.emit(card_data)
 
 
 func get_selected_index() -> int:

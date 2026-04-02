@@ -200,6 +200,258 @@
         "relic_chance": 0.1
       },
       "balance_note": "poison_needle(독5) 누적 피해는 총 15이나 장기전 시 치명적. vanish 후 shadow_strike(16+50%=24) 또는 death_touch(12+50%=18)가 핵심 위협. 독 해제 카드 또는 빠른 처치 권장. 방어도로 shadow_strike 방어 필수."
+    },
+    {
+      "id": "E304",
+      "name": {
+        "ko": "어전 내관",
+        "hanja": "御前內官",
+        "romanized": "Eojeon Naegwan"
+      },
+      "description": "왕의 측근에서 일하는 내관. 음독과 방어막을 사용하며, 겉보기에는 약해 보이지만 독침이 치명적이다.",
+      "hp": { "min": 45, "max": 58 },
+      "moves": [
+        {
+          "id": "poison_vial",
+          "name": "독약 투여",
+          "intent": "attack_debuff",
+          "damage": 5,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" }
+          ],
+          "description": "5피해 + 독 4 부여."
+        },
+        {
+          "id": "silk_screen",
+          "name": "비단 방어막",
+          "intent": "buff_defend",
+          "block": 13,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+          ],
+          "description": "방어도 13 + 힘 1."
+        },
+        {
+          "id": "whisper_curse",
+          "name": "밀귀 저주",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" },
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player" }
+          ],
+          "description": "냉기 1 + 출혈 3. 드로우 방해 + 지속 피해."
+        },
+        {
+          "id": "eunuch_strike",
+          "name": "내관 공격",
+          "intent": "attack",
+          "damage": 14,
+          "times": 1,
+          "description": "힘 쌓인 후 의외로 강력한 일격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["poison_vial", "silk_screen", "whisper_curse", "eunuch_strike", "poison_vial", "silk_screen", "eunuch_strike"]
+      },
+      "rewards": {
+        "gold": { "min": 22, "max": 36 },
+        "card_chance": 0.3,
+        "relic_chance": 0.08
+      },
+      "ai_pattern": "독+출혈+냉기로 DoT를 누적시키고 비단 방어막으로 생존력을 높인다. 빠른 처치 없으면 독 누적 피해가 위험해짐.",
+      "balance_note": "독4(총 10피해)+출혈3+냉기1 콤비네이션이 한 사이클에 발생. silk_screen(방어13+힘1) 후 eunuch_strike(14+1=15)가 3막 일반 적 기준 강한 편."
+    },
+    {
+      "id": "E305",
+      "name": {
+        "ko": "금군 무사",
+        "hanja": "禁軍武士",
+        "romanized": "Geumgun Musa"
+      },
+      "description": "왕실 근위대 소속 정예 무사. 방어와 반격에 특화되어 있으며, 공격할수록 더 강해진다.",
+      "hp": { "min": 52, "max": 65 },
+      "moves": [
+        {
+          "id": "guard_stance",
+          "name": "경계 자세",
+          "intent": "buff_defend",
+          "block": 15,
+          "effects": [
+            { "type": "apply_buff", "buff": "thorns", "stacks": 3, "target": "self" }
+          ],
+          "description": "방어도 15 + 가시 3. 근접 공격 시 역피해 3 유발."
+        },
+        {
+          "id": "counter_slash",
+          "name": "반격 베기",
+          "intent": "attack",
+          "damage": 12,
+          "times": 1,
+          "description": "방어도 보유 상태에서 반격. 방어도가 있을 때만 사용."
+        },
+        {
+          "id": "royal_guard_strike",
+          "name": "근위 강타",
+          "intent": "attack",
+          "damage": 17,
+          "times": 1,
+          "description": "전력을 다한 왕실 근위 공격."
+        },
+        {
+          "id": "armor_break",
+          "name": "방호 파괴",
+          "intent": "attack_debuff",
+          "damage": 10,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+          ],
+          "description": "10피해 + 취약 2 + 약화 1."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["guard_stance", "counter_slash", "armor_break", "royal_guard_strike", "guard_stance", "counter_slash", "royal_guard_strike"]
+      },
+      "rewards": {
+        "gold": { "min": 24, "max": 38 },
+        "card_chance": 0.3,
+        "relic_chance": 0.08
+      },
+      "ai_pattern": "방어 자세로 방어도+가시를 설치한 뒤 반격으로 응수한다. 연타 카드 사용 시 가시(3×연타횟수) 역피해 발생.",
+      "balance_note": "guard_stance(방어15+가시3)로 연타 카드 사용 시 역피해 패널티 심각. 마법 계열이나 단발 강타 권장. royal_guard_strike(17)는 취약 상태에서 25.5피해."
+    },
+    {
+      "id": "E306",
+      "name": {
+        "ko": "저승사자",
+        "hanja": "閻羅使者",
+        "romanized": "Jeoungseumsaja"
+      },
+      "description": "이승과 저승의 경계에서 온 죽음의 사자. 사망 카운트다운으로 플레이어를 공포에 빠뜨린다.",
+      "hp": { "min": 40, "max": 55 },
+      "moves": [
+        {
+          "id": "death_countdown_apply",
+          "name": "사망 선고",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "death_countdown", "stacks": 1, "target": "player", "note": "사망 카운트다운: 4턴 후 현재 HP 35% 감소" }
+          ],
+          "description": "플레이어에게 사망 카운트다운 부여. 4턴 안에 처치하거나 카운트다운 해제 필요."
+        },
+        {
+          "id": "reaper_scythe",
+          "name": "낫 휘두르기",
+          "intent": "attack",
+          "damage": 11,
+          "times": 1,
+          "description": "낫으로 내리치는 공격."
+        },
+        {
+          "id": "soul_drain",
+          "name": "혼 흡수",
+          "intent": "attack",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            { "type": "heal_self", "amount": 5 }
+          ],
+          "description": "8피해를 입히고 그 절반(최대 5)을 자신이 회복."
+        },
+        {
+          "id": "final_harvest",
+          "name": "마지막 수확",
+          "intent": "attack",
+          "damage": 15,
+          "times": 1,
+          "description": "HP 50% 이하 시 사용. 전력을 다한 마지막 공격."
+        }
+      ],
+      "move_pattern": {
+        "type": "conditional_sequential",
+        "sequence": ["death_countdown_apply", "reaper_scythe", "soul_drain", "reaper_scythe", "soul_drain"],
+        "hp_conditional": {
+          "threshold_percent": 50,
+          "inject_move": "final_harvest",
+          "inject_after": "soul_drain",
+          "once_only": false,
+          "cooldown_turns": 2
+        }
+      },
+      "rewards": {
+        "gold": { "min": 22, "max": 35 },
+        "card_chance": 0.3,
+        "relic_chance": 0.1
+      },
+      "ai_pattern": "사망 카운트다운으로 플레이어에게 시간 압박을 가한다. soul_drain으로 자힐하며 장기전 유도. HP 50% 이하 시 final_harvest로 추가 위협.",
+      "balance_note": "사망 카운트다운(4턴 후 현재 HP 35%)이 핵심 위협. HP 낮아 4턴 내 충분히 처치 가능하나 soul_drain 자힐이 방해. 카운트다운 해제 카드 없으면 4턴 내 처치 필수."
+    },
+    {
+      "id": "E307",
+      "name": {
+        "ko": "사령",
+        "hanja": "邪靈",
+        "romanized": "Saryeong"
+      },
+      "description": "어두운 기운이 뭉쳐 생겨난 악령. 모든 적을 동시에 공격하는 광역기와 생명력 흡수로 강인하다.",
+      "hp": { "min": 48, "max": 60 },
+      "moves": [
+        {
+          "id": "dark_burst",
+          "name": "암흑 폭발",
+          "intent": "attack",
+          "damage": 9,
+          "times": 1,
+          "aoe": true,
+          "description": "9피해 (광역). 단일 전투에서는 단순 9피해."
+        },
+        {
+          "id": "life_drain",
+          "name": "생명 흡수",
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "effects": [
+            { "type": "heal_self", "amount": 7 }
+          ],
+          "description": "10피해 + 자신 HP 7 회복."
+        },
+        {
+          "id": "evil_aura",
+          "name": "사기(邪氣)",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 4, "target": "player" },
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+          ],
+          "description": "출혈 4 + 취약 1 부여."
+        },
+        {
+          "id": "shadow_form",
+          "name": "그림자 형체",
+          "intent": "buff_defend",
+          "block": 12,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "방어도 12 + 힘 2."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["evil_aura", "dark_burst", "life_drain", "shadow_form", "dark_burst", "life_drain", "evil_aura"]
+      },
+      "rewards": {
+        "gold": { "min": 24, "max": 38 },
+        "card_chance": 0.3,
+        "relic_chance": 0.1
+      },
+      "ai_pattern": "사기 디버프로 출혈+취약을 쌓고 생명 흡수로 지속력을 확보한다. 장기전으로 유도하며 피해를 누적시키는 전략.",
+      "balance_note": "life_drain(10+자힐7)으로 장기전 유리. evil_aura(출혈4+취약1) 상태에서 다른 적의 공격도 증폭. 빠른 처치 또는 출혈 해제 카드 보유 권장."
     }
   ],
   "elite_enemies": [
@@ -283,6 +535,177 @@
         "relic_chance": 0.35
       },
       "balance_note": "HP 100-125. war_banner(힘+4) 후 cleave(10+4=14×2=28) 및 warlord_wrath(22+4=26) 위협. iron_will(방어16)은 플레이어 딜로 뚫기 어려울 수 있음. 소환 무사와 동시 처리 전략 필요. 방어도 18+ + 취약 활용 추천."
+    },
+    {
+      "id": "EL302",
+      "name": {
+        "ko": "어사",
+        "hanja": "御使",
+        "romanized": "Eosa"
+      },
+      "description": "역모 측에 매수된 암행어사. 권력을 남용해 플레이어를 압박하고 포졸을 소환해 다수 전선을 형성한다.",
+      "hp": { "min": 80, "max": 95 },
+      "note": "엘리트 — 소환 + 강압 디버프 복합.",
+      "moves": [
+        {
+          "id": "coercion",
+          "name": "강압 심문",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "구금", "stacks": 3, "target": "player", "note": "구금: 카드 사용 비용 +1, 3턴" },
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+          ],
+          "description": "플레이어에게 구금 3 + 약화 2 부여. 카드 비용 3턴간 +1."
+        },
+        {
+          "id": "summon_guards",
+          "name": "포졸 소환",
+          "intent": "summon",
+          "description": "궁궐 포졸 2명을 소환한다. 각 HP 18.",
+          "summon": [
+            { "enemy_id": "E002", "count": 2, "hp_override": 18, "name_override": "궁궐 포졸" }
+          ]
+        },
+        {
+          "id": "royal_decree",
+          "name": "어명 선포",
+          "intent": "attack_debuff",
+          "damage": 14,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+          ],
+          "description": "14피해 + 취약 2. 어명을 빙자한 강한 공격."
+        },
+        {
+          "id": "investigator_shield",
+          "name": "어사 방패",
+          "intent": "buff_defend",
+          "block": 14,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "방어도 14 + 힘 2."
+        },
+        {
+          "id": "final_verdict",
+          "name": "최후 판결",
+          "intent": "attack",
+          "damage": 18,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 4, "target": "player" }
+          ],
+          "description": "18피해 + 출혈 4. HP 50% 미만 시 사용."
+        }
+      ],
+      "move_pattern": {
+        "type": "conditional_sequential",
+        "sequence": ["coercion", "summon_guards", "royal_decree", "investigator_shield", "coercion", "royal_decree"],
+        "hp_conditional": {
+          "threshold_percent": 50,
+          "inject_move": "final_verdict",
+          "inject_after": "investigator_shield",
+          "once_only": false,
+          "cooldown_turns": 3
+        }
+      },
+      "rewards": {
+        "gold": { "min": 42, "max": 62 },
+        "card_chance": 0.65,
+        "relic_chance": 0.35
+      },
+      "ai_pattern": "구금으로 플레이어의 기력 효율을 떨어뜨리고 포졸 소환으로 다수 전선을 강요한다. HP 절반 이하에서 final_verdict로 출혈+강타 압박.",
+      "balance_note": "구금(비용+1, 3턴)은 기 3 기준 실질 사용 가능 카드 수를 1~2장 감소. 포졸 소환(HP 18×2)으로 추가 피해원. investigator_shield(방어14+힘2) 후 royal_decree(14+2=16) + final_verdict(18+2=20+출혈4) 조합이 치명적."
+    },
+    {
+      "id": "EL303",
+      "name": {
+        "ko": "이무기 왕",
+        "hanja": "離龍王",
+        "romanized": "Imugi-wang"
+      },
+      "description": "이무기 중 가장 강한 개체. 용이 되지 못한 분노로 독과 불꽃을 뿜으며 부하 이무기를 소환한다.",
+      "hp": { "min": 90, "max": 110 },
+      "note": "엘리트 — DoT + 소환 + 다중 공격 복합.",
+      "moves": [
+        {
+          "id": "king_venom",
+          "name": "왕의 독기",
+          "intent": "attack_debuff",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "독", "stacks": 6, "target": "player" }
+          ],
+          "description": "8피해 + 독 6 부여. 누적 독 피해: 6+5+4+3+2+1=21."
+        },
+        {
+          "id": "summon_imugi",
+          "name": "이무기 소환",
+          "intent": "summon",
+          "description": "소형 이무기 1마리를 소환한다. HP 30.",
+          "summon": [
+            { "enemy_id": "EL001", "count": 1, "hp_override": 30, "name_override": "소형 이무기" }
+          ]
+        },
+        {
+          "id": "tail_sweep",
+          "name": "꼬리 휩쓸기",
+          "intent": "attack",
+          "damage": 10,
+          "times": 2,
+          "description": "10피해 × 2회 = 20 총피해. 광역 꼬리 공격."
+        },
+        {
+          "id": "dragon_breath",
+          "name": "용독기",
+          "intent": "attack_debuff",
+          "damage": 12,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "화상", "stacks": 3, "target": "player" },
+            { "type": "apply_debuff", "debuff": "독", "stacks": 3, "target": "player" }
+          ],
+          "description": "12피해 + 화상 3 + 독 3. 독과 불꽃을 동시에 뿜는다."
+        },
+        {
+          "id": "serpent_coil",
+          "name": "대형 똬리",
+          "intent": "buff_defend",
+          "block": 18,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" }
+          ],
+          "description": "방어도 18 + 힘 3. 단단히 감아 방어 자세."
+        },
+        {
+          "id": "wrath_strike",
+          "name": "분노의 강타",
+          "intent": "attack",
+          "damage": 24,
+          "times": 1,
+          "description": "최대 위력의 일격. serpent_coil(힘+3) 후 27피해. HP 40% 이하에서만 사용."
+        }
+      ],
+      "move_pattern": {
+        "type": "conditional_sequential",
+        "sequence": ["king_venom", "tail_sweep", "summon_imugi", "dragon_breath", "serpent_coil", "tail_sweep", "king_venom"],
+        "hp_conditional": {
+          "threshold_percent": 40,
+          "inject_move": "wrath_strike",
+          "inject_after": "dragon_breath",
+          "once_only": false,
+          "cooldown_turns": 3
+        }
+      },
+      "rewards": {
+        "gold": { "min": 45, "max": 65 },
+        "card_chance": 0.7,
+        "relic_chance": 0.4
+      },
+      "ai_pattern": "독을 최대로 쌓고 소형 이무기 소환으로 전선을 분산시킨다. serpent_coil 후 wrath_strike 준비. dragon_breath의 화상+독 중첩이 누적되면 매 턴 DoT 피해 급증.",
+      "balance_note": "HP 90-110. king_venom(독6) 총 피해 21, dragon_breath(독3+화상3)으로 독 최대 중첩 시 매 턴 9+ 피해. serpent_coil(방어18+힘3) 후 wrath_strike(24+3=27)는 HP 40% 이하 순간 폭발 위험. 독 해제 카드 보유 권장."
     }
   ],
   "status_conditions_referenced": [

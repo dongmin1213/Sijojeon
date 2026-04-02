@@ -208,6 +208,111 @@
           "result_text": "선왕의 가호가 느껴진다. 최대 HP +5."
         }
       ]
+    },
+
+    {
+      "id": "EVT_A3_007",
+      "title": {
+        "ko": "왕의 밀명",
+        "description": "어둠 속에서 내관이 다가온다. \"전하께서 밀명을 내리셨습니다. 들으시겠습니까?\""
+      },
+      "flavor_text": "두루마리에는 왕의 친필이 적혀있다.",
+      "choices": [
+        {
+          "id": "accept_mission",
+          "text": "밀명을 받아들인다.",
+          "effect_type": "relic_gain",
+          "effect_meta": { "rarity": 4 },
+          "result_text": "전하의 신임을 받아 전설 유물 1개를 하사받는다.",
+          "note": "전설 유물 1개 획득."
+        },
+        {
+          "id": "reject_for_gold",
+          "text": "거절하고 보상만 받는다.",
+          "effect_type": "gold_gain",
+          "effect_value": 80,
+          "result_text": "엽전 80을 챙긴다.",
+          "note": "골드 80 획득."
+        },
+        {
+          "id": "ignore_all",
+          "text": "모른 척 자리를 피한다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "모르는 척 자리를 피했다.",
+          "note": "중립."
+        }
+      ]
+    },
+
+    {
+      "id": "EVT_A3_008",
+      "title": {
+        "ko": "역모 문서",
+        "description": "죽은 역적 문관의 품에서 두루마리가 나왔다. 역모의 전모가 적혀 있는 듯하다."
+      },
+      "flavor_text": "이 문서 하나가 모든 것을 바꿀 수 있다.",
+      "choices": [
+        {
+          "id": "use_document",
+          "text": "문서를 이용해 협박한다.",
+          "effect_type": "gold_gain",
+          "effect_value": 100,
+          "result_text": "역모 가담자들이 입막음 비용으로 엽전 100을 건넨다.",
+          "note": "골드 100 획득."
+        },
+        {
+          "id": "submit",
+          "text": "문서를 왕에게 올린다.",
+          "effect_type": "max_hp_gain",
+          "effect_value": 15,
+          "result_text": "충성심을 인정받아 최대 HP +15.",
+          "note": "최대 HP +15."
+        },
+        {
+          "id": "destroy",
+          "text": "문서를 태워버린다.",
+          "effect_type": "card_remove_free",
+          "effect_value": 1,
+          "result_text": "증거를 없앴다. 덱에서 카드 1장을 무료로 제거할 수 있다.",
+          "note": "무료 카드 제거 1회."
+        }
+      ]
+    },
+
+    {
+      "id": "EVT_A3_009",
+      "title": {
+        "ko": "마지막 결전 전야",
+        "description": "최후의 전투를 앞두고 낡은 주막에 들렀다. 술잔을 기울이며 지나온 길을 돌아본다."
+      },
+      "flavor_text": "\"오늘 밤이 지나면 모든 것이 결판나겠지.\"",
+      "choices": [
+        {
+          "id": "rest_fully",
+          "text": "푹 쉬며 몸을 회복한다.",
+          "effect_type": "hp_full_heal",
+          "effect_value": 0,
+          "result_text": "편안한 잠을 자고 일어나니 몸이 한결 가볍다. HP 완전 회복.",
+          "note": "HP 완전 회복."
+        },
+        {
+          "id": "sharpen_skills",
+          "text": "덱을 정비하고 전술을 다듬는다.",
+          "effect_type": "card_upgrade_free",
+          "effect_value": 1,
+          "result_text": "덱에서 카드 1장을 무료로 강화한다.",
+          "note": "무료 카드 강화 1장."
+        },
+        {
+          "id": "drink_courage",
+          "text": "술을 마시며 기운을 모은다.",
+          "effect_type": "next_battle_block",
+          "effect_value": 20,
+          "result_text": "다음 전투 시작 시 방어도 20 추가 획득.",
+          "note": "다음 전투 시작 방어도 +20."
+        }
+      ]
     }
   ]
 }

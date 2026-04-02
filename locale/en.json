@@ -1,0 +1,1212 @@
+{
+  "_meta": {
+    "language": "en",
+    "game": "Sijojeon",
+    "version": "0.1",
+    "generated_by": "ZER-110 Document Specialist",
+    "date": "2026-04-02"
+  },
+  "classes": {
+    "dosa": {
+      "name": "Daoist Sorcerer",
+      "short": "Sorcerer",
+      "description": "A master of Qi manipulation and Daoist Arts. Uses spells, summons, and DoT effects.",
+      "mechanic": "Qi Mastery: Manipulate Qi directly to draw cards and gain buffs. Completing a Sijo recovers 1 extra Qi via the Heavenly Qi passive."
+    },
+    "mugwan": {
+      "name": "Military Officer",
+      "short": "Officer",
+      "description": "A seasoned warrior commanding formations and soldier tokens. Excels at burst damage through Stamina.",
+      "mechanic": "Soldier Token: Absorbs 1 hit then vanishes, recovering 1 Qi on death. Stamina (max 10) carries between turns and powers up attacks."
+    },
+    "mungwan": {
+      "name": "Scholar Official",
+      "short": "Scholar",
+      "description": "A learned official wielding knowledge as a weapon. Accumulates Scholarship to unleash powerful techniques.",
+      "mechanic": "Scholarship (학식): Accumulates up to 6 (expandable). Consumed to empower spells, attacks, and defenses."
+    }
+  },
+  "sijo": {
+    "system_name": "Sijo Rhythm System",
+    "tutorial": "Each card has a Beat value: [3] or [4].\nComplete a Sijo by filling all 6 slots in order:\n\n  First Verse:  [3] → [4]\n  Middle Verse: [3] → [4]\n  Final Verse:  [3] → [4]\n\n  ★ SIJO COMPLETE! ★\n  Last card effect ×2 + Recover 1 Qi + Draw 1 card\n\nSlots carry over between turns.\nWrong beat = slot not filled.",
+    "slots": {
+      "first_verse_1": "First Verse I",
+      "first_verse_2": "First Verse II",
+      "middle_verse_1": "Middle Verse I",
+      "middle_verse_2": "Middle Verse II",
+      "final_verse_1": "Final Verse I",
+      "final_verse_2": "Final Verse II"
+    },
+    "labels": {
+      "complete": "SIJO COMPLETE!",
+      "reset": "Sijo Reset",
+      "beat_3": "Beat [3]",
+      "beat_4": "Beat [4]",
+      "beat_wild": "Beat [WILD]",
+      "slot_3": "[3] Slot",
+      "slot_4": "[4] Slot",
+      "bonus_effect": "Last card effect ×2",
+      "bonus_qi": "+1 Qi",
+      "bonus_draw": "+1 Draw",
+      "slots_filled": "{n}/6 slots filled"
+    }
+  },
+  "resources": {
+    "qi": {
+      "name": "Qi",
+      "desc": "Energy resource. Recovered each turn (base 3/turn). Used to play cards."
+    },
+    "stamina": {
+      "name": "Stamina",
+      "desc": "Military Officer resource. Max 10, persists between turns. Consumed for powerful attacks."
+    },
+    "scholarship": {
+      "name": "Scholarship",
+      "desc": "Scholar Official resource. Max 6 (expandable). Consumed to empower techniques."
+    },
+    "hp": {
+      "name": "HP",
+      "desc": "Hit Points. Dosa: 70 / Officer: 80 / Scholar: 65."
+    },
+    "block": {
+      "name": "Block",
+      "desc": "Reduces incoming damage this turn. Lost at turn start."
+    },
+    "gold": {
+      "name": "Gold",
+      "desc": "Currency. Used in shops to buy cards and relics."
+    }
+  },
+  "status_conditions": {
+    "burn": {
+      "name": "Burn",
+      "desc": "At end of turn, take damage equal to Burn stacks. Decreases by 1 each turn.",
+      "icon_hint": "flame effect on enemy"
+    },
+    "poison": {
+      "name": "Poison",
+      "desc": "At end of turn, take damage equal to Poison stacks. Decreases by 1 each turn.",
+      "icon_hint": "green toxic effect on enemy"
+    },
+    "curse": {
+      "name": "Curse",
+      "desc": "At start of turn, take fixed curse damage. Expires after set duration.",
+      "icon_hint": "purple curse effect on enemy"
+    },
+    "weaken": {
+      "name": "Weakened",
+      "desc": "Next attack deals 25% less damage. Decreases by 1 after triggering.",
+      "icon_hint": "dim glow on target"
+    },
+    "vulnerable": {
+      "name": "Vulnerable",
+      "desc": "Take 50% more damage from attacks. Decreases by 1 each turn.",
+      "icon_hint": "cracked shield on target"
+    },
+    "surrounded": {
+      "name": "Surrounded",
+      "desc": "Attack damage reduced by 25%. Lasts set duration.",
+      "icon_hint": "encirclement arrows on enemy"
+    },
+    "dismissed": {
+      "name": "Dismissed",
+      "desc": "Attack power reduced by 3. Lasts 3 turns.",
+      "icon_hint": "broken rank insignia"
+    },
+    "bleed": {
+      "name": "Bleed",
+      "desc": "Take damage equal to Bleed stacks at turn end. Decreases by 1 each turn.",
+      "icon_hint": "blood drop effect"
+    },
+    "strength": {
+      "name": "Strength",
+      "desc": "All attacks deal +1 damage per Strength stack.",
+      "icon_hint": "red power glow"
+    }
+  },
+  "ui": {
+    "main_menu": {
+      "new_game": "New Game",
+      "continue": "Continue",
+      "settings": "Settings",
+      "quit": "Quit",
+      "language": "Language"
+    },
+    "hud": {
+      "hp": "HP",
+      "qi": "Qi",
+      "block": "Block",
+      "turn": "Turn",
+      "end_turn": "End Turn",
+      "draw_pile": "Draw Pile",
+      "discard_pile": "Discard Pile",
+      "exhaust_pile": "Exhausted"
+    },
+    "combat": {
+      "your_turn": "Your Turn",
+      "enemy_turn": "Enemy Turn",
+      "victory": "Victory!",
+      "defeat": "Defeated...",
+      "sijo_complete": "SIJO COMPLETE!",
+      "intent_attack": "Attack",
+      "intent_defend": "Defend",
+      "intent_buff": "Buff",
+      "intent_debuff": "Debuff",
+      "intent_unknown": "???",
+      "card_exhausted": "Card Exhausted",
+      "cost": "Cost",
+      "beat": "Beat"
+    },
+    "map": {
+      "act_1": "Act I — Hanyang",
+      "act_2": "Act II — Jirisan",
+      "act_3": "Act III — Royal Palace",
+      "rest_site": "Rest Site",
+      "shop": "Shop",
+      "event": "Event",
+      "elite": "Elite",
+      "boss": "Boss",
+      "treasure": "Treasure"
+    },
+    "shop": {
+      "title": "Shop",
+      "buy": "Buy",
+      "remove_card": "Remove Card",
+      "remove_cost": "Remove Cost",
+      "cant_afford": "Not enough gold",
+      "sold_out": "Sold Out",
+      "leave": "Leave"
+    },
+    "rest_site": {
+      "title": "Rest Site",
+      "rest": "Rest (Recover 30% HP)",
+      "smith": "Smith (Upgrade a card)",
+      "study": "Study (Gain Scholarship +2)",
+      "leave": "Leave"
+    },
+    "card_reward": {
+      "title": "Choose a Card",
+      "skip": "Skip"
+    },
+    "relic_obtain": {
+      "title": "Relic Obtained!",
+      "continue": "Continue"
+    },
+    "deck_view": {
+      "title": "Deck",
+      "cards": "Cards",
+      "close": "Close"
+    },
+    "settings": {
+      "title": "Settings",
+      "language": "Language",
+      "korean": "한국어",
+      "english": "English",
+      "sound": "Sound",
+      "music": "Music",
+      "apply": "Apply",
+      "back": "Back"
+    },
+    "event": {
+      "choose": "Choose an option",
+      "confirm": "Confirm",
+      "back": "Back"
+    }
+  },
+  "cards": {
+    "M001": {
+      "name": "Evasion",
+      "effect": "Gain 4 Block. If you have already played a card this turn, gain 3 more Block.",
+      "effect_upgraded": "Gain 5 Block. If you have already played a card this turn, gain 4 more Block.",
+      "flavor": "Step aside from the blade's edge — deflecting is mightier than blocking."
+    },
+    "M002": {
+      "name": "Leap",
+      "effect": "Gain 3 Block. The next Attack card you play this turn deals +4 damage.",
+      "effect_upgraded": "Gain 4 Block. Next Attack deals +6 damage.",
+      "flavor": "Spring off the ground — as you rise, your enemy loses sight of your blade."
+    },
+    "M003": {
+      "name": "Retreat",
+      "effect": "Gain 2 Block. Apply 1 Weakened to a target enemy.",
+      "effect_upgraded": "Gain 3 Block. Apply 2 Weakened.",
+      "flavor": "Falling back is no flight — it is a stratagem to bleed the enemy's strength."
+    },
+    "M004": {
+      "name": "Flank Strike",
+      "effect": "Deal 10 damage. If you have any Block, deal 5 more damage.",
+      "effect_upgraded": "Deal 14 damage. If you have Block, deal 7 more damage.",
+      "flavor": "Drop low and press the flank — no gap, no guard."
+    },
+    "M005": {
+      "name": "Low Crawl",
+      "effect": "Gain 5 Block and draw 1 card.",
+      "effect_upgraded": "Gain 7 Block and draw 1 card.",
+      "flavor": "Hug the earth, slip from view — and ready the next move."
+    },
+    "M006": {
+      "name": "Preemptive Strike",
+      "effect": "Deal 7 damage.",
+      "effect_upgraded": "Deal 10 damage.",
+      "flavor": "The one who strikes first wins — seize the initiative and shift the tide."
+    },
+    "M007": {
+      "name": "Defensive Stance",
+      "effect": "Gain 6 Block.",
+      "effect_upgraded": "Gain 9 Block.",
+      "flavor": "Lower your stance, raise your guard — nothing shall pass."
+    },
+    "M008": {
+      "name": "Quick Read",
+      "effect": "Draw 2 cards.",
+      "effect_upgraded": "Draw 3 cards.",
+      "flavor": "Read the room in an instant — any hand falls into place."
+    },
+    "M009": {
+      "name": "Seize the Moment",
+      "effect": "Draw 1 card. The next card you play this turn costs 1 less (min 0).",
+      "effect_upgraded": "Draw 2 cards. Next card costs 1 less.",
+      "flavor": "Opportunity comes only to the prepared — never miss the fleeting instant."
+    },
+    "M010": {
+      "name": "Endure",
+      "effect": "Gain 15 Block.",
+      "effect_upgraded": "Gain 20 Block.",
+      "flavor": "Stand firm no matter the storm — unyielding resolve is the greatest defense."
+    },
+    "M011": {
+      "name": "Exuberance",
+      "effect": "Draw 1 card. This card can be placed in any Sijo slot.",
+      "effect_upgraded": "Draw 2 cards. Can be placed in any Sijo slot.",
+      "flavor": "When the spirit rises, the rhythm flows — it slips naturally wherever music goes.",
+      "beat_note": "WILD — fills any slot ([3] or [4])"
+    },
+    "M012": {
+      "name": "Blank Verse",
+      "effect": "Gain 2 Block. This card can be placed in any Sijo slot.",
+      "effect_upgraded": "Gain 4 Block. Can be placed in any Sijo slot.",
+      "flavor": "Empty space is part of the poem too — one who fills the void completes the Sijo.",
+      "beat_note": "WILD — fills any slot ([3] or [4])"
+    },
+    "D001": {
+      "name": "Qi Cultivation",
+      "effect": "Gain 1 Qi. Draw 1 card.",
+      "effect_upgraded": "Gain 1 Qi. Draw 2 cards.",
+      "flavor": "Steady the breath, gather the Qi — power charges in the stillness."
+    },
+    "D002": {
+      "name": "Hand Seal",
+      "effect": "Gain 2 Block. The next Attack card you play this turn deals +4 damage.",
+      "effect_upgraded": "Gain 3 Block. Next Attack deals +6 damage.",
+      "flavor": "Form the seal at your fingertips — the next technique surges with power."
+    },
+    "D003": {
+      "name": "Mantra",
+      "effect": "Deal 4 damage to ALL enemies. If you have gained Qi this turn, deal 3 more damage.",
+      "effect_upgraded": "Deal 6 damage to ALL enemies. Qi bonus becomes +4.",
+      "flavor": "The mantra rings across the battlefield — the Daoist shockwave sweeps all foes."
+    },
+    "D004": {
+      "name": "Talisman Strike",
+      "effect": "Deal 5 damage. Apply 3 Burn to the target. (Burn: take Burn damage at turn end, decreases by 1 each turn.)",
+      "effect_upgraded": "Deal 7 damage. Apply 4 Burn.",
+      "flavor": "Hurl the flame-imbued talisman — Daoist fire sets the enemy ablaze."
+    },
+    "D005": {
+      "name": "Teleportation",
+      "effect": "Draw 3 cards. Card costs are reduced by 1 this turn (min 0).",
+      "effect_upgraded": "Draw 4 cards. Cost reduction becomes 2.",
+      "flavor": "Fold space, cross a thousand leagues in one step — all arts rest in the palm."
+    },
+    "D006": {
+      "name": "Mountain Collapse",
+      "effect": "Deal 40 damage. Next turn, lose 2 Qi.",
+      "effect_upgraded": "Deal 55 damage. No Qi penalty.",
+      "flavor": "Like a mountain crumbling — one technique sweeps everything away."
+    },
+    "D007": {
+      "name": "Qi Strike",
+      "effect": "Deal 6 damage.",
+      "effect_upgraded": "Deal 9 damage.",
+      "flavor": "Form the seal, launch Qi from the fingertips — the Sorcerer's basic strike needs no blade."
+    },
+    "D008": {
+      "name": "Great Qi",
+      "effect": "Gain 2 Qi.",
+      "effect_upgraded": "Gain 3 Qi.",
+      "flavor": "Breathe deep the heavenly energy — the whole body brims with Qi."
+    },
+    "D009": {
+      "name": "Qi Explosion",
+      "effect": "Deal 4 damage per Qi gained this turn (min 8).",
+      "effect_upgraded": "Deal 5 damage per Qi gained this turn (min 10).",
+      "flavor": "Release the stored Qi in an instant — explosive energy blasts the enemy away."
+    },
+    "D010": {
+      "name": "Five Energies",
+      "effect": "Gain 1 Qi. The next Qi-subtype card you play this turn costs 1 less.",
+      "effect_upgraded": "Gain 1 Qi. Next Qi-subtype card costs 2 less.",
+      "flavor": "The five elemental energies gather at the fingertips — the next technique flows more easily."
+    },
+    "D011": {
+      "name": "Heavenly Qi",
+      "effect": "For the rest of combat, gain 1 extra Qi at the start of each turn.",
+      "effect_upgraded": "Gain 2 extra Qi at the start of each turn for the rest of combat.",
+      "flavor": "Become one with the Qi of Heaven — it wells up on its own every moment."
+    },
+    "D012": {
+      "name": "Qi Flow",
+      "effect": "Gain 1 Qi. Draw 2 cards.",
+      "effect_upgraded": "Gain 2 Qi. Draw 2 cards.",
+      "flavor": "Ride the flow of Qi — everything in the world snaps into sharp clarity."
+    },
+    "D013": {
+      "name": "Qi Gathering",
+      "effect": "Gain 3 Qi.",
+      "effect_upgraded": "Gain 4 Qi.",
+      "flavor": "Draw energies from all directions to one point — maximal Qi waits to detonate."
+    },
+    "D014": {
+      "name": "Poison Mist",
+      "effect": "Apply 2 Poison to ALL enemies. (Poison: take Poison damage at turn end, decreases by 1 each turn.)",
+      "effect_upgraded": "Apply 3 Poison to ALL enemies.",
+      "flavor": "Poison seeps like fog — it dyes the whole battlefield before anyone notices."
+    },
+    "D015": {
+      "name": "Hex",
+      "effect": "Apply Curse to an enemy. Curse: take 3 damage at the start of each turn for 3 turns.",
+      "effect_upgraded": "Curse deals 4 damage. Lasts 4 turns.",
+      "flavor": "Once cursed, there is no escape — it burrows deeper with every passing moment."
+    },
+    "D016": {
+      "name": "Chaos Talisman",
+      "effect": "Apply 3 Burn and 2 Weakened to an enemy.",
+      "effect_upgraded": "Apply 4 Burn and 3 Weakened.",
+      "flavor": "Flame and chaos intertwined — the talisman burns and destabilizes all at once."
+    },
+    "D017": {
+      "name": "Black Flame",
+      "effect": "Deal 6 damage. If target has 2+ Burn, deal 4 more. If target has 2+ Poison, deal 4 more.",
+      "effect_upgraded": "Deal 8 damage. Burn bonus +5. Poison bonus +5.",
+      "flavor": "Poison and fire merge into black flame — it scorches wounds already burning."
+    },
+    "D018": {
+      "name": "Five Poisons",
+      "effect": "Apply 4 Poison and 3 Burn to ALL enemies simultaneously.",
+      "effect_upgraded": "Apply 5 Poison and 4 Burn.",
+      "flavor": "Five poisons mingle with flame — a cursed fog of death spreads across the field."
+    },
+    "D019": {
+      "name": "Hex Binding",
+      "effect": "Apply 2 Vulnerable to an enemy for this combat. The target's DoT damage (Poison, Burn, Curse) is ×1.5.",
+      "effect_upgraded": "Apply 3 Vulnerable. DoT damage ×2.",
+      "flavor": "Bind the foe with a hex — the poison and fire bore even deeper."
+    },
+    "D020": {
+      "name": "Gumiho Summon",
+      "effect": "Summon a Gumiho. For 3 turns, deal 5 damage to an enemy at the start of each turn.",
+      "effect_upgraded": "Lasts 4 turns. Deals 7 per turn.",
+      "flavor": "When the nine-tailed fox appears — the tide of battle turns."
+    },
+    "D021": {
+      "name": "Azure Dragon's Qi",
+      "effect": "Deal 10 damage. Summon an Azure Dragon token. Token: recover 1 Qi at the end of each turn.",
+      "effect_upgraded": "Deal 12 damage. Token recovers 2 Qi per turn.",
+      "flavor": "Channel the Azure Dragon into the strike — the dragon's breath returns as Qi."
+    },
+    "D022": {
+      "name": "White Tiger Strike",
+      "effect": "Deal 22 damage. If a summon or token is active, deal 8 more damage.",
+      "effect_upgraded": "Deal 28 damage. Summon bonus becomes +12.",
+      "flavor": "The White Tiger lunges and roars — heaven and earth tremble."
+    },
+    "D023": {
+      "name": "Mountain God's Descent",
+      "effect": "Summon the Mountain God. For 3 turns, gain 5 Block and 1 Qi at the start of each turn.",
+      "effect_upgraded": "Lasts 4 turns. Gain 7 Block and 2 Qi per turn.",
+      "flavor": "When the Mountain God descends — earth's energy wraps the body, heaven's Qi flows in."
+    },
+    "D024": {
+      "name": "Scarecrow",
+      "effect": "Summon a Scarecrow. It absorbs 1 hit, then vanishes. On death, draw 1 card.",
+      "effect_upgraded": "On death, draw 2 cards.",
+      "flavor": "Even a straw figure serves its purpose on the battlefield — it leaves a path as it fades."
+    },
+    "D025": {
+      "name": "Dokkaebi's Call",
+      "effect": "Deal 8 damage to ALL enemies. If a summon or token is active, deal 5 more to all.",
+      "effect_upgraded": "Deal 10 to ALL. Summon bonus becomes +7.",
+      "flavor": "Unleash a Dokkaebi upon the battlefield — chaos sweeps every foe away."
+    },
+    "G001": {
+      "name": "Formation Shift",
+      "effect": "Summon 1 Soldier Token. Gain 2 Stamina. Soldier Token: absorbs 1 hit then vanishes; on death, recover 1 Qi.",
+      "effect_upgraded": "Summon 2 Soldier Tokens. Gain 3 Stamina.",
+      "flavor": "Post a soldier ahead — deflect the blade aimed at you."
+    },
+    "G002": {
+      "name": "Charge",
+      "effect": "Spend 2 Stamina. Deal 10 damage. If you have 1+ Soldier Token, deal 5 more.",
+      "effect_upgraded": "Deal 13 damage. Token bonus becomes +7.",
+      "flavor": "Break through the line at full force — nothing stands in the path of the charge."
+    },
+    "G003": {
+      "name": "Encirclement",
+      "effect": "Apply Surrounded (2 turns) to ALL enemies. Gain 1 Stamina. (Surrounded: attack damage -25%.)",
+      "effect_upgraded": "Surrounded lasts 3 turns. Gain 2 Stamina.",
+      "flavor": "Enclose them from all sides — the trapped enemy cannot fight at full strength."
+    },
+    "G004": {
+      "name": "Crane Wing Formation",
+      "effect": "Spend 3 Stamina. Deal 8 damage to ALL enemies. Deal 3 more per Soldier Token you control.",
+      "effect_upgraded": "Deal 10 base. Token bonus becomes +4.",
+      "flavor": "Wings spread wide — the formation crushes every foe in its embrace."
+    },
+    "G005": {
+      "name": "Invincible Formation",
+      "effect": "Gain 18 Block. Summon 2 Soldier Tokens. Gain 2 Stamina. Token summons are doubled this turn.",
+      "effect_upgraded": "Gain 22 Block. Summon 4 Tokens. Gain 3 Stamina.",
+      "flavor": "The formation that conquered the realm — an impenetrable wall of shields and spears."
+    },
+    "G006": {
+      "name": "Infantry Advance",
+      "effect": "Gain 2 Stamina.",
+      "effect_upgraded": "Gain 3 Stamina. Draw 1 card.",
+      "flavor": "Infantry presses forward — pace by pace, the battle tilts our way."
+    },
+    "G007": {
+      "name": "Ambush",
+      "effect": "Summon 1 Soldier Token. Gain 3 Block.",
+      "effect_upgraded": "Summon 1 Soldier Token. Gain 5 Block.",
+      "flavor": "Strike from the shadows — a hidden soldier buys precious time."
+    },
+    "G008": {
+      "name": "Three-Army Deployment",
+      "effect": "Summon 3 Soldier Tokens.",
+      "effect_upgraded": "Summon 4 Soldier Tokens.",
+      "flavor": "Three armies in position — the battlefield belongs to us."
+    },
+    "G009": {
+      "name": "Tactical Manual",
+      "effect": "For this combat, gain 1 extra Stamina each time you play a Formation card.",
+      "effect_upgraded": "Gain 2 extra Stamina per Formation card.",
+      "flavor": "The manual holds all formations — mastery turns every move into advantage."
+    },
+    "G010": {
+      "name": "Iron Cavalry Charge",
+      "effect": "Spend 3 Stamina. Deal 18 damage. If you have a Soldier Token, deal 4 more.",
+      "effect_upgraded": "Deal 22 damage. Token bonus becomes +6.",
+      "flavor": "Iron-clad cavalry thunders forward — the enemy has nowhere to run."
+    },
+    "G011": {
+      "name": "Camp",
+      "effect": "Gain 6 Block. At the start of next turn, gain 2 Stamina.",
+      "effect_upgraded": "Gain 8 Block. Gain 3 Stamina next turn.",
+      "flavor": "Set up camp and hold the line — tomorrow the charge renews."
+    },
+    "G012": {
+      "name": "Cannon Fire",
+      "effect": "Deal 6 damage to ALL enemies. If you have a Soldier Token, deal 3 more to all.",
+      "effect_upgraded": "Deal 8 base. Token bonus becomes +4.",
+      "flavor": "The cannon roars — thunder shakes the field."
+    },
+    "G013": {
+      "name": "Battle Cry",
+      "effect": "Gain 4 Stamina.",
+      "effect_upgraded": "Gain 5 Stamina. Draw 1 card.",
+      "flavor": "One mighty shout — the entire army's morale ignites."
+    },
+    "G014": {
+      "name": "Reversal",
+      "effect": "Deal 2 damage per current Stamina (min 6). Does not consume Stamina.",
+      "effect_upgraded": "Deal 3 per Stamina (min 8).",
+      "flavor": "Turn desperation into fury — the harder the press, the fiercer the counter."
+    },
+    "G015": {
+      "name": "Indomitable Will",
+      "effect": "Increase max Stamina by 5 for this combat. Gain 3 Stamina.",
+      "effect_upgraded": "Max Stamina +7. Gain 4 Stamina.",
+      "flavor": "An unbreakable will knows no limit — the body exceeds its own boundaries."
+    },
+    "G016": {
+      "name": "Last Stand",
+      "effect": "Spend ALL Stamina. Deal 3 damage per Stamina spent (min 0).",
+      "effect_upgraded": "Deal 4 damage per Stamina spent.",
+      "flavor": "Everything — pour it all into this one moment."
+    },
+    "G017": {
+      "name": "Solo Charge",
+      "effect": "Deal 6 damage. Optionally spend 2 Stamina to deal 4 more.",
+      "effect_upgraded": "Deal 8 base. Stamina bonus becomes +6.",
+      "flavor": "A lone warrior charges the enemy line — and the line breaks."
+    },
+    "G018": {
+      "name": "Peerless",
+      "effect": "Deal 20 damage. Spend ALL Stamina; deal 4 more per Stamina spent.",
+      "effect_upgraded": "Deal 25 base. Bonus per Stamina becomes 5.",
+      "flavor": "Unmatched under heaven — one strike shatters all."
+    },
+    "G019": {
+      "name": "Defensive Formation",
+      "effect": "Gain 8 Block.",
+      "effect_upgraded": "Gain 12 Block.",
+      "flavor": "Shield wall locked — no gap for the enemy to exploit."
+    },
+    "G020": {
+      "name": "Thrust",
+      "effect": "Deal 6 damage.",
+      "effect_upgraded": "Deal 9 damage.",
+      "flavor": "A single precise thrust — simple, true, lethal."
+    },
+    "G021": {
+      "name": "Counter",
+      "effect": "Gain 5 Block. The next hit you take this combat deals 3 damage back to the attacker.",
+      "effect_upgraded": "Gain 6 Block. Counter deals 5 damage.",
+      "flavor": "Absorb the blow — and return it twice as hard."
+    },
+    "G022": {
+      "name": "Continuous Slash",
+      "effect": "Deal 4 damage twice (8 total).",
+      "effect_upgraded": "Deal 5 damage twice (10 total).",
+      "flavor": "One slash, then another — relentless rhythm that wears the enemy down."
+    },
+    "G023": {
+      "name": "Iron Wall Defense",
+      "effect": "Gain 14 Block.",
+      "effect_upgraded": "Gain 18 Block.",
+      "flavor": "A wall of iron — not a single blade shall pass."
+    },
+    "G024": {
+      "name": "Breakthrough",
+      "effect": "Deal 12 damage. If the target is Vulnerable, deal 8 more.",
+      "effect_upgraded": "Deal 16 base. Vulnerable bonus becomes +10.",
+      "flavor": "Find the gap — then shatter it completely."
+    },
+    "G025": {
+      "name": "Veteran General",
+      "effect": "Increase max Stamina by 3. For this combat, draw 1 card whenever a Soldier Token dies.",
+      "effect_upgraded": "Max Stamina +5. Draw 2 cards per Token death.",
+      "flavor": "A hundred battles, a hundred victories — every fallen soldier teaches a lesson."
+    },
+    "W001": {
+      "name": "Memorial",
+      "effect": "Deal 6 damage.",
+      "effect_upgraded": "Deal 9 damage.",
+      "flavor": "Words strike harder than swords — a well-placed memorial topples ministers."
+    },
+    "W002": {
+      "name": "Impeachment",
+      "effect": "Deal 10 damage. Optionally spend 1 Scholarship to apply 2 Vulnerable. (Vulnerable: take 50% more damage.)",
+      "effect_upgraded": "Deal 13 damage. Vulnerable becomes 3.",
+      "flavor": "The scroll of impeachment lands — the accused staggers under the weight of truth."
+    },
+    "W003": {
+      "name": "Petition",
+      "effect": "Spend ALL Scholarship. Deal Scholarship×3 damage to ALL enemies (min 6).",
+      "effect_upgraded": "Deal Scholarship×4 per enemy (min 8).",
+      "flavor": "Ten thousand voices behind a single petition — the pressure is irresistible."
+    },
+    "W004": {
+      "name": "Royal Lecture",
+      "effect": "Gain 5 Block. Gain 1 Scholarship.",
+      "effect_upgraded": "Gain 7 Block. Gain 2 Scholarship.",
+      "flavor": "Enlighten the court — knowledge fortifies as much as armor."
+    },
+    "W005": {
+      "name": "Royal Edict",
+      "effect": "Gain 10 Block. Gain 2 Scholarship.",
+      "effect_upgraded": "Gain 13 Block. Gain 3 Scholarship.",
+      "flavor": "The edict carries royal authority — all must yield before the command."
+    },
+    "W006": {
+      "name": "Study",
+      "effect": "Gain 1 Scholarship. Draw 1 card.",
+      "effect_upgraded": "Gain 2 Scholarship. Draw 1 card.",
+      "flavor": "A scholar never ceases learning — each page read sharpens the mind further."
+    },
+    "W007": {
+      "name": "Investigation",
+      "effect": "Gain 2 Scholarship. The next card you play this turn costs 1 less (min 0).",
+      "effect_upgraded": "Gain 3 Scholarship. Next card costs 1 less.",
+      "flavor": "Investigate thoroughly — insight unlocks paths hidden to others."
+    },
+    "W008": {
+      "name": "Scholarship",
+      "effect": "Gain 3 Scholarship. Draw 1 card.",
+      "effect_upgraded": "Gain 4 Scholarship. Draw 2 cards.",
+      "flavor": "Broad learning across all disciplines — a scholar's arsenal knows no bounds."
+    },
+    "W009": {
+      "name": "Royal Procession",
+      "effect": "Gain 3 Block. Gain 1 Scholarship.",
+      "effect_upgraded": "Gain 5 Block. Gain 2 Scholarship.",
+      "flavor": "The royal entourage moves with ceremony and purpose — order itself becomes a shield."
+    },
+    "W010": {
+      "name": "Evasive Rhetoric",
+      "effect": "Gain 5 Block. If 3+ Sijo slots are filled this turn, gain 2 more Scholarship.",
+      "effect_upgraded": "Gain 7 Block. Scholarship bonus becomes 3.",
+      "flavor": "Deflect with words, deflect with motion — rhetoric and footwork are one."
+    },
+    "W011": {
+      "name": "Loyal Counsel",
+      "effect": "Deal 4 damage. Gain 1 Scholarship.",
+      "effect_upgraded": "Deal 6 damage. Gain 2 Scholarship.",
+      "flavor": "Earnest advice may sting — but the kingdom stands stronger for it."
+    },
+    "W012": {
+      "name": "Debate",
+      "effect": "Deal 8 damage. Optionally spend 1 Scholarship to deal 6 more.",
+      "effect_upgraded": "Deal 10 base. Scholarship bonus becomes +8.",
+      "flavor": "Crush the argument — and with it, the opponent."
+    },
+    "W013": {
+      "name": "Argumentation",
+      "effect": "Gain 3 Scholarship. Draw effects are increased by 1 this turn.",
+      "effect_upgraded": "Gain 4 Scholarship. Draw +2 this turn.",
+      "flavor": "An airtight argument — logic itself becomes a weapon."
+    },
+    "W014": {
+      "name": "Anthology",
+      "effect": "For this combat, increase max Scholarship by 2 (up to 8). Gain 2 Scholarship.",
+      "effect_upgraded": "Max Scholarship +3 (up to 9). Gain 3 Scholarship.",
+      "flavor": "Volumes of wisdom bound together — the compiled knowledge of generations."
+    },
+    "W015": {
+      "name": "Royal Permission",
+      "effect": "Spend ALL Scholarship. Deal Scholarship×5 damage to one target (min 10).",
+      "effect_upgraded": "Deal Scholarship×6 (min 12).",
+      "flavor": "Royal authority unleashed — a single word from the throne ends all defiance."
+    },
+    "W016": {
+      "name": "Censure",
+      "effect": "Apply 2 Weakened to a target enemy. (Weakened: next attacks deal 25% less.)",
+      "effect_upgraded": "Apply 3 Weakened.",
+      "flavor": "A public censure strips the enemy of confidence and power."
+    },
+    "W017": {
+      "name": "Bold Scheme",
+      "effect": "Apply 3 Weakened and 2 Vulnerable to a target enemy.",
+      "effect_upgraded": "Apply 4 Weakened and 3 Vulnerable.",
+      "flavor": "A daring stratagem — sap their attack, expose their defense."
+    },
+    "W018": {
+      "name": "Dismissal",
+      "effect": "Deal 8 damage. Apply Dismissed to the target. (Dismissed: attack power -3 for 3 turns.)",
+      "effect_upgraded": "Deal 11 damage. Dismissed lasts 4 turns.",
+      "flavor": "Stripped of rank and authority — the dismissed official is diminished in all ways."
+    },
+    "W019": {
+      "name": "Remonstration",
+      "effect": "Draw 1 card. Apply 2 Vulnerable to the next enemy hit this turn.",
+      "effect_upgraded": "Draw 2 cards. Vulnerable becomes 3.",
+      "flavor": "A fervent remonstration cracks even the most stubborn resolve."
+    },
+    "W020": {
+      "name": "Exile",
+      "effect": "Remove all buffs from a target enemy. Apply 4 Weakened.",
+      "effect_upgraded": "Apply 5 Weakened after stripping buffs.",
+      "flavor": "Exile strips everything — titles, power, pride."
+    },
+    "W021": {
+      "name": "Perfect Virtue",
+      "effect": "Gain 3 Block. Gain 1 Scholarship.",
+      "effect_upgraded": "Gain 5 Block. Gain 2 Scholarship.",
+      "flavor": "The virtuous scholar stands unmoved — righteousness itself is armor."
+    },
+    "W022": {
+      "name": "Noble Man",
+      "effect": "Gain 12 Block. Optionally spend 1 Scholarship to gain 6 more Block.",
+      "effect_upgraded": "Gain 14 Block. Scholarship bonus becomes +8.",
+      "flavor": "A true noble man faces any storm without flinching."
+    },
+    "W023": {
+      "name": "Clean Governance",
+      "effect": "Gain 5 Block. If your current Scholarship is 0, gain 3 more Block.",
+      "effect_upgraded": "Gain 7 Block. Zero-Scholarship bonus becomes +4.",
+      "flavor": "Incorruptible governance — clear as dawn, strong as stone."
+    },
+    "W024": {
+      "name": "Right Path",
+      "effect": "For this combat, gain 1 Scholarship each time you play a Defense card.",
+      "effect_upgraded": "Gain 2 Scholarship per Defense card.",
+      "flavor": "The righteous path turns every act of defense into a lesson learned."
+    },
+    "W025": {
+      "name": "Great Righteousness",
+      "effect": "Gain 3 Scholarship. Gain 8 Block. Draw 2 cards.",
+      "effect_upgraded": "Gain 4 Scholarship. Gain 10 Block. Draw 3 cards.",
+      "flavor": "Great righteousness needs no justification — it speaks for itself in might and virtue."
+    }
+  },
+  "relics": {
+    "R001": {
+      "name": "Horseshoe",
+      "effect": "At the start of combat, immediately gain 5 Block."
+    },
+    "R002": {
+      "name": "Peace Talisman",
+      "effect": "Buffs applied to yourself last 1 additional turn."
+    },
+    "R003": {
+      "name": "Lucky Coin",
+      "effect": "Gain 10 extra gold after each combat victory."
+    },
+    "R004": {
+      "name": "Phoenix Feather",
+      "effect": "Draw 1 extra card each time your draw pile is shuffled."
+    },
+    "R005": {
+      "name": "Red Ginseng Root",
+      "effect": "Recover 8 HP after defeating an Elite."
+    },
+    "R006": {
+      "name": "Bodyguard Sword",
+      "effect": "At the start of combat, max Stamina increases by 1 for this combat."
+    },
+    "R007": {
+      "name": "Four Books",
+      "effect": "Draw 1 extra card when you play your first card each turn."
+    },
+    "R008": {
+      "name": "Dongui Bogam",
+      "effect": "Apply 1 extra stack when applying Poison."
+    },
+    "R009": {
+      "name": "Shaman Bell",
+      "effect": "Gain 2 extra Spirit Power at the start of combat."
+    },
+    "R010": {
+      "name": "Horn Bow",
+      "effect": "Max Arrow capacity +3. Gain 2 extra Arrows at the start of combat."
+    },
+    "R011": {
+      "name": "Merchant Ledger",
+      "effect": "Gain 35 extra gold each time you enter a shop. (Max 2 times per run.)"
+    },
+    "R012": {
+      "name": "Royal Inspector's Plaque",
+      "effect": "At the start of combat, apply 2 Vulnerable to the enemy with the most HP."
+    },
+    "R013": {
+      "name": "Manpasikjeok",
+      "effect": "Recover 25% of max HP when entering a Boss combat."
+    },
+    "R014": {
+      "name": "Cursed Helmet",
+      "effect": "Attack cards also apply 1 Bleed to the target. However, you start each combat with 3 Poison."
+    },
+    "R015": {
+      "name": "Three-Legged Crow Feather",
+      "effect": "Gain 1 extra Qi at the start of each turn. However, 2 Curse cards are added to your starting deck."
+    },
+    "RS001": {
+      "name": "Talisman Pouch",
+      "effect": "At the start of combat, add 1 random Talisman card to your hand."
+    },
+    "RS002": {
+      "name": "Royal Warrant",
+      "effect": "Automatically summon 1 Soldier Token at the start of combat."
+    },
+    "RS003": {
+      "name": "Destiny",
+      "effect": "Gain 2 Scholarship at the start of combat."
+    },
+    "R016": {
+      "name": "Herb Bundle",
+      "effect": "Remove all Poison stacks from yourself at the start of combat."
+    },
+    "R017": {
+      "name": "Worn Shield",
+      "effect": "Gain 2 Block at the start of each turn."
+    },
+    "R018": {
+      "name": "Nameless Dagger",
+      "effect": "Recover 1 Qi immediately whenever you kill an enemy."
+    },
+    "R019": {
+      "name": "Axe Talisman",
+      "effect": "Recover 1 extra Qi each time you complete the First Verse (2 slots)."
+    },
+    "R020": {
+      "name": "Diamond",
+      "effect": "Gain 8 Block at the start of combat."
+    },
+    "R021": {
+      "name": "Dragon's Horn",
+      "effect": "Recover 1 Qi each time a card is Exhausted."
+    },
+    "R022": {
+      "name": "Obsidian Seal",
+      "effect": "Reduce the cost of removing a card at the shop by 25 gold."
+    },
+    "R023": {
+      "name": "Moonlight Mirror",
+      "effect": "Draw 1 extra card each time you complete a Sijo. (1 → 2 cards drawn.)"
+    },
+    "R024": {
+      "name": "Blood Oath",
+      "effect": "Gain 15 extra gold after defeating an Elite."
+    },
+    "R025": {
+      "name": "Five Elements Formation",
+      "effect": "At the start of combat, gain Strength +1 and max Qi +1 for this combat. Resets after combat."
+    },
+    "R026": {
+      "name": "Star Map",
+      "effect": "Sijo completion bonus becomes ×2.5 instead of ×2."
+    },
+    "R027": {
+      "name": "Royal Seal",
+      "effect": "Gain 15 Block immediately at the start of Boss combat."
+    },
+    "R028": {
+      "name": "Immortal Talisman",
+      "effect": "Once per run: survive lethal damage with 1 HP."
+    },
+    "RM001": {
+      "name": "Military Manual",
+      "effect": "Gain 1 extra Stamina each time you play a Formation card."
+    },
+    "RW001": {
+      "name": "Royal Portrait",
+      "effect": "Recover 5% of max HP each time you fully spend your Scholarship. (Scholar only.)"
+    },
+    "RD001": {
+      "name": "Immortal's Cinnabar",
+      "effect": "Gain 1 extra Qi each time you play a Spell card. (Sorcerer only.)"
+    },
+    "RD002": {
+      "name": "Yin-Yang Token",
+      "effect": "Draw 1 card each time a summoned token dies. (Sorcerer only.)"
+    },
+    "RS004": {
+      "name": "Sijo Anthology",
+      "effect": "On the turn after completing a Sijo, carry over 1 Qi to the next turn. (Exception to the no-carryover rule.)"
+    },
+    "RS005": {
+      "name": "Rhythm Drum",
+      "effect": "Recover 1 Qi immediately each time you play a Wildcard (M011 / M012)."
+    },
+    "RB001": {
+      "name": "Yi Mu-ryeong's Seal",
+      "effect": "Removing cards at the shop costs 0 gold."
+    },
+    "RB002": {
+      "name": "Twin-Head Tiger Hide",
+      "effect": "Gain Strength +3 at the start of combat. Resets after combat."
+    },
+    "RB003": {
+      "name": "Traitor Minister's Official Seal",
+      "effect": "Sijo completion bonus becomes ×3 instead of ×2. (Does not stack with Star Map R026; max ×3.)"
+    }
+  },
+  "enemies": {
+    "act_1": {
+      "name": "Act I — Hanyang",
+      "description": "The capital of Joseon. A city of corrupt officials, street ruffians, and restless spirits.",
+      "regular": {
+        "E001": {
+          "name": "Street Thug",
+          "description": "A reckless brawler from the Hanyang alleys. Fast and rough, but rash."
+        },
+        "E002": {
+          "name": "Corrupt Officer",
+          "description": "A crooked constable armed with a shield and club."
+        },
+        "E003": {
+          "name": "Vengeful Spirit",
+          "description": "A ghost still burning with earthly grievances."
+        },
+        "E004": {
+          "name": "Dokkaebi",
+          "description": "A mischievous goblin spirit lurking in the city."
+        },
+        "E005": {
+          "name": "Officer Captain",
+          "description": "A commanding officer who leads the patrol."
+        },
+        "E006": {
+          "name": "Evil Spirit",
+          "description": "A malevolent spirit that attacks the living."
+        },
+        "E007": {
+          "name": "Corrupt Official",
+          "description": "A greedy government official who exploits the common folk."
+        }
+      },
+      "elite": {
+        "EL001": {
+          "name": "Imugi",
+          "description": "A serpentine dragon that failed to ascend — bitter and powerful."
+        },
+        "EL002": {
+          "name": "Prison Warden",
+          "description": "A ruthless warden of the royal prison."
+        },
+        "EL003": {
+          "name": "Shaman",
+          "description": "A powerful shaman wielding spiritual curses."
+        }
+      },
+      "bosses": {
+        "B_ACT1_FINAL": {
+          "name": "Minister Yi Mu-ryeong",
+          "description": "A corrupt minister orchestrating the conspiracy against the throne."
+        },
+        "B_ACT1_MID": {
+          "name": "Constabulary Commander",
+          "description": "The chief of the corrupt Hanyang constabulary."
+        },
+        "B_ACT1_ALT": {
+          "name": "Grand Shaman Cheon-ryeong",
+          "description": "A master shaman commanding powerful spirits."
+        }
+      }
+    },
+    "act_2": {
+      "name": "Act II — Jirisan",
+      "description": "The sacred mountain. Home to bandits, spirits, and ancient powers.",
+      "regular": {
+        "E201": {
+          "name": "Bandit",
+          "description": "A mountain outlaw who ambushes travelers on the pass."
+        },
+        "E202": {
+          "name": "Maiden Ghost",
+          "description": "The spirit of a young woman who died with unresolved regrets."
+        },
+        "E203": {
+          "name": "Temple Warrior Monk",
+          "description": "A monk-soldier defending the mountain temple."
+        },
+        "E204": {
+          "name": "Viper",
+          "description": "A venomous mountain serpent guarding its den."
+        },
+        "E205": {
+          "name": "Mountain Spirit",
+          "description": "An elemental spirit born from the mountain's energy."
+        },
+        "E206": {
+          "name": "Daoist Practitioner",
+          "description": "A rogue Daoist sorcerer wielding forbidden arts."
+        },
+        "E207": {
+          "name": "Wild Tiger",
+          "description": "A ferocious tiger prowling the mountain paths."
+        }
+      },
+      "elite": {
+        "EL201": {
+          "name": "White Tiger",
+          "description": "The divine white tiger, guardian of the western mountain."
+        },
+        "EL202": {
+          "name": "Bandit Chief",
+          "description": "The ruthless leader of the mountain bandit clan."
+        },
+        "EL203": {
+          "name": "Gumiho",
+          "description": "A nine-tailed fox spirit with mesmerizing and deadly powers."
+        }
+      },
+      "bosses": {
+        "B_ACT2_FINAL": {
+          "name": "Twin-Head Tiger",
+          "description": "A monstrous two-headed tiger, lord of Jirisan."
+        },
+        "B_ACT2_MID": {
+          "name": "Bandit Fortress Chief",
+          "description": "The warlord commanding the fortified mountain stronghold."
+        },
+        "B_ACT2_ALT": {
+          "name": "Great Gumiho",
+          "description": "The ancient gumiho queen, wielder of illusion and destruction."
+        }
+      }
+    },
+    "act_3": {
+      "name": "Act III — Royal Palace",
+      "description": "The palace under siege. Traitors walk the halls and the throne is in danger.",
+      "regular": {
+        "E301": {
+          "name": "Rebel Warrior",
+          "description": "A traitor's mercenary soldier fighting inside the palace."
+        },
+        "E302": {
+          "name": "Rebel Official",
+          "description": "A traitorous scholar official serving the conspiracy."
+        },
+        "E303": {
+          "name": "Assassin",
+          "description": "A shadowy killer sent by the rebel faction."
+        },
+        "E304": {
+          "name": "Royal Eunuch",
+          "description": "A palace eunuch turned spy for the traitors."
+        },
+        "E305": {
+          "name": "Royal Guard",
+          "description": "An elite palace guard — but whose side are they on?"
+        },
+        "E306": {
+          "name": "Messenger of Death",
+          "description": "A supernatural being that reaps the lives of the fallen."
+        },
+        "E307": {
+          "name": "Cursed Apparition",
+          "description": "A spirit raised by the traitor's dark rituals."
+        }
+      },
+      "elite": {
+        "EL301": {
+          "name": "Rebel General",
+          "description": "The rebel army's field commander inside the palace."
+        },
+        "EL302": {
+          "name": "Royal Inspector",
+          "description": "A royal inspector whose loyalties are unclear."
+        },
+        "EL303": {
+          "name": "Imugi King",
+          "description": "The monstrous king of the Imugi, summoned by the traitors."
+        }
+      },
+      "bosses": {
+        "B_ACT3_FINAL": {
+          "name": "Traitor Minister",
+          "description": "The mastermind behind the rebellion — the final enemy."
+        },
+        "B_ACT3_MID": {
+          "name": "Rebel Assassination Squad Leader",
+          "description": "The captain of the traitor's elite assassination unit."
+        }
+      }
+    }
+  },
+  "events": {
+    "EVT_A1_001": {
+      "title": "Old Traveler"
+    },
+    "EVT_A1_002": {
+      "title": "Officer's Checkpoint"
+    },
+    "EVT_A1_003": {
+      "title": "Wronged Spirit"
+    },
+    "EVT_A1_004": {
+      "title": "Suspicious Medicine Peddler"
+    },
+    "EVT_A1_005": {
+      "title": "Shrine"
+    },
+    "EVT_A1_006": {
+      "title": "Gambling Den"
+    },
+    "EVT_A1_007": {
+      "title": "Abandoned Satchel"
+    },
+    "EVT_A1_008": {
+      "title": "Street Physician"
+    },
+    "EVT_A1_009": {
+      "title": "Discarded Card Bundle"
+    },
+    "EVT_A1_010": {
+      "title": "Starving Beggar"
+    },
+    "EVT_A1_011": {
+      "title": "Sacred Tree"
+    },
+    "EVT_A1_012": {
+      "title": "Wandering Merchant"
+    },
+    "EVT_A2_001": {
+      "title": "Mountain Monk"
+    },
+    "EVT_A2_002": {
+      "title": "Bandit Ambush"
+    },
+    "EVT_A2_003": {
+      "title": "Herb Gathering Spot"
+    },
+    "EVT_A2_004": {
+      "title": "Mountain God's Trial"
+    },
+    "EVT_A2_005": {
+      "title": "Waterfall Training Ground"
+    },
+    "EVT_A2_006": {
+      "title": "Abandoned Mine"
+    },
+    "EVT_A2_007": {
+      "title": "Mountain Spirit's Test"
+    },
+    "EVT_A2_008": {
+      "title": "Viper's Den"
+    },
+    "EVT_A2_009": {
+      "title": "Daoist Trainee"
+    },
+    "EVT_A3_001": {
+      "title": "Loyal Minister's Secret Letter"
+    },
+    "EVT_A3_002": {
+      "title": "Court Lady's Request"
+    },
+    "EVT_A3_003": {
+      "title": "Royal Physician's Chamber"
+    },
+    "EVT_A3_004": {
+      "title": "Traitor's Trap"
+    },
+    "EVT_A3_005": {
+      "title": "King's Study"
+    },
+    "EVT_A3_006": {
+      "title": "Eve of Battle"
+    },
+    "EVT_A3_007": {
+      "title": "King's Secret Command"
+    },
+    "EVT_A3_008": {
+      "title": "Treasonous Document"
+    },
+    "EVT_A3_009": {
+      "title": "Final Battle's Eve"
+    }
+  },
+  "game": {
+    "title": "Sijojeon",
+    "subtitle": "A Joseon Roguelike Deckbuilder",
+    "acts": {
+      "1": {
+        "name": "Act I",
+        "location": "Hanyang",
+        "description": "The capital city, rife with corruption and restless spirits."
+      },
+      "2": {
+        "name": "Act II",
+        "location": "Jirisan",
+        "description": "The sacred mountain, home to outlaws and ancient powers."
+      },
+      "3": {
+        "name": "Act III",
+        "location": "Royal Palace",
+        "description": "The palace in crisis — expose the traitors and protect the throne."
+      }
+    },
+    "run": {
+      "run_start": "Begin Journey",
+      "run_over": "Journey Ends",
+      "floor": "Floor {n}",
+      "act": "Act {n}",
+      "score": "Score",
+      "turns": "Turns",
+      "cards_played": "Cards Played",
+      "damage_dealt": "Damage Dealt",
+      "sijo_completions": "Sijo Completions"
+    }
+  }
+}

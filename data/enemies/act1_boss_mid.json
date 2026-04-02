@@ -1,0 +1,114 @@
+{
+  "version": "0.1",
+  "type": "boss_mid",
+  "act": 1,
+  "balance_ref": "ZER-98 (적 종류 추가). 1막 중간 보스. 플레이어 기준: HP 55~70, 덱 규모 8~12장, 턴당 피해 8~12. 목표 전투 길이: 8~11턴.",
+  "note": "1막 맵 중간 지점(3~4층)에 등장하는 선택형 보스 노드. 일반 보스보다 약하지만 엘리트보다 강함.",
+
+  "id": "B_ACT1_MID",
+  "name": {
+    "ko": "포청 나졸 대장",
+    "hanja": "捕廳邏卒大將",
+    "romanized": "Pocheong Najol Daejang"
+  },
+  "description": "한양 포청의 최강 나졸 대장. 부하들을 이끌고 플레이어를 몰아붙인다. 소환과 방어를 동시에 구사하는 어려운 중간 보스.",
+  "hp": 80,
+  "flavor": "\"도망쳐도 소용없다. 포청의 그물을 빠져나간 자는 없느니라.\"",
+  "phases": [
+    {
+      "phase": 1,
+      "hp_threshold_label": "100% → 50%",
+      "hp_threshold_min": 40,
+      "description": "지휘 모드. 부하를 소환하고 방어도를 쌓으며 압박한다.",
+      "moves": [
+        {
+          "id": "command_shout",
+          "name": "호령",
+          "intent": "summon",
+          "description": "포졸 2명을 소환한다. 각 HP 14.",
+          "summon": [
+            { "enemy_id": "E002", "count": 2, "hp_override": 14, "name_override": "호위 포졸" }
+          ]
+        },
+        {
+          "id": "heavy_cudgel",
+          "name": "대형 곤봉",
+          "intent": "attack",
+          "damage": 12,
+          "times": 1,
+          "description": "12피해. 강력한 곤봉 일격."
+        },
+        {
+          "id": "iron_defense",
+          "name": "철갑 방어",
+          "intent": "buff_defend",
+          "block": 12,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+          ],
+          "description": "방어도 12 + 힘 1."
+        },
+        {
+          "id": "rapid_strike",
+          "name": "속공",
+          "intent": "attack",
+          "damage": 7,
+          "times": 2,
+          "description": "7피해 × 2회 = 14 총피해."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["command_shout", "heavy_cudgel", "iron_defense", "rapid_strike", "heavy_cudgel", "iron_defense", "rapid_strike"]
+      }
+    },
+    {
+      "phase": 2,
+      "hp_threshold_label": "50% → 0%",
+      "hp_threshold_min": 0,
+      "description": "분노 모드. HP 절반 이하에서 전략 변경. 더 강한 공격으로 압박.",
+      "phase_trigger": "HP 40 이하",
+      "moves": [
+        {
+          "id": "enraged_strike",
+          "name": "분노의 강타",
+          "intent": "attack",
+          "damage": 16,
+          "times": 1,
+          "description": "분노한 강타. 16+힘 피해."
+        },
+        {
+          "id": "collar_grab",
+          "name": "멱살 잡기",
+          "intent": "attack_debuff",
+          "damage": 10,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "구금", "stacks": 2, "target": "player" }
+          ],
+          "description": "10피해 + 구금 2(카드 비용 +1, 2턴)."
+        },
+        {
+          "id": "iron_defense_2",
+          "name": "철갑 방어",
+          "intent": "buff_defend",
+          "block": 14,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "방어도 14 + 힘 2."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["collar_grab", "enraged_strike", "iron_defense_2", "enraged_strike", "collar_grab", "enraged_strike"]
+      }
+    }
+  ],
+  "rewards": {
+    "gold": { "min": 50, "max": 70 },
+    "card_reward_count": 3,
+    "relic_chance": 0.5
+  },
+  "balance_note": "1막 중간 보스. HP 80. 1페이즈: 소환(포졸 HP14×2)+방어(12)+공격(12~14) 사이클. 2페이즈(HP40 이하): 구금+강타(16+힘) 집중 압박. 포졸 처치 후 본체 집중 딜 권장."
+}

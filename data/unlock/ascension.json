@@ -1,0 +1,693 @@
+{
+  "version": "0.1",
+  "type": "ascension_system",
+  "description": "시조전 귀신 단계(鬼神 段階) — 10단계 난이도 시스템. StS 어센션 참조. 이전 단계 클리어 시 다음 단계 해금. 각 단계는 이전 단계의 수정자를 누적 적용한다.",
+  "balance_ref": "ZER-100 (어센션/난이도 시스템). 모바일 솔로 플레이 기준 설계.",
+  "system_name": {
+    "ko": "귀신 단계",
+    "hanja": "鬼神 段階",
+    "romanized": "Gwisin Danji",
+    "description": "강해질수록 귀신도 넘는다는 조선식 표현. 단계 숫자가 높을수록 더 강한 귀신과 싸우는 난이도."
+  },
+  "unlock_rule": "단계 n 해금 조건: 단계 n-1로 런 완료 (엔딩 도달). 단계 0은 기본 해금.",
+  "curse_card": {
+    "id": "CURSE_001",
+    "name": {
+      "ko": "뒤주",
+      "hanja": "柜",
+      "romanized": "Dweju"
+    },
+    "beat": 3,
+    "cost": 0,
+    "type": "curse",
+    "subtypes": ["curse"],
+    "rarity": 0,
+    "effect": "사용 시 플레이어에게 피해 5를 입힌다. (소멸 불가, 덱에서 제거 불가)",
+    "effect_upgraded": "업그레이드 불가",
+    "flavor_text": "뒤주 안에 갇혀 굶어 죽은 자의 한이 서린 — 아무도 열지 못하는 저주.",
+    "balance_rationale": "저주 카드. 0코스트이지만 사용 시 자해 5. 손에 들어오면 반드시 플레이해야 하는 상황에서 패널티. 어센션 3단계 이상에서 시작 덱에 포함. 카드 제거 불가로 런 내내 부담.",
+    "sijo_position": "초장 첫 슬롯 [3] — 하지만 절대 먼저 사용하면 안 됨",
+    "upgrade_cost": 0,
+    "values": { "self_damage": 5 }
+  },
+  "levels": [
+    {
+      "level": 0,
+      "name_ko": "기본",
+      "description": "기본 난이도. 수정자 없음.",
+      "unlock_condition": "기본 해금",
+      "modifiers": [],
+      "reward_multiplier": 1.0,
+      "score_bonus": 0
+    },
+    {
+      "level": 1,
+      "name_ko": "귀신 1단계",
+      "description": "적들이 조금 더 강해졌다.",
+      "unlock_condition": "단계 0으로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10%",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.1,
+      "score_bonus": 10
+    },
+    {
+      "level": 2,
+      "name_ko": "귀신 2단계",
+      "description": "카드 제거가 더 비싸진다.",
+      "unlock_condition": "단계 1로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적)",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "상점 카드 제거 비용 +25골드",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.15,
+      "score_bonus": 20
+    },
+    {
+      "level": 3,
+      "name_ko": "귀신 3단계",
+      "description": "시작 덱에 저주가 깃든다.",
+      "unlock_condition": "단계 2로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적)",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "카드 제거 비용 +25골드 (누적)",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        },
+        {
+          "id": "start_curse_1",
+          "description_ko": "시작 덱에 저주 카드 '뒤주' 1장 추가",
+          "type": "starter_deck",
+          "operation": "add_card",
+          "card_id": "CURSE_001",
+          "count": 1,
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.20,
+      "score_bonus": 35
+    },
+    {
+      "level": 4,
+      "name_ko": "귀신 4단계",
+      "description": "정예를 만나면 먼저 약해진다.",
+      "unlock_condition": "단계 3으로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적)",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "카드 제거 비용 +25골드 (누적)",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        },
+        {
+          "id": "start_curse_1",
+          "description_ko": "시작 덱에 뒤주 1장 (누적)",
+          "type": "starter_deck",
+          "operation": "add_card",
+          "card_id": "CURSE_001",
+          "count": 1,
+          "cumulative": true
+        },
+        {
+          "id": "elite_debuff_start",
+          "description_ko": "정예 전투 시작 시 플레이어에게 약화(弱化) 2턴 부여",
+          "type": "combat_start_effect",
+          "target": "player",
+          "combat_type": "elite",
+          "effect": "weaken",
+          "duration": 2,
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.25,
+      "score_bonus": 50
+    },
+    {
+      "level": 5,
+      "name_ko": "귀신 5단계",
+      "description": "보스를 쓰러뜨려도 회복할 수 없다.",
+      "unlock_condition": "단계 4로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적)",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "카드 제거 비용 +25골드 (누적)",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        },
+        {
+          "id": "start_curse_1",
+          "description_ko": "시작 덱에 뒤주 1장 (누적)",
+          "type": "starter_deck",
+          "operation": "add_card",
+          "card_id": "CURSE_001",
+          "count": 1,
+          "cumulative": true
+        },
+        {
+          "id": "elite_debuff_start",
+          "description_ko": "정예 전투 시작 시 약화 2턴 (누적)",
+          "type": "combat_start_effect",
+          "target": "player",
+          "combat_type": "elite",
+          "effect": "weaken",
+          "duration": 2,
+          "cumulative": true
+        },
+        {
+          "id": "no_boss_heal",
+          "description_ko": "보스 처치 후 HP 회복 없음 (기존 최대 HP 20% → 0%)",
+          "type": "post_boss_heal",
+          "operation": "set",
+          "value": 0,
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.35,
+      "score_bonus": 70
+    },
+    {
+      "level": 6,
+      "name_ko": "귀신 6단계",
+      "description": "상점의 모든 것이 비싸진다.",
+      "unlock_condition": "단계 5로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적)",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "카드 제거 비용 +25골드 (누적)",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        },
+        {
+          "id": "start_curse_1",
+          "description_ko": "시작 덱에 뒤주 1장 (누적)",
+          "type": "starter_deck",
+          "operation": "add_card",
+          "card_id": "CURSE_001",
+          "count": 1,
+          "cumulative": true
+        },
+        {
+          "id": "elite_debuff_start",
+          "description_ko": "정예 전투 시작 시 약화 2턴 (누적)",
+          "type": "combat_start_effect",
+          "target": "player",
+          "combat_type": "elite",
+          "effect": "weaken",
+          "duration": 2,
+          "cumulative": true
+        },
+        {
+          "id": "no_boss_heal",
+          "description_ko": "보스 처치 후 HP 회복 없음 (누적)",
+          "type": "post_boss_heal",
+          "operation": "set",
+          "value": 0,
+          "cumulative": true
+        },
+        {
+          "id": "shop_price_up_20",
+          "description_ko": "상점 카드 및 유물 가격 +20%",
+          "type": "shop_price",
+          "target": "all",
+          "operation": "multiply",
+          "value": 1.20,
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.45,
+      "score_bonus": 90
+    },
+    {
+      "level": 7,
+      "name_ko": "귀신 7단계",
+      "description": "전투마다 추가 적이 등장한다.",
+      "unlock_condition": "단계 6으로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적)",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "카드 제거 비용 +25골드 (누적)",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        },
+        {
+          "id": "start_curse_1",
+          "description_ko": "시작 덱에 뒤주 1장 (누적)",
+          "type": "starter_deck",
+          "operation": "add_card",
+          "card_id": "CURSE_001",
+          "count": 1,
+          "cumulative": true
+        },
+        {
+          "id": "elite_debuff_start",
+          "description_ko": "정예 전투 시작 시 약화 2턴 (누적)",
+          "type": "combat_start_effect",
+          "target": "player",
+          "combat_type": "elite",
+          "effect": "weaken",
+          "duration": 2,
+          "cumulative": true
+        },
+        {
+          "id": "no_boss_heal",
+          "description_ko": "보스 처치 후 HP 회복 없음 (누적)",
+          "type": "post_boss_heal",
+          "operation": "set",
+          "value": 0,
+          "cumulative": true
+        },
+        {
+          "id": "shop_price_up_20",
+          "description_ko": "상점 가격 +20% (누적)",
+          "type": "shop_price",
+          "target": "all",
+          "operation": "multiply",
+          "value": 1.20,
+          "cumulative": true
+        },
+        {
+          "id": "extra_enemy_normal",
+          "description_ko": "일반 전투에 추가 미니 적 1마리 등장 (HP 6~10, 공격 4)",
+          "type": "combat_spawn",
+          "combat_type": "normal",
+          "enemy_id": "E_MINI_SPIRIT",
+          "count": 1,
+          "description": "영혼 잔해 (靈魂殘骸): HP 6~10, 매 턴 4 공격. 처치 시 보상 없음.",
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.55,
+      "score_bonus": 115
+    },
+    {
+      "level": 8,
+      "name_ko": "귀신 8단계",
+      "description": "기(氣)가 줄어들었다.",
+      "unlock_condition": "단계 7로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적)",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "카드 제거 비용 +25골드 (누적)",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        },
+        {
+          "id": "start_curse_1",
+          "description_ko": "시작 덱에 뒤주 1장 (누적)",
+          "type": "starter_deck",
+          "operation": "add_card",
+          "card_id": "CURSE_001",
+          "count": 1,
+          "cumulative": true
+        },
+        {
+          "id": "elite_debuff_start",
+          "description_ko": "정예 전투 시작 시 약화 2턴 (누적)",
+          "type": "combat_start_effect",
+          "target": "player",
+          "combat_type": "elite",
+          "effect": "weaken",
+          "duration": 2,
+          "cumulative": true
+        },
+        {
+          "id": "no_boss_heal",
+          "description_ko": "보스 처치 후 HP 회복 없음 (누적)",
+          "type": "post_boss_heal",
+          "operation": "set",
+          "value": 0,
+          "cumulative": true
+        },
+        {
+          "id": "shop_price_up_20",
+          "description_ko": "상점 가격 +20% (누적)",
+          "type": "shop_price",
+          "target": "all",
+          "operation": "multiply",
+          "value": 1.20,
+          "cumulative": true
+        },
+        {
+          "id": "extra_enemy_normal",
+          "description_ko": "일반 전투 추가 미니 적 1마리 (누적)",
+          "type": "combat_spawn",
+          "combat_type": "normal",
+          "enemy_id": "E_MINI_SPIRIT",
+          "count": 1,
+          "cumulative": true
+        },
+        {
+          "id": "qi_minus_1",
+          "description_ko": "턴당 기(氣) 기본값 -1 (3 → 2기)",
+          "type": "player_stat",
+          "stat": "starting_qi",
+          "operation": "add",
+          "value": -1,
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.70,
+      "score_bonus": 145
+    },
+    {
+      "level": 9,
+      "name_ko": "귀신 9단계",
+      "description": "저주가 쌓인다.",
+      "unlock_condition": "단계 8로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적) — 총 ×1.10^9 ≈ +235%",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "카드 제거 비용 +25골드 (누적)",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        },
+        {
+          "id": "start_curse_2",
+          "description_ko": "시작 덱에 뒤주 2장 추가 (1단계 1장 + 2장 = 총 3장)",
+          "type": "starter_deck",
+          "operation": "add_card",
+          "card_id": "CURSE_001",
+          "count": 2,
+          "note": "3단계 1장 + 9단계 2장 = 총 3장",
+          "cumulative": true
+        },
+        {
+          "id": "elite_debuff_start",
+          "description_ko": "정예 전투 시작 시 약화 2턴 (누적)",
+          "type": "combat_start_effect",
+          "target": "player",
+          "combat_type": "elite",
+          "effect": "weaken",
+          "duration": 2,
+          "cumulative": true
+        },
+        {
+          "id": "no_boss_heal",
+          "description_ko": "보스 처치 후 HP 회복 없음 (누적)",
+          "type": "post_boss_heal",
+          "operation": "set",
+          "value": 0,
+          "cumulative": true
+        },
+        {
+          "id": "shop_price_up_20",
+          "description_ko": "상점 가격 +20% (누적)",
+          "type": "shop_price",
+          "target": "all",
+          "operation": "multiply",
+          "value": 1.20,
+          "cumulative": true
+        },
+        {
+          "id": "extra_enemy_normal",
+          "description_ko": "일반 전투 추가 미니 적 1마리 (누적)",
+          "type": "combat_spawn",
+          "combat_type": "normal",
+          "enemy_id": "E_MINI_SPIRIT",
+          "count": 1,
+          "cumulative": true
+        },
+        {
+          "id": "qi_minus_1",
+          "description_ko": "턴당 기 기본값 -1 (3 → 2기) (누적)",
+          "type": "player_stat",
+          "stat": "starting_qi",
+          "operation": "add",
+          "value": -1,
+          "cumulative": true
+        }
+      ],
+      "reward_multiplier": 1.85,
+      "score_bonus": 180
+    },
+    {
+      "level": 10,
+      "name_ko": "귀신 10단계 (최고 난이도)",
+      "description": "최고 난이도. 모든 저주가 쌓이고, 보스는 더욱 강하다. 이 단계를 클리어하면 전설이 된다.",
+      "unlock_condition": "단계 9로 런 완료",
+      "modifiers": [
+        {
+          "id": "enemy_hp_up_10",
+          "description_ko": "모든 적 HP +10% (누적)",
+          "type": "enemy_stat",
+          "target": "all_enemies",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.10,
+          "cumulative": true
+        },
+        {
+          "id": "removal_cost_up_25",
+          "description_ko": "카드 제거 비용 +25골드 (누적)",
+          "type": "shop_price",
+          "target": "card_removal",
+          "operation": "add",
+          "value": 25,
+          "cumulative": true
+        },
+        {
+          "id": "start_curse_2",
+          "description_ko": "시작 덱 뒤주 2장 추가 (총 3장) (누적)",
+          "type": "starter_deck",
+          "operation": "add_card",
+          "card_id": "CURSE_001",
+          "count": 2,
+          "cumulative": true
+        },
+        {
+          "id": "elite_debuff_start",
+          "description_ko": "정예 전투 시작 시 약화 2턴 (누적)",
+          "type": "combat_start_effect",
+          "target": "player",
+          "combat_type": "elite",
+          "effect": "weaken",
+          "duration": 2,
+          "cumulative": true
+        },
+        {
+          "id": "no_boss_heal",
+          "description_ko": "보스 처치 후 HP 회복 없음 (누적)",
+          "type": "post_boss_heal",
+          "operation": "set",
+          "value": 0,
+          "cumulative": true
+        },
+        {
+          "id": "shop_price_up_20",
+          "description_ko": "상점 가격 +20% (누적)",
+          "type": "shop_price",
+          "target": "all",
+          "operation": "multiply",
+          "value": 1.20,
+          "cumulative": true
+        },
+        {
+          "id": "extra_enemy_normal",
+          "description_ko": "일반 전투 추가 미니 적 1마리 (누적)",
+          "type": "combat_spawn",
+          "combat_type": "normal",
+          "enemy_id": "E_MINI_SPIRIT",
+          "count": 1,
+          "cumulative": true
+        },
+        {
+          "id": "qi_minus_1",
+          "description_ko": "턴당 기 기본값 -1 (누적)",
+          "type": "player_stat",
+          "stat": "starting_qi",
+          "operation": "add",
+          "value": -1,
+          "cumulative": true
+        },
+        {
+          "id": "boss_hp_up_30",
+          "description_ko": "모든 보스 HP 추가 +30%",
+          "type": "enemy_stat",
+          "target": "boss_only",
+          "stat": "hp",
+          "operation": "multiply",
+          "value": 1.30,
+          "cumulative": false,
+          "note": "10단계 전용 추가 수정자. 적 HP +10%^10 에 추가로 곱하기."
+        },
+        {
+          "id": "final_boss_extra_phase",
+          "description_ko": "최종 보스에 새 페이즈 추가 — '분노의 귀신' 페이즈 (HP 20 추가, AoE 12 공격)",
+          "type": "boss_modifier",
+          "target": "BOSS_ACT3",
+          "operation": "add_phase",
+          "phase_data": {
+            "phase": 4,
+            "hp_threshold": 1,
+            "name_ko": "분노의 귀신",
+            "moves": [
+              {
+                "id": "ghost_wrath",
+                "name": "귀신의 분노",
+                "intent": "attack",
+                "damage": 12,
+                "times": 1,
+                "description": "광역 12 피해. 방어도 무시."
+              }
+            ]
+          },
+          "cumulative": false
+        }
+      ],
+      "reward_multiplier": 2.0,
+      "score_bonus": 250,
+      "completion_reward": {
+        "title_ko": "전설의 풍류객",
+        "description": "귀신 10단계 완료 업적 + 특수 카드 뒷면 해금",
+        "achievement_id": "ACH_ASCENSION_10"
+      }
+    }
+  ],
+  "ui_spec": {
+    "location": "캐릭터 선택 화면 — 캐릭터 카드 하단 '귀신 단계' 선택 UI",
+    "display": "0단계 ~ 해금된 최고 단계까지 스와이프 선택. 현재 단계 번호 크게 표시.",
+    "modifier_tooltip": "선택된 단계 탭 시 현재 적용 수정자 목록 팝업",
+    "locked_display": "잠금된 단계: 자물쇠 아이콘 + '단계 N-1 클리어 시 해금' 텍스트",
+    "result_screen": "런 결과 화면 우상단에 '귀신 N단계' 배지 표시. 10단계 클리어 시 황금 배지."
+  },
+  "mini_enemy": {
+    "id": "E_MINI_SPIRIT",
+    "name": {
+      "ko": "영혼 잔해",
+      "hanja": "靈魂殘骸",
+      "romanized": "Yeonghon Janhae"
+    },
+    "hp": { "min": 6, "max": 10 },
+    "moves": [
+      {
+        "id": "spirit_attack",
+        "name": "원한 공격",
+        "intent": "attack",
+        "damage": 4,
+        "times": 1,
+        "description": "매 턴 4 피해."
+      }
+    ],
+    "ai_pattern": "항상 공격",
+    "reward": { "gold": 0, "relic_chance": 0 },
+    "note": "귀신 7단계 이상에서 일반 전투에 추가 등장. 처치 보상 없음."
+  }
+}

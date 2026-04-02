@@ -261,6 +261,314 @@
       "balance_rationale": "문관 시작 유물. 첫 턴부터 학식 2로 시작. 탄핵(학식 1 소비) 즉시 사용 가능. 독서 1장이면 학식 3으로 상소 준비 완료.",
       "obtain_from": ["starting_relic"],
       "values": { "scholarship_on_battle_start": 2 }
+    },
+
+    {
+      "id": "R016",
+      "name": { "ko": "약재 꾸러미", "hanja": "藥材包", "romanized": "Yakmae Kkurumi" },
+      "rarity": 1,
+      "class_restriction": null,
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 독(毒) 상태이상을 모두 해제한다.",
+      "effect_description": "전투 시작 시 독 해제",
+      "flavor_text": "해독제를 미리 챙겨두는 것 — 독이 두렵지 않은 이유다.",
+      "balance_rationale": "일반 유물. 독 위주 적(E006 악귀, E303 자객, B_ACT2_MID 등)이 많은 런에서 강력. 전투 시작 해제라 이전 전투의 독은 영향 없음. 약한 수동 보호 효과로 일반 등급 적합.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "cleanse_poison_on_battle_start": true }
+    },
+
+    {
+      "id": "R017",
+      "name": { "ko": "낡은 방패", "hanja": "老盾", "romanized": "Nalgeun Banpae" },
+      "rarity": 1,
+      "class_restriction": null,
+      "trigger": "turn_start",
+      "effect": "매 턴 시작 시 방어도 2를 획득한다.",
+      "effect_description": "매 턴 시작 시 방어도 +2 (자동)",
+      "flavor_text": "낡았지만 손에서 놓을 수 없다. 오래된 방패가 오래된 목숨을 지킨다.",
+      "balance_rationale": "일반 유물. 매 턴 방어도 2는 1막 총 7~8전투 기준 누적 가치가 높음. 1턴 수호(5) 대비 약하지만 무료이고 매 턴 반복. 방패 아키타입(G019 수비 대형 등)과 시너지.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "block_per_turn": 2 }
+    },
+
+    {
+      "id": "R018",
+      "name": { "ko": "이름 없는 비수", "hanja": "無名匕首", "romanized": "Ireum Eopneun Bisu" },
+      "rarity": 1,
+      "class_restriction": null,
+      "trigger": "on_kill_enemy",
+      "effect": "적을 처치할 때마다 기(氣) 1을 즉시 회복한다.",
+      "effect_description": "적 처치 시 기(氣) +1",
+      "flavor_text": "이름도 주인도 모르는 칼 — 피를 볼 때마다 힘이 솟는 것 같다.",
+      "balance_rationale": "일반 유물. 다수 적 전투(소환 포함)에서 강력. 적 처치마다 기(氣) 1 추가로 콤보 확장. 단독 전투에선 1회만 발동. 처치 압박 유도로 공격적 플레이 강화.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "qi_on_kill": 1 }
+    },
+
+    {
+      "id": "R019",
+      "name": { "ko": "도끼 부적", "hanja": "斧符", "romanized": "Dokki Bujeok" },
+      "rarity": 1,
+      "class_restriction": null,
+      "trigger": "sijo_milestone_2",
+      "effect": "시조 초장(2슬롯)을 완성할 때마다 기(氣) 1을 추가 회복한다. (기존 부분 완성 보상에 누적)",
+      "effect_description": "초장 완성 시 기(氣) 추가 +1",
+      "flavor_text": "부적의 도끼 문양이 리듬을 탄다 — 초장을 닫을 때 힘이 더해진다.",
+      "balance_rationale": "일반 유물. ZER-101 부분 완성 보상(초장→기 1)에 추가로 기 1을 주므로 초장 완성 시 총 기 2 회복. 시조 완성 빈도가 높을수록 가치 급증. 시조 시너지 유물 도입 첫 예시.",
+      "obtain_from": ["event", "shop"],
+      "values": { "extra_qi_on_sijo_chojang": 1 }
+    },
+
+    {
+      "id": "R020",
+      "name": { "ko": "금강석", "hanja": "金剛石", "romanized": "Geumgangseok" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 방어도 8을 획득한다.",
+      "effect_description": "각 전투 시작 시 방어도 +8",
+      "flavor_text": "세상에서 가장 단단한 돌 — 전장에서 그 가치를 증명한다.",
+      "balance_rationale": "고급 유물. R001 편자(방어5)의 상위 호환. 방어도 8은 1막 정예 평균 공격의 절반 흡수. 방패·연타 빌드(무관 G019/G021 등)와 강한 시너지.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "block_on_battle_start": 8 }
+    },
+
+    {
+      "id": "R021",
+      "name": { "ko": "용뇨", "hanja": "龍尿", "romanized": "Yongnyo" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "on_card_exhaust",
+      "effect": "카드가 소멸(exhaust)될 때마다 기(氣) 1을 회복한다.",
+      "effect_description": "카드 소멸 시 기(氣) +1",
+      "flavor_text": "용의 오줌에 기운이 있다 — 소멸하는 것도 에너지가 된다.",
+      "balance_rationale": "고급 유물. 소멸 메카닉 카드(도사 축지법 등 일부 카드, 저주 카드)와 시너지. 저주 카드를 일부러 소멸시켜 기(氣) 회복하는 전략적 빌드 지원.",
+      "obtain_from": ["elite_reward", "shop"],
+      "values": { "qi_on_exhaust": 1 }
+    },
+
+    {
+      "id": "R022",
+      "name": { "ko": "흑요석 인장", "hanja": "黑曜石印章", "romanized": "Heugyoseok Injang" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "passive",
+      "effect": "상점에서 카드를 제거하는 비용이 25골드 감소한다.",
+      "effect_description": "카드 제거 비용 -25골드",
+      "flavor_text": "권세 있는 자의 인장이라면 가격도 낮아진다.",
+      "balance_rationale": "고급 유물. 상점 카드 제거 기본 75g → 50g 감소. 어센션 2+(제거 비용 +25g 패널티)에서 완전 상쇄. 덱 슬리밍 전략 지원.",
+      "obtain_from": ["elite_reward", "shop"],
+      "values": { "card_removal_discount": 25 }
+    },
+
+    {
+      "id": "R023",
+      "name": { "ko": "달빛 거울", "hanja": "月光鏡", "romanized": "Dalbich Geoul" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "sijo_complete",
+      "effect": "시조를 완성할 때마다 드로우 카드 수가 1장 추가된다. (기존 드로우 1장 → 2장)",
+      "effect_description": "시조 완성 드로우 +1 (1 → 2)",
+      "flavor_text": "달빛이 거울에 담기듯 — 시조가 완성되면 패가 더 풍성해진다.",
+      "balance_rationale": "고급 시조 시너지 유물. 시조 완성 드로우를 2장으로 증가. 덱 순환과 시조 완성 빈도 모두 향상. 강하지만 시조 완성 전제 조건이 있어 고급 등급 적절.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "extra_draw_on_sijo_complete": 1 }
+    },
+
+    {
+      "id": "R024",
+      "name": { "ko": "혈맹 계약서", "hanja": "血盟契約書", "romanized": "Hyeolmaeng Gyeyakseo" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "on_elite_victory",
+      "effect": "정예 전투 승리 시 골드를 15 추가로 획득한다.",
+      "effect_description": "정예 처치 시 골드 +15",
+      "flavor_text": "피로 쓴 계약 — 강자를 이기는 자에게 더 큰 보상이 따른다.",
+      "balance_rationale": "고급 유물. 정예 전투 골드 보상(기본 25~40g)에 +15g. 정예에 집중 방문하는 플레이스타일 강화. R003(일반 전투 +10g)의 정예 버전.",
+      "obtain_from": ["elite_reward", "event"],
+      "values": { "gold_on_elite_victory": 15 }
+    },
+
+    {
+      "id": "R025",
+      "name": { "ko": "오행진", "hanja": "五行陣", "romanized": "Ohaengjin" },
+      "rarity": 3,
+      "class_restriction": null,
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 힘(strength) 1과 기(氣) 최대치 +1을 이번 전투 동안 획득한다. 전투 종료 후 초기화.",
+      "effect_description": "매 전투 시작 시 힘 +1, 기(氣) 최대 +1 (전투 내 지속)",
+      "flavor_text": "오행의 진을 펼쳐 기운을 모은다 — 전장마다 다시 태어난다.",
+      "balance_rationale": "희귀 유물. 전투 시작 힘+1은 모든 공격 +1피해(6피해→7피해 +16%). 기 최대+1로 3기→4기 기반 콤보 가능. 두 효과 모두 전투 내 한시적이라 영구 버프보다 약함.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "strength_per_battle": 1, "max_qi_per_battle": 1 }
+    },
+
+    {
+      "id": "R026",
+      "name": { "ko": "천문도", "hanja": "天文圖", "romanized": "Cheonmundo" },
+      "rarity": 3,
+      "class_restriction": null,
+      "trigger": "sijo_complete",
+      "effect": "시조 완성 시 마지막 카드 효과가 2배 대신 2.5배가 된다.",
+      "effect_description": "시조 완성 효과 배율 2배 → 2.5배",
+      "flavor_text": "별자리를 읽듯 시조를 이해하면 — 하늘의 뜻이 힘이 된다.",
+      "balance_rationale": "희귀 시조 시너지 유물. 2배 → 2.5배 효과 증폭. 태산붕(기본 40피해)이 완성 시 100피해가 됨. 고비용 고피해 카드(D006, G018 등)를 종장에 배치하는 전략 극대화.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "sijo_complete_multiplier": 2.5 }
+    },
+
+    {
+      "id": "R027",
+      "name": { "ko": "왕의 옥새", "hanja": "王璽", "romanized": "Wangui Oksae" },
+      "rarity": 3,
+      "class_restriction": null,
+      "trigger": "boss_battle_start",
+      "effect": "보스 전투 시작 시 방어도 15를 즉시 획득한다.",
+      "effect_description": "보스 전투 시작 시 방어도 +15",
+      "flavor_text": "왕의 권위가 담긴 옥새 — 역적도 이것 앞에서는 주춤한다.",
+      "balance_rationale": "희귀 유물. 보스 전투 한정 방어도 15. 보스 첫 공격(평균 10~15) 완전 흡수 가능. 준비 없이 보스에 진입하는 플레이어에게 생존 안전망 역할.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "block_on_boss_start": 15 }
+    },
+
+    {
+      "id": "R028",
+      "name": { "ko": "불사신 부적", "hanja": "不死符", "romanized": "Bulsasin Bujeok" },
+      "rarity": 4,
+      "class_restriction": null,
+      "trigger": "on_lethal_damage",
+      "effect": "치명적인 피해로 HP가 0이 될 때 HP 1로 생존한다. 런당 1회만 발동.",
+      "effect_description": "즉사 방지 1회 (런당 1회)",
+      "flavor_text": "한 번은 죽음을 속일 수 있다 — 하지만 단 한 번뿐이다.",
+      "balance_rationale": "전설 유물. 런당 1회 즉사 방지. StS의 Lizard Tail 참조 설계. 극단적 실수 상황에서 런 살리기 가능. 전설 등급 드롭(보스 전용)으로 획득 확률 제한.",
+      "obtain_from": ["boss"],
+      "values": { "death_prevention": 1, "uses_per_run": 1 }
+    },
+
+    {
+      "id": "RM001",
+      "name": { "ko": "병서", "hanja": "兵書", "romanized": "Byeongseo" },
+      "rarity": 2,
+      "class_restriction": "무관",
+      "trigger": "on_formation_card_play",
+      "effect": "진형(陣形) 카드를 사용할 때마다 기력(氣力)을 1 추가 획득한다.",
+      "effect_description": "진형 카드 사용 시 기력(氣力) +1 추가 (무관 전용)",
+      "flavor_text": "손자의 병법을 이어받아 — 진형을 치를 때마다 기운이 더 솟는다.",
+      "balance_rationale": "무관 전용 고급 유물. G001 진형 전환(기력+2)→진형 전환+1=기력+3으로 강화. 진형·토큰 아키타입 핵심 가속. 기력 폭딜 아키타입과도 시너지.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "extra_stamina_on_formation_card": 1 }
+    },
+
+    {
+      "id": "RW001",
+      "name": { "ko": "어진", "hanja": "御眞", "romanized": "Eojin" },
+      "rarity": 2,
+      "class_restriction": "문관",
+      "trigger": "on_scholarship_exhaust",
+      "effect": "학식(學識)을 전소할 때마다 HP 최대치의 5%를 회복한다. (문관 전용)",
+      "effect_description": "학식 전소 시 HP 최대치 5% 회복 (문관 전용)",
+      "flavor_text": "왕의 초상을 곁에 두고 충성을 다한다 — 지식을 쏟아낼 때 몸이 회복된다.",
+      "balance_rationale": "문관 전용 고급 유물. 문관 HP 65 기준 학식 전소(상소/왕의 윤허) 시 HP 3 회복. 학식 폭발 빌드에서 매 번 학식을 전소하면 전투마다 3~5회 회복 가능.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "hp_percent_on_scholarship_exhaust": 5 }
+    },
+
+    {
+      "id": "RD001",
+      "name": { "ko": "선단", "hanja": "仙丹", "romanized": "Seondan" },
+      "rarity": 2,
+      "class_restriction": "도사",
+      "trigger": "on_spell_card_play",
+      "effect": "주문(spell) 카드를 사용할 때마다 기(氣) 1을 추가로 획득한다. (도사 전용)",
+      "effect_description": "주문 카드 사용 시 기(氣) +1 (도사 전용)",
+      "flavor_text": "선인들이 만든 영약 — 도술을 쓸수록 기운이 넘친다.",
+      "balance_rationale": "도사 전용 고급 유물. D001 기공(0코스트, 기+1)이 사용 시 기+2가 됨. D008 대기(1코스트, 기+2)는 기+3. 기공·기 폭발 아키타입 핵심 가속 유물.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "extra_qi_on_spell_card": 1 }
+    },
+
+    {
+      "id": "RD002",
+      "name": { "ko": "음양패", "hanja": "陰陽牌", "romanized": "Eumyang-pae" },
+      "rarity": 2,
+      "class_restriction": "도사",
+      "trigger": "on_summon_token_death",
+      "effect": "소환한 토큰이 소멸할 때마다 카드 1장을 드로우한다. (도사 전용)",
+      "effect_description": "소환 토큰 소멸 시 드로우 +1 (도사 전용)",
+      "flavor_text": "음이 사라지면 양이 생기고 — 소환이 끊어지는 순간 새로운 패가 들어온다.",
+      "balance_rationale": "도사 전용 고급 유물. D024 허수아비(소환: 소멸 시 드로우1→드로우2), D020 구미호(매 턴 5피해→소멸 시 드로우1). 소환·도술 아키타입 핵심 드로우 엔진.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "draw_on_summon_death": 1 }
+    },
+
+    {
+      "id": "RS004",
+      "name": { "ko": "시조집", "hanja": "時調集", "romanized": "Sijojip" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "sijo_complete",
+      "effect": "시조를 완성한 턴 이후, 다음 턴에 기(氣) 1을 이월 허용한다. (최대 이월 1기, 기존 이월 없음 규칙에 예외)",
+      "effect_description": "시조 완성 다음 턴 기(氣) 1 이월",
+      "flavor_text": "시조를 완성한 자의 호흡은 끊기지 않는다 — 그 기운이 다음 줄로 이어진다.",
+      "balance_rationale": "고급 시조 시너지 유물. 시조 완성 턴의 남은 기(氣) 최대 1기를 다음 턴으로 이월. 기본 기 이월 없음 규칙의 유일한 예외. 시조 완성을 더 계획적으로 만드는 전략 심화 유물.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "qi_carryover_after_sijo": 1 }
+    },
+
+    {
+      "id": "RS005",
+      "name": { "ko": "장단 북", "hanja": "長短鼓", "romanized": "Jangdan Buk" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "on_wildcard_play",
+      "effect": "와일드카드(beat 0, M011/M012)를 사용할 때마다 기(氣) 1을 즉시 회복한다.",
+      "effect_description": "와일드카드 사용 시 기(氣) +1",
+      "flavor_text": "장단이 맞으면 흥이 난다 — 어떤 박자에도 맞는 북소리가 힘을 더한다.",
+      "balance_rationale": "ZER-101 와일드카드(M011/M012) 시너지 유물. 와일드카드의 약한 직접 효과(드로우1/방어2)를 기(氣) 1 회복으로 보완. 와일드카드 2장 덱 빌드 시 기(氣) 2 추가로 콤보 확장.",
+      "obtain_from": ["elite_reward", "event", "shop"],
+      "values": { "qi_on_wildcard": 1 }
+    },
+
+    {
+      "id": "RB001",
+      "name": { "ko": "이무령의 인장", "hanja": "李茂令印章", "romanized": "Yi Muryeong Injang" },
+      "rarity": 4,
+      "class_restriction": null,
+      "trigger": "passive",
+      "effect": "상점에서 카드를 제거하는 비용이 0골드가 된다.",
+      "effect_description": "카드 제거 비용 0골드",
+      "flavor_text": "판서의 인장이 찍힌 문서 — 이 도장 하나면 모든 것이 무료다.",
+      "balance_rationale": "전설 유물. 1막 보스 보상. 카드 제거 비용 완전 무료화. 덱 슬리밍 무한 가능 → 주요 시너지 카드만 남기는 최적화 빌드 허용. 획득 경로(보스 전용)로 강도 제어.",
+      "obtain_from": ["boss"],
+      "values": { "card_removal_cost": 0 }
+    },
+
+    {
+      "id": "RB002",
+      "name": { "ko": "쌍두호 가죽", "hanja": "兩頭虎皮", "romanized": "Ssangduho Gajuk" },
+      "rarity": 4,
+      "class_restriction": null,
+      "trigger": "battle_start",
+      "effect": "전투 시작 시 힘(strength) 3을 획득한다. 전투 종료 후 초기화.",
+      "effect_description": "매 전투 시작 시 힘 +3",
+      "flavor_text": "전설의 쌍두 호랑이 가죽을 걸치면 — 그 분노가 내 것이 된다.",
+      "balance_rationale": "전설 유물. 2막 보스 보상. 매 전투 힘+3은 6피해 카드→9피해(+50%). 공격형 빌드 전체에 적용. 획득 경로(보스 전용)와 전투 한정으로 영구 힘 유물보다 약하게 설계.",
+      "obtain_from": ["boss"],
+      "values": { "strength_per_battle": 3 }
+    },
+
+    {
+      "id": "RB003",
+      "name": { "ko": "역적 대감의 관인", "hanja": "逆賊大監官印", "romanized": "Yeokjeok Daegam Gwanin" },
+      "rarity": 4,
+      "class_restriction": null,
+      "trigger": "sijo_complete",
+      "effect": "시조를 완성할 때 마지막 카드 효과 배율이 2배 대신 3배가 된다. (R026 천문도와 중복 적용 불가, 최대 3배)",
+      "effect_description": "시조 완성 효과 배율 2배 → 3배 (최대, R026와 중복 불가)",
+      "flavor_text": "역적이 훔친 왕의 권위 — 시조가 완성될 때 그 모든 것이 폭발한다.",
+      "balance_rationale": "전설 유물. 3막 보스 보상. 시조 완성 배율 3배. 태산붕(40피해)→120피해. 가장 강력한 시조 유물이나 획득 조건(3막 보스)으로 후반부 보상. R026과 중복 방지 규칙으로 과도한 증폭 차단.",
+      "obtain_from": ["boss"],
+      "values": { "sijo_complete_multiplier": 3.0, "conflicts_with": ["R026"] }
     }
 
   ],

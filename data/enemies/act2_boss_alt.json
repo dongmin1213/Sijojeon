@@ -1,0 +1,166 @@
+{
+  "version": "0.1",
+  "type": "boss_alt",
+  "act": 2,
+  "balance_ref": "ZER-98 (적 종류 추가). 2막 대체 보스. 플레이어 기준: HP 25~45, 덱 규모 14~18장. 목표 전투 길이: 14~18턴.",
+  "note": "2막 B_ACT2_FINAL의 대체 보스. 어센션 5+ 또는 특정 이벤트 조건에서 등장.",
+
+  "id": "B_ACT2_ALT",
+  "name": {
+    "ko": "구미호 대요",
+    "hanja": "九尾狐 大妖",
+    "romanized": "Gumiho Daeyō"
+  },
+  "description": "아홉 꼬리를 모두 가진 전설의 구미호. EL203의 상위 존재. 매혹과 변신으로 플레이어를 극도로 혼란에 빠뜨린다.",
+  "hp": 145,
+  "flavor": "\"나는 천 년을 살았다. 네가 가진 것이 무엇이든 이미 알고 있다.\"",
+  "unique_mechanic": "변신: 페이즈 전환 시 B_ACT2_ALT가 잠시 플레이어의 카드 1장을 복사해 자신의 행동으로 사용한다.",
+  "phases": [
+    {
+      "phase": 1,
+      "hp_threshold_label": "100% → 65%",
+      "hp_threshold_min": 95,
+      "description": "매혹 모드. 플레이어를 디버프로 얼려 장기전을 유도한다.",
+      "moves": [
+        {
+          "id": "beguile",
+          "name": "매혹",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 3, "target": "player" },
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+          ],
+          "description": "약화 3 + 취약 2. 플레이어 공격/방어 모두 저하."
+        },
+        {
+          "id": "fox_fire",
+          "name": "여우불",
+          "intent": "attack_debuff",
+          "damage": 12,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "화상", "stacks": 5, "target": "player" }
+          ],
+          "description": "12피해 + 화상 5."
+        },
+        {
+          "id": "illusion_guard",
+          "name": "환영 방어",
+          "intent": "buff_defend",
+          "block": 18,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "방어도 18 + 힘 2. 환영으로 방어도를 형성."
+        },
+        {
+          "id": "nine_tails_slash",
+          "name": "구미 베기",
+          "intent": "attack",
+          "damage": 8,
+          "times": 3,
+          "description": "8피해 × 3회(꼬리 하나씩) = 24 총피해."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["beguile", "fox_fire", "illusion_guard", "nine_tails_slash", "beguile", "fox_fire", "nine_tails_slash"]
+      }
+    },
+    {
+      "phase": 2,
+      "hp_threshold_label": "65% → 35%",
+      "hp_threshold_min": 51,
+      "description": "변신 모드. HP 65% 이하에서 플레이어 카드 1장을 복사하여 사용한다.",
+      "phase_trigger": "HP 94 이하",
+      "unique_action": {
+        "type": "copy_player_card",
+        "timing": "phase_enter",
+        "description": "페이즈 진입 시 플레이어 손패 중 무작위 카드 1장을 복사해 이번 턴 사용."
+      },
+      "moves": [
+        {
+          "id": "transformation",
+          "name": "변신",
+          "intent": "special",
+          "description": "플레이어 카드 1장을 복사해 사용한다. (고유 메카닉)"
+        },
+        {
+          "id": "soul_harvest",
+          "name": "영혼 수확",
+          "intent": "attack",
+          "damage": 14,
+          "times": 1,
+          "effects": [
+            { "type": "heal_self", "amount": 10 }
+          ],
+          "description": "14피해 + 자힐 10."
+        },
+        {
+          "id": "curse_barrage",
+          "name": "저주 폭격",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "독", "stacks": 6, "target": "player" },
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 4, "target": "player" }
+          ],
+          "description": "독 6 + 출혈 4."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["transformation", "soul_harvest", "curse_barrage", "transformation", "soul_harvest"]
+      }
+    },
+    {
+      "phase": 3,
+      "hp_threshold_label": "35% → 0%",
+      "hp_threshold_min": 0,
+      "description": "진신 해방 모드. 구미호의 진짜 힘. 극강의 공격력.",
+      "phase_trigger": "HP 50 이하",
+      "moves": [
+        {
+          "id": "true_form",
+          "name": "진신 현현",
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 5, "target": "self" }
+          ],
+          "description": "힘 5 획득. 진짜 모습을 드러낸다."
+        },
+        {
+          "id": "thousand_year_strike",
+          "name": "천년의 일격",
+          "intent": "attack",
+          "damage": 25,
+          "times": 1,
+          "description": "25+힘 피해. 힘+5 기준 30피해."
+        },
+        {
+          "id": "fox_wildfire",
+          "name": "여우불 폭풍",
+          "intent": "attack_debuff",
+          "damage": 10,
+          "times": 1,
+          "aoe": true,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "화상", "stacks": 6, "target": "player" },
+            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" }
+          ],
+          "description": "10피해 + 화상 6 + 독 4. 광역 범위."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["true_form", "thousand_year_strike", "fox_wildfire", "thousand_year_strike", "fox_wildfire"]
+      }
+    }
+  ],
+  "rewards": {
+    "gold": { "min": 75, "max": 100 },
+    "card_reward_count": 3,
+    "relic_chance": 1.0,
+    "special_note": "전설 등급 유물 드롭 확정"
+  },
+  "balance_note": "HP 145, 3페이즈. 고유 메카닉: 2페이즈 카드 복사(플레이어 최강 카드가 적에게 사용될 위험). 3페이즈 thousand_year_strike(25+5=30)는 취약 상태에서 45피해. 독+화상 해제 및 방어도 18+ 필수."
+}

@@ -1,0 +1,118 @@
+{
+  "version": "0.1",
+  "type": "boss_mid",
+  "act": 3,
+  "balance_ref": "ZER-98 (적 종류 추가). 3막 중간 보스. 플레이어 기준: HP 20~40, 덱 규모 16~22장, 턴당 피해 18~24. 목표 전투 길이: 10~14턴.",
+  "note": "3막 중간 지점에 등장하는 선택형 보스 노드.",
+
+  "id": "B_ACT3_MID",
+  "name": {
+    "ko": "역적 암살단 단주",
+    "hanja": "逆賊暗殺團 團主",
+    "romanized": "Yeokjeok Amsaldan Danju"
+  },
+  "description": "역모를 위해 조직된 암살단의 수장. 독과 은신을 활용하는 고도로 위험한 중간 보스.",
+  "hp": 130,
+  "flavor": "\"그림자 속에 있는 자는 빛 속의 자를 언제든 죽일 수 있다.\"",
+  "phases": [
+    {
+      "phase": 1,
+      "hp_threshold_label": "100% → 50%",
+      "hp_threshold_min": 65,
+      "description": "암살 모드. 독과 은신을 교대로 사용하며 기습 공격을 가한다.",
+      "moves": [
+        {
+          "id": "mass_poison",
+          "name": "독무",
+          "intent": "attack_debuff",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "독", "stacks": 5, "target": "player" },
+            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player" }
+          ],
+          "description": "8피해 + 독 5 + 출혈 3."
+        },
+        {
+          "id": "shadow_cloak",
+          "name": "암영 망토",
+          "intent": "buff_defend",
+          "block": 16,
+          "effects": [
+            { "type": "apply_buff", "buff": "은신", "stacks": 1, "target": "self" },
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "방어도 16 + 은신(다음 공격 +50%) + 힘 2."
+        },
+        {
+          "id": "lethal_blade",
+          "name": "치명의 칼날",
+          "intent": "attack",
+          "damage": 18,
+          "times": 1,
+          "description": "은신 상태 사용 시 27피해(+50%). 힘+2 시 20→30피해."
+        },
+        {
+          "id": "summon_assassins",
+          "name": "암살단원 소환",
+          "intent": "summon",
+          "description": "자객 1명을 소환한다. HP 30.",
+          "summon": [
+            { "enemy_id": "E303", "count": 1, "hp_override": 30, "name_override": "암살단원" }
+          ]
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["mass_poison", "shadow_cloak", "lethal_blade", "summon_assassins", "mass_poison", "shadow_cloak", "lethal_blade"]
+      }
+    },
+    {
+      "phase": 2,
+      "hp_threshold_label": "50% → 0%",
+      "hp_threshold_min": 0,
+      "description": "절망 모드. HP 절반 이하에서 사망 카운트다운과 대량 독으로 최후 공세.",
+      "phase_trigger": "HP 65 이하",
+      "moves": [
+        {
+          "id": "death_mark_deploy",
+          "name": "사망 표식",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "death_mark", "stacks": 3, "target": "player" }
+          ],
+          "description": "사망 표식 3 부여. 매 턴 소멸 시 5피해 × 3회 = 15 총피해."
+        },
+        {
+          "id": "desperation_strike",
+          "name": "필사의 일격",
+          "intent": "attack",
+          "damage": 22,
+          "times": 1,
+          "description": "22+힘 피해. 절박한 최강 공격."
+        },
+        {
+          "id": "venomous_barrage",
+          "name": "독 폭풍",
+          "intent": "attack_debuff",
+          "damage": 12,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "독", "stacks": 8, "target": "player" }
+          ],
+          "description": "12피해 + 독 8. 최대 독 피해 총합: 36."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["death_mark_deploy", "venomous_barrage", "desperation_strike", "venomous_barrage", "desperation_strike"]
+      }
+    }
+  ],
+  "rewards": {
+    "gold": { "min": 70, "max": 95 },
+    "card_reward_count": 3,
+    "relic_chance": 0.7
+  },
+  "balance_note": "3막 중간 보스. HP 130. 1페이즈: 독5+출혈3+은신+lethal_blade(최대 30피해) 사이클. 2페이즈: 사망 표식(매 턴 5피해×3=15) + 독8(총36) + desperation_strike(22+힘) 조합이 극도로 위험. 방어도+취약+독 해제 모두 필요."
+}

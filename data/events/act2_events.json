@@ -218,6 +218,123 @@
           "result_text": "안전하게 길을 계속한다."
         }
       ]
+    },
+
+    {
+      "id": "EVT_A2_007",
+      "title": {
+        "ko": "산신의 시험",
+        "description": "거대한 바위 위에 노인이 앉아 있다. 범상치 않은 기운에 발이 멈춘다. \"이 산의 힘을 시험해 주겠다.\""
+      },
+      "flavor_text": "\"세 가지 길이 있다. 어떤 길을 택하겠느냐?\"",
+      "choices": [
+        {
+          "id": "strength_test",
+          "text": "힘을 시험받는다.",
+          "effect_type": "random",
+          "outcomes": [
+            { "weight": 60, "effect_type": "max_hp_gain", "effect_value": 12, "text": "산신이 고개를 끄덕인다. 최대 HP +12." },
+            { "weight": 40, "effect_type": "hp_loss", "effect_value": 20, "text": "힘이 부족했다. HP 20 손실." }
+          ],
+          "result_text": "산신의 시험에 응한다."
+        },
+        {
+          "id": "wisdom_test",
+          "text": "지혜를 시험받는다.",
+          "effect_type": "card_choice",
+          "effect_value": 1,
+          "effect_meta": { "rarity": 3, "choice_count": 3 },
+          "result_text": "산신이 미소 짓는다. 희귀 카드 3장 중 1장을 선택해 덱에 추가.",
+          "note": "희귀 카드 3선택 1."
+        },
+        {
+          "id": "courage_test",
+          "text": "용기를 시험받는다.",
+          "effect_type": "relic_gain",
+          "effect_value": 1,
+          "effect_meta": { "rarity": 3 },
+          "result_text": "두려움 없이 다가가자 산신이 희귀 유물을 건넨다.",
+          "note": "희귀 유물 1개 획득."
+        }
+      ]
+    },
+
+    {
+      "id": "EVT_A2_008",
+      "title": {
+        "ko": "독사의 굴",
+        "description": "길 가운데 독사 둥지가 있다. 우회로는 멀리 돌아가야 한다."
+      },
+      "flavor_text": "독사들이 혀를 날름거리며 경계한다.",
+      "choices": [
+        {
+          "id": "antidote",
+          "text": "해독제를 써서 지나간다. (HP 10 소비)",
+          "effect_type": "hp_loss",
+          "effect_value": 10,
+          "result_text": "독에 조금 노출됐지만 지나갔다. HP 10 손실. 독사 비늘 유물 획득.",
+          "effect_type_bonus": "relic_gain",
+          "effect_value_bonus": 1,
+          "note": "HP 소비 → 유물 획득."
+        },
+        {
+          "id": "detour",
+          "text": "멀리 돌아간다.",
+          "effect_type": "gold_gain",
+          "effect_value": 25,
+          "result_text": "돌아가다가 버려진 짐을 발견한다. 골드 25 획득.",
+          "note": "우회로에서 골드 획득."
+        },
+        {
+          "id": "fight",
+          "text": "독사를 처치하고 지나간다.",
+          "effect_type": "hp_loss",
+          "effect_value": 15,
+          "effect_type_bonus": "max_hp_gain",
+          "effect_value_bonus": 5,
+          "result_text": "독사를 처치했지만 한 번 물렸다. HP 15 손실, 최대 HP +5.",
+          "note": "HP 손실이 있지만 최대 HP 성장."
+        }
+      ]
+    },
+
+    {
+      "id": "EVT_A2_009",
+      "title": {
+        "ko": "도술 수련자",
+        "description": "산속 동굴 앞에서 젊은 도술사가 수련 중이다. \"당신, 수련에 관심 있소?\""
+      },
+      "flavor_text": "\"내 기술을 일부 전수해줄 수 있소.\"",
+      "choices": [
+        {
+          "id": "learn_spell",
+          "text": "도술을 배운다. (HP 15 소비)",
+          "effect_type": "hp_loss",
+          "effect_value": 15,
+          "result_text": "혹독한 수련 끝에 도술 카드 1장을 배웠다. HP 15 손실, 도사 카드 1장 (무작위) 덱 추가.",
+          "effect_type_bonus": "card_gain_class",
+          "effect_value_bonus": "dosa",
+          "note": "HP 소비 → 도사 카드 1장 획득 (직업 무관)."
+        },
+        {
+          "id": "trade_gold",
+          "text": "엽전을 주고 카드를 구매한다. (엽전 35)",
+          "effect_type": "gold_loss",
+          "effect_value": 35,
+          "result_text": "엽전 35 소비, 카드 3장 중 1장을 선택.",
+          "effect_type_bonus": "card_choice_class",
+          "effect_value_bonus": "dosa",
+          "note": "골드 소비 → 도사 카드 3선택 1."
+        },
+        {
+          "id": "pass",
+          "text": "관심 없다며 지나친다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "도술사가 아쉽다는 듯 다시 수련에 들어간다.",
+          "note": "중립."
+        }
+      ]
     }
   ]
 }

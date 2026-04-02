@@ -23,6 +23,12 @@ horizontal_alignment = 1
 autowrap_mode = 2
 custom_minimum_size = Vector2(0, 36)
 
+[node name="CardArt" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 80)
+expand_mode = 1
+stretch_mode = 6
+
 [node name="RarityBar" type="ColorRect" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 3)

@@ -314,6 +314,156 @@
           "note": "중립."
         }
       ]
+    },
+
+    {
+      "id": "EVT_A1_009",
+      "title": {
+        "ko": "버려진 카드 뭉치",
+        "description": "골목 구석에서 먼지 쌓인 카드 묶음을 발견한다. 누군가 버리고 간 듯하다."
+      },
+      "flavor_text": "손때가 묻은 카드들 — 주인이 있었을 텐데.",
+      "choices": [
+        {
+          "id": "take_random",
+          "text": "무작위로 1장을 집는다.",
+          "effect_type": "card_gain",
+          "effect_value": 1,
+          "effect_meta": { "rarity": "random", "class": "any" },
+          "result_text": "무작위 카드 1장을 덱에 추가한다.",
+          "note": "무료 카드 1장 획득 (등급 무작위)."
+        },
+        {
+          "id": "take_common",
+          "text": "공통 카드 1장을 고른다.",
+          "effect_type": "card_choice",
+          "effect_value": 1,
+          "effect_meta": { "rarity": 1, "class": "common", "choice_count": 3 },
+          "result_text": "공통 카드 3장 중 1장을 선택해 덱에 추가한다.",
+          "note": "공통 카드 3선택 1."
+        },
+        {
+          "id": "leave",
+          "text": "손대지 않고 지나친다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "필요 없을 것 같아 그냥 지나친다.",
+          "note": "중립."
+        }
+      ]
+    },
+
+    {
+      "id": "EVT_A1_010",
+      "title": {
+        "ko": "굶주린 걸인",
+        "description": "뼈만 남은 걸인이 음식을 구걸하고 있다. \"제발... 며칠째 굶었습니다.\""
+      },
+      "flavor_text": "\"먹을 것만 있으면 무엇이든 드리겠습니다.\"",
+      "choices": [
+        {
+          "id": "feed",
+          "text": "음식을 나눠준다. (엽전 10 소비)",
+          "effect_type": "gold_loss",
+          "effect_value": 10,
+          "result_text": "걸인이 눈물을 흘리며 오래된 부적 하나를 건네준다. 골드 10 소비, 유물 1개 획득.",
+          "effect_type_bonus": "relic_gain",
+          "effect_value_bonus": 1,
+          "note": "소비 후 유물 보상."
+        },
+        {
+          "id": "share_hp",
+          "text": "상처 치료약을 나눠준다. (HP 10 소비)",
+          "effect_type": "hp_loss",
+          "effect_value": 10,
+          "result_text": "걸인이 감사해하며 소식을 전해준다. HP 10 소비, 다음 전투 방어도 +10 (1회).",
+          "effect_type_bonus": "next_battle_block",
+          "effect_value_bonus": 10,
+          "note": "HP 소비 → 다음 전투 방어도 +10."
+        },
+        {
+          "id": "ignore",
+          "text": "외면한다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "걸인의 눈빛이 슬프게 돌아선다.",
+          "note": "중립."
+        }
+      ]
+    },
+
+    {
+      "id": "EVT_A1_011",
+      "title": {
+        "ko": "신령 나무",
+        "description": "거대한 느티나무 앞에 향이 피워져 있다. 나무에 가까이 가자 이상한 기운이 느껴진다."
+      },
+      "flavor_text": "\"이 나무에게 소원을 빌면 이루어진다더군요.\"",
+      "choices": [
+        {
+          "id": "pray_hp",
+          "text": "건강을 빈다.",
+          "effect_type": "max_hp_gain",
+          "effect_value": 8,
+          "result_text": "나무의 기운이 몸에 스며든다. 최대 HP +8.",
+          "note": "최대 HP 영구 +8."
+        },
+        {
+          "id": "pray_power",
+          "text": "힘을 빈다.",
+          "effect_type": "relic_gain",
+          "effect_value": 1,
+          "effect_meta": { "rarity": 2 },
+          "result_text": "나무 아래에서 고급 유물 1개가 나타난다. 고급 유물 획득.",
+          "note": "고급 등급 유물 1개 획득."
+        },
+        {
+          "id": "pray_path",
+          "text": "길을 빈다.",
+          "effect_type": "reveal_map",
+          "effect_value": 1,
+          "result_text": "앞으로 나아갈 길이 머릿속에 떠오른다. 다음 2층의 맵 노드가 공개된다.",
+          "note": "맵 공개 효과."
+        }
+      ]
+    },
+
+    {
+      "id": "EVT_A1_012",
+      "title": {
+        "ko": "떠돌이 상인",
+        "description": "행상 짐을 진 상인이 길을 걷다 발을 접질렸다. \"아이고! 발목을 삐었네...\""
+      },
+      "flavor_text": "\"도와주신다면 특별한 물건을 드리겠소.\"",
+      "choices": [
+        {
+          "id": "help_for_card",
+          "text": "상인을 부축해준다.",
+          "effect_type": "card_choice",
+          "effect_value": 1,
+          "effect_meta": { "rarity": 2, "choice_count": 3 },
+          "result_text": "상인이 짐 속에서 고급 카드 3장을 꺼낸다. 그 중 1장을 선택해 덱에 추가.",
+          "note": "고급 카드 3선택 1 (무료)."
+        },
+        {
+          "id": "buy_relic",
+          "text": "유물을 구매한다. (엽전 50 소비)",
+          "effect_type": "gold_loss",
+          "effect_value": 50,
+          "result_text": "상인이 보따리에서 귀한 물건을 꺼낸다. 골드 50 소비, 희귀 유물 1개 획득.",
+          "effect_type_bonus": "relic_gain_rarity3",
+          "effect_value_bonus": 1,
+          "note": "골드 50 소비 → 희귀 유물 획득."
+        },
+        {
+          "id": "ignore",
+          "text": "바쁘다며 지나친다.",
+          "effect_type": "none",
+          "effect_value": 0,
+          "result_text": "상인이 홀로 절뚝거리며 걷는다.",
+          "note": "중립."
+        }
+      ]
     }
   ],
   "effect_types_used": [
