@@ -21,6 +21,12 @@ var _achievement_visible := false
 
 
 func _ready() -> void:
+	# 뷰포트 비례 UI 스케일링 적용
+	var vp_size := get_viewport().get_visible_rect().size
+	var ui_scale := minf(vp_size.x / 1080.0, vp_size.y / 1920.0)
+	title_label.add_theme_font_size_override("font_size", int(32 * ui_scale))
+	card_container.add_theme_constant_override("separation", int(20 * ui_scale))
+
 	start_button.disabled = true
 	start_button.pressed.connect(_on_start_pressed)
 	back_button.pressed.connect(_on_back_pressed)
@@ -82,6 +88,14 @@ func _get_unlock_description(character_id: String) -> String:
 	return ""
 
 
+# 캐릭터 ID → 표시용 기본 이름 (스킬 데이터 로드 실패 시 fallback)
+const CHARACTER_FALLBACK := {
+	"mugwan": {"class_ko": "무관", "class_hanja": "武官"},
+	"mungwan": {"class_ko": "문관", "class_hanja": "文官"},
+	"dosa": {"class_ko": "도사", "class_hanja": "道士"},
+}
+
+
 func _build_character_list() -> void:
 	## DataLoader에서 캐릭터 스킬 데이터를 가져와 표시용 목록을 구성한다.
 	_character_list.clear()
@@ -91,6 +105,12 @@ func _build_character_list() -> void:
 
 		# special_skills.json에서 상세 정보 추출
 		var char_entry := _find_skill_entry(char_id)
+
+		# fallback: 스킬 데이터가 없으면 기본 이름 사용
+		var fallback: Dictionary = CHARACTER_FALLBACK.get(char_id, {})
+		var class_ko: String = char_entry.get("class_ko", fallback.get("class_ko", char_id))
+		var class_hanja: String = char_entry.get("class_hanja", fallback.get("class_hanja", ""))
+
 		var class_resource_name := ""
 		var class_resource_max := 0
 		if char_entry.has("class_resource"):
@@ -117,7 +137,7 @@ func _build_character_list() -> void:
 
 		_character_list.append({
 			"id": char_id,
-			"name": char_entry.get("class_ko", char_id) + " (" + char_entry.get("class_hanja", "") + ")",
+			"name": class_ko + " (" + class_hanja + ")",
 			"hp": skills.get("base_hp", 70),
 			"qi": skills.get("base_qi", 3),
 			"unlocked": unlocked,
@@ -132,6 +152,9 @@ func _build_character_list() -> void:
 			"active_desc": active_desc,
 		})
 
+	if _character_list.is_empty():
+		push_warning("CharacterSelect: 캐릭터 목록 구성 실패")
+
 
 func _find_skill_entry(character_id: String) -> Dictionary:
 	## DataLoader 내부 _skills_data에서 캐릭터 항목을 찾는다.
@@ -145,11 +168,31 @@ func _find_skill_entry(character_id: String) -> Dictionary:
 
 
 func _build_character_cards() -> void:
-	# 뷰포트 크기에 비례하여 패널 크기 조정
+	# 뷰포트 크기에 비례하여 패널 크기·폰트 조정
 	var vp_size := get_viewport().get_visible_rect().size
-	var scale := vp_size.x / 1080.0
-	var panel_min_w := 300.0 * scale
-	var panel_min_h := 420.0 * scale
+	var scale_x := vp_size.x / 1080.0
+	var scale_y := vp_size.y / 1920.0
+	var ui_scale := minf(scale_x, scale_y)
+
+	# 카드 수에 따라 패널 너비 계산 (화면에 맞게)
+	var card_count := _character_list.size()
+	var separation := int(card_container.get_theme_constant("separation"))
+	var available_w := vp_size.x - 80.0  # VBoxContainer offset 40*2
+	var panel_min_w := minf(300.0 * scale_x, (available_w - separation * (card_count - 1)) / card_count)
+	var panel_min_h := 420.0 * ui_scale
+
+	# 스케일된 폰트 크기 계산
+	var fs_name := int(26 * ui_scale)
+	var fs_stat := int(20 * ui_scale)
+	var fs_skill_header := int(18 * ui_scale)
+	var fs_skill_desc := int(16 * ui_scale)
+	var fs_lock := int(28 * ui_scale)
+	var margin_h := int(16 * ui_scale)
+	var margin_v := int(12 * ui_scale)
+
+	if _character_list.is_empty():
+		push_warning("CharacterSelect: _character_list 비어있음 — 카드 생성 건너뜀")
+		return
 
 	for i in _character_list.size():
 		var character: Dictionary = _character_list[i]
@@ -160,18 +203,18 @@ func _build_character_cards() -> void:
 		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		var margin := MarginContainer.new()
-		margin.add_theme_constant_override("margin_left", 16)
-		margin.add_theme_constant_override("margin_right", 16)
-		margin.add_theme_constant_override("margin_top", 12)
-		margin.add_theme_constant_override("margin_bottom", 12)
+		margin.add_theme_constant_override("margin_left", margin_h)
+		margin.add_theme_constant_override("margin_right", margin_h)
+		margin.add_theme_constant_override("margin_top", margin_v)
+		margin.add_theme_constant_override("margin_bottom", margin_v)
 
 		var vbox := VBoxContainer.new()
-		vbox.add_theme_constant_override("separation", 8)
+		vbox.add_theme_constant_override("separation", int(8 * ui_scale))
 
 		# 캐릭터 이름
 		var name_label := Label.new()
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		name_label.add_theme_font_size_override("font_size", 26)
+		name_label.add_theme_font_size_override("font_size", fs_name)
 		if unlocked:
 			name_label.text = character["name"]
 		else:
@@ -181,6 +224,7 @@ func _build_character_cards() -> void:
 		# HP / 기 정보
 		var stat_label := Label.new()
 		stat_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		stat_label.add_theme_font_size_override("font_size", fs_stat)
 		if unlocked:
 			stat_label.text = "HP: %d | 기: %d" % [character["hp"], character["qi"]]
 		else:
@@ -192,6 +236,7 @@ func _build_character_cards() -> void:
 			var resource_label := Label.new()
 			resource_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			resource_label.text = "전용 자원: %s (최대 %d)" % [character["class_resource_name"], character["class_resource_max"]]
+			resource_label.add_theme_font_size_override("font_size", fs_stat)
 			resource_label.add_theme_color_override("font_color", Color(0.4, 0.8, 1.0))
 			vbox.add_child(resource_label)
 
@@ -202,28 +247,28 @@ func _build_character_cards() -> void:
 			if character["passive_name"] != "":
 				var passive_header := Label.new()
 				passive_header.text = "▶ 패시브: " + character["passive_name"]
-				passive_header.add_theme_font_size_override("font_size", 18)
+				passive_header.add_theme_font_size_override("font_size", fs_skill_header)
 				passive_header.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
 				vbox.add_child(passive_header)
 
 				var passive_desc := Label.new()
 				passive_desc.text = character["passive_desc"]
 				passive_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				passive_desc.add_theme_font_size_override("font_size", 16)
+				passive_desc.add_theme_font_size_override("font_size", fs_skill_desc)
 				vbox.add_child(passive_desc)
 
 			# 액티브 스킬
 			if character["active_name"] != "":
 				var active_header := Label.new()
 				active_header.text = "▶ 액티브: " + character["active_name"]
-				active_header.add_theme_font_size_override("font_size", 18)
+				active_header.add_theme_font_size_override("font_size", fs_skill_header)
 				active_header.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
 				vbox.add_child(active_header)
 
 				var active_desc := Label.new()
 				active_desc.text = character["active_desc"]
 				active_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				active_desc.add_theme_font_size_override("font_size", 16)
+				active_desc.add_theme_font_size_override("font_size", fs_skill_desc)
 				vbox.add_child(active_desc)
 
 			vbox.add_child(HSeparator.new())
@@ -232,19 +277,20 @@ func _build_character_cards() -> void:
 			if character["starting_relic_name"] != "":
 				var relic_label := Label.new()
 				relic_label.text = "시작 유물: " + character["starting_relic_name"]
-				relic_label.add_theme_font_size_override("font_size", 18)
+				relic_label.add_theme_font_size_override("font_size", fs_skill_header)
 				relic_label.add_theme_color_override("font_color", Color(1.0, 0.75, 0.3))
 				vbox.add_child(relic_label)
 
 				var relic_effect := Label.new()
 				relic_effect.text = character["starting_relic_effect"]
 				relic_effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				relic_effect.add_theme_font_size_override("font_size", 16)
+				relic_effect.add_theme_font_size_override("font_size", fs_skill_desc)
 				vbox.add_child(relic_effect)
 
 			# 선택 버튼
 			var select_btn := Button.new()
 			select_btn.text = "선택"
+			select_btn.add_theme_font_size_override("font_size", fs_stat)
 			select_btn.size_flags_vertical = Control.SIZE_SHRINK_END
 			var idx := i
 			select_btn.pressed.connect(func(): _select_character(idx))
@@ -254,7 +300,7 @@ func _build_character_cards() -> void:
 			var lock_label := Label.new()
 			lock_label.text = "[잠김]"
 			lock_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			lock_label.add_theme_font_size_override("font_size", 28)
+			lock_label.add_theme_font_size_override("font_size", fs_lock)
 			lock_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 			lock_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			vbox.add_child(lock_label)
@@ -263,6 +309,7 @@ func _build_character_cards() -> void:
 			cond_label.text = "해금 조건: " + character["unlock_description"]
 			cond_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			cond_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			cond_label.add_theme_font_size_override("font_size", fs_skill_desc)
 			cond_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 			vbox.add_child(cond_label)
 
@@ -454,32 +501,38 @@ func _show_first_play_guide() -> void:
 	if GameManager.is_tutorial_completed():
 		return
 
+	# 뷰포트 비례 스케일링
+	var vp_size := get_viewport().get_visible_rect().size
+	var scale_x := vp_size.x / 1080.0
+	var scale_y := vp_size.y / 1920.0
+	var ui_scale := minf(scale_x, scale_y)
+
 	var overlay := ColorRect.new()
 	overlay.color = Color(0.0, 0.0, 0.0, 0.85)
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
-	margin.add_theme_constant_override("margin_left", 60)
-	margin.add_theme_constant_override("margin_right", 60)
-	margin.add_theme_constant_override("margin_top", 80)
-	margin.add_theme_constant_override("margin_bottom", 80)
+	margin.add_theme_constant_override("margin_left", int(40 * scale_x))
+	margin.add_theme_constant_override("margin_right", int(40 * scale_x))
+	margin.add_theme_constant_override("margin_top", int(60 * scale_y))
+	margin.add_theme_constant_override("margin_bottom", int(60 * scale_y))
 
 	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 24)
+	vbox.add_theme_constant_override("separation", int(24 * ui_scale))
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 
 	var guide_title := Label.new()
 	guide_title.text = "시조전에 오신 것을 환영합니다!"
 	guide_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	guide_title.add_theme_font_size_override("font_size", 36)
+	guide_title.add_theme_font_size_override("font_size", int(36 * ui_scale))
 	guide_title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	vbox.add_child(guide_title)
 
 	var guide_text := Label.new()
 	guide_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	guide_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	guide_text.add_theme_font_size_override("font_size", 24)
+	guide_text.add_theme_font_size_override("font_size", int(24 * ui_scale))
 	guide_text.text = """조선 시대를 배경으로 한 덱빌딩 로그라이크입니다.
 
 처음 플레이하시나요?
@@ -492,12 +545,12 @@ func _show_first_play_guide() -> void:
 
 	var btn_container := HBoxContainer.new()
 	btn_container.alignment = BoxContainer.ALIGNMENT_CENTER
-	btn_container.add_theme_constant_override("separation", 20)
+	btn_container.add_theme_constant_override("separation", int(20 * ui_scale))
 
 	var tutorial_btn := Button.new()
 	tutorial_btn.text = "튜토리얼 시작"
-	tutorial_btn.add_theme_font_size_override("font_size", 28)
-	tutorial_btn.custom_minimum_size = Vector2(320, 70)
+	tutorial_btn.add_theme_font_size_override("font_size", int(28 * ui_scale))
+	tutorial_btn.custom_minimum_size = Vector2(280 * ui_scale, 60 * ui_scale)
 	tutorial_btn.pressed.connect(func():
 		overlay.queue_free()
 		GameManager.start_tutorial()
@@ -506,9 +559,9 @@ func _show_first_play_guide() -> void:
 
 	var skip_btn := Button.new()
 	skip_btn.text = "건너뛰기"
-	skip_btn.add_theme_font_size_override("font_size", 24)
+	skip_btn.add_theme_font_size_override("font_size", int(24 * ui_scale))
 	skip_btn.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
-	skip_btn.custom_minimum_size = Vector2(240, 70)
+	skip_btn.custom_minimum_size = Vector2(200 * ui_scale, 60 * ui_scale)
 	skip_btn.pressed.connect(func():
 		# 튜토리얼 완료 플래그 설정
 		var meta := SaveManager.load_meta()

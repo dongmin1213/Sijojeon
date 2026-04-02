@@ -168,12 +168,21 @@ func _load_relics() -> void:
 func _load_skills() -> void:
 	var path := "res://data/skills/special_skills.json"
 	var file := FileAccess.open(path, FileAccess.READ)
-	if file:
-		var json := JSON.new()
-		var err := json.parse(file.get_as_text())
-		if err == OK and json.data is Dictionary:
-			_skills_data = json.data
-		file.close()
+	if file == null:
+		push_warning("DataLoader: 스킬 파일 열기 실패 — %s (에러: %d)" % [path, FileAccess.get_open_error()])
+		return
+	var json := JSON.new()
+	var err := json.parse(file.get_as_text())
+	file.close()
+	if err != OK:
+		push_warning("DataLoader: 스킬 JSON 파싱 실패 — %s" % path)
+		return
+	if json.data is Dictionary:
+		_skills_data = json.data
+	else:
+		push_warning("DataLoader: 스킬 데이터가 Dictionary가 아님 — %s" % path)
+	if _skills_data.is_empty():
+		push_warning("DataLoader: _skills_data 비어있음 — 캐릭터 선택 화면에 영향")
 
 
 # --- 공개 API ---
