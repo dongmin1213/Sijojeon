@@ -83,6 +83,14 @@ func _ready() -> void:
 
 
 func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, max_hp: int, qi: int, character_id: String = "") -> void:
+	if deck.is_empty():
+		push_error("BattleManager.start_battle: 덱이 비어있음")
+	if enemy_data.is_empty():
+		push_error("BattleManager.start_battle: 적 데이터가 비어있음")
+	if max_hp <= 0:
+		push_error("BattleManager.start_battle: max_hp가 0 이하 — %d" % max_hp)
+		max_hp = 1
+
 	player_hp = hp
 	player_max_hp = max_hp
 	max_qi = qi
@@ -221,13 +229,19 @@ func begin_player_turn() -> void:
 
 func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if state != BattleState.PLAYER_ACTION:
+		push_warning("BattleManager.try_play_card: 플레이어 액션 상태가 아님 — %s" % BattleState.keys()[state])
 		return false
 	if hand_index < 0 or hand_index >= hand.size():
+		push_error("BattleManager.try_play_card: 잘못된 hand_index=%d (hand.size=%d)" % [hand_index, hand.size()])
+		return false
+	if target_enemy_index < 0 or target_enemy_index >= enemies.size():
+		push_error("BattleManager.try_play_card: 잘못된 target_enemy_index=%d (enemies.size=%d)" % [target_enemy_index, enemies.size()])
 		return false
 
 	var card_id: String = hand[hand_index]
 	var card: CardData = _get_battle_card(card_id)
 	if card == null:
+		push_error("BattleManager.try_play_card: 카드 데이터 로드 실패 — card_id=%s" % card_id)
 		return false
 
 	# 비용 계산: 구금(+1) → 축지법/격물치지(-N) 순서
@@ -428,6 +442,7 @@ func gain_block(amount: int) -> void:
 
 func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 	if enemy_index < 0 or enemy_index >= enemies.size():
+		push_error("BattleManager.deal_damage_to_enemy: 잘못된 enemy_index=%d (enemies.size=%d)" % [enemy_index, enemies.size()])
 		return
 	var enemy := enemies[enemy_index]
 	if enemy["current_hp"] <= 0:
@@ -630,6 +645,9 @@ func _reshuffle_discard() -> void:
 
 
 func _get_enemy_intent(enemy_index: int) -> Dictionary:
+	if enemy_index < 0 or enemy_index >= enemies.size():
+		push_error("BattleManager._get_enemy_intent: 잘못된 enemy_index=%d" % enemy_index)
+		return {"intent": "attack", "damage": 0, "times": 1}
 	var enemy := enemies[enemy_index]
 	var moves: Array = enemy.get("moves", [])
 	if moves.is_empty():

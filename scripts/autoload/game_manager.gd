@@ -74,6 +74,10 @@ func change_state(new_state: GameState) -> void:
 
 
 func start_new_run(character_id: String, ascension_level: int = 0) -> void:
+	if character_id.is_empty():
+		push_error("GameManager.start_new_run: character_id가 비어있음")
+		return
+
 	run_data = RunData.new()
 	run_data.character_id = character_id
 	run_data.map_seed = randi()
@@ -82,6 +86,8 @@ func start_new_run(character_id: String, ascension_level: int = 0) -> void:
 
 	# DataLoader에서 캐릭터 데이터로 HP 설정
 	var skills_data := DataLoader.get_character_skills(character_id)
+	if not skills_data:
+		push_warning("GameManager.start_new_run: 캐릭터 스킬 데이터 없음 — character_id=%s, 기본값 사용" % character_id)
 	if skills_data:
 		run_data.max_hp = skills_data.get("base_hp", 70)
 		run_data.current_hp = run_data.max_hp
@@ -149,6 +155,8 @@ func load_saved_run() -> bool:
 
 
 func end_run(victory: bool) -> void:
+	if run_data == null:
+		push_warning("GameManager.end_run: run_data가 null — 런이 시작되지 않았거나 이미 종료됨")
 	# 런 통계 기록
 	if run_data:
 		SaveManager.record_run_result(victory, run_data.character_id, run_data.current_act)

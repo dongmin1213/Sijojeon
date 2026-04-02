@@ -22,21 +22,31 @@ func clear_target(target: String) -> void:
 
 
 func apply_effect(target: String, effect_id: String, stacks: int) -> void:
+	if target.is_empty():
+		push_error("StatusEffectManager.apply_effect: target이 비어있음")
+		return
+	if effect_id.is_empty():
+		push_error("StatusEffectManager.apply_effect: effect_id가 비어있음 (target=%s)" % target)
+		return
+	if stacks <= 0:
+		push_warning("StatusEffectManager.apply_effect: stacks가 0 이하 — %d (target=%s, effect=%s)" % [stacks, target, effect_id])
+		return
 	if not _effects.has(target):
 		_effects[target] = {}
 	# R002 평안 부적: 플레이어에게 버프 적용 시 지속 턴 +1
 	var final_stacks := stacks
 	if target == "player":
-		var def := StatusEffectData.get_definition(effect_id)
-		if def and def.type == StatusEffectData.EffectType.BUFF:
+		var buff_def := StatusEffectData.get_definition(effect_id)
+		if buff_def and buff_def.type == StatusEffectData.EffectType.BUFF:
 			final_stacks = RelicManager.trigger_on_buff_apply(stacks)
 	var current: int = _effects[target].get(effect_id, 0)
-	_effects[target][effect_id] = current + final_stacks
+	# 스택 오버플로 방지 (최대 999)
+	_effects[target][effect_id] = mini(current + final_stacks, 999)
 	effect_applied.emit(target, effect_id, _effects[target][effect_id])
 	# 버프/디버프 SFX (플레이어 대상일 때만 재생)
 	if target == "player":
-		var def := StatusEffectData.get_definition(effect_id)
-		if def and def.type == StatusEffectData.EffectType.BUFF:
+		var sfx_def := StatusEffectData.get_definition(effect_id)
+		if sfx_def and sfx_def.type == StatusEffectData.EffectType.BUFF:
 			AudioManager.play_sfx_by_key("buff")
 		else:
 			AudioManager.play_sfx_by_key("debuff")

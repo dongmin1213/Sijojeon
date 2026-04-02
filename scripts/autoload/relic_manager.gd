@@ -19,12 +19,17 @@ func _ready() -> void:
 
 func acquire_relic(relic_id: String) -> bool:
 	## 유물을 획득하여 run_data에 추가한다. 이미 보유 시 false.
+	if relic_id.is_empty():
+		push_error("RelicManager.acquire_relic: relic_id가 비어있음")
+		return false
 	if GameManager.run_data == null:
+		push_warning("RelicManager.acquire_relic: run_data가 null — 런 밖에서 호출됨")
 		return false
 	if relic_id in GameManager.run_data.relics:
 		return false
 	var relic := DataLoader.get_relic(relic_id)
 	if relic.is_empty():
+		push_warning("RelicManager.acquire_relic: DataLoader에서 유물 데이터 로드 실패 — relic_id=%s" % relic_id)
 		return false
 	GameManager.run_data.relics.append(relic_id)
 	relic_acquired.emit(relic_id)
@@ -100,8 +105,14 @@ func _rarity_name(rarity: int) -> String:
 
 func trigger_battle_start(battle_manager: BattleManager) -> void:
 	## 전투 시작 시 발동하는 유물 효과를 처리한다.
+	if battle_manager == null:
+		push_error("RelicManager.trigger_battle_start: battle_manager가 null")
+		return
 	for relic_id in get_owned_relics():
 		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			push_warning("RelicManager.trigger_battle_start: 유물 데이터 없음 — %s" % relic_id)
+			continue
 		var trigger: String = relic.get("trigger", "")
 		var values: Dictionary = relic.get("values", {})
 
@@ -187,8 +198,13 @@ func _handle_passive_relic(_relic_id: String, _relic: Dictionary, values: Dictio
 
 func trigger_turn_start(battle_manager: BattleManager) -> void:
 	## 매 턴 시작 시 발동하는 유물 효과를 처리한다.
+	if battle_manager == null:
+		push_error("RelicManager.trigger_turn_start: battle_manager가 null")
+		return
 	for relic_id in get_owned_relics():
 		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
 		var trigger: String = relic.get("trigger", "")
 		var values: Dictionary = relic.get("values", {})
 
