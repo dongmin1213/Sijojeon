@@ -103,6 +103,9 @@ func generate(seed_value: int, act: int = 1) -> MapData.RunMap:
 			node.row = r
 			node.column = c
 			node.type = _pick_node_type(r, boss_row, act)
+			# 보스 노드에 encounter_id 할당
+			if node.type == MapData.NodeType.BOSS:
+				node.encounter_id = _get_boss_encounter_id(act)
 			run_map.nodes[next_id] = node
 			row_ids.append(next_id)
 			next_id += 1
@@ -212,3 +215,12 @@ func _ensure_elite(run_map: MapData.RunMap, min_count: int = 1) -> void:
 		var pick: int = candidates[_rng.randi_range(0, candidates.size() - 1)]
 		run_map.nodes[pick].type = MapData.NodeType.ELITE
 		elite_count += 1
+
+
+func _get_boss_encounter_id(act: int) -> String:
+	## 막별 최종 보스 encounter_id 반환
+	match act:
+		1: return "B_ACT1_FINAL"
+		2: return "B_ACT2_FINAL"
+		3: return "B_ACT3_FINAL"
+	return "B_ACT1_FINAL"

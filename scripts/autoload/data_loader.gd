@@ -130,13 +130,17 @@ func _load_enemy_file(path: String) -> void:
 
 	var data = json.data
 	if data is Dictionary:
-		# 적 파일도 중첩 구조일 수 있음
-		for category_key in ["regular_enemies", "elite_enemies", "bosses"]:
-			var enemies_array = data.get(category_key, [])
-			if enemies_array is Array:
-				for enemy_dict in enemies_array:
-					if enemy_dict is Dictionary and enemy_dict.has("id"):
-						_enemies[enemy_dict["id"]] = enemy_dict
+		# 보스 파일: 루트 딕셔너리에 id가 직접 있는 경우
+		if data.has("id"):
+			_enemies[data["id"]] = data
+		else:
+			# 일반 적 파일: 중첩 구조 (regular_enemies, elite_enemies, bosses)
+			for category_key in ["regular_enemies", "elite_enemies", "bosses"]:
+				var enemies_array = data.get(category_key, [])
+				if enemies_array is Array:
+					for enemy_dict in enemies_array:
+						if enemy_dict is Dictionary and enemy_dict.has("id"):
+							_enemies[enemy_dict["id"]] = enemy_dict
 	elif data is Array:
 		for item in data:
 			if item is Dictionary and item.has("id"):
