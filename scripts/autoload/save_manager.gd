@@ -80,6 +80,53 @@ func record_run_result(victory: bool, character_id: String, act_reached: int) ->
 	save_meta(meta)
 
 
+# --- 일일 도전 ---
+
+const DAILY_PATH := "user://daily_data.json"
+
+
+func save_daily_result(date: String, character_id: String, score: int, victory: bool) -> void:
+	## 일일 도전 결과를 저장한다. 같은 날짜에 더 높은 점수만 갱신.
+	var data := _read_json(DAILY_PATH)
+	if not data.has("results"):
+		data["results"] = {}
+	if not data.has("best_score"):
+		data["best_score"] = 0
+
+	var prev_score: int = 0
+	if data["results"].has(date):
+		prev_score = data["results"][date].get("score", 0)
+
+	if score > prev_score:
+		data["results"][date] = {
+			"character_id": character_id,
+			"score": score,
+			"victory": victory,
+		}
+
+	if score > data["best_score"]:
+		data["best_score"] = score
+
+	_write_json(DAILY_PATH, data)
+
+
+func has_daily_result(date: String) -> bool:
+	var data := _read_json(DAILY_PATH)
+	if data.has("results"):
+		return data["results"].has(date)
+	return false
+
+
+func get_daily_results() -> Dictionary:
+	## 전체 일일 도전 기록을 반환한다.
+	return _read_json(DAILY_PATH)
+
+
+func get_daily_best_score() -> int:
+	var data := _read_json(DAILY_PATH)
+	return data.get("best_score", 0)
+
+
 # --- 설정 저장/로드 ---
 
 const DEFAULT_SETTINGS := {

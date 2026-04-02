@@ -60,6 +60,12 @@ custom_minimum_size = Vector2(0, 60)
 theme_override_font_sizes/font_size = 28
 text = "이어하기"
 
+[node name="DailyChallengeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_font_sizes/font_size = 28
+text = "일일 도전"
+
 [node name="ChronicleButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 60)
