@@ -19,12 +19,15 @@ enum ColorblindMode {
 var font_scale: float = 1.0
 ## 현재 색맹 모드
 var colorblind_mode: int = ColorblindMode.NONE
+## 화면 흔들림 활성화 여부
+var screen_shake_enabled: bool = true
 
 
 func _ready() -> void:
 	var settings := SaveManager.load_settings()
 	font_scale = settings.get("font_size_scale", 1.0)
 	colorblind_mode = settings.get("colorblind_mode", 0)
+	screen_shake_enabled = settings.get("screen_shake_enabled", true)
 	if colorblind_mode != ColorblindMode.NONE:
 		_apply_colorblind_shader(colorblind_mode)
 
@@ -38,6 +41,10 @@ func set_colorblind_mode(mode: int) -> void:
 	colorblind_mode = mode
 	_apply_colorblind_shader(mode)
 	colorblind_mode_changed.emit(mode)
+
+
+func set_screen_shake_enabled(enabled: bool) -> void:
+	screen_shake_enabled = enabled
 
 
 func scaled_font_size(base_size: int) -> int:

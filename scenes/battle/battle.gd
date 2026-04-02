@@ -2,6 +2,9 @@ extends Control
 
 ## 전투 씬 메인 스크립트. UI와 BattleManager를 연결한다.
 
+var vfx: VfxManager = null
+var _prev_player_hp: int = 0  # HP 변화 감지용
+
 @onready var hp_label: Label = $BattleHUD/PlayerInfo/HPLabel
 @onready var qi_label: Label = $BattleHUD/PlayerInfo/QiLabel
 @onready var block_label: Label = $BattleHUD/PlayerInfo/BlockLabel
@@ -36,6 +39,11 @@ var _enemy_ui_cache: Dictionary = {}
 
 
 func _ready() -> void:
+	# VFX 매니저 초기화
+	vfx = VfxManager.new()
+	add_child(vfx)
+	vfx.setup(self)
+
 	# 매니저 초기화
 	battle_manager = BattleManager.new()
 	sijo_system = SijoSystem.new()
@@ -79,6 +87,9 @@ func _ready() -> void:
 	# 유물 트리거 시그널 연결
 	RelicManager.relic_triggered.connect(_on_relic_triggered)
 
+	# 지속 피해 시그널 연결
+	battle_manager.dot_damage_dealt.connect(_on_dot_damage_dealt)
+
 	# 전투 시작
 	_start_battle()
 
@@ -113,6 +124,7 @@ func _start_battle() -> void:
 	if is_boss:
 		RelicManager.trigger_boss_enter()
 
+	_prev_player_hp = rd.current_hp
 	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
 
 	# 전투 시작 유물 트리거 (편자, 호신검, 어사마패 등)
@@ -316,21 +328,64 @@ func _on_qi_changed(current: int, max_val: int) -> void:
 
 
 func _on_hp_changed(current: int, max_val: int) -> void:
-	hp_label.text = "HP: %d/%d" % [current, max_val]
+	# HP 변화 시 VFX
+	if vfx and _prev_player_hp > 0:
+		var diff := _prev_player_hp - current
+		if diff > 0:
+			# 데미지: 숫자 팝업 + 화면 흔들림
+			var hp_pos := hp_label.global_position + Vector2(hp_label.size.x / 2.0, 0)
+			vfx.spawn_damage_number(self, hp_pos, diff)
+			vfx.screen_shake(clampf(diff * 1.5, 4.0, 15.0))
+		elif diff < 0:
+			# 회복
+			var hp_pos := hp_label.global_position + Vector2(hp_label.size.x / 2.0, 0)
+			vfx.spawn_damage_number(self, hp_pos, -diff, true)
+		# HP 바 스무스 애니메이션
+		vfx.animate_hp_bar(hp_label, _prev_player_hp, current, max_val)
+	else:
+		hp_label.text = "HP: %d/%d" % [current, max_val]
+	_prev_player_hp = current
 
 
 func _on_block_changed(new_block: int) -> void:
+	var old_block_text := block_label.text
+	var old_block := 0
+	if old_block_text.begins_with("방어: "):
+		old_block = old_block_text.substr(4).strip_edges().to_int()
 	block_label.text = "방어: %d" % new_block
 	block_label.visible = new_block > 0
+	# 방어도 획득 시 VFX
+	if vfx and new_block > old_block:
+		var gained := new_block - old_block
+		var pos := block_label.global_position + Vector2(block_label.size.x / 2.0, 0)
+		vfx.spawn_block_number(self, pos, gained)
 
 
 func _on_turn_started(turn: int) -> void:
 	turn_label.text = "%d턴" % turn
+	# 턴 전환 배너 VFX
+	if vfx and turn > 1:
+		vfx.turn_transition(self, "%d턴 시작" % turn)
 	# 매 턴 시작 유물 트리거 (삼족오 깃털 등)
 	RelicManager.trigger_turn_start(battle_manager)
 
 
-func _on_enemy_hp_changed(_enemy_index: int, _current: int, _max_val: int) -> void:
+func _on_enemy_hp_changed(enemy_index: int, current: int, max_val: int) -> void:
+	# 적 데미지 숫자 팝업
+	if vfx and _enemy_ui_cache.has(enemy_index):
+		var cache: Dictionary = _enemy_ui_cache[enemy_index]
+		var prev_text: String = cache["hp_label"].text
+		# 이전 HP 파싱
+		var prev_hp := max_val
+		if prev_text.begins_with("HP: "):
+			var parts := prev_text.substr(4).split("/")
+			if parts.size() > 0:
+				prev_hp = parts[0].to_int()
+		var diff := prev_hp - current
+		if diff > 0:
+			var pos := cache["panel"].global_position + Vector2(cache["panel"].size.x / 2.0, 30)
+			vfx.spawn_damage_number(self, pos, diff)
+			vfx.shake_node(cache["panel"])
 	_update_enemy_ui()
 
 
@@ -400,6 +455,9 @@ func _on_sijo_completed(final_card_id: String) -> void:
 	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
 		return
 	AudioManager.play_sfx_by_key("sijo_complete")
+	# 시조 완성 VFX
+	if vfx:
+		vfx.sijo_complete_vfx(self)
 	# 시조 완성 보상: 마지막 카드 효과 2배 + 기 1 회복 + 카드 1장 드로우
 	var card: CardData = battle_manager._get_battle_card(final_card_id)
 	if card:
@@ -488,9 +546,32 @@ func _on_passive_triggered(skill_name: String, description: String) -> void:
 	tween.tween_callback(popup.queue_free)
 
 
-func _on_status_effect_changed(_target: String, _effect_id: String, _stacks: int) -> void:
+func _on_status_effect_changed(target: String, _effect_id: String, _stacks: int) -> void:
 	_update_player_status_ui()
 	_update_enemy_ui()
+	# 상태효과 적용 시 바운스 VFX
+	if vfx:
+		if target == "player" and is_instance_valid(_player_status_container):
+			vfx.bounce_node(_player_status_container)
+		elif target.begins_with("enemy_"):
+			var idx := target.substr(6).to_int()
+			if _enemy_ui_cache.has(idx):
+				vfx.bounce_node(_enemy_ui_cache[idx]["panel"], 1.15)
+
+
+func _on_dot_damage_dealt(target: String, _effect_id: String, amount: int) -> void:
+	## 지속 피해(독, 화상 등) VFX
+	if not vfx:
+		return
+	if target == "player":
+		var pos := hp_label.global_position + Vector2(hp_label.size.x / 2.0, 0)
+		vfx.spawn_damage_number(self, pos, amount)
+	elif target.begins_with("enemy_"):
+		var idx := target.substr(6).to_int()
+		if _enemy_ui_cache.has(idx):
+			var cache: Dictionary = _enemy_ui_cache[idx]
+			var pos := cache["panel"].global_position + Vector2(cache["panel"].size.x / 2.0, 30)
+			vfx.spawn_damage_number(self, pos, amount)
 
 
 func _update_player_status_ui() -> void:
@@ -605,6 +686,14 @@ func _on_battle_ended(victory: bool) -> void:
 
 
 func _show_battle_result(victory: bool) -> void:
+	# 승리/패배 시 화면 플래시
+	if vfx:
+		if victory:
+			vfx.flash_screen(self, Color(1.0, 0.85, 0.3, 0.3), 0.3)
+		else:
+			vfx.flash_screen(self, Color(1.0, 0.2, 0.2, 0.3), 0.3)
+			vfx.screen_shake(10.0)
+
 	var overlay := ColorRect.new()
 	overlay.anchors_preset = Control.PRESET_FULL_RECT
 	overlay.color = Color(0, 0, 0, 0.6)

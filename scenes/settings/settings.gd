@@ -8,6 +8,7 @@ extends Control
 @onready var font_size_slider: HSlider = $VBoxContainer/FontSizeContainer/FontSizeSlider
 @onready var font_size_value: Label = $VBoxContainer/FontSizeContainer/FontSizeValue
 @onready var colorblind_option: OptionButton = $VBoxContainer/ColorblindContainer/ColorblindOption
+@onready var screen_shake_check: CheckButton = $VBoxContainer/ScreenShakeContainer/ScreenShakeCheck
 @onready var back_button: Button = $VBoxContainer/BackButton
 
 ## 색맹 모드 옵션
@@ -26,6 +27,7 @@ func _ready() -> void:
 	vibration_check.button_pressed = settings.get("vibration", true)
 	font_size_slider.value = settings.get("font_size_scale", 1.0)
 	colorblind_option.selected = settings.get("colorblind_mode", 0)
+	screen_shake_check.button_pressed = settings.get("screen_shake_enabled", true)
 	_update_font_size_label()
 
 	# 시그널 연결
@@ -34,6 +36,7 @@ func _ready() -> void:
 	vibration_check.toggled.connect(_on_vibration_toggled)
 	font_size_slider.value_changed.connect(_on_font_size_changed)
 	colorblind_option.item_selected.connect(_on_colorblind_changed)
+	screen_shake_check.toggled.connect(_on_screen_shake_toggled)
 	back_button.pressed.connect(_on_back_pressed)
 
 	# 즉시 적용
@@ -66,6 +69,11 @@ func _on_colorblind_changed(index: int) -> void:
 	_save()
 
 
+func _on_screen_shake_toggled(pressed: bool) -> void:
+	AccessibilityManager.set_screen_shake_enabled(pressed)
+	_save()
+
+
 func _update_font_size_label() -> void:
 	font_size_value.text = "%d%%" % int(font_size_slider.value * 100)
 
@@ -77,6 +85,7 @@ func _save() -> void:
 		"vibration": vibration_check.button_pressed,
 		"font_size_scale": font_size_slider.value,
 		"colorblind_mode": colorblind_option.selected,
+		"screen_shake_enabled": screen_shake_check.button_pressed,
 	})
 
 
