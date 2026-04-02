@@ -112,7 +112,7 @@ func trigger_battle_start(battle_manager: BattleManager) -> void:
 				# R014 저주받은 투구: 전투 시작 시 자기 독
 				if values.has("self_poison_on_battle_start"):
 					var poison: int = values["self_poison_on_battle_start"]
-					battle_manager.status_effects.apply_effect("player", "poison", poison)
+					battle_manager.status_effects.apply_effect("player", "독", poison)
 					relic_triggered.emit(relic_id, "전투 시작 독 %d 자해" % poison)
 			"on_turn_start":
 				pass  # 턴 시작마다 처리 (trigger_turn_start에서)
@@ -151,7 +151,7 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 		var highest_hp_index := _find_highest_hp_enemy(battle_manager)
 		if highest_hp_index >= 0:
 			var target := "enemy_%d" % highest_hp_index
-			battle_manager.status_effects.apply_effect(target, "vulnerable", stacks)
+			battle_manager.status_effects.apply_effect(target, "취약", stacks)
 			relic_triggered.emit(relic_id, "적에게 취약 %d 부여" % stacks)
 
 
@@ -267,7 +267,7 @@ func trigger_on_attack_card_played(battle_manager: BattleManager, target_enemy_i
 				var stacks: int = values["bleed_on_attack"]
 				if target_enemy_index >= 0 and target_enemy_index < battle_manager.enemies.size():
 					var target := "enemy_%d" % target_enemy_index
-					battle_manager.status_effects.apply_effect(target, "bleed", stacks)
+					battle_manager.status_effects.apply_effect(target, "출혈", stacks)
 
 
 func trigger_on_buff_apply(buff_duration: int) -> int:

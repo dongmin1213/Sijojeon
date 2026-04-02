@@ -3,8 +3,8 @@
   "type": "card_pool",
   "class": "common",
   "category": "movement",
-  "description": "공통 이동 카드 풀 — 모든 직업이 사용 가능한 이동/회피 카드 5종.",
-  "balance_ref": "ZER-12 (카드 밸런스 디자인 스펙). 기준: 1코스트 공격 6피해(베기), 1코스트 방어 5방어도(수호). 기(氣) 기본 3/턴.",
+  "description": "공통 이동 카드 풀 — 모든 직업이 사용 가능한 이동/회피/지원 카드 10종 + 와일드카드 2종(ZER-101).",
+  "balance_ref": "ZER-94 (카드 풀 확대), ZER-101 (시조 접근성 개선). 기준: 1코스트 공격 6피해(베기), 1코스트 방어 5방어도(수호). 기(氣) 기본 3/턴.",
   "cards": [
     {
       "id": "M001",
@@ -43,10 +43,10 @@
       "effect": "방어도 3을 획득한다. 이번 턴 다음에 사용하는 공격 카드의 피해를 +4 증가시킨다.",
       "effect_upgraded": "방어도 4를 획득한다. 다음 공격 카드 피해 +6 증가.",
       "flavor_text": "땅을 박차고 솟구쳐 — 올라가는 순간, 적은 나의 칼끝을 잃는다.",
-      "balance_rationale": "1코스트로 방어(3) + 공격버프(+4) 이중 효과. 단독 가치는 낮지만 이동→공격 연계의 핵심 카드. 결인(+4)과 유사하나 방어도가 붙어 더 유연. 시조 포지션상 초장 [3]에서 리듬 오프너 역할.",
+      "balance_rationale": "1코스트로 방어(3) + 공격버프(+4) 이중 효과. 이동→공격 연계의 핵심 카드. 시조 포지션상 초장 [3]에서 리듬 오프너 역할.",
       "sijo_position": "초장 첫 슬롯 [3] — 이동 시퀀스 오프너",
       "upgrade_cost": 75,
-      "values": { "block": 3 }
+      "values": { "block": 3, "next_attack_bonus": 4 }
     },
     {
       "id": "M003",
@@ -64,10 +64,10 @@
       "effect": "방어도 2를 획득한다. 대상 적에게 약화(弱化) 1을 부여한다.",
       "effect_upgraded": "방어도 3을 획득한다. 약화 2를 부여한다.",
       "flavor_text": "물러서는 것은 도망이 아니다 — 적의 힘을 빼앗는 계략이다.",
-      "balance_rationale": "0코스트. 기공(0코스트 기+드로우)과 유사한 포지션이나 방어형. 2방어도 + 약화1은 기공과 대등. 덱 20장 기준 최대 2장 권장.",
+      "balance_rationale": "0코스트. 2방어도 + 약화1. 덱 20장 기준 최대 2장 권장.",
       "sijo_position": "초장 첫 슬롯 [3] — 무료 리듬 스타터",
       "upgrade_cost": 50,
-      "values": { "block": 2 }
+      "values": { "block": 2, "weaken": 1 }
     },
     {
       "id": "M004",
@@ -85,7 +85,7 @@
       "effect": "적에게 10 피해를 입힌다. 현재 방어도가 1 이상이면 피해를 5 추가로 입힌다.",
       "effect_upgraded": "적에게 14 피해를 입힌다. 방어도가 있으면 피해 7 추가.",
       "flavor_text": "허리를 낮춰 측면으로 파고드는 한 발 — 막을 틈도 없이 파고든다.",
-      "balance_rationale": "2코스트 조건부 공격. 기본 10피해는 2코스트 기준 적정. 방어도 조건(이동 콤보 후 자연스럽게 충족)으로 최대 15피해. 총 기대 피해 약 12~15로 화염구(10+6=16총피해) 대비 즉시 피해에 특화.",
+      "balance_rationale": "2코스트 조건부 공격. 기본 10피해는 2코스트 기준 적정. 방어도 조건(이동 콤보 후 자연스럽게 충족)으로 최대 15피해.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
       "values": { "damage": 10 }
@@ -106,10 +106,159 @@
       "effect": "방어도 5를 획득하고 카드 1장을 드로우한다.",
       "effect_upgraded": "방어도 7을 획득하고 카드 1장을 드로우한다.",
       "flavor_text": "낮게 기어 적의 시야를 벗어나며 — 다음 수를 준비한다.",
-      "balance_rationale": "1코스트 수호(5방어도)와 동일한 방어도에 드로우 1장 추가. 수호보다 약간 강하나 [3] 음보라 시조 포지션이 달라 직접 경쟁하지 않음. 덱 가속 + 방어를 동시에 처리하는 범용 이동 카드.",
+      "balance_rationale": "1코스트 수호(5방어도)와 동일한 방어도에 드로우 1장 추가. 덱 가속 + 방어를 동시에 처리하는 범용 이동 카드.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
       "values": { "block": 5, "draw": 1 }
+    },
+    {
+      "id": "M006",
+      "name": {
+        "ko": "선제 공격",
+        "hanja": "先制攻擊",
+        "romanized": "Seongje Gonggyeok"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": ["movement"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "적에게 7 피해를 입힌다.",
+      "effect_upgraded": "적에게 10 피해를 입힌다.",
+      "flavor_text": "먼저 치는 자가 이긴다 — 선수를 잡으면 전장의 흐름이 바뀐다.",
+      "balance_rationale": "1코스트 기본 공격(7피해)으로 직언(6피해)보다 1 높음. 공통 카드의 공격 옵션 추가. [4] 음보로 [3] 음보 기본 공격과 시조 슬롯 차별화. 업그레이드 시 10피해 = 2코스트 카드에 준하는 성능.",
+      "sijo_position": "초장·중장 둘째 슬롯 [4]",
+      "upgrade_cost": 50,
+      "values": { "damage": 7 }
+    },
+    {
+      "id": "M007",
+      "name": {
+        "ko": "방어 자세",
+        "hanja": "防禦姿勢",
+        "romanized": "Bangeo Jase"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "defense",
+      "subtypes": ["movement"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "방어도 6을 획득한다.",
+      "effect_upgraded": "방어도 9를 획득한다.",
+      "flavor_text": "자세를 낮추고 방패를 높이면 — 어떤 공격도 뚫을 수 없다.",
+      "balance_rationale": "1코스트 방어(6)로 수호(5)보다 1 높음. 공통 카드의 방어 옵션 강화. [4] 음보로 [3] 음보 방어 카드와 시조 슬롯 차별화. 업그레이드 시 9방어도 = 2코스트 방어 카드에 근접.",
+      "sijo_position": "초장·중장 둘째 슬롯 [4]",
+      "upgrade_cost": 50,
+      "values": { "block": 6 }
+    },
+    {
+      "id": "M008",
+      "name": {
+        "ko": "눈치",
+        "hanja": "眼色",
+        "romanized": "Nunchi"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "spell",
+      "subtypes": ["draw"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "카드 2장을 드로우한다.",
+      "effect_upgraded": "카드 3장을 드로우한다.",
+      "flavor_text": "상황을 빠르게 읽어내면 — 어떤 패도 손에 잡힌다.",
+      "balance_rationale": "0코스트 드로우 2장. 기공(0코스트 기+드로우1)보다 드로우가 1 더 많지만 기 획득 없음. 모든 직업에서 덱 순환 가속에 활용 가능. 0코스트 카드는 시조 슬롯을 소비하므로 덱 20장 기준 최대 1장 권장.",
+      "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 드로우",
+      "upgrade_cost": 50,
+      "values": { "draw": 2 }
+    },
+    {
+      "id": "M009",
+      "name": {
+        "ko": "기회 포착",
+        "hanja": "機會捕捉",
+        "romanized": "Gihoe Poche"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "spell",
+      "subtypes": ["draw", "cost_reduce"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "카드 1장을 드로우한다. 이번 턴 다음에 사용하는 카드의 비용을 1 감소시킨다 (최소 0).",
+      "effect_upgraded": "카드 2장을 드로우한다. 다음 카드 비용 1 감소.",
+      "flavor_text": "기회는 준비된 자에게만 온다 — 찰나의 순간을 놓치지 말라.",
+      "balance_rationale": "1코스트 드로우+비용 감소. 격물치지(W007, 1코스트 학식2+비용감소)의 공통 버전. 드로우+비용감소 조합은 모든 직업에서 콤보 설정에 활용 가능. 단, 학식을 제공하지 않아 문관에선 격물치지보다 약함. 무관·도사에서 범용 콤보 스타터.",
+      "sijo_position": "초장·중장 둘째 슬롯 [4]",
+      "upgrade_cost": 75,
+      "values": { "draw": 1, "cost_reduce_next": 1 }
+    },
+    {
+      "id": "M010",
+      "name": {
+        "ko": "버티기",
+        "hanja": "堅持",
+        "romanized": "Beotigi"
+      },
+      "beat": 3,
+      "cost": 2,
+      "type": "defense",
+      "subtypes": ["movement"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "방어도 15를 획득한다.",
+      "effect_upgraded": "방어도 20을 획득한다.",
+      "flavor_text": "어떤 상황에서도 버틴다 — 포기하지 않는 것이 최강의 방어다.",
+      "balance_rationale": "2코스트 고방어 카드. 철벽방어(G023, 2코스트 14방어도)보다 1 높은 15방어도. 공통 카드이므로 모든 직업의 방어 덱 빌드를 지원. 업그레이드 시 20방어도는 3코스트급 성능으로 강력한 업그레이드 목표 제공.",
+      "sijo_position": "중장·종장 첫 슬롯 [3]",
+      "upgrade_cost": 75,
+      "values": { "block": 15 }
+    },
+    {
+      "id": "M011",
+      "name": {
+        "ko": "흥",
+        "hanja": "興",
+        "romanized": "Heung"
+      },
+      "beat": 0,
+      "beat_note": "와일드 — 어느 시조 슬롯에나 배치 가능 ([3] 또는 [4] 슬롯 모두 허용)",
+      "cost": 1,
+      "type": "spell",
+      "subtypes": ["wildcard", "draw"],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": "카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+      "effect_upgraded": "카드 2장을 드로우한다. 이 카드는 어느 슬롯에나 배치 가능.",
+      "flavor_text": "흥이 나면 장단이 맞고 — 리듬이 흐르는 곳에 자연스레 스며든다.",
+      "balance_rationale": "1코스트 드로우 1. 직접 효과는 weak하나 와일드 슬롯 유연성이 핵심 가치. 시조 슬롯 완성에 막히는 상황(beat 불일치)을 해소하는 전략적 보험 카드. 덱당 1~2장 권장. 업그레이드 시 드로우 2로 비용 효율 크게 향상.",
+      "sijo_position": "어느 슬롯이든 가능 — 완성 직전 마지막 슬롯 채우기용 추천",
+      "upgrade_cost": 75,
+      "values": { "draw": 1 }
+    },
+    {
+      "id": "M012",
+      "name": {
+        "ko": "여백",
+        "hanja": "餘白",
+        "romanized": "Yeobaek"
+      },
+      "beat": 0,
+      "beat_note": "와일드 — 어느 시조 슬롯에나 배치 가능 ([3] 또는 [4] 슬롯 모두 허용)",
+      "cost": 0,
+      "type": "defense",
+      "subtypes": ["wildcard", "movement"],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": "방어도 2를 획득한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+      "effect_upgraded": "방어도 4를 획득한다. 어느 슬롯에나 배치 가능.",
+      "flavor_text": "빈 공간도 시의 일부다 — 여백을 채울 줄 아는 자가 시조를 완성한다.",
+      "balance_rationale": "0코스트 방어 2 + 와일드 슬롯. 0코스트 카드는 시조 슬롯을 소비하므로 패 효율이 낮지만, 와일드 속성으로 beat 불일치 상황을 0비용으로 해소. 시조 완성을 중시하는 빌드에서 콤보 연결 카드. 덱당 최대 1장 권장.",
+      "sijo_position": "어느 슬롯이든 가능 — 초장/중장/종장 첫 슬롯 [3] 미스 시 대타",
+      "upgrade_cost": 50,
+      "values": { "block": 2 }
     }
   ],
   "status_conditions_referenced": [
@@ -117,7 +266,7 @@
       "id": "약화",
       "ko": "약화",
       "hanja": "弱化",
-      "description": "다음 공격 피해 25% 감소. 1회 발동 후 소멸.",
+      "description": "다음 공격 피해 25% 감소. 1회 발동 후 1 감소.",
       "source": "ZER-12 정의 준수"
     }
   ]

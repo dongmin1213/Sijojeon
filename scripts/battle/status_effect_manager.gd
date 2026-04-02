@@ -172,9 +172,9 @@ func calculate_outgoing_damage(attacker: String, base_damage: int) -> int:
 func calculate_incoming_damage(defender: String, damage: int) -> int:
 	var final_damage := damage
 
-	# 취약: 받는 피해 25% 증가
+	# 취약: 받는 피해 50% 증가
 	if has_effect(defender, "취약"):
-		final_damage = int(final_damage * 1.25)
+		final_damage = int(final_damage * 1.5)
 
 	return final_damage
 

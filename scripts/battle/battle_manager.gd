@@ -128,6 +128,15 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 			enemy["max_hp"] = hp_data
 		enemy["block"] = 0
 		enemy["move_index"] = 0
+		enemy["current_phase"] = 0
+		# 보스 페이즈: 첫 페이즈의 moves/pattern 적용
+		var phases: Array = enemy.get("phases", [])
+		if not phases.is_empty():
+			var first_phase: Dictionary = phases[0]
+			if first_phase.has("moves"):
+				enemy["moves"] = first_phase["moves"]
+			if first_phase.has("move_pattern"):
+				enemy["move_pattern"] = first_phase["move_pattern"]
 		enemies.append(enemy)
 
 	# 시조 시스템 초기화
@@ -324,11 +333,12 @@ func execute_enemy_turn() -> void:
 			if enemy["current_hp"] <= 0:
 				continue
 
-		# 적 디버프 기간 감소
-		status_effects.process_turn_end(enemy_target)
-
+		# 적 행동 실행 (디버프 감소 전에 행동해야 취약 등이 적용됨)
 		var intent := _get_enemy_intent(i)
 		_execute_enemy_action(i, intent)
+
+		# 적 디버프 기간 감소 (행동 후 감소)
+		status_effects.process_turn_end(enemy_target)
 
 		# 행동 인덱스 진행
 		var pattern = enemy.get("move_pattern", {})
@@ -426,6 +436,10 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 		enemy["current_hp"] = maxi(enemy["current_hp"], 0)
 
 	enemy_hp_changed.emit(enemy_index, enemy["current_hp"], enemy["max_hp"])
+
+	# 보스 페이즈 전환 체크
+	if enemy["current_hp"] > 0:
+		_check_phase_transition(enemy_index)
 
 
 # --- 내부 함수 ---
@@ -564,6 +578,8 @@ func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
 			_apply_intent_effects(enemy_index, intent)
 		"debuff":
 			_apply_intent_effects(enemy_index, intent)
+		"summon":
+			_execute_enemy_summon(enemy_index, intent)
 
 
 func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
@@ -620,6 +636,41 @@ func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
 				status_effects.clear_target(resolved_target)
 
 
+func _execute_enemy_summon(_enemy_index: int, intent: Dictionary) -> void:
+	var summon_list: Array = intent.get("summon", [])
+	for entry in summon_list:
+		if entry is not Dictionary:
+			continue
+		var enemy_id: String = entry.get("enemy_id", "")
+		var count: int = entry.get("count", 1)
+		var hp_override: int = entry.get("hp_override", 0)
+		var name_override: String = entry.get("name_override", "")
+
+		for _i in count:
+			var base_data: Dictionary = DataLoader.get_enemy(enemy_id)
+			if base_data.is_empty():
+				continue
+			var summoned := base_data.duplicate(true)
+			if hp_override > 0:
+				summoned["current_hp"] = hp_override
+				summoned["max_hp"] = hp_override
+			else:
+				var hp_data = summoned.get("hp", {})
+				if hp_data is Dictionary:
+					summoned["current_hp"] = randi_range(hp_data.get("min", 10), hp_data.get("max", 15))
+					summoned["max_hp"] = summoned["current_hp"]
+				elif hp_data is int:
+					summoned["current_hp"] = hp_data
+					summoned["max_hp"] = hp_data
+			if name_override != "":
+				summoned["name"] = {"ko": name_override}
+			summoned["block"] = 0
+			summoned["move_index"] = 0
+			enemies.append(summoned)
+			var new_idx := enemies.size() - 1
+			enemy_hp_changed.emit(new_idx, summoned["current_hp"], summoned["max_hp"])
+
+
 func _resolve_effect_target(target_str: String, enemy_target: String) -> String:
 	match target_str:
 		"player":
@@ -661,6 +712,71 @@ func get_class_resource_color() -> Color:
 			return Color(0.3, 0.7, 1.0)  # 파랑 (학식)
 		_:
 			return Color.WHITE
+
+
+func _check_phase_transition(enemy_index: int) -> void:
+	var enemy := enemies[enemy_index]
+	var phases: Array = enemy.get("phases", [])
+	if phases.is_empty():
+		return
+
+	var current_phase_idx: int = enemy.get("current_phase", 0)
+	var next_phase_idx := current_phase_idx + 1
+	if next_phase_idx >= phases.size():
+		return
+
+	var next_phase: Dictionary = phases[next_phase_idx]
+	var trigger = next_phase.get("phase_trigger", {})
+	if trigger is not Dictionary:
+		return
+
+	var trigger_type: String = trigger.get("type", "")
+	if trigger_type != "hp_threshold":
+		return
+
+	var hp_percent: int = trigger.get("hp_percent", 0)
+	var current_hp_percent := int(float(enemy["current_hp"]) / float(enemy["max_hp"]) * 100.0)
+	if current_hp_percent > hp_percent:
+		return
+
+	# 페이즈 전환 실행
+	enemy["current_phase"] = next_phase_idx
+
+	# 새 페이즈의 moves/pattern으로 전환
+	if next_phase.has("moves"):
+		enemy["moves"] = next_phase["moves"]
+	if next_phase.has("move_pattern"):
+		enemy["move_pattern"] = next_phase["move_pattern"]
+	enemy["move_index"] = 0
+
+	# on_trigger 효과 적용 (버프, 디버프, 대사 등)
+	var on_trigger: Array = trigger.get("on_trigger", [])
+	var enemy_target := "enemy_%d" % enemy_index
+	for effect in on_trigger:
+		if effect is not Dictionary:
+			continue
+		var effect_type: String = effect.get("type", "")
+		var target_str: String = effect.get("target", "player")
+		var resolved_target := _resolve_effect_target(target_str, enemy_target)
+
+		match effect_type:
+			"apply_buff":
+				var buff_id: String = effect.get("buff", "")
+				var stacks: int = effect.get("stacks", 1)
+				if buff_id != "":
+					status_effects.apply_effect(resolved_target, buff_id, stacks)
+			"apply_debuff":
+				var debuff_id: String = effect.get("debuff", "")
+				var stacks: int = effect.get("stacks", 1)
+				if debuff_id != "":
+					status_effects.apply_effect(resolved_target, debuff_id, stacks)
+			"cleanse_debuffs":
+				status_effects.clear_target(resolved_target)
+			"dialogue":
+				# 대사 표시 (시그널로 전달)
+				var text: String = effect.get("text", "")
+				if text != "":
+					passive_triggered.emit("보스", text)
 
 
 func _all_enemies_dead() -> bool:

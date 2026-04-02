@@ -377,6 +377,9 @@ func _show_sijo_reward_popup(text: String) -> void:
 
 
 func _on_sijo_completed(final_card_id: String) -> void:
+	# 전투가 이미 종료된 상태면 추가 효과 적용하지 않음
+	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
+		return
 	AudioManager.play_sfx_by_key("sijo_complete")
 	# 시조 완성 보상: 마지막 카드 효과 2배 + 기 1 회복 + 카드 1장 드로우
 	var card: CardData = battle_manager._get_battle_card(final_card_id)
