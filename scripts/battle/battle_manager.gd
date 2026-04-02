@@ -134,13 +134,21 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	enemies.clear()
 	for e in enemy_data:
 		var enemy := e.duplicate(true)
-		var hp_data = enemy.get("hp", {})
+		var hp_data = enemy.get("hp", null)
+		if hp_data == null:
+			# hp 필드 없으면 hp_total을 fallback으로 사용
+			hp_data = enemy.get("hp_total", null)
 		if hp_data is Dictionary:
 			enemy["current_hp"] = int(randi_range(hp_data.get("min", 20), hp_data.get("max", 30)) * hp_mult)
 			enemy["max_hp"] = enemy["current_hp"]
-		elif hp_data is int:
-			enemy["current_hp"] = int(hp_data * hp_mult)
+		elif hp_data is int or hp_data is float:
+			enemy["current_hp"] = int(int(hp_data) * hp_mult)
 			enemy["max_hp"] = enemy["current_hp"]
+		else:
+			# HP 데이터를 찾을 수 없는 경우 에러 로그
+			push_error("BattleManager: 적 '%s' HP 데이터 누락 — 기본값 1 적용" % enemy.get("id", "unknown"))
+			enemy["current_hp"] = 1
+			enemy["max_hp"] = 1
 		enemy["block"] = 0
 		enemy["move_index"] = 0
 		enemy["current_phase"] = 0
@@ -802,13 +810,19 @@ func _execute_enemy_summon(_enemy_index: int, intent: Dictionary) -> void:
 				summoned["current_hp"] = hp_override
 				summoned["max_hp"] = hp_override
 			else:
-				var hp_data = summoned.get("hp", {})
+				var hp_data = summoned.get("hp", null)
+				if hp_data == null:
+					hp_data = summoned.get("hp_total", null)
 				if hp_data is Dictionary:
 					summoned["current_hp"] = randi_range(hp_data.get("min", 10), hp_data.get("max", 15))
 					summoned["max_hp"] = summoned["current_hp"]
-				elif hp_data is int:
-					summoned["current_hp"] = hp_data
-					summoned["max_hp"] = hp_data
+				elif hp_data is int or hp_data is float:
+					summoned["current_hp"] = int(hp_data)
+					summoned["max_hp"] = int(hp_data)
+				else:
+					push_error("BattleManager: 소환 적 '%s' HP 데이터 누락" % summoned.get("id", "unknown"))
+					summoned["current_hp"] = 1
+					summoned["max_hp"] = 1
 			if name_override != "":
 				summoned["name"] = {"ko": name_override}
 			summoned["block"] = 0
