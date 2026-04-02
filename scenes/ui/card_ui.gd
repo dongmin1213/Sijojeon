@@ -8,8 +8,10 @@ signal card_hovered(hand_index: int)
 signal card_unhovered(hand_index: int)
 signal card_drag_started(hand_index: int)
 signal card_drag_ended(hand_index: int, played: bool)
+signal card_zoom_requested(card_data: CardData)
 
 @onready var card_name_label: Label = $MarginContainer/VBoxContainer/CardNameLabel
+@onready var card_art: TextureRect = $MarginContainer/VBoxContainer/CardArt
 @onready var beat_cost_label: Label = $MarginContainer/VBoxContainer/BeatCostRow/BeatCostLabel
 @onready var type_label: Label = $MarginContainer/VBoxContainer/TypeLabel
 @onready var effect_label: Label = $MarginContainer/VBoxContainer/EffectLabel
@@ -33,6 +35,11 @@ var original_z_index: int = 0
 
 const DRAG_THRESHOLD := 15.0   # 드래그 시작 최소 거리 (px)
 const PLAY_THRESHOLD := 80.0   # 위로 드래그 시 카드 플레이 최소 거리 (px)
+const LONG_PRESS_TIME := 0.5   # 길게 누르기 감지 시간 (초)
+
+# 길게 누르기 상태
+var _long_press_timer: Timer = null
+var _long_press_triggered: bool = false
 
 # 뷰포트 기준 카드 크기 비율 (1080x1920 기본 해상도 기준)
 const BASE_CARD_WIDTH := 140.0
@@ -75,6 +82,13 @@ func _ready() -> void:
 	var vp_width := get_viewport().get_visible_rect().size.x
 	var scale := vp_width / BASE_VIEWPORT_WIDTH
 	custom_minimum_size = Vector2(BASE_CARD_WIDTH * scale, BASE_CARD_HEIGHT * scale)
+
+	# 길게 누르기 타이머 초기화
+	_long_press_timer = Timer.new()
+	_long_press_timer.one_shot = true
+	_long_press_timer.wait_time = LONG_PRESS_TIME
+	_long_press_timer.timeout.connect(_on_long_press)
+	add_child(_long_press_timer)
 
 
 func setup(data: CardData, index: int, playable: bool, matches_sijo: bool) -> void:
@@ -132,6 +146,9 @@ func _update_display() -> void:
 		display_name += "+"
 	card_name_label.text = display_name
 
+	# 카드 일러스트 (TextureManager에서 로드, 없으면 placeholder)
+	card_art.texture = TextureManager.get_card_texture(card_data.id, card_data.type)
+
 	# 비트 + 코스트 + 기력
 	var cost_text := "[%d] %d氣" % [card_data.beat, card_data.cost]
 	if card_data.stamina_cost > 0:
@@ -149,7 +166,7 @@ func _update_display() -> void:
 		"formation": "진형",
 	}
 	type_label.text = type_names.get(card_data.type, card_data.type)
-	var type_color: Color = TYPE_COLORS.get(card_data.type, Color(0.5, 0.5, 0.5))
+	var type_color: Color = AccessibilityManager.get_type_color(card_data.type)
 	type_label.add_theme_color_override("font_color", type_color)
 
 	# 효과 텍스트
@@ -221,23 +238,34 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
+				_long_press_triggered = false
+				_long_press_timer.start()
 				if is_playable:
 					drag_start_pos = event.global_position
 					drag_offset = Vector2.ZERO
 			else:
+				_long_press_timer.stop()
 				# 마우스 버튼 떼기
+				if _long_press_triggered:
+					_long_press_triggered = false
+					return  # 길게 누르기 후에는 다른 액션 무시
 				if is_dragging:
 					_end_drag()
 				elif is_playable:
 					# 드래그 아님 → 클릭으로 처리
 					card_clicked.emit(hand_index)
+		# 우클릭: 카드 상세보기
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			if card_data:
+				card_zoom_requested.emit(card_data)
 
 	elif event is InputEventMouseMotion:
 		if not (event.button_mask & MOUSE_BUTTON_MASK_LEFT):
 			return
-		if is_playable and not is_dragging:
+		if is_playable and not is_dragging and not _long_press_triggered:
 			var delta: Vector2 = event.global_position - drag_start_pos
 			if delta.length() > DRAG_THRESHOLD:
+				_long_press_timer.stop()
 				_start_drag()
 		if is_dragging:
 			_process_drag(event.global_position)
@@ -255,6 +283,13 @@ func _start_drag() -> void:
 func _process_drag(global_pos: Vector2) -> void:
 	var delta := global_pos - drag_start_pos
 	position = original_position + delta
+
+
+func _on_long_press() -> void:
+	## 길게 누르기: 카드 상세보기 팝업
+	_long_press_triggered = true
+	if card_data:
+		card_zoom_requested.emit(card_data)
 
 
 func _end_drag() -> void:

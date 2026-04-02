@@ -26,9 +26,11 @@ config/icon="res://icon.svg"
 GameManager="*res://scripts/autoload/game_manager.gd"
 AudioManager="*res://scripts/autoload/audio_manager.gd"
 DataLoader="*res://scripts/autoload/data_loader.gd"
+TextureManager="*res://scripts/autoload/texture_manager.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 RelicManager="*res://scripts/autoload/relic_manager.gd"
 AchievementManager="*res://scripts/autoload/achievement_manager.gd"
+AccessibilityManager="*res://scripts/autoload/accessibility_manager.gd"
 
 [display]
 

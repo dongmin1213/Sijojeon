@@ -93,6 +93,60 @@ vertical_alignment = 1
 layout_mode = 2
 button_pressed = true
 
+[node name="AccessibilitySeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AccessibilityTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "접근성"
+horizontal_alignment = 1
+
+[node name="FontSizeContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="FontSizeLabel" type="Label" parent="VBoxContainer/FontSizeContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+theme_override_font_sizes/font_size = 24
+text = "글자 크기"
+vertical_alignment = 1
+
+[node name="FontSizeSlider" type="HSlider" parent="VBoxContainer/FontSizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.8
+max_value = 1.5
+step = 0.1
+value = 1.0
+custom_minimum_size = Vector2(0, 50)
+
+[node name="FontSizeValue" type="Label" parent="VBoxContainer/FontSizeContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(60, 0)
+theme_override_font_sizes/font_size = 20
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorblindContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ColorblindLabel" type="Label" parent="VBoxContainer/ColorblindContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+theme_override_font_sizes/font_size = 24
+text = "색맹 모드"
+vertical_alignment = 1
+
+[node name="ColorblindOption" type="OptionButton" parent="VBoxContainer/ColorblindContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+custom_minimum_size = Vector2(0, 50)
+
 [node name="Spacer2" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

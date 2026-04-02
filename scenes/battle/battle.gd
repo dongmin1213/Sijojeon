@@ -18,6 +18,9 @@ var sijo_system: SijoSystem
 
 # 시조 슬롯 UI 라벨
 var sijo_slot_labels: Array[Label] = []
+var _sijo_collapsed: bool = false  # 시조 슬롯 축약 상태
+var _sijo_toggle_button: Button = null
+var _sijo_summary_label: Label = null  # 축약 모드에서 진행률 표시
 
 # 플레이어 상태이상 UI 컨테이너
 var _player_status_container: HBoxContainer = null
@@ -55,6 +58,7 @@ func _ready() -> void:
 
 	# CardHand 시그널 연결
 	card_hand.card_played.connect(_on_card_played)
+	card_hand.card_zoom_requested.connect(_on_card_zoom_requested)
 
 	# 상태이상 시그널 연결
 	battle_manager.status_effect_changed.connect(_on_status_effect_changed)
@@ -65,7 +69,8 @@ func _ready() -> void:
 	# 패시브/액티브 스킬 시그널 연결
 	battle_manager.passive_triggered.connect(_on_passive_triggered)
 
-	# 시조 슬롯 UI 초기화
+	# 시조 슬롯 UI 초기화 (토글 버튼 포함)
+	_init_sijo_toggle()
 	_init_sijo_slots()
 
 	# 유물 바 UI 추가
@@ -122,6 +127,43 @@ func _start_battle() -> void:
 		_init_active_skill_button()
 
 
+func _init_sijo_toggle() -> void:
+	## 시조 슬롯 토글 버튼 + 요약 라벨 초기화
+	var sijo_area := $SijoArea
+	_sijo_toggle_button = Button.new()
+	_sijo_toggle_button.text = "▼"
+	_sijo_toggle_button.custom_minimum_size = Vector2(40, 40)
+	_sijo_toggle_button.add_theme_font_size_override("font_size", 16)
+	_sijo_toggle_button.pressed.connect(_on_sijo_toggle_pressed)
+	sijo_area.add_child(_sijo_toggle_button)
+	sijo_area.move_child(_sijo_toggle_button, 0)
+
+	_sijo_summary_label = Label.new()
+	_sijo_summary_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_sijo_summary_label.add_theme_font_size_override("font_size", 14)
+	_sijo_summary_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+	_sijo_summary_label.visible = false
+	sijo_area.add_child(_sijo_summary_label)
+
+
+func _on_sijo_toggle_pressed() -> void:
+	_sijo_collapsed = not _sijo_collapsed
+	sijo_container.visible = not _sijo_collapsed
+	_sijo_summary_label.visible = _sijo_collapsed
+	_sijo_toggle_button.text = "▶" if _sijo_collapsed else "▼"
+	if _sijo_collapsed:
+		_update_sijo_summary()
+
+
+func _update_sijo_summary() -> void:
+	## 축약 모드에서 시조 진행률을 한 줄로 표시
+	if not _sijo_summary_label:
+		return
+	var filled := sijo_system.current_slot_index if sijo_system else 0
+	var total := SijoSystem.PATTERN.size()
+	_sijo_summary_label.text = "시조 %d/%d" % [filled, total]
+
+
 func _init_sijo_slots() -> void:
 	sijo_slot_labels.clear()
 	for child in sijo_container.get_children():
@@ -135,6 +177,9 @@ func _init_sijo_slots() -> void:
 		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 		sijo_container.add_child(label)
 		sijo_slot_labels.append(label)
+
+	if _sijo_collapsed:
+		_update_sijo_summary()
 
 
 func _refresh_hand_ui() -> void:
@@ -281,6 +326,13 @@ func _on_card_played(hand_index: int, target_enemy_index: int) -> void:
 	battle_manager.try_play_card(hand_index, target_enemy_index)
 
 
+func _on_card_zoom_requested(card_data: CardData) -> void:
+	## 카드 상세보기 팝업 표시
+	var popup := CardZoomPopup.new()
+	add_child(popup)
+	popup.show_card(card_data)
+
+
 func _on_end_turn_pressed() -> void:
 	AudioManager.play_sfx_by_key("end_turn")
 	battle_manager.end_player_turn()
@@ -295,6 +347,8 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 		else:
 			sijo_slot_labels[index].text = card_id
 		sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+	if _sijo_collapsed:
+		_update_sijo_summary()
 
 
 func _on_sijo_completed(final_card_id: String) -> void:
