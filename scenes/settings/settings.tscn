@@ -45,7 +45,7 @@ theme_override_constants/separation = 20
 [node name="BGMLabel" type="Label" parent="VBoxContainer/BGMContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "배경음악"
 vertical_alignment = 1
 
@@ -65,7 +65,7 @@ theme_override_constants/separation = 20
 [node name="SFXLabel" type="Label" parent="VBoxContainer/SFXContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "효과음"
 vertical_alignment = 1
 
@@ -85,7 +85,7 @@ theme_override_constants/separation = 20
 [node name="VibrationLabel" type="Label" parent="VBoxContainer/VibrationContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "진동"
 vertical_alignment = 1
 
@@ -98,7 +98,7 @@ layout_mode = 2
 
 [node name="AccessibilityTitle" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 32
 text = "접근성"
 horizontal_alignment = 1
 
@@ -109,7 +109,7 @@ theme_override_constants/separation = 20
 [node name="FontSizeLabel" type="Label" parent="VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "글자 크기"
 vertical_alignment = 1
 
@@ -125,7 +125,7 @@ custom_minimum_size = Vector2(0, 50)
 [node name="FontSizeValue" type="Label" parent="VBoxContainer/FontSizeContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(60, 0)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -137,14 +137,14 @@ theme_override_constants/separation = 20
 [node name="ColorblindLabel" type="Label" parent="VBoxContainer/ColorblindContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "색맹 모드"
 vertical_alignment = 1
 
 [node name="ColorblindOption" type="OptionButton" parent="VBoxContainer/ColorblindContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 custom_minimum_size = Vector2(0, 50)
 
 [node name="ScreenShakeContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -154,7 +154,7 @@ theme_override_constants/separation = 20
 [node name="ScreenShakeLabel" type="Label" parent="VBoxContainer/ScreenShakeContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "화면 흔들림"
 vertical_alignment = 1
 
@@ -168,6 +168,6 @@ size_flags_vertical = 3
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
-theme_override_font_sizes/font_size = 28
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 36
 text = "돌아가기"

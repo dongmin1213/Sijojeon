@@ -38,7 +38,7 @@ vertical_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 theme_override_colors/font_color = Color(0.7, 0.65, 0.55, 1)
 text = "Sijojeon"
 horizontal_alignment = 1
@@ -50,38 +50,38 @@ custom_minimum_size = Vector2(0, 40)
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
-theme_override_font_sizes/font_size = 28
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 36
 text = "새 게임"
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
-theme_override_font_sizes/font_size = 28
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 36
 text = "이어하기"
 
 [node name="DailyChallengeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
-theme_override_font_sizes/font_size = 28
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 36
 text = "일일 도전"
 
 [node name="ChronicleButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
-theme_override_font_sizes/font_size = 28
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 36
 text = "연대기"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
-theme_override_font_sizes/font_size = 28
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 36
 text = "설정"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
-theme_override_font_sizes/font_size = 28
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 36
 text = "종료"
 
 [node name="VersionLabel" type="Label" parent="."]

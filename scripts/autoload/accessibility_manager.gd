@@ -1,7 +1,7 @@
 extends Node
 
 ## 접근성 관리 오토로드.
-## 글자 크기 배율과 색맹 모드를 전역으로 관리한다.
+## 글자 크기 배율, 색맹 모드, DPI 기반 스케일링을 전역으로 관리한다.
 
 ## 글자 크기 변경 시 emit. UI가 이 시그널을 받아 폰트 크기를 재적용한다.
 signal font_scale_changed(scale: float)
@@ -15,8 +15,18 @@ enum ColorblindMode {
 	TRITANOPIA = 2, ## 청황색맹
 }
 
-## 현재 글자 크기 배율 (0.8 ~ 1.5)
+## 기준 DPI (안드로이드 mdpi). 이 값 대비 실제 DPI 비율로 스케일 계산.
+const BASE_DPI := 160.0
+## 뷰포트 기준 너비 (project.godot의 viewport_width)
+const DESIGN_WIDTH := 1080.0
+## 최소/최대 DPI 스케일 팩터
+const MIN_DPI_SCALE := 1.0
+const MAX_DPI_SCALE := 2.0
+
+## 현재 글자 크기 배율 (0.8 ~ 1.5) — 사용자 설정
 var font_scale: float = 1.0
+## DPI 기반 자동 스케일 팩터 — 디바이스에 따라 자동 결정
+var dpi_scale: float = 1.0
 ## 현재 색맹 모드
 var colorblind_mode: int = ColorblindMode.NONE
 ## 화면 흔들림 활성화 여부
@@ -24,12 +34,45 @@ var screen_shake_enabled: bool = true
 
 
 func _ready() -> void:
+	# DPI 기반 콘텐츠 스케일 적용
+	_apply_dpi_scaling()
+
 	var settings := SaveManager.load_settings()
 	font_scale = settings.get("font_size_scale", 1.0)
 	colorblind_mode = settings.get("colorblind_mode", 0)
 	screen_shake_enabled = settings.get("screen_shake_enabled", true)
 	if colorblind_mode != ColorblindMode.NONE:
 		_apply_colorblind_shader(colorblind_mode)
+
+
+func _apply_dpi_scaling() -> void:
+	## 화면 DPI를 감지하여 content_scale_factor를 조정한다.
+	## 소형/고밀도 화면에서 UI가 너무 작아지는 문제를 해결.
+	var screen_dpi := DisplayServer.screen_get_dpi()
+	if screen_dpi <= 0:
+		screen_dpi = 160  # 감지 실패 시 기본값
+
+	# 화면 물리 너비(dp) 계산: 픽셀 너비 / (DPI / 160)
+	var screen_size := DisplayServer.screen_get_size()
+	var density := float(screen_dpi) / BASE_DPI
+	var screen_width_dp := float(screen_size.x) / density
+
+	# 화면이 작을수록 스케일을 높여 UI를 키운다.
+	# 기준: 물리 너비 360dp 이하이면 스케일 업 필요
+	# 뷰포트 1080px / 실제 dp 너비 = 논리 밀도. 360dp 기준으로 1.0
+	var ideal_scale := 1.0
+	if screen_width_dp < 400.0:
+		# 소형 화면: 스케일 업 (360dp 폴더블 → ~1.2배)
+		ideal_scale = 400.0 / screen_width_dp
+	elif screen_width_dp > 600.0:
+		# 태블릿/대형 화면: 스케일 다운 방지, 유지
+		ideal_scale = 1.0
+
+	dpi_scale = clampf(ideal_scale, MIN_DPI_SCALE, MAX_DPI_SCALE)
+
+	if dpi_scale > 1.0:
+		get_window().content_scale_factor = dpi_scale
+		print("[AccessibilityManager] DPI 스케일 적용: %.2f (DPI=%d, 화면폭=%ddp)" % [dpi_scale, screen_dpi, int(screen_width_dp)])
 
 
 func set_font_scale(scale: float) -> void:

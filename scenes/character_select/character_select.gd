@@ -171,7 +171,7 @@ func _build_character_cards() -> void:
 		# 캐릭터 이름
 		var name_label := Label.new()
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		name_label.add_theme_font_size_override("font_size", 22)
+		name_label.add_theme_font_size_override("font_size", 26)
 		if unlocked:
 			name_label.text = character["name"]
 		else:
@@ -202,28 +202,28 @@ func _build_character_cards() -> void:
 			if character["passive_name"] != "":
 				var passive_header := Label.new()
 				passive_header.text = "▶ 패시브: " + character["passive_name"]
-				passive_header.add_theme_font_size_override("font_size", 14)
+				passive_header.add_theme_font_size_override("font_size", 18)
 				passive_header.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
 				vbox.add_child(passive_header)
 
 				var passive_desc := Label.new()
 				passive_desc.text = character["passive_desc"]
 				passive_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				passive_desc.add_theme_font_size_override("font_size", 13)
+				passive_desc.add_theme_font_size_override("font_size", 16)
 				vbox.add_child(passive_desc)
 
 			# 액티브 스킬
 			if character["active_name"] != "":
 				var active_header := Label.new()
 				active_header.text = "▶ 액티브: " + character["active_name"]
-				active_header.add_theme_font_size_override("font_size", 14)
+				active_header.add_theme_font_size_override("font_size", 18)
 				active_header.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
 				vbox.add_child(active_header)
 
 				var active_desc := Label.new()
 				active_desc.text = character["active_desc"]
 				active_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				active_desc.add_theme_font_size_override("font_size", 13)
+				active_desc.add_theme_font_size_override("font_size", 16)
 				vbox.add_child(active_desc)
 
 			vbox.add_child(HSeparator.new())
@@ -232,14 +232,14 @@ func _build_character_cards() -> void:
 			if character["starting_relic_name"] != "":
 				var relic_label := Label.new()
 				relic_label.text = "시작 유물: " + character["starting_relic_name"]
-				relic_label.add_theme_font_size_override("font_size", 14)
+				relic_label.add_theme_font_size_override("font_size", 18)
 				relic_label.add_theme_color_override("font_color", Color(1.0, 0.75, 0.3))
 				vbox.add_child(relic_label)
 
 				var relic_effect := Label.new()
 				relic_effect.text = character["starting_relic_effect"]
 				relic_effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				relic_effect.add_theme_font_size_override("font_size", 12)
+				relic_effect.add_theme_font_size_override("font_size", 16)
 				vbox.add_child(relic_effect)
 
 			# 선택 버튼
@@ -362,7 +362,7 @@ func _create_achievement_panel() -> PanelContainer:
 	var title_row := HBoxContainer.new()
 	var title := Label.new()
 	title.text = "업적 목록"
-	title.add_theme_font_size_override("font_size", 26)
+	title.add_theme_font_size_override("font_size", 30)
 	title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title_row.add_child(title)
@@ -403,7 +403,7 @@ func _create_achievement_panel() -> PanelContainer:
 		else:
 			status_label.text = "☆"
 			status_label.add_theme_color_override("font_color", Color(0.4, 0.4, 0.4))
-		status_label.add_theme_font_size_override("font_size", 24)
+		status_label.add_theme_font_size_override("font_size", 28)
 		row.add_child(status_label)
 
 		# 업적 정보
@@ -413,7 +413,7 @@ func _create_achievement_panel() -> PanelContainer:
 
 		var name_label := Label.new()
 		name_label.text = ach.get("name", "")
-		name_label.add_theme_font_size_override("font_size", 18)
+		name_label.add_theme_font_size_override("font_size", 22)
 		if is_unlocked:
 			name_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
 		else:
@@ -422,7 +422,7 @@ func _create_achievement_panel() -> PanelContainer:
 
 		var desc_label := Label.new()
 		desc_label.text = ach.get("description", "")
-		desc_label.add_theme_font_size_override("font_size", 14)
+		desc_label.add_theme_font_size_override("font_size", 18)
 		desc_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 		info_vbox.add_child(desc_label)
 
@@ -431,7 +431,7 @@ func _create_achievement_panel() -> PanelContainer:
 		# 진행도 표시
 		var progress_label := Label.new()
 		progress_label.text = "%d / %d" % [progress["current"], progress["target"]]
-		progress_label.add_theme_font_size_override("font_size", 16)
+		progress_label.add_theme_font_size_override("font_size", 20)
 		if is_unlocked:
 			progress_label.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
 		else:
@@ -472,14 +472,14 @@ func _show_first_play_guide() -> void:
 	var guide_title := Label.new()
 	guide_title.text = "시조전에 오신 것을 환영합니다!"
 	guide_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	guide_title.add_theme_font_size_override("font_size", 32)
+	guide_title.add_theme_font_size_override("font_size", 36)
 	guide_title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	vbox.add_child(guide_title)
 
 	var guide_text := Label.new()
 	guide_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	guide_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	guide_text.add_theme_font_size_override("font_size", 20)
+	guide_text.add_theme_font_size_override("font_size", 24)
 	guide_text.text = """조선 시대를 배경으로 한 덱빌딩 로그라이크입니다.
 
 처음 플레이하시나요?
@@ -496,8 +496,8 @@ func _show_first_play_guide() -> void:
 
 	var tutorial_btn := Button.new()
 	tutorial_btn.text = "튜토리얼 시작"
-	tutorial_btn.add_theme_font_size_override("font_size", 24)
-	tutorial_btn.custom_minimum_size = Vector2(280, 60)
+	tutorial_btn.add_theme_font_size_override("font_size", 28)
+	tutorial_btn.custom_minimum_size = Vector2(320, 70)
 	tutorial_btn.pressed.connect(func():
 		overlay.queue_free()
 		GameManager.start_tutorial()
@@ -506,9 +506,9 @@ func _show_first_play_guide() -> void:
 
 	var skip_btn := Button.new()
 	skip_btn.text = "건너뛰기"
-	skip_btn.add_theme_font_size_override("font_size", 20)
+	skip_btn.add_theme_font_size_override("font_size", 24)
 	skip_btn.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
-	skip_btn.custom_minimum_size = Vector2(200, 60)
+	skip_btn.custom_minimum_size = Vector2(240, 70)
 	skip_btn.pressed.connect(func():
 		# 튜토리얼 완료 플래그 설정
 		var meta := SaveManager.load_meta()

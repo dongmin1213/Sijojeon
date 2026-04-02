@@ -42,11 +42,13 @@ alignment = 1
 theme_override_constants/separation = 20
 
 [node name="BackButton" type="Button" parent="VBoxContainer/ButtonRow"]
-custom_minimum_size = Vector2(120, 40)
+custom_minimum_size = Vector2(160, 70)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "뒤로"
 
 [node name="StartButton" type="Button" parent="VBoxContainer/ButtonRow"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(240, 70)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "시작"

@@ -384,7 +384,7 @@ func _show_card_gain_selection(choice: Dictionary) -> void:
 	var header := Label.new()
 	header.text = "카드를 선택하세요 (1장)"
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	header.add_theme_font_size_override("font_size", 18)
+	header.add_theme_font_size_override("font_size", 22)
 	header.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	choice_container.add_child(header)
 
@@ -401,7 +401,7 @@ func _show_card_gain_selection(choice: Dictionary) -> void:
 			continue
 		var btn := Button.new()
 		btn.text = _format_card_choice_text(card)
-		btn.custom_minimum_size = Vector2(200, 100)
+		btn.custom_minimum_size = Vector2(240, 110)
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		var cid := card_id
 		var cname := card.get_display_name()
