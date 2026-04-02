@@ -350,6 +350,31 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 	if _sijo_collapsed:
 		_update_sijo_summary()
 
+	# 부분 완성 보상
+	match index:
+		2:  # 3/6 슬롯 완성 (초장 완성): 기 +1
+			battle_manager.current_qi = mini(battle_manager.current_qi + 1, battle_manager.max_qi)
+			battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+			_show_sijo_reward_popup("초장 완성! 기 +1")
+		3:  # 4/6 슬롯 완성 (중장 완성): 카드 1장 드로우
+			battle_manager.draw_cards(1)
+			_show_sijo_reward_popup("중장 완성! 카드 드로우")
+
+
+## 시조 부분 완성 보상 팝업 텍스트를 표시한다.
+func _show_sijo_reward_popup(text: String) -> void:
+	var popup := Label.new()
+	popup.text = text
+	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	popup.anchors_preset = Control.PRESET_CENTER_TOP
+	popup.position.y = 120
+	popup.add_theme_font_size_override("font_size", 16)
+	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.5))
+	add_child(popup)
+	var tween := create_tween()
+	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
+	tween.tween_callback(popup.queue_free)
+
 
 func _on_sijo_completed(final_card_id: String) -> void:
 	AudioManager.play_sfx_by_key("sijo_complete")

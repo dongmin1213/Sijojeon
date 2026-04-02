@@ -121,8 +121,14 @@ func _on_choice_selected(choice: Dictionary) -> void:
 		_show_result("아무 일도 일어나지 않았다.")
 		return
 
-	var result_text: String = ""
 	var effect_type: String = str(choice.get("effect_type", "none"))
+
+	# card_gain 효과는 카드 선택 UI를 별도로 표시
+	if effect_type == "card_gain":
+		_show_card_gain_selection(choice)
+		return
+
+	var result_text: String = ""
 
 	# 메인 효과 적용
 	result_text = _apply_effect(choice, effect_type)
@@ -194,7 +200,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			return str(choice.get("result_text", "유물 획득!"))
 
 		"card_gain":
-			# TODO: 카드 선택 UI 추가 시 확장
+			# _on_choice_selected에서 card_gain 분기 처리 — 여기까지 오면 fallback
 			return str(choice.get("result_text", "카드 획득."))
 
 		"debuff":
@@ -279,7 +285,11 @@ func _apply_random_outcome(choice: Dictionary) -> String:
 		"hp_loss":
 			rd.current_hp = maxi(rd.current_hp - sub_value, 0)
 		"card_gain":
-			pass  # TODO: 카드 선택 UI
+			# 랜덤 카드 1장을 덱에 추가 (random 결과 내 중첩 card_gain은 단순 지급)
+			var rand_offers := _generate_card_offers(1)
+			if not rand_offers.is_empty():
+				rd.deck.append(rand_offers[0])
+				AudioManager.play_sfx_by_key("card_draw")
 		"relic_gain":
 			var relic_id := RelicManager.roll_relic_reward("event")
 			if relic_id != "":
@@ -362,6 +372,74 @@ func _update_status_bar() -> void:
 	else:
 		hp_label.text = "HP: --/--"
 		gold_label.text = "엽전: --"
+
+
+## 카드 획득 이벤트: 3장 중 1장 선택 UI를 표시한다.
+func _show_card_gain_selection(choice: Dictionary) -> void:
+	# 기존 선택지 지우기
+	for child in choice_container.get_children():
+		child.queue_free()
+
+	# 안내 라벨
+	var header := Label.new()
+	header.text = "카드를 선택하세요 (1장)"
+	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	header.add_theme_font_size_override("font_size", 18)
+	header.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	choice_container.add_child(header)
+
+	var offers := _generate_card_offers(3)
+	var base_result: String = str(choice.get("result_text", "카드를 덱에 추가했습니다."))
+
+	if offers.is_empty():
+		_show_result(base_result)
+		return
+
+	for card_id in offers:
+		var card: CardData = DataLoader.get_card(card_id)
+		if card == null:
+			continue
+		var btn := Button.new()
+		btn.text = _format_card_choice_text(card)
+		btn.custom_minimum_size = Vector2(200, 100)
+		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		var cid := card_id
+		var cname := card.get_display_name()
+		btn.pressed.connect(func():
+			GameManager.run_data.deck.append(cid)
+			AudioManager.play_sfx_by_key("card_draw")
+			_show_result("%s\n[%s]를 덱에 추가했습니다." % [base_result, cname])
+		)
+		choice_container.add_child(btn)
+
+
+## 카드 풀에서 count장의 랜덤 카드 ID 목록을 반환한다.
+func _generate_card_offers(count: int) -> Array[String]:
+	if not GameManager.run_data:
+		return []
+	var character_id: String = GameManager.run_data.character_id
+	var pool: Array[CardData] = []
+	pool.append_array(DataLoader.get_cards_by_pool(character_id))
+	pool.append_array(DataLoader.get_cards_by_pool("common"))
+	pool.shuffle()
+	var result: Array[String] = []
+	for i in mini(count, pool.size()):
+		result.append(pool[i].id)
+	return result
+
+
+## 카드 선택 버튼에 표시할 텍스트를 포맷한다.
+func _format_card_choice_text(card: CardData) -> String:
+	var lines: Array[String] = []
+	lines.append(card.get_display_name())
+	lines.append("비용: %d 기  음보: %d" % [card.cost, card.beat])
+	if card.damage > 0:
+		lines.append("피해: %d%s" % [card.damage, " (전체)" if card.is_aoe else ""])
+	if card.block_value > 0:
+		lines.append("방어: %d" % card.block_value)
+	if card.effect != "":
+		lines.append(card.effect)
+	return "\n".join(lines)
 
 
 func _return_to_map() -> void:
