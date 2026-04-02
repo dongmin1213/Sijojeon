@@ -18,27 +18,34 @@ var sfx_volume: float = 0.8:
 	set(value):
 		sfx_volume = clampf(value, 0.0, 1.0)
 
-## 씬별 BGM 경로 (플레이스홀더 — 실제 파일 추가 시 활성화)
+## 씬별 BGM 경로 (5음 음계 기반 플레이스홀더 WAV — 추후 전문 에셋으로 교체)
 const BGM_PATHS := {
-	"title": "res://art/audio/bgm/title.ogg",
-	"map": "res://art/audio/bgm/map.ogg",
-	"battle": "res://art/audio/bgm/battle.ogg",
-	"shop": "res://art/audio/bgm/shop.ogg",
-	"rest": "res://art/audio/bgm/rest.ogg",
-	"boss": "res://art/audio/bgm/boss.ogg",
+	"title": "res://art/audio/bgm/title.wav",
+	"map": "res://art/audio/bgm/map.wav",
+	"battle": "res://art/audio/bgm/battle.wav",
+	"shop": "res://art/audio/bgm/shop.wav",
+	"rest": "res://art/audio/bgm/rest.wav",
+	"boss": "res://art/audio/bgm/boss.wav",
 }
 
 ## SFX 경로
 const SFX_PATHS := {
-	"card_play": "res://art/audio/sfx/card_play.ogg",
-	"card_draw": "res://art/audio/sfx/card_draw.ogg",
-	"damage": "res://art/audio/sfx/damage.ogg",
-	"heal": "res://art/audio/sfx/heal.ogg",
-	"block": "res://art/audio/sfx/block.ogg",
-	"victory": "res://art/audio/sfx/victory.ogg",
-	"defeat": "res://art/audio/sfx/defeat.ogg",
-	"button_click": "res://art/audio/sfx/button_click.ogg",
-	"coin": "res://art/audio/sfx/coin.ogg",
+	"card_play": "res://art/audio/sfx/card_play.wav",
+	"card_draw": "res://art/audio/sfx/card_draw.wav",
+	"damage": "res://art/audio/sfx/damage.wav",
+	"heal": "res://art/audio/sfx/heal.wav",
+	"block": "res://art/audio/sfx/block.wav",
+	"victory": "res://art/audio/sfx/victory.wav",
+	"defeat": "res://art/audio/sfx/defeat.wav",
+	"button_click": "res://art/audio/sfx/button_click.wav",
+	"coin": "res://art/audio/sfx/coin.wav",
+	"buff": "res://art/audio/sfx/buff.wav",
+	"debuff": "res://art/audio/sfx/debuff.wav",
+	"enemy_attack": "res://art/audio/sfx/enemy_attack.wav",
+	"sijo_slot": "res://art/audio/sfx/sijo_slot.wav",
+	"sijo_complete": "res://art/audio/sfx/sijo_complete.wav",
+	"end_turn": "res://art/audio/sfx/end_turn.wav",
+	"upgrade": "res://art/audio/sfx/upgrade.wav",
 }
 
 ## 캐시된 스트림
