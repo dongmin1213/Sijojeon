@@ -684,8 +684,8 @@ func _on_battle_ended(victory: bool) -> void:
 	# 전투 결과 오버레이 표시
 	_show_battle_result(victory)
 
-	# 1.5초 후 씬 전환
-	var timer := get_tree().create_timer(1.5)
+	# 1.0초 후 씬 전환 (VFX 플래시 0.3초 + 결과 텍스트 읽기 시간)
+	var timer := get_tree().create_timer(1.0)
 	await timer.timeout
 	if victory:
 		# 유물 트리거: 전투 승리

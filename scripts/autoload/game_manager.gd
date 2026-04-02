@@ -24,6 +24,7 @@ const MAX_ACT := 3
 
 var current_state: GameState = GameState.TITLE
 var run_data: RunData = null
+var _transitioning: bool = false  # 씬 전환 중복 호출 방지
 
 signal state_changed(new_state: GameState)
 
@@ -61,6 +62,9 @@ func _get_scene_path(state: GameState) -> String:
 
 
 func change_state(new_state: GameState) -> void:
+	# 씬 전환 중복 호출 방지 (빠른 연속 터치 대응)
+	if _transitioning:
+		return
 	current_state = new_state
 	state_changed.emit(new_state)
 
@@ -68,7 +72,10 @@ func change_state(new_state: GameState) -> void:
 	var scene_path := _get_scene_path(new_state)
 	if scene_path != "":
 		if ResourceLoader.exists(scene_path):
+			_transitioning = true
 			get_tree().change_scene_to_file(scene_path)
+			# 다음 프레임에 전환 잠금 해제 (새 씬 _ready() 이후)
+			get_tree().process_frame.connect(func(): _transitioning = false, CONNECT_ONE_SHOT)
 		else:
 			push_warning("GameManager: 씬 파일 없음 — %s (상태: %s)" % [scene_path, GameState.keys()[new_state]])
 

@@ -291,6 +291,8 @@ func _scroll_to_current() -> void:
 func _on_node_pressed(node_id: int) -> void:
 	if node_id not in _available_node_ids:
 		return
+	# 중복 클릭 방지: 첫 클릭 후 즉시 비활성화
+	_available_node_ids.clear()
 
 	var run_map := GameManager.run_data.run_map
 	var map_node: MapData.MapNode = run_map.nodes[node_id]
