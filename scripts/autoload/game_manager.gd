@@ -113,7 +113,8 @@ func start_new_run(character_id: String, ascension_level: int = 0) -> void:
 	# 기본 덱 로드
 	run_data.deck = DataLoader.get_starter_deck(character_id)
 	if run_data.deck.is_empty():
-		push_error("GameManager: 스타터 덱이 비어있음 — character_id=%s" % character_id)
+		push_error("GameManager: 스타터 덱이 비어있음 — character_id=%s, 기본 덱 사용" % character_id)
+		run_data.deck = ["C001", "C001", "C001", "C001", "C002", "C002", "C002", "C003", "C003", "C004"]
 
 	# 시작 유물
 	if skills_data and skills_data.has("starting_relic"):
@@ -371,3 +372,5 @@ func is_tutorial_completed() -> bool:
 func start_tutorial() -> void:
 	## 튜토리얼 전투를 시작한다.
 	change_state(GameState.TUTORIAL)
+
+

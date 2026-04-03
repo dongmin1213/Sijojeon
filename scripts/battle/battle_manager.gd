@@ -84,9 +84,15 @@ func _ready() -> void:
 
 func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, max_hp: int, qi: int, character_id: String = "") -> void:
 	if deck.is_empty():
-		push_error("BattleManager.start_battle: 덱이 비어있음")
+		push_error("BattleManager.start_battle: 덱이 비어있음 — 기본 카드 추가")
+		deck = ["C001", "C001", "C001", "C002", "C002"]  # 최소 플레이 가능한 안전 덱
 	if enemy_data.is_empty():
-		push_error("BattleManager.start_battle: 적 데이터가 비어있음")
+		push_error("BattleManager.start_battle: 적 데이터가 비어있음 — 기본 적 추가")
+		var fallback := DataLoader.get_enemy("E001")
+		if not fallback.is_empty():
+			enemy_data.append(fallback)
+		else:
+			enemy_data.append({"id": "E001", "name": {"ko": "허수아비"}, "hp": 20, "intents": []})
 	if max_hp <= 0:
 		push_error("BattleManager.start_battle: max_hp가 0 이하 — %d" % max_hp)
 		max_hp = 1
@@ -128,7 +134,7 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 
 	# 적 초기화 (어센션 HP 스케일링 적용)
 	var hp_mult := GameManager.get_ascension_enemy_hp_multiplier()
-	var is_boss_fight := GameManager.run_data and GameManager.run_data.current_node_type == 4  # BOSS
+	var is_boss_fight := GameManager.run_data and GameManager.run_data.current_node_type == MapData.NodeType.BOSS
 	if is_boss_fight:
 		hp_mult = GameManager.get_ascension_boss_hp_multiplier()
 	enemies.clear()
