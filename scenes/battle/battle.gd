@@ -38,6 +38,12 @@ var _active_skill_button: Button = null
 # 적 UI 캐시 (index → {panel, name_label, hp_label, block_label, intent_label, status_hbox})
 var _enemy_ui_cache: Dictionary = {}
 
+# 상태이상 아이콘 캐시 (target → {effect_id → {panel, label}})
+var _status_icon_cache: Dictionary = {}
+
+# 적 UI 업데이트 배칭용 dirty flag
+var _enemy_ui_dirty: bool = false
+
 
 func _ready() -> void:
 	# VFX 매니저 초기화
@@ -228,6 +234,19 @@ func _refresh_hand_ui() -> void:
 	discard_pile_label.text = "버림: %d" % battle_manager.discard_pile.size()
 
 
+func _mark_enemy_ui_dirty() -> void:
+	## 적 UI 업데이트를 예약. 같은 프레임 내 중복 호출을 방지한다.
+	if not _enemy_ui_dirty:
+		_enemy_ui_dirty = true
+		call_deferred("_deferred_update_enemy_ui")
+
+
+func _deferred_update_enemy_ui() -> void:
+	## call_deferred로 호출되어 프레임당 1회만 실행된다.
+	_enemy_ui_dirty = false
+	_update_enemy_ui()
+
+
 func _update_enemy_ui() -> void:
 	## 적 UI를 캐시 기반으로 업데이트. 노드를 매번 재생성하지 않는다.
 	var alive_indices: Array[int] = []
@@ -395,11 +414,11 @@ func _on_enemy_hp_changed(enemy_index: int, current: int, max_val: int) -> void:
 			var pos := cache["panel"].global_position + Vector2(cache["panel"].size.x / 2.0, 30)
 			vfx.spawn_damage_number(self, pos, diff)
 			vfx.shake_node(cache["panel"])
-	_update_enemy_ui()
+	_mark_enemy_ui_dirty()
 
 
 func _on_enemy_intent_shown(_enemy_index: int, _intent: Dictionary) -> void:
-	_update_enemy_ui()
+	_mark_enemy_ui_dirty()
 
 
 func _on_card_played(hand_index: int, target_enemy_index: int) -> void:
@@ -556,8 +575,11 @@ func _on_passive_triggered(skill_name: String, description: String) -> void:
 
 
 func _on_status_effect_changed(target: String, _effect_id: String, _stacks: int) -> void:
-	_update_player_status_ui()
-	_update_enemy_ui()
+	# 대상에 따라 필요한 UI만 업데이트
+	if target == "player":
+		_update_player_status_ui()
+	elif target.begins_with("enemy_"):
+		_mark_enemy_ui_dirty()
 	# 상태효과 적용 시 바운스 VFX
 	if vfx:
 		if target == "player" and is_instance_valid(_player_status_container):
@@ -596,57 +618,79 @@ func _update_player_status_ui() -> void:
 
 
 func _build_status_icons(container: HBoxContainer, target: String) -> void:
-	## 상태이상 아이콘 + 턴 카운터를 HBoxContainer에 배치. 탭/클릭으로 키워드 툴팁 표시.
-	for child in container.get_children():
-		child.queue_free()
-
+	## 상태이상 아이콘을 캐시 기반으로 업데이트. 변경된 부분만 갱신한다.
 	if battle_manager.status_effects == null:
+		# 효과 없음 — 기존 아이콘 모두 숨기기
+		if _status_icon_cache.has(target):
+			for eid in _status_icon_cache[target]:
+				_status_icon_cache[target][eid]["panel"].visible = false
 		return
+
 	var effects := battle_manager.status_effects.get_all_effects(target)
-	if effects.is_empty():
-		return
+
+	if not _status_icon_cache.has(target):
+		_status_icon_cache[target] = {}
+	var cache: Dictionary = _status_icon_cache[target]
+
+	# 사라진 효과 숨기기
+	for cached_eid in cache:
+		if not effects.has(cached_eid):
+			cache[cached_eid]["panel"].visible = false
 
 	for effect_id in effects:
 		var stacks: int = effects[effect_id]
 		var def := StatusEffectData.get_definition(effect_id)
 
-		var icon_panel := PanelContainer.new()
-		var stylebox := StyleBoxFlat.new()
-		stylebox.bg_color = Color(0.15, 0.15, 0.15, 0.9)
-		stylebox.border_color = def.color if def else Color.GRAY
-		stylebox.set_border_width_all(1)
-		stylebox.set_corner_radius_all(4)
-		stylebox.set_content_margin_all(4)
-		icon_panel.add_theme_stylebox_override("panel", stylebox)
-		icon_panel.mouse_filter = Control.MOUSE_FILTER_STOP
-
-		var label := Label.new()
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.add_theme_font_size_override("font_size", 11)
-
-		if def:
-			label.add_theme_color_override("font_color", def.color)
-			if def.is_permanent:
-				label.text = "%s%d" % [def.icon_text, stacks]
-			elif def.show_duration:
-				label.text = "%s%d" % [def.icon_text, stacks]
+		if cache.has(effect_id):
+			# 캐시된 아이콘 텍스트만 업데이트
+			var entry: Dictionary = cache[effect_id]
+			entry["panel"].visible = true
+			var label: Label = entry["label"]
+			if def:
+				if def.is_permanent or def.show_duration:
+					label.text = "%s%d" % [def.icon_text, stacks]
+				else:
+					label.text = def.icon_text
 			else:
-				label.text = def.icon_text
-			label.tooltip_text = "%s: %s" % [def.name_ko, def.description]
+				label.text = "%s×%d" % [effect_id, stacks]
 		else:
-			label.text = "%s×%d" % [effect_id, stacks]
-			label.add_theme_color_override("font_color", Color.GRAY)
+			# 새 아이콘 생성
+			var icon_panel := PanelContainer.new()
+			var stylebox := StyleBoxFlat.new()
+			stylebox.bg_color = Color(0.15, 0.15, 0.15, 0.9)
+			stylebox.border_color = def.color if def else Color.GRAY
+			stylebox.set_border_width_all(1)
+			stylebox.set_corner_radius_all(4)
+			stylebox.set_content_margin_all(4)
+			icon_panel.add_theme_stylebox_override("panel", stylebox)
+			icon_panel.mouse_filter = Control.MOUSE_FILTER_STOP
 
-		icon_panel.add_child(label)
-		container.add_child(icon_panel)
+			var label := Label.new()
+			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			label.add_theme_font_size_override("font_size", 11)
 
-		# 클릭/탭으로 키워드 툴팁 표시
-		var eid := effect_id  # 클로저 캡처용
-		icon_panel.gui_input.connect(func(event: InputEvent):
-			if event is InputEventMouseButton and event.pressed:
-				if _keyword_tooltip:
-					_keyword_tooltip.show_tooltip(eid, icon_panel.global_position + Vector2(0, icon_panel.size.y + 5))
-		)
+			if def:
+				label.add_theme_color_override("font_color", def.color)
+				if def.is_permanent or def.show_duration:
+					label.text = "%s%d" % [def.icon_text, stacks]
+				else:
+					label.text = def.icon_text
+				label.tooltip_text = "%s: %s" % [def.name_ko, def.description]
+			else:
+				label.text = "%s×%d" % [effect_id, stacks]
+				label.add_theme_color_override("font_color", Color.GRAY)
+
+			icon_panel.add_child(label)
+			container.add_child(icon_panel)
+			cache[effect_id] = {"panel": icon_panel, "label": label}
+
+			# 클릭/탭으로 키워드 툴팁 표시
+			var eid := effect_id  # 클로저 캡처용
+			icon_panel.gui_input.connect(func(event: InputEvent):
+				if event is InputEventMouseButton and event.pressed:
+					if _keyword_tooltip:
+						_keyword_tooltip.show_tooltip(eid, icon_panel.global_position + Vector2(0, icon_panel.size.y + 5))
+			)
 
 
 func _format_status_effects(target: String) -> String:
