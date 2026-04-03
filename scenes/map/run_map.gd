@@ -122,15 +122,26 @@ func _apply_map_background(color: Color) -> void:
 func _build_map() -> void:
 	var run_map := GameManager.run_data.run_map
 	var viewport_width: float = get_viewport_rect().size.x
+	var viewport_height: float = get_viewport_rect().size.y
 	var scale_factor: float = viewport_width / BASE_VIEWPORT_WIDTH
 
 	# 스케일링된 상수
 	var node_size := BASE_NODE_SIZE * scale_factor
-	var row_spacing := BASE_ROW_SPACING * scale_factor
 	var padding_x := BASE_MAP_PADDING_X * scale_factor
 	var padding_top := BASE_MAP_PADDING_TOP * scale_factor
 	var padding_bottom := BASE_MAP_PADDING_BOTTOM * scale_factor
 	var font_size := int(16.0 * scale_factor)
+
+	# 행 간격: 뷰포트 높이에 맞춰 동적 계산 (노드가 화면에 균등 분포)
+	var available_height: float = viewport_height - padding_top - padding_bottom - node_size.y
+	var row_spacing: float
+	if run_map.total_rows > 1:
+		row_spacing = available_height / (run_map.total_rows - 1)
+	else:
+		row_spacing = 0.0
+	# 최소 간격 보장
+	var min_row_spacing: float = BASE_ROW_SPACING * scale_factor
+	row_spacing = maxf(row_spacing, min_row_spacing)
 
 	# 맵 전체 높이 계산 (아래에서 위로: row 0 = 하단, boss = 상단)
 	var total_height: float = padding_top + padding_bottom + (run_map.total_rows - 1) * row_spacing + node_size.y
