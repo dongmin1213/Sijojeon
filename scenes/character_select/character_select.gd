@@ -34,7 +34,8 @@ func _ready() -> void:
 	_build_character_list()
 	_build_character_cards()
 	_build_achievement_button()
-	_show_first_play_guide()
+	# 가이드 오버레이는 카드 렌더링 후 표시 (deferred)
+	call_deferred("_show_first_play_guide")
 
 
 func _load_unlock_conditions() -> void:
@@ -194,6 +195,10 @@ func _build_character_cards() -> void:
 		push_warning("CharacterSelect: _character_list 비어있음 — 카드 생성 건너뜀")
 		return
 
+	# CardContainer에 최소 높이 보장 (레이아웃 붕괴 방지)
+	card_container.custom_minimum_size = Vector2(0, panel_min_h)
+	print("[CharacterSelect] 카드 생성 시작: %d개, vp=%s, ui_scale=%.2f" % [_character_list.size(), str(vp_size), ui_scale])
+
 	for i in _character_list.size():
 		var character: Dictionary = _character_list[i]
 		var unlocked: bool = character["unlocked"]
@@ -201,6 +206,20 @@ func _build_character_cards() -> void:
 		var panel := PanelContainer.new()
 		panel.custom_minimum_size = Vector2(panel_min_w, panel_min_h)
 		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+		# 카드 패널에 명확한 테두리·배경 스타일 적용 (어두운 배경과 구별)
+		var card_style := StyleBoxFlat.new()
+		card_style.bg_color = Color(0.12, 0.12, 0.18, 0.95)
+		card_style.border_color = Color(0.5, 0.4, 0.25)
+		card_style.border_width_top = 2
+		card_style.border_width_bottom = 2
+		card_style.border_width_left = 2
+		card_style.border_width_right = 2
+		card_style.corner_radius_top_left = 8
+		card_style.corner_radius_top_right = 8
+		card_style.corner_radius_bottom_left = 8
+		card_style.corner_radius_bottom_right = 8
+		panel.add_theme_stylebox_override("panel", card_style)
 
 		var margin := MarginContainer.new()
 		margin.add_theme_constant_override("margin_left", margin_h)
@@ -321,7 +340,7 @@ func _build_character_cards() -> void:
 			panel.modulate = Color(0.5, 0.5, 0.5)
 
 		card_container.add_child(panel)
-
+		print("[CharacterSelect] 카드 추가: %s (unlocked=%s, size=%s)" % [character["name"], str(unlocked), str(panel.custom_minimum_size)])
 
 func _select_character(index: int) -> void:
 	if not _character_list[index]["unlocked"]:
@@ -359,6 +378,7 @@ func _build_achievement_button() -> void:
 
 	var ach_button := Button.new()
 	ach_button.text = "업적 (%d/%d)" % [unlocked_ids.size(), total]
+	ach_button.add_theme_font_size_override("font_size", 32)
 	ach_button.pressed.connect(_toggle_achievement_panel)
 	$VBoxContainer/ButtonRow.add_child(ach_button)
 
@@ -376,6 +396,10 @@ func _toggle_achievement_panel() -> void:
 
 
 func _create_achievement_panel() -> PanelContainer:
+	# 뷰포트 비례 스케일링
+	var vp_size := get_viewport().get_visible_rect().size
+	var ach_ui_scale := minf(vp_size.x / 1080.0, vp_size.y / 1920.0)
+
 	var panel := PanelContainer.new()
 	panel.anchor_left = 0.05
 	panel.anchor_right = 0.95
@@ -409,13 +433,14 @@ func _create_achievement_panel() -> PanelContainer:
 	var title_row := HBoxContainer.new()
 	var title := Label.new()
 	title.text = "업적 목록"
-	title.add_theme_font_size_override("font_size", 30)
+	title.add_theme_font_size_override("font_size", int(30 * ach_ui_scale))
 	title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title_row.add_child(title)
 
 	var close_btn := Button.new()
 	close_btn.text = "닫기"
+	close_btn.add_theme_font_size_override("font_size", int(28 * ach_ui_scale))
 	close_btn.pressed.connect(_toggle_achievement_panel)
 	title_row.add_child(close_btn)
 	outer_vbox.add_child(title_row)
@@ -450,7 +475,7 @@ func _create_achievement_panel() -> PanelContainer:
 		else:
 			status_label.text = "☆"
 			status_label.add_theme_color_override("font_color", Color(0.4, 0.4, 0.4))
-		status_label.add_theme_font_size_override("font_size", 28)
+		status_label.add_theme_font_size_override("font_size", int(28 * ach_ui_scale))
 		row.add_child(status_label)
 
 		# 업적 정보
@@ -460,7 +485,7 @@ func _create_achievement_panel() -> PanelContainer:
 
 		var name_label := Label.new()
 		name_label.text = ach.get("name", "")
-		name_label.add_theme_font_size_override("font_size", 22)
+		name_label.add_theme_font_size_override("font_size", int(22 * ach_ui_scale))
 		if is_unlocked:
 			name_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
 		else:
@@ -469,7 +494,7 @@ func _create_achievement_panel() -> PanelContainer:
 
 		var desc_label := Label.new()
 		desc_label.text = ach.get("description", "")
-		desc_label.add_theme_font_size_override("font_size", 18)
+		desc_label.add_theme_font_size_override("font_size", int(18 * ach_ui_scale))
 		desc_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 		info_vbox.add_child(desc_label)
 
@@ -478,7 +503,7 @@ func _create_achievement_panel() -> PanelContainer:
 		# 진행도 표시
 		var progress_label := Label.new()
 		progress_label.text = "%d / %d" % [progress["current"], progress["target"]]
-		progress_label.add_theme_font_size_override("font_size", 20)
+		progress_label.add_theme_font_size_override("font_size", int(20 * ach_ui_scale))
 		if is_unlocked:
 			progress_label.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
 		else:
@@ -510,6 +535,8 @@ func _show_first_play_guide() -> void:
 	var overlay := ColorRect.new()
 	overlay.color = Color(0.0, 0.0, 0.0, 0.85)
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.z_index = 10  # 카드 위에 확실히 표시
+	overlay.mouse_filter = Control.MOUSE_FILTER_STOP  # 하위 입력 차단
 
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
