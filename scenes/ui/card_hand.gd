@@ -27,9 +27,27 @@ var dragging_index: int = -1
 var current_qi: int = 0
 var next_sijo_beat: int = -1  # 시조 시스템의 다음 필요 비트
 
+# 배치 최적화: dirty flag로 프레임당 최대 1회 재배치
+var _layout_dirty: bool = false
+
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	set_process(false)
+
+
+func _process(_delta: float) -> void:
+	if _layout_dirty:
+		_layout_dirty = false
+		_arrange_cards()
+		set_process(false)
+
+
+func _mark_layout_dirty() -> void:
+	## 레이아웃 재계산을 다음 프레임으로 지연시킨다.
+	if not _layout_dirty:
+		_layout_dirty = true
+		set_process(true)
 
 
 func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleManager = null) -> void:
@@ -144,28 +162,28 @@ func _on_card_clicked(hand_index: int) -> void:
 		card_played.emit(hand_index, 0)
 		selected_index = -1
 		_deselect_all()
-		_arrange_cards()
+		_mark_layout_dirty()
 	else:
 		# 카드 선택
 		_deselect_all()
 		selected_index = hand_index
 		if hand_index >= 0 and hand_index < card_widgets.size():
 			card_widgets[hand_index].set_selected(true)
-		_arrange_cards()
+		_mark_layout_dirty()
 
 
 func _on_card_hovered(hand_index: int) -> void:
 	if dragging_index >= 0:
 		return
 	hovered_index = hand_index
-	_arrange_cards()
+	_mark_layout_dirty()
 
 
 func _on_card_unhovered(_hand_index: int) -> void:
 	if dragging_index >= 0:
 		return
 	hovered_index = -1
-	_arrange_cards()
+	_mark_layout_dirty()
 
 
 func _on_card_drag_started(hand_index: int) -> void:
@@ -183,7 +201,7 @@ func _on_card_drag_ended(hand_index: int, played: bool) -> void:
 		card_played.emit(hand_index, 0)
 	else:
 		# 원래 위치로 복원
-		_arrange_cards()
+		_mark_layout_dirty()
 
 
 func play_selected_on_target(target_enemy_index: int) -> void:

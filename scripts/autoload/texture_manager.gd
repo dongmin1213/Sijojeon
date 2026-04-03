@@ -158,28 +158,25 @@ func _get_placeholder(category: AssetCategory, asset_id: String, size: Vector2i)
 
 func _create_placeholder_texture(size: Vector2i, bg_color: Color, label_text: String) -> ImageTexture:
 	## 단색 배경 + 중앙 라벨이 있는 placeholder 이미지를 생성한다.
+	## fill_rect()로 일괄 처리하여 set_pixel() 루프 대비 성능 향상.
 	var img := Image.create(size.x, size.y, false, Image.FORMAT_RGBA8)
 
 	# 배경 채우기
 	img.fill(bg_color)
 
-	# 테두리 그리기 (2px)
+	# 테두리 그리기 (2px) — fill_rect로 4개 사각형을 직접 덮어쓰기
 	var border_color := bg_color.lightened(0.3)
-	for x in size.x:
-		for y in [0, 1, size.y - 2, size.y - 1]:
-			img.set_pixel(x, y, border_color)
-	for y in size.y:
-		for x in [0, 1, size.x - 2, size.x - 1]:
-			img.set_pixel(x, y, border_color)
+	img.fill_rect(Rect2i(0, 0, size.x, 2), border_color)           # 상단
+	img.fill_rect(Rect2i(0, size.y - 2, size.x, 2), border_color)  # 하단
+	img.fill_rect(Rect2i(0, 0, 2, size.y), border_color)           # 좌측
+	img.fill_rect(Rect2i(size.x - 2, 0, 2, size.y), border_color)  # 우측
 
-	# 중앙에 십자 패턴 (에셋 위치 표시)
+	# 중앙에 십자 패턴 (에셋 위치 표시) — fill_rect로 2개 직선
 	var cx := size.x / 2
 	var cy := size.y / 2
 	var cross_color := bg_color.lightened(0.15)
-	for i in range(-20, 21):
-		if cx + i >= 0 and cx + i < size.x:
-			img.set_pixel(cx + i, cy, cross_color)
-		if cy + i >= 0 and cy + i < size.y:
-			img.set_pixel(cx, cy + i, cross_color)
+	var cross_half := mini(20, mini(cx, cy))
+	img.fill_rect(Rect2i(cx - cross_half, cy, cross_half * 2 + 1, 1), cross_color)  # 수평선
+	img.fill_rect(Rect2i(cx, cy - cross_half, 1, cross_half * 2 + 1), cross_color)  # 수직선
 
 	return ImageTexture.create_from_image(img)

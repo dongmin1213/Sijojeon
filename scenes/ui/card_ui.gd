@@ -36,6 +36,10 @@ var original_z_index: int = 0
 const DRAG_THRESHOLD := 15.0   # 드래그 시작 최소 거리 (px)
 const PLAY_THRESHOLD := 80.0   # 위로 드래그 시 카드 플레이 최소 거리 (px)
 const LONG_PRESS_TIME := 0.5   # 길게 누르기 감지 시간 (초)
+const DRAG_MOVE_THRESHOLD_SQ := 4.0  # 드래그 중 미세 이동 무시 임계값 (2px^2)
+
+# 드래그 중 마지막 처리 위치
+var _last_drag_global_pos: Vector2 = Vector2.ZERO
 
 # 길게 누르기 상태
 var _long_press_timer: Timer = null
@@ -264,15 +268,20 @@ func _on_gui_input(event: InputEvent) -> void:
 			return
 		if is_playable and not is_dragging and not _long_press_triggered:
 			var delta: Vector2 = event.global_position - drag_start_pos
-			if delta.length() > DRAG_THRESHOLD:
+			# length_squared로 비교하여 sqrt 호출 방지
+			if delta.length_squared() > DRAG_THRESHOLD * DRAG_THRESHOLD:
 				_long_press_timer.stop()
 				_start_drag()
 		if is_dragging:
-			_process_drag(event.global_position)
+			# 미세한 이동(2px 미만)은 무시하여 불필요한 위치 업데이트 방지
+			if event.global_position.distance_squared_to(_last_drag_global_pos) > DRAG_MOVE_THRESHOLD_SQ:
+				_last_drag_global_pos = event.global_position
+				_process_drag(event.global_position)
 
 
 func _start_drag() -> void:
 	is_dragging = true
+	_last_drag_global_pos = drag_start_pos
 	save_layout_state()
 	z_index = 100
 	rotation_degrees = 0.0
