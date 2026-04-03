@@ -214,7 +214,13 @@ func get_cards_by_pool(pool: String) -> Array[CardData]:
 
 func get_starter_deck(character_id: String) -> Array[String]:
 	if STARTER_DECKS.has(character_id):
-		return STARTER_DECKS[character_id].duplicate()
+		# const Dictionary에서 꺼낸 Array는 untyped Variant이므로
+		# 명시적으로 typed Array[String]을 구성해야 Godot 4 변환 이슈 방지
+		var result: Array[String] = []
+		for card_id in STARTER_DECKS[character_id]:
+			result.append(card_id)
+		return result
+	push_error("DataLoader.get_starter_deck: 알 수 없는 character_id='%s'" % character_id)
 	return []
 
 

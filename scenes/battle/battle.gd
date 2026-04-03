@@ -417,9 +417,10 @@ func _on_enemy_hp_changed(enemy_index: int, current: int, max_val: int) -> void:
 				prev_hp = parts[0].to_int()
 		var diff := prev_hp - current
 		if diff > 0:
-			var pos := cache["panel"].global_position + Vector2(cache["panel"].size.x / 2.0, 30)
+			var panel: Control = cache["panel"]
+			var pos: Vector2 = panel.global_position + Vector2(panel.size.x / 2.0, 30)
 			vfx.spawn_damage_number(self, pos, diff)
-			vfx.shake_node(cache["panel"])
+			vfx.shake_node(panel)
 	_mark_enemy_ui_dirty()
 
 
@@ -607,7 +608,8 @@ func _on_dot_damage_dealt(target: String, _effect_id: String, amount: int) -> vo
 		var idx := target.substr(6).to_int()
 		if _enemy_ui_cache.has(idx):
 			var cache: Dictionary = _enemy_ui_cache[idx]
-			var pos := cache["panel"].global_position + Vector2(cache["panel"].size.x / 2.0, 30)
+			var panel: Control = cache["panel"]
+			var pos: Vector2 = panel.global_position + Vector2(panel.size.x / 2.0, 30)
 			vfx.spawn_damage_number(self, pos, amount)
 
 
@@ -691,7 +693,7 @@ func _build_status_icons(container: HBoxContainer, target: String) -> void:
 			cache[effect_id] = {"panel": icon_panel, "label": label}
 
 			# 클릭/탭으로 키워드 툴팁 표시
-			var eid := effect_id  # 클로저 캡처용
+			var eid: String = effect_id  # 클로저 캡처용
 			icon_panel.gui_input.connect(func(event: InputEvent):
 				if event is InputEventMouseButton and event.pressed:
 					if _keyword_tooltip:
