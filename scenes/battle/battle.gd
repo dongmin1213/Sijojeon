@@ -744,6 +744,9 @@ func _on_battle_ended(victory: bool) -> void:
 		if GameManager.run_data and GameManager.run_data.current_node_type == MapData.NodeType.ELITE:
 			RelicManager.trigger_elite_victory()
 
+		# 보스 처치 시 민심 변동 + 골드 환급
+		_apply_post_battle_minshim()
+
 		# 적 보상 데이터 수집 → 보상 씬으로 전달
 		var rewards := _collect_enemy_rewards()
 		if GameManager.run_data:
@@ -812,3 +815,34 @@ func _consume_boss_hp_modifier() -> float:
 			remaining.append(eff)
 	GameManager.run_data.narrative_state["pending_effects"] = remaining
 	return modifier
+
+
+## 전투 승리 후 적 데이터에 따라 민심 변동 + 골드 환급을 처리한다.
+func _apply_post_battle_minshim() -> void:
+	if not GameManager.run_data:
+		return
+	var rd := GameManager.run_data
+	if not rd.narrative_state.has("minshim"):
+		rd.narrative_state["minshim"] = 50
+
+	for enemy in battle_manager.enemies:
+		# minshim_on_defeat 필드가 있으면 민심 변동
+		var minshim_delta: int = enemy.get("minshim_on_defeat", 0)
+		if minshim_delta != 0:
+			var current: int = rd.narrative_state.get("minshim", 50)
+			rd.narrative_state["minshim"] = clampi(current + minshim_delta, 0, 100)
+
+		# 탐학한 수령 전용: 강탈당한 골드 50% 환급
+		var rewards: Dictionary = enemy.get("rewards", {})
+		if rewards.get("gold_bonus_from_drained", false):
+			var drained: int = rd.narrative_state.get("gold_drained_this_run", 0)
+			var bonus: int = mini(int(drained * 0.5), 60)
+			if bonus > 0:
+				rd.gold += bonus
+			# 추적 값 초기화
+			rd.narrative_state.erase("gold_drained_this_run")
+
+	# 일반 정예 적 처치 민심 +3
+	if rd.current_node_type == MapData.NodeType.ELITE:
+		var current: int = rd.narrative_state.get("minshim", 50)
+		rd.narrative_state["minshim"] = clampi(current + 3, 0, 100)

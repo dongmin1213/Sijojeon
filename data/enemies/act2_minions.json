@@ -1,0 +1,61 @@
+{
+  "version": "0.1",
+  "type": "enemy_pool",
+  "act": 2,
+  "regular_enemies": [
+    {
+      "id": "E_BYEONGSA",
+      "name": { "ko": "병사", "hanja": "兵士" },
+      "description": "군관 휘하의 졸병. 약하지만 숫자로 압박한다.",
+      "hp": { "min": 18, "max": 24 },
+      "moves": [
+        {
+          "id": "spear_thrust",
+          "name": "창 찌르기",
+          "intent": "attack",
+          "damage": 7,
+          "times": 1,
+          "description": "7피해."
+        },
+        {
+          "id": "shield_up",
+          "name": "방패 올리기",
+          "intent": "defend",
+          "block": 6,
+          "description": "방어도 6."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["spear_thrust", "shield_up", "spear_thrust"]
+      }
+    },
+    {
+      "id": "E_DANGPA_FOLLOWER",
+      "name": { "ko": "당파 추종자", "hanja": "黨派追從者" },
+      "description": "탐관의 정치적 동조자. 전투력보다 숫자로 압박한다.",
+      "hp": { "min": 25, "max": 32 },
+      "moves": [
+        {
+          "id": "mob_strike",
+          "name": "폭도 공격",
+          "intent": "attack",
+          "damage": 7,
+          "times": 1,
+          "description": "7피해."
+        },
+        {
+          "id": "mob_defend",
+          "name": "폭도 방어",
+          "intent": "defend",
+          "block": 8,
+          "description": "방어도 8."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["mob_strike", "mob_defend", "mob_strike"]
+      }
+    }
+  ]
+}

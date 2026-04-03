@@ -1,0 +1,206 @@
+{
+  "version": "0.1",
+  "type": "boss",
+  "act": 2,
+
+  "id": "B_ACT2_TAMGWAN",
+  "name": {
+    "ko": "탐관 연합",
+    "hanja": "貪官聯合",
+    "romanized": "Tamgwan Alliance"
+  },
+  "description": "지방을 갈취하는 탐관들이 한데 뭉쳐 대항한다. 각자의 이익을 지키기 위해 연합했지만, 그들의 목표는 오직 하나 — 증거를 없애는 것.",
+  "flavor": "\"우리가 한 일이 무엇인지 알면서도 막으려 하는가? 왕명을 앞세우면 된다.\"",
+  "hp": 175,
+
+  "phases": [
+    {
+      "phase": 1,
+      "hp_threshold_label": "100% → 65%",
+      "hp_threshold_min": 114,
+      "description": "매점매석 전술. 카드 사용 비용을 올려 플레이어의 행동을 제한한다.",
+      "start_of_turn_passive": {
+        "intent": "card_cost_increase",
+        "name": "시장 교란",
+        "stacks": 1,
+        "duration": 1,
+        "description": "매 적 턴: 이번 플레이어 턴 카드 비용 +1."
+      },
+      "moves": [
+        {
+          "id": "monopoly_strike",
+          "name": "독점 강타",
+          "intent": "attack",
+          "damage": 12,
+          "times": 1,
+          "description": "12피해."
+        },
+        {
+          "id": "market_wall",
+          "name": "시장 방벽",
+          "intent": "defend",
+          "block": 16,
+          "description": "방어도 16."
+        },
+        {
+          "id": "price_gouge",
+          "name": "가격 폭등",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+          ],
+          "description": "약화 2."
+        },
+        {
+          "id": "coalition_strike",
+          "name": "연합 강타",
+          "intent": "attack",
+          "damage": 8,
+          "times": 2,
+          "description": "8피해 × 2."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "monopoly_strike",
+          "market_wall",
+          "price_gouge",
+          "coalition_strike",
+          "monopoly_strike",
+          "market_wall"
+        ]
+      },
+      "phase_trigger": {
+        "type": "hp_threshold",
+        "hp_percent": 65,
+        "on_trigger": [
+          {
+            "type": "summon",
+            "summon": [
+              { "enemy_id": "E_DANGPA_FOLLOWER", "count": 1, "hp_override": 30, "name_override": "당파 추종자" },
+              { "enemy_id": "E_DANGPA_FOLLOWER", "count": 1, "hp_override": 30, "name_override": "당파 추종자" }
+            ]
+          },
+          { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" },
+          { "type": "dialogue", "text": "동지들이여! 이 역도를 처단하라!" }
+        ]
+      }
+    },
+    {
+      "phase": 2,
+      "hp_threshold_label": "65% → 30%",
+      "hp_threshold_min": 53,
+      "description": "당파 호출. 추종자를 불러들이고 강력한 연합 공격.",
+      "moves": [
+        {
+          "id": "coordinated_assault",
+          "name": "연합 공세",
+          "intent": "attack",
+          "damage": 15,
+          "times": 1,
+          "description": "15피해."
+        },
+        {
+          "id": "faction_shield",
+          "name": "당파 방패",
+          "intent": "defend_buff",
+          "block": 12,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+          ],
+          "description": "방어도 12 + 힘 1."
+        },
+        {
+          "id": "smear_campaign",
+          "name": "모략",
+          "intent": "attack_debuff",
+          "damage": 10,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+          ],
+          "description": "10피해 + 취약 2 + 약화 1."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "coordinated_assault",
+          "smear_campaign",
+          "coordinated_assault",
+          "faction_shield",
+          "smear_campaign"
+        ]
+      },
+      "phase_trigger": {
+        "type": "hp_threshold",
+        "hp_percent": 30,
+        "on_trigger": [
+          { "type": "cleanse_debuffs", "target": "self" },
+          {
+            "type": "apply_debuff",
+            "debuff": "death_countdown",
+            "stacks": 4,
+            "target": "player"
+          },
+          { "type": "dialogue", "text": "왕명이니라! 이 역도를 즉시 처형하라!" }
+        ]
+      }
+    },
+    {
+      "phase": 3,
+      "hp_threshold_label": "30% → 0%",
+      "description": "왕명 사칭. 4턴 카운트다운 발동.",
+      "moves": [
+        {
+          "id": "royal_impersonation",
+          "name": "왕명 사칭 집행",
+          "intent": "attack_debuff",
+          "damage": 10,
+          "times": 3,
+          "effects": [
+            { "type": "strip_buff", "count": 1, "target": "player" }
+          ],
+          "description": "10피해 × 3 + 플레이어 버프 1개 박탈."
+        },
+        {
+          "id": "desperate_authority",
+          "name": "최후 권위",
+          "intent": "defend_buff",
+          "block": 12,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "방어도 12 + 힘 2."
+        },
+        {
+          "id": "final_verdict",
+          "name": "최종 선고",
+          "intent": "attack",
+          "damage": 25,
+          "times": 1,
+          "description": "25피해 단발 최대 공격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "royal_impersonation",
+          "desperate_authority",
+          "final_verdict",
+          "royal_impersonation"
+        ]
+      }
+    }
+  ],
+
+  "rewards": {
+    "gold": { "min": 90, "max": 110 }
+  },
+
+  "minshim_on_defeat": 20,
+
+  "balance_note": "HP 175. 전투 길이 목표: 14~18턴. 페이즈 1 카드비용+1, 페이즈 2 소환+힘, 페이즈 3 카운트다운 4턴."
+}

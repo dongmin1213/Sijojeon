@@ -112,6 +112,10 @@ func start_new_run(character_id: String, ascension_level: int = 0) -> void:
 	if skills_data and skills_data.has("starting_relic"):
 		run_data.relics.append(skills_data["starting_relic"])
 
+	# 민심 게이지 초기화 (기본값 50: 중립)
+	if not run_data.narrative_state.has("minshim"):
+		run_data.narrative_state["minshim"] = 50
+
 	# 어센션 수정자 적용
 	if ascension_level > 0:
 		_apply_ascension_modifiers(ascension_level)

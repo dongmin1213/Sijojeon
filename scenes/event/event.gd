@@ -149,6 +149,8 @@ func _check_trigger_condition(condition: String) -> bool:
 		"has_tag_amhaengosa_ally":
 			var tags: Array = rd.narrative_state.get("run_tags", [])
 			return tags.has("암행어사_동행")
+		"minshim_le_20":
+			return rd.narrative_state.get("minshim", 50) <= 20
 		_:
 			return true
 
@@ -262,7 +264,7 @@ func _on_choice_selected(choice: Dictionary) -> void:
 
 ## 번호가 붙은 추가 효과 (effect_type_2, effect_type_3 등)를 적용한다.
 func _apply_numbered_effects(choice: Dictionary) -> void:
-	for i in range(2, 5):
+	for i in range(2, 6):
 		var key := "effect_type_%d" % i
 		var meta_key := "effect_meta_%d" % i
 		var etype: String = str(choice.get(key, ""))
@@ -460,6 +462,15 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				RelicManager.acquire_relic(relic_id)
 			return str(choice.get("result_text", "유물 획득!"))
 
+		"minshim_change":
+			var delta: int = int(choice.get("effect_value", 0))
+			if delta == 0:
+				var meta: Dictionary = choice.get("effect_meta", {})
+				delta = meta.get("delta", 0)
+			var current: int = rd.narrative_state.get("minshim", 50)
+			rd.narrative_state["minshim"] = clampi(current + delta, 0, 100)
+			return str(choice.get("result_text", "민심이 변했다."))
+
 		"none", "":
 			return str(choice.get("result_text", "아무 일도 일어나지 않았다."))
 
@@ -614,7 +625,7 @@ func _apply_bonus_effect(choice: Dictionary, bonus_type: String) -> String:
 		# 보너스 슬롯에서도 신규 효과 지원
 		"faction_change", "run_tag_add", "narrative_flag_set", \
 		"shop_price_discount", "shop_price_penalty", "gold_invest_deferred", \
-		"status_rank_change", "relic_gain_specific":
+		"status_rank_change", "relic_gain_specific", "minshim_change":
 			# 보너스 meta는 effect_meta_bonus에 저장됨
 			var temp_choice := choice.duplicate()
 			temp_choice["effect_meta"] = choice.get("effect_meta_bonus", {})

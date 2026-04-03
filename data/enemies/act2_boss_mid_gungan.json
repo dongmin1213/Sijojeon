@@ -1,0 +1,161 @@
+{
+  "version": "0.1",
+  "type": "boss",
+  "act": 2,
+  "boss_tier": "mid",
+
+  "id": "B_ACT2_MID_GUNGAN",
+  "name": {
+    "ko": "군관",
+    "hanja": "軍官",
+    "romanized": "Gungan"
+  },
+  "description": "군역을 면제해주는 대가로 포은(布銀)을 강요하는 부패한 무관. 자신의 병사들이 쓰러지면 오히려 더 결사적으로 싸운다.",
+  "flavor": "\"군역을 대신할 포은 300냥을 내라.\"",
+  "hp": 95,
+
+  "on_battle_start_effects": [
+    {
+      "type": "summon",
+      "summon": [
+        { "enemy_id": "E_BYEONGSA", "count": 1, "hp_override": 22, "name_override": "병사 갑" },
+        { "enemy_id": "E_BYEONGSA", "count": 1, "hp_override": 22, "name_override": "병사 을" }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "text": "감히 포은을 내지 않겠다는 것이냐! 병사들아, 잡아라!"
+    }
+  ],
+
+  "on_ally_death_effects": [
+    {
+      "type": "gain_block",
+      "value": 18,
+      "description": "부하 병사가 쓰러질 때마다 군관이 방어도 18 획득."
+    },
+    {
+      "type": "apply_buff",
+      "buff": "strength",
+      "stacks": 1,
+      "description": "부하 사망 시 힘 +1."
+    }
+  ],
+
+  "phases": [
+    {
+      "phase": 1,
+      "hp_threshold_label": "100% → 50%",
+      "hp_threshold_min": 48,
+      "description": "지휘 모드. 병사를 전면에 내세우고 자신은 방어에 집중.",
+      "moves": [
+        {
+          "id": "command_strike",
+          "name": "지휘 타격",
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "description": "10피해."
+        },
+        {
+          "id": "fortify",
+          "name": "방비",
+          "intent": "defend",
+          "block": 14,
+          "description": "방어도 14."
+        },
+        {
+          "id": "recruit",
+          "name": "보충 소집",
+          "intent": "summon",
+          "summon": [
+            { "enemy_id": "E_BYEONGSA", "count": 1, "hp_override": 20, "name_override": "보충병" }
+          ],
+          "description": "병사 1명 추가 소환."
+        },
+        {
+          "id": "order_attack",
+          "name": "공격 명령",
+          "intent": "attack_debuff",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+          ],
+          "description": "8피해 + 약화 1."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "command_strike",
+          "fortify",
+          "order_attack",
+          "recruit",
+          "command_strike",
+          "order_attack"
+        ]
+      },
+      "phase_trigger": {
+        "type": "hp_threshold",
+        "hp_percent": 50,
+        "on_trigger": [
+          { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" },
+          { "type": "cleanse_debuffs", "target": "self" },
+          { "type": "dialogue", "text": "병사 따위 없어도 된다! 내 손으로 직접 처단하겠다!" }
+        ]
+      }
+    },
+    {
+      "phase": 2,
+      "hp_threshold_label": "50% → 0%",
+      "description": "분전 모드. 홀로 전투. 더 이상 소환하지 않음.",
+      "moves": [
+        {
+          "id": "solo_fury",
+          "name": "홀로 분전",
+          "intent": "attack",
+          "damage": 14,
+          "times": 1,
+          "description": "14피해."
+        },
+        {
+          "id": "desperate_slash",
+          "name": "필사 참격",
+          "intent": "attack",
+          "damage": 9,
+          "times": 2,
+          "description": "9피해 × 2."
+        },
+        {
+          "id": "iron_will",
+          "name": "철의 의지",
+          "intent": "defend_buff",
+          "block": 10,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+          ],
+          "description": "방어도 10 + 힘 1."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "solo_fury",
+          "desperate_slash",
+          "solo_fury",
+          "iron_will",
+          "desperate_slash"
+        ]
+      }
+    }
+  ],
+
+  "rewards": {
+    "gold": { "min": 55, "max": 75 }
+  },
+
+  "minshim_on_defeat": 10,
+
+  "balance_note": "HP 95. 전투 시작 시 병사 2명(HP 22). 병사 사망 시 군관 방어도 18 + 힘 1 추가. 전투 길이 목표: 10~14턴."
+}

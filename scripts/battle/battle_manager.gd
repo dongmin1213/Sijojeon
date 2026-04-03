@@ -168,6 +168,18 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 
 	_change_state(BattleState.BATTLE_START)
 
+	# 보스 전투 시작 효과 처리 (소환, 버프, 대사 등)
+	for i in enemies.size():
+		var enemy := enemies[i]
+		var start_effects: Array = enemy.get("on_battle_start_effects", [])
+		for eff in start_effects:
+			if eff is not Dictionary:
+				continue
+			_apply_battle_start_effect(i, eff)
+
+	# 민심 70+ → 백성 지원병 등장
+	_check_minshim_ally_support()
+
 	# 도사 액티브: 방술 개방 — 전투 시작 시 시조 첫 2칸 자동 채움
 	if character_id == "dosa" and sijo_system:
 		sijo_system.try_fill_slot(3, "D001")  # 기공 [3]
@@ -371,6 +383,11 @@ func execute_enemy_turn() -> void:
 		if enemy["current_hp"] <= 0:
 			continue
 
+		# 적 패시브: 턴 시작 시 항상 발동하는 효과 (탐관오리 보스 등)
+		var passive: Dictionary = _get_current_passive(enemy)
+		if not passive.is_empty():
+			_execute_enemy_action(i, passive)
+
 		# 적 지속 피해/갑주 처리
 		var enemy_target := "enemy_%d" % i
 		var dot_result := status_effects.process_turn_start(enemy_target)
@@ -508,6 +525,8 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 		# 소환된 적 사망 시 유물 트리거 (RD002 음양패)
 		if enemy.get("_is_summoned", false):
 			RelicManager.trigger_on_summon_token_death(self)
+		# 아군 사망 시 다른 적들의 on_ally_death_effects 발동 (군관 보스 등)
+		_trigger_ally_death_effects(enemy_index)
 
 
 # --- 내부 함수 ---
@@ -735,6 +754,22 @@ func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
 		"cleanse_debuffs":
 			# 자신의 디버프 제거
 			status_effects.clear_target(enemy_target)
+		"gold_drain":
+			# 골드 강탈 (탐학한 수령 패시브)
+			_execute_gold_drain(enemy_index, intent)
+		"card_cost_increase":
+			# 카드 비용 증가 디버프 (탐관 연합 패시브)
+			var stacks: int = intent.get("stacks", 1)
+			_cost_reduce_all_this_turn -= stacks  # 비용 증가 = 음수 감소
+			var msg: String = intent.get("name", "")
+			if msg != "":
+				passive_triggered.emit(msg, "모든 카드 비용 +%d" % stacks)
+		"taunt":
+			# 조롱 — 플레이어에게 취약 부여 + 적 방어도 획득
+			var block: int = intent.get("block", 0)
+			var v_stacks: int = intent.get("vulnerability_stacks", 1)
+			enemies[enemy_index]["block"] += block
+			status_effects.apply_effect("player", "취약", v_stacks)
 
 
 func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
@@ -789,6 +824,42 @@ func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
 			"cleanse_buffs":
 				var resolved_target := _resolve_effect_target(target_str, enemy_target)
 				status_effects.clear_target(resolved_target)
+
+			"strip_buff":
+				# 플레이어 버프 제거 (탐관 연합 왕명 사칭 등)
+				var resolved_target := _resolve_effect_target(target_str, enemy_target)
+				status_effects.clear_target(resolved_target)
+
+
+func _execute_gold_drain(enemy_index: int, intent: Dictionary) -> void:
+	# 골드 강탈: 엽전을 빼앗고, 없으면 HP 대신 손실
+	if not GameManager.run_data:
+		return
+	var drain: int = intent.get("drain_amount", 15)
+	var hp_fallback: int = intent.get("hp_fallback", 10)
+	var rd := GameManager.run_data
+
+	if rd.gold >= drain:
+		rd.gold -= drain
+		passive_triggered.emit(
+			intent.get("name", "세금 강탈"),
+			"엽전 %d 강탈당했다." % drain
+		)
+		# 전투 종료 후 환급 추적
+		if not rd.narrative_state.has("gold_drained_this_run"):
+			rd.narrative_state["gold_drained_this_run"] = 0
+		rd.narrative_state["gold_drained_this_run"] = \
+			rd.narrative_state.get("gold_drained_this_run", 0) + drain
+	else:
+		var actual_drain: int = rd.gold
+		rd.gold = 0
+		var remaining_drain: int = drain - actual_drain
+		# 부족한 만큼 HP 대체 손실
+		take_damage(hp_fallback)
+		passive_triggered.emit(
+			intent.get("name", "세금 강탈"),
+			"엽전이 부족하다! HP %d 손실." % hp_fallback
+		)
 
 
 func _execute_enemy_summon(_enemy_index: int, intent: Dictionary) -> void:
@@ -940,11 +1011,99 @@ func _check_phase_transition(enemy_index: int) -> void:
 					status_effects.apply_effect(resolved_target, debuff_id, stacks)
 			"cleanse_debuffs":
 				status_effects.clear_target(resolved_target)
+			"summon":
+				# 페이즈 전환 시 소환 (탐관 연합 등)
+				_execute_enemy_summon(enemy_index, {"intent": "summon", "summon": effect.get("summon", [])})
 			"dialogue":
 				# 대사 표시 (시그널로 전달)
 				var text: String = effect.get("text", "")
 				if text != "":
 					passive_triggered.emit("보스", text)
+
+
+func _get_current_passive(enemy: Dictionary) -> Dictionary:
+	# 현재 페이즈의 start_of_turn_passive 반환 (페이즈별 오버라이드 지원)
+	var current_phase_idx: int = enemy.get("current_phase", 0)
+	var phases: Array = enemy.get("phases", [])
+	if not phases.is_empty() and current_phase_idx < phases.size():
+		var phase: Dictionary = phases[current_phase_idx]
+		if phase.has("start_of_turn_passive_override"):
+			return phase["start_of_turn_passive_override"]
+		if phase.has("start_of_turn_passive"):
+			return phase["start_of_turn_passive"]
+	# 페이즈 없으면 적 루트의 패시브
+	return enemy.get("start_of_turn_passive", {})
+
+
+func _apply_battle_start_effect(enemy_index: int, eff: Dictionary) -> void:
+	# 전투 시작 시 효과 적용 (소환, 버프, 대사)
+	var eff_type: String = eff.get("type", "")
+	var enemy_target := "enemy_%d" % enemy_index
+	match eff_type:
+		"summon":
+			_execute_enemy_summon(enemy_index, {"intent": "summon", "summon": eff.get("summon", [])})
+		"apply_buff":
+			var buff_id: String = eff.get("buff", "")
+			if buff_id != "":
+				status_effects.apply_effect(enemy_target, buff_id, eff.get("stacks", 1))
+		"dialogue":
+			var text: String = eff.get("text", "")
+			if text != "":
+				var boss_name: String = ""
+				if enemy_index < enemies.size():
+					var name_data = enemies[enemy_index].get("name", {})
+					boss_name = name_data.get("ko", "") if name_data is Dictionary else str(name_data)
+				passive_triggered.emit(boss_name, text)
+
+
+func _trigger_ally_death_effects(dead_index: int) -> void:
+	# 적 사망 시 다른 살아있는 적들의 on_ally_death_effects 발동
+	for i in enemies.size():
+		if i == dead_index or enemies[i]["current_hp"] <= 0:
+			continue
+		var ally_death_effects: Array = enemies[i].get("on_ally_death_effects", [])
+		var enemy_target := "enemy_%d" % i
+		for eff in ally_death_effects:
+			if eff is not Dictionary:
+				continue
+			match eff.get("type", ""):
+				"gain_block":
+					var value: int = eff.get("value", 0)
+					enemies[i]["block"] += value
+					var name_data = enemies[i].get("name", {})
+					var enemy_name: String = name_data.get("ko", "적") if name_data is Dictionary else str(name_data)
+					passive_triggered.emit(enemy_name, "부하를 잃고 방어도 %d 획득" % value)
+					enemy_hp_changed.emit(i, enemies[i]["current_hp"], enemies[i]["max_hp"])
+				"apply_buff":
+					var buff_id: String = eff.get("buff", "")
+					var stacks: int = eff.get("stacks", 1)
+					if buff_id != "":
+						status_effects.apply_effect(enemy_target, buff_id, stacks)
+
+
+func _check_minshim_ally_support() -> void:
+	# 민심 70+ → 전투 시작 시 백성 지원병 효과 (랜덤 적에게 5피해)
+	if not GameManager.run_data:
+		return
+	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	if minshim < 70:
+		return
+
+	var is_elite: bool = GameManager.run_data.current_node_type == 3  # ELITE
+	var chance := 0.4 if is_elite else 0.2
+	if randf() < chance:
+		# 살아있는 랜덤 적에게 5피해
+		var alive_indices: Array[int] = []
+		for i in enemies.size():
+			if enemies[i]["current_hp"] > 0:
+				alive_indices.append(i)
+		if not alive_indices.is_empty():
+			var target_idx: int = alive_indices[randi() % alive_indices.size()]
+			var support_dmg := 5
+			enemies[target_idx]["current_hp"] -= support_dmg
+			enemies[target_idx]["current_hp"] = maxi(enemies[target_idx]["current_hp"], 0)
+			enemy_hp_changed.emit(target_idx, enemies[target_idx]["current_hp"], enemies[target_idx]["max_hp"])
+			passive_triggered.emit("백성 지원", "민심이 높아 백성이 돕는다! 적에게 %d 피해." % support_dmg)
 
 
 func _all_enemies_dead() -> bool:

@@ -66,6 +66,8 @@ func _ready() -> void:
 
 	# 대기 효과 소비 (상점 가격 변동, 투자 회수 등)
 	_price_modifier = _consume_shop_price_effects()
+	# 민심 기반 가격 수정 (민심 낮으면 가격 상승)
+	_price_modifier *= _get_minshim_price_modifier()
 
 	_generate_shop_cards()
 	_display_shop_cards()
@@ -366,3 +368,15 @@ func _consume_shop_price_effects() -> float:
 			remaining.append(eff)
 	GameManager.run_data.narrative_state["pending_effects"] = remaining
 	return modifier
+
+
+## 민심 수치에 따른 상점 가격 수정자를 반환한다.
+func _get_minshim_price_modifier() -> float:
+	if not GameManager.run_data:
+		return 1.0
+	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	if minshim <= 20:
+		return 1.3   # +30% (민란 직전, 상인들 기피)
+	elif minshim <= 40:
+		return 1.2   # +20%
+	return 1.0       # 중립 이상

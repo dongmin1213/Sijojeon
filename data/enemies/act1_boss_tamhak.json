@@ -1,0 +1,189 @@
+{
+  "version": "0.1",
+  "type": "boss",
+  "act": 1,
+
+  "id": "B_ACT1_TAMHAK",
+  "name": {
+    "ko": "탐학한 수령",
+    "hanja": "貪虐守令",
+    "romanized": "Tamhak Suryeong"
+  },
+  "description": "고을을 갈취하는 수령. 법보다 주먹, 인보다 돈을 앞세운다. 매 턴마다 세금이라는 이름으로 엽전을 빼앗는다.",
+  "flavor": "\"수확이 없으면 몸으로 갚아라.\"",
+  "hp": 120,
+
+  "start_of_turn_passive": {
+    "intent": "gold_drain",
+    "name": "세금 강탈",
+    "drain_amount": 15,
+    "hp_fallback": 10,
+    "description": "매 적 턴 시작 시: 플레이어 엽전 15 강탈. 엽전이 없으면 HP 10 손실."
+  },
+
+  "phases": [
+    {
+      "phase": 1,
+      "hp_threshold_label": "100% → 60%",
+      "hp_threshold_min": 72,
+      "description": "착취 모드. 세금 강탈을 반복하며 플레이어를 피폐하게 만든다.",
+      "moves": [
+        {
+          "id": "extort_strike",
+          "name": "착취 일격",
+          "intent": "attack",
+          "damage": 9,
+          "times": 1,
+          "description": "9피해."
+        },
+        {
+          "id": "decree_wall",
+          "name": "관인 방벽",
+          "intent": "defend",
+          "block": 12,
+          "description": "방어도 12 획득."
+        },
+        {
+          "id": "menace",
+          "name": "위협",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+          ],
+          "description": "약화 1 부여."
+        },
+        {
+          "id": "double_extort",
+          "name": "이중 착취",
+          "intent": "attack",
+          "damage": 7,
+          "times": 2,
+          "description": "7피해 × 2."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "extort_strike",
+          "decree_wall",
+          "menace",
+          "extort_strike",
+          "double_extort",
+          "decree_wall"
+        ]
+      },
+      "phase_trigger": {
+        "type": "hp_threshold",
+        "hp_percent": 60,
+        "on_trigger": [
+          { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" },
+          { "type": "dialogue", "text": "감히 버티겠다는 것이냐! 세금을 두 배로 내라!" }
+        ]
+      }
+    },
+    {
+      "phase": 2,
+      "hp_threshold_label": "60% → 25%",
+      "hp_threshold_min": 30,
+      "description": "분노 모드. 착취 금액이 두 배로 늘고 공격이 거세진다.",
+      "start_of_turn_passive_override": {
+        "intent": "gold_drain",
+        "name": "이중 착취세",
+        "drain_amount": 30,
+        "hp_fallback": 15,
+        "description": "페이즈 2: 엽전 30 강탈. 없으면 HP 15 손실."
+      },
+      "moves": [
+        {
+          "id": "rage_strike",
+          "name": "분노 강타",
+          "intent": "attack",
+          "damage": 13,
+          "times": 1,
+          "description": "13피해."
+        },
+        {
+          "id": "official_tyranny",
+          "name": "관권 횡포",
+          "intent": "attack_debuff",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+          ],
+          "description": "8피해 + 취약 2."
+        },
+        {
+          "id": "iron_decree",
+          "name": "철권 령",
+          "intent": "attack",
+          "damage": 10,
+          "times": 2,
+          "description": "10피해 × 2."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "rage_strike",
+          "official_tyranny",
+          "iron_decree",
+          "rage_strike",
+          "official_tyranny"
+        ]
+      },
+      "phase_trigger": {
+        "type": "hp_threshold",
+        "hp_percent": 25,
+        "on_trigger": [
+          {
+            "type": "apply_debuff",
+            "debuff": "death_countdown",
+            "stacks": 3,
+            "target": "player"
+          },
+          { "type": "dialogue", "text": "이 고을은 내 것이다! 죽어도 내 것이다!" }
+        ]
+      }
+    },
+    {
+      "phase": 3,
+      "hp_threshold_label": "25% → 0%",
+      "description": "필사 모드. 패배를 직감하고 폭주한다.",
+      "moves": [
+        {
+          "id": "death_blow",
+          "name": "최후의 일격",
+          "intent": "attack",
+          "damage": 18,
+          "times": 1,
+          "description": "18피해."
+        },
+        {
+          "id": "desperate_block",
+          "name": "필사 방어",
+          "intent": "defend_buff",
+          "block": 8,
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+          ],
+          "description": "방어도 8 + 힘 1."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["death_blow", "desperate_block", "death_blow"]
+      }
+    }
+  ],
+
+  "rewards": {
+    "gold_base": 80,
+    "gold_bonus_from_drained": true,
+    "gold_bonus_note": "강탈당한 엽전의 50% 환급."
+  },
+
+  "minshim_on_defeat": 15,
+
+  "balance_note": "HP 120. 패시브 골드 강탈 15/턴. 전투 길이 목표: 10~13턴. 페이즈 2 힘+2, 페이즈 3 카운트다운 3턴."
+}

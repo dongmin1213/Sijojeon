@@ -6,10 +6,15 @@
       "id": "EVT_SADO",
       "special": true,
       "once_per_run": true,
-      "trigger_acts": [1, 2],
+      "trigger_acts": [
+        1,
+        2
+      ],
       "trigger_min_floor": 4,
       "trigger_max_floor": -1,
-      "trigger_node_types": ["EVENT"],
+      "trigger_node_types": [
+        "EVENT"
+      ],
       "trigger_condition": "",
       "title": {
         "ko": "사도세자 사건",
@@ -22,34 +27,70 @@
           "text": "세자를 구한다.",
           "effect_type": "faction_change",
           "effect_value": 30,
-          "effect_meta": { "faction": "namin_soron", "delta": 30 },
+          "effect_meta": {
+            "faction": "namin_soron",
+            "delta": 30
+          },
           "effect_type_bonus": "faction_change",
-          "effect_meta_bonus": { "faction": "noron", "delta": -30 },
+          "effect_meta_bonus": {
+            "faction": "noron",
+            "delta": -30
+          },
           "effect_type_2": "run_tag_add",
-          "effect_meta_2": { "tag": "역모_가담_의심" },
-          "result_text": "밤새 세자를 피신시켰다. 남인·소론의 신망을 얻었지만, 노론의 눈 밖에 났다."
+          "effect_meta_2": {
+            "tag": "역모_가담_의심"
+          },
+          "result_text": "밤새 세자를 피신시켰다. 남인·소론의 신망을 얻었지만, 노론의 눈 밖에 났다.",
+          "effect_type_3": "minshim_change",
+          "effect_meta_3": {
+            "delta": 10
+          }
         },
         {
           "id": "obey_king",
           "text": "왕명에 따른다.",
           "effect_type": "faction_change",
-          "effect_meta": { "faction": "noron", "delta": 30 },
+          "effect_meta": {
+            "faction": "noron",
+            "delta": 30
+          },
           "effect_type_bonus": "faction_change",
-          "effect_meta_bonus": { "faction": "namin_soron", "delta": -30 },
+          "effect_meta_bonus": {
+            "faction": "namin_soron",
+            "delta": -30
+          },
           "effect_type_2": "relic_gain_specific",
-          "effect_meta_2": { "relic_id": "RELIC_WANGMYEONG_PAE" },
+          "effect_meta_2": {
+            "relic_id": "RELIC_WANGMYEONG_PAE"
+          },
           "effect_type_3": "buff_next_combat",
-          "effect_meta_3": { "buff": "strength", "stacks": 2 },
-          "result_text": "왕명패를 받았다. 피해 카드 피해량 +2 (죄책감으로 인한 분노 — 다음 전투 힘 +2). 노론 호감 +30, 남인·소론 -30."
+          "effect_meta_3": {
+            "buff": "strength",
+            "stacks": 2
+          },
+          "result_text": "왕명패를 받았다. 피해 카드 피해량 +2 (죄책감으로 인한 분노 — 다음 전투 힘 +2). 노론 호감 +30, 남인·소론 -30.",
+          "effect_type_4": "minshim_change",
+          "effect_meta_4": {
+            "delta": -5
+          }
         },
         {
           "id": "flee",
           "text": "도망친다.",
           "effect_type": "faction_change",
-          "effect_meta": { "faction": "all", "delta": -20 },
+          "effect_meta": {
+            "faction": "all",
+            "delta": -20
+          },
           "effect_type_bonus": "run_tag_add",
-          "effect_meta_bonus": { "tag": "겁쟁이" },
-          "result_text": "황급히 몸을 피했다. 모든 세력의 신망을 잃었다."
+          "effect_meta_bonus": {
+            "tag": "겁쟁이"
+          },
+          "result_text": "황급히 몸을 피했다. 모든 세력의 신망을 잃었다.",
+          "effect_type_2": "minshim_change",
+          "effect_meta_2": {
+            "delta": -10
+          }
         }
       ]
     },
@@ -57,10 +98,16 @@
       "id": "EVT_AMHAENGOSA",
       "special": true,
       "once_per_run": true,
-      "trigger_acts": [1, 2],
+      "trigger_acts": [
+        1,
+        2
+      ],
       "trigger_min_floor": 3,
       "trigger_max_floor": -1,
-      "trigger_node_types": ["EVENT", "SHOP"],
+      "trigger_node_types": [
+        "EVENT",
+        "SHOP"
+      ],
       "trigger_condition": "",
       "title": {
         "ko": "수상한 선비",
@@ -72,16 +119,24 @@
           "id": "talk",
           "text": "말을 건다.",
           "effect_type": "narrative_flag_set",
-          "effect_meta": { "key": "amhaengosa_ally", "value": true },
+          "effect_meta": {
+            "key": "amhaengosa_ally",
+            "value": true
+          },
           "effect_type_bonus": "run_tag_add",
-          "effect_meta_bonus": { "tag": "암행어사_동행" },
+          "effect_meta_bonus": {
+            "tag": "암행어사_동행"
+          },
           "result_text": "그가 암행어사임을 알아챘다. 그는 당신에게 부패 사건의 단서를 넘겨준다. 이후 부패 관련 이벤트 연쇄 선택이 개방된다."
         },
         {
           "id": "ignore",
           "text": "무시한다.",
           "effect_type": "shop_price_discount",
-          "effect_meta": { "percent": -30, "duration_shops": 1 },
+          "effect_meta": {
+            "percent": -30,
+            "duration_shops": 1
+          },
           "result_text": "그는 탐관오리를 처단하고 지나갔다. 부패한 상인들이 도망가 이번 상점 가격이 30% 하락한다."
         },
         {
@@ -89,7 +144,9 @@
           "text": "[신분 양반(3) 이상 전용] 신분증을 내보인다.",
           "trigger_condition": "status_rank_ge_3",
           "effect_type": "next_boss_hp_modifier",
-          "effect_meta": { "percent": -20 },
+          "effect_meta": {
+            "percent": -20
+          },
           "result_text": "암행어사가 협력을 제안했다. 다음 보스 HP 20% 감소."
         }
       ]
@@ -98,10 +155,15 @@
       "id": "EVT_MAEJEOMAEJIK",
       "special": true,
       "once_per_run": true,
-      "trigger_acts": [1, 2],
+      "trigger_acts": [
+        1,
+        2
+      ],
       "trigger_min_floor": 2,
       "trigger_max_floor": -1,
-      "trigger_node_types": ["EVENT"],
+      "trigger_node_types": [
+        "EVENT"
+      ],
       "trigger_condition": "",
       "title": {
         "ko": "매점매석",
@@ -133,13 +195,20 @@
             "after_shops": 3,
             "tag_cost": "매점매석_투자자"
           },
-          "result_text": "엽전 80을 투자했다. 3개 상점 이후 150냥을 돌려받는다. 단, 당신이 매점매석에 가담했다는 소문이 퍼진다."
+          "result_text": "엽전 80을 투자했다. 3개 상점 이후 150냥을 돌려받는다. 단, 당신이 매점매석에 가담했다는 소문이 퍼진다.",
+          "effect_type_2": "minshim_change",
+          "effect_meta_2": {
+            "delta": -20
+          }
         },
         {
           "id": "pass",
           "text": "그냥 지나친다.",
           "effect_type": "shop_price_penalty",
-          "effect_meta": { "percent": 50, "duration_shops": 1 },
+          "effect_meta": {
+            "percent": 50,
+            "duration_shops": 1
+          },
           "result_text": "아무것도 하지 않았다. 물가가 폭등해 이번 상점 카드 가격이 50% 올랐다."
         }
       ]
@@ -148,10 +217,15 @@
       "id": "EVT_SASWA",
       "special": true,
       "once_per_run": true,
-      "trigger_acts": [1, 2],
+      "trigger_acts": [
+        1,
+        2
+      ],
       "trigger_min_floor": 6,
       "trigger_max_floor": -1,
-      "trigger_node_types": ["EVENT"],
+      "trigger_node_types": [
+        "EVENT"
+      ],
       "trigger_condition": "",
       "title": {
         "ko": "사화 (士禍)",
@@ -178,17 +252,84 @@
           "id": "pretend",
           "text": "모른 척한다.",
           "effect_type": "card_remove_random",
-          "effect_meta": { "count": 1, "from": "starter" },
+          "effect_meta": {
+            "count": 1,
+            "from": "starter"
+          },
           "result_text": "스승이 끌려갔다. 스타터 카드 1장이 영구히 사라진다 (죄책감)."
         },
         {
           "id": "betray",
           "text": "고변한다. (스승을 고발한다)",
           "effect_type": "status_rank_change",
-          "effect_meta": { "delta": 2 },
+          "effect_meta": {
+            "delta": 2
+          },
           "effect_type_bonus": "run_tag_add",
-          "effect_meta_bonus": { "tag": "배신자" },
-          "result_text": "신분이 2단계 도약했다. 그러나 배신자라는 꼬리표가 붙는다. 이후 NPC들의 반응이 달라진다."
+          "effect_meta_bonus": {
+            "tag": "배신자"
+          },
+          "result_text": "신분이 2단계 도약했다. 그러나 배신자라는 꼬리표가 붙는다. 이후 NPC들의 반응이 달라진다.",
+          "effect_type_2": "minshim_change",
+          "effect_meta_2": {
+            "delta": -20
+          }
+        }
+      ]
+    },
+    {
+      "id": "EVT_MINLAN",
+      "special": true,
+      "once_per_run": true,
+      "trigger_acts": [
+        1,
+        2,
+        3
+      ],
+      "trigger_min_floor": 1,
+      "trigger_max_floor": -1,
+      "trigger_node_types": [
+        "EVENT"
+      ],
+      "trigger_condition": "minshim_le_20",
+      "title": {
+        "ko": "민란 (民亂)",
+        "description": "성난 백성들이 길을 막고 있다. \"당신도 그 탐관들의 일당이오?\" 횃불과 농기구를 든 무리가 노려본다."
+      },
+      "flavor_text": "\"더 이상 못 참겠소! 이 길을 지나려면 우리와 싸워야 하오!\"",
+      "choices": [
+        {
+          "id": "fight_through",
+          "text": "강제로 돌파한다.",
+          "effect_type": "hp_loss",
+          "effect_value": 25,
+          "effect_type_bonus": "minshim_change",
+          "effect_meta_bonus": {
+            "delta": -10
+          },
+          "result_text": "백성들과 싸워 돌파했다. 승리해도 기쁘지 않다. HP 25 손실. 민심이 더 떨어졌다."
+        },
+        {
+          "id": "apologize",
+          "text": "무릎 꿇고 사죄한다.",
+          "effect_type": "hp_loss",
+          "effect_value": 20,
+          "effect_type_bonus": "minshim_change",
+          "effect_meta_bonus": {
+            "delta": 25
+          },
+          "result_text": "백성들이 분노를 삭이며 길을 비켜준다. HP 20 손실. 민심이 크게 회복되었다."
+        },
+        {
+          "id": "offer_gold",
+          "text": "엽전을 나눠준다. (엽전 60)",
+          "effect_type": "gold_loss",
+          "effect_value": 60,
+          "effect_type_bonus": "minshim_change",
+          "effect_meta_bonus": {
+            "delta": 30
+          },
+          "result_text": "백성들이 엽전을 받고 자리를 비켜준다. 엽전 60 소비. 민심이 크게 회복되었다."
         }
       ]
     }
