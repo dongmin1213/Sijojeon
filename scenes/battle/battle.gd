@@ -44,6 +44,9 @@ var _status_icon_cache: Dictionary = {}
 # 적 UI 업데이트 배칭용 dirty flag
 var _enemy_ui_dirty: bool = false
 
+# 손패 UI 업데이트 배칭용 dirty flag (try_play_card 중 중복 rebuild 방지)
+var _hand_ui_dirty: bool = false
+
 
 func _ready() -> void:
 	# VFX 매니저 초기화
@@ -232,6 +235,16 @@ func _init_sijo_slots() -> void:
 
 
 func _refresh_hand_ui() -> void:
+	## 손패 UI 갱신을 다음 프레임으로 지연하여 같은 프레임 내 중복 rebuild를 방지한다.
+	## try_play_card 실행 중 qi_changed / hand_changed 시그널이 여러 번 발생해도
+	## 실제 UI 갱신은 한 번만 수행된다.
+	if not _hand_ui_dirty:
+		_hand_ui_dirty = true
+		call_deferred("_deferred_refresh_hand_ui")
+
+
+func _deferred_refresh_hand_ui() -> void:
+	_hand_ui_dirty = false
 	var sijo_beat := sijo_system.get_next_required_beat() if sijo_system else -1
 	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat, battle_manager)
 

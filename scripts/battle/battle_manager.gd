@@ -302,6 +302,11 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	# 카드 사용 SFX
 	AudioManager.play_sfx_by_key("card_play")
 
+	# 손패에서 먼저 제거 → 버린 카드로 이동
+	# (이후 시그널 체인에서 UI가 재빌드될 때 일관된 손패 상태 보장)
+	hand.remove_at(hand_index)
+	discard_pile.append(card_id)
+
 	# 시조 슬롯 시도
 	if sijo_system:
 		sijo_system.try_fill_slot(card.beat, card_id)
@@ -328,9 +333,7 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	# 카드 사용 수 추적 (문관 패시브용)
 	cards_played_this_turn += 1
 
-	# 손패에서 제거 → 버린 카드로
-	hand.remove_at(hand_index)
-	discard_pile.append(card_id)
+	# 손패 변경 시그널 발행 (UI 갱신 트리거)
 	hand_changed.emit(hand)
 
 	# 전투 종료 확인 (적 사망)
@@ -638,6 +641,11 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 			bonus += card.bonus_on_poison
 		if bonus > 0:
 			deal_damage_to_enemy(target_enemy_index, bonus)
+
+	# 약화 부여 (후퇴 M003 등)
+	if card.weaken_stacks > 0:
+		var target_id := "enemy_%d" % target_enemy_index
+		status_effects.apply_effect(target_id, "약화", card.weaken_stacks)
 
 	# 주박 D019: 취약 부여 + DoT 배율 디버프
 	if card.vulnerable_stacks > 0:
@@ -1164,6 +1172,11 @@ func _get_battle_card(card_id: String) -> CardData:
 		card.block_value += maxi(ceili(base.block_value * 0.25), 2)
 	if base.draw_count > 0:
 		card.draw_count += 1
+	# 약화/취약 강화 보너스: +1 스택
+	if base.weaken_stacks > 0:
+		card.weaken_stacks += 1
+	if base.vulnerable_stacks > 0:
+		card.vulnerable_stacks += 1
 	return card
 
 

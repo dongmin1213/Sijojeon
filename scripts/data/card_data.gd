@@ -48,6 +48,7 @@ extends Resource
 @export var bonus_on_poison: int = 0  # 대상 독≥2 시 추가 피해 (흑염 D017)
 @export var dot_multiplier: float = 0.0  # DoT 피해 배율 디버프 (주박 D019)
 @export var vulnerable_stacks: int = 0  # 취약 부여 스택 (주박 D019)
+@export var weaken_stacks: int = 0  # 약화 부여 스택 (후퇴 M003 등)
 
 # 무관 전용 특수 효과
 @export var damage_per_stamina: int = 0  # 기력당 피해 (역전의 기세 G014)
@@ -120,6 +121,7 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.bonus_on_poison = values.get("bonus_on_poison", 0)
 		card.dot_multiplier = values.get("dot_multiplier", 0.0)
 		card.vulnerable_stacks = values.get("vulnerable", 0)
+		card.weaken_stacks = values.get("weaken", 0)
 
 		# 무관 전용
 		card.damage_per_stamina = values.get("damage_per_stamina", 0)
@@ -185,6 +187,7 @@ func duplicate_card() -> CardData:
 	copy.bonus_on_poison = bonus_on_poison
 	copy.dot_multiplier = dot_multiplier
 	copy.vulnerable_stacks = vulnerable_stacks
+	copy.weaken_stacks = weaken_stacks
 	copy.damage_per_stamina = damage_per_stamina
 	copy.consume_all_stamina = consume_all_stamina
 	copy.bonus_damage_per_stamina = bonus_damage_per_stamina
