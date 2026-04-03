@@ -102,7 +102,7 @@
           "text": "부적을 사용해 원혼을 진정시킨다.",
           "effect_type": "card_gain",
           "effect_value": 1,
-          "effect_card_pool": "blessing",
+          "effect_card_pool": "common",
           "result_text": "원혼이 감사히 떠나며 강력한 부적 카드를 남긴다. 카드 1장 획득.",
           "note": "특수 카드 획득. 부적(blessing) 유형."
         },
