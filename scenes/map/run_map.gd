@@ -22,14 +22,15 @@ const NODE_LABELS := {
 	MapData.NodeType.GWAGEO: "과거",
 }
 
+## 이모지 대신 텍스트 심볼 사용 — Android에서 이모지 폰트 미포함 시 렌더링 실패 방지
 const NODE_ICONS := {
-	MapData.NodeType.BATTLE: "⚔",
-	MapData.NodeType.ELITE: "💀",
+	MapData.NodeType.BATTLE: "X",
+	MapData.NodeType.ELITE: "*",
 	MapData.NodeType.EVENT: "?",
-	MapData.NodeType.SHOP: "🏪",
-	MapData.NodeType.REST: "🔥",
-	MapData.NodeType.BOSS: "👹",
-	MapData.NodeType.GWAGEO: "📜",
+	MapData.NodeType.SHOP: "$",
+	MapData.NodeType.REST: "+",
+	MapData.NodeType.BOSS: "!",
+	MapData.NodeType.GWAGEO: "#",
 }
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
