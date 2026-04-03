@@ -33,6 +33,10 @@ AchievementManager="*res://scripts/autoload/achievement_manager.gd"
 AccessibilityManager="*res://scripts/autoload/accessibility_manager.gd"
 SafeAreaManager="*res://scripts/autoload/safe_area_manager.gd"
 
+[gui]
+
+common/default_scroll_deadzone=24
+
 [display]
 
 window/size/viewport_width=1080
