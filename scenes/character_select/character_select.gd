@@ -554,14 +554,18 @@ func _show_first_play_guide() -> void:
 	var scale_y := vp_size.y / 1920.0
 	var ui_scale := minf(scale_x, scale_y)
 
+	# CanvasLayer로 씬 트리 위에 독립 렌더링 (입력 우선순위 확보)
+	var canvas_layer := CanvasLayer.new()
+	canvas_layer.layer = 100
+
 	var overlay := ColorRect.new()
 	overlay.color = Color(0.0, 0.0, 0.0, 0.65)
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
-	overlay.z_index = 10  # 카드 위에 확실히 표시
-	overlay.mouse_filter = Control.MOUSE_FILTER_STOP  # 하위 입력 차단
+	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	margin.add_theme_constant_override("margin_left", int(40 * scale_x))
 	margin.add_theme_constant_override("margin_right", int(40 * scale_x))
 	margin.add_theme_constant_override("margin_top", int(60 * scale_y))
@@ -570,18 +574,21 @@ func _show_first_play_guide() -> void:
 	var vbox := VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", int(24 * ui_scale))
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var guide_title := Label.new()
 	guide_title.text = "시조전에 오신 것을 환영합니다!"
 	guide_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	guide_title.add_theme_font_size_override("font_size", int(40 * ui_scale))
 	guide_title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	guide_title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	vbox.add_child(guide_title)
 
 	var guide_text := Label.new()
 	guide_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	guide_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	guide_text.add_theme_font_size_override("font_size", int(28 * ui_scale))
+	guide_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	guide_text.text = """조선 시대를 배경으로 한 덱빌딩 로그라이크입니다.
 
 처음 플레이하시나요?
@@ -595,13 +602,15 @@ func _show_first_play_guide() -> void:
 	var btn_container := HBoxContainer.new()
 	btn_container.alignment = BoxContainer.ALIGNMENT_CENTER
 	btn_container.add_theme_constant_override("separation", int(20 * ui_scale))
+	btn_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var tutorial_btn := Button.new()
 	tutorial_btn.text = "튜토리얼 시작"
 	tutorial_btn.add_theme_font_size_override("font_size", int(28 * ui_scale))
 	tutorial_btn.custom_minimum_size = Vector2(280 * ui_scale, 80 * ui_scale)
+	tutorial_btn.mouse_filter = Control.MOUSE_FILTER_STOP
 	tutorial_btn.pressed.connect(func():
-		overlay.queue_free()
+		canvas_layer.queue_free()
 		GameManager.start_tutorial()
 	)
 	btn_container.add_child(tutorial_btn)
@@ -611,16 +620,18 @@ func _show_first_play_guide() -> void:
 	skip_btn.add_theme_font_size_override("font_size", int(24 * ui_scale))
 	skip_btn.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	skip_btn.custom_minimum_size = Vector2(200 * ui_scale, 70 * ui_scale)
+	skip_btn.mouse_filter = Control.MOUSE_FILTER_STOP
 	skip_btn.pressed.connect(func():
 		# 튜토리얼 완료 플래그 설정
 		var meta := SaveManager.load_meta()
 		meta["tutorial_completed"] = true
 		SaveManager.save_meta(meta)
-		overlay.queue_free()
+		canvas_layer.queue_free()
 	)
 	btn_container.add_child(skip_btn)
 
 	vbox.add_child(btn_container)
 	margin.add_child(vbox)
 	overlay.add_child(margin)
-	add_child(overlay)
+	canvas_layer.add_child(overlay)
+	add_child(canvas_layer)
