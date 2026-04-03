@@ -21,6 +21,20 @@ func clear_target(target: String) -> void:
 	_effects.erase(target)
 
 
+func clear_buffs(target: String) -> void:
+	if not _effects.has(target):
+		return
+	var effects: Dictionary = _effects[target]
+	var to_remove: Array[String] = []
+	for effect_id in effects:
+		var def := StatusEffectData.get_definition(effect_id)
+		if def != null and def.type == StatusEffectData.EffectType.BUFF:
+			to_remove.append(effect_id)
+	for effect_id in to_remove:
+		effects.erase(effect_id)
+		effect_removed.emit(target, effect_id)
+
+
 func apply_effect(target: String, effect_id: String, stacks: int) -> void:
 	if target.is_empty():
 		push_error("StatusEffectManager.apply_effect: target이 비어있음")

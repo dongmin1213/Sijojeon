@@ -577,6 +577,11 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	if card.draw_count > 0:
 		draw_cards(card.draw_count)
 
+	# 고유 자원 최대치 증가 (무관 G015/G025, 문관 W011)
+	if has_class_resource and card.resource_max_increase > 0:
+		max_class_resource += card.resource_max_increase
+		class_resource_changed.emit(current_class_resource, max_class_resource)
+
 	# 클래스 고유 자원 획득 (무관: 기력, 문관: 학식)
 	if has_class_resource and card.stamina_gain > 0:
 		current_class_resource += card.stamina_gain
@@ -679,6 +684,15 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	if card.weaken_stacks > 0:
 		var target_id := "enemy_%d" % target_enemy_index
 		status_effects.apply_effect(target_id, "약화", card.weaken_stacks)
+
+	# 적 버프 제거 (파직 W018)
+	if card.remove_buffs:
+		if card.is_aoe:
+			for i in enemies.size():
+				if enemies[i]["current_hp"] > 0:
+					status_effects.clear_buffs("enemy_%d" % i)
+		else:
+			status_effects.clear_buffs("enemy_%d" % target_enemy_index)
 
 	# 주박 D019: 취약 부여 + DoT 배율 디버프
 	if card.vulnerable_stacks > 0:

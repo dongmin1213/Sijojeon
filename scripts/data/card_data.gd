@@ -52,6 +52,10 @@ extends Resource
 @export var vulnerable_stacks: int = 0  # 취약 부여 스택 (주박 D019)
 @export var weaken_stacks: int = 0  # 약화 부여 스택 (후퇴 M003 등)
 
+# 공통 특수 효과
+@export var resource_max_increase: int = 0  # 고유 자원 최대치 증가 (G015, G025, W011)
+@export var remove_buffs: bool = false  # 적 버프 제거 (파직 W018)
+
 # 무관 전용 특수 효과
 @export var damage_per_stamina: int = 0  # 기력당 피해 (역전의 기세 G014)
 @export var consume_all_stamina: bool = false  # 기력 전량 소비 (마지막 도박 G016)
@@ -127,6 +131,10 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.vulnerable_stacks = values.get("vulnerable", 0)
 		card.weaken_stacks = values.get("weaken", 0)
 
+		# 공통 특수 효과
+		card.resource_max_increase = values.get("stamina_max_increase", values.get("hakshik_max_increase", 0))
+		card.remove_buffs = values.get("remove_buffs", false)
+
 		# 무관 전용
 		card.damage_per_stamina = values.get("damage_per_stamina", 0)
 		card.consume_all_stamina = values.get("consume_all_stamina", false)
@@ -194,6 +202,8 @@ func duplicate_card() -> CardData:
 	copy.dot_multiplier = dot_multiplier
 	copy.vulnerable_stacks = vulnerable_stacks
 	copy.weaken_stacks = weaken_stacks
+	copy.resource_max_increase = resource_max_increase
+	copy.remove_buffs = remove_buffs
 	copy.damage_per_stamina = damage_per_stamina
 	copy.consume_all_stamina = consume_all_stamina
 	copy.bonus_damage_per_stamina = bonus_damage_per_stamina
