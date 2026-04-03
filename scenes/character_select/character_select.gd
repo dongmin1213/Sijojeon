@@ -182,12 +182,12 @@ func _build_character_cards() -> void:
 	var panel_min_w := minf(300.0 * scale_x, (available_w - separation * (card_count - 1)) / card_count)
 	var panel_min_h := 420.0 * ui_scale
 
-	# 스케일된 폰트 크기 계산
-	var fs_name := int(26 * ui_scale)
-	var fs_stat := int(20 * ui_scale)
-	var fs_skill_header := int(18 * ui_scale)
-	var fs_skill_desc := int(16 * ui_scale)
-	var fs_lock := int(28 * ui_scale)
+	# 스케일된 폰트 크기 계산 (고DPI 기기에서 최소 크기 보장)
+	var fs_name := maxi(int(26 * ui_scale), 26)
+	var fs_stat := maxi(int(20 * ui_scale), 24)
+	var fs_skill_header := maxi(int(18 * ui_scale), 22)
+	var fs_skill_desc := maxi(int(16 * ui_scale), 20)
+	var fs_lock := maxi(int(28 * ui_scale), 28)
 	var margin_h := int(16 * ui_scale)
 	var margin_v := int(12 * ui_scale)
 

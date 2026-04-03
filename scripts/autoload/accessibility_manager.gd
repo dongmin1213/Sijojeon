@@ -68,11 +68,18 @@ func _apply_dpi_scaling() -> void:
 		# 태블릿/대형 화면: 스케일 다운 방지, 유지
 		ideal_scale = 1.0
 
+	# 고DPI 기기(density > 2.0)에서 UI가 물리적으로 너무 작아지는 문제 보정
+	# density 2.0 → factor 1.0, density 3.0 → factor 1.3 (선형 보간)
+	if density > 2.0:
+		var high_dpi_factor := lerpf(1.0, 1.3, (density - 2.0) / 1.0)
+		high_dpi_factor = clampf(high_dpi_factor, 1.0, 1.5)
+		ideal_scale = maxf(ideal_scale, high_dpi_factor)
+
 	dpi_scale = clampf(ideal_scale, MIN_DPI_SCALE, MAX_DPI_SCALE)
 
 	if dpi_scale > 1.0:
 		get_window().content_scale_factor = dpi_scale
-		print("[AccessibilityManager] DPI 스케일 적용: %.2f (DPI=%d, 화면폭=%ddp)" % [dpi_scale, screen_dpi, int(screen_width_dp)])
+		print("[AccessibilityManager] DPI 스케일 적용: %.2f (DPI=%d, density=%.1f, 화면폭=%ddp)" % [dpi_scale, screen_dpi, density, int(screen_width_dp)])
 
 
 func set_font_scale(scale: float) -> void:
