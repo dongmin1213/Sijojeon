@@ -45,6 +45,15 @@ func is_complete() -> bool:
 	return current_slot_index >= PATTERN.size()
 
 
+func reset_random_slot() -> void:
+	# 채워진 슬롯 중 마지막 것을 초기화 (보스 특수 능력)
+	if current_slot_index <= 0:
+		return
+	current_slot_index -= 1
+	if slots.size() > current_slot_index:
+		slots.resize(current_slot_index)
+
+
 func reset() -> void:
 	slots.clear()
 	current_slot_index = 0

@@ -95,9 +95,10 @@ func _display_relic_offer() -> void:
 
 
 func _on_relic_claimed() -> void:
-	if relic_claimed:
+	if relic_claimed or card_selected:
 		return
 	relic_claimed = true
+	card_selected = true  # 유물과 카드 동시 획득 방지
 	RelicManager.acquire_relic(relic_offer_id)
 
 	# UI 비활성화

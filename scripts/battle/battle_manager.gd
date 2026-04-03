@@ -815,9 +815,16 @@ func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
 			var block: int = intent.get("block", 0)
 			enemies[enemy_index]["block"] += block
 			_apply_intent_effects(enemy_index, intent)
+		"attack_buff":
+			_execute_enemy_attack(enemy_index, intent)
+			_apply_intent_effects(enemy_index, intent)
+		"buff_debuff", "debuff_buff":
+			_apply_intent_effects(enemy_index, intent)
 		"buff":
 			_apply_intent_effects(enemy_index, intent)
 		"debuff":
+			_apply_intent_effects(enemy_index, intent)
+		"special":
 			_apply_intent_effects(enemy_index, intent)
 		"summon":
 			_execute_enemy_summon(enemy_index, intent)
@@ -902,6 +909,14 @@ func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
 				# 플레이어 버프 제거 (탐관 연합 왕명 사칭 등)
 				var resolved_target := _resolve_effect_target(target_str, enemy_target)
 				status_effects.clear_target(resolved_target)
+
+			"reset_sijo_slot":
+				# 시조 슬롯 초기화 (보스 특수 능력)
+				if sijo_system:
+					var count: int = effect.get("count", 1)
+					for _i in count:
+						sijo_system.reset_random_slot()
+					passive_triggered.emit("리듬 끊기", "시조 슬롯 %d개 초기화" % count)
 
 
 func _execute_gold_drain(enemy_index: int, intent: Dictionary) -> void:
