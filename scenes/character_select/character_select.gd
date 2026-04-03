@@ -556,6 +556,10 @@ func _show_first_play_guide() -> void:
 	var scale_y := vp_size.y / 1920.0
 	var ui_scale := minf(scale_x, scale_y)
 
+	# 가이드가 열리는 동안 캐릭터 선택 UI 숨김 — 시각적 혼란 방지
+	card_container.visible = false
+	start_button.visible = false
+
 	# CanvasLayer로 씬 트리 위에 독립 렌더링 (입력 우선순위 확보)
 	var canvas_layer := CanvasLayer.new()
 	canvas_layer.layer = 100
@@ -612,6 +616,8 @@ func _show_first_play_guide() -> void:
 	tutorial_btn.custom_minimum_size = Vector2(280 * ui_scale, 80 * ui_scale)
 	tutorial_btn.mouse_filter = Control.MOUSE_FILTER_STOP
 	tutorial_btn.pressed.connect(func():
+		card_container.visible = true
+		start_button.visible = true
 		canvas_layer.queue_free()
 		GameManager.start_tutorial()
 	)
@@ -628,6 +634,8 @@ func _show_first_play_guide() -> void:
 		var meta := SaveManager.load_meta()
 		meta["tutorial_completed"] = true
 		SaveManager.save_meta(meta)
+		card_container.visible = true
+		start_button.visible = true
 		canvas_layer.queue_free()
 	)
 	btn_container.add_child(skip_btn)
