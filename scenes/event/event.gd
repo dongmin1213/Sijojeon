@@ -145,7 +145,15 @@ func _check_trigger_condition(condition: String) -> bool:
 		return false
 	match condition:
 		"status_rank_ge_3":
-			return rd.narrative_state.get("status_rank", 1) >= 3
+			return rd.jibun_rank >= 3
+		"status_rank_ge_4":
+			return rd.jibun_rank >= 4
+		"faction_climax":
+			# 어느 한 당파 미터가 100에 도달했는지 체크
+			for fid in rd.faction_pair:
+				if FactionSystem.has_climax(rd, fid):
+					return true
+			return false
 		"has_tag_amhaengosa_ally":
 			var tags: Array = rd.narrative_state.get("run_tags", [])
 			return tags.has("암행어사_동행")
@@ -207,6 +215,7 @@ func _build_ui() -> void:
 func _get_condition_tooltip(condition: String) -> String:
 	match condition:
 		"status_rank_ge_3": return "신분이 양반(3등급) 이상이어야 합니다"
+		"status_rank_ge_4": return "신분이 당상관(4등급) 이상이어야 합니다"
 		_: return "조건 미충족"
 
 
@@ -357,17 +366,27 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			var effect_meta: Dictionary = choice.get("effect_meta", {})
 			var faction: String = effect_meta.get("faction", "")
 			var delta: int = effect_meta.get("delta", 0)
+			# 기존 narrative_state 호환 유지
 			if not rd.narrative_state.has("faction_scores"):
 				rd.narrative_state["faction_scores"] = {"namin": 0, "noron": 0, "soron": 0, "soin": 0}
 			var scores: Dictionary = rd.narrative_state["faction_scores"]
 			if faction == "all":
 				for key in scores:
 					scores[key] = clampi(scores[key] + delta, -100, 100)
-			elif faction == "namin_soron":
-				scores["namin"] = clampi(scores.get("namin", 0) + delta, -100, 100)
-				scores["soron"] = clampi(scores.get("soron", 0) + delta, -100, 100)
+				# FactionSystem 연동: 런 당파 쌍 모두 변경
+				for fid in rd.faction_pair:
+					FactionSystem.change_meter(rd, fid, delta)
 			elif scores.has(faction):
 				scores[faction] = clampi(scores.get(faction, 0) + delta, -100, 100)
+				# FactionSystem 연동
+				FactionSystem.change_meter(rd, faction, delta)
+			else:
+				# 복합 키 (namin_soron 등)
+				var parts := faction.split("_")
+				for p in parts:
+					if scores.has(p):
+						scores[p] = clampi(scores.get(p, 0) + delta, -100, 100)
+					FactionSystem.change_meter(rd, p, delta)
 			rd.narrative_state["faction_scores"] = scores
 			return str(choice.get("result_text", "당파 호감도가 변했다."))
 
@@ -434,8 +453,11 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 		"status_rank_change":
 			var meta: Dictionary = choice.get("effect_meta", {})
 			var delta: int = meta.get("delta", 0)
-			var current: int = rd.narrative_state.get("status_rank", 1)
-			rd.narrative_state["status_rank"] = clampi(current + delta, 1, 5)
+			# JibunSystem과 연동 — 점수 기반 신분 변경
+			var score_delta: int = delta * 100  # 단계 변화를 점수로 환산
+			JibunSystem.add_score(rd, score_delta)
+			# 하위호환: narrative_state도 동기화
+			rd.narrative_state["status_rank"] = rd.jibun_rank
 			return str(choice.get("result_text", "신분이 변했다."))
 
 		"card_remove_random":

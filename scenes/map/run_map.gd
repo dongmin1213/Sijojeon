@@ -9,6 +9,7 @@ const NODE_COLORS := {
 	MapData.NodeType.SHOP: Color(0.3, 0.6, 0.9),       # 파랑
 	MapData.NodeType.REST: Color(0.6, 0.85, 0.6),      # 연두
 	MapData.NodeType.BOSS: Color(0.95, 0.2, 0.2),      # 진빨
+	MapData.NodeType.GWAGEO: Color(0.85, 0.75, 0.3),  # 황금 (과거시험)
 }
 
 const NODE_LABELS := {
@@ -18,6 +19,7 @@ const NODE_LABELS := {
 	MapData.NodeType.SHOP: "상점",
 	MapData.NodeType.REST: "휴식",
 	MapData.NodeType.BOSS: "보스",
+	MapData.NodeType.GWAGEO: "과거",
 }
 
 const NODE_ICONS := {
@@ -27,6 +29,7 @@ const NODE_ICONS := {
 	MapData.NodeType.SHOP: "🏪",
 	MapData.NodeType.REST: "🔥",
 	MapData.NodeType.BOSS: "👹",
+	MapData.NodeType.GWAGEO: "📜",
 }
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
@@ -51,6 +54,9 @@ const ACT_BG_COLORS := {
 @onready var hp_label: Label = $HUD/HBoxContainer/HPLabel
 @onready var gold_label: Label = $HUD/HBoxContainer/GoldLabel
 @onready var act_label: Label = $HUD/ActLabel
+@onready var jibun_label: Label = $HUD/SubHBox/JibunLabel
+@onready var faction_label: Label = $HUD/SubHBox/FactionLabel
+@onready var minshim_label: Label = $HUD/SubHBox/MinshimLabel
 
 var _node_buttons: Dictionary = {}  # node_id → Button
 var _node_positions: Dictionary = {}  # node_id → Vector2 (center)
@@ -82,6 +88,18 @@ func _update_hud() -> void:
 	gold_label.text = "금화: %d" % rd.gold
 	var act_name: String = MapGenerator.get_act_name(rd.current_act)
 	act_label.text = "%d막 — %s" % [rd.current_act, act_name]
+
+	# 신분/당파/민심 HUD 업데이트
+	jibun_label.text = "신분: %s" % JibunSystem.get_rank_name(rd.jibun_rank)
+	if rd.faction_pair.size() == 2:
+		var fa := FactionSystem.get_faction_name(rd.faction_pair[0])
+		var fb := FactionSystem.get_faction_name(rd.faction_pair[1])
+		var ma: int = rd.faction_meters.get(rd.faction_pair[0], 0)
+		var mb: int = rd.faction_meters.get(rd.faction_pair[1], 0)
+		faction_label.text = "%s:%d vs %s:%d" % [fa, ma, fb, mb]
+	else:
+		faction_label.text = "당파: --"
+	minshim_label.text = "민심: %d" % rd.narrative_state.get("minshim", 50)
 
 	# 막별 배경색 적용
 	var bg_color: Color = ACT_BG_COLORS.get(rd.current_act, ACT_BG_COLORS[1])
@@ -319,3 +337,5 @@ func _on_node_pressed(node_id: int) -> void:
 			GameManager.change_state(GameManager.GameState.REST)
 		MapData.NodeType.EVENT:
 			GameManager.change_state(GameManager.GameState.EVENT)
+		MapData.NodeType.GWAGEO:
+			GameManager.change_state(GameManager.GameState.GWAGEO)

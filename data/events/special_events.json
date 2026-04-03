@@ -332,6 +332,69 @@
           "result_text": "백성들이 엽전을 받고 자리를 비켜준다. 엽전 60 소비. 민심이 크게 회복되었다."
         }
       ]
+    },
+    {
+      "id": "EVT_DANGJENG",
+      "special": true,
+      "once_per_run": true,
+      "trigger_acts": [1, 2, 3],
+      "trigger_min_floor": 3,
+      "trigger_max_floor": -1,
+      "trigger_node_types": ["EVENT"],
+      "trigger_condition": "faction_climax",
+      "title": {
+        "ko": "당쟁 (黨爭)",
+        "description": "당쟁이 극에 달했다. 조정이 두 파로 갈라져 피를 부르고 있다. 양측이 당신에게 결단을 요구한다."
+      },
+      "flavor_text": "\"중립은 없소. 지금 편을 들지 않으면 양측 모두의 적이 되오.\"",
+      "choices": [
+        {
+          "id": "side_with_faction",
+          "text": "내 당파의 손을 들어준다.",
+          "effect_type": "relic_gain",
+          "effect_value": 1,
+          "effect_type_bonus": "forced_combat_with_reward",
+          "effect_meta_bonus": {
+            "encounter_id": "ELITE_RIVAL_FACTION",
+            "victory_reward": {
+              "type": "faction_relic",
+              "count": 1
+            }
+          },
+          "result_text": "내 당파의 유물을 획득했다. 라이벌 당파의 자객이 공격해 온다!"
+        },
+        {
+          "id": "royal_order",
+          "text": "[신분 당상관(4) 이상] 왕의 명으로 양측을 진정시킨다.",
+          "trigger_condition": "status_rank_ge_4",
+          "effect_type": "relic_gain",
+          "effect_value": 1,
+          "effect_type_bonus": "faction_change",
+          "effect_meta_bonus": {
+            "faction": "all",
+            "delta": -50
+          },
+          "result_text": "왕명으로 양측을 진정시켰다. 양측 당파 미터 -50. 조정의 중립 유물을 획득했다.",
+          "effect_type_2": "status_rank_change",
+          "effect_meta_2": {
+            "delta": 1
+          }
+        },
+        {
+          "id": "flee_dangjeng",
+          "text": "도망친다.",
+          "effect_type": "faction_change",
+          "effect_meta": {
+            "faction": "all",
+            "delta": -30
+          },
+          "effect_type_bonus": "minshim_change",
+          "effect_meta_bonus": {
+            "delta": -10
+          },
+          "result_text": "양측 당파 미터 -30. 민심이 떨어졌다. 현재 챕터의 남은 이벤트가 전투로 교체된다."
+        }
+      ]
     }
   ]
 }

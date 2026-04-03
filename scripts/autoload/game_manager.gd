@@ -18,6 +18,7 @@ enum GameState {
 	ACT_TRANSITION,
 	RUN_OVER,
 	RUN_WIN,
+	GWAGEO,
 }
 
 const MAX_ACT := 3
@@ -58,6 +59,8 @@ func _get_scene_path(state: GameState) -> String:
 			return "res://scenes/act_transition/act_transition.tscn"
 		GameState.RUN_OVER, GameState.RUN_WIN:
 			return "res://scenes/run_result/run_result.tscn"
+		GameState.GWAGEO:
+			return "res://scenes/gwageo/gwageo_minigame.tscn"
 	return ""
 
 
@@ -115,6 +118,20 @@ func start_new_run(character_id: String, ascension_level: int = 0) -> void:
 	# 민심 게이지 초기화 (기본값 50: 중립)
 	if not run_data.narrative_state.has("minshim"):
 		run_data.narrative_state["minshim"] = 50
+
+	# 신분 트랙 초기화
+	run_data.jibun_score = 0
+	run_data.jibun_rank = 1
+
+	# 당파 시스템 초기화 — 런마다 무작위 대립 쌍 선택
+	var faction_pairs := [
+		["noron", "soron"],    # 노론 vs 소론
+		["namin", "seoin"],    # 남인 vs 서인
+		["dongin", "bugin"],   # 동인 vs 북인
+	]
+	var pair: Array = faction_pairs[randi() % faction_pairs.size()]
+	run_data.faction_pair = Array(pair, TYPE_STRING, "", null)
+	run_data.faction_meters = {pair[0]: 0, pair[1]: 0}
 
 	# 어센션 수정자 적용
 	if ascension_level > 0:

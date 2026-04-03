@@ -11,6 +11,7 @@ enum NodeType {
 	SHOP,      # 상점
 	REST,       # 휴식
 	BOSS,      # 보스
+	GWAGEO,    # 과거시험
 }
 
 ## 맵 위의 단일 노드.

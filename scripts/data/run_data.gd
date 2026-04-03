@@ -31,6 +31,14 @@ var triggered_special_events: Array[String] = []
 ## 서사 프레임 상태 (파벌 점수, 태그, 대기 효과 등)
 var narrative_state: Dictionary = {}
 
+## 신분 트랙 (Phase 3-A)
+var jibun_score: int = 0        # 누적 신분 점수 (0~999)
+var jibun_rank: int = 1         # 현재 신분 단계 (1~5)
+
+## 당파 시스템 (Phase 3-B)
+var faction_pair: Array[String] = []      # 런의 당파 대립 쌍 [faction_a, faction_b]
+var faction_meters: Dictionary = {}       # {"faction_id": int} 0~100
+
 
 func to_dict() -> Dictionary:
 	var prev_maps_arr := []
@@ -61,6 +69,10 @@ func to_dict() -> Dictionary:
 		"ascension_modifiers": ascension_modifiers,
 		"triggered_special_events": triggered_special_events,
 		"narrative_state": narrative_state,
+		"jibun_score": jibun_score,
+		"jibun_rank": jibun_rank,
+		"faction_pair": faction_pair,
+		"faction_meters": faction_meters,
 	}
 
 
@@ -92,4 +104,11 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.ascension_modifiers = data.get("ascension_modifiers", [])
 	rd.triggered_special_events = Array(data.get("triggered_special_events", []), TYPE_STRING, "", null)
 	rd.narrative_state = data.get("narrative_state", {})
+	rd.jibun_score = data.get("jibun_score", 0)
+	rd.jibun_rank = data.get("jibun_rank", 1)
+	var fp = data.get("faction_pair", [])
+	if fp is Array:
+		for s in fp:
+			rd.faction_pair.append(str(s))
+	rd.faction_meters = data.get("faction_meters", {})
 	return rd

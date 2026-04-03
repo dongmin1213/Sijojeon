@@ -744,6 +744,13 @@ func _on_battle_ended(victory: bool) -> void:
 		if GameManager.run_data and GameManager.run_data.current_node_type == MapData.NodeType.ELITE:
 			RelicManager.trigger_elite_victory()
 
+		# 전투 승리 시 신분 점수 부여
+		if GameManager.run_data:
+			JibunSystem.on_battle_victory(
+				GameManager.run_data,
+				GameManager.run_data.current_node_type
+			)
+
 		# 보스 처치 시 민심 변동 + 골드 환급
 		_apply_post_battle_minshim()
 

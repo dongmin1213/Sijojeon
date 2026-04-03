@@ -118,6 +118,9 @@ func generate(seed_value: int, act: int = 1) -> MapData.RunMap:
 	var min_elites := 2 if act >= 2 else 1
 	_ensure_elite(run_map, min_elites)
 
+	# 5. 과거시험 노드 1개 배치 (향교/성균관)
+	_ensure_gwageo(run_map)
+
 	return run_map
 
 
@@ -151,6 +154,7 @@ func _type_from_string(s: String) -> MapData.NodeType:
 		"SHOP": return MapData.NodeType.SHOP
 		"REST": return MapData.NodeType.REST
 		"BOSS": return MapData.NodeType.BOSS
+		"GWAGEO": return MapData.NodeType.GWAGEO
 	return MapData.NodeType.BATTLE
 
 
@@ -215,6 +219,26 @@ func _ensure_elite(run_map: MapData.RunMap, min_count: int = 1) -> void:
 		var pick: int = candidates[_rng.randi_range(0, candidates.size() - 1)]
 		run_map.nodes[pick].type = MapData.NodeType.ELITE
 		elite_count += 1
+
+
+func _ensure_gwageo(run_map: MapData.RunMap) -> void:
+	## 과거시험 노드를 맵에 1개 배치한다.
+	## 행 2~(보스-2) 중 EVENT 노드를 GWAGEO로 변경.
+	var boss_row: int = run_map.total_rows - 1
+	var candidates: Array[int] = []
+	for r in range(2, maxi(boss_row - 1, 3)):
+		for nid in run_map.rows[r]:
+			if run_map.nodes[nid].type == MapData.NodeType.EVENT:
+				candidates.append(nid)
+	if candidates.is_empty():
+		# EVENT 없으면 BATTLE에서 변환
+		for r in range(2, maxi(boss_row - 1, 3)):
+			for nid in run_map.rows[r]:
+				if run_map.nodes[nid].type == MapData.NodeType.BATTLE:
+					candidates.append(nid)
+	if not candidates.is_empty():
+		var pick: int = candidates[_rng.randi_range(0, candidates.size() - 1)]
+		run_map.nodes[pick].type = MapData.NodeType.GWAGEO
 
 
 func _get_boss_encounter_id(act: int) -> String:
