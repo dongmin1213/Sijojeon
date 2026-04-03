@@ -306,14 +306,14 @@ func _build_character_cards() -> void:
 				relic_effect.add_theme_font_size_override("font_size", fs_skill_desc)
 				vbox.add_child(relic_effect)
 
-			# 선택 버튼
-			var select_btn := Button.new()
-			select_btn.text = "선택"
-			select_btn.add_theme_font_size_override("font_size", fs_stat)
-			select_btn.size_flags_vertical = Control.SIZE_SHRINK_END
-			var idx := i
-			select_btn.pressed.connect(func(): _select_character(idx))
-			vbox.add_child(select_btn)
+			# 선택 안내 레이블 (카드 전체가 터치 가능하므로 버튼 대신 안내 표시)
+			var select_hint := Label.new()
+			select_hint.text = "▶ 탭하여 선택"
+			select_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			select_hint.add_theme_font_size_override("font_size", fs_stat)
+			select_hint.add_theme_color_override("font_color", Color(0.7, 0.7, 0.5))
+			select_hint.size_flags_vertical = Control.SIZE_SHRINK_END
+			vbox.add_child(select_hint)
 		else:
 			# 잠금 상태 표시
 			var lock_label := Label.new()
@@ -335,12 +335,34 @@ func _build_character_cards() -> void:
 		margin.add_child(vbox)
 		panel.add_child(margin)
 
+		# 카드 전체를 탭 가능하게 설정 (모바일 터치 대응)
+		# 내부 레이블/컨테이너가 터치를 소비하지 않도록 IGNORE 설정
+		_set_mouse_filter_recursive(margin, Control.MOUSE_FILTER_IGNORE)
+		var card_index := i
+		if unlocked:
+			panel.gui_input.connect(func(event: InputEvent):
+				if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+					_select_character(card_index)
+					get_viewport().set_input_as_handled()
+			)
+			panel.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		else:
+			panel.mouse_filter = Control.MOUSE_FILTER_STOP
+
 		# 잠금 캐릭터는 어둡게 표시
 		if not unlocked:
 			panel.modulate = Color(0.5, 0.5, 0.5)
 
 		card_container.add_child(panel)
 		print("[CharacterSelect] 카드 추가: %s (unlocked=%s, size=%s)" % [character["name"], str(unlocked), str(panel.custom_minimum_size)])
+
+func _set_mouse_filter_recursive(node: Control, filter: Control.MouseFilter) -> void:
+	## 노드와 모든 자식 Control의 mouse_filter를 재귀적으로 설정한다.
+	node.mouse_filter = filter
+	for child in node.get_children():
+		if child is Control:
+			_set_mouse_filter_recursive(child, filter)
+
 
 func _select_character(index: int) -> void:
 	if not _character_list[index]["unlocked"]:

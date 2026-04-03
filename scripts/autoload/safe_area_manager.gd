@@ -78,6 +78,11 @@ func _apply_to_scene(scene: Control) -> void:
 
 func _apply_margins_to_node(node: Control) -> void:
 	## 노드의 앵커 위치를 기준으로 가장자리에 근접한 방향에 safe area 오프셋을 추가한다.
+	## 중복 적용 방지: 이미 적용된 노드는 건너뛴다.
+	if node.has_meta("_safe_area_applied"):
+		return
+	node.set_meta("_safe_area_applied", true)
+
 	if node.anchor_top < EDGE_THRESHOLD:
 		node.offset_top += margin_top
 	if node.anchor_bottom > (1.0 - EDGE_THRESHOLD):
