@@ -64,6 +64,17 @@ func get_progress(achievement_id: String) -> Dictionary:
 	return { "current": 0, "target": 1 }
 
 
+## 모든 업적의 진행도를 한 번에 반환한다. meta를 한 번만 로드하여 성능 최적화.
+## 반환: { achievement_id: { "current": int, "target": int } }
+func get_all_progress() -> Dictionary:
+	var meta := SaveManager.load_meta()
+	var result := {}
+	for ach in _achievements:
+		var ach_id: String = ach.get("id", "")
+		result[ach_id] = _get_progress_data(ach, meta)
+	return result
+
+
 ## 런 종료 후 호출. 새로 달성된 업적을 감지하여 시그널을 발생시킨다.
 func check_new_achievements() -> Array[Dictionary]:
 	var meta := SaveManager.load_meta()

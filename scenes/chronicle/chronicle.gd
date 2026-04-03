@@ -162,8 +162,29 @@ func _add_stat_row(grid: GridContainer, label_text: String, value_text: String, 
 	grid.add_child(value)
 
 
+## 캐릭터 패널용 StyleBoxFlat 템플릿 생성
+static func _create_char_style_template() -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.08, 0.07, 0.14, 0.9)
+	style.border_width_bottom = 1
+	style.border_width_top = 1
+	style.border_width_left = 1
+	style.border_width_right = 1
+	style.corner_radius_top_left = 6
+	style.corner_radius_top_right = 6
+	style.corner_radius_bottom_left = 6
+	style.corner_radius_bottom_right = 6
+	style.content_margin_left = 16.0
+	style.content_margin_right = 16.0
+	style.content_margin_top = 12.0
+	style.content_margin_bottom = 12.0
+	return style
+
+
 ## 캐릭터별 클리어 기록 표시
 func _build_character_stats(parent: Control, char_stats: Dictionary) -> void:
+	var style_template := _create_char_style_template()
+
 	for char_id in CHARACTER_ORDER:
 		var char_name: String = CHARACTER_NAMES.get(char_id, char_id)
 		var cstats: Dictionary = char_stats.get(char_id, {})
@@ -171,21 +192,8 @@ func _build_character_stats(parent: Control, char_stats: Dictionary) -> void:
 		var victories: int = cstats.get("victories", 0)
 
 		var panel := PanelContainer.new()
-		var style := StyleBoxFlat.new()
-		style.bg_color = Color(0.08, 0.07, 0.14, 0.9)
+		var style: StyleBoxFlat = style_template.duplicate()
 		style.border_color = COLOR_DIM if victories == 0 else COLOR_GOLD
-		style.border_width_bottom = 1
-		style.border_width_top = 1
-		style.border_width_left = 1
-		style.border_width_right = 1
-		style.corner_radius_top_left = 6
-		style.corner_radius_top_right = 6
-		style.corner_radius_bottom_left = 6
-		style.corner_radius_bottom_right = 6
-		style.content_margin_left = 16.0
-		style.content_margin_right = 16.0
-		style.content_margin_top = 12.0
-		style.content_margin_bottom = 12.0
 		panel.add_theme_stylebox_override("panel", style)
 		parent.add_child(panel)
 
@@ -228,29 +236,57 @@ func _build_character_stats(parent: Control, char_stats: Dictionary) -> void:
 			stats_row.add_child(clear_label)
 
 
+## 업적 패널용 StyleBoxFlat 템플릿 생성 (달성/미달성)
+static func _create_ach_style_templates() -> Array[StyleBoxFlat]:
+	var unlocked := StyleBoxFlat.new()
+	unlocked.bg_color = Color(0.08, 0.07, 0.14, 0.9)
+	unlocked.border_color = COLOR_GOLD
+	unlocked.border_width_bottom = 1
+	unlocked.border_width_top = 1
+	unlocked.border_width_left = 1
+	unlocked.border_width_right = 1
+	unlocked.corner_radius_top_left = 4
+	unlocked.corner_radius_top_right = 4
+	unlocked.corner_radius_bottom_left = 4
+	unlocked.corner_radius_bottom_right = 4
+	unlocked.content_margin_left = 14.0
+	unlocked.content_margin_right = 14.0
+	unlocked.content_margin_top = 10.0
+	unlocked.content_margin_bottom = 10.0
+
+	var locked := StyleBoxFlat.new()
+	locked.bg_color = Color(0.05, 0.04, 0.08, 0.7)
+	locked.border_color = Color(0.3, 0.28, 0.25)
+	locked.border_width_bottom = 1
+	locked.border_width_top = 1
+	locked.border_width_left = 1
+	locked.border_width_right = 1
+	locked.corner_radius_top_left = 4
+	locked.corner_radius_top_right = 4
+	locked.corner_radius_bottom_left = 4
+	locked.corner_radius_bottom_right = 4
+	locked.content_margin_left = 14.0
+	locked.content_margin_right = 14.0
+	locked.content_margin_top = 10.0
+	locked.content_margin_bottom = 10.0
+
+	return [unlocked, locked]
+
+
 ## 업적 목록 표시 (달성/미달성)
 func _build_achievements(parent: Control, achievements: Array[Dictionary], unlocked_ids: Array[String]) -> void:
+	# 모든 업적 진행도를 한 번에 로드 (SaveManager.load_meta() 반복 호출 방지)
+	var all_progress := AchievementManager.get_all_progress()
+	# StyleBoxFlat 템플릿 생성 (달성/미달성 2개만 만들어 duplicate)
+	var style_templates := _create_ach_style_templates()
+
 	for ach in achievements:
 		var ach_id: String = ach.get("id", "")
 		var is_unlocked: bool = ach_id in unlocked_ids
-		var progress := AchievementManager.get_progress(ach_id)
+		var progress: Dictionary = all_progress.get(ach_id, { "current": 0, "target": 1 })
 
 		var panel := PanelContainer.new()
-		var style := StyleBoxFlat.new()
-		style.bg_color = Color(0.08, 0.07, 0.14, 0.9) if is_unlocked else Color(0.05, 0.04, 0.08, 0.7)
-		style.border_color = COLOR_GOLD if is_unlocked else Color(0.3, 0.28, 0.25)
-		style.border_width_bottom = 1
-		style.border_width_top = 1
-		style.border_width_left = 1
-		style.border_width_right = 1
-		style.corner_radius_top_left = 4
-		style.corner_radius_top_right = 4
-		style.corner_radius_bottom_left = 4
-		style.corner_radius_bottom_right = 4
-		style.content_margin_left = 14.0
-		style.content_margin_right = 14.0
-		style.content_margin_top = 10.0
-		style.content_margin_bottom = 10.0
+		var style: StyleBoxFlat = style_templates[0].duplicate() if is_unlocked else style_templates[1].duplicate()
 		panel.add_theme_stylebox_override("panel", style)
 		parent.add_child(panel)
 
