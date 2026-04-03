@@ -61,6 +61,7 @@ const ACT_BG_COLORS := {
 var _node_buttons: Dictionary = {}  # node_id → Button
 var _node_positions: Dictionary = {}  # node_id → Vector2 (center)
 var _available_node_ids: Array[int] = []
+var _node_selected: bool = false  # 노드 선택 후 중복 입력 차단
 
 
 func _ready() -> void:
@@ -84,6 +85,8 @@ func _init_relic_bar() -> void:
 
 func _update_hud() -> void:
 	var rd := GameManager.run_data
+	if rd == null:
+		return
 	hp_label.text = "HP: %d/%d" % [rd.current_hp, rd.max_hp]
 	gold_label.text = "금화: %d" % rd.gold
 	var act_name: String = MapGenerator.get_act_name(rd.current_act)
@@ -112,6 +115,7 @@ func _apply_map_background(color: Color) -> void:
 	if bg == null:
 		bg = ColorRect.new()
 		bg.name = "Background"
+		bg.mouse_filter = Control.MOUSE_FILTER_IGNORE  # 터치 이벤트가 노드 버튼으로 전달되도록
 		map_container.add_child(bg)
 		map_container.move_child(bg, 0)
 	bg.color = color
@@ -120,6 +124,8 @@ func _apply_map_background(color: Color) -> void:
 
 
 func _build_map() -> void:
+	if GameManager.run_data == null or GameManager.run_data.run_map == null:
+		return
 	var run_map := GameManager.run_data.run_map
 	var viewport_width: float = get_viewport_rect().size.x
 	var viewport_height: float = get_viewport_rect().size.y
@@ -190,10 +196,15 @@ func _build_map() -> void:
 
 
 func _draw_connections() -> void:
-	# 기존 연결선 제거
+	if not is_inside_tree():
+		return
+	# 기존 연결선 제거 — 즉시 삭제로 메모리 누적 방지
 	for child in line_layer.get_children():
-		child.queue_free()
+		line_layer.remove_child(child)
+		child.free()
 
+	if GameManager.run_data == null or GameManager.run_data.run_map == null:
+		return
 	var run_map := GameManager.run_data.run_map
 	var visited := GameManager.run_data.visited_nodes
 
@@ -231,6 +242,8 @@ func _draw_connections() -> void:
 
 
 func _update_node_states() -> void:
+	if GameManager.run_data == null or GameManager.run_data.run_map == null:
+		return
 	var run_map := GameManager.run_data.run_map
 	var visited := GameManager.run_data.visited_nodes
 
@@ -298,6 +311,8 @@ func _update_node_states() -> void:
 
 
 func _scroll_to_current() -> void:
+	if not is_inside_tree() or GameManager.run_data == null or GameManager.run_data.run_map == null:
+		return
 	var run_map := GameManager.run_data.run_map
 	var visited := GameManager.run_data.visited_nodes
 
@@ -318,12 +333,29 @@ func _scroll_to_current() -> void:
 
 
 func _on_node_pressed(node_id: int) -> void:
+	# 중복 입력 완전 차단 (씬 전환 중 추가 탭 방지)
+	if _node_selected:
+		return
 	if node_id not in _available_node_ids:
 		return
-	# 중복 클릭 방지: 첫 클릭 후 즉시 비활성화
+	_node_selected = true
 	_available_node_ids.clear()
 
+	# 모든 버튼 즉시 비활성화 — freed 노드 콜백 방지
+	for nid in _node_buttons:
+		var btn: Button = _node_buttons[nid]
+		if is_instance_valid(btn):
+			btn.disabled = true
+
+	# null 안전 검사
+	if GameManager.run_data == null or GameManager.run_data.run_map == null:
+		push_warning("RunMap: _on_node_pressed — run_data/run_map null")
+		return
+
 	var run_map := GameManager.run_data.run_map
+	if not run_map.nodes.has(node_id):
+		push_warning("RunMap: _on_node_pressed — node_id %d 없음" % node_id)
+		return
 	var map_node: MapData.MapNode = run_map.nodes[node_id]
 
 	# 방문 기록 추가
