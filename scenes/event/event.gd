@@ -493,6 +493,60 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			rd.narrative_state["minshim"] = clampi(current + delta, 0, 100)
 			return str(choice.get("result_text", "민심이 변했다."))
 
+		"card_choice":
+			# 카드 선택 이벤트 — 풀에서 랜덤 카드 1장 덱에 추가
+			var meta: Dictionary = choice.get("effect_meta", {})
+			var card_class: String = meta.get("class", "")
+			if card_class.is_empty():
+				card_class = rd.character_id
+			var pool_cards := DataLoader.get_cards_by_pool(card_class)
+			if not pool_cards.is_empty():
+				pool_cards.shuffle()
+				rd.deck.append(pool_cards[0].id)
+			return str(choice.get("result_text", "카드를 획득했다."))
+
+		"card_remove_free":
+			# 무료 카드 제거 — 랜덤 비스타터 카드 제거
+			var starter_deck: Array = DataLoader.get_starter_deck(rd.character_id)
+			var removable: Array[String] = []
+			for card_id in rd.deck:
+				if not starter_deck.has(card_id):
+					removable.append(card_id)
+			if removable.is_empty():
+				# 스타터가 아닌 카드가 없으면 아무 카드나
+				removable = rd.deck.duplicate()
+			if not removable.is_empty() and rd.deck.size() > 1:
+				removable.shuffle()
+				var idx := rd.deck.find(removable[0])
+				if idx >= 0:
+					rd.deck.remove_at(idx)
+			return str(choice.get("result_text", "카드 1장을 제거했다."))
+
+		"card_upgrade_free":
+			# 무료 카드 강화 — 강화 가능한 카드 중 첫 번째 강화
+			for i in rd.deck.size():
+				var cid: String = rd.deck[i]
+				if not cid.ends_with("+"):
+					rd.deck[i] = cid + "+"
+					break
+			return str(choice.get("result_text", "카드 1장을 강화했다."))
+
+		"next_battle_block":
+			# 다음 전투 시작 시 방어도 추가
+			_add_pending_effect({
+				"type": "next_battle_block",
+				"block": value
+			})
+			return str(choice.get("result_text", "다음 전투 시작 시 방어도 +%d." % value))
+
+		"reveal_map":
+			# 맵 공개 — 다음 2층의 노드 공개
+			_add_pending_effect({
+				"type": "reveal_map",
+				"floors": value if value > 0 else 2
+			})
+			return str(choice.get("result_text", "앞의 길이 보인다."))
+
 		"none", "":
 			return str(choice.get("result_text", "아무 일도 일어나지 않았다."))
 
@@ -642,6 +696,20 @@ func _apply_bonus_effect(choice: Dictionary, bonus_type: String) -> String:
 				var buffs: Array = rd.get_meta("next_combat_buffs")
 				buffs.append(bonus_value)
 				rd.set_meta("next_combat_buffs", buffs)
+			return ""
+
+		"next_battle_block":
+			var val: int = int(bonus_value)
+			_add_pending_effect({"type": "next_battle_block", "block": val})
+			return ""
+
+		"card_choice_class":
+			# 보너스 효과: 클래스별 카드 선택
+			var card_class: String = str(bonus_value) if bonus_value is String else rd.character_id
+			var pool_cards := DataLoader.get_cards_by_pool(card_class)
+			if not pool_cards.is_empty():
+				pool_cards.shuffle()
+				rd.deck.append(pool_cards[0].id)
 			return ""
 
 		# 보너스 슬롯에서도 신규 효과 지원

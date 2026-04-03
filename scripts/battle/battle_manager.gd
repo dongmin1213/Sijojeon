@@ -186,6 +186,24 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	# 민심 70+ → 백성 지원병 등장
 	_check_minshim_ally_support()
 
+	# 이벤트 pending_effects 처리 (다음 전투 방어도 등)
+	if GameManager.run_data and GameManager.run_data.narrative_state.has("pending_effects"):
+		var pending: Array = GameManager.run_data.narrative_state["pending_effects"]
+		var remaining: Array = []
+		for eff in pending:
+			if eff is not Dictionary:
+				continue
+			match eff.get("type", ""):
+				"next_battle_block":
+					player_block += int(eff.get("block", 0))
+					block_changed.emit(player_block)
+				_:
+					remaining.append(eff)
+		if remaining.is_empty():
+			GameManager.run_data.narrative_state.erase("pending_effects")
+		else:
+			GameManager.run_data.narrative_state["pending_effects"] = remaining
+
 	# 도사 액티브: 방술 개방 — 전투 시작 시 시조 첫 2칸 자동 채움
 	if character_id == "dosa" and sijo_system:
 		sijo_system.try_fill_slot(3, "D001")  # 기공 [3]
