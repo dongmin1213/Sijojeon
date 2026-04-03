@@ -23,10 +23,10 @@ color = Color(0.08, 0.12, 0.1, 1)
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.05
-anchor_right = 0.9
-anchor_bottom = 0.95
+anchor_left = 0.05
+anchor_top = 0.03
+anchor_right = 0.95
+anchor_bottom = 0.97
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20

@@ -304,6 +304,14 @@ func _update_enemy_ui() -> void:
 
 			var panel := PanelContainer.new()
 			var vbox := VBoxContainer.new()
+
+			# 적 실루엣 심볼 — 이미지 없이 텍스트로 시각적 존재감 확보
+			var silhouette := Label.new()
+			silhouette.text = _get_enemy_silhouette(enemy)
+			silhouette.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			silhouette.add_theme_font_size_override("font_size", 48)
+			silhouette.add_theme_color_override("font_color", Color(0.8, 0.5, 0.5, 0.9))
+
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -327,13 +335,14 @@ func _update_enemy_ui() -> void:
 			status_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 			_build_status_icons(status_hbox, "enemy_%d" % i)
 
+			vbox.add_child(silhouette)
 			vbox.add_child(name_label)
 			vbox.add_child(hp_lbl)
 			vbox.add_child(enemy_block_label)
 			vbox.add_child(status_hbox)
 			vbox.add_child(intent_label)
 			panel.add_child(vbox)
-			panel.custom_minimum_size = Vector2(200, 180)
+			panel.custom_minimum_size = Vector2(200, 200)
 			enemy_container.add_child(panel)
 
 			_enemy_ui_cache[i] = {
@@ -344,6 +353,25 @@ func _update_enemy_ui() -> void:
 				"intent_label": intent_label,
 				"status_hbox": status_hbox,
 			}
+
+
+func _get_enemy_silhouette(enemy: Dictionary) -> String:
+	## 적 데이터에서 시각적 실루엣 심볼을 반환한다.
+	var combat_type: String = enemy.get("combat_type", "")
+	if combat_type == "boss":
+		return "{{X}}"
+	if combat_type == "elite":
+		return "[*]"
+	# 일반 적: 이름 첫 글자 기반
+	var name_data = enemy.get("name", {})
+	var ko_name: String = ""
+	if name_data is Dictionary:
+		ko_name = name_data.get("ko", "")
+	elif name_data is String:
+		ko_name = name_data
+	if ko_name.length() > 0:
+		return "<%s>" % ko_name[0]
+	return "<X>"
 
 
 func _format_intent(intent: Dictionary) -> String:
