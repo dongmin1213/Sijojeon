@@ -1103,7 +1103,7 @@ func _check_minshim_ally_support() -> void:
 	if minshim < 70:
 		return
 
-	var is_elite: bool = GameManager.run_data.current_node_type == 3  # ELITE
+	var is_elite: bool = GameManager.run_data.current_node_type == MapData.NodeType.ELITE
 	var chance := 0.4 if is_elite else 0.2
 	if randf() < chance:
 		# 살아있는 랜덤 적에게 5피해

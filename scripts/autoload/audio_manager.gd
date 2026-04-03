@@ -83,7 +83,7 @@ func _on_game_state_changed(new_state: GameManager.GameState) -> void:
 			# 보스전 구분
 			var is_boss := false
 			if GameManager.run_data:
-				is_boss = GameManager.run_data.current_node_type == 5  # MapData.NodeType.BOSS
+				is_boss = GameManager.run_data.current_node_type == MapData.NodeType.BOSS
 			play_bgm_by_key("boss" if is_boss else "battle")
 		GameManager.GameState.SHOP:
 			play_bgm_by_key("shop")
