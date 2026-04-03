@@ -533,7 +533,7 @@ func _show_first_play_guide() -> void:
 	var ui_scale := minf(scale_x, scale_y)
 
 	var overlay := ColorRect.new()
-	overlay.color = Color(0.0, 0.0, 0.0, 0.85)
+	overlay.color = Color(0.0, 0.0, 0.0, 0.65)
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	overlay.z_index = 10  # 카드 위에 확실히 표시
 	overlay.mouse_filter = Control.MOUSE_FILTER_STOP  # 하위 입력 차단
@@ -552,14 +552,14 @@ func _show_first_play_guide() -> void:
 	var guide_title := Label.new()
 	guide_title.text = "시조전에 오신 것을 환영합니다!"
 	guide_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	guide_title.add_theme_font_size_override("font_size", int(36 * ui_scale))
+	guide_title.add_theme_font_size_override("font_size", int(40 * ui_scale))
 	guide_title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	vbox.add_child(guide_title)
 
 	var guide_text := Label.new()
 	guide_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	guide_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	guide_text.add_theme_font_size_override("font_size", int(24 * ui_scale))
+	guide_text.add_theme_font_size_override("font_size", int(28 * ui_scale))
 	guide_text.text = """조선 시대를 배경으로 한 덱빌딩 로그라이크입니다.
 
 처음 플레이하시나요?
@@ -577,7 +577,7 @@ func _show_first_play_guide() -> void:
 	var tutorial_btn := Button.new()
 	tutorial_btn.text = "튜토리얼 시작"
 	tutorial_btn.add_theme_font_size_override("font_size", int(28 * ui_scale))
-	tutorial_btn.custom_minimum_size = Vector2(280 * ui_scale, 60 * ui_scale)
+	tutorial_btn.custom_minimum_size = Vector2(280 * ui_scale, 80 * ui_scale)
 	tutorial_btn.pressed.connect(func():
 		overlay.queue_free()
 		GameManager.start_tutorial()
@@ -588,7 +588,7 @@ func _show_first_play_guide() -> void:
 	skip_btn.text = "건너뛰기"
 	skip_btn.add_theme_font_size_override("font_size", int(24 * ui_scale))
 	skip_btn.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
-	skip_btn.custom_minimum_size = Vector2(200 * ui_scale, 60 * ui_scale)
+	skip_btn.custom_minimum_size = Vector2(200 * ui_scale, 70 * ui_scale)
 	skip_btn.pressed.connect(func():
 		# 튜토리얼 완료 플래그 설정
 		var meta := SaveManager.load_meta()
