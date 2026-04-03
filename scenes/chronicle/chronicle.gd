@@ -94,11 +94,11 @@ func _build_ui() -> void:
 
 	content.add_child(HSeparator.new())
 
-	# ── 업적 섹션 ──
+	# ── 업적 섹션 ── (meta를 재사용하여 디스크 I/O 반복 방지)
 	var achievements := AchievementManager.get_all_achievements()
-	var unlocked_ids := AchievementManager.get_unlocked_ids()
+	var unlocked_ids := AchievementManager.get_unlocked_ids(meta)
 	_add_section_header(content, "업적 (%d/%d)" % [unlocked_ids.size(), achievements.size()])
-	_build_achievements(content, achievements, unlocked_ids)
+	_build_achievements(content, achievements, unlocked_ids, meta)
 
 	content.add_child(HSeparator.new())
 
@@ -274,9 +274,9 @@ static func _create_ach_style_templates() -> Array[StyleBoxFlat]:
 
 
 ## 업적 목록 표시 (달성/미달성)
-func _build_achievements(parent: Control, achievements: Array[Dictionary], unlocked_ids: Array[String]) -> void:
-	# 모든 업적 진행도를 한 번에 로드 (SaveManager.load_meta() 반복 호출 방지)
-	var all_progress := AchievementManager.get_all_progress()
+func _build_achievements(parent: Control, achievements: Array[Dictionary], unlocked_ids: Array[String], meta: Dictionary = {}) -> void:
+	# 모든 업적 진행도를 한 번에 로드 (meta 재사용으로 디스크 I/O 제거)
+	var all_progress := AchievementManager.get_all_progress(meta)
 	# StyleBoxFlat 템플릿 생성 (달성/미달성 2개만 만들어 duplicate)
 	var style_templates := _create_ach_style_templates()
 

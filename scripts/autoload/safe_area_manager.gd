@@ -18,6 +18,9 @@ var margin_bottom: float = 0.0
 var margin_left: float = 0.0
 var margin_right: float = 0.0
 
+## 동일 프레임 내 중복 적용 방지용 프레임 카운터
+var _last_applied_frame: int = -1
+
 
 func _ready() -> void:
 	# AccessibilityManager의 DPI 스케일링 적용 후 마진을 계산하기 위해 1프레임 대기
@@ -94,6 +97,11 @@ func _calculate_margins() -> void:
 func apply_to_current_scene() -> void:
 	## 현재 활성 씬의 루트에 safe area 마진을 적용한다.
 	## GameManager에서 씬 전환 후 호출하거나, 초기 씬 로드 시 자동 호출된다.
+	## 동일 프레임 내 중복 호출을 건너뛴다.
+	var current_frame := Engine.get_process_frames()
+	if current_frame == _last_applied_frame:
+		return
+	_last_applied_frame = current_frame
 	var scene := get_tree().current_scene
 	if scene is Control:
 		_apply_to_scene(scene)

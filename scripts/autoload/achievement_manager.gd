@@ -46,8 +46,10 @@ func is_achievement_unlocked(achievement_id: String) -> bool:
 
 
 ## 현재 달성된 모든 업적 ID 목록을 반환한다.
-func get_unlocked_ids() -> Array[String]:
-	var meta := SaveManager.load_meta()
+## meta를 전달하면 디스크 I/O를 생략한다.
+func get_unlocked_ids(meta: Dictionary = {}) -> Array[String]:
+	if meta.is_empty():
+		meta = SaveManager.load_meta()
 	var result: Array[String] = []
 	for ach in _achievements:
 		if _check_condition(ach, meta):
@@ -66,8 +68,10 @@ func get_progress(achievement_id: String) -> Dictionary:
 
 ## 모든 업적의 진행도를 한 번에 반환한다. meta를 한 번만 로드하여 성능 최적화.
 ## 반환: { achievement_id: { "current": int, "target": int } }
-func get_all_progress() -> Dictionary:
-	var meta := SaveManager.load_meta()
+## meta를 전달하면 디스크 I/O를 생략한다.
+func get_all_progress(meta: Dictionary = {}) -> Dictionary:
+	if meta.is_empty():
+		meta = SaveManager.load_meta()
 	var result := {}
 	for ach in _achievements:
 		var ach_id: String = ach.get("id", "")
