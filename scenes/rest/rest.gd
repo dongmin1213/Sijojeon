@@ -82,7 +82,7 @@ func _on_rest() -> void:
 	var rd := GameManager.run_data
 	var heal_amount: int = int(rd.max_hp * HEAL_PERCENT)
 	var actual_heal: int = mini(heal_amount, rd.max_hp - rd.current_hp)
-	rd.current_hp = mini(rd.current_hp + heal_amount, rd.max_hp)
+	rd.current_hp = mini(rd.current_hp + actual_heal, rd.max_hp)
 
 	AudioManager.play_sfx_by_key("heal")
 	_show_result("휴식을 취해 HP %d 회복. (%d/%d)" % [actual_heal, rd.current_hp, rd.max_hp])

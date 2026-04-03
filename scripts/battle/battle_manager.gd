@@ -277,7 +277,7 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	var detention_stacks := status_effects.get_stacks("player", "구금")
 	if detention_stacks > 0:
 		effective_cost += detention_stacks
-	if _cost_reduce_all_this_turn > 0:
+	if _cost_reduce_all_this_turn != 0:
 		effective_cost -= _cost_reduce_all_this_turn
 	if _next_card_cost_reduce > 0:
 		effective_cost -= _next_card_cost_reduce
@@ -481,7 +481,11 @@ func take_damage(amount: int) -> void:
 		AudioManager.play_sfx_by_key("damage")
 		# 유물 트리거: 즉사 방지 (R028 불사신 부적)
 		if player_hp <= 0:
-			RelicManager.trigger_on_lethal_damage(self)
+			if not RelicManager.trigger_on_lethal_damage(self):
+				AudioManager.play_sfx_by_key("defeat")
+				_change_state(BattleState.BATTLE_LOSE)
+				battle_ended.emit(false)
+				return
 
 
 func gain_block(amount: int) -> void:
@@ -495,6 +499,11 @@ func gain_block(amount: int) -> void:
 		player_hp -= bleed_damage
 		player_hp = maxi(player_hp, 0)
 		hp_changed.emit(player_hp, player_max_hp)
+		if player_hp <= 0:
+			if not RelicManager.trigger_on_lethal_damage(self):
+				AudioManager.play_sfx_by_key("defeat")
+				_change_state(BattleState.BATTLE_LOSE)
+				battle_ended.emit(false)
 
 
 func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
@@ -933,7 +942,7 @@ func can_play_card(card: CardData) -> bool:
 	var detention_stacks := status_effects.get_stacks("player", "구금")
 	if detention_stacks > 0:
 		effective_cost += detention_stacks
-	if _cost_reduce_all_this_turn > 0:
+	if _cost_reduce_all_this_turn != 0:
 		effective_cost -= _cost_reduce_all_this_turn
 	if _next_card_cost_reduce > 0:
 		effective_cost -= _next_card_cost_reduce

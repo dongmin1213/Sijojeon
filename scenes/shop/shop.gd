@@ -296,6 +296,10 @@ func _on_remove_card(deck_index: int) -> void:
 	if deck_index < 0 or deck_index >= GameManager.run_data.deck.size():
 		return
 
+	# 마지막 카드 제거 방지
+	if GameManager.run_data.deck.size() <= 1:
+		return
+
 	# 제거 실행
 	AudioManager.play_sfx_by_key("coin")
 	GameManager.run_data.gold -= removal_cost
