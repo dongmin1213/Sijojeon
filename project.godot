@@ -31,6 +31,7 @@ SaveManager="*res://scripts/autoload/save_manager.gd"
 RelicManager="*res://scripts/autoload/relic_manager.gd"
 AchievementManager="*res://scripts/autoload/achievement_manager.gd"
 AccessibilityManager="*res://scripts/autoload/accessibility_manager.gd"
+SafeAreaManager="*res://scripts/autoload/safe_area_manager.gd"
 
 [display]
 

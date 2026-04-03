@@ -74,8 +74,11 @@ func change_state(new_state: GameState) -> void:
 		if ResourceLoader.exists(scene_path):
 			_transitioning = true
 			get_tree().change_scene_to_file(scene_path)
-			# 다음 프레임에 전환 잠금 해제 (새 씬 _ready() 이후)
-			get_tree().process_frame.connect(func(): _transitioning = false, CONNECT_ONE_SHOT)
+			# 다음 프레임에 전환 잠금 해제 및 safe area 적용 (새 씬 _ready() 이후)
+			get_tree().process_frame.connect(func():
+				_transitioning = false
+				SafeAreaManager.apply_to_current_scene()
+			, CONNECT_ONE_SHOT)
 		else:
 			push_warning("GameManager: 씬 파일 없음 — %s (상태: %s)" % [scene_path, GameState.keys()[new_state]])
 
