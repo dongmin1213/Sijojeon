@@ -51,10 +51,12 @@ func _ready() -> void:
 	_load_deck_cards()
 	# 시험관 결정
 	_examiner = GwageoScorer.roll_examiner()
+	if _examiner.is_empty():
+		_examiner = {"id": "scholar", "name": "학자", "bonus": "none"}
 	examiner_label.text = "시험관: %s" % _examiner.get("name", "학자")
 
 	# 탐관 시험관: 뇌물 옵션
-	if _examiner["id"] == "corrupt" and GameManager.run_data.gold >= 50:
+	if _examiner.get("id", "") == "corrupt" and GameManager.run_data.gold >= 50:
 		bribe_button.visible = true
 
 	_update_status_bar()
@@ -168,6 +170,8 @@ func _on_card_toggled(index: int, btn: Button) -> void:
 func _on_confirm() -> void:
 	var selected_cards: Array[CardData] = []
 	for idx in _selected_indices:
+		if idx < 0 or idx >= _offered_cards.size():
+			continue
 		selected_cards.append(_offered_cards[idx])
 
 	match _phase:
@@ -212,7 +216,7 @@ func _show_result() -> void:
 	result_lines.append(reward_text)
 
 	# 암행어사 시험관 특수: 낙방해도 엽전 손실 없음
-	if _examiner["id"] == "amhaengosa" and grade == "nakbang":
+	if _examiner.get("id", "") == "amhaengosa" and grade == "nakbang":
 		result_lines.append("(암행어사 시험관: 엽전 손실 없음)")
 
 	result_label.text = "\n".join(result_lines)
@@ -236,7 +240,7 @@ func _apply_rewards(grade: String, _score: int) -> String:
 			# 장원 급제: 전설 카드 1장 선택 + 신분 +50 (이미 적용됨)
 			# 암행어사 시험관이면 특수 유물 추가
 			var text := "장원 급제! 전설 카드를 획득합니다."
-			if _examiner["id"] == "amhaengosa":
+			if _examiner.get("id", "") == "amhaengosa":
 				# 특수 유물 지급 (기존 유물 시스템 활용)
 				var relic_id := RelicManager.roll_relic_reward("event")
 				if relic_id != "":
@@ -264,7 +268,7 @@ func _apply_rewards(grade: String, _score: int) -> String:
 
 		"nakbang":
 			# 낙방: 엽전 30 손실 + 신분 -10 (이미 적용됨)
-			if _examiner["id"] != "amhaengosa":
+			if _examiner.get("id", "") != "amhaengosa":
 				rd.gold = maxi(rd.gold - 30, 0)
 				return "낙방... 엽전 30 손실."
 			return "낙방... 하지만 암행어사가 지켜보고 있었다."

@@ -22,6 +22,8 @@ const EXAMINERS := [
 ## 초장 채점: 공격/방어/기술 비율 균형 (0~40점).
 ## cards: Array[CardData] — 선택한 카드 3장.
 static func score_balance(cards: Array) -> int:
+	if cards.is_empty() or cards.size() > 5:
+		return 0
 	var type_counts := {"attack": 0, "defense": 0, "other": 0}
 	for card in cards:
 		var t: String = card.type if card is CardData else str(card.get("type", ""))
@@ -48,6 +50,8 @@ static func score_balance(cards: Array) -> int:
 ## cards: Array[CardData] — 선택한 카드 3장.
 ## chojangs: Array[CardData] — 초장에서 선택한 카드 (비교 대상).
 static func score_synergy(cards: Array, chojangs: Array) -> int:
+	if cards.is_empty() or chojangs.is_empty():
+		return 0
 	# 시너지 판정: subtypes 교집합 개수
 	var chojang_tags := {}
 	for card in chojangs:
@@ -85,6 +89,8 @@ static func score_synergy(cards: Array, chojangs: Array) -> int:
 ## 종장 채점: 합산 피해량 (0~25점).
 ## cards: Array[CardData] — 선택한 카드 2장.
 static func score_damage(cards: Array) -> int:
+	if cards.is_empty() or cards.size() > 5:
+		return 0
 	var total_damage := 0
 	for card in cards:
 		var dmg: int = card.damage if card is CardData else int(card.get("damage", 0))
