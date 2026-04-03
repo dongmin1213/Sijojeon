@@ -32,9 +32,12 @@ vertical_alignment = 1
 
 [node name="CardContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 30
 alignment = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ButtonRow" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
