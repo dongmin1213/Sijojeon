@@ -37,7 +37,7 @@ const BASE_VIEWPORT_WIDTH := 1080.0
 const BASE_NODE_SIZE := Vector2(120, 60)
 const BASE_ROW_SPACING := 140.0
 const BASE_MAP_PADDING_X := 80.0
-const BASE_MAP_PADDING_TOP := 100.0
+const BASE_MAP_PADDING_TOP := 40.0
 const BASE_MAP_PADDING_BOTTOM := 160.0
 
 ## 막별 맵 배경 색상 (그라데이션 기반)
