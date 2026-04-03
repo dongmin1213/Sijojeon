@@ -44,6 +44,8 @@ extends Resource
 @export var damage_per_qi_gained: int = 0  # 이번 턴 획득한 기당 피해 (기폭 D009)
 @export var min_damage: int = 0  # 최소 피해 (기폭 등)
 @export var cost_reduce_this_turn: int = 0  # 이번 턴 모든 카드 비용 감소 (축지법 D005)
+@export var burn_stacks: int = 0  # 화상 부여 스택
+@export var poison_stacks: int = 0  # 독 부여 스택
 @export var bonus_on_burn: int = 0  # 대상 화상≥2 시 추가 피해 (흑염 D017)
 @export var bonus_on_poison: int = 0  # 대상 독≥2 시 추가 피해 (흑염 D017)
 @export var dot_multiplier: float = 0.0  # DoT 피해 배율 디버프 (주박 D019)
@@ -117,6 +119,8 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.damage_per_qi_gained = values.get("damage_per_qi_gained_this_turn", 0)
 		card.min_damage = values.get("min_damage", 0)
 		card.cost_reduce_this_turn = values.get("cost_reduce_this_turn", 0)
+		card.burn_stacks = values.get("burn", 0)
+		card.poison_stacks = values.get("poison", 0)
 		card.bonus_on_burn = values.get("bonus_on_burn", 0)
 		card.bonus_on_poison = values.get("bonus_on_poison", 0)
 		card.dot_multiplier = values.get("dot_multiplier", 0.0)
@@ -183,6 +187,8 @@ func duplicate_card() -> CardData:
 	copy.damage_per_qi_gained = damage_per_qi_gained
 	copy.min_damage = min_damage
 	copy.cost_reduce_this_turn = cost_reduce_this_turn
+	copy.burn_stacks = burn_stacks
+	copy.poison_stacks = poison_stacks
 	copy.bonus_on_burn = bonus_on_burn
 	copy.bonus_on_poison = bonus_on_poison
 	copy.dot_multiplier = dot_multiplier

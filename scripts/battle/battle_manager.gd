@@ -657,6 +657,24 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 		if bonus > 0:
 			deal_damage_to_enemy(target_enemy_index, bonus)
 
+	# 화상 부여 (부적 D004 등)
+	if card.burn_stacks > 0:
+		if card.is_aoe:
+			for i in enemies.size():
+				if enemies[i]["current_hp"] > 0:
+					status_effects.apply_effect("enemy_%d" % i, "화상", card.burn_stacks)
+		else:
+			status_effects.apply_effect("enemy_%d" % target_enemy_index, "화상", card.burn_stacks)
+
+	# 독 부여 (독안개 D011 등)
+	if card.poison_stacks > 0:
+		if card.is_aoe:
+			for i in enemies.size():
+				if enemies[i]["current_hp"] > 0:
+					status_effects.apply_effect("enemy_%d" % i, "독", card.poison_stacks)
+		else:
+			status_effects.apply_effect("enemy_%d" % target_enemy_index, "독", card.poison_stacks)
+
 	# 약화 부여 (후퇴 M003 등)
 	if card.weaken_stacks > 0:
 		var target_id := "enemy_%d" % target_enemy_index
