@@ -76,6 +76,10 @@ func change_state(new_state: GameState) -> void:
 	if scene_path != "":
 		if ResourceLoader.exists(scene_path):
 			_transitioning = true
+			# 구 씬 전체 프로세싱 즉시 중지 — 씬 전환 중 !is_inside_tree() 에러 방지
+			var old_scene := get_tree().current_scene
+			if old_scene:
+				old_scene.process_mode = Node.PROCESS_MODE_DISABLED
 			get_tree().change_scene_to_file(scene_path)
 			# 다음 프레임에 전환 잠금 해제 및 safe area 적용 (새 씬 _ready() 이후)
 			get_tree().process_frame.connect(func():

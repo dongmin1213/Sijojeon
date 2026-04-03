@@ -37,6 +37,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if not is_inside_tree():
+		return
 	if _layout_dirty:
 		_layout_dirty = false
 		_arrange_cards()

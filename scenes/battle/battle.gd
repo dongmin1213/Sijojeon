@@ -244,6 +244,8 @@ func _refresh_hand_ui() -> void:
 
 
 func _deferred_refresh_hand_ui() -> void:
+	if not is_inside_tree():
+		return
 	_hand_ui_dirty = false
 	var sijo_beat := sijo_system.get_next_required_beat() if sijo_system else -1
 	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat, battle_manager)
@@ -262,6 +264,8 @@ func _mark_enemy_ui_dirty() -> void:
 
 func _deferred_update_enemy_ui() -> void:
 	## call_deferred로 호출되어 프레임당 1회만 실행된다.
+	if not is_inside_tree():
+		return
 	_enemy_ui_dirty = false
 	_update_enemy_ui()
 

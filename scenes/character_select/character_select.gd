@@ -545,6 +545,8 @@ func _create_achievement_panel() -> PanelContainer:
 func _show_first_play_guide() -> void:
 	## 첫 플레이 시 인터랙티브 튜토리얼을 제안한다.
 	## 튜토리얼 미완료 시 전투 튜토리얼 또는 건너뛰기를 선택할 수 있다.
+	if not is_inside_tree():
+		return
 	if GameManager.is_tutorial_completed():
 		return
 
