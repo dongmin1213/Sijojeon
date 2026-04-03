@@ -35,8 +35,8 @@ const NODE_ICONS := {
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
 const BASE_VIEWPORT_WIDTH := 1080.0
-const BASE_NODE_SIZE := Vector2(120, 60)
-const BASE_ROW_SPACING := 140.0
+const BASE_NODE_SIZE := Vector2(160, 80)
+const BASE_ROW_SPACING := 160.0
 const BASE_MAP_PADDING_X := 80.0
 const BASE_MAP_PADDING_TOP := 40.0
 const BASE_MAP_PADDING_BOTTOM := 160.0
@@ -48,13 +48,14 @@ const ACT_BG_COLORS := {
 	3: Color(0.12, 0.04, 0.04),  # 경복궁 — 어두운 적색
 }
 
+@onready var menu_button: Button = $HUD/TopRow/MenuButton
 @onready var scroll_container: ScrollContainer = $ScrollContainer
 @onready var map_container: Control = $ScrollContainer/MapContainer
 @onready var node_layer: Control = $ScrollContainer/MapContainer/NodeLayer
 @onready var line_layer: Control = $ScrollContainer/MapContainer/LineLayer
 @onready var hp_label: Label = $HUD/HBoxContainer/HPLabel
 @onready var gold_label: Label = $HUD/HBoxContainer/GoldLabel
-@onready var act_label: Label = $HUD/ActLabel
+@onready var act_label: Label = $HUD/TopRow/ActLabel
 @onready var jibun_label: Label = $HUD/SubHBox/JibunLabel
 @onready var faction_label: Label = $HUD/SubHBox/FactionLabel
 @onready var minshim_label: Label = $HUD/SubHBox/MinshimLabel
@@ -70,6 +71,7 @@ func _ready() -> void:
 		push_warning("RunMap: run_data 또는 run_map이 없음")
 		return
 
+	menu_button.pressed.connect(_on_menu_pressed)
 	_build_map()
 	_update_hud()
 	_update_node_states()
@@ -137,7 +139,7 @@ func _build_map() -> void:
 	var padding_x := BASE_MAP_PADDING_X * scale_factor
 	var padding_top := BASE_MAP_PADDING_TOP * scale_factor
 	var padding_bottom := BASE_MAP_PADDING_BOTTOM * scale_factor
-	var font_size := int(16.0 * scale_factor)
+	var font_size := int(20.0 * scale_factor)
 
 	# 행 간격: 뷰포트 높이에 맞춰 동적 계산 (노드가 화면에 균등 분포)
 	var available_height: float = viewport_height - padding_top - padding_bottom - node_size.y
@@ -224,14 +226,17 @@ func _draw_connections() -> void:
 			var color: Color
 			var width: float
 			if is_visited_path:
+				# 이미 지나간 경로: 밝은 금색
 				color = Color(0.9, 0.85, 0.5, 0.9)
-				width = 3.0
+				width = 4.0
 			elif nid in visited and conn_id in _available_node_ids:
-				color = Color(0.8, 0.8, 0.8, 0.6)
-				width = 2.0
+				# 선택 가능한 경로: 밝은 흰색 강조
+				color = Color(1.0, 1.0, 0.9, 0.8)
+				width = 3.5
 			else:
-				color = Color(0.4, 0.4, 0.4, 0.3)
-				width = 1.5
+				# 미래 경로: 회색 (기존보다 두껍고 밝게)
+				color = Color(0.5, 0.5, 0.5, 0.5)
+				width = 2.5
 
 			var line := Line2D.new()
 			line.add_point(from_pos)
@@ -317,7 +322,7 @@ func _scroll_to_current() -> void:
 	var run_map := GameManager.run_data.run_map
 	var visited := GameManager.run_data.visited_nodes
 
-	var target_y: float
+	var target_y: float = 0.0
 	if visited.is_empty():
 		# 시작: row 0 (하단) 으로 스크롤
 		var total_height: float = map_container.custom_minimum_size.y
@@ -383,3 +388,42 @@ func _on_node_pressed(node_id: int) -> void:
 			GameManager.change_state(GameManager.GameState.EVENT)
 		MapData.NodeType.GWAGEO:
 			GameManager.change_state(GameManager.GameState.GWAGEO)
+
+
+func _on_menu_pressed() -> void:
+	# 메뉴 팝업 표시
+	var dialog := AcceptDialog.new()
+	dialog.title = "메뉴"
+	dialog.dialog_text = ""
+	dialog.ok_button_text = "닫기"
+
+	var vbox := VBoxContainer.new()
+	vbox.custom_minimum_size = Vector2(300, 0)
+	vbox.add_theme_constant_override("separation", 12)
+
+	# 설정 버튼
+	var settings_btn := Button.new()
+	settings_btn.text = "설정"
+	settings_btn.custom_minimum_size = Vector2(0, 72)
+	settings_btn.add_theme_font_size_override("font_size", 24)
+	settings_btn.pressed.connect(func():
+		dialog.queue_free()
+		GameManager.change_state(GameManager.GameState.SETTINGS)
+	)
+	vbox.add_child(settings_btn)
+
+	# 런 포기 버튼
+	var abandon_btn := Button.new()
+	abandon_btn.text = "런 포기"
+	abandon_btn.custom_minimum_size = Vector2(0, 72)
+	abandon_btn.add_theme_font_size_override("font_size", 24)
+	abandon_btn.add_theme_color_override("font_color", Color(0.9, 0.3, 0.3))
+	abandon_btn.pressed.connect(func():
+		dialog.queue_free()
+		GameManager.end_run(false)
+	)
+	vbox.add_child(abandon_btn)
+
+	dialog.add_child(vbox)
+	add_child(dialog)
+	dialog.popup_centered()

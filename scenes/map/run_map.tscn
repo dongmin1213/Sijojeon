@@ -31,12 +31,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 2
 
-[node name="ActLabel" type="Label" parent="HUD"]
+[node name="TopRow" type="HBoxContainer" parent="HUD"]
 layout_mode = 2
+alignment = 1
+
+[node name="MenuButton" type="Button" parent="HUD/TopRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(144, 72)
+text = "≡"
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.9, 0.85, 0.6, 1)
+
+[node name="ActLabel" type="Label" parent="HUD/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "1막"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 26
 theme_override_colors/font_color = Color(0.9, 0.85, 0.6, 1)
+
+[node name="Spacer" type="Control" parent="HUD/TopRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(144, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
 layout_mode = 2
@@ -88,6 +104,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
+scroll_deadzone = 30
 horizontal_scroll_mode = 0
 
 [node name="MapContainer" type="Control" parent="ScrollContainer"]
@@ -95,6 +112,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_minimum_size = Vector2(1080, 1200)
+mouse_filter = 2
 
 [node name="LineLayer" type="Control" parent="ScrollContainer/MapContainer"]
 layout_mode = 1
@@ -103,6 +121,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="NodeLayer" type="Control" parent="ScrollContainer/MapContainer"]
 layout_mode = 1
@@ -111,3 +130,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
