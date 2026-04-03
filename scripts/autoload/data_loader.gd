@@ -110,6 +110,7 @@ func _load_all_enemies() -> void:
 		"res://data/enemies/act3.json",
 		"res://data/enemies/act3_boss.json",
 		"res://data/enemies/act3_boss_mid.json",
+		"res://data/enemies/special_elites.json",
 	]
 	for path in enemy_files:
 		_load_enemy_file(path)

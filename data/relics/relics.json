@@ -569,6 +569,20 @@
       "balance_rationale": "전설 유물. 3막 보스 보상. 시조 완성 배율 3배. 태산붕(40피해)→120피해. 가장 강력한 시조 유물이나 획득 조건(3막 보스)으로 후반부 보상. R026과 중복 방지 규칙으로 과도한 증폭 차단.",
       "obtain_from": ["boss"],
       "values": { "sijo_complete_multiplier": 3.0, "conflicts_with": ["R026"] }
+    },
+
+    {
+      "id": "RELIC_WANGMYEONG_PAE",
+      "name": { "ko": "왕명패", "hanja": "王命牌", "romanized": "Wangmyeong Pae" },
+      "rarity": 2,
+      "class_restriction": null,
+      "trigger": "passive",
+      "effect": "귀족/관리 타입 NPC 이벤트에서 추가 선택지가 해금된다.",
+      "effect_description": "왕의 명으로 받은 신표. 관리들 앞에서 권위를 드러낼 수 있다.",
+      "flavor_text": "\"이 패를 보여라. 감히 누가 막겠느냐.\"",
+      "balance_rationale": "사도세자 이벤트 전용 보상. 현 단계에서는 텍스트 전용 패시브. 향후 NPC 이벤트 확장 시 조건부 선택지 해금에 활용.",
+      "obtain_from": ["event"],
+      "values": {}
     }
 
   ],

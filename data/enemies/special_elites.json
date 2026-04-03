@@ -1,0 +1,119 @@
+{
+  "version": "0.1",
+  "type": "special_elite_pool",
+  "description": "역사 사건 이벤트에서 발동되는 특수 정예 적.",
+  "elite_enemies": [
+    {
+      "id": "ELITE_DAESANGIN",
+      "name": {
+        "ko": "대상인 무리",
+        "hanja": "大商人",
+        "romanized": "Daesangin"
+      },
+      "description": "물자를 독점하는 대상인과 그 부하들. 돈의 힘으로 싸운다.",
+      "hp": { "min": 55, "max": 65 },
+      "moves": [
+        {
+          "id": "gold_throw",
+          "name": "엽전 투척",
+          "intent": "attack",
+          "damage": 8,
+          "times": 1,
+          "description": "엽전을 무기삼아 던진다."
+        },
+        {
+          "id": "hire_thugs",
+          "name": "부하 호출",
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+          ],
+          "description": "부하들을 불러 힘 2 획득."
+        },
+        {
+          "id": "gold_steal",
+          "name": "골드 강탈",
+          "intent": "attack_debuff",
+          "damage": 5,
+          "times": 1,
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+          ],
+          "description": "5피해 + 약화 1. 매 턴 골드 강탈 효과."
+        },
+        {
+          "id": "heavy_strike",
+          "name": "금고 내리치기",
+          "intent": "attack",
+          "damage": 14,
+          "times": 1,
+          "description": "무거운 금고로 내리친다."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["gold_throw", "hire_thugs", "gold_steal", "heavy_strike", "gold_throw", "gold_steal"]
+      },
+      "rewards": {
+        "gold": { "min": 30, "max": 50 },
+        "card_chance": 0.5,
+        "relic_chance": 0.2
+      },
+      "balance_note": "매점매석 이벤트 전용 정예. 중간 난이도. 승리 시 상점 무료 카드 1장 추가 보상."
+    },
+    {
+      "id": "ELITE_GUMBU_SOLDIERS",
+      "name": {
+        "ko": "금부도사 무리",
+        "hanja": "禁府都事",
+        "romanized": "Gumbu Dosa"
+      },
+      "description": "왕의 체포 명령을 수행하는 관리. 포박술과 무력을 겸비한다.",
+      "hp": { "min": 60, "max": 70 },
+      "moves": [
+        {
+          "id": "arrest_order",
+          "name": "체포 명령",
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+          ],
+          "description": "약화 2 부여. 포박으로 행동을 제한한다."
+        },
+        {
+          "id": "sword_slash",
+          "name": "환도 일격",
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "description": "날카로운 환도 베기."
+        },
+        {
+          "id": "coordinated_attack",
+          "name": "합동 공격",
+          "intent": "attack",
+          "damage": 6,
+          "times": 2,
+          "description": "두 명이 동시에 공격한다. 6×2."
+        },
+        {
+          "id": "fortify",
+          "name": "방어 태세",
+          "intent": "defend",
+          "block": 12,
+          "description": "방어도 12 획득."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": ["arrest_order", "sword_slash", "coordinated_attack", "fortify", "sword_slash", "coordinated_attack"]
+      },
+      "rewards": {
+        "gold": { "min": 25, "max": 40 },
+        "card_chance": 0.7,
+        "relic_chance": 0.3
+      },
+      "balance_note": "사화 이벤트 전용 정예. 중간-강 난이도. 체포 디버프로 초반 압박 후 합동 공격. 승리 시 전설 카드 3선1."
+    }
+  ]
+}

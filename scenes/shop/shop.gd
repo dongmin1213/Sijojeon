@@ -34,6 +34,7 @@ const RARITY_WEIGHTS := {
 var shop_cards: Array[Dictionary] = []  # [{card_id, price, sold}]
 var removal_mode: bool = false
 var deck_buttons: Array[Button] = []
+var _price_modifier: float = 1.0  # 이벤트 효과에 의한 가격 배율
 
 @onready var title_label: Label = $VBoxContainer/TitleLabel
 @onready var gold_label: Label = $VBoxContainer/GoldLabel
@@ -62,6 +63,9 @@ func _ready() -> void:
 
 	# 상점 입장 유물 트리거 (상단 장부)
 	RelicManager.trigger_enter_shop()
+
+	# 대기 효과 소비 (상점 가격 변동, 투자 회수 등)
+	_price_modifier = _consume_shop_price_effects()
 
 	_generate_shop_cards()
 	_display_shop_cards()
@@ -129,7 +133,9 @@ func _calculate_card_price(card: CardData) -> int:
 	var base: int = CARD_BASE_PRICES.get(card.rarity, 75)
 	var variance: Array = CARD_PRICE_VARIANCE.get(card.rarity, [-25, 25])
 	var offset := randi_range(variance[0], variance[1])
-	return maxi(base + offset, 10)
+	var raw_price := maxi(base + offset, 10)
+	# 이벤트 효과에 의한 가격 변동 적용
+	return maxi(int(raw_price * _price_modifier), 1)
 
 
 func _get_removal_cost() -> int:
@@ -331,3 +337,32 @@ func _on_leave_pressed() -> void:
 	removal_mode = false
 	GameManager.save_current_run()
 	GameManager.change_state(GameManager.GameState.MAP)
+
+
+## pending_effects에서 상점 관련 효과를 소비하고 가격 배율을 반환한다.
+func _consume_shop_price_effects() -> float:
+	var modifier: float = 1.0
+	if not GameManager.run_data:
+		return modifier
+	var effects: Array = GameManager.run_data.narrative_state.get("pending_effects", [])
+	var remaining: Array = []
+	for eff in effects:
+		if eff.get("type") == "shop_price_modifier":
+			var pct: int = eff.get("percent", 0)
+			modifier *= (1.0 + pct / 100.0)
+			var dur: int = eff.get("duration_shops", 1) - 1
+			if dur > 0:
+				eff["duration_shops"] = dur
+				remaining.append(eff)
+		elif eff.get("type") == "gold_gain_after_shops":
+			var shops_left: int = eff.get("shops_remaining", 1) - 1
+			if shops_left <= 0:
+				# 투자 회수 — 골드 지급
+				GameManager.run_data.gold += eff.get("gold", 0)
+			else:
+				eff["shops_remaining"] = shops_left
+				remaining.append(eff)
+		else:
+			remaining.append(eff)
+	GameManager.run_data.narrative_state["pending_effects"] = remaining
+	return modifier

@@ -134,6 +134,12 @@ func _start_battle() -> void:
 	is_boss = (rd.current_node_type == MapData.NodeType.BOSS)
 	if is_boss:
 		RelicManager.trigger_boss_enter()
+		# 이벤트 대기 효과 — 보스 HP 변동 적용
+		var boss_mod := _consume_boss_hp_modifier()
+		if boss_mod != 1.0:
+			for e in enemy_data:
+				var orig_hp: int = e.get("hp", 100)
+				e["hp"] = maxi(int(orig_hp * boss_mod), 1)
 
 	_prev_player_hp = rd.current_hp
 	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
@@ -790,3 +796,19 @@ func _collect_enemy_rewards() -> Dictionary:
 		"card_chance": card_chance,
 		"relic_chance": relic_chance,
 	}
+
+
+## pending_effects에서 boss_hp_modifier를 소비하고 HP 배율을 반환한다.
+func _consume_boss_hp_modifier() -> float:
+	var modifier: float = 1.0
+	if not GameManager.run_data:
+		return modifier
+	var effects: Array = GameManager.run_data.narrative_state.get("pending_effects", [])
+	var remaining: Array = []
+	for eff in effects:
+		if eff.get("type") == "boss_hp_modifier":
+			modifier *= (1.0 + eff.get("percent", 0) / 100.0)
+		else:
+			remaining.append(eff)
+	GameManager.run_data.narrative_state["pending_effects"] = remaining
+	return modifier

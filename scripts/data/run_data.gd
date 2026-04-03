@@ -26,6 +26,11 @@ var daily_score: int = 0  # 일일 도전 점수
 var ascension_level: int = 0  # 어센션(귀신 단계) 레벨
 var ascension_modifiers: Array = []  # 현재 적용 중인 수정자 목록
 
+## 역사 사건 이벤트 — 발동된 이벤트 ID 목록 (중복 방지)
+var triggered_special_events: Array[String] = []
+## 서사 프레임 상태 (파벌 점수, 태그, 대기 효과 등)
+var narrative_state: Dictionary = {}
+
 
 func to_dict() -> Dictionary:
 	var prev_maps_arr := []
@@ -54,6 +59,8 @@ func to_dict() -> Dictionary:
 		"daily_score": daily_score,
 		"ascension_level": ascension_level,
 		"ascension_modifiers": ascension_modifiers,
+		"triggered_special_events": triggered_special_events,
+		"narrative_state": narrative_state,
 	}
 
 
@@ -83,4 +90,6 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.daily_score = data.get("daily_score", 0)
 	rd.ascension_level = data.get("ascension_level", 0)
 	rd.ascension_modifiers = data.get("ascension_modifiers", [])
+	rd.triggered_special_events = Array(data.get("triggered_special_events", []), TYPE_STRING, "", null)
+	rd.narrative_state = data.get("narrative_state", {})
 	return rd

@@ -1,0 +1,32 @@
+{
+  "version": "0.1",
+  "narrative_id": "amhaengosa_journey",
+  "stages": [
+    {
+      "stage": 0,
+      "trigger": "run_start",
+      "title": "어사출두 (御史出頭)",
+      "text": "임금의 밀지가 당신의 손에 쥐어졌다.\n\"백성의 고통을 눈으로 보고, 귀로 듣고, 몸으로 겪어라.\"\n당신은 이제 암행어사다. 정체를 숨기고 길을 나선다."
+    },
+    {
+      "stage": 2,
+      "trigger": "evt_amhaengosa_talk",
+      "title": "단서를 얻다",
+      "text": "진짜 암행어사를 만났다.\n그가 남긴 단서들이 머릿속에서 퍼즐처럼 맞춰지기 시작한다.\n이제 누가 진짜 적인지 보인다."
+    },
+    {
+      "stage": 3,
+      "trigger": "act3_start",
+      "title": "어사출두 — 최후",
+      "text": "마패를 꺼낼 시간이 왔다.\n탐관들이 버티고 있다. 하지만 당신의 뒤에는 백성이 있다."
+    },
+    {
+      "stage": 4,
+      "trigger": "run_victory",
+      "title_ally": "백성의 기억",
+      "text_ally": "암행어사와 함께 썩은 뿌리를 뽑아냈다.\n당신의 이름은 기록되지 않지만, 백성들은 기억할 것이다.",
+      "title_no_ally": "홀로 선 자의 길",
+      "text_no_ally": "아무도 도와주지 않았다. 그래도 해냈다.\n역사는 당신을 기록하지 않을 것이다. 그것으로 충분하다."
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "version": "0.1",
+  "type": "special_event_pool",
+  "events": [
+    {
+      "id": "EVT_SADO",
+      "special": true,
+      "once_per_run": true,
+      "trigger_acts": [1, 2],
+      "trigger_min_floor": 4,
+      "trigger_max_floor": -1,
+      "trigger_node_types": ["EVENT"],
+      "trigger_condition": "",
+      "title": {
+        "ko": "사도세자 사건",
+        "description": "한밤중에 밀서 하나가 도착했다. \"왕세자가 뒤주에 갇혔습니다. 어서 구해주십시오.\" 측근의 얼굴이 새하얗게 질려 있다."
+      },
+      "flavor_text": "\"지금 구하지 않으면 영영 늦습니다.\"",
+      "choices": [
+        {
+          "id": "save_prince",
+          "text": "세자를 구한다.",
+          "effect_type": "faction_change",
+          "effect_value": 30,
+          "effect_meta": { "faction": "namin_soron", "delta": 30 },
+          "effect_type_bonus": "faction_change",
+          "effect_meta_bonus": { "faction": "noron", "delta": -30 },
+          "effect_type_2": "run_tag_add",
+          "effect_meta_2": { "tag": "역모_가담_의심" },
+          "result_text": "밤새 세자를 피신시켰다. 남인·소론의 신망을 얻었지만, 노론의 눈 밖에 났다."
+        },
+        {
+          "id": "obey_king",
+          "text": "왕명에 따른다.",
+          "effect_type": "faction_change",
+          "effect_meta": { "faction": "noron", "delta": 30 },
+          "effect_type_bonus": "faction_change",
+          "effect_meta_bonus": { "faction": "namin_soron", "delta": -30 },
+          "effect_type_2": "relic_gain_specific",
+          "effect_meta_2": { "relic_id": "RELIC_WANGMYEONG_PAE" },
+          "effect_type_3": "buff_next_combat",
+          "effect_meta_3": { "buff": "strength", "stacks": 2 },
+          "result_text": "왕명패를 받았다. 피해 카드 피해량 +2 (죄책감으로 인한 분노 — 다음 전투 힘 +2). 노론 호감 +30, 남인·소론 -30."
+        },
+        {
+          "id": "flee",
+          "text": "도망친다.",
+          "effect_type": "faction_change",
+          "effect_meta": { "faction": "all", "delta": -20 },
+          "effect_type_bonus": "run_tag_add",
+          "effect_meta_bonus": { "tag": "겁쟁이" },
+          "result_text": "황급히 몸을 피했다. 모든 세력의 신망을 잃었다."
+        }
+      ]
+    },
+    {
+      "id": "EVT_AMHAENGOSA",
+      "special": true,
+      "once_per_run": true,
+      "trigger_acts": [1, 2],
+      "trigger_min_floor": 3,
+      "trigger_max_floor": -1,
+      "trigger_node_types": ["EVENT", "SHOP"],
+      "trigger_condition": "",
+      "title": {
+        "ko": "수상한 선비",
+        "description": "장시에 갓을 눌러쓴 선비가 홀로 앉아 있다. 화려한 비단옷도, 패도도 없지만 눈빛이 범상치 않다. 어딘지 모르게 무언가를 기록하고 있는 것 같다."
+      },
+      "flavor_text": "\"...당신도 느끼시오? 이 장시의 악취를.\"",
+      "choices": [
+        {
+          "id": "talk",
+          "text": "말을 건다.",
+          "effect_type": "narrative_flag_set",
+          "effect_meta": { "key": "amhaengosa_ally", "value": true },
+          "effect_type_bonus": "run_tag_add",
+          "effect_meta_bonus": { "tag": "암행어사_동행" },
+          "result_text": "그가 암행어사임을 알아챘다. 그는 당신에게 부패 사건의 단서를 넘겨준다. 이후 부패 관련 이벤트 연쇄 선택이 개방된다."
+        },
+        {
+          "id": "ignore",
+          "text": "무시한다.",
+          "effect_type": "shop_price_discount",
+          "effect_meta": { "percent": -30, "duration_shops": 1 },
+          "result_text": "그는 탐관오리를 처단하고 지나갔다. 부패한 상인들이 도망가 이번 상점 가격이 30% 하락한다."
+        },
+        {
+          "id": "show_status",
+          "text": "[신분 양반(3) 이상 전용] 신분증을 내보인다.",
+          "trigger_condition": "status_rank_ge_3",
+          "effect_type": "next_boss_hp_modifier",
+          "effect_meta": { "percent": -20 },
+          "result_text": "암행어사가 협력을 제안했다. 다음 보스 HP 20% 감소."
+        }
+      ]
+    },
+    {
+      "id": "EVT_MAEJEOMAEJIK",
+      "special": true,
+      "once_per_run": true,
+      "trigger_acts": [1, 2],
+      "trigger_min_floor": 2,
+      "trigger_max_floor": -1,
+      "trigger_node_types": ["EVENT"],
+      "trigger_condition": "",
+      "title": {
+        "ko": "매점매석",
+        "description": "도성으로 가는 길목에서 대상인의 수레 행렬을 마주쳤다. 쌀, 소금, 포목이 가득 실려 있다. 상인의 부하들이 길을 막아서며 소리친다. \"비켜라! 이 물건 전부 우리 것이다!\""
+      },
+      "flavor_text": "\"한 달 뒤에 이 쌀 한 가마가 지금의 세 배가 될 것이오.\"",
+      "choices": [
+        {
+          "id": "punish",
+          "text": "대상인을 응징한다. (전투 발동)",
+          "effect_type": "forced_combat_with_reward",
+          "effect_meta": {
+            "encounter_id": "ELITE_DAESANGIN",
+            "victory_reward": {
+              "type": "shop_free_card_next",
+              "count": 1
+            }
+          },
+          "result_text": "대상인과 그 부하들이 무기를 든다. 이겨야 한다. 승리하면 이번 상점에서 카드 1장을 무료로 가져갈 수 있다."
+        },
+        {
+          "id": "invest",
+          "text": "거래에 참여한다. (엽전 80 투자)",
+          "effect_type": "gold_loss",
+          "effect_value": 80,
+          "effect_type_bonus": "gold_invest_deferred",
+          "effect_meta_bonus": {
+            "return_gold": 150,
+            "after_shops": 3,
+            "tag_cost": "매점매석_투자자"
+          },
+          "result_text": "엽전 80을 투자했다. 3개 상점 이후 150냥을 돌려받는다. 단, 당신이 매점매석에 가담했다는 소문이 퍼진다."
+        },
+        {
+          "id": "pass",
+          "text": "그냥 지나친다.",
+          "effect_type": "shop_price_penalty",
+          "effect_meta": { "percent": 50, "duration_shops": 1 },
+          "result_text": "아무것도 하지 않았다. 물가가 폭등해 이번 상점 카드 가격이 50% 올랐다."
+        }
+      ]
+    },
+    {
+      "id": "EVT_SASWA",
+      "special": true,
+      "once_per_run": true,
+      "trigger_acts": [1, 2],
+      "trigger_min_floor": 6,
+      "trigger_max_floor": -1,
+      "trigger_node_types": ["EVENT"],
+      "trigger_condition": "",
+      "title": {
+        "ko": "사화 (士禍)",
+        "description": "선왕의 제문이 역모로 지목되었다. 학자들이 처형당하고 있다. 당신의 스승이 명단에 올랐다는 소식이 들린다."
+      },
+      "flavor_text": "\"도망치면 살고, 남으면 죽는다. 그런데 살아야 할 이유가 있는가?\"",
+      "choices": [
+        {
+          "id": "hide_teacher",
+          "text": "스승을 숨겨준다.",
+          "effect_type": "forced_elite_immediate",
+          "effect_meta": {
+            "encounter_id": "ELITE_GUMBU_SOLDIERS",
+            "victory_reward": {
+              "type": "card_gain_legendary",
+              "card_pool": "스승의_유산",
+              "count": 1,
+              "choice_count": 3
+            }
+          },
+          "result_text": "금부도사들이 들이닥쳤다! 즉시 전투가 발동된다. 이겨낸다면 스승에게서 전설 카드 3장 중 1장을 받는다."
+        },
+        {
+          "id": "pretend",
+          "text": "모른 척한다.",
+          "effect_type": "card_remove_random",
+          "effect_meta": { "count": 1, "from": "starter" },
+          "result_text": "스승이 끌려갔다. 스타터 카드 1장이 영구히 사라진다 (죄책감)."
+        },
+        {
+          "id": "betray",
+          "text": "고변한다. (스승을 고발한다)",
+          "effect_type": "status_rank_change",
+          "effect_meta": { "delta": 2 },
+          "effect_type_bonus": "run_tag_add",
+          "effect_meta_bonus": { "tag": "배신자" },
+          "result_text": "신분이 2단계 도약했다. 그러나 배신자라는 꼬리표가 붙는다. 이후 NPC들의 반응이 달라진다."
+        }
+      ]
+    }
+  ]
+}

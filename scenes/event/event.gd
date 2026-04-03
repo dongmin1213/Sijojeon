@@ -3,6 +3,7 @@ extends Control
 ## 랜덤 이벤트 씬.
 ## 현재 막(act)에 맞는 이벤트를 로드하고, 선택지 UI를 표시하며,
 ## 효과를 적용한 뒤 결과 텍스트를 보여준다.
+## 특수 역사 사건 이벤트(special_events.json)를 우선 체크한다.
 
 @onready var title_label: Label = $VBoxContainer/TitleLabel
 @onready var flavor_label: Label = $VBoxContainer/FlavorLabel
@@ -34,13 +35,23 @@ func _ready() -> void:
 
 func _load_random_event() -> void:
 	var act := 1
+	var floor_num := 0
 	if GameManager.run_data:
 		act = GameManager.run_data.current_act
+		floor_num = GameManager.run_data.current_floor
 
+	var node_type_str := _get_current_node_type_str()
+
+	# 1. 특수 이벤트 체크 (발동 조건 + 중복 방지)
+	var special_event := _try_load_special_event(act, floor_num, node_type_str)
+	if special_event != null:
+		_event_data = special_event
+		return
+
+	# 2. 일반 이벤트 풀 (기존 로직 유지)
 	var path := "res://data/events/act%d_events.json" % act
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
-		# 해당 막 이벤트 파일이 없으면 1막 폴백
 		file = FileAccess.open("res://data/events/act1_events.json", FileAccess.READ)
 	if file == null:
 		_event_data = {"title": {"ko": "알 수 없는 사건"}, "description": {"ko": ""}, "choices": []}
@@ -59,6 +70,87 @@ func _load_random_event() -> void:
 		return
 
 	_event_data = events[randi() % events.size()]
+
+
+## 현재 노드 타입을 문자열로 반환한다.
+func _get_current_node_type_str() -> String:
+	if not GameManager.run_data:
+		return "EVENT"
+	match GameManager.run_data.current_node_type:
+		MapData.NodeType.EVENT: return "EVENT"
+		MapData.NodeType.SHOP:  return "SHOP"
+		_: return "EVENT"
+
+
+## 특수 이벤트 풀에서 발동 가능한 이벤트를 랜덤 선택한다.
+func _try_load_special_event(act: int, floor_num: int, node_type: String) -> Variant:
+	var file := FileAccess.open("res://data/events/special_events.json", FileAccess.READ)
+	if file == null:
+		return null
+	var json := JSON.new()
+	if json.parse(file.get_as_text()) != OK:
+		file.close()
+		return null
+	file.close()
+
+	var events: Array = json.data.get("events", [])
+	var triggered: Array = GameManager.run_data.triggered_special_events
+	var candidates: Array = []
+
+	for evt in events:
+		if not evt.get("special", false):
+			continue
+		# 이미 발동됨
+		if evt.get("once_per_run", true) and triggered.has(evt["id"]):
+			continue
+		# 막 조건
+		var trigger_acts: Array = evt.get("trigger_acts", [])
+		if not trigger_acts.is_empty() and not trigger_acts.has(act):
+			continue
+		# 층 조건
+		var min_floor: int = evt.get("trigger_min_floor", 0)
+		var max_floor: int = evt.get("trigger_max_floor", -1)
+		if floor_num < min_floor:
+			continue
+		if max_floor >= 0 and floor_num > max_floor:
+			continue
+		# 노드 타입 조건
+		var node_types: Array = evt.get("trigger_node_types", [])
+		if not node_types.is_empty() and not node_types.has(node_type):
+			continue
+		# 추가 조건
+		if not _check_trigger_condition(evt.get("trigger_condition", "")):
+			continue
+
+		candidates.append(evt)
+
+	if candidates.is_empty():
+		return null
+
+	# 랜덤 선택
+	var selected: Dictionary = candidates[randi() % candidates.size()]
+	# 발동 기록
+	if selected.get("once_per_run", true):
+		GameManager.run_data.triggered_special_events.append(selected["id"])
+
+	return selected
+
+
+## 트리거 조건을 체크한다.
+func _check_trigger_condition(condition: String) -> bool:
+	if condition == "":
+		return true
+	var rd := GameManager.run_data
+	if not rd:
+		return false
+	match condition:
+		"status_rank_ge_3":
+			return rd.narrative_state.get("status_rank", 1) >= 3
+		"has_tag_amhaengosa_ally":
+			var tags: Array = rd.narrative_state.get("run_tags", [])
+			return tags.has("암행어사_동행")
+		_:
+			return true
 
 
 ## 한국어 텍스트를 추출한다. Dictionary면 "ko" 키, String이면 그대로.
@@ -100,8 +192,20 @@ func _build_ui() -> void:
 			if _is_gold_insufficient(choice):
 				btn.disabled = true
 				btn.tooltip_text = "엽전이 부족합니다"
+			# 조건부 선택지 비활성화
+			var cond: String = choice.get("trigger_condition", "")
+			if cond != "" and not _check_trigger_condition(cond):
+				btn.disabled = true
+				btn.tooltip_text = _get_condition_tooltip(cond)
 			btn.pressed.connect(_on_choice_selected.bind(choice))
 			choice_container.add_child(btn)
+
+
+## 조건 미충족 시 표시할 툴팁 텍스트.
+func _get_condition_tooltip(condition: String) -> String:
+	match condition:
+		"status_rank_ge_3": return "신분이 양반(3등급) 이상이어야 합니다"
+		_: return "조건 미충족"
 
 
 ## 선택지의 골드 비용을 확인하여 부족하면 true 반환.
@@ -123,6 +227,11 @@ func _on_choice_selected(choice: Dictionary) -> void:
 
 	var effect_type: String = str(choice.get("effect_type", "none"))
 
+	# 강제 전투 효과는 즉시 전투 씬으로 전환
+	if effect_type in ["forced_combat_with_reward", "forced_elite_immediate"]:
+		_trigger_forced_combat(choice, effect_type)
+		return
+
 	# card_gain 효과는 카드 선택 UI를 별도로 표시
 	if effect_type == "card_gain":
 		_show_card_gain_selection(choice)
@@ -140,12 +249,29 @@ func _on_choice_selected(choice: Dictionary) -> void:
 		if bonus_text != "":
 			result_text += "\n" + bonus_text
 
+	# 추가 효과 (effect_type_2, effect_type_3) 적용
+	_apply_numbered_effects(choice)
+
 	# 결과 텍스트가 비어있으면 JSON의 result_text 사용
 	if result_text == "":
 		result_text = str(choice.get("result_text", "아무 일도 일어나지 않았다."))
 
 	_show_result(result_text)
 	_update_status_bar()
+
+
+## 번호가 붙은 추가 효과 (effect_type_2, effect_type_3 등)를 적용한다.
+func _apply_numbered_effects(choice: Dictionary) -> void:
+	for i in range(2, 5):
+		var key := "effect_type_%d" % i
+		var meta_key := "effect_meta_%d" % i
+		var etype: String = str(choice.get(key, ""))
+		if etype == "":
+			break
+		# 임시 choice 딕셔너리를 만들어 effect_meta를 전달
+		var temp_choice := choice.duplicate()
+		temp_choice["effect_meta"] = choice.get(meta_key, {})
+		_apply_effect(temp_choice, etype)
 
 
 ## 메인 효과를 적용하고 결과 텍스트를 반환한다.
@@ -162,7 +288,6 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			rd.current_hp = maxi(rd.current_hp - value, 0)
 			var text: String = str(choice.get("result_text", "HP %d 손실." % value))
 			if rd.current_hp <= 0:
-				# 사망 처리는 맵 복귀 시 GameManager에서 체크
 				text += "\n...의식이 아득해진다."
 			return text
 
@@ -200,11 +325,9 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			return str(choice.get("result_text", "유물 획득!"))
 
 		"card_gain":
-			# _on_choice_selected에서 card_gain 분기 처리 — 여기까지 오면 fallback
 			return str(choice.get("result_text", "카드 획득."))
 
 		"debuff":
-			# 다음 전투 시작 시 디버프 적용 — run_data에 저장
 			var debuff_type: String = str(choice.get("debuff_type", "약화"))
 			if not rd.has_meta("next_combat_debuffs"):
 				rd.set_meta("next_combat_debuffs", [])
@@ -226,10 +349,157 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 		"random":
 			return _apply_random_outcome(choice)
 
+		# === 신규 특수 이벤트 effect_type ===
+
+		"faction_change":
+			var effect_meta: Dictionary = choice.get("effect_meta", {})
+			var faction: String = effect_meta.get("faction", "")
+			var delta: int = effect_meta.get("delta", 0)
+			if not rd.narrative_state.has("faction_scores"):
+				rd.narrative_state["faction_scores"] = {"namin": 0, "noron": 0, "soron": 0, "soin": 0}
+			var scores: Dictionary = rd.narrative_state["faction_scores"]
+			if faction == "all":
+				for key in scores:
+					scores[key] = clampi(scores[key] + delta, -100, 100)
+			elif faction == "namin_soron":
+				scores["namin"] = clampi(scores.get("namin", 0) + delta, -100, 100)
+				scores["soron"] = clampi(scores.get("soron", 0) + delta, -100, 100)
+			elif scores.has(faction):
+				scores[faction] = clampi(scores.get(faction, 0) + delta, -100, 100)
+			rd.narrative_state["faction_scores"] = scores
+			return str(choice.get("result_text", "당파 호감도가 변했다."))
+
+		"run_tag_add":
+			var tag: String = choice.get("effect_meta", {}).get("tag", "")
+			if tag != "":
+				if not rd.narrative_state.has("run_tags"):
+					rd.narrative_state["run_tags"] = []
+				var tags: Array = rd.narrative_state["run_tags"]
+				if not tags.has(tag):
+					tags.append(tag)
+				rd.narrative_state["run_tags"] = tags
+			return str(choice.get("result_text", ""))
+
+		"narrative_flag_set":
+			var key: String = choice.get("effect_meta", {}).get("key", "")
+			var flag_value = choice.get("effect_meta", {}).get("value", false)
+			if key != "":
+				rd.narrative_state[key] = flag_value
+			return str(choice.get("result_text", ""))
+
+		"shop_price_discount":
+			var meta: Dictionary = choice.get("effect_meta", {})
+			_add_pending_effect({
+				"type": "shop_price_modifier",
+				"percent": meta.get("percent", -30),
+				"duration_shops": meta.get("duration_shops", 1)
+			})
+			return str(choice.get("result_text", "상점 가격이 변동된다."))
+
+		"shop_price_penalty":
+			var meta: Dictionary = choice.get("effect_meta", {})
+			_add_pending_effect({
+				"type": "shop_price_modifier",
+				"percent": meta.get("percent", 50),
+				"duration_shops": meta.get("duration_shops", 1)
+			})
+			return str(choice.get("result_text", "상점 가격이 올랐다."))
+
+		"next_boss_hp_modifier":
+			var meta: Dictionary = choice.get("effect_meta", {})
+			_add_pending_effect({
+				"type": "boss_hp_modifier",
+				"percent": meta.get("percent", -20)
+			})
+			return str(choice.get("result_text", "다음 보스가 약해진다."))
+
+		"gold_invest_deferred":
+			var meta: Dictionary = choice.get("effect_meta", {})
+			if meta.is_empty():
+				meta = choice.get("effect_meta_bonus", {})
+			_add_pending_effect({
+				"type": "gold_gain_after_shops",
+				"gold": meta.get("return_gold", 150),
+				"shops_remaining": meta.get("after_shops", 3)
+			})
+			var tag: String = meta.get("tag_cost", "")
+			if tag != "":
+				if not rd.narrative_state.has("run_tags"):
+					rd.narrative_state["run_tags"] = []
+				rd.narrative_state["run_tags"].append(tag)
+			return ""
+
+		"status_rank_change":
+			var meta: Dictionary = choice.get("effect_meta", {})
+			var delta: int = meta.get("delta", 0)
+			var current: int = rd.narrative_state.get("status_rank", 1)
+			rd.narrative_state["status_rank"] = clampi(current + delta, 1, 5)
+			return str(choice.get("result_text", "신분이 변했다."))
+
+		"card_remove_random":
+			var meta: Dictionary = choice.get("effect_meta", {})
+			var count: int = meta.get("count", 1)
+			var starter_deck: Array = DataLoader.get_starter_deck(rd.character_id)
+			# 덱에서 스타터 카드만 필터
+			var removable: Array[String] = []
+			for card_id in rd.deck:
+				if starter_deck.has(card_id) and not removable.has(card_id):
+					removable.append(card_id)
+			removable.shuffle()
+			for i in mini(count, removable.size()):
+				var idx := rd.deck.find(removable[i])
+				if idx >= 0:
+					rd.deck.remove_at(idx)
+			return str(choice.get("result_text", "카드가 사라졌다."))
+
+		"relic_gain_specific":
+			var meta: Dictionary = choice.get("effect_meta", {})
+			var relic_id: String = meta.get("relic_id", "")
+			if relic_id != "" and not rd.relics.has(relic_id):
+				rd.relics.append(relic_id)
+				RelicManager.acquire_relic(relic_id)
+			return str(choice.get("result_text", "유물 획득!"))
+
 		"none", "":
 			return str(choice.get("result_text", "아무 일도 일어나지 않았다."))
 
 	return str(choice.get("result_text", ""))
+
+
+## pending_effects 배열에 대기 효과를 추가한다.
+func _add_pending_effect(effect: Dictionary) -> void:
+	if not GameManager.run_data:
+		return
+	if not GameManager.run_data.narrative_state.has("pending_effects"):
+		GameManager.run_data.narrative_state["pending_effects"] = []
+	GameManager.run_data.narrative_state["pending_effects"].append(effect)
+
+
+## 강제 전투를 트리거한다.
+func _trigger_forced_combat(choice: Dictionary, _effect_type: String) -> void:
+	var meta: Dictionary = choice.get("effect_meta", {})
+	var encounter_id: String = meta.get("encounter_id", "")
+	if encounter_id == "" or not GameManager.run_data:
+		_show_result("아무 일도 일어나지 않았다.")
+		return
+	# 승리 시 보상을 pending_effects에 저장
+	var victory_reward: Dictionary = meta.get("victory_reward", {})
+	if not victory_reward.is_empty():
+		_add_pending_effect({
+			"type": "post_battle_reward",
+			"trigger": "on_battle_victory",
+			"encounter_id": encounter_id,
+			"reward": victory_reward
+		})
+	# 보너스/추가 효과도 먼저 적용
+	var bonus_type: String = str(choice.get("effect_type_bonus", ""))
+	if bonus_type != "":
+		_apply_bonus_effect(choice, bonus_type)
+	_apply_numbered_effects(choice)
+	# 전투 씬으로 전환
+	GameManager.run_data.current_encounter_id = encounter_id
+	GameManager.save_current_run()
+	GameManager.change_state(GameManager.GameState.BATTLE)
 
 
 ## 도박형 골드 랜덤 효과를 적용한다.
@@ -238,12 +508,10 @@ func _apply_gold_random(choice: Dictionary) -> String:
 	var rd := GameManager.run_data
 
 	if randf() < win_chance:
-		# 승리
 		var win_value: int = int(choice.get("effect_value_win", 0))
 		rd.gold += win_value
 		return str(choice.get("result_text_win", "엽전 %d 획득!" % win_value))
 	else:
-		# 패배
 		var lose_value: int = abs(int(choice.get("effect_value_lose", 0)))
 		rd.gold = maxi(rd.gold - lose_value, 0)
 		return str(choice.get("result_text_lose", "엽전 %d 소실." % lose_value))
@@ -255,12 +523,10 @@ func _apply_random_outcome(choice: Dictionary) -> String:
 	if outcomes.is_empty():
 		return str(choice.get("result_text", "아무 일도 일어나지 않았다."))
 
-	# 가중치 합산
 	var total_weight := 0
 	for outcome in outcomes:
 		total_weight += int(outcome.get("weight", 1))
 
-	# 랜덤 선택
 	var roll := randi() % total_weight
 	var cumulative := 0
 	var selected: Dictionary = outcomes[0]
@@ -270,7 +536,6 @@ func _apply_random_outcome(choice: Dictionary) -> String:
 			selected = outcome
 			break
 
-	# 선택된 결과의 효과 적용
 	var sub_type: String = str(selected.get("effect_type", "none"))
 	var sub_value: int = int(selected.get("effect_value", 0))
 	var rd := GameManager.run_data
@@ -285,7 +550,6 @@ func _apply_random_outcome(choice: Dictionary) -> String:
 		"hp_loss":
 			rd.current_hp = maxi(rd.current_hp - sub_value, 0)
 		"card_gain":
-			# 랜덤 카드 1장을 덱에 추가 (random 결과 내 중첩 card_gain은 단순 지급)
 			var rand_offers := _generate_card_offers(1)
 			if not rand_offers.is_empty():
 				rd.deck.append(rand_offers[0])
@@ -307,7 +571,7 @@ func _apply_bonus_effect(choice: Dictionary, bonus_type: String) -> String:
 		"hp_gain":
 			var val: int = int(bonus_value)
 			rd.current_hp = mini(rd.current_hp + val, rd.max_hp)
-			return ""  # result_text_full에 포함됨
+			return ""
 
 		"hp_full_heal":
 			rd.current_hp = rd.max_hp
@@ -347,17 +611,25 @@ func _apply_bonus_effect(choice: Dictionary, bonus_type: String) -> String:
 				rd.set_meta("next_combat_buffs", buffs)
 			return ""
 
+		# 보너스 슬롯에서도 신규 효과 지원
+		"faction_change", "run_tag_add", "narrative_flag_set", \
+		"shop_price_discount", "shop_price_penalty", "gold_invest_deferred", \
+		"status_rank_change", "relic_gain_specific":
+			# 보너스 meta는 effect_meta_bonus에 저장됨
+			var temp_choice := choice.duplicate()
+			temp_choice["effect_meta"] = choice.get("effect_meta_bonus", {})
+			_apply_effect(temp_choice, bonus_type)
+			return ""
+
 	return ""
 
 
 ## 결과 텍스트를 표시하고 선택지를 숨긴다.
 func _show_result(text: String) -> void:
-	# 선택지 숨기기
 	for child in choice_container.get_children():
 		child.queue_free()
 	choice_container.visible = false
 
-	# 결과 표시
 	result_label.text = text
 	result_label.visible = true
 	continue_button.visible = true
@@ -376,11 +648,9 @@ func _update_status_bar() -> void:
 
 ## 카드 획득 이벤트: 3장 중 1장 선택 UI를 표시한다.
 func _show_card_gain_selection(choice: Dictionary) -> void:
-	# 기존 선택지 지우기
 	for child in choice_container.get_children():
 		child.queue_free()
 
-	# 안내 라벨
 	var header := Label.new()
 	header.text = "카드를 선택하세요 (1장)"
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -444,7 +714,6 @@ func _format_card_choice_text(card: CardData) -> String:
 
 func _return_to_map() -> void:
 	GameManager.save_current_run()
-	# HP가 0 이하면 런 종료
 	if GameManager.run_data and GameManager.run_data.current_hp <= 0:
 		GameManager.end_run(false)
 	else:
