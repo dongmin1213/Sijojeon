@@ -15,8 +15,13 @@ const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 @export var select_lift: float = 50.0         # 선택 시 위로 올라가는 높이
 
 # 뷰포트 기준 비율 (1080x1920 기본 해상도 기준)
-const BASE_CARD_SPACING := 145.0
 const BASE_WIDTH := 1080.0
+# 카드 간격: 카드 너비(140)의 배수로 설정.
+const MAX_CARD_SPACING := 160.0    # 넉넉할 때 카드 간 간격
+const MIN_CARD_SPACING := 105.0    # 카드 너비의 75% — 최소 25% 겹침만 허용
+# 손패 카드 수에 따른 카드 크기 스케일 (가독성 확보)
+const HAND_SCALE_THRESHOLD := 4    # 이 수 이상이면 카드 축소 시작
+const MIN_HAND_SCALE := 0.75       # 카드 최소 축소 비율
 
 var card_widgets: Array[CardUI] = []
 var selected_index: int = -1
@@ -114,7 +119,35 @@ func _arrange_cards() -> void:
 
 	# 뷰포트 너비에 비례하여 카드 간격 계산
 	var scale_factor := size.x / BASE_WIDTH
-	var card_spacing := BASE_CARD_SPACING * scale_factor
+
+	# 손패 수에 따른 카드 크기 동적 조정
+	var hand_scale := 1.0
+	if count > HAND_SCALE_THRESHOLD:
+		# 카드 수가 임계값 초과 시 점진적 축소 (최대 10장 기준)
+		var excess := float(count - HAND_SCALE_THRESHOLD) / float(10 - HAND_SCALE_THRESHOLD)
+		hand_scale = lerpf(1.0, MIN_HAND_SCALE, clampf(excess, 0.0, 1.0))
+
+	# 카드 크기 조정 적용
+	var base_card_w := CardUI.BASE_CARD_WIDTH * scale_factor
+	var base_card_h := CardUI.BASE_CARD_HEIGHT * scale_factor
+	var scaled_card_w := base_card_w * hand_scale
+	var scaled_card_h := base_card_h * hand_scale
+	for widget in card_widgets:
+		widget.custom_minimum_size = Vector2(scaled_card_w, scaled_card_h)
+		widget.size = Vector2(scaled_card_w, scaled_card_h)
+
+	var card_w := scaled_card_w
+	# 사용 가능 영역의 95%를 카드 배치에 활용 (좌우 여백 2.5%씩)
+	var available_width := size.x * 0.95
+	# 이상적 간격: 카드 너비 + 약간의 여백
+	var ideal_spacing := MAX_CARD_SPACING * scale_factor * hand_scale
+	# 필요한 전체 폭 = (count-1) * spacing + card_w
+	var needed_width := (count - 1) * ideal_spacing + card_w
+	var card_spacing := ideal_spacing
+	if count > 1 and needed_width > available_width:
+		# 공간이 부족하면 간격 축소 (최소 간격까지)
+		card_spacing = (available_width - card_w) / float(count - 1)
+		card_spacing = maxf(card_spacing, MIN_CARD_SPACING * scale_factor * hand_scale)
 
 	var center_x := size.x / 2.0
 	var base_y := size.y * 0.3
