@@ -6,7 +6,7 @@ extends CanvasLayer
 
 signal step_acknowledged  # 플레이어가 "다음" 또는 지정된 액션을 수행
 
-const OVERLAY_COLOR := Color(0.0, 0.0, 0.0, 0.7)
+const OVERLAY_COLOR := Color(0.0, 0.0, 0.0, 0.45)
 const HIGHLIGHT_COLOR := Color(1.0, 0.85, 0.3, 0.4)
 const HIGHLIGHT_BORDER_COLOR := Color(1.0, 0.85, 0.3, 0.9)
 const ARROW_COLOR := Color(1.0, 0.85, 0.3)
@@ -29,6 +29,10 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
+	# 뷰포트 비례 스케일링
+	var vp_size := get_viewport().get_visible_rect().size
+	var ui_scale := minf(vp_size.x / 1080.0, vp_size.y / 1920.0)
+
 	# 전체 화면 반투명 오버레이
 	_overlay_bg = ColorRect.new()
 	_overlay_bg.color = OVERLAY_COLOR
@@ -58,35 +62,37 @@ func _build_ui() -> void:
 	stylebox.set_border_width_all(2)
 	stylebox.border_color = Color(1.0, 0.85, 0.3, 0.8)
 	stylebox.set_corner_radius_all(8)
-	stylebox.set_content_margin_all(20)
+	var content_margin := int(24 * ui_scale)
+	stylebox.set_content_margin_all(content_margin)
 	_text_panel.add_theme_stylebox_override("panel", stylebox)
 
 	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 12)
+	vbox.add_theme_constant_override("separation", int(16 * ui_scale))
 
 	_text_label = Label.new()
 	_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_text_label.add_theme_font_size_override("font_size", 18)
+	_text_label.add_theme_font_size_override("font_size", maxi(int(26 * ui_scale), 22))
 	_text_label.add_theme_color_override("font_color", Color(0.95, 0.92, 0.85))
-	_text_label.custom_minimum_size = Vector2(400, 0)
+	# 뷰포트 너비에 비례한 최소 크기 (양쪽 마진 80px 확보)
+	_text_label.custom_minimum_size = Vector2(vp_size.x - 120 * ui_scale, 0)
 	vbox.add_child(_text_label)
 
 	var btn_container := HBoxContainer.new()
 	btn_container.alignment = BoxContainer.ALIGNMENT_CENTER
-	btn_container.add_theme_constant_override("separation", 16)
+	btn_container.add_theme_constant_override("separation", int(20 * ui_scale))
 
 	_next_button = Button.new()
 	_next_button.text = "다음"
-	_next_button.add_theme_font_size_override("font_size", 18)
-	_next_button.custom_minimum_size = Vector2(120, 40)
+	_next_button.add_theme_font_size_override("font_size", maxi(int(26 * ui_scale), 22))
+	_next_button.custom_minimum_size = Vector2(160 * ui_scale, 56 * ui_scale)
 	_next_button.pressed.connect(_on_next_pressed)
 	btn_container.add_child(_next_button)
 
 	_skip_button = Button.new()
 	_skip_button.text = "튜토리얼 건너뛰기"
-	_skip_button.add_theme_font_size_override("font_size", 14)
+	_skip_button.add_theme_font_size_override("font_size", maxi(int(22 * ui_scale), 18))
 	_skip_button.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
-	_skip_button.custom_minimum_size = Vector2(160, 40)
+	_skip_button.custom_minimum_size = Vector2(200 * ui_scale, 50 * ui_scale)
 	btn_container.add_child(_skip_button)
 
 	vbox.add_child(btn_container)
@@ -107,10 +113,12 @@ func show_message(text: String, wait_for_action: bool = false) -> void:
 	_next_button.visible = not wait_for_action
 	_next_button.text = "다음"
 
-	# 텍스트 패널을 화면 중앙 하단에 배치
+	# 텍스트 패널을 화면 중앙에 배치 (노치/하단 안전 영역 확보)
+	var vp := get_viewport().get_visible_rect().size
+	var safe_top := _get_safe_margin_top()
 	_text_panel.position = Vector2(
-		(get_viewport().get_visible_rect().size.x - _text_panel.size.x) / 2.0,
-		get_viewport().get_visible_rect().size.y - _text_panel.size.y - 40
+		(vp.x - _text_panel.size.x) / 2.0,
+		(vp.y - _text_panel.size.y) / 2.0
 	)
 
 	# 마우스 입력 통과 설정
@@ -161,15 +169,19 @@ func highlight_area(rect: Rect2, text: String, arrow_dir: String = "down", wait_
 			)
 			_arrow_node.rotation = PI / 2
 
-	# 텍스트 패널 위치: 하이라이트 영역 아래 또는 위
+	# 텍스트 패널 위치: 하이라이트 영역 반대편 (노치 안전 영역 확보)
 	var viewport_size := get_viewport().get_visible_rect().size
+	var safe_top := _get_safe_margin_top()
+	var safe_bottom := 60.0
 	var panel_y: float
 	if rect.position.y > viewport_size.y / 2.0:
-		# 하이라이트가 하단이면 텍스트를 상단에 배치
-		panel_y = 40.0
+		# 하이라이트가 하단이면 텍스트를 상단에 배치 (노치 아래)
+		panel_y = safe_top
 	else:
 		# 하이라이트가 상단이면 텍스트를 하단에 배치
-		panel_y = viewport_size.y - _text_panel.size.y - 40
+		panel_y = viewport_size.y - _text_panel.size.y - safe_bottom
+	# 화면 밖으로 넘치지 않도록 클램핑
+	panel_y = clampf(panel_y, safe_top, viewport_size.y - _text_panel.size.y - safe_bottom)
 	_text_panel.position = Vector2(
 		(viewport_size.x - _text_panel.size.x) / 2.0,
 		panel_y
@@ -209,6 +221,15 @@ func connect_skip(callback: Callable) -> void:
 
 func _on_next_pressed() -> void:
 	step_acknowledged.emit()
+
+
+func _get_safe_margin_top() -> float:
+	## 카메라 노치/상태바 안전 영역 상단 마진 반환
+	var safe_area := DisplayServer.get_display_safe_area()
+	if safe_area.position.y > 0:
+		return float(safe_area.position.y) + 20.0
+	# 안전 영역 정보가 없으면 보수적으로 120px (노치 대비)
+	return 120.0
 
 
 func _draw_arrow() -> void:
