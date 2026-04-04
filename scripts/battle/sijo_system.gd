@@ -12,6 +12,8 @@ var slots: Array[String] = []  # 채워진 카드 ID
 var current_slot_index: int = 0
 
 signal slot_filled(index: int, card_id: String, jang_name: String)
+## 장 완성 시그널: 초장/중장/종장 각각 완성 시 발행
+signal sijo_chapter_completed(chapter: String)
 ## sijo_completed: 마지막 카드 ID + 완성에 사용된 6장 카드 ID 배열 전달
 signal sijo_completed(final_card_id: String, all_slot_card_ids: Array)
 
@@ -26,6 +28,14 @@ func try_fill_slot(card_beat: int, card_id: String) -> bool:
 	var jang := JANG_NAMES[current_slot_index]
 	slot_filled.emit(current_slot_index, card_id, jang)
 	current_slot_index += 1
+
+	# 장 완성 감지: 초장(index 1 완료), 중장(index 3 완료), 종장(index 5 완료)
+	if current_slot_index == 2:
+		sijo_chapter_completed.emit("초장")
+	elif current_slot_index == 4:
+		sijo_chapter_completed.emit("중장")
+	elif current_slot_index == 6:
+		sijo_chapter_completed.emit("종장")
 
 	if current_slot_index >= PATTERN.size():
 		sijo_completed.emit(card_id, slots.duplicate())

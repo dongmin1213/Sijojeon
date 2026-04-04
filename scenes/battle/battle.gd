@@ -75,6 +75,7 @@ func _ready() -> void:
 	battle_manager.enemy_intent_shown.connect(_on_enemy_intent_shown)
 	battle_manager.battle_ended.connect(_on_battle_ended)
 	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
+	sijo_system.sijo_chapter_completed.connect(_on_sijo_chapter_completed)
 	sijo_system.sijo_completed.connect(_on_sijo_completed)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 
@@ -653,6 +654,107 @@ func _show_sijo_reward_popup(text: String) -> void:
 	var tween := create_tween()
 	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
 	tween.tween_callback(popup.queue_free)
+
+
+## 시조 장 완성 시 직업별 자원 보너스 지급.
+func _on_sijo_chapter_completed(chapter: String) -> void:
+	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
+		return
+	var job := battle_manager.character_id
+	var reward_text := ""
+
+	match chapter:
+		"초장":
+			match job:
+				"mugwan":
+					# 무관: 기력 +1
+					battle_manager.current_class_resource = mini(
+						battle_manager.current_class_resource + 1,
+						battle_manager.max_class_resource)
+					battle_manager.class_resource_changed.emit(
+						battle_manager.current_class_resource,
+						battle_manager.max_class_resource)
+					reward_text = "초장 완성! 기력 +1"
+				"mungwan":
+					# 문관: 학식 +1
+					battle_manager.current_class_resource = mini(
+						battle_manager.current_class_resource + 1,
+						battle_manager.max_class_resource)
+					battle_manager.class_resource_changed.emit(
+						battle_manager.current_class_resource,
+						battle_manager.max_class_resource)
+					reward_text = "초장 완성! 학식 +1"
+				_:
+					reward_text = "초장 완성!"
+
+		"중장":
+			match job:
+				"mugwan":
+					# 무관: 기력 +1
+					battle_manager.current_class_resource = mini(
+						battle_manager.current_class_resource + 1,
+						battle_manager.max_class_resource)
+					battle_manager.class_resource_changed.emit(
+						battle_manager.current_class_resource,
+						battle_manager.max_class_resource)
+					reward_text = "중장 완성! 기력 +1"
+				"mungwan":
+					# 문관: 학식 +1
+					battle_manager.current_class_resource = mini(
+						battle_manager.current_class_resource + 1,
+						battle_manager.max_class_resource)
+					battle_manager.class_resource_changed.emit(
+						battle_manager.current_class_resource,
+						battle_manager.max_class_resource)
+					reward_text = "중장 완성! 학식 +1"
+				"dosa":
+					# 도사: 기 +1
+					battle_manager.current_qi = mini(
+						battle_manager.current_qi + 1,
+						battle_manager.max_qi)
+					battle_manager.qi_changed.emit(
+						battle_manager.current_qi,
+						battle_manager.max_qi)
+					reward_text = "중장 완성! 기 +1"
+				_:
+					reward_text = "중장 완성!"
+
+		"종장":
+			match job:
+				"mugwan":
+					# 무관: 기력 +3
+					battle_manager.current_class_resource = mini(
+						battle_manager.current_class_resource + 3,
+						battle_manager.max_class_resource)
+					battle_manager.class_resource_changed.emit(
+						battle_manager.current_class_resource,
+						battle_manager.max_class_resource)
+					reward_text = "종장 완성! 기력 +3"
+				"mungwan":
+					# 문관: 학식 +2
+					battle_manager.current_class_resource = mini(
+						battle_manager.current_class_resource + 2,
+						battle_manager.max_class_resource)
+					battle_manager.class_resource_changed.emit(
+						battle_manager.current_class_resource,
+						battle_manager.max_class_resource)
+					reward_text = "종장 완성! 학식 +2"
+				"dosa":
+					# 도사: 기 +1 + 주문 즉시 발동 (다음 카드 비용 0)
+					battle_manager.current_qi = mini(
+						battle_manager.current_qi + 1,
+						battle_manager.max_qi)
+					battle_manager.qi_changed.emit(
+						battle_manager.current_qi,
+						battle_manager.max_qi)
+					battle_manager._next_card_cost_reduce += 99  # 다음 카드 무료
+					reward_text = "종장 완성! 기 +1, 다음 주문 무료!"
+				_:
+					reward_text = "종장 완성!"
+
+	if reward_text != "":
+		_show_sijo_reward_popup(reward_text)
+		battle_manager.passive_triggered.emit("시조 " + chapter, reward_text)
 
 
 func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void:
