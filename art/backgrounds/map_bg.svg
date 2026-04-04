@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1200" viewBox="0 0 1080 1200">
+  <defs>
+    <linearGradient id="sky_map" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0e1420"/>
+      <stop offset="50%"  stop-color="#141e2e"/>
+      <stop offset="100%" stop-color="#1a1830"/>
+    </linearGradient>
+    <linearGradient id="mist1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#8090b0" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#8090b0" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="mist2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#b0c0d8" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#b0c0d8" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="blur3">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+    <filter id="blur6">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <!-- 하늘 -->
+  <rect width="1080" height="1200" fill="url(#sky_map)"/>
+
+  <!-- 별 -->
+  <g fill="#d0d8e8" opacity="0.4">
+    <circle cx="80"  cy="60"  r="1.5"/>
+    <circle cx="200" cy="40"  r="1"/>
+    <circle cx="350" cy="80"  r="1.5"/>
+    <circle cx="500" cy="30"  r="1"/>
+    <circle cx="650" cy="70"  r="1.5"/>
+    <circle cx="800" cy="45"  r="1"/>
+    <circle cx="950" cy="65"  r="1.5"/>
+    <circle cx="1020" cy="35" r="1"/>
+  </g>
+
+  <!-- 원경 산 (5겹, 수묵화 스타일) -->
+  <!-- 5겹 - 가장 먼 산 (밝고 희미) -->
+  <path d="M0,600 L120,480 L240,530 L380,450 L540,400 L700,460 L840,420 L960,490 L1080,440 L1080,650 L0,650 Z"
+        fill="#2a3345" opacity="0.4" filter="url(#blur6)"/>
+
+  <!-- 4겹 -->
+  <path d="M0,680 L100,550 L220,610 L360,530 L500,490 L640,560 L780,510 L900,580 L1080,530 L1080,720 L0,720 Z"
+        fill="#202838" opacity="0.55" filter="url(#blur3)"/>
+
+  <!-- 3겹 -->
+  <path d="M0,760 L80,630 L200,700 L340,620 L480,580 L600,650 L740,600 L860,670 L1000,620 L1080,660 L1080,800 L0,800 Z"
+        fill="#1a2030" opacity="0.7"/>
+
+  <!-- 2겹 -->
+  <path d="M0,850 L60,720 L180,790 L300,710 L440,680 L580,740 L700,690 L820,760 L960,710 L1080,750 L1080,900 L0,900 Z"
+        fill="#141820" opacity="0.8"/>
+
+  <!-- 1겹 - 가장 가까운 산 (어둡고 선명) -->
+  <path d="M0,950 L80,820 L200,890 L340,810 L480,780 L600,860 L720,800 L840,870 L1000,820 L1080,860 L1080,1000 L0,1000 Z"
+        fill="#0e1015"/>
+
+  <!-- 소나무들 (가까운 산 위) -->
+  <g fill="#0a0c12" opacity="0.9">
+    <!-- 소나무 그룹 1 -->
+    <polygon points="150,820 140,855 160,855"/>
+    <polygon points="150,802 137,835 163,835"/>
+    <polygon points="150,785 134,818 166,818"/>
+    <rect x="147" y="855" width="6" height="20"/>
+    <!-- 소나무 그룹 2 -->
+    <polygon points="500,780 490,815 510,815"/>
+    <polygon points="500,762 487,795 513,795"/>
+    <rect x="497" y="815" width="6" height="18"/>
+    <!-- 소나무 그룹 3 -->
+    <polygon points="850,800 840,835 860,835"/>
+    <polygon points="850,782 837,815 863,815"/>
+    <polygon points="850,765 834,800 866,800"/>
+    <rect x="847" y="835" width="6" height="20"/>
+  </g>
+
+  <!-- 안개 레이어들 -->
+  <rect x="0" y="550" width="1080" height="200" fill="url(#mist1)"/>
+  <rect x="0" y="700" width="1080" height="250" fill="url(#mist2)"/>
+
+  <!-- 지면 (강이나 평원) -->
+  <rect x="0" y="1000" width="1080" height="200" fill="#0f0e18"/>
+
+  <!-- 강 (물 반사) -->
+  <path d="M0,1050 Q270,1020 540,1060 Q810,1100 1080,1050 L1080,1200 L0,1200 Z"
+        fill="#141c28"/>
+  <!-- 강 반사 빛 -->
+  <path d="M200,1080 Q540,1060 880,1090" stroke="#2a3c54" stroke-width="3"
+        fill="none" opacity="0.5"/>
+  <path d="M100,1100 Q540,1075 980,1110" stroke="#2a3c54" stroke-width="2"
+        fill="none" opacity="0.3"/>
+
+  <!-- 가장 앞 지면 (어두운 언덕) -->
+  <path d="M0,1150 L200,1080 L400,1120 L540,1090 L680,1115 L900,1080 L1080,1100 L1080,1200 L0,1200 Z"
+        fill="#080a10"/>
+</svg>

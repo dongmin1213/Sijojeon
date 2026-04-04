@@ -1,0 +1,200 @@
+[gd_resource type="Theme" format=3 uid="uid://joseon_theme"]
+
+; ─── Button 스타일 (일반) ───────────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="btn_normal"]
+bg_color = Color(0.12, 0.10, 0.19, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.42, 0.29, 0.55, 1.0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+bg_color = Color(0.18, 0.14, 0.28, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.62, 0.42, 0.82, 1.0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.4, 0.2, 0.6, 0.3)
+shadow_size = 6
+shadow_offset = Vector2(0, 2)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="btn_pressed"]
+bg_color = Color(0.08, 0.06, 0.12, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.52, 0.35, 0.68, 1.0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="btn_focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.80, 0.70, 0.30, 0.8)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="btn_disabled"]
+bg_color = Color(0.08, 0.07, 0.12, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.22, 0.35, 0.5)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+; ─── Panel 스타일 ───────────────────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="panel_normal"]
+bg_color = Color(0.10, 0.08, 0.16, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.24, 0.48, 0.85)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+; ─── PanelContainer 스타일 ─────────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="panelcontainer_normal"]
+bg_color = Color(0.10, 0.08, 0.16, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.24, 0.48, 0.85)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+
+; ─── ProgressBar (HP/기력 바) ──────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="progressbar_bg"]
+bg_color = Color(0.08, 0.06, 0.12, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.2, 0.4, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="progressbar_fill"]
+bg_color = Color(0.7, 0.15, 0.15, 0.9)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+; ─── LineEdit ──────────────────────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="lineedit_normal"]
+bg_color = Color(0.08, 0.06, 0.14, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.36, 0.24, 0.48, 0.8)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+; ─── ScrollContainer (맵 스크롤) ───────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="scroll_bg"]
+bg_color = Color(0, 0, 0, 0)
+
+; ─── 테마 리소스 정의 ──────────────────────────────────────────────────────
+[resource]
+; Button
+Button/styles/normal   = SubResource("btn_normal")
+Button/styles/hover    = SubResource("btn_hover")
+Button/styles/pressed  = SubResource("btn_pressed")
+Button/styles/focus    = SubResource("btn_focus")
+Button/styles/disabled = SubResource("btn_disabled")
+Button/colors/font_color          = Color(0.92, 0.88, 0.78, 1.0)
+Button/colors/font_hover_color    = Color(1.0, 0.96, 0.86, 1.0)
+Button/colors/font_pressed_color  = Color(0.80, 0.76, 0.68, 1.0)
+Button/colors/font_disabled_color = Color(0.45, 0.42, 0.50, 0.6)
+Button/colors/font_focus_color    = Color(1.0, 0.95, 0.70, 1.0)
+Button/font_sizes/font_size = 32
+
+; Panel
+Panel/styles/panel = SubResource("panel_normal")
+
+; PanelContainer
+PanelContainer/styles/panel = SubResource("panelcontainer_normal")
+
+; Label
+Label/colors/font_color         = Color(0.92, 0.88, 0.78, 1.0)
+Label/colors/font_shadow_color  = Color(0, 0, 0, 0.5)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+
+; ProgressBar
+ProgressBar/styles/background = SubResource("progressbar_bg")
+ProgressBar/styles/fill       = SubResource("progressbar_fill")
+
+; LineEdit
+LineEdit/styles/normal = SubResource("lineedit_normal")
+LineEdit/colors/font_color         = Color(0.92, 0.88, 0.78, 1.0)
+LineEdit/colors/font_placeholder_color = Color(0.55, 0.52, 0.48, 0.6)
+LineEdit/colors/caret_color        = Color(0.80, 0.70, 0.30, 1.0)
+
+; ScrollContainer
+ScrollContainer/styles/panel = SubResource("scroll_bg")

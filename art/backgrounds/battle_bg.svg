@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="hall_sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0a0c14"/>
+      <stop offset="40%"  stop-color="#141825"/>
+      <stop offset="100%" stop-color="#0e1018"/>
+    </linearGradient>
+    <linearGradient id="floor_grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#1a1208"/>
+      <stop offset="100%" stop-color="#0d0b06"/>
+    </linearGradient>
+    <radialGradient id="candle_glow" cx="50%" cy="65%" r="35%">
+      <stop offset="0%"   stop-color="#805020" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0a0c14" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="enemy_light" cx="50%" cy="20%" r="40%">
+      <stop offset="0%"   stop-color="#1a2040" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0a0c14" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <pattern id="hanji" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#c8a870" opacity="0.05"/>
+      <line x1="0" y1="0"  x2="40" y2="0"  stroke="#c8a870" stroke-width="0.3" opacity="0.15"/>
+      <line x1="0" y1="20" x2="40" y2="20" stroke="#c8a870" stroke-width="0.2" opacity="0.1"/>
+      <line x1="0"  y1="0" x2="0"  y2="40" stroke="#c8a870" stroke-width="0.3" opacity="0.15"/>
+      <line x1="20" y1="0" x2="20" y2="40" stroke="#c8a870" stroke-width="0.2" opacity="0.1"/>
+    </pattern>
+    <linearGradient id="pillar_grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#2a1808"/>
+      <stop offset="30%"  stop-color="#3c2010"/>
+      <stop offset="70%"  stop-color="#301808"/>
+      <stop offset="100%" stop-color="#1e1005"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="1080" height="1920" fill="url(#hall_sky)"/>
+
+  <!-- 밖 풍경 (창문 너머) -->
+  <rect x="0" y="0" width="1080" height="700" fill="#070a10"/>
+  <!-- 달 -->
+  <circle cx="540" cy="200" r="50" fill="#e8e0c0" opacity="0.4"/>
+  <circle cx="540" cy="200" r="40" fill="#f0e8c8" opacity="0.5"/>
+  <!-- 먼 산 -->
+  <path d="M0,650 L200,480 L350,560 L540,420 L730,540 L880,460 L1080,580 L1080,700 L0,700 Z"
+        fill="#0d1020" opacity="0.9"/>
+
+  <!-- 전각 지붕 내부 (천장) -->
+  <path d="M0,50 L540,0 L1080,50 L1080,200 L0,200 Z" fill="#1a1008"/>
+  <!-- 천장 대들보 -->
+  <rect x="0"   y="140" width="1080" height="25" fill="#251505"/>
+  <rect x="0"   y="165" width="1080" height="10" fill="#1e1005"/>
+  <!-- 가로 서까래 -->
+  <g fill="#1c0f04" opacity="0.8">
+    <rect x="100" y="50" width="12" height="100" rx="4"/>
+    <rect x="220" y="50" width="12" height="100" rx="4"/>
+    <rect x="340" y="50" width="12" height="100" rx="4"/>
+    <rect x="460" y="50" width="12" height="100" rx="4"/>
+    <rect x="580" y="50" width="12" height="100" rx="4"/>
+    <rect x="700" y="50" width="12" height="100" rx="4"/>
+    <rect x="820" y="50" width="12" height="100" rx="4"/>
+    <rect x="940" y="50" width="12" height="100" rx="4"/>
+  </g>
+  <!-- 단청 채색 (서까래 끝) -->
+  <g opacity="0.7">
+    <rect x="100" y="50" width="12" height="15" fill="#8b1a1a"/>
+    <rect x="220" y="50" width="12" height="15" fill="#2a5a8a"/>
+    <rect x="340" y="50" width="12" height="15" fill="#4a7a4a"/>
+    <rect x="460" y="50" width="12" height="15" fill="#8b6a1a"/>
+    <rect x="580" y="50" width="12" height="15" fill="#8b1a1a"/>
+    <rect x="700" y="50" width="12" height="15" fill="#2a5a8a"/>
+    <rect x="820" y="50" width="12" height="15" fill="#4a7a4a"/>
+    <rect x="940" y="50" width="12" height="15" fill="#8b6a1a"/>
+  </g>
+
+  <!-- 창호지 배경 (하늘 앞) -->
+  <rect x="0" y="200" width="1080" height="500" fill="url(#hanji)" opacity="0.3"/>
+
+  <!-- 좌측 기둥 -->
+  <rect x="30"  y="200" width="70" height="1100" fill="url(#pillar_grad)"/>
+  <!-- 좌측 기둥 단청 -->
+  <rect x="30"  y="200" width="70" height="30" fill="#8b1a1a" opacity="0.8"/>
+  <rect x="30"  y="230" width="70" height="15" fill="#4a7a4a" opacity="0.7"/>
+  <rect x="30"  y="245" width="70" height="10" fill="#2a5a8a" opacity="0.7"/>
+
+  <!-- 우측 기둥 -->
+  <rect x="980" y="200" width="70" height="1100" fill="url(#pillar_grad)"/>
+  <rect x="980" y="200" width="70" height="30" fill="#8b1a1a" opacity="0.8"/>
+  <rect x="980" y="230" width="70" height="15" fill="#4a7a4a" opacity="0.7"/>
+  <rect x="980" y="245" width="70" height="10" fill="#2a5a8a" opacity="0.7"/>
+
+  <!-- 창호 격자 (좌측 배경) -->
+  <g stroke="#a08050" stroke-width="1.5" opacity="0.25" fill="none">
+    <rect x="100" y="250" width="200" height="350"/>
+    <!-- 가로 격자 -->
+    <line x1="100" y1="310" x2="300" y2="310"/>
+    <line x1="100" y1="370" x2="300" y2="370"/>
+    <line x1="100" y1="430" x2="300" y2="430"/>
+    <line x1="100" y1="490" x2="300" y2="490"/>
+    <line x1="100" y1="550" x2="300" y2="550"/>
+    <!-- 세로 격자 -->
+    <line x1="160" y1="250" x2="160" y2="600"/>
+    <line x1="220" y1="250" x2="220" y2="600"/>
+    <line x1="240" y1="250" x2="240" y2="600"/>
+  </g>
+
+  <!-- 창호 격자 (우측 배경) -->
+  <g stroke="#a08050" stroke-width="1.5" opacity="0.25" fill="none">
+    <rect x="780" y="250" width="200" height="350"/>
+    <line x1="780" y1="310" x2="980" y2="310"/>
+    <line x1="780" y1="370" x2="980" y2="370"/>
+    <line x1="780" y1="430" x2="980" y2="430"/>
+    <line x1="780" y1="490" x2="980" y2="490"/>
+    <line x1="780" y1="550" x2="980" y2="550"/>
+    <line x1="840" y1="250" x2="840" y2="600"/>
+    <line x1="900" y1="250" x2="900" y2="600"/>
+    <line x1="840" y1="250" x2="840" y2="600"/>
+  </g>
+
+  <!-- 적 영역 조명 -->
+  <rect width="1080" height="1920" fill="url(#enemy_light)"/>
+
+  <!-- 촛불 조명 (좌우) -->
+  <circle cx="200" cy="760" r="60" fill="#a06020" opacity="0.3" filter="url(#blur2)"/>
+  <circle cx="880" cy="760" r="60" fill="#a06020" opacity="0.3" filter="url(#blur2)"/>
+
+  <!-- 바닥 (마루) -->
+  <rect x="0" y="1200" width="1080" height="720" fill="url(#floor_grad)"/>
+  <!-- 마루 판자 라인 -->
+  <g stroke="#1a0e04" stroke-width="1.5" opacity="0.6">
+    <line x1="0" y1="1260" x2="1080" y2="1260"/>
+    <line x1="0" y1="1320" x2="1080" y2="1320"/>
+    <line x1="0" y1="1380" x2="1080" y2="1380"/>
+    <line x1="0" y1="1440" x2="1080" y2="1440"/>
+    <line x1="0" y1="1500" x2="1080" y2="1500"/>
+    <line x1="0" y1="1560" x2="1080" y2="1560"/>
+    <line x1="0" y1="1620" x2="1080" y2="1620"/>
+    <line x1="0" y1="1680" x2="1080" y2="1680"/>
+    <line x1="0" y1="1740" x2="1080" y2="1740"/>
+  </g>
+  <!-- 마루 세로선 -->
+  <g stroke="#160c03" stroke-width="1" opacity="0.4">
+    <line x1="180" y1="1200" x2="180" y2="1920"/>
+    <line x1="360" y1="1200" x2="360" y2="1920"/>
+    <line x1="540" y1="1200" x2="540" y2="1920"/>
+    <line x1="720" y1="1200" x2="720" y2="1920"/>
+    <line x1="900" y1="1200" x2="900" y2="1920"/>
+  </g>
+
+  <!-- 마루~벽 경계 -->
+  <rect x="0" y="1190" width="1080" height="20" fill="#2a1808"/>
+
+  <!-- 촛불 글로우 (하단 중앙) -->
+  <rect width="1080" height="1920" fill="url(#candle_glow)"/>
+</svg>

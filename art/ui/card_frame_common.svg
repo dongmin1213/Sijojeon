@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="220" viewBox="0 0 160 220">
+  <defs>
+    <linearGradient id="card_bg_common" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#1a2030"/>
+      <stop offset="100%" stop-color="#1a2030" stop-opacity="0.85"/>
+    </linearGradient>
+    <radialGradient id="card_glow_common" cx="50%" cy="40%" r="50%">
+      <stop offset="0%"   stop-color="#7a8898" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#1a2030"   stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 카드 배경 -->
+  <rect x="2" y="2" width="156" height="216" rx="10" fill="url(#card_bg_common)"/>
+
+  <!-- 글로우 효과 -->
+  <rect x="2" y="2" width="156" height="216" rx="10" fill="url(#card_glow_common)"/>
+
+  <!-- 외부 테두리 -->
+  <rect x="1" y="1" width="158" height="218" rx="11"
+    fill="none" stroke="#7a8898" stroke-width="2.5"/>
+
+  <!-- 내부 테두리 (이중) -->
+  <rect x="6" y="6" width="148" height="208" rx="8"
+    fill="none" stroke="#9aaabb" stroke-width="1" opacity="0.5"/>
+
+  <!-- 상단 이름 영역 -->
+  <rect x="6" y="6" width="148" height="35" rx="7"
+    fill="#9aaabb" opacity="0.15"/>
+  <line x1="6" y1="41" x2="154" y2="41"
+    stroke="#7a8898" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- 카드 아트 영역 -->
+  <rect x="6" y="42" width="148" height="100" fill="#1a2030" opacity="0.5"/>
+  <!-- 아트 영역 패턴 (격자) -->
+  <g stroke="#9aaabb" stroke-width="0.5" opacity="0.15">
+    <line x1="6"  y1="62"  x2="154" y2="62"/>
+    <line x1="6"  y1="82"  x2="154" y2="82"/>
+    <line x1="6"  y1="102" x2="154" y2="102"/>
+    <line x1="6"  y1="122" x2="154" y2="122"/>
+    <line x1="34" y1="42" x2="34" y2="142"/>
+    <line x1="62" y1="42" x2="62" y2="142"/>
+    <line x1="90" y1="42" x2="90" y2="142"/>
+    <line x1="118" y1="42" x2="118" y2="142"/>
+  </g>
+
+  <!-- 타입 구분선 -->
+  <line x1="6" y1="142" x2="154" y2="142"
+    stroke="#7a8898" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- 비용 영역 (좌상단) -->
+  <circle cx="22" cy="22" r="14" fill="#9aaabb" opacity="0.8"/>
+  <circle cx="22" cy="22" r="12" fill="#1a2030"/>
+  <circle cx="22" cy="22" r="12"
+    fill="none" stroke="#7a8898" stroke-width="1.5"/>
+
+  <!-- 코너 장식 (4개) -->
+  <!-- 좌상 -->
+  <path d="M6,16 L16,6 L6,6 Z"   fill="#9aaabb" opacity="0.7"/>
+  <!-- 우상 -->
+  <path d="M154,16 L144,6 L154,6 Z" fill="#9aaabb" opacity="0.7"/>
+  <!-- 좌하 -->
+  <path d="M6,204 L16,214 L6,214 Z"  fill="#9aaabb" opacity="0.7"/>
+  <!-- 우하 -->
+  <path d="M154,204 L144,214 L154,214 Z" fill="#9aaabb" opacity="0.7"/>
+
+  <!-- 하단 효과 텍스트 영역 -->
+  <rect x="6" y="143" width="148" height="71" rx="0"
+    fill="#1a2030" opacity="0.3"/>
+  <!-- 텍스트 영역 줄 (플레이스홀더) -->
+  <rect x="14" y="152" width="120" height="5" rx="2" fill="#9aaabb" opacity="0.2"/>
+  <rect x="14" y="162" width="100" height="5" rx="2" fill="#9aaabb" opacity="0.2"/>
+  <rect x="14" y="172" width="110" height="5" rx="2" fill="#9aaabb" opacity="0.2"/>
+  <rect x="14" y="182" width="80"  height="5" rx="2" fill="#9aaabb" opacity="0.2"/>
+
+  <!-- 하단 구분선 -->
+  <line x1="6" y1="214" x2="154" y2="214"
+    stroke="#7a8898" stroke-width="1" opacity="0.5"/>
+</svg>

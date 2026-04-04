@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="148" height="100" viewBox="0 0 148 100">
+  <defs>
+    <linearGradient id="art_bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#1a1828"/>
+      <stop offset="100%" stop-color="#0e0c18"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="148" height="100" fill="url(#art_bg)"/>
+
+  <!-- 대각선 X (플레이스홀더 표시) -->
+  <line x1="0" y1="0"   x2="148" y2="100" stroke="#3a3850" stroke-width="1"/>
+  <line x1="148" y1="0" x2="0"   y2="100" stroke="#3a3850" stroke-width="1"/>
+
+  <!-- 수묵화 스타일 산 실루엣 -->
+  <path d="M0,80 L40,40 L60,55 L90,25 L115,45 L148,35 L148,100 L0,100 Z"
+        fill="#2a2838" opacity="0.6"/>
+  <path d="M0,90 L30,65 L60,75 L90,55 L120,68 L148,58 L148,100 L0,100 Z"
+        fill="#1e1c2a" opacity="0.8"/>
+
+  <!-- 달 -->
+  <circle cx="110" cy="20" r="12" fill="#3a3858" opacity="0.6"/>
+  <circle cx="110" cy="20" r="9"  fill="#4a4868" opacity="0.5"/>
+</svg>

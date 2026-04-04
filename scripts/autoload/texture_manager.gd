@@ -61,36 +61,52 @@ const BG_PLACEHOLDER_SIZE := Vector2i(1080, 1920)
 
 func get_card_texture(card_id: String, card_type: String = "") -> Texture2D:
 	## 카드 일러스트 텍스처를 반환한다.
-	## 실제 파일이 없으면 타입별 컬러 placeholder를 생성한다.
-	var path := CATEGORY_PATHS[AssetCategory.CARD] + card_id + ".png"
-	var tex := _load_texture(path)
+	## PNG → SVG → 타입별 컬러 placeholder 순서로 탐색한다.
+	var base := CATEGORY_PATHS[AssetCategory.CARD] + card_id
+	var tex := _load_texture(base + ".png")
 	if tex:
 		return tex
+	tex = _load_texture(base + ".svg")
+	if tex:
+		return tex
+	# 공통 SVG placeholder 사용 (존재하면)
+	var ph := _load_texture("res://art/cards/placeholder.svg")
+	if ph:
+		return ph
 	return _get_card_placeholder(card_id, card_type)
 
 
 func get_enemy_texture(enemy_id: String) -> Texture2D:
-	## 적 스프라이트 텍스처를 반환한다.
-	var path := CATEGORY_PATHS[AssetCategory.ENEMY] + enemy_id + ".png"
-	var tex := _load_texture(path)
+	## 적 스프라이트 텍스처를 반환한다. PNG → SVG 순서로 탐색한다.
+	var base := CATEGORY_PATHS[AssetCategory.ENEMY] + enemy_id
+	var tex := _load_texture(base + ".png")
+	if tex:
+		return tex
+	tex = _load_texture(base + ".svg")
 	if tex:
 		return tex
 	return _get_placeholder(AssetCategory.ENEMY, enemy_id, PLACEHOLDER_SIZE)
 
 
 func get_background_texture(scene_key: String) -> Texture2D:
-	## 배경 이미지 텍스처를 반환한다.
-	var path := CATEGORY_PATHS[AssetCategory.BACKGROUND] + scene_key + ".png"
-	var tex := _load_texture(path)
+	## 배경 이미지 텍스처를 반환한다. PNG → SVG 순서로 탐색한다.
+	var base := CATEGORY_PATHS[AssetCategory.BACKGROUND] + scene_key
+	var tex := _load_texture(base + ".png")
+	if tex:
+		return tex
+	tex = _load_texture(base + ".svg")
 	if tex:
 		return tex
 	return _get_placeholder(AssetCategory.BACKGROUND, scene_key, BG_PLACEHOLDER_SIZE)
 
 
 func get_ui_icon(icon_name: String) -> Texture2D:
-	## UI 아이콘 텍스처를 반환한다.
-	var path := CATEGORY_PATHS[AssetCategory.UI_ICON] + icon_name + ".png"
-	var tex := _load_texture(path)
+	## UI 아이콘 텍스처를 반환한다. PNG → SVG 순서로 탐색한다.
+	var base := CATEGORY_PATHS[AssetCategory.UI_ICON] + icon_name
+	var tex := _load_texture(base + ".png")
+	if tex:
+		return tex
+	tex = _load_texture(base + ".svg")
 	if tex:
 		return tex
 	return _get_placeholder(AssetCategory.UI_ICON, icon_name, Vector2i(64, 64))
