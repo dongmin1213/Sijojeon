@@ -565,7 +565,7 @@ func _show_first_play_guide() -> void:
 	canvas_layer.layer = 100
 
 	var overlay := ColorRect.new()
-	overlay.color = Color(0.0, 0.0, 0.0, 0.65)
+	overlay.color = Color(0.0, 0.0, 0.0, 1.0)
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 
