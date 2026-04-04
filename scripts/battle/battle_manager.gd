@@ -299,7 +299,8 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 		effective_cost -= _cost_reduce_all_this_turn
 	if _next_card_cost_reduce > 0:
 		effective_cost -= _next_card_cost_reduce
-	effective_cost = maxi(effective_cost, 0)
+	# 모든 카드 사용에 최소 1기 소비 (0코스트 카드도 기를 소비해야 함)
+	effective_cost = maxi(effective_cost, 1)
 
 	# 기(氣) 확인
 	if effective_cost > current_qi:
@@ -1012,7 +1013,8 @@ func can_play_card(card: CardData) -> bool:
 		effective_cost -= _cost_reduce_all_this_turn
 	if _next_card_cost_reduce > 0:
 		effective_cost -= _next_card_cost_reduce
-	effective_cost = maxi(effective_cost, 0)
+	# 모든 카드 사용에 최소 1기 소비
+	effective_cost = maxi(effective_cost, 1)
 	if effective_cost > current_qi:
 		return false
 	if has_class_resource and card.stamina_cost > 0 and card.stamina_cost > current_class_resource:
