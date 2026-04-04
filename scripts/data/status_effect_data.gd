@@ -112,3 +112,7 @@ static func _init_registry() -> void:
 		"주박", "주박", "🔮", Color(0.5, 0.2, 0.7), EffectType.DEBUFF,
 		"받는 DoT 피해 1.5배", true, false
 	)
+	_registry["기절"] = StatusEffectData.new(
+		"기절", "기절", "💫", Color(1.0, 0.9, 0.3), EffectType.DEBUFF,
+		"행동 불가. 턴 종료 시 해제", true, false
+	)

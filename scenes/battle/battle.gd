@@ -696,6 +696,88 @@ func _show_sijo_reward_popup(text: String) -> void:
 	tween.tween_callback(popup.queue_free)
 
 
+## 시선/절창 콤보 판정. 시조 완성 시점에 직업 자원 소비량을 확인한다.
+## 시선 (Tier 1): 자원 2 이상 소비 → 다음 카드 코스트 -1 + 직업별 보너스
+## 절창 (Tier 2): 자원 5 이상 소비 → 시선 보상 +100% + 직업별 강력한 보너스
+func _check_sijo_combo() -> void:
+	var consumed := battle_manager.resources_consumed_this_turn
+	var job := battle_manager.character_id
+
+	# 도사는 직업 자원이 없으므로 콤보 대상 아님
+	if not battle_manager.has_class_resource:
+		return
+	if consumed < 2:
+		return
+
+	var tier := 1  # 시선
+	if consumed >= 5:
+		tier = 2  # 절창
+
+	# 콤보 시그널 발행
+	battle_manager.combo_triggered.emit(tier, job)
+
+	if tier == 2:
+		# 절창 보상
+		_apply_jeolchang_reward(job)
+		if vfx:
+			vfx.combo_vfx(self, "절창!", Color(1.0, 0.3, 0.1))
+		AudioManager.play_sfx_by_key("sijo_complete")  # 강한 효과음 재사용
+	else:
+		# 시선 보상
+		_apply_siseon_reward(job)
+		if vfx:
+			vfx.combo_vfx(self, "시선!", Color(0.3, 0.8, 1.0))
+		AudioManager.play_sfx_by_key("card_play")
+
+
+func _apply_siseon_reward(job: String) -> void:
+	## 시선 (Tier 1) 보상: 공통 + 직업별
+	# 공통: 다음 카드 코스트 -1
+	battle_manager._next_card_cost_reduce += 1
+	var reward_text := "시선! 다음 카드 비용 -1"
+
+	match job:
+		"mugwan":
+			# 무관: 기력 +2
+			battle_manager.current_class_resource = mini(
+				battle_manager.current_class_resource + 2,
+				battle_manager.max_class_resource)
+			battle_manager.class_resource_changed.emit(
+				battle_manager.current_class_resource,
+				battle_manager.max_class_resource)
+			reward_text += ", 기력 +2"
+		"mungwan":
+			# 문관: 카드 1장 드로우
+			battle_manager.draw_cards(1)
+			reward_text += ", 카드 +1"
+
+	_show_sijo_reward_popup(reward_text)
+	battle_manager.passive_triggered.emit("시선", reward_text)
+
+
+func _apply_jeolchang_reward(job: String) -> void:
+	## 절창 (Tier 2) 보상: 공통 + 직업별 강력한 보너스
+	# 공통: 시선 보상(다음 카드 -1) + 100% 추가 = 다음 카드 무료
+	battle_manager._next_card_cost_reduce += 99  # 사실상 무료
+
+	var reward_text := "절창!"
+	match job:
+		"mugwan":
+			# 무관: 적 전체 기절 1턴
+			for i in battle_manager.enemies.size():
+				if battle_manager.enemies[i]["current_hp"] > 0:
+					var target_id := "enemy_%d" % i
+					battle_manager.status_effects.apply_effect(target_id, "기절", 1)
+			reward_text += " 적 전체 기절!"
+		"mungwan":
+			# 문관: 카드 2장 드로우 + 무료
+			battle_manager.draw_cards(2)
+			reward_text += " 카드 +2, 다음 카드 무료!"
+
+	_show_sijo_reward_popup(reward_text)
+	battle_manager.passive_triggered.emit("절창", reward_text)
+
+
 ## 시조 장 완성 시 직업별 자원 보너스 지급.
 func _on_sijo_chapter_completed(chapter: String) -> void:
 	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
@@ -831,6 +913,10 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void
 	# 기본 드로우 1 + 유물 추가 드로우 (R023 등)
 	var extra_draw := RelicManager.trigger_on_sijo_complete(battle_manager)
 	battle_manager.draw_cards(1 + extra_draw)
+
+	# 시선/절창 콤보 판정 (시조 완성 + 직업 자원 소비)
+	_check_sijo_combo()
+
 	sijo_system.reset()
 	_init_sijo_slots()
 

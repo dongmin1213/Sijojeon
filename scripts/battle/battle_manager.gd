@@ -35,7 +35,8 @@ var character_id: String = ""  # 현재 캐릭터 클래스 ID
 var _next_card_cost_reduce: int = 0  # 다음 카드 비용 감소 (격물치지 등)
 var _cost_reduce_all_this_turn: int = 0  # 이번 턴 모든 카드 비용 감소 (축지법 등)
 var _double_token_this_turn: bool = false  # 이번 턴 토큰 생성량 2배 (천하무적진)
-var qi_gained_this_turn: int = 0  # 이번 턴 획득한 기 추적 (기폭용)
+var qi_gained_this_turn: int = 0  # 이번 턴 ���득한 기 추적 (기폭용)
+var resources_consumed_this_turn: int = 0  # 이번 턴 소비한 직업 자원량 (시선/절창 콤보용)
 
 # 패시브/액티브 스킬 시스템
 var cards_played_this_turn: int = 0  # 이번 턴 사용한 카드 수 (문관 패시브용)
@@ -74,6 +75,7 @@ signal dot_damage_dealt(target: String, effect_id: String, amount: int)
 signal class_resource_changed(current: int, max_val: int)
 signal passive_triggered(skill_name: String, description: String)
 signal active_skill_available_changed(available: bool)
+signal combo_triggered(tier: int, job: String)  # 시선(1)/절창(2) 콤보 발동
 
 
 func _ready() -> void:
@@ -230,6 +232,7 @@ func begin_player_turn() -> void:
 	_double_token_this_turn = false  # 턴 시작 시 토큰 2배 초기화
 	qi_gained_this_turn = 0  # 턴 시작 시 기 획득량 초기화
 	cards_played_this_turn = 0  # 턴 시작 시 카드 사용 수 초기화
+	resources_consumed_this_turn = 0  # 턴 시작 시 자원 소비량 초기화
 
 	# 무관 패시브: 지휘통솔 — 병사 토큰 보유 시 방어도 2
 	if character_id == "mugwan":
@@ -338,6 +341,7 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if has_class_resource and card.stamina_cost > 0:
 		current_class_resource -= card.stamina_cost
 		current_class_resource = maxi(current_class_resource, 0)
+		resources_consumed_this_turn += card.stamina_cost
 		class_resource_changed.emit(current_class_resource, max_class_resource)
 
 	# 카드 사용 SFX
@@ -469,9 +473,14 @@ func execute_enemy_turn() -> void:
 			if enemy["current_hp"] <= 0:
 				continue
 
-		# 적 행동 실행 (디버프 감소 전에 행동해야 취약 등이 적용됨)
-		var intent := _get_enemy_intent(i)
-		_execute_enemy_action(i, intent)
+		# 기절 상태면 행동 스킵
+		if status_effects.get_stacks(enemy_target, "기절") > 0:
+			status_effects.consume_stacks(enemy_target, "기절", 1)
+			passive_triggered.emit("기절", "적 %s 기절 — 행동 불가!" % enemy.get("name", {}).get("ko", "적"))
+		else:
+			# 적 행동 실행 (디버프 감소 전에 행동해야 취약 등이 적용됨)
+			var intent := _get_enemy_intent(i)
+			_execute_enemy_action(i, intent)
 
 		# 적 디버프 기간 감소 (행동 후 감소)
 		status_effects.process_turn_end(enemy_target)
@@ -646,6 +655,7 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	if character_id == "mungwan" and card.consume_all_resource:
 		var consumed := current_class_resource
 		current_class_resource = 0
+		resources_consumed_this_turn += consumed
 		class_resource_changed.emit(current_class_resource, max_class_resource)
 		# 유물 트리거: 학식 전소 시 (RW001 어진)
 		RelicManager.trigger_on_scholarship_exhaust(self, consumed)
@@ -663,6 +673,7 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 		if current_class_resource >= card.optional_resource_cost:
 			current_class_resource -= card.optional_resource_cost
 			current_class_resource = maxi(current_class_resource, 0)
+			resources_consumed_this_turn += card.optional_resource_cost
 			class_resource_changed.emit(current_class_resource, max_class_resource)
 			var target_id := "enemy_%d" % target_enemy_index
 			status_effects.apply_effect(target_id, card.apply_debuff_on_resource, card.debuff_duration)
@@ -761,6 +772,7 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	if has_class_resource and card.damage_per_stamina > 0:
 		var stamina_used := current_class_resource
 		if card.consume_all_stamina:
+			resources_consumed_this_turn += current_class_resource
 			current_class_resource = 0
 			class_resource_changed.emit(current_class_resource, max_class_resource)
 		var stam_dmg := stamina_used * card.damage_per_stamina
@@ -776,6 +788,7 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	if has_class_resource and card.bonus_damage_per_stamina > 0:
 		var stamina_used := current_class_resource
 		if card.consume_all_stamina and current_class_resource > 0:
+			resources_consumed_this_turn += current_class_resource
 			current_class_resource = 0
 			class_resource_changed.emit(current_class_resource, max_class_resource)
 		var bonus_dmg := stamina_used * card.bonus_damage_per_stamina

@@ -162,6 +162,49 @@ func flash_screen(parent: Control, color: Color = Color(1, 1, 1, 0.3), duration:
 	tween.tween_callback(_release_color_rect.bind(flash))
 
 
+# --- 시선/절창 콤보 연출 ---
+
+func combo_vfx(parent: Control, combo_text: String, color: Color) -> void:
+	## 시선/절창 콤보 발동 연출: 화면 플래시 + 중앙 텍스트 팝업 + 파티클
+	# 히트스톱
+	_apply_slow_motion(0.1, 0.2)
+
+	# 화면 플래시
+	flash_screen(parent, Color(color.r, color.g, color.b, 0.4), 0.3)
+
+	# 화면 흔들림
+	screen_shake(12.0, 3.0)
+
+	# 중앙 텍스트 팝업
+	var label := _acquire_label()
+	label.text = combo_text
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.anchors_preset = Control.PRESET_CENTER
+	label.add_theme_font_size_override("font_size", 48)
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0))
+	label.add_theme_constant_override("outline_size", 6)
+	label.pivot_offset = label.size / 2.0
+	label.z_index = 92
+	parent.add_child(label)
+
+	var tween := parent.create_tween()
+	label.scale = Vector2(0.3, 0.3)
+	label.modulate.a = 0.0
+	tween.tween_property(label, "scale", Vector2(1.2, 1.2), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween.set_parallel(true)
+	tween.tween_property(label, "modulate:a", 1.0, 0.15)
+	tween.set_parallel(false)
+	tween.tween_property(label, "scale", Vector2(1.0, 1.0), 0.1).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_interval(0.5)
+	tween.tween_property(label, "modulate:a", 0.0, 0.4)
+	tween.tween_callback(_release_label.bind(label))
+
+	# 파티클
+	_spawn_particles(parent, 16, color)
+
+
 # --- 시조 완성 연출 ---
 
 func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> void:
