@@ -629,6 +629,8 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 
 	# 유물 트리거: 시조 슬롯 마일스톤 (R019 등)
 	RelicManager.trigger_on_sijo_milestone(battle_manager, index + 1)
+	# 유물 트리거: 시조 슬롯 채움 (RS105 무관의 갑주 등)
+	RelicManager.trigger_on_sijo_slot_fill(battle_manager)
 
 	# 부분 완성 보상
 	match index:
@@ -752,6 +754,9 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 				_:
 					reward_text = "종장 완성!"
 
+	# 유물 트리거: 장 완성 (RS104 청사 붓, RS106 오얏나무 가지, RS107 해시계 조각)
+	RelicManager.trigger_on_sijo_chapter_complete(battle_manager, chapter)
+
 	if reward_text != "":
 		_show_sijo_reward_popup(reward_text)
 		battle_manager.passive_triggered.emit("시조 " + chapter, reward_text)
@@ -790,6 +795,24 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void
 	battle_manager.draw_cards(1 + extra_draw)
 	sijo_system.reset()
 	_init_sijo_slots()
+
+	# RS102 호패: 시조 완성 후 초장 자동 채움
+	if battle_manager.has_meta("sijo_auto_fill_chojang"):
+		battle_manager.remove_meta("sijo_auto_fill_chojang")
+		# 손패에서 beat 3, 4인 카드를 찾아 자동 채움
+		var filled_chojang := false
+		for card_id in battle_manager.hand:
+			var card: CardData = DataLoader.get_card(card_id)
+			if card and card.beat == 3 and sijo_system.current_slot_index == 0:
+				sijo_system.try_fill_slot(3, card_id)
+			elif card and card.beat == 4 and sijo_system.current_slot_index == 1:
+				sijo_system.try_fill_slot(4, card_id)
+				filled_chojang = true
+				break
+		if not filled_chojang and sijo_system.current_slot_index < 2:
+			# 손패에 적합한 카드가 없으면 가상 카드로 채움
+			sijo_system.try_fill_slot(3, "AUTO_FILL")
+			sijo_system.try_fill_slot(4, "AUTO_FILL")
 
 
 func _on_class_resource_changed(current: int, max_val: int) -> void:

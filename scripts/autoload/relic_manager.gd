@@ -582,7 +582,94 @@ func trigger_on_sijo_complete(battle_manager: BattleManager) -> int:
 			if values.has("extra_draw_on_sijo_complete"):
 				extra_draw += values["extra_draw_on_sijo_complete"]
 				relic_triggered.emit(relic_id, "시조 완성 드로우 +%d" % values["extra_draw_on_sijo_complete"])
+
+			# RS101 옥피리: 직업 자원 3+ 시 적 전체 피해
+			if values.has("aoe_damage_on_sijo_if_resource_ge"):
+				var threshold: int = values.get("resource_threshold", 3)
+				if battle_manager.has_class_resource and battle_manager.current_class_resource >= threshold:
+					var dmg: int = values["aoe_damage_on_sijo_if_resource_ge"]
+					for i in battle_manager.enemies.size():
+						if battle_manager.enemies[i]["current_hp"] > 0:
+							battle_manager.enemies[i]["current_hp"] -= dmg
+							battle_manager.enemies[i]["current_hp"] = maxi(battle_manager.enemies[i]["current_hp"], 0)
+							battle_manager.enemy_hp_changed.emit(i, battle_manager.enemies[i]["current_hp"], battle_manager.enemies[i]["max_hp"])
+					relic_triggered.emit(relic_id, "옥피리 — 적 전체 %d 피해" % dmg)
+
+			# RS102 호패: 시조 완성 후 초장 자동 채움
+			if values.has("auto_fill_chojang_on_sijo_complete"):
+				# battle.gd에서 sijo_system.reset() 후 호출되므로, 플래그를 설정
+				if not battle_manager.has_meta("sijo_auto_fill_chojang"):
+					battle_manager.set_meta("sijo_auto_fill_chojang", true)
+				relic_triggered.emit(relic_id, "호패 — 다음 시조 초장 자동 채움")
+
+			# RS108 사군자 족자: 랜덤 적 약화 2
+			if values.has("weaken_on_sijo_complete"):
+				var stacks: int = values["weaken_on_sijo_complete"]
+				var alive: Array[int] = []
+				for i in battle_manager.enemies.size():
+					if battle_manager.enemies[i]["current_hp"] > 0:
+						alive.append(i)
+				if not alive.is_empty():
+					var target_idx: int = alive[randi() % alive.size()]
+					battle_manager.status_effects.apply_effect("enemy_%d" % target_idx, "약화", stacks)
+					relic_triggered.emit(relic_id, "사군자 족자 — 적 약화 %d" % stacks)
+
+			# RS109 도사의 부적: 적 전체 독 2
+			if values.has("poison_all_on_sijo_complete"):
+				var stacks: int = values["poison_all_on_sijo_complete"]
+				for i in battle_manager.enemies.size():
+					if battle_manager.enemies[i]["current_hp"] > 0:
+						battle_manager.status_effects.apply_effect("enemy_%d" % i, "독", stacks)
+				relic_triggered.emit(relic_id, "도사의 부적 — 적 전체 독 %d" % stacks)
+
 	return extra_draw
+
+
+func trigger_on_sijo_chapter_complete(battle_manager: BattleManager, chapter: String) -> void:
+	## 시조 장 완성 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger != "sijo_chapter_complete":
+			continue
+
+		match chapter:
+			"초장":
+				# RS104 청사 붓: 초장 완성 시 드로우 +1
+				if values.has("draw_on_chojang_complete"):
+					battle_manager.draw_cards(values["draw_on_chojang_complete"])
+					relic_triggered.emit(relic_id, "청사 붓 — 초장 완성 드로우 +%d" % values["draw_on_chojang_complete"])
+			"중장":
+				# RS106 오얏나무 가지: 중장 완성 시 strength +3
+				if values.has("strength_on_jungjang_complete"):
+					var stacks: int = values["strength_on_jungjang_complete"]
+					battle_manager.status_effects.apply_effect("player", "strength", stacks)
+					relic_triggered.emit(relic_id, "오얏나무 가지 — 피해 +%d" % stacks)
+			"종장":
+				# RS107 해시계 조각: 종장 완성 시 기 +2
+				if values.has("qi_on_jongjang_complete"):
+					var qi_gain: int = values["qi_on_jongjang_complete"]
+					battle_manager.current_qi = mini(battle_manager.current_qi + qi_gain, battle_manager.max_qi)
+					battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+					relic_triggered.emit(relic_id, "해시계 조각 — 기 +%d" % qi_gain)
+
+
+func trigger_on_sijo_slot_fill(battle_manager: BattleManager) -> void:
+	## 시조 슬롯 채움 시 발동하는 유물 효과를 처리한다.
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		var trigger: String = relic.get("trigger", "")
+		var values: Dictionary = relic.get("values", {})
+
+		if trigger == "sijo_slot_fill":
+			# RS105 무관의 갑주: 슬롯 채움 시 방어도 +3
+			if values.has("block_on_sijo_fill"):
+				var block_val: int = values["block_on_sijo_fill"]
+				battle_manager.player_block += block_val
+				battle_manager.block_changed.emit(battle_manager.player_block)
+				relic_triggered.emit(relic_id, "무관의 갑주 — 방어도 +%d" % block_val)
 
 
 func get_card_removal_discount() -> int:
