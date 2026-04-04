@@ -48,7 +48,6 @@ const ACT_BG_COLORS := {
 	3: Color(0.12, 0.04, 0.04),  # 경복궁 — 어두운 적색
 }
 
-@onready var menu_button: Button = $HUD/TopRow/MenuButton
 @onready var scroll_container: ScrollContainer = $ScrollContainer
 @onready var map_container: Control = $ScrollContainer/MapContainer
 @onready var node_layer: Control = $ScrollContainer/MapContainer/NodeLayer
@@ -71,7 +70,6 @@ func _ready() -> void:
 		push_warning("RunMap: run_data 또는 run_map이 없음")
 		return
 
-	menu_button.pressed.connect(_on_menu_pressed)
 	_build_map()
 	_update_hud()
 	_update_node_states()
@@ -390,40 +388,3 @@ func _on_node_pressed(node_id: int) -> void:
 			GameManager.change_state(GameManager.GameState.GWAGEO)
 
 
-func _on_menu_pressed() -> void:
-	# 메뉴 팝업 표시
-	var dialog := AcceptDialog.new()
-	dialog.title = "메뉴"
-	dialog.dialog_text = ""
-	dialog.ok_button_text = "닫기"
-
-	var vbox := VBoxContainer.new()
-	vbox.custom_minimum_size = Vector2(300, 0)
-	vbox.add_theme_constant_override("separation", 12)
-
-	# 설정 버튼
-	var settings_btn := Button.new()
-	settings_btn.text = "설정"
-	settings_btn.custom_minimum_size = Vector2(0, 72)
-	settings_btn.add_theme_font_size_override("font_size", 24)
-	settings_btn.pressed.connect(func():
-		dialog.queue_free()
-		GameManager.change_state(GameManager.GameState.SETTINGS)
-	)
-	vbox.add_child(settings_btn)
-
-	# 런 포기 버튼
-	var abandon_btn := Button.new()
-	abandon_btn.text = "런 포기"
-	abandon_btn.custom_minimum_size = Vector2(0, 72)
-	abandon_btn.add_theme_font_size_override("font_size", 24)
-	abandon_btn.add_theme_color_override("font_color", Color(0.9, 0.3, 0.3))
-	abandon_btn.pressed.connect(func():
-		dialog.queue_free()
-		GameManager.end_run(false)
-	)
-	vbox.add_child(abandon_btn)
-
-	dialog.add_child(vbox)
-	add_child(dialog)
-	dialog.popup_centered()
