@@ -827,69 +827,31 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 					reward_text = tr("BATTLE_CHOJANG_COMPLETE")
 
 		"중장":
-			match job:
-				"mugwan":
-					# 무관: 기력 +1
-					battle_manager.current_class_resource = mini(
-						battle_manager.current_class_resource + 1,
-						battle_manager.max_class_resource)
-					battle_manager.class_resource_changed.emit(
-						battle_manager.current_class_resource,
-						battle_manager.max_class_resource)
-					reward_text = tr("BATTLE_JUNGJANG_COMPLETE_STAMINA")
-				"mungwan":
-					# 문관: 학식 +1
-					battle_manager.current_class_resource = mini(
-						battle_manager.current_class_resource + 1,
-						battle_manager.max_class_resource)
-					battle_manager.class_resource_changed.emit(
-						battle_manager.current_class_resource,
-						battle_manager.max_class_resource)
-					reward_text = tr("BATTLE_JUNGJANG_COMPLETE_SCHOLAR")
-				"dosa":
-					# 도사: 기 +1
-					battle_manager.current_qi = mini(
-						battle_manager.current_qi + 1,
-						battle_manager.max_qi)
-					battle_manager.qi_changed.emit(
-						battle_manager.current_qi,
-						battle_manager.max_qi)
-					reward_text = tr("BATTLE_JUNGJANG_COMPLETE_QI")
-				_:
-					reward_text = tr("BATTLE_JUNGJANG_COMPLETE")
+			# 공통: 기 +1 + 다음 카드 피해/방어 +30%
+			battle_manager.current_qi = mini(
+				battle_manager.current_qi + 1,
+				battle_manager.max_qi)
+			battle_manager.qi_changed.emit(
+				battle_manager.current_qi,
+				battle_manager.max_qi)
+			battle_manager._next_card_power_bonus += 0.3
+			reward_text = tr("BATTLE_JUNGJANG_COMPLETE_POWER")
 
 		"종장":
-			match job:
-				"mugwan":
-					# 무관: 기력 +3
-					battle_manager.current_class_resource = mini(
-						battle_manager.current_class_resource + 3,
-						battle_manager.max_class_resource)
-					battle_manager.class_resource_changed.emit(
-						battle_manager.current_class_resource,
-						battle_manager.max_class_resource)
-					reward_text = tr("BATTLE_JONGJANG_COMPLETE_STAMINA")
-				"mungwan":
-					# 문관: 학식 +2
-					battle_manager.current_class_resource = mini(
-						battle_manager.current_class_resource + 2,
-						battle_manager.max_class_resource)
-					battle_manager.class_resource_changed.emit(
-						battle_manager.current_class_resource,
-						battle_manager.max_class_resource)
-					reward_text = tr("BATTLE_JONGJANG_COMPLETE_SCHOLAR")
-				"dosa":
-					# 도사: 기 +1 + 주문 즉시 발동 (다음 카드 비용 0)
-					battle_manager.current_qi = mini(
-						battle_manager.current_qi + 1,
-						battle_manager.max_qi)
-					battle_manager.qi_changed.emit(
-						battle_manager.current_qi,
-						battle_manager.max_qi)
-					battle_manager._next_card_cost_reduce += 99  # 다음 카드 무료
-					reward_text = tr("BATTLE_JONGJANG_COMPLETE_QI_FREE")
-				_:
-					reward_text = tr("BATTLE_JONGJANG_COMPLETE")
+			# 공통: 기 +2 + 카드 1장 드로우 + 적 전체 취약 1턴
+			battle_manager.current_qi = mini(
+				battle_manager.current_qi + 2,
+				battle_manager.max_qi)
+			battle_manager.qi_changed.emit(
+				battle_manager.current_qi,
+				battle_manager.max_qi)
+			battle_manager.draw_cards(1)
+			# 적 전체에 취약 1턴 부여
+			for i in battle_manager.enemies.size():
+				if battle_manager.enemies[i]["current_hp"] > 0:
+					battle_manager.status_effects.apply_effect(
+						"enemy_%d" % i, "취약", 1)
+			reward_text = tr("BATTLE_JONGJANG_COMPLETE_POWER")
 
 	# 유물 트리거: 장 완성 (RS104 청사 붓, RS106 오얏나무 가지, RS107 해시계 조각)
 	RelicManager.trigger_on_sijo_chapter_complete(battle_manager, chapter)

@@ -33,6 +33,7 @@ var max_class_resource: int = DEFAULT_MAX_CLASS_RESOURCE
 var has_class_resource: bool = false  # 고유 자원 보유 여부
 var character_id: String = ""  # 현재 캐릭터 클래스 ID
 var _next_card_cost_reduce: int = 0  # 다음 카드 비용 감소 (격물치지 등)
+var _next_card_power_bonus: float = 0.0  # 다음 카드 피해/방어 +% 보너스 (시조 중장 완성)
 var _cost_reduce_all_this_turn: int = 0  # 이번 턴 모든 카드 비용 감소 (축지법 등)
 var _double_token_this_turn: bool = false  # 이번 턴 토큰 생성량 2배 (천하무적진)
 var qi_gained_this_turn: int = 0  # 이번 턴 ���득한 기 추적 (기폭용)
@@ -119,6 +120,7 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	has_class_resource = character_id in ["mugwan", "mungwan"]
 	current_class_resource = 0
 	_next_card_cost_reduce = 0
+	_next_card_power_bonus = 0.0
 	match character_id:
 		"mugwan":
 			max_class_resource = 10
@@ -613,22 +615,33 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 # --- 내부 함수 ---
 
 func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
+	# 시조 중장 완성 보너스: 다음 카드 피해/방어 +%
+	var power_bonus := _next_card_power_bonus
+	if power_bonus > 0.0:
+		_next_card_power_bonus = 0.0
+
 	# 피해
 	if card.damage > 0:
+		var boosted_damage := card.damage
+		if power_bonus > 0.0:
+			boosted_damage = int(ceil(card.damage * (1.0 + power_bonus)))
 		if card.is_aoe:
 			for i in enemies.size():
 				if enemies[i]["current_hp"] > 0:
-					deal_damage_to_enemy(i, card.damage)
+					deal_damage_to_enemy(i, boosted_damage)
 					# 유물 트리거: 공격 카드 사용 시 (저주받은 투구)
 					RelicManager.trigger_on_attack_card_played(self, i)
 		else:
-			deal_damage_to_enemy(target_enemy_index, card.damage)
+			deal_damage_to_enemy(target_enemy_index, boosted_damage)
 			# 유물 트리거: 공격 카드 사용 시 (저주받은 투구)
 			RelicManager.trigger_on_attack_card_played(self, target_enemy_index)
 
 	# 방어도
 	if card.block_value > 0:
-		gain_block(card.block_value)
+		var boosted_block := card.block_value
+		if power_bonus > 0.0:
+			boosted_block = int(ceil(card.block_value * (1.0 + power_bonus)))
+		gain_block(boosted_block)
 
 	# 기(氣) 획득
 	if card.qi_gain > 0:

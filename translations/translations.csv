@@ -358,6 +358,8 @@ BATTLE_JUNGJANG_COMPLETE,중장 완성!,Middle Verse!
 BATTLE_JONGJANG_COMPLETE_STAMINA,종장 완성! 기력 +3,Final Verse! Stamina +3
 BATTLE_JONGJANG_COMPLETE_SCHOLAR,종장 완성! 학식 +2,Final Verse! Scholarship +2
 BATTLE_JONGJANG_COMPLETE_QI_FREE,종장 완성! 기 +1 다음 주문 무료!,Final Verse! Qi +1 next spell free!
+BATTLE_JUNGJANG_COMPLETE_POWER,중장 완성! 기 +1 다음 카드 위력 +30%,Middle Verse! Qi +1 Next card power +30%
+BATTLE_JONGJANG_COMPLETE_POWER,종장 완성! 기 +2 카드 드로우 + 적 취약!,Final Verse! Qi +2 Draw + Enemies Vulnerable!
 BATTLE_JONGJANG_COMPLETE,종장 완성!,Final Verse!
 TOOLTIP_HP,"체력 — 0이 되면 패배합니다","HP — You lose when it reaches 0"
 TOOLTIP_QI,"기(氣) — 카드를 사용하는 데 필요한 자원입니다. 매 턴 회복됩니다","Qi — Resource needed to play cards. Recovers each turn"
