@@ -25,7 +25,7 @@ const REMOVAL_COST_INCREASE := 25
 const REMOVAL_MAX_COST := 200
 
 # 카드 강화 비용
-const UPGRADE_BASE_COST := 100
+const UPGRADE_BASE_COST := 50
 const UPGRADE_MAX_COST := 150
 
 # 민심 매수 비용
