@@ -155,6 +155,10 @@ func _start_battle() -> void:
 			for e in enemy_data:
 				var orig_hp: int = e.get("hp", 100)
 				e["hp"] = maxi(int(orig_hp * boss_mod), 1)
+		# 민심 29- → 보스에 "민란" 추가 페이즈 삽입
+		var minshim: int = rd.narrative_state.get("minshim", 50)
+		if minshim < 30:
+			_inject_minran_phase(enemy_data)
 
 	_prev_player_hp = rd.current_hp
 	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
@@ -1021,6 +1025,59 @@ func _consume_boss_hp_modifier() -> float:
 	return modifier
 
 
+## 민심 29- 시 보스에 "민란" 추가 페이즈를 삽입한다.
+## 마지막 페이즈로 추가되며, 보스 HP 15% 구간에서 발동한다.
+func _inject_minran_phase(enemy_data: Array[Dictionary]) -> void:
+	for enemy in enemy_data:
+		var phases: Array = enemy.get("phases", [])
+		if phases.is_empty():
+			continue  # 페이즈가 없는 적은 스킵
+
+		# 민란 페이즈 — HP 15% 이하에서 발동
+		var minran_phase := {
+			"phase": phases.size() + 1,
+			"hp_threshold_label": "15% → 0% (민란)",
+			"hp_threshold_min": 0,
+			"description": "분노한 백성들이 전장에 난입한다!",
+			"phase_trigger": {
+				"type": "hp_threshold",
+				"hp_percent": 15,
+				"on_trigger": [
+					{"type": "dialogue", "text": "백성들의 분노가 폭발한다! 민란이다!"},
+					{"type": "apply_buff", "buff": "strength", "stacks": 3},
+					{"type": "apply_buff", "buff": "thorns", "stacks": 3}
+				]
+			},
+			"moves": [
+				{
+					"id": "minran_charge",
+					"name": {"ko": "민란 돌격"},
+					"intent": "attack",
+					"damage": 18,
+					"effects": []
+				},
+				{
+					"id": "minran_fury",
+					"name": {"ko": "민중의 분노"},
+					"intent": "attack",
+					"damage": 12,
+					"hit_count": 2,
+					"effects": []
+				},
+				{
+					"id": "minran_barricade",
+					"name": {"ko": "바리케이드"},
+					"intent": "defend",
+					"block": 15,
+					"effects": []
+				}
+			],
+			"move_pattern": {"type": "sequential", "sequence": [0, 1, 2]}
+		}
+		phases.append(minran_phase)
+		enemy["phases"] = phases
+
+
 ## 전투 승리 후 적 데이터에 따라 민심 변동 + 골드 환급을 처리한다.
 func _apply_post_battle_minshim() -> void:
 	if not GameManager.run_data:
@@ -1029,10 +1086,16 @@ func _apply_post_battle_minshim() -> void:
 	if not rd.narrative_state.has("minshim"):
 		rd.narrative_state["minshim"] = 50
 
+	# 양반 이상 민심 획득 배율
+	var minshim_mult: float = JibunSystem.get_minshim_gain_multiplier(rd)
+
 	for enemy in battle_manager.enemies:
 		# minshim_on_defeat 필드가 있으면 민심 변동
 		var minshim_delta: int = enemy.get("minshim_on_defeat", 0)
 		if minshim_delta != 0:
+			# 양반 보너스 적용 (양수 획득에만)
+			if minshim_delta > 0:
+				minshim_delta = int(minshim_delta * minshim_mult)
 			var current: int = rd.narrative_state.get("minshim", 50)
 			rd.narrative_state["minshim"] = clampi(current + minshim_delta, 0, 100)
 
@@ -1046,7 +1109,8 @@ func _apply_post_battle_minshim() -> void:
 			# 추적 값 초기화
 			rd.narrative_state.erase("gold_drained_this_run")
 
-	# 일반 정예 적 처치 민심 +3
+	# 일반 정예 적 처치 민심 +3 (양반 보너스 적용)
 	if rd.current_node_type == MapData.NodeType.ELITE:
+		var elite_delta: int = int(3 * minshim_mult)
 		var current: int = rd.narrative_state.get("minshim", 50)
-		rd.narrative_state["minshim"] = clampi(current + 3, 0, 100)
+		rd.narrative_state["minshim"] = clampi(current + elite_delta, 0, 100)

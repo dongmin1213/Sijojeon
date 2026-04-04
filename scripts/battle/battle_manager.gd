@@ -192,6 +192,9 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	# 민심 70+ → 백성 지원병 등장
 	_check_minshim_ally_support()
 
+	# 민심 30-49 → 적군 강화 (분노한 민심이 적에게 힘을 보탬)
+	_apply_low_minshim_enemy_buff()
+
 	# 이벤트 pending_effects 처리 (다음 전투 방어도 등)
 	if GameManager.run_data and GameManager.run_data.narrative_state.has("pending_effects"):
 		var pending: Array = GameManager.run_data.narrative_state["pending_effects"]
@@ -1204,6 +1207,34 @@ func _trigger_ally_death_effects(dead_index: int) -> void:
 					var stacks: int = eff.get("stacks", 1)
 					if buff_id != "":
 						status_effects.apply_effect(enemy_target, buff_id, stacks)
+
+
+func _apply_low_minshim_enemy_buff() -> void:
+	# 민심 30-49: 적군 강화 — 적 전체에 근력(strength) +1 적용
+	# 민심 29-: 적군 대폭 강화 — 적 전체에 근력 +2, 방어도 +5
+	if not GameManager.run_data:
+		return
+	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	if minshim >= 50:
+		return
+
+	if minshim < 30:
+		# 민란 직전 — 적군 대폭 강화
+		for i in enemies.size():
+			if enemies[i]["current_hp"] <= 0:
+				continue
+			var enemy_target := "enemy_%d" % i
+			status_effects.apply_effect(enemy_target, "strength", 2)
+			enemies[i]["block"] += 5
+		passive_triggered.emit("민란의 기운", "민심이 매우 낮아 적이 대폭 강화되었다! 근력 +2, 방어도 +5")
+	elif minshim < 50:
+		# 불안한 민심 — 적군 소폭 강화
+		for i in enemies.size():
+			if enemies[i]["current_hp"] <= 0:
+				continue
+			var enemy_target := "enemy_%d" % i
+			status_effects.apply_effect(enemy_target, "strength", 1)
+		passive_triggered.emit("민심 불안", "민심이 낮아 적이 강화되었다! 근력 +1")
 
 
 func _check_minshim_ally_support() -> void:

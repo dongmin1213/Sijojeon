@@ -38,6 +38,15 @@
           "effect_type_bonus": "max_hp_loss",
           "effect_value_bonus": 3,
           "result_text_full": "엽전 45 획득 → 최대 HP -3."
+        },
+        {
+          "id": "minshim_blessing",
+          "text": "[��심 70+] 승려가 백성의 은인이라며 축복을 내려준다.",
+          "trigger_condition": "minshim_ge_70",
+          "effect_type": "hp_full_heal",
+          "effect_value": 0,
+          "result_text": "\"백성을 위하는 마음이 부처의 자비와 같소이다.\" HP 완전 회복!",
+          "note": "민심 70+ 전용. 완전 회복."
         }
       ]
     },
@@ -72,6 +81,15 @@
           "effect_type": "hp_loss",
           "effect_value": 8,
           "result_text": "구타를 당한 후 겨우 풀려났다. HP 8 손실."
+        },
+        {
+          "id": "minshim_surrender",
+          "text": "[민심 70+] ��적들이 명성을 듣고 스스로 물러난다.",
+          "trigger_condition": "minshim_ge_70",
+          "effect_type": "gold_gain",
+          "effect_value": 30,
+          "result_text": "\"저분이 바로 그 영웅이란다. 건드리면 큰일 난다!\" 산적이 두고 간 보물에서 엽전 30 획득.",
+          "note": "민심 70+ 전용. 전투 회피 + 보상."
         }
       ]
     },
@@ -135,7 +153,10 @@
           "effect_value": 20,
           "result_text": "산신령이 흡족히 여기며 축복을 내린다. 다음 전투 힘 +3.",
           "effect_type_bonus": "buff_next_combat",
-          "effect_value_bonus": { "buff": "strength", "stacks": 3 }
+          "effect_value_bonus": {
+            "buff": "strength",
+            "stacks": 3
+          }
         },
         {
           "id": "flee",
@@ -197,9 +218,24 @@
           "text": "광산 안으로 들어간다.",
           "effect_type": "random",
           "outcomes": [
-            { "weight": 40, "effect_type": "gold_gain", "effect_value": 55, "text": "금맥을 발견했다! 엽전 55 획득." },
-            { "weight": 30, "effect_type": "relic_gain", "effect_value": 1, "text": "광부가 남긴 유물을 발견했다." },
-            { "weight": 30, "effect_type": "hp_loss", "effect_value": 15, "text": "갱도가 무너졌다! HP 15 손실." }
+            {
+              "weight": 40,
+              "effect_type": "gold_gain",
+              "effect_value": 55,
+              "text": "금맥을 발견했다! 엽전 55 획득."
+            },
+            {
+              "weight": 30,
+              "effect_type": "relic_gain",
+              "effect_value": 1,
+              "text": "광부가 남긴 유물을 발견했다."
+            },
+            {
+              "weight": 30,
+              "effect_type": "hp_loss",
+              "effect_value": 15,
+              "text": "갱도가 무너졌다! HP 15 손실."
+            }
           ],
           "result_text": "광산 속으로 발걸음을 옮긴다."
         },
@@ -219,7 +255,6 @@
         }
       ]
     },
-
     {
       "id": "EVT_A2_007",
       "title": {
@@ -233,8 +268,18 @@
           "text": "힘을 시험받는다.",
           "effect_type": "random",
           "outcomes": [
-            { "weight": 60, "effect_type": "max_hp_gain", "effect_value": 12, "text": "산신이 고개를 끄덕인다. 최대 HP +12." },
-            { "weight": 40, "effect_type": "hp_loss", "effect_value": 20, "text": "힘이 부족했다. HP 20 손실." }
+            {
+              "weight": 60,
+              "effect_type": "max_hp_gain",
+              "effect_value": 12,
+              "text": "산신이 고개를 끄덕인다. 최대 HP +12."
+            },
+            {
+              "weight": 40,
+              "effect_type": "hp_loss",
+              "effect_value": 20,
+              "text": "힘이 부족했다. HP 20 손실."
+            }
           ],
           "result_text": "산신의 시험에 응한다."
         },
@@ -243,7 +288,10 @@
           "text": "지혜를 시험받는다.",
           "effect_type": "card_choice",
           "effect_value": 1,
-          "effect_meta": { "rarity": 3, "choice_count": 3 },
+          "effect_meta": {
+            "rarity": 3,
+            "choice_count": 3
+          },
           "result_text": "산신이 미소 짓는다. 희귀 카드 3장 중 1장을 선택해 덱에 추가.",
           "note": "희귀 카드 3선택 1."
         },
@@ -252,13 +300,14 @@
           "text": "용기를 시험받는다.",
           "effect_type": "relic_gain",
           "effect_value": 1,
-          "effect_meta": { "rarity": 3 },
+          "effect_meta": {
+            "rarity": 3
+          },
           "result_text": "두려움 없이 다가가자 산신이 희귀 유물을 건넨다.",
           "note": "희귀 유물 1개 획득."
         }
       ]
     },
-
     {
       "id": "EVT_A2_008",
       "title": {
@@ -297,7 +346,6 @@
         }
       ]
     },
-
     {
       "id": "EVT_A2_009",
       "title": {

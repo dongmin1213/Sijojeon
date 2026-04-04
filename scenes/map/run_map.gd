@@ -63,6 +63,11 @@ var _node_buttons: Dictionary = {}  # node_id → Button
 var _node_positions: Dictionary = {}  # node_id → Vector2 (center)
 var _available_node_ids: Array[int] = []
 var _node_selected: bool = false  # 노드 선택 후 중복 입력 차단
+var _locked_node_costs: Dictionary = {}  # node_id → gold cost (갈림길 잠금 해제)
+var _unlocked_nodes: Array[int] = []  # 이번 런에서 금화로 해제한 노드
+
+## 갈림길 잠금 해제 비용
+const FORK_UNLOCK_COST := 40
 
 
 func _ready() -> void:
@@ -254,19 +259,65 @@ func _update_node_states() -> void:
 	# 선택 가능한 노드 계산
 	var available_nodes := run_map.get_available_nodes(visited)
 	_available_node_ids.clear()
+
+	# 민심 < 30: 상점 노드 50% 비활성화
+	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	var disabled_shop_ids: Array[int] = []
+	if minshim < 30:
+		disabled_shop_ids = _get_disabled_shop_nodes(run_map, visited)
+
 	for node in available_nodes:
+		if node.id in disabled_shop_ids:
+			continue  # 민란으로 폐업한 상점
 		_available_node_ids.append(node.id)
+
+	# 갈림길 잠금 해제: 선택 가능한 노드가 3개 이상이면 일부를 잠금
+	_locked_node_costs.clear()
+	_unlocked_nodes = GameManager.run_data.narrative_state.get("unlocked_fork_nodes", [])
+	if _available_node_ids.size() >= 3:
+		_calculate_locked_forks(run_map)
 
 	for nid in _node_buttons:
 		var btn: Button = _node_buttons[nid]
 		var map_node: MapData.MapNode = run_map.nodes[nid]
 		var node_color: Color = NODE_COLORS.get(map_node.type, Color.WHITE)
 
+		# 민란으로 폐업한 상점 표시
+		if nid in disabled_shop_ids and nid not in visited:
+			btn.disabled = true
+			btn.text = "X\n폐업"
+			btn.modulate = Color(0.4, 0.3, 0.3, 0.6)
+			btn.tooltip_text = "민심 부족으로 상점이 문을 닫았습니다"
+			continue
+
 		if nid in visited:
 			# 방문한 노드: 어두운 색 + 비활성화
 			btn.disabled = true
 			btn.modulate = Color(0.5, 0.5, 0.5, 0.6)
 			btn.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+		elif nid in _locked_node_costs:
+			# 갈림길 잠금 노드: 금화로 해제 가능
+			var cost: int = _locked_node_costs[nid]
+			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
+			var label_text: String = NODE_LABELS.get(map_node.type, "???")
+			btn.text = "%s\n%s\n[%d금화]" % [icon_text, label_text, cost]
+			btn.disabled = false
+			btn.modulate = Color(0.7, 0.6, 0.3, 0.9)
+			btn.tooltip_text = "%d 금화를 지불하면 이 경로를 해제합니다" % cost
+			var style := StyleBoxFlat.new()
+			style.bg_color = Color(0.3, 0.25, 0.1)
+			style.corner_radius_top_left = 8
+			style.corner_radius_top_right = 8
+			style.corner_radius_bottom_left = 8
+			style.corner_radius_bottom_right = 8
+			style.border_width_left = 2
+			style.border_width_top = 2
+			style.border_width_right = 2
+			style.border_width_bottom = 2
+			style.border_color = Color(0.8, 0.7, 0.2, 0.8)
+			btn.add_theme_stylebox_override("normal", style)
+			btn.add_theme_stylebox_override("hover", style)
+			btn.add_theme_color_override("font_color", Color(0.9, 0.8, 0.3))
 		elif nid in _available_node_ids:
 			# 선택 가능한 노드: 밝은 색 + 펄스 효과
 			btn.disabled = false
@@ -336,10 +387,70 @@ func _scroll_to_current() -> void:
 	scroll_container.scroll_vertical = int(target_y)
 
 
+## 갈림길 잠금 노드를 계산한다. 3개 이상 선택지 중 1개를 잠금.
+## 보스/휴식 노드는 잠그지 않는다. 최소 2개는 항상 무료.
+func _calculate_locked_forks(run_map: MapData.RunMap) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = GameManager.run_data.map_seed + GameManager.run_data.visited_nodes.size() * 31
+
+	# 잠금 후보: 보스/휴식이 아닌 노드
+	var candidates: Array[int] = []
+	for nid in _available_node_ids:
+		if nid in _unlocked_nodes:
+			continue  # 이미 해제한 노드
+		var map_node: MapData.MapNode = run_map.nodes[nid]
+		if map_node.type == MapData.NodeType.BOSS or map_node.type == MapData.NodeType.REST:
+			continue  # 보스/휴식은 잠그지 않음
+		candidates.append(nid)
+
+	# 최소 2개 무료 보장: 잠글 수 있는 후보가 available - 1 이하여야 함
+	var max_lockable := _available_node_ids.size() - 2
+	if max_lockable <= 0 or candidates.is_empty():
+		return
+
+	# 1개만 잠금
+	candidates.shuffle()
+	var lock_id: int = candidates[rng.randi() % candidates.size()]
+	_locked_node_costs[lock_id] = FORK_UNLOCK_COST
+	_available_node_ids.erase(lock_id)
+
+
+## 민심 < 30일 때 비활성화할 상점 노드를 결정한다 (시드 기반 50%).
+func _get_disabled_shop_nodes(run_map: MapData.RunMap, visited: Array[int]) -> Array[int]:
+	var result: Array[int] = []
+	var rng := RandomNumberGenerator.new()
+	rng.seed = GameManager.run_data.map_seed + 7777  # 결정론적 시드
+	for nid in run_map.nodes:
+		if nid in visited:
+			continue
+		var map_node: MapData.MapNode = run_map.nodes[nid]
+		if map_node.type == MapData.NodeType.SHOP:
+			if rng.randf() < 0.5:
+				result.append(nid)
+	return result
+
+
 func _on_node_pressed(node_id: int) -> void:
 	# 중복 입력 완전 차단 (씬 전환 중 추가 탭 방지)
 	if _node_selected:
 		return
+
+	# 갈림길 잠금 노드 처리: 금화 지불로 해제
+	if node_id in _locked_node_costs:
+		var cost: int = _locked_node_costs[node_id]
+		if GameManager.run_data and GameManager.run_data.gold >= cost:
+			AudioManager.play_sfx_by_key("coin")
+			GameManager.run_data.gold -= cost
+			_locked_node_costs.erase(node_id)
+			_available_node_ids.append(node_id)
+			# 해제 기록 저장 (세이브 영속화)
+			if not GameManager.run_data.narrative_state.has("unlocked_fork_nodes"):
+				GameManager.run_data.narrative_state["unlocked_fork_nodes"] = []
+			GameManager.run_data.narrative_state["unlocked_fork_nodes"].append(node_id)
+			_update_node_states()
+			_update_hud()
+		return  # 해제만 하고 즉시 이동하지 않음
+
 	if node_id not in _available_node_ids:
 		return
 	_node_selected = true

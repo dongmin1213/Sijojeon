@@ -101,6 +101,60 @@ columns = 4
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ExtraSection" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/ExtraSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "카드 강화 (100 금화)"
+
+[node name="UpgradeInfo" type="Label" parent="VBoxContainer/ExtraSection"]
+layout_mode = 2
+text = "덱의 카드 1장을 강화합니다"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="UpgradeScrollContainer" type="ScrollContainer" parent="VBoxContainer/ExtraSection"]
+layout_mode = 2
+size_flags_vertical = 3
+visible = false
+
+[node name="UpgradeDeckContainer" type="GridContainer" parent="VBoxContainer/ExtraSection/UpgradeScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="MinshimButton" type="Button" parent="VBoxContainer/ExtraSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "민심 매수 (100 금화 → 민심 +10)"
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RelicSection" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RelicSectionLabel" type="Label" parent="VBoxContainer/RelicSection"]
+layout_mode = 2
+text = "유물 판매"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 22
+
+[node name="RelicContainer" type="HBoxContainer" parent="VBoxContainer/RelicSection"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
 [node name="LeaveButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4

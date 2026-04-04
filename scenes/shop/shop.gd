@@ -24,6 +24,14 @@ const REMOVAL_BASE_COST := 75
 const REMOVAL_COST_INCREASE := 25
 const REMOVAL_MAX_COST := 200
 
+# 카드 강화 비용
+const UPGRADE_BASE_COST := 100
+const UPGRADE_MAX_COST := 150
+
+# 민심 매수 비용
+const MINSHIM_BUY_COST := 100
+const MINSHIM_BUY_AMOUNT := 10
+
 # 등급별 출현 가중치
 const RARITY_WEIGHTS := {
 	"common": 50,     # rarity 1~2
@@ -32,9 +40,18 @@ const RARITY_WEIGHTS := {
 }
 
 var shop_cards: Array[Dictionary] = []  # [{card_id, price, sold}]
+var shop_relics: Array[Dictionary] = []  # [{relic_id, price, sold}]
 var removal_mode: bool = false
+var upgrade_mode: bool = false
 var deck_buttons: Array[Button] = []
 var _price_modifier: float = 1.0  # 이벤트 효과에 의한 가격 배율
+
+# 유물 등급별 상점 가격
+const RELIC_PRICES := {
+	1: 150,   # 일반
+	2: 200,   # 고급
+	3: 275,   # 희귀
+}
 
 @onready var title_label: Label = $VBoxContainer/TitleLabel
 @onready var gold_label: Label = $VBoxContainer/GoldLabel
@@ -46,15 +63,25 @@ var _price_modifier: float = 1.0  # 이벤트 효과에 의한 가격 배율
 @onready var remove_info: Label = $VBoxContainer/RemoveSection/RemoveInfo
 @onready var deck_container: GridContainer = $VBoxContainer/RemoveSection/DeckScrollContainer/DeckContainer
 @onready var deck_scroll: ScrollContainer = $VBoxContainer/RemoveSection/DeckScrollContainer
+@onready var extra_section: VBoxContainer = $VBoxContainer/ExtraSection
+@onready var upgrade_button: Button = $VBoxContainer/ExtraSection/UpgradeButton
+@onready var upgrade_info: Label = $VBoxContainer/ExtraSection/UpgradeInfo
+@onready var upgrade_scroll: ScrollContainer = $VBoxContainer/ExtraSection/UpgradeScrollContainer
+@onready var upgrade_deck_container: GridContainer = $VBoxContainer/ExtraSection/UpgradeScrollContainer/UpgradeDeckContainer
+@onready var minshim_button: Button = $VBoxContainer/ExtraSection/MinshimButton
+@onready var relic_container: HBoxContainer = $VBoxContainer/RelicSection/RelicContainer
 @onready var leave_button: Button = $VBoxContainer/LeaveButton
 
 
 func _ready() -> void:
 	refresh_button.pressed.connect(_on_refresh_pressed)
 	remove_button.pressed.connect(_on_remove_toggle_pressed)
+	upgrade_button.pressed.connect(_on_upgrade_toggle_pressed)
+	minshim_button.pressed.connect(_on_minshim_buy_pressed)
 	leave_button.pressed.connect(_on_leave_pressed)
 
 	deck_scroll.visible = false
+	upgrade_scroll.visible = false
 
 	if GameManager.run_data == null:
 		push_warning("Shop: run_data가 null — 맵으로 복귀")
@@ -70,9 +97,13 @@ func _ready() -> void:
 	_price_modifier *= _get_minshim_price_modifier()
 
 	_generate_shop_cards()
+	_generate_shop_relics()
 	_display_shop_cards()
+	_display_shop_relics()
 	_update_gold_display()
 	_update_remove_section()
+	_update_upgrade_section()
+	_update_minshim_button()
 
 
 func _generate_shop_cards() -> void:
@@ -339,9 +370,231 @@ func _update_remove_section() -> void:
 		remove_button.remove_theme_color_override("font_color")
 
 
+## 카드 강화 비용 계산 (중인 신분 시 -25% 할인)
+func _get_upgrade_cost() -> int:
+	var base_cost := UPGRADE_BASE_COST
+	var discount: float = JibunSystem.get_upgrade_cost_discount(GameManager.run_data)
+	return maxi(int(base_cost * discount), 1)
+
+
+func _on_upgrade_toggle_pressed() -> void:
+	if removal_mode:
+		return
+	upgrade_mode = not upgrade_mode
+
+	if upgrade_mode:
+		upgrade_button.text = "취소"
+		upgrade_scroll.visible = true
+		leave_button.text = "강화 취소하고 나가기"
+		_display_deck_for_upgrade()
+	else:
+		upgrade_button.text = "카드 강화 (%d 금화)" % _get_upgrade_cost()
+		upgrade_scroll.visible = false
+		leave_button.text = "상점 나가기"
+
+
+func _display_deck_for_upgrade() -> void:
+	for child in upgrade_deck_container.get_children():
+		child.queue_free()
+
+	if GameManager.run_data == null:
+		return
+
+	var cost := _get_upgrade_cost()
+	var can_afford: bool = GameManager.run_data.gold >= cost
+
+	for i in GameManager.run_data.deck.size():
+		var card_id: String = GameManager.run_data.deck[i]
+		# 이미 강화된 카드는 건너뜀
+		if card_id.ends_with("+"):
+			continue
+		var card: CardData = DataLoader.get_card(card_id)
+		if card == null:
+			continue
+
+		var btn := Button.new()
+		btn.custom_minimum_size = Vector2(160, 60)
+		btn.text = "%s (비용:%d)" % [card.get_display_name(), card.cost]
+
+		if not can_afford:
+			btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+		else:
+			btn.pressed.connect(_on_upgrade_card.bind(i))
+
+		upgrade_deck_container.add_child(btn)
+
+
+func _on_upgrade_card(deck_index: int) -> void:
+	if not upgrade_mode:
+		return
+	if GameManager.run_data == null:
+		return
+
+	var cost := _get_upgrade_cost()
+	if GameManager.run_data.gold < cost:
+		return
+	if deck_index < 0 or deck_index >= GameManager.run_data.deck.size():
+		return
+
+	var card_id: String = GameManager.run_data.deck[deck_index]
+	if card_id.ends_with("+"):
+		return
+
+	# 강화 실행
+	AudioManager.play_sfx_by_key("coin")
+	GameManager.run_data.gold -= cost
+	GameManager.run_data.deck[deck_index] = card_id + "+"
+	if not GameManager.run_data.upgraded_cards.has(card_id):
+		GameManager.run_data.upgraded_cards.append(card_id)
+
+	# 강화 모드 종료
+	upgrade_mode = false
+	upgrade_button.text = "카드 강화 (%d 금화)" % _get_upgrade_cost()
+	upgrade_scroll.visible = false
+	leave_button.text = "상점 나가기"
+	_update_upgrade_section()
+	_update_gold_display()
+
+
+func _update_upgrade_section() -> void:
+	var cost := _get_upgrade_cost()
+	upgrade_button.text = "카드 강화 (%d 금화)" % cost
+	upgrade_info.text = "덱의 카드 1장을 강화합니다"
+
+	if GameManager.run_data and GameManager.run_data.gold < cost:
+		upgrade_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+	else:
+		upgrade_button.remove_theme_color_override("font_color")
+
+
+func _on_minshim_buy_pressed() -> void:
+	if removal_mode or upgrade_mode:
+		return
+	if GameManager.run_data == null:
+		return
+	if GameManager.run_data.gold < MINSHIM_BUY_COST:
+		return
+
+	AudioManager.play_sfx_by_key("coin")
+	GameManager.run_data.gold -= MINSHIM_BUY_COST
+	var current: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	GameManager.run_data.narrative_state["minshim"] = clampi(current + MINSHIM_BUY_AMOUNT, 0, 100)
+
+	_update_gold_display()
+	_update_minshim_button()
+
+
+func _update_minshim_button() -> void:
+	var minshim: int = 50
+	if GameManager.run_data:
+		minshim = GameManager.run_data.narrative_state.get("minshim", 50)
+	minshim_button.text = "민심 매수 (%d 금화 → 민심 +%d) [현재: %d]" % [MINSHIM_BUY_COST, MINSHIM_BUY_AMOUNT, minshim]
+
+	if minshim >= 100:
+		minshim_button.disabled = true
+		minshim_button.text = "민심 최대 (100)"
+	elif GameManager.run_data and GameManager.run_data.gold < MINSHIM_BUY_COST:
+		minshim_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+	else:
+		minshim_button.remove_theme_color_override("font_color")
+
+
+## 상점 유물 생성 (등급 가중치 기반 2개)
+func _generate_shop_relics() -> void:
+	shop_relics.clear()
+	if GameManager.run_data == null:
+		return
+
+	var character_id: String = GameManager.run_data.character_id
+	for _i in 2:
+		var relic_id := RelicManager.roll_relic_reward("shop")
+		if relic_id == "":
+			continue
+		# 중복 방지
+		var already := false
+		for entry in shop_relics:
+			if entry["relic_id"] == relic_id:
+				already = true
+				break
+		if already:
+			continue
+		var relic_data := DataLoader.get_relic(relic_id)
+		if relic_data.is_empty():
+			continue
+		var rarity: int = relic_data.get("rarity", 1)
+		var base_price: int = RELIC_PRICES.get(rarity, 150)
+		# 가격 변동 적용 (민심/이벤트 할인)
+		var price := maxi(int(base_price * _price_modifier), 10)
+		shop_relics.append({"relic_id": relic_id, "price": price, "sold": false})
+
+
+## 상점 유물 UI 표시
+func _display_shop_relics() -> void:
+	for child in relic_container.get_children():
+		child.queue_free()
+
+	for i in shop_relics.size():
+		var entry: Dictionary = shop_relics[i]
+		var relic_data := DataLoader.get_relic(entry["relic_id"])
+		if relic_data.is_empty():
+			continue
+
+		var btn := Button.new()
+		btn.custom_minimum_size = Vector2(220, 160)
+
+		if entry["sold"]:
+			btn.text = "판매 완료"
+			btn.disabled = true
+			btn.modulate = Color(0.4, 0.4, 0.4)
+		else:
+			var relic_name: String = ""
+			var name_data = relic_data.get("name", {})
+			if name_data is Dictionary:
+				relic_name = str(name_data.get("ko", entry["relic_id"]))
+			else:
+				relic_name = str(name_data)
+			var effect_desc: String = str(relic_data.get("effect_description", ""))
+			btn.text = "%s\n%s\n\n%d 금화" % [relic_name, effect_desc, entry["price"]]
+			var can_afford: bool = GameManager.run_data != null and GameManager.run_data.gold >= entry["price"]
+			if not can_afford:
+				btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+			btn.pressed.connect(_on_buy_relic.bind(i))
+
+		relic_container.add_child(btn)
+
+
+## 유물 구매 처리
+func _on_buy_relic(index: int) -> void:
+	if removal_mode or upgrade_mode:
+		return
+	if index < 0 or index >= shop_relics.size():
+		return
+	var entry: Dictionary = shop_relics[index]
+	if entry["sold"]:
+		return
+	if GameManager.run_data == null:
+		return
+	if GameManager.run_data.gold < entry["price"]:
+		return
+
+	# 이미 보유한 유물인지 확인
+	if RelicManager.has_relic(entry["relic_id"]):
+		return
+
+	# 구매 실행
+	AudioManager.play_sfx_by_key("coin")
+	GameManager.run_data.gold -= entry["price"]
+	RelicManager.acquire_relic(entry["relic_id"])
+	shop_relics[index]["sold"] = true
+
+	_display_shop_relics()
+	_update_gold_display()
+
+
 func _on_leave_pressed() -> void:
-	# 제거 모드 중이어도 나갈 수 있도록 리셋
+	# 제거/강화 모드 중이어도 나갈 수 있도록 리셋
 	removal_mode = false
+	upgrade_mode = false
 	GameManager.save_current_run()
 	GameManager.change_state(GameManager.GameState.MAP)
 
@@ -380,8 +633,13 @@ func _get_minshim_price_modifier() -> float:
 	if not GameManager.run_data:
 		return 1.0
 	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	if minshim <= 20:
-		return 1.3   # +30% (민란 직전, 상인들 기피)
-	elif minshim <= 40:
-		return 1.2   # +20%
-	return 1.0       # 중립 이상
+	var modifier: float = 1.0
+	if minshim <= 29:
+		modifier = 1.3   # +30% (민란 직전, 상인들 기피)
+	elif minshim <= 49:
+		modifier = 1.15  # +15%
+	elif minshim >= 70:
+		modifier = 0.8   # -20% (높은 민심 할인)
+	# 양반 이상 신분 할인 적용 (-15%)
+	modifier *= JibunSystem.get_shop_price_modifier(GameManager.run_data)
+	return modifier

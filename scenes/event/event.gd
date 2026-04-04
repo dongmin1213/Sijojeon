@@ -29,6 +29,11 @@ func _ready() -> void:
 		return
 
 	_load_random_event()
+	if _event_data.is_empty():
+		push_warning("Event: 이벤트 데이터 로드 실패 — 맵으로 복귀")
+		continue_button.visible = true
+		continue_button.text = "돌아가기"
+		return
 	_build_ui()
 	_update_status_bar()
 
@@ -159,6 +164,10 @@ func _check_trigger_condition(condition: String) -> bool:
 			return tags.has("암행어사_동행")
 		"minshim_le_20":
 			return rd.narrative_state.get("minshim", 50) <= 20
+		"minshim_ge_70":
+			return rd.narrative_state.get("minshim", 50) >= 70
+		"minshim_ge_50":
+			return rd.narrative_state.get("minshim", 50) >= 50
 		_:
 			return true
 
@@ -186,6 +195,10 @@ func _build_ui() -> void:
 	var flavor: String = _get_text(_event_data.get("flavor_text", ""))
 	flavor_label.text = flavor
 	flavor_label.visible = flavor != ""
+
+	# UI 상태 초기화 (이전 이벤트에서 숨겨진 상태 복원)
+	choice_container.visible = true
+	result_label.visible = false
 
 	# 선택지 버튼 생성
 	var choices: Array = _event_data.get("choices", [])
@@ -216,6 +229,8 @@ func _get_condition_tooltip(condition: String) -> String:
 	match condition:
 		"status_rank_ge_3": return "신분이 양반(3등급) 이상이어야 합니다"
 		"status_rank_ge_4": return "신분이 당상관(4등급) 이상이어야 합니다"
+		"minshim_ge_70": return "민심이 70 이상이어야 합니다"
+		"minshim_ge_50": return "민심이 50 이상이어야 합니다"
 		_: return "조건 미충족"
 
 

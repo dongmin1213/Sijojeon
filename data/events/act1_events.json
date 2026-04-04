@@ -78,6 +78,15 @@
           "effect_value_bonus": 25,
           "result_text_full": "HP 12 손실 + 엽전 25 획득.",
           "note": "전투 결과. HP 손실 + 골드 획득."
+        },
+        {
+          "id": "minshim_respect",
+          "text": "[민심 70+] 백성들의 지지를 받아 포졸이 스스로 길을 비켜준다.",
+          "trigger_condition": "minshim_ge_70",
+          "effect_type": "gold_gain",
+          "effect_value": 15,
+          "result_text": "민심이 높아 포졸마저 존경의 눈빛이다. 오히려 노자돈을 건네준다. 엽전 15 획득.",
+          "note": "민심 70+ 전용. 무조건 이득."
         }
       ]
     },
@@ -154,6 +163,17 @@
           "effect_value": 0,
           "result_text": "행상인이 야유를 퍼붓는다. 신경 쓰지 않는다.",
           "note": "중립."
+        },
+        {
+          "id": "minshim_discount",
+          "text": "[민심 70+] 약장수가 명성을 듣고 특별 할인을 제안한다.",
+          "trigger_condition": "minshim_ge_70",
+          "effect_type": "hp_gain",
+          "effect_value": 20,
+          "effect_type_bonus": "max_hp_gain",
+          "effect_value_bonus": 3,
+          "result_text": "\"영웅에게 파는 약은 공짜지요!\" HP 20 회복, 최대 HP +3.",
+          "note": "��심 70+ 전용. 무료 대형 회복."
         }
       ]
     },
@@ -180,7 +200,10 @@
           "effect_value": 10,
           "result_text": "신령의 은혜로 다음 전투에 강화된 상태로 임한다. 엽전 10 소비, 다음 전투 시작 시 힘 2 버프.",
           "effect_type_bonus": "buff_next_combat",
-          "effect_value_bonus": { "buff": "strength", "stacks": 2 },
+          "effect_value_bonus": {
+            "buff": "strength",
+            "stacks": 2
+          },
           "result_text_full": "엽전 10 소비 → 다음 전투 힘(strength) +2.",
           "note": "금전 소비 → 전투 버프."
         },
@@ -250,9 +273,24 @@
           "text": "행낭을 열어본다.",
           "effect_type": "random",
           "outcomes": [
-            { "weight": 40, "effect_type": "gold_gain", "effect_value": 35, "text": "엽전 35냥이 들어 있었다!" },
-            { "weight": 35, "effect_type": "card_gain", "effect_value": 1, "text": "낡은 두루마리 — 카드 1장 획득." },
-            { "weight": 25, "effect_type": "hp_loss", "effect_value": 10, "text": "함정이었다! 독이 뿜어져 나온다. HP 10 손실." }
+            {
+              "weight": 40,
+              "effect_type": "gold_gain",
+              "effect_value": 35,
+              "text": "엽전 35냥이 들어 있었다!"
+            },
+            {
+              "weight": 35,
+              "effect_type": "card_gain",
+              "effect_value": 1,
+              "text": "낡은 두루마리 — 카드 1장 획득."
+            },
+            {
+              "weight": 25,
+              "effect_type": "hp_loss",
+              "effect_value": 10,
+              "text": "함정이었다! 독이 뿜어져 나온다. HP 10 손실."
+            }
           ],
           "result_text": "행낭을 열어 내용물을 확인한다.",
           "note": "40% 금전, 35% 카드, 25% HP 손실 트랩."
@@ -315,7 +353,6 @@
         }
       ]
     },
-
     {
       "id": "EVT_A1_009",
       "title": {
@@ -329,7 +366,10 @@
           "text": "무작위로 1장을 집는다.",
           "effect_type": "card_gain",
           "effect_value": 1,
-          "effect_meta": { "rarity": "random", "class": "any" },
+          "effect_meta": {
+            "rarity": "random",
+            "class": "any"
+          },
           "result_text": "무작위 카드 1장을 덱에 추가한다.",
           "note": "무료 카드 1장 획득 (등급 무작위)."
         },
@@ -338,7 +378,11 @@
           "text": "공통 카드 1장을 고른다.",
           "effect_type": "card_choice",
           "effect_value": 1,
-          "effect_meta": { "rarity": 1, "class": "common", "choice_count": 3 },
+          "effect_meta": {
+            "rarity": 1,
+            "class": "common",
+            "choice_count": 3
+          },
           "result_text": "공통 카드 3장 중 1장을 선택해 덱에 추가한다.",
           "note": "공통 카드 3선택 1."
         },
@@ -352,7 +396,6 @@
         }
       ]
     },
-
     {
       "id": "EVT_A1_010",
       "title": {
@@ -388,10 +431,20 @@
           "effect_value": 0,
           "result_text": "걸인의 눈빛이 슬프게 돌아선다.",
           "note": "중립."
+        },
+        {
+          "id": "minshim_help",
+          "text": "[민심 70+] 마을 사람들이 함께 나서서 걸인을 돕는다.",
+          "trigger_condition": "minshim_ge_70",
+          "effect_type": "hp_gain",
+          "effect_value": 10,
+          "effect_type_bonus": "minshim_change",
+          "effect_value_bonus": 5,
+          "result_text": "백성들의 선의가 퍼져나간다. HP 10 회복, 민심 +5.",
+          "note": "민��� 70+ 전용. HP 회복 + 민심 추가 상승."
         }
       ]
     },
-
     {
       "id": "EVT_A1_011",
       "title": {
@@ -413,7 +466,9 @@
           "text": "힘을 빈다.",
           "effect_type": "relic_gain",
           "effect_value": 1,
-          "effect_meta": { "rarity": 2 },
+          "effect_meta": {
+            "rarity": 2
+          },
           "result_text": "나무 아래에서 고급 유물 1개가 나타난다. 고급 유물 획득.",
           "note": "고급 등급 유물 1개 획득."
         },
@@ -427,7 +482,6 @@
         }
       ]
     },
-
     {
       "id": "EVT_A1_012",
       "title": {
@@ -441,7 +495,10 @@
           "text": "상인을 부축해준다.",
           "effect_type": "card_choice",
           "effect_value": 1,
-          "effect_meta": { "rarity": 2, "choice_count": 3 },
+          "effect_meta": {
+            "rarity": 2,
+            "choice_count": 3
+          },
           "result_text": "상인이 짐 속에서 고급 카드 3장을 꺼낸다. 그 중 1장을 선택해 덱에 추가.",
           "note": "고급 카드 3선택 1 (무료)."
         },
@@ -467,19 +524,61 @@
     }
   ],
   "effect_types_used": [
-    { "id": "hp_gain", "description": "현재 HP 회복." },
-    { "id": "hp_loss", "description": "현재 HP 감소." },
-    { "id": "hp_full_heal", "description": "현재 HP를 최대 HP까지 완전 회복." },
-    { "id": "max_hp_gain", "description": "최대 HP 영구 증가." },
-    { "id": "max_hp_loss", "description": "최대 HP 영구 감소." },
-    { "id": "gold_gain", "description": "엽전(골드) 획득." },
-    { "id": "gold_loss", "description": "엽전(골드) 소비." },
-    { "id": "gold_random", "description": "결과가 랜덤인 도박형 엽전 변동." },
-    { "id": "card_gain", "description": "덱에 카드 1장 추가." },
-    { "id": "relic_gain", "description": "유물 1개 획득." },
-    { "id": "debuff", "description": "플레이어에게 디버프 부여 (다음 전투 시작 시 적용)." },
-    { "id": "buff_next_combat", "description": "다음 전투 시작 시 버프 적용." },
-    { "id": "random", "description": "outcomes 배열 중 weight 기반 랜덤 결과 선택." },
-    { "id": "none", "description": "아무 효과 없음." }
+    {
+      "id": "hp_gain",
+      "description": "현재 HP 회복."
+    },
+    {
+      "id": "hp_loss",
+      "description": "현재 HP 감소."
+    },
+    {
+      "id": "hp_full_heal",
+      "description": "현재 HP를 최대 HP까지 완전 회복."
+    },
+    {
+      "id": "max_hp_gain",
+      "description": "최대 HP 영구 증가."
+    },
+    {
+      "id": "max_hp_loss",
+      "description": "최대 HP 영구 감소."
+    },
+    {
+      "id": "gold_gain",
+      "description": "엽전(골드) 획득."
+    },
+    {
+      "id": "gold_loss",
+      "description": "엽전(골드) 소비."
+    },
+    {
+      "id": "gold_random",
+      "description": "결과가 랜덤인 도박형 엽전 변동."
+    },
+    {
+      "id": "card_gain",
+      "description": "덱에 카드 1장 추가."
+    },
+    {
+      "id": "relic_gain",
+      "description": "유물 1개 획득."
+    },
+    {
+      "id": "debuff",
+      "description": "플레이어에게 디버프 부여 (다음 전투 시작 시 적용)."
+    },
+    {
+      "id": "buff_next_combat",
+      "description": "다음 전투 시작 시 버프 적용."
+    },
+    {
+      "id": "random",
+      "description": "outcomes 배열 중 weight 기반 랜덤 결과 선택."
+    },
+    {
+      "id": "none",
+      "description": "아무 효과 없음."
+    }
   ]
 }
