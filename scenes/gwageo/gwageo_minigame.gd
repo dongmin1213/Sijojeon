@@ -44,7 +44,7 @@ func _ready() -> void:
 
 	if GameManager.run_data == null:
 		continue_button.visible = true
-		continue_button.text = "돌아가기"
+		continue_button.text = tr("GWAGEO_BACK")
 		return
 
 	# 덱 카드 로드 및 셔플
@@ -52,8 +52,8 @@ func _ready() -> void:
 	# 시험관 결정
 	_examiner = GwageoScorer.roll_examiner()
 	if _examiner.is_empty():
-		_examiner = {"id": "scholar", "name": "학자", "bonus": "none"}
-	examiner_label.text = "시험관: %s" % _examiner.get("name", "학자")
+		_examiner = {"id": "scholar", "name": tr("GWAGEO_EXAMINER_DEFAULT"), "bonus": "none"}
+	examiner_label.text = tr("GWAGEO_EXAMINER_FMT") % _examiner.get("name", tr("GWAGEO_EXAMINER_DEFAULT"))
 
 	# 탐관 시험관: 뇌물 옵션
 	if _examiner.get("id", "") == "corrupt" and GameManager.run_data.gold >= 50:
@@ -93,20 +93,20 @@ func _start_phase(phase: Phase) -> void:
 			_max_select = 3
 			_offer_cards(5)
 			_max_select = mini(_max_select, _offered_cards.size())
-			phase_label.text = "초장(初章) — 아래에서 카드 %d장을 눌러 선택하세요" % _max_select
-			instruction_label.text = "▶ 공격·방어·기술을 골고루 넣으면 높은 점수!"
+			phase_label.text = tr("GWAGEO_PHASE_CHOJANG") % _max_select
+			instruction_label.text = tr("GWAGEO_HINT_CHOJANG")
 		Phase.JUNGJANG:
 			_max_select = 3
 			_offer_cards(5)
 			_max_select = mini(_max_select, _offered_cards.size())
-			phase_label.text = "중장(中章) — 카드 %d장을 눌러 선택하세요" % _max_select
-			instruction_label.text = "▶ 초장 카드와 키워드가 겹칠수록 높은 점수!"
+			phase_label.text = tr("GWAGEO_PHASE_JUNGJANG") % _max_select
+			instruction_label.text = tr("GWAGEO_HINT_JUNGJANG")
 		Phase.JONGJANG:
 			_max_select = 2
 			_offer_cards(4)
 			_max_select = mini(_max_select, _offered_cards.size())
-			phase_label.text = "종장(終章) — 카드 %d장을 눌러 선택하세요" % _max_select
-			instruction_label.text = "▶ 피해량이 높은 카드를 골라 마무리!"
+			phase_label.text = tr("GWAGEO_PHASE_JONGJANG") % _max_select
+			instruction_label.text = tr("GWAGEO_HINT_JONGJANG")
 		Phase.RESULT:
 			_show_result()
 			return
@@ -116,14 +116,14 @@ func _start_phase(phase: Phase) -> void:
 		_on_confirm()
 		return
 
-	selected_label.text = "선택: 0/%d" % _max_select
+	selected_label.text = tr("GWAGEO_SELECT_FMT") % [0, _max_select]
 	# 선택할 카드가 1장뿐이고 필요 수도 1이면 자동 선택 처리
 	if _max_select == 1 and _offered_cards.size() == 1:
 		_selected_indices.append(0)
 		var btns := card_container.get_children()
 		if btns.size() > 0 and btns[0] is Button:
 			btns[0].button_pressed = true
-		selected_label.text = "선택: 1/1"
+		selected_label.text = tr("GWAGEO_SELECT_FMT") % [1, 1]
 		confirm_button.visible = true
 
 
@@ -157,18 +157,18 @@ func _format_card_text(card: CardData) -> String:
 	var lines: Array[String] = []
 	var type_label := ""
 	match card.type:
-		"attack": type_label = "[공격]"
-		"defense": type_label = "[방어]"
-		"spell": type_label = "[주문]"
-		"movement": type_label = "[이동]"
-		"formation": type_label = "[진형]"
+		"attack": type_label = tr("GWAGEO_CARD_TYPE_ATTACK")
+		"defense": type_label = tr("GWAGEO_CARD_TYPE_DEFENSE")
+		"spell": type_label = tr("GWAGEO_CARD_TYPE_SPELL")
+		"movement": type_label = tr("GWAGEO_CARD_TYPE_MOVEMENT")
+		"formation": type_label = tr("GWAGEO_CARD_TYPE_FORMATION")
 		_: type_label = "[%s]" % card.type
 
-	lines.append("%s %s  비용:%d" % [type_label, card.get_display_name(), card.cost])
+	lines.append(tr("GWAGEO_CARD_INFO_FMT") % [type_label, card.get_display_name(), card.cost])
 	if card.damage > 0:
-		lines.append("피해:%d%s" % [card.damage, " (전체)" if card.is_aoe else ""])
+		lines.append(tr("GWAGEO_CARD_DAMAGE_FMT") % [card.damage, " " + tr("SHOP_CARD_DAMAGE_AOE") if card.is_aoe else ""])
 	if card.block_value > 0:
-		lines.append("방어:%d" % card.block_value)
+		lines.append(tr("GWAGEO_CARD_BLOCK_FMT") % card.block_value)
 	if card.effect != "":
 		lines.append(card.get_current_effect())
 	return " | ".join(lines)
@@ -183,7 +183,7 @@ func _on_card_toggled(index: int, btn: Button) -> void:
 	else:
 		_selected_indices.erase(index)
 
-	selected_label.text = "선택: %d/%d" % [_selected_indices.size(), _max_select]
+	selected_label.text = tr("GWAGEO_SELECT_FMT") % [_selected_indices.size(), _max_select]
 	confirm_button.visible = _selected_indices.size() == _max_select
 
 
@@ -208,7 +208,7 @@ func _on_confirm() -> void:
 
 func _show_result() -> void:
 	_clear_card_buttons()
-	phase_label.text = "채점 결과"
+	phase_label.text = tr("GWAGEO_RESULT_TITLE")
 	instruction_label.text = ""
 	confirm_button.visible = false
 	selected_label.text = ""
@@ -230,14 +230,14 @@ func _show_result() -> void:
 
 	# 결과 표시
 	var result_lines: Array[String] = []
-	result_lines.append("점수: %d / 100" % final_score)
-	result_lines.append("등급: %s" % grade_name)
+	result_lines.append(tr("GWAGEO_SCORE_FMT") % final_score)
+	result_lines.append(tr("GWAGEO_GRADE_FMT") % grade_name)
 	result_lines.append("")
 	result_lines.append(reward_text)
 
 	# 암행어사 시험관 특수: 낙방해도 엽전 손실 없음
 	if _examiner.get("id", "") == "amhaengosa" and grade == "nakbang":
-		result_lines.append("(암행어사 시험관: 엽전 손실 없음)")
+		result_lines.append(tr("GWAGEO_AMHAENGOSA_NOTE"))
 
 	result_label.text = "\n".join(result_lines)
 	result_label.visible = true
@@ -259,13 +259,13 @@ func _apply_rewards(grade: String, _score: int) -> String:
 		"jangwon":
 			# 장원 급제: 전설 카드 1장 선택 + 신분 +50 (이미 적용됨)
 			# 암행어사 시험관이면 특수 유물 추가
-			var text := "장원 급제! 전설 카드를 획득합니다."
+			var text := tr("GWAGEO_JANGWON")
 			if _examiner.get("id", "") == "amhaengosa":
 				# 특수 유물 지급 (기존 유물 시스템 활용)
 				var relic_id := RelicManager.roll_relic_reward("event")
 				if relic_id != "":
 					RelicManager.acquire_relic(relic_id)
-					text += "\n암행어사의 추천장 — 유물 획득!"
+					text += "\n" + tr("GWAGEO_JANGWON_RELIC")
 			# 카드 추가 (높은 레어리티)
 			var offers := _generate_card_offers_by_rarity(3, 3)
 			if not offers.is_empty():
@@ -277,21 +277,21 @@ func _apply_rewards(grade: String, _score: int) -> String:
 			var offers := _generate_card_offers_by_rarity(2, 2)
 			for card_id in offers:
 				rd.deck.append(card_id)
-			return "급제! 희귀 카드 %d장 획득." % offers.size()
+			return tr("GWAGEO_GEUPJE_FMT") % offers.size()
 
 		"hapgyeok":
 			# 합격: 일반 카드 3장 선택
 			var offers := _generate_card_offers_by_rarity(3, 1)
 			for card_id in offers:
 				rd.deck.append(card_id)
-			return "합격. 카드 %d장 획득." % offers.size()
+			return tr("GWAGEO_HAPGYEOK_FMT") % offers.size()
 
 		"nakbang":
 			# 낙방: 엽전 30 손실 + 신분 -10 (이미 적용됨)
 			if _examiner.get("id", "") != "amhaengosa":
 				rd.gold = maxi(rd.gold - 30, 0)
-				return "낙방... 엽전 30 손실."
-			return "낙방... 하지만 암행어사가 지켜보고 있었다."
+				return tr("GWAGEO_NAKBANG_LOSS")
+			return tr("GWAGEO_NAKBANG_SAFE")
 
 	return ""
 
@@ -333,13 +333,13 @@ func _on_bribe() -> void:
 		rd.deck.append(card_id)
 
 	_clear_card_buttons()
-	phase_label.text = "뇌물 수수"
+	phase_label.text = tr("GWAGEO_BRIBE_TITLE")
 	instruction_label.text = ""
 	confirm_button.visible = false
 	selected_label.text = ""
 	bribe_button.visible = false
 
-	result_label.text = "뇌물로 합격을 샀다.\n엽전 -50, 민심 -20\n카드 %d장 획득." % offers.size()
+	result_label.text = tr("GWAGEO_BRIBE_RESULT_FMT") % offers.size()
 	result_label.visible = true
 	continue_button.visible = true
 	_update_status_bar()
@@ -353,13 +353,13 @@ func _clear_card_buttons() -> void:
 func _update_status_bar() -> void:
 	var rd := GameManager.run_data
 	if rd:
-		hp_label.text = "HP: %d/%d" % [rd.current_hp, rd.max_hp]
-		gold_label.text = "엽전: %d" % rd.gold
-		jibun_label.text = "신분: %s" % JibunSystem.get_rank_name(rd.jibun_rank)
+		hp_label.text = tr("GWAGEO_STATUS_HP") % [rd.current_hp, rd.max_hp]
+		gold_label.text = tr("GWAGEO_STATUS_GOLD") % rd.gold
+		jibun_label.text = tr("GWAGEO_STATUS_JIBUN") % JibunSystem.get_rank_name(rd.jibun_rank)
 	else:
 		hp_label.text = "HP: --/--"
-		gold_label.text = "엽전: --"
-		jibun_label.text = "신분: --"
+		gold_label.text = tr("GWAGEO_STATUS_GOLD").replace("%d", "--")
+		jibun_label.text = tr("GWAGEO_STATUS_JIBUN").replace("%s", "--")
 
 
 func _return_to_map() -> void:

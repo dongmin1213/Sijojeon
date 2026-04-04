@@ -264,16 +264,16 @@ func _build_character_cards() -> void:
 		stat_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		stat_label.add_theme_font_size_override("font_size", fs_stat)
 		if unlocked:
-			stat_label.text = "HP: %d | 기: %d" % [character["hp"], character["qi"]]
+			stat_label.text = tr("CHARSEL_STAT_FMT") % [character["hp"], character["qi"]]
 		else:
-			stat_label.text = "HP: ?? | 기: ??"
+			stat_label.text = tr("CHARSEL_STAT_UNKNOWN")
 		vbox.add_child(stat_label)
 
 		# 전용 자원 표시
 		if character["class_resource_name"] != "" and unlocked:
 			var resource_label := Label.new()
 			resource_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			resource_label.text = "전용 자원: %s (최대 %d)" % [character["class_resource_name"], character["class_resource_max"]]
+			resource_label.text = tr("CHARSEL_CLASS_RESOURCE_FMT") % [character["class_resource_name"], character["class_resource_max"]]
 			resource_label.add_theme_font_size_override("font_size", fs_stat)
 			resource_label.add_theme_color_override("font_color", Color(0.4, 0.8, 1.0))
 			vbox.add_child(resource_label)
@@ -284,7 +284,7 @@ func _build_character_cards() -> void:
 			# 패시브 스킬
 			if character["passive_name"] != "":
 				var passive_header := Label.new()
-				passive_header.text = "▶ 패시브: " + character["passive_name"]
+				passive_header.text = tr("CHARSEL_PASSIVE_PREFIX") + character["passive_name"]
 				passive_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				passive_header.add_theme_font_size_override("font_size", fs_skill_header)
 				passive_header.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
@@ -299,7 +299,7 @@ func _build_character_cards() -> void:
 			# 액티브 스킬
 			if character["active_name"] != "":
 				var active_header := Label.new()
-				active_header.text = "▶ 액티브: " + character["active_name"]
+				active_header.text = tr("CHARSEL_ACTIVE_PREFIX") + character["active_name"]
 				active_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				active_header.add_theme_font_size_override("font_size", fs_skill_header)
 				active_header.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
@@ -316,7 +316,7 @@ func _build_character_cards() -> void:
 			# 시작 유물
 			if character["starting_relic_name"] != "":
 				var relic_label := Label.new()
-				relic_label.text = "시작 유물: " + character["starting_relic_name"]
+				relic_label.text = tr("CHARSEL_STARTING_RELIC") + character["starting_relic_name"]
 				relic_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				relic_label.add_theme_font_size_override("font_size", fs_skill_header)
 				relic_label.add_theme_color_override("font_color", Color(1.0, 0.75, 0.3))
@@ -330,7 +330,7 @@ func _build_character_cards() -> void:
 
 			# 선택 안내 레이블 (카드 전체가 터치 가능하므로 버튼 대신 안내 표시)
 			var select_hint := Label.new()
-			select_hint.text = "▶ 탭하여 선택"
+			select_hint.text = tr("CHARSEL_TAP_TO_SELECT")
 			select_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			select_hint.add_theme_font_size_override("font_size", fs_stat)
 			select_hint.add_theme_color_override("font_color", Color(0.7, 0.7, 0.5))
@@ -339,7 +339,7 @@ func _build_character_cards() -> void:
 		else:
 			# 잠금 상태 표시
 			var lock_label := Label.new()
-			lock_label.text = "[잠김]"
+			lock_label.text = tr("CHARSEL_LOCKED")
 			lock_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			lock_label.add_theme_font_size_override("font_size", fs_lock)
 			lock_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -347,7 +347,7 @@ func _build_character_cards() -> void:
 			vbox.add_child(lock_label)
 
 			var cond_label := Label.new()
-			cond_label.text = "해금 조건: " + character["unlock_description"]
+			cond_label.text = tr("CHARSEL_UNLOCK_COND") + character["unlock_description"]
 			cond_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			cond_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			cond_label.add_theme_font_size_override("font_size", fs_skill_desc)
@@ -391,7 +391,7 @@ func _select_character(index: int) -> void:
 		return
 	_selected_index = index
 	start_button.disabled = false
-	start_button.text = "시작: %s" % _character_list[index]["name"]
+	start_button.text = tr("CHARSEL_START_FMT") % _character_list[index]["name"]
 
 	# 선택 하이라이트
 	for i in card_container.get_child_count():
@@ -421,7 +421,7 @@ func _build_achievement_button() -> void:
 	var total := AchievementManager.get_all_achievements().size()
 
 	var ach_button := Button.new()
-	ach_button.text = "업적 (%d/%d)" % [unlocked_ids.size(), total]
+	ach_button.text = tr("CHARSEL_ACHIEVEMENT_FMT") % [unlocked_ids.size(), total]
 	ach_button.add_theme_font_size_override("font_size", 32)
 	ach_button.pressed.connect(_toggle_achievement_panel)
 	$VBoxContainer/ButtonRow.add_child(ach_button)
@@ -476,14 +476,14 @@ func _create_achievement_panel() -> PanelContainer:
 	# 제목 행
 	var title_row := HBoxContainer.new()
 	var title := Label.new()
-	title.text = "업적 목록"
+	title.text = tr("CHARSEL_ACHIEVEMENT_LIST")
 	title.add_theme_font_size_override("font_size", int(30 * ach_ui_scale))
 	title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title_row.add_child(title)
 
 	var close_btn := Button.new()
-	close_btn.text = "닫기"
+	close_btn.text = tr("UI_CLOSE")
 	close_btn.add_theme_font_size_override("font_size", int(28 * ach_ui_scale))
 	close_btn.pressed.connect(_toggle_achievement_panel)
 	title_row.add_child(close_btn)
@@ -605,7 +605,7 @@ func _show_first_play_guide() -> void:
 	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var guide_title := Label.new()
-	guide_title.text = "시조전에 오신 것을 환영합니다!"
+	guide_title.text = tr("CHARSEL_WELCOME")
 	guide_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	guide_title.add_theme_font_size_override("font_size", int(40 * ui_scale))
 	guide_title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
@@ -617,14 +617,7 @@ func _show_first_play_guide() -> void:
 	guide_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	guide_text.add_theme_font_size_override("font_size", int(28 * ui_scale))
 	guide_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	guide_text.text = """조선 시대를 배경으로 한 덱빌딩 로그라이크입니다.
-
-처음 플레이하시나요?
-인터랙티브 튜토리얼에서 전투의 기본을 배울 수 있습니다.
-
-• 카드 사용법과 기(氣) 관리
-• 시조(時調) 리듬 시스템
-• 방어와 전투 전략"""
+	guide_text.text = tr("CHARSEL_GUIDE_TEXT")
 	vbox.add_child(guide_text)
 
 	var btn_container := HBoxContainer.new()
@@ -633,7 +626,7 @@ func _show_first_play_guide() -> void:
 	btn_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var tutorial_btn := Button.new()
-	tutorial_btn.text = "튜토리얼 시작"
+	tutorial_btn.text = tr("CHARSEL_TUTORIAL_START")
 	tutorial_btn.add_theme_font_size_override("font_size", int(28 * ui_scale))
 	tutorial_btn.custom_minimum_size = Vector2(280 * ui_scale, 80 * ui_scale)
 	tutorial_btn.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -646,7 +639,7 @@ func _show_first_play_guide() -> void:
 	btn_container.add_child(tutorial_btn)
 
 	var skip_btn := Button.new()
-	skip_btn.text = "건너뛰기"
+	skip_btn.text = tr("CHARSEL_SKIP")
 	skip_btn.add_theme_font_size_override("font_size", int(24 * ui_scale))
 	skip_btn.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	skip_btn.custom_minimum_size = Vector2(200 * ui_scale, 70 * ui_scale)

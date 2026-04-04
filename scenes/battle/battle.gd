@@ -348,7 +348,7 @@ func _show_sijo_alert() -> void:
 
 	if not _sijo_alert_label:
 		_sijo_alert_label = Label.new()
-		_sijo_alert_label.text = "♪ 시조 완성 가능! ♪"
+		_sijo_alert_label.text = tr("SIJO_ALERT")
 		_sijo_alert_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_sijo_alert_label.add_theme_font_size_override("font_size", 22)
 		_sijo_alert_label.add_theme_color_override("font_color", Color(0.3, 1.0, 0.5))
@@ -971,7 +971,7 @@ func _init_active_skill_button() -> void:
 func _on_active_skill_pressed() -> void:
 	if battle_manager.use_active_skill():
 		_active_skill_button.disabled = true
-		_active_skill_button.text = "%s (사용됨)" % battle_manager.get_active_skill_name()
+		_active_skill_button.text = tr("SKILL_USED_FMT") % battle_manager.get_active_skill_name()
 
 
 func _on_passive_triggered(skill_name: String, description: String) -> void:
@@ -986,7 +986,7 @@ func _on_passive_triggered(skill_name: String, description: String) -> void:
 	add_child(banner)
 
 	var popup := Label.new()
-	popup.text = "[패시브] %s: %s" % [skill_name, description]
+	popup.text = tr("PASSIVE_TRIGGER_FMT") % [skill_name, description]
 	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	popup.set_anchors_preset(Control.PRESET_FULL_RECT)

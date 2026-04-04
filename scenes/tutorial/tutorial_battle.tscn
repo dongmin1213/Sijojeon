@@ -76,12 +76,12 @@ text = "氣: 3/3"
 
 [node name="BlockLabel" type="Label" parent="BattleHUD/PlayerInfo"]
 layout_mode = 2
-text = "방어: 0"
+text = ""
 visible = false
 
 [node name="TurnLabel" type="Label" parent="BattleHUD"]
 layout_mode = 2
-text = "1턴"
+text = ""
 horizontal_alignment = 1
 
 [node name="DeckInfo" type="HBoxContainer" parent="BattleHUD"]
@@ -91,15 +91,15 @@ theme_override_constants/separation = 40
 
 [node name="DrawPileLabel" type="Label" parent="BattleHUD/DeckInfo"]
 layout_mode = 2
-text = "드로우: 0"
+text = ""
 
 [node name="DiscardPileLabel" type="Label" parent="BattleHUD/DeckInfo"]
 layout_mode = 2
-text = "버림: 0"
+text = ""
 
 [node name="EndTurnButton" type="Button" parent="BattleHUD"]
 layout_mode = 2
-text = "턴 종료"
+text = "BATTLE_END_TURN"
 
 [node name="HandArea" type="PanelContainer" parent="."]
 layout_mode = 1

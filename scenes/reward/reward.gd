@@ -139,7 +139,7 @@ func _apply_gold() -> void:
 		GameManager.run_data.gold += reward_gold
 		if reward_gold > 0:
 			AudioManager.play_sfx_by_key("coin")
-	gold_label.text = "💰 금화 +%d   (보유: %d)" % [reward_gold, GameManager.run_data.gold if GameManager.run_data else 0]
+	gold_label.text = tr("REWARD_GOLD_DISPLAY_FMT") % [reward_gold, GameManager.run_data.gold if GameManager.run_data else 0]
 
 
 func _generate_card_offers() -> void:
@@ -235,37 +235,37 @@ func _format_card_text(card: CardData) -> String:
 	lines.append("[%s · %s]" % [rarity_str, type_str])
 
 	# 기본 수치
-	lines.append("비용: %d기 · 음보: [%d]" % [card.cost, card.beat])
+	lines.append(tr("REWARD_CARD_STAT_FMT") % [card.cost, card.beat])
 
 	if card.damage > 0:
-		var dmg_text := "⚔ 피해 %d" % card.damage
+		var dmg_text := tr("REWARD_CARD_DMG_FMT") % card.damage
 		if card.is_aoe:
-			dmg_text += " (전체)"
+			dmg_text += tr("REWARD_CARD_DMG_AOE")
 		lines.append(dmg_text)
 	if card.block_value > 0:
-		lines.append("🛡 방어 %d" % card.block_value)
+		lines.append(tr("REWARD_CARD_BLOCK_FMT") % card.block_value)
 	if card.draw_count > 0:
-		lines.append("드로우 +%d" % card.draw_count)
+		lines.append(tr("REWARD_CARD_DRAW_FMT") % card.draw_count)
 	if card.qi_gain > 0:
-		lines.append("기 +%d" % card.qi_gain)
+		lines.append(tr("REWARD_CARD_QI_FMT") % card.qi_gain)
 	if card.tokens > 0:
-		lines.append("토큰 +%d" % card.tokens)
+		lines.append(tr("REWARD_CARD_TOKEN_FMT") % card.tokens)
 
 	# 상태이상 부여
 	if card.burn_stacks > 0:
-		lines.append("화상 %d" % card.burn_stacks)
+		lines.append(tr("REWARD_CARD_BURN_FMT") % card.burn_stacks)
 	if card.poison_stacks > 0:
-		lines.append("독 %d" % card.poison_stacks)
+		lines.append(tr("REWARD_CARD_POISON_FMT") % card.poison_stacks)
 	if card.weaken_stacks > 0:
-		lines.append("약화 %d" % card.weaken_stacks)
+		lines.append(tr("REWARD_CARD_WEAKEN_FMT") % card.weaken_stacks)
 	if card.vulnerable_stacks > 0:
-		lines.append("취약 %d" % card.vulnerable_stacks)
+		lines.append(tr("REWARD_CARD_VULNERABLE_FMT") % card.vulnerable_stacks)
 
 	# 자원 소비/획득
 	if card.stamina_cost > 0:
-		lines.append("자원 소비: %d" % card.stamina_cost)
+		lines.append(tr("REWARD_CARD_RESOURCE_COST_FMT") % card.stamina_cost)
 	if card.stamina_gain > 0:
-		lines.append("자원 획득: +%d" % card.stamina_gain)
+		lines.append(tr("REWARD_CARD_RESOURCE_GAIN_FMT") % card.stamina_gain)
 
 	# 효과 텍스트
 	var eff := card.get_current_effect()
@@ -360,7 +360,7 @@ func _check_rank_up_reward() -> void:
 	rank_section.name = "RankUpSection"
 
 	var rank_label := Label.new()
-	rank_label.text = "🎉 %s 승급!" % rank_name
+	rank_label.text = tr("REWARD_RANK_UP_FMT") % rank_name
 	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	rank_label.add_theme_font_size_override("font_size", 30)
 	rank_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
@@ -406,7 +406,7 @@ func _build_rank_card_select(parent: VBoxContainer) -> void:
 			continue
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(200, 120)
-		btn.text = "%s\n비용: %d기" % [card.get_display_name(), card.cost]
+		btn.text = "%s\n%s" % [card.get_display_name(), tr("REWARD_CARD_COST_FMT") % card.cost]
 		btn.add_theme_font_size_override("font_size", 18)
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.pressed.connect(_on_rank_card_chosen.bind(card_id, container))
@@ -441,7 +441,7 @@ func _build_rank_card_remove(parent: VBoxContainer) -> void:
 			continue
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(180, 100)
-		btn.text = "제거: %s" % card.get_display_name()
+		btn.text = tr("REWARD_REMOVE_FMT") % card.get_display_name()
 		btn.add_theme_font_size_override("font_size", 16)
 		btn.pressed.connect(_on_rank_card_removed.bind(card_id, container))
 		container.add_child(btn)
@@ -501,7 +501,7 @@ func _build_rank_card_upgrade(parent: VBoxContainer) -> void:
 			continue
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(180, 100)
-		btn.text = "강화: %s" % card.get_display_name()
+		btn.text = tr("REWARD_UPGRADE_FMT") % card.get_display_name()
 		btn.add_theme_font_size_override("font_size", 16)
 		btn.pressed.connect(_on_rank_card_upgraded.bind(card_id, container))
 		container.add_child(btn)

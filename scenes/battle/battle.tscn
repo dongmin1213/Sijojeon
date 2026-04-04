@@ -96,18 +96,18 @@ theme_override_font_sizes/font_size = 28
 
 [node name="QiLabel" type="Label" parent="BattleHUD/PlayerInfo"]
 layout_mode = 2
-text = "기(氣): 3/3"
+text = ""
 theme_override_font_sizes/font_size = 28
 
 [node name="BlockLabel" type="Label" parent="BattleHUD/PlayerInfo"]
 layout_mode = 2
-text = "방어: 0"
+text = ""
 theme_override_font_sizes/font_size = 28
 visible = false
 
 [node name="TurnLabel" type="Label" parent="BattleHUD"]
 layout_mode = 2
-text = "1턴"
+text = ""
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 24
 
@@ -118,12 +118,12 @@ theme_override_constants/separation = 40
 
 [node name="DrawPileLabel" type="Label" parent="BattleHUD/DeckInfo"]
 layout_mode = 2
-text = "드로우: 0"
+text = ""
 theme_override_font_sizes/font_size = 22
 
 [node name="DiscardPileLabel" type="Label" parent="BattleHUD/DeckInfo"]
 layout_mode = 2
-text = "버림: 0"
+text = ""
 theme_override_font_sizes/font_size = 22
 
 [node name="EndTurnButton" type="Button" parent="BattleHUD"]

@@ -25,14 +25,14 @@ func _ready() -> void:
 	if GameManager.run_data == null:
 		push_warning("Event: run_data가 null — 맵으로 복귀")
 		continue_button.visible = true
-		continue_button.text = "돌아가기"
+		continue_button.text = tr("EVENT_BACK")
 		return
 
 	_load_random_event()
 	if _event_data.is_empty():
 		push_warning("Event: 이벤트 데이터 로드 실패 — 맵으로 복귀")
 		continue_button.visible = true
-		continue_button.text = "돌아가기"
+		continue_button.text = tr("EVENT_BACK")
 		return
 	_build_ui()
 	_update_status_bar()
@@ -198,7 +198,7 @@ func _get_description() -> String:
 
 
 func _build_ui() -> void:
-	title_label.text = _get_text(_event_data.get("title", "사건"))
+	title_label.text = _get_text(_event_data.get("title", tr("EVENT_DEFAULT_TITLE")))
 	description_label.text = _get_description()
 
 	# 분위기 텍스트
@@ -214,17 +214,17 @@ func _build_ui() -> void:
 	var choices: Array = _event_data.get("choices", [])
 	if choices.is_empty():
 		var btn := Button.new()
-		btn.text = "돌아가기"
+		btn.text = tr("EVENT_BACK")
 		btn.pressed.connect(_return_to_map)
 		choice_container.add_child(btn)
 	else:
 		for choice in choices:
 			var btn := Button.new()
-			btn.text = _get_text(choice.get("text", "선택"))
+			btn.text = _get_text(choice.get("text", tr("EVENT_CHOICE_DEFAULT")))
 			# 골드 부족 시 비활성화 (gold_loss 효과)
 			if _is_gold_insufficient(choice):
 				btn.disabled = true
-				btn.tooltip_text = "엽전이 부족합니다"
+				btn.tooltip_text = tr("TOOLTIP_GOLD_INSUFFICIENT")
 			# 조건부 선택지 비활성화
 			var cond: String = choice.get("trigger_condition", "")
 			if cond != "" and not _check_trigger_condition(cond):
@@ -283,7 +283,7 @@ func _on_choice_selected(choice: Dictionary) -> void:
 	if minshim < 30 and randf() < 0.2:
 		var penalty_hp: int = randi_range(3, 8)
 		GameManager.run_data.current_hp = maxi(GameManager.run_data.current_hp - penalty_hp, 1)
-		result_text += "\n\n[민심 불안] 불만을 품은 백성이 돌을 던졌다! HP -%d" % penalty_hp
+		result_text += "\n\n" + tr("MINSHIM_UNREST_FMT") % penalty_hp
 
 	# 보너스 효과 적용
 	var bonus_type: String = str(choice.get("effect_type_bonus", ""))
@@ -331,7 +331,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			rd.current_hp = maxi(rd.current_hp - value, 0)
 			var text: String = str(choice.get("result_text", "HP %d 손실." % value))
 			if rd.current_hp <= 0:
-				text += "\n...의식이 아득해진다."
+				text += tr("EVENT_CONSCIOUSNESS")
 			return text
 
 		"hp_full_heal":
@@ -341,20 +341,20 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 		"max_hp_gain":
 			rd.max_hp += value
 			rd.current_hp += value
-			return str(choice.get("result_text", "최대 HP +%d." % value))
+			return str(choice.get("result_text", tr("EVENT_RESULT_HP_UP") % value))
 
 		"max_hp_loss":
 			rd.max_hp = maxi(rd.max_hp - value, 1)
 			rd.current_hp = mini(rd.current_hp, rd.max_hp)
-			return str(choice.get("result_text", "최대 HP -%d." % value))
+			return str(choice.get("result_text", tr("EVENT_RESULT_HP_DOWN") % value))
 
 		"gold_gain":
 			rd.gold += value
-			return str(choice.get("result_text", "엽전 %d 획득." % value))
+			return str(choice.get("result_text", tr("EVENT_RESULT_GOLD_GAIN") % value))
 
 		"gold_loss":
 			rd.gold = maxi(rd.gold - value, 0)
-			return str(choice.get("result_text", "엽전 %d 소비." % value))
+			return str(choice.get("result_text", tr("EVENT_RESULT_GOLD_LOSS") % value))
 
 		"gold_random":
 			return _apply_gold_random(choice)
@@ -365,10 +365,10 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				var relic_id := RelicManager.roll_relic_reward("event")
 				if relic_id != "":
 					RelicManager.acquire_relic(relic_id)
-			return str(choice.get("result_text", "유물 획득!"))
+			return str(choice.get("result_text", tr("EVENT_RESULT_RELIC")))
 
 		"card_gain":
-			return str(choice.get("result_text", "카드 획득."))
+			return str(choice.get("result_text", tr("EVENT_RESULT_CARD")))
 
 		"debuff":
 			var debuff_type: String = str(choice.get("debuff_type", "약화"))
@@ -377,7 +377,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			var debuffs: Array = rd.get_meta("next_combat_debuffs")
 			debuffs.append({"type": debuff_type, "stacks": value})
 			rd.set_meta("next_combat_debuffs", debuffs)
-			return str(choice.get("result_text", "다음 전투 시작 시 %s %d 적용." % [debuff_type, value]))
+			return str(choice.get("result_text", tr("EVENT_RESULT_DEBUFF") % [debuff_type, value]))
 
 		"buff_next_combat":
 			var bonus_val = choice.get("effect_value_bonus", {})
@@ -514,7 +514,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			if relic_id != "" and not rd.relics.has(relic_id):
 				rd.relics.append(relic_id)
 				RelicManager.acquire_relic(relic_id)
-			return str(choice.get("result_text", "유물 획득!"))
+			return str(choice.get("result_text", tr("EVENT_RESULT_RELIC")))
 
 		"minshim_change":
 			var delta: int = int(choice.get("effect_value", 0))
@@ -569,7 +569,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				"type": "next_battle_block",
 				"block": value
 			})
-			return str(choice.get("result_text", "다음 전투 시작 시 방어도 +%d." % value))
+			return str(choice.get("result_text", tr("EVENT_RESULT_BLOCK") % value))
 
 		"reveal_map":
 			# 맵 공개 — 다음 2층의 노드 공개
@@ -629,11 +629,11 @@ func _apply_gold_random(choice: Dictionary) -> String:
 	if randf() < win_chance:
 		var win_value: int = int(choice.get("effect_value_win", 0))
 		rd.gold += win_value
-		return str(choice.get("result_text_win", "엽전 %d 획득!" % win_value))
+		return str(choice.get("result_text_win", tr("EVENT_RESULT_GAMBLE_WIN") % win_value))
 	else:
 		var lose_value: int = abs(int(choice.get("effect_value_lose", 0)))
 		rd.gold = maxi(rd.gold - lose_value, 0)
-		return str(choice.get("result_text_lose", "엽전 %d 소실." % lose_value))
+		return str(choice.get("result_text_lose", tr("EVENT_RESULT_GAMBLE_LOSE") % lose_value))
 
 
 ## 가중치 기반 랜덤 결과를 적용한다.
@@ -773,10 +773,10 @@ func _show_result(text: String) -> void:
 func _update_status_bar() -> void:
 	if GameManager.run_data:
 		hp_label.text = "HP: %d/%d" % [GameManager.run_data.current_hp, GameManager.run_data.max_hp]
-		gold_label.text = "엽전: %d" % GameManager.run_data.gold
+		gold_label.text = tr("EVENT_GOLD_FMT") % GameManager.run_data.gold
 	else:
 		hp_label.text = "HP: --/--"
-		gold_label.text = "엽전: --"
+		gold_label.text = tr("EVENT_GOLD_FMT").replace("%d", "--")
 
 
 ## 카드 획득 이벤트: 3장 중 1장 선택 UI를 표시한다.
@@ -785,7 +785,7 @@ func _show_card_gain_selection(choice: Dictionary) -> void:
 		child.queue_free()
 
 	var header := Label.new()
-	header.text = "카드를 선택하세요 (1장)"
+	header.text = tr("EVENT_CARD_SELECT_HEADER")
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	header.add_theme_font_size_override("font_size", 22)
 	header.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
@@ -835,11 +835,11 @@ func _generate_card_offers(count: int) -> Array[String]:
 func _format_card_choice_text(card: CardData) -> String:
 	var lines: Array[String] = []
 	lines.append(card.get_display_name())
-	lines.append("비용: %d 기  음보: %d" % [card.cost, card.beat])
+	lines.append(tr("EVENT_CARD_STAT_FMT") % [card.cost, card.beat])
 	if card.damage > 0:
-		lines.append("피해: %d%s" % [card.damage, " (전체)" if card.is_aoe else ""])
+		lines.append(tr("EVENT_CARD_DAMAGE_FMT") % [card.damage, " " + tr("SHOP_CARD_DAMAGE_AOE") if card.is_aoe else ""])
 	if card.block_value > 0:
-		lines.append("방어: %d" % card.block_value)
+		lines.append(tr("EVENT_CARD_BLOCK_FMT") % card.block_value)
 	var eff := card.get_current_effect()
 	if eff != "":
 		lines.append(eff)

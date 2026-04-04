@@ -81,7 +81,7 @@ func _show_relic_info(relic_name: String, relic_desc: String, _relic_id: String)
 	var dialog := AcceptDialog.new()
 	dialog.title = relic_name
 	dialog.dialog_text = relic_desc
-	dialog.ok_button_text = "닫기"
+	dialog.ok_button_text = tr("UI_CLOSE_DIALOG")
 	add_child(dialog)
 	dialog.popup_centered()
 

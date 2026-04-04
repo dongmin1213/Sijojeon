@@ -187,20 +187,20 @@ func _update_display() -> void:
 	card_art.texture = TextureManager.get_card_texture(card_data.id, card_data.type)
 
 	# 비트 + 코스트 + 기력
-	var cost_text := "[%d] %d기(氣)" % [card_data.beat, card_data.cost]
+	var cost_text := tr("CARD_BEAT_COST_FMT") % [card_data.beat, card_data.cost]
 	if card_data.stamina_cost > 0:
-		cost_text += " %d력(力)" % card_data.stamina_cost
+		cost_text += tr("CARD_STAMINA_COST_FMT") % card_data.stamina_cost
 	elif card_data.stamina_gain > 0:
-		cost_text += " +%d력(力)" % card_data.stamina_gain
+		cost_text += tr("CARD_STAMINA_GAIN_FMT") % card_data.stamina_gain
 	beat_cost_label.text = cost_text
 
 	# 타입 표시
 	var type_names := {
-		"attack": "공격",
-		"defense": "방어",
-		"spell": "주술",
-		"movement": "이동",
-		"formation": "진형",
+		"attack": tr("CARD_TYPE_ATTACK"),
+		"defense": tr("CARD_TYPE_DEFENSE"),
+		"spell": tr("CARD_TYPE_SPELL_ALT"),
+		"movement": tr("CARD_TYPE_MOVEMENT"),
+		"formation": tr("CARD_TYPE_FORMATION"),
 	}
 	type_label.text = type_names.get(card_data.type, card_data.type)
 	var type_color: Color = AccessibilityManager.get_type_color(card_data.type)

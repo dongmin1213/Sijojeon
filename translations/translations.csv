@@ -385,3 +385,23 @@ NODE_SHOP,상점,Shop
 NODE_REST,휴식,Rest
 NODE_BOSS,보스,Boss
 NODE_GWAGEO,과거,Gwageo
+SIJO_ALERT,♪ 시조 완성 가능! ♪,♪ Sijo Completable! ♪
+SKILL_USED_FMT,%s (사용됨),%s (Used)
+PASSIVE_TRIGGER_FMT,[패시브] %s: %s,[Passive] %s: %s
+CHARSEL_STAT_FMT,HP: %d | 기: %d,HP: %d | Qi: %d
+CHARSEL_STAT_UNKNOWN,HP: ?? | 기: ??,HP: ?? | Qi: ??
+TOOLTIP_GOLD_INSUFFICIENT,엽전이 부족합니다,Not enough gold
+MINSHIM_UNREST_FMT,[민심 불안] 불만을 품은 백성이 돌을 던졌다! HP -%d,"[Unrest] Disgruntled people threw stones! HP -%d"
+EVENT_CONSCIOUSNESS,\n...의식이 아득해진다.,\n...Consciousness fades.
+EVENT_DEFAULT_TITLE,사건,Event
+CARD_BEAT_COST_FMT,[%d] %d기(氣),[%d] %d Qi
+CARD_STAMINA_COST_FMT, %d력(力), %d Stamina
+CARD_STAMINA_GAIN_FMT, +%d력(力), +%d Stamina
+CARD_TYPE_SPELL_ALT,주술,Sorcery
+CARD_TYPE_MOVEMENT,이동,Movement
+CARD_TYPE_FORMATION,진형,Formation
+REWARD_CARD_DMG_FMT,⚔ 피해 %d,⚔ Damage %d
+REWARD_CARD_DMG_AOE, (전체), (All)
+REWARD_CARD_BLOCK_FMT,🛡 방어 %d,🛡 Block %d
+GWAGEO_EXAMINER_DEFAULT,학자,Scholar
+UI_CLOSE_DIALOG,닫기,Close

@@ -18,7 +18,7 @@ theme_override_constants/separation = 4
 
 [node name="CardNameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "카드명"
+text = ""
 horizontal_alignment = 1
 autowrap_mode = 2
 custom_minimum_size = Vector2(0, 40)
@@ -51,12 +51,12 @@ visible = false
 
 [node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "공격"
+text = ""
 horizontal_alignment = 1
 
 [node name="EffectLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "효과 설명"
+text = ""
 horizontal_alignment = 1
 autowrap_mode = 2
 custom_minimum_size = Vector2(0, 70)
