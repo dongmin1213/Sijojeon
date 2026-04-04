@@ -10,38 +10,33 @@ const MAX_NODES_PER_ROW := 4
 
 ## 막별 설정: 행 수, 목표 노드 수, 막 이름
 const ACT_CONFIG := {
-	1: { "total_rows": 7, "min_nodes": 15, "max_nodes": 17, "name": "한양" },
-	2: { "total_rows": 8, "min_nodes": 17, "max_nodes": 20, "name": "지리산" },
-	3: { "total_rows": 8, "min_nodes": 17, "max_nodes": 20, "name": "경복궁" },
+	1: { "total_rows": 12, "min_nodes": 25, "max_nodes": 28, "name": "한양" },
+	2: { "total_rows": 15, "min_nodes": 32, "max_nodes": 36, "name": "지리산" },
+	3: { "total_rows": 15, "min_nodes": 32, "max_nodes": 36, "name": "경복궁" },
 }
 
-## 막별 행 노드 타입 분포 가중치.
+## 막별 노드 타입 분포 가중치 (진행도 구간별).
+## 구간: early(~25%), mid(~60%), late(~85%), pre_boss(나머지).
 ## row 0: 전투 전용, 마지막 행: 보스 전용.
-## 2막: 엘리트 비중 증가, 휴식 감소.
-## 3막: 전투+엘리트 대폭 증가, 상점/이벤트 감소.
-const ACT_ROW_WEIGHTS := {
+## 목표 분포: 전투40% 이벤트25% 휴식15% 상점10% 엘리트8% 기타2%.
+const ACT_PHASE_WEIGHTS := {
 	1: {
-		1: { "BATTLE": 50, "EVENT": 30, "SHOP": 10, "REST": 10 },
-		2: { "BATTLE": 40, "EVENT": 25, "ELITE": 15, "SHOP": 10, "REST": 10 },
-		3: { "BATTLE": 30, "EVENT": 20, "ELITE": 25, "SHOP": 15, "REST": 10 },
-		4: { "BATTLE": 35, "EVENT": 25, "ELITE": 20, "SHOP": 10, "REST": 10 },
-		5: { "BATTLE": 15, "EVENT": 15, "ELITE": 10, "SHOP": 20, "REST": 40 },
+		"early":    { "BATTLE": 50, "EVENT": 25, "SHOP": 5, "REST": 10, "ELITE": 10 },
+		"mid":      { "BATTLE": 40, "EVENT": 28, "ELITE": 8, "SHOP": 10, "REST": 14 },
+		"late":     { "BATTLE": 35, "EVENT": 25, "ELITE": 12, "SHOP": 10, "REST": 18 },
+		"pre_boss": { "BATTLE": 15, "EVENT": 15, "ELITE": 5, "SHOP": 25, "REST": 40 },
 	},
 	2: {
-		1: { "BATTLE": 45, "EVENT": 25, "ELITE": 10, "SHOP": 10, "REST": 10 },
-		2: { "BATTLE": 35, "EVENT": 20, "ELITE": 20, "SHOP": 10, "REST": 15 },
-		3: { "BATTLE": 30, "EVENT": 15, "ELITE": 30, "SHOP": 10, "REST": 15 },
-		4: { "BATTLE": 30, "EVENT": 15, "ELITE": 25, "SHOP": 15, "REST": 15 },
-		5: { "BATTLE": 25, "EVENT": 15, "ELITE": 15, "SHOP": 15, "REST": 30 },
-		6: { "BATTLE": 15, "EVENT": 10, "ELITE": 10, "SHOP": 25, "REST": 40 },
+		"early":    { "BATTLE": 45, "EVENT": 25, "ELITE": 10, "SHOP": 5, "REST": 15 },
+		"mid":      { "BATTLE": 40, "EVENT": 25, "ELITE": 12, "SHOP": 10, "REST": 13 },
+		"late":     { "BATTLE": 35, "EVENT": 22, "ELITE": 15, "SHOP": 12, "REST": 16 },
+		"pre_boss": { "BATTLE": 15, "EVENT": 10, "ELITE": 5, "SHOP": 25, "REST": 45 },
 	},
 	3: {
-		1: { "BATTLE": 40, "EVENT": 20, "ELITE": 15, "SHOP": 10, "REST": 15 },
-		2: { "BATTLE": 35, "EVENT": 15, "ELITE": 25, "SHOP": 10, "REST": 15 },
-		3: { "BATTLE": 30, "EVENT": 10, "ELITE": 35, "SHOP": 10, "REST": 15 },
-		4: { "BATTLE": 30, "EVENT": 15, "ELITE": 30, "SHOP": 10, "REST": 15 },
-		5: { "BATTLE": 25, "EVENT": 10, "ELITE": 20, "SHOP": 15, "REST": 30 },
-		6: { "BATTLE": 15, "EVENT": 10, "ELITE": 10, "SHOP": 25, "REST": 40 },
+		"early":    { "BATTLE": 45, "EVENT": 20, "ELITE": 15, "SHOP": 5, "REST": 15 },
+		"mid":      { "BATTLE": 40, "EVENT": 22, "ELITE": 18, "SHOP": 8, "REST": 12 },
+		"late":     { "BATTLE": 35, "EVENT": 18, "ELITE": 22, "SHOP": 10, "REST": 15 },
+		"pre_boss": { "BATTLE": 15, "EVENT": 10, "ELITE": 10, "SHOP": 25, "REST": 40 },
 	},
 }
 
@@ -114,9 +109,10 @@ func generate(seed_value: int, act: int = 1) -> MapData.RunMap:
 	# 3. 연결 생성 (모든 노드 도달 가능 보장)
 	_generate_connections(run_map)
 
-	# 4. 엘리트 최소 보장 (2막 이후 최소 2개)
-	var min_elites := 2 if act >= 2 else 1
-	_ensure_elite(run_map, min_elites)
+	# 4. 노드 타입 최소 보장
+	_ensure_node_type(run_map, MapData.NodeType.ELITE, 3)
+	_ensure_node_type(run_map, MapData.NodeType.REST, 2)
+	_ensure_node_type(run_map, MapData.NodeType.EVENT, 4)
 
 	# 5. 과거시험 노드 1개 배치 (향교/성균관)
 	_ensure_gwageo(run_map)
@@ -130,8 +126,9 @@ func _pick_node_type(row: int, boss_row: int, act: int) -> MapData.NodeType:
 	if row == boss_row:
 		return MapData.NodeType.BOSS
 
-	var act_weights: Dictionary = ACT_ROW_WEIGHTS.get(act, ACT_ROW_WEIGHTS[1])
-	var weights: Dictionary = act_weights.get(row, act_weights.get(1, {})).duplicate()
+	var phase := _get_row_phase(row, boss_row)
+	var act_weights: Dictionary = ACT_PHASE_WEIGHTS.get(act, ACT_PHASE_WEIGHTS[1])
+	var weights: Dictionary = act_weights.get(phase, act_weights["mid"]).duplicate()
 
 	# 신분 등급 2+(중인): 엘리트 등장률 +5%p
 	if GameManager.run_data and weights.has("ELITE"):
@@ -205,27 +202,38 @@ func _generate_connections(run_map: MapData.RunMap) -> void:
 					parent.connections.append(child_id)
 
 
-func _ensure_elite(run_map: MapData.RunMap, min_count: int = 1) -> void:
-	var elite_count := 0
+func _get_row_phase(row: int, boss_row: int) -> String:
+	## 행 번호를 진행도 구간으로 변환한다.
+	var progress := float(row) / float(boss_row)
+	if progress <= 0.25:
+		return "early"
+	elif progress <= 0.60:
+		return "mid"
+	elif progress <= 0.85:
+		return "late"
+	else:
+		return "pre_boss"
+
+
+func _ensure_node_type(run_map: MapData.RunMap, target_type: MapData.NodeType, min_count: int) -> void:
+	## 특정 노드 타입의 최소 개수를 보장한다. 부족 시 전투 노드를 변환.
+	var count := 0
 	for nid in run_map.nodes:
-		if run_map.nodes[nid].type == MapData.NodeType.ELITE:
-			elite_count += 1
+		if run_map.nodes[nid].type == target_type:
+			count += 1
 
 	var boss_row: int = run_map.total_rows - 1
-	while elite_count < min_count:
-		# 행 2~(보스-2) 에서 전투 노드를 엘리트로 변경
+	while count < min_count:
 		var candidates: Array[int] = []
-		var elite_start := 2
-		var elite_end := mini(boss_row - 1, boss_row)
-		for r in range(elite_start, elite_end):
+		for r in range(2, boss_row):
 			for nid in run_map.rows[r]:
 				if run_map.nodes[nid].type == MapData.NodeType.BATTLE:
 					candidates.append(nid)
 		if candidates.is_empty():
 			break
 		var pick: int = candidates[_rng.randi_range(0, candidates.size() - 1)]
-		run_map.nodes[pick].type = MapData.NodeType.ELITE
-		elite_count += 1
+		run_map.nodes[pick].type = target_type
+		count += 1
 
 
 func _ensure_gwageo(run_map: MapData.RunMap) -> void:
