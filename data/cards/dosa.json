@@ -1058,6 +1058,92 @@
         "is_aoe": true,
         "bonus_with_summon": 5
       }
+    },
+    {
+      "id": "D026",
+      "name": {
+        "ko": "만법귀종",
+        "hanja": "萬法歸宗",
+        "romanized": "Manbeop Gwijong",
+        "en": "All Paths Return to the Source"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "qi_burst"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "이번 턴 획득한 기(氣)당 8 피해를 입힌다. (최소 16) 예: 기 5 획득 시 40 피해!",
+        "en": "Deal 8 damage per Qi gained this turn. (Minimum 16) Example: 5 Qi gained = 40 damage!"
+      },
+      "effect_upgraded": {
+        "ko": "이번 턴 획득한 기(氣)당 10 피해. (최소 20)",
+        "en": "Deal 10 damage per Qi gained this turn. (Minimum 20)"
+      },
+      "flavor_text": {
+        "ko": "기를 모으는 것 자체가 공격이다 — 쌓인 기가 한 점으로 수렴하여 폭발한다.",
+        "en": "The act of gathering Qi is itself the attack — accumulated energy converges to a single point and explodes."
+      },
+      "balance_rationale": "기폭(D009, 기×4)의 전설급 업그레이드. 기 5 획득 시 40 피해 = 3코스트 기준 STS 최고 딜 수준. 기 획득 카드(D001·D008·D010·D012·D013)와 반드시 사용해야 하므로 빌드 강제력 높음. D001(0코+기1+드1) × 5사용이면 기5=40딜.",
+      "sijo_position": "종장 둘째 슬롯 [5] — 기 수렴 피날레",
+      "class_synergy": [
+        "D001",
+        "D008",
+        "D010",
+        "D012",
+        "D013"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage_per_qi_gained_this_turn": 8,
+        "min_damage": 16
+      }
+    },
+    {
+      "id": "D027",
+      "name": {
+        "ko": "귀문도해",
+        "hanja": "鬼門圖解",
+        "romanized": "Gwimun Dohae",
+        "en": "Gates of the Spirit Realm"
+      },
+      "beat": 5,
+      "cost": 0,
+      "type": "energy",
+      "subtypes": [
+        "qi_burst",
+        "draw"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "기(氣) 3을 획득한다. 카드 2장을 드로우한다. (0코스트!)",
+        "en": "Gain 3 Qi. Draw 2 cards. (Zero cost!)"
+      },
+      "effect_upgraded": {
+        "ko": "기(氣) 4를 획득한다. 카드 3장을 드로우한다.",
+        "en": "Gain 4 Qi. Draw 3 cards."
+      },
+      "flavor_text": {
+        "ko": "귀문은 항상 열려있다 — 기를 끌어당기는 데 힘이 필요하지 않다.",
+        "en": "The spirit gate is always open — drawing Qi requires no effort."
+      },
+      "balance_rationale": "0코스트로 기 3+드로우 2. D001(0코+기1+드1)의 3배 효율. 전설 등급. D026(기×8딜)과 콤보 시: 귀문도해 0코+기3+드2 → D026으로 24+ 피해. STS의 0코 패시브 엔진(Shiv 등)과 유사한 역할.",
+      "sijo_position": "종장 첫 슬롯 [3] — 0코스트 기 가속기",
+      "class_synergy": [
+        "D026",
+        "D001",
+        "D009",
+        "D010"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "qi_gain": 3,
+        "draw": 2
+      }
     }
   ],
   "status_conditions_defined": [

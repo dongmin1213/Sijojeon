@@ -5,7 +5,7 @@
   "class_ko": "무관",
   "class_hanja": "武官",
   "category": "formation",
-  "description": "무관(武官) 전용 카드 풀. 진형(陣形) 조작과 병사 토큰을 활용하는 군사형 직업. 총 25장 — 진형·토큰 아키타입, 기력 폭딜 아키타입, 방패·연타 아키타입.",
+  "description": "무관(武官) 전용 카드 풀. 진형(陣形) 조작과 병사 토큰을 활용하는 군사형 직업. 총 25장 — 진형·토큰 아키타입, 기력 폭딜 아키타입, 방패·연타 아키타입. G026·G027 전설 카드 2종 추가 (ZER-214 재미 개선).",
   "class_mechanic": "병사 토큰(兵士 Token): 피해를 1회 대신 받고 소멸. 소멸 시 기(氣) 1 회복. 진형 전환으로 생성. 기력(氣力): 무관 전용 보조 자원, 최대 10, 턴 간 유지. 기력 소비 시 공격 강화.",
   "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
   "archetypes": [
@@ -1037,6 +1037,93 @@
       "values": {
         "stamina_max_increase": 3,
         "draw_on_token_death": 1
+      }
+    },
+    {
+      "id": "G026",
+      "name": {
+        "ko": "천마무쌍",
+        "hanja": "天馬無雙",
+        "romanized": "Cheonma Musang",
+        "en": "Peerless Warhorse Strike"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "stamina_burst"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "기력을 전부 소비한다. 소비한 기력당 8 피해를 입힌다. (최소 16, 기력 10이면 80 피해!)",
+        "en": "Consume ALL Stamina. Deal 8 damage per Stamina consumed. (Minimum 16; with 10 Stamina: 80 damage!)"
+      },
+      "effect_upgraded": {
+        "ko": "기력을 전부 소비한다. 소비한 기력당 10 피해를 입힌다. (최소 20)",
+        "en": "Consume ALL Stamina. Deal 10 damage per Stamina consumed. (Minimum 20)"
+      },
+      "flavor_text": {
+        "ko": "기력이 극에 달하면 — 천하를 가르는 한 방이 나온다.",
+        "en": "When stamina reaches its peak — a single blow cleaves the heavens."
+      },
+      "balance_rationale": "기력 폭딜 빌드의 최종 카드. 기력 10 보유 시 80 피해로 STS Bludgeon(32)·Whirlwind급. 기력 소비형이라 고기력 유지가 선결조건 — 빌드 강요 기능. 최소 피해 16은 3코스트 기준 적정.",
+      "sijo_position": "종장 둘째 슬롯 [5] — 기력 절정 마무리",
+      "class_synergy": [
+        "G013",
+        "G015",
+        "G016",
+        "G018"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage_per_stamina": 8,
+        "consume_all_stamina": true,
+        "min_damage": 16
+      }
+    },
+    {
+      "id": "G027",
+      "name": {
+        "ko": "철벽대진",
+        "hanja": "鐵壁大陣",
+        "romanized": "Cheolbyeok Daejin",
+        "en": "Iron Wall Grand Formation"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "formation",
+      "subtypes": [
+        "defense",
+        "token"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "병사 토큰 3개를 생성한다. 기력 3을 획득한다. 이번 턴 토큰 생성량이 2배가 된다.",
+        "en": "Create 3 Soldier Tokens. Gain 3 Stamina. Token generation is doubled this turn."
+      },
+      "effect_upgraded": {
+        "ko": "병사 토큰 4개 생성. 기력 4 획득. 이번 턴 토큰 생성량 2배.",
+        "en": "Create 4 Soldier Tokens. Gain 4 Stamina. Token generation doubled this turn."
+      },
+      "flavor_text": {
+        "ko": "진형을 완성하면 — 병사들이 쏟아져 나오고 기력이 솟구친다.",
+        "en": "When the formation is complete — soldiers pour forth and stamina surges."
+      },
+      "balance_rationale": "1코스트로 토큰 3+기력 3+토큰 2배. 기존 토큰 생성 카드(G001 토큰1, G004 AoE요구)보다 강력. 진형·기력 빌드 융합 카드. 다음 G013(기력→피해)나 G026(기력 전소)과 연계 시 폭발적.",
+      "sijo_position": "초장 첫 슬롯 [3] — 진형 빌드 오프너",
+      "class_synergy": [
+        "G013",
+        "G026",
+        "G001",
+        "G005"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "tokens": 3,
+        "stamina_gain": 3,
+        "token_double": true
       }
     }
   ],

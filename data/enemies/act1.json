@@ -134,7 +134,7 @@
             "en": "Cudgel Strike"
           },
           "intent": "attack",
-          "damage": 8,
+          "damage": 7,
           "times": 1,
           "description": {
             "ko": "묵직한 곤봉 공격.",
@@ -161,7 +161,7 @@
             "en": "Iron Mace Smash"
           },
           "intent": "attack",
-          "damage": 13,
+          "damage": 11,
           "times": 1,
           "description": {
             "ko": "강력한 일격. 패턴 중 최대 피해.",
@@ -263,7 +263,7 @@
             "en": "Chilling Touch"
           },
           "intent": "attack",
-          "damage": 6,
+          "damage": 5,
           "times": 1,
           "effects": [
             {
@@ -347,7 +347,7 @@
             "en": "Club Bash"
           },
           "intent": "attack",
-          "damage": 11,
+          "damage": 9,
           "times": 1,
           "description": {
             "ko": "단순하지만 아픈 방망이 공격.",
@@ -403,7 +403,7 @@
             "en": "Dokkaebi Headbutt"
           },
           "intent": "attack",
-          "damage": 14,
+          "damage": 12,
           "times": 1,
           "description": {
             "ko": "힘 쌓인 후 사용. 위력적인 일격.",
@@ -504,7 +504,7 @@
             "en": "Heavy Blade Strike"
           },
           "intent": "attack",
-          "damage": 16,
+          "damage": 13,
           "times": 1,
           "description": {
             "ko": "단발 강타. 힘 쌓인 후 사용.",
@@ -607,7 +607,7 @@
             "en": "Spirit Drain"
           },
           "intent": "attack",
-          "damage": 8,
+          "damage": 7,
           "times": 1,
           "effects": [
             {
@@ -743,7 +743,7 @@
             "en": "Official Seal Strike"
           },
           "intent": "attack",
-          "damage": 12,
+          "damage": 10,
           "times": 1,
           "description": {
             "ko": "힘 쌓인 후 사용. 10+힘 피해.",
@@ -812,7 +812,7 @@
             "en": "Spear Thrust"
           },
           "intent": "attack",
-          "damage": 9,
+          "damage": 8,
           "times": 1,
           "description": {
             "ko": "방패 뒤에서 빠르게 창을 찌른다.",
@@ -908,7 +908,7 @@
             "en": "Club Swing"
           },
           "intent": "attack",
-          "damage": 6,
+          "damage": 5,
           "times": 1,
           "description": {
             "ko": "묵직한 몽둥이 공격.",
@@ -1119,7 +1119,7 @@
             "en": "Talisman Throw"
           },
           "intent": "attack",
-          "damage": 8,
+          "damage": 7,
           "times": 1,
           "description": {
             "ko": "주술이 담긴 부적을 던진다.",
