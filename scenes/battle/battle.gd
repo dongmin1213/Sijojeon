@@ -774,6 +774,14 @@ func _on_battle_ended(victory: bool) -> void:
 	end_turn_button.disabled = true
 	card_hand.visible = false
 
+	# 상태 효과 아이콘 캐시 정리 (메모리 누수 방지)
+	for target in _status_icon_cache:
+		for eid in _status_icon_cache[target]:
+			var panel = _status_icon_cache[target][eid].get("panel")
+			if panel and is_instance_valid(panel):
+				panel.queue_free()
+	_status_icon_cache.clear()
+
 	# HP 동기화
 	if GameManager.run_data:
 		GameManager.run_data.current_hp = battle_manager.player_hp
