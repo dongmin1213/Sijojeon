@@ -329,6 +329,43 @@ func shake_node(node: Control, intensity: float = 4.0, duration: float = 0.3) ->
 	tween.tween_property(node, "position", original_pos, duration / steps)
 
 
+func flash_node(node: Control, color: Color = Color(1, 1, 1, 0.6), duration: float = 0.15) -> void:
+	## 노드 위에 짧은 플래시 오버레이 (피격 깜빡임)
+	if not is_instance_valid(node):
+		return
+	var flash := _acquire_color_rect()
+	flash.color = color
+	flash.size = node.size
+	flash.position = Vector2.ZERO
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	flash.z_index = 50
+	node.add_child(flash)
+
+	var tween := node.create_tween()
+	tween.tween_property(flash, "modulate:a", 0.0, duration)
+	tween.tween_callback(_release_color_rect.bind(flash))
+
+
+func shield_effect(parent: Control, target_pos: Vector2) -> void:
+	## 방어 카드 사용 시 파란색 실드 원형 이펙트
+	var shield := _acquire_color_rect()
+	shield.color = Color(0.2, 0.5, 1.0, 0.4)
+	shield.size = Vector2(80, 80)
+	shield.position = target_pos - Vector2(40, 40)
+	shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	shield.z_index = 60
+	shield.pivot_offset = Vector2(40, 40)
+	shield.scale = Vector2(0.3, 0.3)
+	parent.add_child(shield)
+
+	var tween := parent.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(shield, "scale", Vector2(1.2, 1.2), 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(shield, "modulate:a", 0.0, 0.4).set_delay(0.15)
+	tween.set_parallel(false)
+	tween.tween_callback(_release_color_rect.bind(shield))
+
+
 # --- HP 바 스무스 애니메이션 ---
 
 func animate_hp_bar(label: Label, from_hp: int, to_hp: int, max_hp: int, duration: float = 0.4) -> void:

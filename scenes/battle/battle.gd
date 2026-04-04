@@ -443,6 +443,8 @@ func _on_block_changed(new_block: int) -> void:
 		var gained := new_block - old_block
 		var pos := block_label.global_position + Vector2(block_label.size.x / 2.0, 0)
 		vfx.spawn_block_number(self, pos, gained)
+		# 실드 이펙트 (파란색 원형 오버레이)
+		vfx.shield_effect(self, block_label.global_position + block_label.size / 2.0)
 
 
 func _on_turn_started(turn: int) -> void:
@@ -455,7 +457,7 @@ func _on_turn_started(turn: int) -> void:
 
 
 func _on_enemy_hp_changed(enemy_index: int, current: int, max_val: int) -> void:
-	# 적 데미지 숫자 팝업
+	# 적 데미지 숫자 팝업 + 히트 애니메이션
 	if vfx and _enemy_ui_cache.has(enemy_index):
 		var cache: Dictionary = _enemy_ui_cache[enemy_index]
 		var prev_text: String = cache["hp_label"].text
@@ -471,6 +473,11 @@ func _on_enemy_hp_changed(enemy_index: int, current: int, max_val: int) -> void:
 			var pos: Vector2 = panel.global_position + Vector2(panel.size.x / 2.0, 30)
 			vfx.spawn_damage_number(self, pos, diff)
 			vfx.shake_node(panel)
+			# 피격 플래시 (빨간색 깜빡임)
+			vfx.flash_node(panel, Color(1.0, 0.3, 0.2, 0.5))
+			# 강공격 시 화면 쉐이크 (데미지 10 이상)
+			if diff >= 10:
+				vfx.screen_shake(clampf(diff * 0.8, 5.0, 12.0))
 	_mark_enemy_ui_dirty()
 
 
