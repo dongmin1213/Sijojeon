@@ -114,7 +114,7 @@ func spawn_damage_number(parent: Control, global_pos: Vector2, amount: int, is_h
 	else:
 		label.add_theme_color_override("font_color", Color(1.0, 0.25, 0.2))
 
-	label.position = global_pos + Vector2(randf_range(-20, 20), -10)
+	label.position = global_pos + Vector2(0, -10)
 	label.z_index = 100
 	parent.add_child(label)
 
@@ -134,7 +134,7 @@ func spawn_block_number(parent: Control, global_pos: Vector2, amount: int) -> vo
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.add_theme_font_size_override("font_size", 22)
 	label.add_theme_color_override("font_color", Color(0.3, 0.6, 1.0))
-	label.position = global_pos + Vector2(randf_range(-15, 15), -5)
+	label.position = global_pos + Vector2(0, -5)
 	label.z_index = 100
 	parent.add_child(label)
 
@@ -225,11 +225,12 @@ func _spawn_particles(parent: Control, count: int, color: Color) -> void:
 
 func turn_transition(parent: Control, text: String, color: Color = Color(1, 0.85, 0.3)) -> void:
 	## 턴 시작 시 슬라이드 인/아웃 텍스트 배너
+	var vp_size := parent.get_viewport().get_visible_rect().size
 	var banner := _acquire_color_rect()
 	banner.color = Color(0, 0, 0, 0.7)
-	banner.custom_minimum_size = Vector2(parent.size.x, 60)
-	banner.size = Vector2(parent.size.x, 60)
-	banner.position = Vector2(-parent.size.x, parent.size.y / 2.0 - 30)
+	banner.custom_minimum_size = Vector2(vp_size.x, 60)
+	banner.size = Vector2(vp_size.x, 60)
+	banner.position = Vector2(-vp_size.x, vp_size.y / 2.0 - 30)
 	banner.z_index = 70
 	banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(banner)
@@ -249,7 +250,7 @@ func turn_transition(parent: Control, text: String, color: Color = Color(1, 0.85
 	# 대기
 	tween.tween_interval(0.6)
 	# 슬라이드 아웃
-	tween.tween_property(banner, "position:x", parent.size.x, 0.3).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(banner, "position:x", vp_size.x, 0.3).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	tween.tween_callback(func():
 		_release_label(label)
 		_release_color_rect(banner)

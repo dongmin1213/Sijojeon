@@ -154,11 +154,11 @@ func _update_display() -> void:
 	card_art.texture = TextureManager.get_card_texture(card_data.id, card_data.type)
 
 	# 비트 + 코스트 + 기력
-	var cost_text := "[%d] %d氣" % [card_data.beat, card_data.cost]
+	var cost_text := "[%d] %d기(氣)" % [card_data.beat, card_data.cost]
 	if card_data.stamina_cost > 0:
-		cost_text += " %d力" % card_data.stamina_cost
+		cost_text += " %d력(力)" % card_data.stamina_cost
 	elif card_data.stamina_gain > 0:
-		cost_text += " +%d力" % card_data.stamina_gain
+		cost_text += " +%d력(力)" % card_data.stamina_gain
 	beat_cost_label.text = cost_text
 
 	# 타입 표시

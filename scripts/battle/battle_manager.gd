@@ -686,7 +686,7 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 			for i in enemies.size():
 				if enemies[i]["current_hp"] > 0:
 					status_effects.apply_effect("enemy_%d" % i, "화상", card.burn_stacks)
-		else:
+		elif enemies[target_enemy_index]["current_hp"] > 0:
 			status_effects.apply_effect("enemy_%d" % target_enemy_index, "화상", card.burn_stacks)
 
 	# 독 부여 (독안개 D011 등)
@@ -695,11 +695,11 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 			for i in enemies.size():
 				if enemies[i]["current_hp"] > 0:
 					status_effects.apply_effect("enemy_%d" % i, "독", card.poison_stacks)
-		else:
+		elif enemies[target_enemy_index]["current_hp"] > 0:
 			status_effects.apply_effect("enemy_%d" % target_enemy_index, "독", card.poison_stacks)
 
 	# 약화 부여 (후퇴 M003 등)
-	if card.weaken_stacks > 0:
+	if card.weaken_stacks > 0 and enemies[target_enemy_index]["current_hp"] > 0:
 		var target_id := "enemy_%d" % target_enemy_index
 		status_effects.apply_effect(target_id, "약화", card.weaken_stacks)
 
@@ -709,16 +709,17 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 			for i in enemies.size():
 				if enemies[i]["current_hp"] > 0:
 					status_effects.clear_buffs("enemy_%d" % i)
-		else:
+		elif enemies[target_enemy_index]["current_hp"] > 0:
 			status_effects.clear_buffs("enemy_%d" % target_enemy_index)
 
 	# 주박 D019: 취약 부여 + DoT 배율 디버프
-	if card.vulnerable_stacks > 0:
-		var target_id := "enemy_%d" % target_enemy_index
-		status_effects.apply_effect(target_id, "취약", card.vulnerable_stacks)
-	if card.dot_multiplier > 0.0:
-		var target_id := "enemy_%d" % target_enemy_index
-		status_effects.apply_effect(target_id, "주박", 1)
+	if enemies[target_enemy_index]["current_hp"] > 0:
+		if card.vulnerable_stacks > 0:
+			var target_id := "enemy_%d" % target_enemy_index
+			status_effects.apply_effect(target_id, "취약", card.vulnerable_stacks)
+		if card.dot_multiplier > 0.0:
+			var target_id := "enemy_%d" % target_enemy_index
+			status_effects.apply_effect(target_id, "주박", 1)
 
 	# 무관 전용: 기력 기반 피해 (역전의 기세 G014, 마지막 도박 G016)
 	if has_class_resource and card.damage_per_stamina > 0:
@@ -1023,9 +1024,9 @@ func can_play_card(card: CardData) -> bool:
 func get_class_resource_name() -> String:
 	match character_id:
 		"mugwan":
-			return "氣力"
+			return "기력(氣力)"
 		"mungwan":
-			return "學識"
+			return "학식(學識)"
 		_:
 			return ""
 

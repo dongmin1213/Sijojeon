@@ -58,19 +58,37 @@ func _add_relic_icon(relic_id: String) -> void:
 	else:
 		display_name = str(name_data)
 
-	# 이름의 첫 글자를 아이콘으로 사용
-	label.text = display_name.substr(0, 1) if display_name.length() > 0 else "?"
+	# 이름의 앞 2글자를 아이콘으로 사용 (1글자로는 의미 전달 부족)
+	label.text = display_name.substr(0, 2) if display_name.length() >= 2 else display_name
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.add_theme_font_size_override("font_size", int(BASE_FONT_SIZE * sf))
 	label.add_theme_color_override("font_color", RelicManager.get_relic_rarity_color(relic_id))
 
 	# 툴팁: 유물 이름 + 효과 설명
-	var tooltip := "%s\n%s" % [display_name, RelicManager.get_relic_description(relic_id)]
+	var relic_desc := RelicManager.get_relic_description(relic_id)
+	var tooltip := "%s\n%s" % [display_name, relic_desc]
 	panel.tooltip_text = tooltip
+
+	# 모바일 터치 대응: 탭하면 유물 정보를 팝업으로 표시
+	panel.gui_input.connect(func(event: InputEvent):
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			_show_relic_info(display_name, relic_desc, relic_id)
+	)
+	panel.mouse_filter = Control.MOUSE_FILTER_STOP
 
 	panel.add_child(label)
 	add_child(panel)
+
+
+func _show_relic_info(relic_name: String, relic_desc: String, _relic_id: String) -> void:
+	## 유물 탭 시 간단한 정보 팝업 표시
+	var dialog := AcceptDialog.new()
+	dialog.title = relic_name
+	dialog.dialog_text = relic_desc
+	dialog.ok_button_text = "닫기"
+	add_child(dialog)
+	dialog.popup_centered()
 
 
 func _on_relic_acquired(_relic_id: String) -> void:

@@ -26,12 +26,14 @@ func _build_ui() -> void:
 	_bg.gui_input.connect(_on_bg_input)
 	add_child(_bg)
 
-	# 중앙 패널
+	# 중앙 패널 — 뷰포트 중앙에 명시적 배치
 	_panel = PanelContainer.new()
-	_panel.anchors_preset = Control.PRESET_CENTER
-	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
 	_panel.custom_minimum_size = Vector2(360, 540)
+	var vp_size := get_viewport().get_visible_rect().size
+	_panel.position = Vector2(
+		(vp_size.x - 360) / 2.0,
+		(vp_size.y - 540) / 2.0
+	)
 
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.15, 0.13, 0.2)
@@ -112,7 +114,7 @@ func _build_ui() -> void:
 
 func _build_stat_text() -> String:
 	var lines: Array[String] = []
-	lines.append("기: %d  |  음보: %d" % [_card_data.cost, _card_data.beat])
+	lines.append("기(氣): %d  |  음보(拍): %d" % [_card_data.cost, _card_data.beat])
 
 	if _card_data.damage > 0:
 		var dmg := "피해: %d" % _card_data.damage

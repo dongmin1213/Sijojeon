@@ -407,7 +407,7 @@ func _on_hand_changed(_new_hand: Array[String]) -> void:
 
 
 func _on_qi_changed(current: int, max_val: int) -> void:
-	qi_label.text = "氣: %d/%d" % [current, max_val]
+	qi_label.text = "기(氣): %d/%d" % [current, max_val]
 	_refresh_hand_ui()
 
 
