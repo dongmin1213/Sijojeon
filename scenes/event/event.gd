@@ -48,7 +48,7 @@ func _load_random_event() -> void:
 	var node_type_str := _get_current_node_type_str()
 
 	# 1. 특수 이벤트 체크 (발동 조건 + 중복 방지)
-	var special_event := _try_load_special_event(act, floor_num, node_type_str)
+	var special_event = _try_load_special_event(act, floor_num, node_type_str)
 	if special_event != null:
 		_event_data = special_event
 		return
