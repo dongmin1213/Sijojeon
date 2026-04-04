@@ -75,12 +75,27 @@ func _ready() -> void:
 		push_warning("RunMap: run_data 또는 run_map이 없음")
 		return
 
+	# 방 완료 후 맵 복귀: 대기 노드를 방문 완료로 확정
+	_finalize_pending_node()
+
 	_build_map()
 	_update_hud()
 	_update_node_states()
 	_init_relic_bar()
 	# 스크롤을 현재 위치로 이동
 	call_deferred("_scroll_to_current")
+
+
+func _finalize_pending_node() -> void:
+	## 방 완료 후 맵에 돌아왔을 때: 대기 노드를 방문 완료 처리.
+	var rd := GameManager.run_data
+	if rd.pending_node_id >= 0:
+		if rd.pending_node_id not in rd.visited_nodes:
+			rd.visited_nodes.append(rd.pending_node_id)
+		rd.pending_node_id = -1
+		rd.current_node_type = -1
+		rd.current_encounter_id = ""
+		GameManager.save_current_run()
 
 
 func _init_relic_bar() -> void:
@@ -473,8 +488,8 @@ func _on_node_pressed(node_id: int) -> void:
 		return
 	var map_node: MapData.MapNode = run_map.nodes[node_id]
 
-	# 방문 기록 추가
-	GameManager.run_data.visited_nodes.append(node_id)
+	# 방문 대기 기록 — 방 완료 후 MAP으로 돌아올 때 visited_nodes에 추가됨
+	GameManager.run_data.pending_node_id = node_id
 
 	# 현재 노드 정보를 RunData에 저장 (세이브 영속화)
 	GameManager.run_data.current_node_type = map_node.type

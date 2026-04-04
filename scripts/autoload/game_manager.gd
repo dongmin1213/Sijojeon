@@ -186,8 +186,33 @@ func load_saved_run() -> bool:
 	if save_dict.is_empty():
 		return false
 	run_data = RunData.from_dict(save_dict)
+
+	# 방 중간에 종료한 경우: 해당 방으로 재진입
+	if run_data.pending_node_id >= 0 and run_data.current_node_type >= 0:
+		var resume_state := _node_type_to_game_state(run_data.current_node_type)
+		if resume_state != GameState.MAP:
+			change_state(resume_state)
+			return true
+
 	change_state(GameState.MAP)
 	return true
+
+
+func _node_type_to_game_state(node_type: int) -> GameState:
+	## MapData.NodeType → GameState 매핑
+	match node_type:
+		MapData.NodeType.BATTLE, MapData.NodeType.ELITE, MapData.NodeType.BOSS:
+			return GameState.BATTLE
+		MapData.NodeType.EVENT:
+			return GameState.EVENT
+		MapData.NodeType.SHOP:
+			return GameState.SHOP
+		MapData.NodeType.REST:
+			return GameState.REST
+		MapData.NodeType.GWAGEO:
+			return GameState.GWAGEO
+		_:
+			return GameState.MAP
 
 
 func end_run(victory: bool) -> void:
@@ -243,6 +268,9 @@ func advance_act() -> void:
 		run_data.current_act += 1
 		run_data.current_floor = 0
 		run_data.visited_nodes.clear()
+		run_data.pending_node_id = -1
+		run_data.current_node_type = -1
+		run_data.current_encounter_id = ""
 		var generator := MapGenerator.new()
 		run_data.run_map = generator.generate(
 			run_data.map_seed + run_data.current_act, run_data.current_act

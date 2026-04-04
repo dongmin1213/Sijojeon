@@ -20,6 +20,7 @@ var run_map: MapData.RunMap = null
 var previous_maps: Array = []  # 이전 막 맵 목록 [{act, map_dict, visited_nodes}]
 var current_node_type: int = -1  # 현재 노드 타입 (MapData.NodeType, -1은 없음)
 var current_encounter_id: String = ""  # 현재 조우 ID
+var pending_node_id: int = -1  # 진입했지만 아직 완료하지 않은 노드 ID (-1은 없음)
 var is_daily_challenge: bool = false  # 일일 도전 모드 여부
 var daily_date: String = ""  # 일일 도전 날짜 (YYYY-MM-DD)
 var daily_score: int = 0  # 일일 도전 점수
@@ -62,6 +63,7 @@ func to_dict() -> Dictionary:
 		"previous_maps": prev_maps_arr,
 		"current_node_type": current_node_type,
 		"current_encounter_id": current_encounter_id,
+		"pending_node_id": pending_node_id,
 		"is_daily_challenge": is_daily_challenge,
 		"daily_date": daily_date,
 		"daily_score": daily_score,
@@ -97,6 +99,7 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.previous_maps = data.get("previous_maps", [])
 	rd.current_node_type = data.get("current_node_type", -1)
 	rd.current_encounter_id = data.get("current_encounter_id", "")
+	rd.pending_node_id = data.get("pending_node_id", -1)
 	rd.is_daily_challenge = data.get("is_daily_challenge", false)
 	rd.daily_date = data.get("daily_date", "")
 	rd.daily_score = data.get("daily_score", 0)
