@@ -383,6 +383,196 @@
           "note": "중립."
         }
       ]
+    },
+    {
+      "id": "EVT_AH_001",
+      "title": {
+        "ko": "암행어사 출두",
+        "description": "마을에 도착하니 암행어사가 출두하여 탐관을 처벌하고 있다. 당신에게도 도움을 요청한다."
+      },
+      "flavor_text": "\"암행어사 출두요! 이 고을의 부패를 척결하겠소!\"",
+      "choices": [
+        {
+          "id": "assist",
+          "text": "암행어사를 돕는다. (민심 +10, 금화 -5)",
+          "effect_type": "minshim_change",
+          "effect_value": 10,
+          "effect_type_bonus": "gold_loss",
+          "effect_value_bonus": 5,
+          "result_text": "부패 관리를 몰아내자 백성들이 열광한다! 민심이 크게 올랐다.",
+          "note": "민심 대폭 상승. 금화 소량 소비."
+        },
+        {
+          "id": "expose",
+          "text": "숨겨진 비리 증거를 제출한다. (민심 +6, 신분 -1)",
+          "effect_type": "minshim_change",
+          "effect_value": 6,
+          "effect_type_bonus": "rank_down",
+          "effect_value_bonus": 1,
+          "result_text": "증거 덕분에 더 많은 관리가 처벌받았다. 하지만 권력층에서 밀려났다.",
+          "note": "민심 상승 + 신분 하락."
+        },
+        {
+          "id": "stay_silent",
+          "text": "관여하지 않는다.",
+          "effect_type": "gold_gain",
+          "effect_value": 10,
+          "result_text": "혼란을 틈타 떨어진 엽전을 주웠다. 금화 10 획득.",
+          "note": "금화 획득."
+        }
+      ]
+    },
+    {
+      "id": "EVT_AH_002",
+      "title": {
+        "ko": "숨겨진 곡간",
+        "description": "암행어사의 단서를 따라가니 관리가 숨겨둔 대규모 곡간을 발견했다."
+      },
+      "flavor_text": "\"이 곡식은 백성의 것이오! 모두 돌려보내야 하오!\"",
+      "choices": [
+        {
+          "id": "return_grain",
+          "text": "곡식을 백성에게 돌려준다. (민심 +12, HP 전체 회복)",
+          "effect_type": "minshim_change",
+          "effect_value": 12,
+          "effect_type_bonus": "hp_full_heal",
+          "effect_value_bonus": 0,
+          "result_text": "백성들이 감격의 눈물을 흘린다. 감사의 보답으로 치료와 음식을 대접받았다.",
+          "note": "최대 보상. 민심+HP 완전 회복."
+        },
+        {
+          "id": "take_some",
+          "text": "일부를 가져간다. (금화 +30, 민심 -5)",
+          "effect_type": "gold_gain",
+          "effect_value": 30,
+          "effect_type_bonus": "minshim_change",
+          "effect_value_bonus": -5,
+          "result_text": "곡식 일부를 팔아 금화를 벌었으나 소문이 나서 민심이 떨어졌다.",
+          "note": "금화 대량 획득 + 민심 페널티."
+        },
+        {
+          "id": "report_only",
+          "text": "관아에 보고만 한다. (민심 +3)",
+          "effect_type": "minshim_change",
+          "effect_value": 3,
+          "result_text": "관아에서 처리하겠다고 한다. 민심이 소폭 올랐다.",
+          "note": "안전한 소량 보상."
+        }
+      ]
+    },
+    {
+      "id": "EVT_AH_003",
+      "title": {
+        "ko": "뇌물 제안",
+        "description": "부패한 현감이 당신에게 몰래 접근하여 뇌물을 제안한다."
+      },
+      "flavor_text": "\"나를 봐주시오. 이 정도면 충분하지 않겠소?\"",
+      "choices": [
+        {
+          "id": "accept_bribe",
+          "text": "뇌물을 받는다. (금화 +20, 민심 -8)",
+          "effect_type": "gold_gain",
+          "effect_value": 20,
+          "effect_type_bonus": "minshim_change",
+          "effect_value_bonus": -8,
+          "result_text": "금화를 받았으나 소문이 퍼져 민심이 크게 떨어졌다.",
+          "note": "금화 vs 민심 트레이드오프."
+        },
+        {
+          "id": "refuse_report",
+          "text": "거절하고 고발한다. (민심 +8, 카드 획득)",
+          "effect_type": "minshim_change",
+          "effect_value": 8,
+          "effect_type_bonus": "card_gain",
+          "effect_value_bonus": 1,
+          "result_text": "정의로운 행동에 백성들이 감동했다. 마을 장로가 비전서를 선물했다.",
+          "note": "민심 + 카드. 정의 루트."
+        },
+        {
+          "id": "negotiate",
+          "text": "자진 사퇴를 권유한다. (민심 +4, 금화 +10)",
+          "effect_type": "minshim_change",
+          "effect_value": 4,
+          "effect_type_bonus": "gold_gain",
+          "effect_value_bonus": 10,
+          "result_text": "현감이 자진 사퇴하며 위로금을 건넸다. 민심도 소폭 올랐다.",
+          "note": "절충안. 양쪽 소량 보상."
+        }
+      ]
+    },
+    {
+      "id": "EVT_AH_004",
+      "title": {
+        "ko": "억울한 죄수",
+        "description": "옥사에서 억울하게 투옥된 죄수가 도움을 호소한다. 조사해보니 부패 관리의 모함이었다."
+      },
+      "flavor_text": "\"제발 구해주시오! 제 가족이 굶어가고 있소!\"",
+      "choices": [
+        {
+          "id": "free_prisoner",
+          "text": "증거를 모아 석방시킨다. (민심 +7, HP -6)",
+          "effect_type": "minshim_change",
+          "effect_value": 7,
+          "effect_type_bonus": "hp_loss",
+          "effect_value_bonus": 6,
+          "result_text": "석방에 성공했으나 관리의 보복으로 부상을 입었다. 백성들의 지지를 얻었다.",
+          "note": "HP 리스크 + 민심."
+        },
+        {
+          "id": "bribe_jailer",
+          "text": "간수를 매수한다. (금화 -15)",
+          "effect_type": "gold_loss",
+          "effect_value": 15,
+          "result_text": "간수에게 금화를 건네 죄수를 빼냈다. 깔끔하게 해결.",
+          "note": "금화만 소비. 리스크 없음."
+        },
+        {
+          "id": "ignore_ah4",
+          "text": "관여하지 않는다.",
+          "effect_type": "minshim_change",
+          "effect_value": -2,
+          "result_text": "죄수의 원망스러운 눈빛이 마음에 걸린다. 주변 백성들도 실망했다.",
+          "note": "민심 소폭 하락."
+        }
+      ]
+    },
+    {
+      "id": "EVT_AH_005",
+      "title": {
+        "ko": "암행어사의 마패",
+        "description": "길에서 암행어사의 마패를 주웠다. 이것이 있으면 어디서든 권위를 행사할 수 있다."
+      },
+      "flavor_text": "\"마패를 가진 자는 — 왕의 대리인이다.\"",
+      "choices": [
+        {
+          "id": "use_mapat",
+          "text": "마패를 사용해 부패를 척결한다. (민심 +10, 신분 +1, 소멸)",
+          "effect_type": "minshim_change",
+          "effect_value": 10,
+          "effect_type_bonus": "rank_up",
+          "effect_value_bonus": 1,
+          "result_text": "마패를 내세워 고을의 부패를 척결했다! 민심이 크게 오르고 신분도 올랐다.",
+          "note": "최대 보상. 1회 이벤트."
+        },
+        {
+          "id": "sell_mapat",
+          "text": "마패를 높은 가격에 판다. (금화 +35)",
+          "effect_type": "gold_gain",
+          "effect_value": 35,
+          "result_text": "마패를 비싼 값에 팔았다. 금화 35 획득.",
+          "note": "금화 대량 획득."
+        },
+        {
+          "id": "return_mapat",
+          "text": "주인에게 돌려준다. (카드 강화 1장, 민심 +3)",
+          "effect_type": "card_upgrade",
+          "effect_value": 1,
+          "effect_type_bonus": "minshim_change",
+          "effect_value_bonus": 3,
+          "result_text": "어사가 감사히 여기며 비전을 전수해주었다. 카드 1장 강화 + 민심 소폭 상승.",
+          "note": "카드 강화 + 소량 민심."
+        }
+      ]
     }
   ]
 }

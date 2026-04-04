@@ -632,6 +632,428 @@
       },
       "ai_pattern": "돌진으로 취약을 부여하고 포효로 힘을 쌓은 뒤 살육 도약으로 결정타를 날린다. 취약 + 힘 3 조합이 가장 위험한 구간.",
       "balance_note": "hungry_roar(힘+3) 후 killing_pounce(16+3=19)는 2막 일반 최대 단발. 취약(+50%) 상태 합산 시 거의 29피해. hungry_roar 이전 처치 또는 방어도 16+ 유지 권장."
+    },
+    {
+      "id": "E208",
+      "name": {
+        "ko": "별감",
+        "hanja": "別監",
+        "romanized": "Byeolgam"
+      },
+      "description": "궁궐 감시관. 면역력이 높고 꾸준한 압박을 가한다.",
+      "hp": {
+        "min": 42,
+        "max": 52
+      },
+      "moves": [
+        {
+          "id": "inspection",
+          "name": "검열",
+          "intent": "attack_debuff",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": "8 피해 + 냉기 1 (다음 턴 드로우 -1)."
+        },
+        {
+          "id": "iron_will",
+          "name": "철심",
+          "intent": "defend",
+          "damage": 0,
+          "block": 12,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "debuff_immunity",
+              "stacks": 1,
+              "target": "self"
+            }
+          ],
+          "description": "방어도 12 + 디버프 면역 1턴."
+        },
+        {
+          "id": "authority_strike",
+          "name": "직권 남용",
+          "intent": "attack",
+          "damage": 12,
+          "times": 1,
+          "description": "강력한 단일 타격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "iron_will",
+          "inspection",
+          "authority_strike",
+          "inspection",
+          "iron_will",
+          "authority_strike"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 20,
+          "max": 32
+        },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "balance_note": "2막 방어형. 철심으로 디버프 무효화하므로 디버프 의존 빌드에 견제. 직권 남용(12피해)이 주요 위협."
+    },
+    {
+      "id": "E209",
+      "name": {
+        "ko": "토포사",
+        "hanja": "討捕使",
+        "romanized": "Toposa"
+      },
+      "description": "도적 토벌 전문 관리. 이중 공격으로 빈틈을 노린다.",
+      "hp": {
+        "min": 38,
+        "max": 48
+      },
+      "moves": [
+        {
+          "id": "double_slash",
+          "name": "쌍칼",
+          "intent": "attack",
+          "damage": 6,
+          "times": 2,
+          "description": "6 피해를 2회. 총 12피해."
+        },
+        {
+          "id": "pursuit",
+          "name": "추격",
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "description": "도주를 허락하지 않는 강타."
+        },
+        {
+          "id": "ambush_stance",
+          "name": "매복 자세",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 3,
+              "target": "self"
+            }
+          ],
+          "description": "힘 3 획득."
+        },
+        {
+          "id": "binding_net",
+          "name": "포승줄",
+          "intent": "attack_debuff",
+          "damage": 5,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "구금",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": "5 피해 + 구금 1 (카드 비용 +1)."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "ambush_stance",
+          "double_slash",
+          "pursuit",
+          "binding_net",
+          "double_slash",
+          "pursuit"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 22,
+          "max": 34
+        },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "balance_note": "공격형 적. 매복 후 쌍칼(6x2+3x2=18피해)이 핵심 위협. 포승줄의 구금 효과로 반격 어렵게 만듦."
+    },
+    {
+      "id": "E210",
+      "name": {
+        "ko": "당파 자객",
+        "hanja": "黨派刺客",
+        "romanized": "Dangpa Jagaek"
+      },
+      "description": "정치 암살자. 빠른 기습과 도주를 반복한다.",
+      "hp": {
+        "min": 32,
+        "max": 42
+      },
+      "moves": [
+        {
+          "id": "stealth",
+          "name": "은신",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "block",
+              "stacks": 6,
+              "target": "self"
+            },
+            {
+              "type": "apply_buff",
+              "buff": "next_attack_bonus",
+              "stacks": 5,
+              "target": "self"
+            }
+          ],
+          "description": "방어도 6 + 다음 공격 +5 피해."
+        },
+        {
+          "id": "assassinate",
+          "name": "암살",
+          "intent": "attack",
+          "damage": 14,
+          "times": 1,
+          "description": "은신 후 강력한 일격."
+        },
+        {
+          "id": "smoke_bomb",
+          "name": "연막",
+          "intent": "debuff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            }
+          ],
+          "description": "연막으로 약화 2 부여."
+        },
+        {
+          "id": "backstab",
+          "name": "배후습격",
+          "intent": "attack",
+          "damage": 7,
+          "times": 2,
+          "description": "뒤에서 2회 기습. 총 14피해."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "stealth",
+          "assassinate",
+          "smoke_bomb",
+          "backstab",
+          "stealth",
+          "assassinate"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 18,
+          "max": 30
+        },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "balance_note": "기습형 적. 은신->암살 콤보(14+5=19피해)가 주요 위협. HP 낮아 빠른 화력으로 제거 가능."
+    },
+    {
+      "id": "E211",
+      "name": {
+        "ko": "역관",
+        "hanja": "譯官",
+        "romanized": "Yeokgwan"
+      },
+      "description": "통역 겸 밀정. 적의 버프를 훔치는 교활한 상대.",
+      "hp": {
+        "min": 36,
+        "max": 46
+      },
+      "moves": [
+        {
+          "id": "steal_buff",
+          "name": "기밀 탈취",
+          "intent": "debuff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "steal_buff",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": "플레이어의 버프 1스택을 훔쳐온다."
+        },
+        {
+          "id": "coded_message",
+          "name": "암호문",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            },
+            {
+              "type": "apply_buff",
+              "buff": "block",
+              "stacks": 5,
+              "target": "self"
+            }
+          ],
+          "description": "힘 1 + 방어도 5."
+        },
+        {
+          "id": "trade_strike",
+          "name": "교역 타격",
+          "intent": "attack",
+          "damage": 9,
+          "times": 1,
+          "description": "정보력으로 급소를 노리는 공격."
+        },
+        {
+          "id": "intelligence",
+          "name": "첩보",
+          "intent": "attack_debuff",
+          "damage": 4,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": "4 피해 + 취약 1."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "coded_message",
+          "steal_buff",
+          "trade_strike",
+          "intelligence",
+          "trade_strike",
+          "steal_buff"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 24,
+          "max": 36
+        },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "balance_note": "교란형 적. 기밀 탈취로 플레이어 버프 도용. 힘/갑주 등 영구 버프 빌드에 견제."
+    },
+    {
+      "id": "E212",
+      "name": {
+        "ko": "부패 관원",
+        "hanja": "腐敗官員",
+        "romanized": "Bupae Gwanwon"
+      },
+      "description": "뇌물로 배를 채운 탐관. 민심을 직접 하락시킨다.",
+      "hp": {
+        "min": 40,
+        "max": 50
+      },
+      "moves": [
+        {
+          "id": "extortion",
+          "name": "수탈",
+          "intent": "attack_debuff",
+          "damage": 7,
+          "times": 1,
+          "effects": [
+            {
+              "type": "minshim_change",
+              "value": -3
+            }
+          ],
+          "description": "7 피해 + 민심 3 하락."
+        },
+        {
+          "id": "bribe_guard",
+          "name": "매수",
+          "intent": "defend",
+          "damage": 0,
+          "block": 10,
+          "description": "뇌물로 호위를 고용. 방어도 10."
+        },
+        {
+          "id": "false_decree",
+          "name": "위조 교지",
+          "intent": "debuff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "구금",
+              "stacks": 1,
+              "target": "player"
+            },
+            {
+              "type": "minshim_change",
+              "value": -2
+            }
+          ],
+          "description": "구금 1 + 민심 2 하락."
+        },
+        {
+          "id": "heavy_blow",
+          "name": "곤장",
+          "intent": "attack",
+          "damage": 11,
+          "times": 1,
+          "description": "무거운 곤장 공격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "false_decree",
+          "extortion",
+          "bribe_guard",
+          "heavy_blow",
+          "extortion",
+          "heavy_blow"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 25,
+          "max": 38
+        },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "balance_note": "민심 압박형. 수탈과 위조 교지로 민심 지속 하락. 빠르게 처치하지 않으면 민심 대폭 감소."
     }
   ],
   "elite_enemies": [

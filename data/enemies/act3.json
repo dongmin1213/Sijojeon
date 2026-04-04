@@ -656,6 +656,385 @@
       },
       "ai_pattern": "사기 디버프로 출혈+취약을 쌓고 생명 흡수로 지속력을 확보한다. 장기전으로 유도하며 피해를 누적시키는 전략.",
       "balance_note": "life_drain(10+자힐7)으로 장기전 유리. evil_aura(출혈4+취약1) 상태에서 다른 적의 공격도 증폭. 빠른 처치 또는 출혈 해제 카드 보유 권장."
+    },
+    {
+      "id": "E308",
+      "name": {
+        "ko": "친위군",
+        "hanja": "親衛軍",
+        "romanized": "Chinwigun"
+      },
+      "description": "왕의 친위대. 연속 방어로 공격을 막고 반격한다.",
+      "hp": {
+        "min": 52,
+        "max": 64
+      },
+      "moves": [
+        {
+          "id": "iron_defense",
+          "name": "철벽",
+          "intent": "defend",
+          "damage": 0,
+          "block": 15,
+          "description": "방어도 15 획득."
+        },
+        {
+          "id": "counter_strike",
+          "name": "반격",
+          "intent": "attack",
+          "damage": 12,
+          "times": 1,
+          "description": "방어 후 강력한 반격."
+        },
+        {
+          "id": "shield_wall",
+          "name": "방진",
+          "intent": "defend",
+          "damage": 0,
+          "block": 8,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "갑주",
+              "stacks": 4,
+              "target": "self"
+            }
+          ],
+          "description": "방어도 8 + 갑주 4."
+        },
+        {
+          "id": "execute",
+          "name": "처형",
+          "intent": "attack",
+          "damage": 18,
+          "times": 1,
+          "description": "모든 힘을 실은 일격."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "iron_defense",
+          "counter_strike",
+          "shield_wall",
+          "execute",
+          "iron_defense",
+          "counter_strike",
+          "execute"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 28,
+          "max": 42
+        },
+        "card_chance": 0.3,
+        "relic_chance": 0.1
+      },
+      "balance_note": "3막 방어형. 철벽(15)+갑주(4)로 누적 방어. 처형(18피해)이 주요 위협. DoT나 취약으로 방어 무시 피해가 효과적."
+    },
+    {
+      "id": "E309",
+      "name": {
+        "ko": "화포수",
+        "hanja": "火砲手",
+        "romanized": "Hwaposu"
+      },
+      "description": "화약 무기를 다루는 군사. 광역 피해와 화상을 입힌다.",
+      "hp": {
+        "min": 44,
+        "max": 56
+      },
+      "moves": [
+        {
+          "id": "cannon_blast",
+          "name": "포격",
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "화상",
+              "stacks": 3,
+              "target": "player"
+            }
+          ],
+          "description": "10 피해 + 화상 3."
+        },
+        {
+          "id": "reload",
+          "name": "재장전",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
+          ],
+          "description": "힘 2를 획득하며 다음 포격 준비."
+        },
+        {
+          "id": "grapeshot",
+          "name": "산탄",
+          "intent": "attack",
+          "damage": 4,
+          "times": 4,
+          "description": "4 피해를 4회. 총 16피해."
+        },
+        {
+          "id": "fire_bomb",
+          "name": "화공",
+          "intent": "attack_debuff",
+          "damage": 6,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "화상",
+              "stacks": 5,
+              "target": "player"
+            }
+          ],
+          "description": "6 피해 + 화상 5."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "reload",
+          "cannon_blast",
+          "grapeshot",
+          "fire_bomb",
+          "reload",
+          "cannon_blast",
+          "grapeshot"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 26,
+          "max": 40
+        },
+        "card_chance": 0.3,
+        "relic_chance": 0.1
+      },
+      "balance_note": "화상 특화 적. 포격+화공으로 화상 8 누적(턴당 8+7+...피해). 재장전→포격 시 (10+2)=12피해+화상. 화상 제거/방어가 없으면 DoT로 사망."
+    },
+    {
+      "id": "E310",
+      "name": {
+        "ko": "역모 수괴",
+        "hanja": "逆謀首魁",
+        "romanized": "Yeokmo Sugoe"
+      },
+      "description": "반란의 우두머리. 강력한 저주와 독으로 상대를 잠식한다.",
+      "hp": {
+        "min": 48,
+        "max": 60
+      },
+      "moves": [
+        {
+          "id": "dark_curse",
+          "name": "흑주술",
+          "intent": "debuff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "주박",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 4,
+              "target": "player"
+            }
+          ],
+          "description": "주박 2 + 독 4. DoT 증폭 콤보."
+        },
+        {
+          "id": "soul_drain",
+          "name": "정기 흡수",
+          "intent": "attack",
+          "damage": 8,
+          "times": 1,
+          "effects": [
+            {
+              "type": "heal",
+              "value": 5
+            }
+          ],
+          "description": "8 피해 + HP 5 회복."
+        },
+        {
+          "id": "conspiracy",
+          "name": "음모",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            },
+            {
+              "type": "apply_buff",
+              "buff": "block",
+              "stacks": 8,
+              "target": "self"
+            }
+          ],
+          "description": "힘 2 + 방어도 8."
+        },
+        {
+          "id": "death_sentence",
+          "name": "사형 선고",
+          "intent": "attack_debuff",
+          "damage": 14,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "death_mark",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": "14 피해 + 사망표식 1."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "conspiracy",
+          "dark_curse",
+          "soul_drain",
+          "death_sentence",
+          "dark_curse",
+          "soul_drain",
+          "death_sentence"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 30,
+          "max": 44
+        },
+        "card_chance": 0.35,
+        "relic_chance": 0.1
+      },
+      "balance_note": "3막 최강 일반 적. 주박+독 콤보로 독 피해 1.5배. 사형 선고의 사망표식(턴당 5피해)까지 걸리면 DoT 지옥. 정기 흡수로 지구전에도 강함."
+    },
+    {
+      "id": "E311",
+      "name": {
+        "ko": "어영청 군관",
+        "hanja": "御營廳軍官",
+        "romanized": "Eoyeongcheong Gungwan"
+      },
+      "description": "왕의 직속 부대 지휘관. 2페이즈 전환으로 후반에 폭발한다.",
+      "hp": {
+        "min": 55,
+        "max": 68
+      },
+      "moves": [
+        {
+          "id": "command",
+          "name": "호령",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            },
+            {
+              "type": "apply_buff",
+              "buff": "block",
+              "stacks": 6,
+              "target": "self"
+            }
+          ],
+          "description": "힘 1 + 방어도 6."
+        },
+        {
+          "id": "sword_swing",
+          "name": "군도 일섬",
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "description": "지휘관의 정확한 참격."
+        },
+        {
+          "id": "rally_troops",
+          "name": "총공격 명령",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 3,
+              "target": "self"
+            }
+          ],
+          "description": "HP 50% 이하 시 페이즈 전환. 힘 3 획득."
+        },
+        {
+          "id": "charge_attack",
+          "name": "돌격",
+          "intent": "attack",
+          "damage": 8,
+          "times": 2,
+          "description": "2회 돌격 공격. 총 16피해."
+        },
+        {
+          "id": "final_stand",
+          "name": "결사 항전",
+          "intent": "attack_debuff",
+          "damage": 15,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
+          ],
+          "description": "15 피해 + 취약 2."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "command",
+          "sword_swing",
+          "sword_swing",
+          "rally_troops",
+          "charge_attack",
+          "final_stand",
+          "charge_attack"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 30,
+          "max": 45
+        },
+        "card_chance": 0.35,
+        "relic_chance": 0.1
+      },
+      "balance_note": "2페이즈 적. 전반 호령+군도(10피해)로 안정적. HP 50% 이하 시 총공격 명령으로 힘 3 폭발 후 돌격(8x2+3x2=22피해). 결사 항전(15+힘)으로 마무리."
     }
   ],
   "elite_enemies": [

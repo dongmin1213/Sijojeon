@@ -591,6 +591,308 @@
       },
       "ai_pattern": "약화·취약·냉기 디버프를 누적하고 가시로 근접 공격을 패널티화한다. 힘 2 쌓인 후 official_blow(10+2=12)는 취약(+50%) 상태에서 18피해.",
       "balance_note": "bribe_power(가시2)로 인해 연타 카드 사용 시 자충 발생. extort(8)+약화2 콤비는 다음 플레이어 공격을 25% 감소시켜 실질 전투력 크게 저하. 마법 계열 공격이나 원거리 카드 활용 권장."
+    },
+    {
+      "id": "E008",
+      "name": {
+        "ko": "포졸 창병",
+        "hanja": "捕卒槍兵",
+        "romanized": "Pojol Changbyeong"
+      },
+      "description": "포도청 소속 창을 든 포졸. 방패로 몸을 숨기고 기회를 노린다.",
+      "hp": {
+        "min": 30,
+        "max": 40
+      },
+      "moves": [
+        {
+          "id": "shield_stance",
+          "name": "방패 자세",
+          "intent": "defend",
+          "damage": 0,
+          "block": 8,
+          "description": "방어도 8을 획득한다."
+        },
+        {
+          "id": "spear_thrust",
+          "name": "창 찌르기",
+          "intent": "attack",
+          "damage": 9,
+          "times": 1,
+          "description": "방패 뒤에서 빠르게 창을 찌른다."
+        },
+        {
+          "id": "shield_bash",
+          "name": "방패 강타",
+          "intent": "attack_debuff",
+          "damage": 5,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": "방패로 내려치며 약화 1 부여."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "shield_stance",
+          "spear_thrust",
+          "shield_bash",
+          "shield_stance",
+          "spear_thrust",
+          "spear_thrust"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 12,
+          "max": 22
+        },
+        "card_chance": 0.25,
+        "relic_chance": 0.0
+      },
+      "balance_note": "방어형 적. 방패 자세(8방어) 후 공격 패턴. 방어도를 뚫어야 하므로 다회 공격이나 높은 단일 피해가 유리. 1막 초반 방어 관통 학습용."
+    },
+    {
+      "id": "E009",
+      "name": {
+        "ko": "행수",
+        "hanja": "行首",
+        "romanized": "Haengsu"
+      },
+      "description": "시장 상인들의 우두머리. 부하를 부려 공격력을 높인다.",
+      "hp": {
+        "min": 26,
+        "max": 34
+      },
+      "moves": [
+        {
+          "id": "rally_men",
+          "name": "부하 독려",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
+          ],
+          "description": "힘(力) 2를 획득한다."
+        },
+        {
+          "id": "club_swing",
+          "name": "몽둥이 휘두르기",
+          "intent": "attack",
+          "damage": 6,
+          "times": 1,
+          "description": "묵직한 몽둥이 공격."
+        },
+        {
+          "id": "gang_up",
+          "name": "집단 구타",
+          "intent": "attack",
+          "damage": 3,
+          "times": 3,
+          "description": "부하들과 함께 3회 연타."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "rally_men",
+          "club_swing",
+          "gang_up",
+          "club_swing",
+          "rally_men",
+          "gang_up"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 14,
+          "max": 24
+        },
+        "card_chance": 0.25,
+        "relic_chance": 0.0
+      },
+      "balance_note": "버프형 적. 독려로 힘 축적 후 점점 강해지는 패턴. 빠르게 처치하지 않으면 후반 피해 급상승. DPS 체크 역할."
+    },
+    {
+      "id": "E010",
+      "name": {
+        "ko": "기생",
+        "hanja": "妓生",
+        "romanized": "Gisaeng"
+      },
+      "description": "화려한 외모 뒤에 숨겨진 독. 적을 약화시키고 서서히 잠식한다.",
+      "hp": {
+        "min": 22,
+        "max": 30
+      },
+      "moves": [
+        {
+          "id": "charm",
+          "name": "매혹",
+          "intent": "debuff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            }
+          ],
+          "description": "약화 2를 부여한다."
+        },
+        {
+          "id": "poison_wine",
+          "name": "독주",
+          "intent": "attack_debuff",
+          "damage": 3,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 3,
+              "target": "player"
+            }
+          ],
+          "description": "3 피해 + 독 3 부여."
+        },
+        {
+          "id": "dance",
+          "name": "춤사위",
+          "intent": "defend",
+          "damage": 0,
+          "block": 5,
+          "description": "우아한 움직임으로 방어도 5 획득."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "charm",
+          "poison_wine",
+          "dance",
+          "poison_wine",
+          "charm",
+          "poison_wine"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 12,
+          "max": 20
+        },
+        "card_chance": 0.25,
+        "relic_chance": 0.02
+      },
+      "balance_note": "디버프형 적. HP 낮지만 약화+독으로 플레이어 약화. 독 축적 전에 빠르게 처치하는 것이 핵심. DoT 메카닉 학습용."
+    },
+    {
+      "id": "E011",
+      "name": {
+        "ko": "점쟁이",
+        "hanja": "占쟁이",
+        "romanized": "Jeomjaengi"
+      },
+      "description": "길거리 점술사. 예측 불가능한 행동으로 플레이어를 교란한다.",
+      "hp": {
+        "min": 24,
+        "max": 32
+      },
+      "moves": [
+        {
+          "id": "fortune_tell",
+          "name": "점괘",
+          "intent": "buff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            },
+            {
+              "type": "apply_buff",
+              "buff": "block",
+              "stacks": 4,
+              "target": "self"
+            }
+          ],
+          "description": "힘 1 + 방어도 4 획득."
+        },
+        {
+          "id": "evil_eye",
+          "name": "사안",
+          "intent": "debuff",
+          "damage": 0,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": "취약 1을 부여한다."
+        },
+        {
+          "id": "spirit_strike",
+          "name": "부적 투척",
+          "intent": "attack",
+          "damage": 8,
+          "times": 1,
+          "description": "주술이 담긴 부적을 던진다."
+        },
+        {
+          "id": "hex",
+          "name": "저주",
+          "intent": "attack_debuff",
+          "damage": 4,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "주박",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": "4 피해 + 주박 1 부여."
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "fortune_tell",
+          "evil_eye",
+          "spirit_strike",
+          "hex",
+          "evil_eye",
+          "spirit_strike"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 10,
+          "max": 18
+        },
+        "card_chance": 0.2,
+        "relic_chance": 0.02
+      },
+      "balance_note": "교란형 적. 다양한 디버프(취약·주박)로 예측 어려움. 주박+독 콤보 시 DoT 증폭. 1막 후반에 등장시켜 상태이상 대응 학습."
     }
   ],
   "elite_enemies": [
