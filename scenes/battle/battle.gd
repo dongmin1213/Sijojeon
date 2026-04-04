@@ -905,6 +905,7 @@ func _format_status_effects(target: String) -> String:
 func _on_battle_ended(victory: bool) -> void:
 	end_turn_button.disabled = true
 	card_hand.visible = false
+	$HandArea.visible = false
 
 	# 상태 효과 아이콘 캐시 정리 (메모리 누수 방지)
 	for target in _status_icon_cache:

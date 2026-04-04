@@ -150,7 +150,7 @@ func _arrange_cards() -> void:
 		card_spacing = maxf(card_spacing, MIN_CARD_SPACING * scale_factor * hand_scale)
 
 	var center_x := size.x / 2.0
-	var base_y := size.y * 0.3
+	var base_y := size.y * 0.05
 	var total_width := (count - 1) * card_spacing
 	var start_x := center_x - total_width / 2.0
 
