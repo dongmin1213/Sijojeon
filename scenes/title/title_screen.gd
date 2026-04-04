@@ -2,13 +2,13 @@ extends Control
 
 ## 타이틀 화면. 게임 시작, 이어하기, 연대기, 설정 등 메인 메뉴 제공.
 
-@onready var start_button: Button = $VBoxContainer/StartButton
-@onready var continue_button: Button = $VBoxContainer/ContinueButton
-@onready var daily_button: Button = $VBoxContainer/DailyChallengeButton
-@onready var chronicle_button: Button = $VBoxContainer/ChronicleButton
-@onready var settings_button: Button = $VBoxContainer/SettingsButton
-@onready var quit_button: Button = $VBoxContainer/QuitButton
-@onready var title_label: Label = $VBoxContainer/TitleLabel
+@onready var start_button: Button = $TitlePanel/VBoxContainer/StartButton
+@onready var continue_button: Button = $TitlePanel/VBoxContainer/ContinueButton
+@onready var daily_button: Button = $TitlePanel/VBoxContainer/DailyChallengeButton
+@onready var chronicle_button: Button = $TitlePanel/VBoxContainer/ChronicleButton
+@onready var settings_button: Button = $TitlePanel/VBoxContainer/SettingsButton
+@onready var quit_button: Button = $TitlePanel/VBoxContainer/QuitButton
+@onready var title_label: Label = $TitlePanel/VBoxContainer/TitleLabel
 @onready var version_label: Label = $VersionLabel
 
 
