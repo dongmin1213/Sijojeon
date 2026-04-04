@@ -144,7 +144,8 @@ func _get_removal_cost() -> int:
 	if GameManager.run_data == null:
 		return REMOVAL_BASE_COST
 	var count: int = GameManager.run_data.card_removals_count
-	return mini(REMOVAL_BASE_COST + count * REMOVAL_COST_INCREASE, REMOVAL_MAX_COST)
+	var ascension_extra: int = GameManager.get_ascension_card_removal_extra_cost()
+	return mini(REMOVAL_BASE_COST + count * REMOVAL_COST_INCREASE + ascension_extra, REMOVAL_MAX_COST)
 
 
 func _display_shop_cards() -> void:

@@ -98,7 +98,7 @@ func start_new_run(character_id: String, ascension_level: int = 0) -> void:
 	run_data = RunData.new()
 	run_data.character_id = character_id
 	run_data.map_seed = randi()
-	run_data.ascension_level = ascension_level
+	run_data.ascension_level = clampi(ascension_level, 0, 10)
 	RelicManager.reset_run_state()
 
 	# DataLoader에서 캐릭터 데이터로 HP 설정
@@ -196,8 +196,8 @@ func end_run(victory: bool) -> void:
 	# 런 통계 기록
 	if run_data:
 		SaveManager.record_run_result(victory, run_data.character_id, run_data.current_act)
-		# 어센션 클리어 시 다음 레벨 해금
-		if victory and run_data.ascension_level >= 0:
+		# 어센션 클리어 시 다음 레벨 해금 (최대 10)
+		if victory and run_data.ascension_level >= 0 and run_data.ascension_level < 10:
 			SaveManager.save_ascension_progress(run_data.character_id, run_data.ascension_level)
 		# 일일 도전 점수 저장
 		if run_data.is_daily_challenge:
