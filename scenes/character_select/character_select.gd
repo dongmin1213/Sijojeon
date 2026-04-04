@@ -20,6 +20,19 @@ var _achievement_panel: PanelContainer = null
 var _achievement_visible := false
 
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		# F1: 선택된 캐릭터로 게임 시작 (터치 입력 불가 환경 대응)
+		if event.keycode == KEY_F1:
+			if _selected_index >= 0:
+				_on_start_pressed()
+				get_viewport().set_input_as_handled()
+		# F2: 뒤로 가기
+		elif event.keycode == KEY_F2:
+			_on_back_pressed()
+			get_viewport().set_input_as_handled()
+
+
 func _ready() -> void:
 	# 뷰포트 비례 UI 스케일링 적용
 	var vp_size := get_viewport().get_visible_rect().size
@@ -195,8 +208,9 @@ func _build_character_cards() -> void:
 		push_warning("CharacterSelect: _character_list 비어있음 — 카드 생성 건너뜀")
 		return
 
-	# CardContainer에 최소 높이 보장 (레이아웃 붕괴 방지)
+	# CardContainer에 최소 높이 보장 및 오버플로 방지
 	card_container.custom_minimum_size = Vector2(0, panel_min_h)
+	card_container.clip_contents = true
 	print("[CharacterSelect] 카드 생성 시작: %d개, vp=%s, ui_scale=%.2f" % [_character_list.size(), str(vp_size), ui_scale])
 
 	for i in _character_list.size():
@@ -206,6 +220,7 @@ func _build_character_cards() -> void:
 		var panel := PanelContainer.new()
 		panel.custom_minimum_size = Vector2(panel_min_w, panel_min_h)
 		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		panel.clip_contents = true
 
 		# 카드 패널에 명확한 테두리·배경 스타일 적용 (어두운 배경과 구별)
 		var card_style := StyleBoxFlat.new()
@@ -233,6 +248,7 @@ func _build_character_cards() -> void:
 		# 캐릭터 이름
 		var name_label := Label.new()
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		name_label.add_theme_font_size_override("font_size", fs_name)
 		if unlocked:
 			name_label.text = character["name"]
@@ -266,6 +282,7 @@ func _build_character_cards() -> void:
 			if character["passive_name"] != "":
 				var passive_header := Label.new()
 				passive_header.text = "▶ 패시브: " + character["passive_name"]
+				passive_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				passive_header.add_theme_font_size_override("font_size", fs_skill_header)
 				passive_header.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
 				vbox.add_child(passive_header)
@@ -280,6 +297,7 @@ func _build_character_cards() -> void:
 			if character["active_name"] != "":
 				var active_header := Label.new()
 				active_header.text = "▶ 액티브: " + character["active_name"]
+				active_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				active_header.add_theme_font_size_override("font_size", fs_skill_header)
 				active_header.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
 				vbox.add_child(active_header)
@@ -296,6 +314,7 @@ func _build_character_cards() -> void:
 			if character["starting_relic_name"] != "":
 				var relic_label := Label.new()
 				relic_label.text = "시작 유물: " + character["starting_relic_name"]
+				relic_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				relic_label.add_theme_font_size_override("font_size", fs_skill_header)
 				relic_label.add_theme_color_override("font_color", Color(1.0, 0.75, 0.3))
 				vbox.add_child(relic_label)
