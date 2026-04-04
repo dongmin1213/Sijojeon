@@ -103,6 +103,30 @@ func _build_ui() -> void:
 	effect_label.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85))
 	vbox.add_child(effect_label)
 
+	# 키워드 설명 섹션
+	var keywords := _find_keywords_in_card()
+	if not keywords.is_empty():
+		var kw_sep := HSeparator.new()
+		vbox.add_child(kw_sep)
+
+		var kw_title := Label.new()
+		kw_title.text = "📖 키워드"
+		kw_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		kw_title.add_theme_font_size_override("font_size", 16)
+		kw_title.add_theme_color_override("font_color", Color(0.8, 0.7, 0.5))
+		vbox.add_child(kw_title)
+
+		for kw in keywords:
+			var kw_entry := RichTextLabel.new()
+			kw_entry.bbcode_enabled = true
+			var color_hex: String = kw.get("color", "#FFD966")
+			kw_entry.text = "[color=%s]%s[/color]: %s" % [color_hex, kw.get("name", ""), kw.get("description", "")]
+			kw_entry.fit_content = true
+			kw_entry.custom_minimum_size = Vector2(300, 0)
+			kw_entry.add_theme_font_size_override("normal_font_size", 14)
+			kw_entry.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			vbox.add_child(kw_entry)
+
 	# 닫기 안내
 	var hint := Label.new()
 	hint.text = "터치하여 닫기"
@@ -133,6 +157,51 @@ func _build_stat_text() -> String:
 		lines.append("자원 획득: +%d" % _card_data.stamina_gain)
 
 	return "\n".join(lines)
+
+
+func _find_keywords_in_card() -> Array[Dictionary]:
+	## 카드 효과 텍스트와 속성에서 관련 키워드를 찾아 반환
+	var found: Array[Dictionary] = []
+	var found_ids: Array[String] = []
+	var all_kw := KeywordTooltip.get_all_keywords()
+
+	# 카드 속성 기반 키워드 자동 추가
+	var auto_keywords: Array[String] = ["beat", "qi"]  # 모든 카드에 기본 표시
+
+	if _card_data.damage > 0 and _card_data.is_aoe:
+		auto_keywords.append("aoe")
+	if _card_data.block_value > 0:
+		auto_keywords.append("block")
+	if _card_data.stamina_cost > 0 or _card_data.stamina_gain > 0:
+		if _card_data.pool == "mugwan":
+			auto_keywords.append("giryeok")
+		elif _card_data.pool == "mungwan":
+			auto_keywords.append("haksik")
+
+	# 효과 텍스트에서 키워드 검색
+	var effect_text := _card_data.get_current_effect()
+	for kw_id in all_kw:
+		var kw: Dictionary = all_kw[kw_id]
+		# id 기반 매칭만 (name 기반 중복 방지)
+		if kw.get("id", "") != kw_id:
+			continue
+		var kw_name: String = kw.get("name", "")
+		var kw_short: String = kw.get("id", "")
+		# 효과 텍스트에 키워드 이름이나 ID가 포함되어 있으면 추가
+		if kw_short in auto_keywords or effect_text.find(kw_short) >= 0 or (kw_name != "" and effect_text.find(kw_name.split("(")[0]) >= 0):
+			if kw_short not in found_ids:
+				found_ids.append(kw_short)
+				found.append(kw)
+
+	# 상태이상 관련 키워드 (효과 텍스트에서 감지)
+	var status_keywords := ["독", "화상", "출혈", "약화", "취약", "냉기", "구금", "주박", "소멸"]
+	for sk in status_keywords:
+		if effect_text.find(sk) >= 0 and sk not in found_ids:
+			if all_kw.has(sk):
+				found_ids.append(sk)
+				found.append(all_kw[sk])
+
+	return found
 
 
 func _on_bg_input(event: InputEvent) -> void:

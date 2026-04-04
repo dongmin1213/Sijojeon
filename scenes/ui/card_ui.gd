@@ -74,6 +74,10 @@ var _hover_stylebox: StyleBoxFlat
 var _selected_stylebox: StyleBoxFlat
 var _disabled_stylebox: StyleBoxFlat
 var _drag_stylebox: StyleBoxFlat
+var _sijo_match_stylebox: StyleBoxFlat
+
+# 시조 매칭 글로우 애니메이션
+var _sijo_glow_tween: Tween = null
 
 
 func _ready() -> void:
@@ -139,6 +143,13 @@ func _create_styleboxes() -> void:
 	_drag_stylebox.set_border_width_all(3)
 	_drag_stylebox.set_corner_radius_all(8)
 
+	# 시조 비트 매칭 카드 — 초록 글로우 테두리
+	_sijo_match_stylebox = StyleBoxFlat.new()
+	_sijo_match_stylebox.bg_color = Color(0.16, 0.2, 0.18)
+	_sijo_match_stylebox.border_color = Color(0.3, 1.0, 0.5)
+	_sijo_match_stylebox.set_border_width_all(3)
+	_sijo_match_stylebox.set_corner_radius_all(8)
+
 
 func _update_display() -> void:
 	if card_data == null:
@@ -190,6 +201,11 @@ func _update_display() -> void:
 
 
 func _update_style() -> void:
+	# 기존 글로우 애니메이션 정리
+	if _sijo_glow_tween and _sijo_glow_tween.is_valid():
+		_sijo_glow_tween.kill()
+		_sijo_glow_tween = null
+
 	if not is_playable:
 		add_theme_stylebox_override("panel", _disabled_stylebox)
 		modulate = Color(0.6, 0.6, 0.6, 0.8)
@@ -202,9 +218,27 @@ func _update_style() -> void:
 	elif is_hovered:
 		add_theme_stylebox_override("panel", _hover_stylebox)
 		modulate = Color(1, 1, 1, 1)
+	elif sijo_match and is_playable:
+		add_theme_stylebox_override("panel", _sijo_match_stylebox)
+		modulate = Color(1, 1, 1, 1)
+		_start_sijo_glow()
 	else:
 		add_theme_stylebox_override("panel", _normal_stylebox)
 		modulate = Color(1, 1, 1, 1)
+
+
+func _start_sijo_glow() -> void:
+	## 시조 매칭 카드에 부드러운 테두리 펄스 애니메이션
+	if not is_inside_tree():
+		return
+	_sijo_glow_tween = create_tween().set_loops()
+	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 0.5, 1.0, 0.6)
+	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 1.0, 0.5, 0.6)
+
+
+func _set_sijo_border_alpha(alpha: float) -> void:
+	if _sijo_match_stylebox:
+		_sijo_match_stylebox.border_color = Color(0.3, 1.0, 0.5, alpha)
 
 
 func set_selected(selected: bool) -> void:
