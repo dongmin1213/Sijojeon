@@ -734,18 +734,28 @@ func _on_active_skill_pressed() -> void:
 
 
 func _on_passive_triggered(skill_name: String, description: String) -> void:
-	# 패시브 발동 시 플래시 텍스트 표시
+	# 패시브 발동 시 배너 형태로 표시 (중앙 상단)
+	var banner := ColorRect.new()
+	banner.color = Color(0.1, 0.2, 0.1, 0.85)
+	banner.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	banner.offset_top = 4
+	banner.offset_bottom = 36
+	banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	banner.z_index = 50
+	add_child(banner)
+
 	var popup := Label.new()
 	popup.text = "[패시브] %s: %s" % [skill_name, description]
 	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	popup.anchors_preset = Control.PRESET_CENTER_TOP
-	popup.position.y = 90
-	popup.add_theme_font_size_override("font_size", 22)
+	popup.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	popup.set_anchors_preset(Control.PRESET_FULL_RECT)
+	popup.add_theme_font_size_override("font_size", 20)
 	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.6))
-	add_child(popup)
+	banner.add_child(popup)
+
 	var tween := create_tween()
-	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
-	tween.tween_callback(popup.queue_free)
+	tween.tween_property(banner, "modulate:a", 0.0, 1.2).set_delay(1.0)
+	tween.tween_callback(banner.queue_free)
 
 
 func _on_status_effect_changed(target: String, _effect_id: String, _stacks: int) -> void:

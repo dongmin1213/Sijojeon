@@ -24,9 +24,9 @@ color = Color(0.12, 0.1, 0.15, 1)
 [node name="EnemyArea" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.08
-anchor_right = 0.95
+anchor_left = 0.01
+anchor_top = 0.03
+anchor_right = 0.99
 anchor_bottom = 0.3
 grow_horizontal = 2
 grow_vertical = 2
@@ -39,10 +39,10 @@ theme_override_constants/separation = 20
 [node name="SijoArea" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.32
-anchor_right = 0.95
-anchor_bottom = 0.42
+anchor_left = 0.01
+anchor_top = 0.31
+anchor_right = 0.99
+anchor_bottom = 0.41
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -54,10 +54,10 @@ theme_override_constants/separation = 10
 [node name="BattleHUD" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.44
-anchor_right = 0.95
-anchor_bottom = 0.58
+anchor_left = 0.01
+anchor_top = 0.42
+anchor_right = 0.99
+anchor_bottom = 0.56
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -111,10 +111,10 @@ theme_override_font_sizes/font_size = 28
 [node name="HandArea" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.02
-anchor_top = 0.6
-anchor_right = 0.98
-anchor_bottom = 0.95
+anchor_left = 0.01
+anchor_top = 0.57
+anchor_right = 0.99
+anchor_bottom = 0.99
 grow_horizontal = 2
 grow_vertical = 2
 
