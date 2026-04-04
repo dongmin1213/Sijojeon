@@ -259,7 +259,7 @@ func _update_sijo_summary() -> void:
 	if not _sijo_summary_label:
 		return
 	var filled := sijo_system.current_slot_index if sijo_system else 0
-	var total := SijoSystem.PATTERN.size()
+	var total := sijo_system.pattern.size()
 	_sijo_summary_label.text = tr("BATTLE_SIJO_SUMMARY_FMT") % [filled, total]
 
 
@@ -268,9 +268,9 @@ func _init_sijo_slots() -> void:
 	for child in sijo_container.get_children():
 		child.queue_free()
 
-	for i in SijoSystem.PATTERN.size():
+	for i in sijo_system.pattern.size():
 		var label := Label.new()
-		label.text = "[%d]" % SijoSystem.PATTERN[i]
+		label.text = "[%d]" % sijo_system.pattern[i]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.custom_minimum_size = Vector2(140, 70)
 		label.add_theme_font_size_override("font_size", 24)
@@ -312,7 +312,7 @@ func _check_sijo_completable() -> void:
 		_hide_sijo_alert()
 		return
 
-	var remaining_slots := SijoSystem.PATTERN.size() - sijo_system.current_slot_index
+	var remaining_slots := sijo_system.pattern.size() - sijo_system.current_slot_index
 	if remaining_slots <= 0:
 		_hide_sijo_alert()
 		return
@@ -327,8 +327,8 @@ func _check_sijo_completable() -> void:
 	# 순서대로 매칭 가능한지 그리디 체크
 	var available_beats := hand_beats.duplicate()
 	var can_complete := true
-	for slot_idx in range(sijo_system.current_slot_index, SijoSystem.PATTERN.size()):
-		var needed_beat: int = SijoSystem.PATTERN[slot_idx]
+	for slot_idx in range(sijo_system.current_slot_index, sijo_system.pattern.size()):
+		var needed_beat: int = sijo_system.pattern[slot_idx]
 		var found := available_beats.find(needed_beat)
 		if found == -1:
 			can_complete = false

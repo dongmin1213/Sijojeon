@@ -160,8 +160,8 @@ func _update_sijo_summary() -> void:
 	if not _sijo_summary_label:
 		return
 	var filled := sijo_system.current_slot_index if sijo_system else 0
-	var total := SijoSystem.PATTERN.size()
-	_sijo_summary_label.text = "시조 %d/%d" % [filled, total]
+	var total := sijo_system.pattern.size()
+	_sijo_summary_label.text = tr("BATTLE_SIJO_SUMMARY_FMT") % [filled, total]
 
 
 func _init_sijo_slots() -> void:
@@ -169,9 +169,9 @@ func _init_sijo_slots() -> void:
 	for child in sijo_container.get_children():
 		child.queue_free()
 
-	for i in SijoSystem.PATTERN.size():
+	for i in sijo_system.pattern.size():
 		var label := Label.new()
-		label.text = "[%d]" % SijoSystem.PATTERN[i]
+		label.text = "[%d]" % sijo_system.pattern[i]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.custom_minimum_size = Vector2(120, 60)
 		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
@@ -182,8 +182,8 @@ func _init_sijo_slots() -> void:
 func _refresh_hand_ui() -> void:
 	var sijo_beat := sijo_system.get_next_required_beat() if sijo_system else -1
 	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat, battle_manager)
-	draw_pile_label.text = "드로우: %d" % battle_manager.draw_pile.size()
-	discard_pile_label.text = "버림: %d" % battle_manager.discard_pile.size()
+	draw_pile_label.text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
+	discard_pile_label.text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
 
 
 func _update_enemy_ui() -> void:
@@ -199,14 +199,14 @@ func _update_enemy_ui() -> void:
 			cache["panel"].visible = true
 			cache["hp_label"].text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
 			var block_val: int = enemy.get("block", 0)
-			cache["block_label"].text = "방어: %d" % block_val
+			cache["block_label"].text = tr("BATTLE_ENEMY_BLOCK_FMT") % block_val
 			cache["block_label"].visible = block_val > 0
 			var intent := battle_manager._get_enemy_intent(i)
 			cache["intent_label"].text = _format_intent(intent)
 		else:
 			var enemy_name: String = TranslationManager.trd_name(enemy)
 			if enemy_name == "":
-				enemy_name = "적"
+				enemy_name = tr("BATTLE_ENEMY_FALLBACK")
 
 			var panel := PanelContainer.new()
 			var vbox := VBoxContainer.new()
@@ -226,7 +226,7 @@ func _update_enemy_ui() -> void:
 			var block_val: int = enemy.get("block", 0)
 			var enemy_block_label := Label.new()
 			enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			enemy_block_label.text = "방어: %d" % block_val
+			enemy_block_label.text = tr("BATTLE_ENEMY_BLOCK_FMT") % block_val
 			enemy_block_label.visible = block_val > 0
 
 			vbox.add_child(name_label)
@@ -254,15 +254,15 @@ func _format_intent(intent: Dictionary) -> String:
 			var dmg: int = intent.get("damage", 0)
 			var times: int = intent.get("times", 1)
 			if times > 1:
-				return "%s %d×%d" % [name_str, dmg, times] if name_str else "공격 %d×%d" % [dmg, times]
-			return "%s %d" % [name_str, dmg] if name_str else "공격 %d" % dmg
+				return "%s %d×%d" % [name_str, dmg, times] if name_str else tr("BATTLE_ATTACK_MULTI_FMT") % [dmg, times]
+			return "%s %d" % [name_str, dmg] if name_str else tr("BATTLE_ATTACK_FMT") % dmg
 		"defend", "defend_buff", "buff_defend":
 			var blk: int = intent.get("block", 0)
-			return "%s %d" % [name_str, blk] if name_str else "방어 %d" % blk
+			return "%s %d" % [name_str, blk] if name_str else tr("BATTLE_DEFEND_FMT") % blk
 		"buff":
-			return name_str if name_str else "강화"
+			return name_str if name_str else tr("BATTLE_BUFF")
 		"debuff":
-			return name_str if name_str else "디버프"
+			return name_str if name_str else tr("BATTLE_DEBUFF")
 		_:
 			return name_str if name_str else "???"
 
@@ -288,7 +288,7 @@ func _on_hand_changed(_new_hand: Array[String]) -> void:
 
 
 func _on_qi_changed(current: int, max_val: int) -> void:
-	qi_label.text = "氣: %d/%d" % [current, max_val]
+	qi_label.text = tr("BATTLE_QI_FMT") % [current, max_val]
 	_refresh_hand_ui()
 
 
@@ -297,12 +297,12 @@ func _on_hp_changed(current: int, max_val: int) -> void:
 
 
 func _on_block_changed(new_block: int) -> void:
-	block_label.text = "방어: %d" % new_block
+	block_label.text = tr("BATTLE_BLOCK_FMT") % new_block
 	block_label.visible = new_block > 0
 
 
 func _on_turn_started(turn: int) -> void:
-	turn_label.text = "%d턴" % turn
+	turn_label.text = tr("BATTLE_TURN_FMT") % turn
 
 
 func _on_enemy_hp_changed(_enemy_index: int, _current: int, _max_val: int) -> void:
@@ -344,10 +344,10 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 		2:
 			battle_manager.current_qi = mini(battle_manager.current_qi + 1, battle_manager.max_qi)
 			battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-			_show_sijo_reward_popup("초장 완성! 기 +1")
+			_show_sijo_reward_popup(tr("TUTORIAL_CHOJANG_REWARD"))
 		3:
 			battle_manager.draw_cards(1)
-			_show_sijo_reward_popup("중장 완성! 카드 드로우")
+			_show_sijo_reward_popup(tr("TUTORIAL_JUNGJANG_REWARD"))
 
 
 func _on_sijo_completed(final_card_id: String, _all_slot_card_ids: Array) -> void:
@@ -385,7 +385,7 @@ func _on_battle_ended(victory: bool) -> void:
 	add_child(overlay)
 
 	var label := Label.new()
-	label.text = "승리!" if victory else "패배..."
+	label.text = tr("TUTORIAL_VICTORY_TEXT") if victory else tr("TUTORIAL_DEFEAT_TEXT")
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.anchors_preset = Control.PRESET_FULL_RECT

@@ -5,9 +5,18 @@ extends Node
 ## 카드의 음보(beat)가 슬롯 패턴과 일치하면 채워진다.
 ## 6슬롯 모두 채우면 시조 완성: 마지막 카드 효과 ×2 + 기 1 회복 + 카드 1장 드로우.
 
-const PATTERN: Array[int] = [3, 4, 3, 4, 3, 4]
+## 시조 비트 패턴 변형 — 매 전투마다 랜덤 선택하여 다양성 확보
+const PATTERN_VARIANTS: Array = [
+	[3, 4, 3, 4, 3, 4],  # 기본 정격
+	[4, 3, 4, 3, 4, 3],  # 역배치
+	[3, 3, 4, 4, 3, 4],  # 초장 경쾌, 중장 무거움
+	[4, 4, 3, 3, 4, 3],  # 초장 무거움, 중장 경쾌
+	[3, 4, 4, 3, 3, 4],  # 변격 1
+	[4, 3, 3, 4, 4, 3],  # 변격 2
+]
 const JANG_NAMES: Array[String] = ["초장", "초장", "중장", "중장", "종장", "종장"]
 
+var pattern: Array[int] = [3, 4, 3, 4, 3, 4]  # 현재 전투 패턴
 var slots: Array[String] = []  # 채워진 카드 ID
 var current_slot_index: int = 0
 
@@ -18,10 +27,14 @@ signal sijo_chapter_completed(chapter: String)
 signal sijo_completed(final_card_id: String, all_slot_card_ids: Array)
 
 
+func _ready() -> void:
+	_randomize_pattern()
+
+
 func try_fill_slot(card_beat: int, card_id: String) -> bool:
-	if current_slot_index >= PATTERN.size():
+	if current_slot_index >= pattern.size():
 		return false
-	if card_beat != PATTERN[current_slot_index]:
+	if card_beat != pattern[current_slot_index]:
 		return false
 
 	slots.append(card_id)
@@ -37,15 +50,15 @@ func try_fill_slot(card_beat: int, card_id: String) -> bool:
 	elif current_slot_index == 6:
 		sijo_chapter_completed.emit("종장")
 
-	if current_slot_index >= PATTERN.size():
+	if current_slot_index >= pattern.size():
 		sijo_completed.emit(card_id, slots.duplicate())
 	return true
 
 
 func get_next_required_beat() -> int:
-	if current_slot_index >= PATTERN.size():
+	if current_slot_index >= pattern.size():
 		return -1
-	return PATTERN[current_slot_index]
+	return pattern[current_slot_index]
 
 
 func get_filled_count() -> int:
@@ -53,7 +66,7 @@ func get_filled_count() -> int:
 
 
 func is_complete() -> bool:
-	return current_slot_index >= PATTERN.size()
+	return current_slot_index >= pattern.size()
 
 
 func reset_random_slot() -> void:
@@ -68,3 +81,12 @@ func reset_random_slot() -> void:
 func reset() -> void:
 	slots.clear()
 	current_slot_index = 0
+	_randomize_pattern()
+
+
+func _randomize_pattern() -> void:
+	## 전투 시작/시조 리셋 시 패턴 변형을 랜덤으로 선택한다.
+	var variant: Array = PATTERN_VARIANTS[randi() % PATTERN_VARIANTS.size()]
+	pattern.clear()
+	for beat in variant:
+		pattern.append(beat)

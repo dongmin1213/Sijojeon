@@ -258,8 +258,8 @@ func _spawn_hanshi_overlay(parent: Control, names: Array[String]) -> void:
 	panel.color = Color(0.05, 0.03, 0.02, 0.82)  # 반투명 먹색 배경
 	panel.anchor_left = 0.1
 	panel.anchor_right = 0.9
-	panel.anchor_top = 0.2
-	panel.anchor_bottom = 0.8
+	panel.anchor_top = 0.15
+	panel.anchor_bottom = 0.55
 	panel.z_index = 95
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(panel)
