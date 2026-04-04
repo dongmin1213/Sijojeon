@@ -164,8 +164,8 @@ func flash_screen(parent: Control, color: Color = Color(1, 1, 1, 0.3), duration:
 
 # --- 시조 완성 연출 ---
 
-func sijo_complete_vfx(parent: Control) -> void:
-	## 시조 완성 시: 히트스톱 + 슬로우모션 + 화면 플래시 + 큰 텍스트 + 강화된 파티클
+func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> void:
+	## 시조 완성 시: 히트스톱 + 슬로우모션 + 화면 플래시 + 한시 구절 연출 + 강화된 파티클
 	# 히트스톱 + 슬로우모션 연출 (순간 정지 → 느린 복귀)
 	_apply_slow_motion(0.05, 0.3)
 
@@ -175,32 +175,87 @@ func sijo_complete_vfx(parent: Control) -> void:
 	# 강화된 화면 흔들림
 	screen_shake(18.0, 5.0)
 
-	# 완성 텍스트 연출
-	var label := _acquire_label()
-	label.text = "시조 완성!"
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.anchors_preset = Control.PRESET_CENTER
-	label.add_theme_font_size_override("font_size", 56)
-	label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
-	label.add_theme_color_override("font_outline_color", Color(0.6, 0.3, 0.0))
-	label.add_theme_constant_override("outline_size", 4)
-	label.pivot_offset = label.size / 2.0
-	label.z_index = 90
-	parent.add_child(label)
-
-	# 스케일 업 + 페이드 아웃 (더 역동적)
-	var tween := parent.create_tween()
-	label.scale = Vector2(0.3, 0.3)
-	tween.tween_property(label, "scale", Vector2(1.3, 1.3), 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	tween.tween_property(label, "scale", Vector2(1.1, 1.1), 0.15).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(label, "modulate:a", 0.0, 0.5).set_delay(0.6)
-	tween.tween_callback(_release_label.bind(label))
+	# 한시(漢詩) 구절 연출 — 6장 카드명을 초장/중장/종장 3행으로 표시
+	if slot_card_names.size() == 6:
+		_spawn_hanshi_overlay(parent, slot_card_names)
+	else:
+		# 카드명 없을 때 기존 단순 텍스트 폴백
+		var label := _acquire_label()
+		label.text = "시조 완성!"
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.anchors_preset = Control.PRESET_CENTER
+		label.add_theme_font_size_override("font_size", 56)
+		label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+		label.add_theme_color_override("font_outline_color", Color(0.6, 0.3, 0.0))
+		label.add_theme_constant_override("outline_size", 4)
+		label.pivot_offset = label.size / 2.0
+		label.z_index = 90
+		parent.add_child(label)
+		var tween := parent.create_tween()
+		label.scale = Vector2(0.3, 0.3)
+		tween.tween_property(label, "scale", Vector2(1.3, 1.3), 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+		tween.tween_property(label, "scale", Vector2(1.1, 1.1), 0.15).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(label, "modulate:a", 0.0, 0.5).set_delay(0.6)
+		tween.tween_callback(_release_label.bind(label))
 
 	# 1차 파티클: 빠르게 퍼지는 코어 (24개)
 	_spawn_particles(parent, 24, Color(1.0, 0.85, 0.3))
 	# 2차 파티클: 느리게 퍼지는 외곽 링 (12개, 더 크고 밝음)
 	_spawn_ring_particles(parent, 12, Color(1.0, 0.95, 0.6))
+
+
+func _spawn_hanshi_overlay(parent: Control, names: Array[String]) -> void:
+	## 시조 완성 한시 연출: 초장/중장/종장 3행을 중앙 오버레이로 표시
+	## 각 행 = 카드명 두 개를 공백으로 연결, 서예 느낌의 금색 텍스트
+	var panel := ColorRect.new()
+	panel.color = Color(0.05, 0.03, 0.02, 0.82)  # 반투명 먹색 배경
+	panel.anchor_left = 0.1
+	panel.anchor_right = 0.9
+	panel.anchor_top = 0.2
+	panel.anchor_bottom = 0.8
+	panel.z_index = 95
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(panel)
+
+	# 표제: "시조 완성!" 소형 헤더
+	var header := Label.new()
+	header.text = "— 시 조 완 성 —"
+	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	header.anchor_left = 0.0
+	header.anchor_right = 1.0
+	header.anchor_top = 0.05
+	header.anchor_bottom = 0.25
+	header.add_theme_font_size_override("font_size", 22)
+	header.add_theme_color_override("font_color", Color(0.9, 0.75, 0.3))
+	header.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(header)
+
+	# 초장/중장/종장 3행
+	var jang_labels: Array[String] = ["초장", "중장", "종장"]
+	for i in 3:
+		var line_text := "%s  %s" % [names[i * 2], names[i * 2 + 1]]
+		var line_label := Label.new()
+		line_label.text = line_text
+		line_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		line_label.anchor_left = 0.0
+		line_label.anchor_right = 1.0
+		line_label.anchor_top = 0.25 + i * 0.22
+		line_label.anchor_bottom = 0.47 + i * 0.22
+		line_label.add_theme_font_size_override("font_size", 30)
+		line_label.add_theme_color_override("font_color", Color(1.0, 0.95, 0.7))
+		line_label.add_theme_color_override("font_outline_color", Color(0.4, 0.2, 0.0))
+		line_label.add_theme_constant_override("outline_size", 2)
+		line_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		panel.add_child(line_label)
+
+	# 패널 페이드 인 → 유지 → 페이드 아웃 (총 2.5초)
+	panel.modulate.a = 0.0
+	var tween := parent.create_tween()
+	tween.tween_property(panel, "modulate:a", 1.0, 0.3).set_ease(Tween.EASE_OUT)
+	tween.tween_interval(1.6)
+	tween.tween_property(panel, "modulate:a", 0.0, 0.6)
+	tween.tween_callback(panel.queue_free)
 
 
 func _spawn_particles(parent: Control, count: int, color: Color) -> void:

@@ -353,7 +353,7 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 			_show_sijo_reward_popup("중장 완성! 카드 드로우")
 
 
-func _on_sijo_completed(final_card_id: String) -> void:
+func _on_sijo_completed(final_card_id: String, _all_slot_card_ids: Array) -> void:
 	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
 		return
 	AudioManager.play_sfx_by_key("sijo_complete")

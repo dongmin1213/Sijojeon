@@ -47,6 +47,10 @@ var _enemy_ui_dirty: bool = false
 # 손패 UI 업데이트 배칭용 dirty flag (try_play_card 중 중복 rebuild 방지)
 var _hand_ui_dirty: bool = false
 
+# 시조 완성 가능 알림 라벨
+var _sijo_alert_label: Label = null
+var _sijo_alert_visible: bool = false
+
 
 func _ready() -> void:
 	# VFX 매니저 초기화
@@ -255,6 +259,73 @@ func _deferred_refresh_hand_ui() -> void:
 	draw_pile_label.text = "드로우: %d" % battle_manager.draw_pile.size()
 	discard_pile_label.text = "버림: %d" % battle_manager.discard_pile.size()
 
+	# 시조 완성 가능 여부 체크
+	_check_sijo_completable()
+
+
+func _check_sijo_completable() -> void:
+	## 현재 손패로 남은 시조 슬롯을 모두 채울 수 있는지 체크
+	if not sijo_system or sijo_system.is_complete():
+		_hide_sijo_alert()
+		return
+
+	var remaining_slots := SijoSystem.PATTERN.size() - sijo_system.current_slot_index
+	if remaining_slots <= 0:
+		_hide_sijo_alert()
+		return
+
+	# 남은 슬롯 패턴에 맞는 비트를 손패에서 찾기
+	var hand_beats: Array[int] = []
+	for card_id in battle_manager.hand:
+		var card: CardData = DataLoader.get_card(card_id)
+		if card and battle_manager.can_play_card(card):
+			hand_beats.append(card.beat)
+
+	# 순서대로 매칭 가능한지 그리디 체크
+	var available_beats := hand_beats.duplicate()
+	var can_complete := true
+	for slot_idx in range(sijo_system.current_slot_index, SijoSystem.PATTERN.size()):
+		var needed_beat: int = SijoSystem.PATTERN[slot_idx]
+		var found := available_beats.find(needed_beat)
+		if found == -1:
+			can_complete = false
+			break
+		available_beats.remove_at(found)
+
+	if can_complete:
+		_show_sijo_alert()
+	else:
+		_hide_sijo_alert()
+
+
+func _show_sijo_alert() -> void:
+	if _sijo_alert_visible:
+		return
+	_sijo_alert_visible = true
+
+	if not _sijo_alert_label:
+		_sijo_alert_label = Label.new()
+		_sijo_alert_label.text = "♪ 시조 완성 가능! ♪"
+		_sijo_alert_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_sijo_alert_label.add_theme_font_size_override("font_size", 22)
+		_sijo_alert_label.add_theme_color_override("font_color", Color(0.3, 1.0, 0.5))
+		_sijo_alert_label.anchors_preset = Control.PRESET_CENTER_TOP
+		_sijo_alert_label.position.y = 150
+		add_child(_sijo_alert_label)
+
+		# 펄스 애니메이션
+		var tween := create_tween().set_loops()
+		tween.tween_property(_sijo_alert_label, "modulate:a", 0.4, 0.5)
+		tween.tween_property(_sijo_alert_label, "modulate:a", 1.0, 0.5)
+	else:
+		_sijo_alert_label.visible = true
+
+
+func _hide_sijo_alert() -> void:
+	_sijo_alert_visible = false
+	if _sijo_alert_label:
+		_sijo_alert_label.visible = false
+
 
 func _mark_enemy_ui_dirty() -> void:
 	## 적 UI 업데이트를 예약. 같은 프레임 내 중복 호출을 방지한다.
@@ -293,6 +364,7 @@ func _update_enemy_ui() -> void:
 			cache["block_label"].visible = block_val > 0
 			var intent := battle_manager._get_enemy_intent(i)
 			cache["intent_label"].text = _format_intent(intent)
+			cache["intent_label"].add_theme_color_override("font_color", _get_intent_color(intent))
 			_build_status_icons(cache["status_hbox"], "enemy_%d" % i)
 		else:
 			# 새 적 패널 생성
@@ -324,10 +396,10 @@ func _update_enemy_ui() -> void:
 
 			var intent_label := Label.new()
 			intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			intent_label.add_theme_color_override("font_color", Color(1, 0.4, 0.4))
 			intent_label.add_theme_font_size_override("font_size", 22)
 			var intent := battle_manager._get_enemy_intent(i)
 			intent_label.text = _format_intent(intent)
+			intent_label.add_theme_color_override("font_color", _get_intent_color(intent))
 
 			var block_val: int = enemy.get("block", 0)
 			var enemy_block_label := Label.new()
@@ -386,18 +458,47 @@ func _format_intent(intent: Dictionary) -> String:
 		"attack", "attack_debuff":
 			var dmg: int = intent.get("damage", 0)
 			var times: int = intent.get("times", 1)
+			var icon := "⚔"
 			if times > 1:
-				return "%s %d×%d" % [name_str, dmg, times] if name_str else "공격 %d×%d" % [dmg, times]
-			return "%s %d" % [name_str, dmg] if name_str else "공격 %d" % dmg
+				return "%s %s %d×%d" % [icon, name_str, dmg, times] if name_str else "%s 공격 %d×%d" % [icon, dmg, times]
+			return "%s %s %d" % [icon, name_str, dmg] if name_str else "%s 공격 %d" % [icon, dmg]
 		"defend", "defend_buff", "buff_defend":
 			var blk: int = intent.get("block", 0)
-			return "%s %d" % [name_str, blk] if name_str else "방어 %d" % blk
+			return "🛡 %s %d" % [name_str, blk] if name_str else "🛡 방어 %d" % blk
 		"buff":
-			return name_str if name_str else "강화"
+			return "⬆ %s" % name_str if name_str else "⬆ 강화"
 		"debuff":
-			return name_str if name_str else "디버프"
+			return "⬇ %s" % name_str if name_str else "⬇ 디버프"
+		"special":
+			return "✦ %s" % name_str if name_str else "✦ 특수"
 		_:
-			return name_str if name_str else "???"
+			return "❓ %s" % name_str if name_str else "❓ ???"
+
+
+func _get_intent_color(intent: Dictionary) -> Color:
+	## 인텐트 타입과 위협도에 따른 색상 반환
+	var intent_type: String = intent.get("intent", intent.get("type", ""))
+	match intent_type:
+		"attack", "attack_debuff":
+			var dmg: int = intent.get("damage", 0)
+			var times: int = intent.get("times", 1)
+			var total := dmg * times
+			if total >= 20:
+				return Color(1.0, 0.15, 0.15)  # 고위협: 밝은 빨강
+			elif total >= 10:
+				return Color(1.0, 0.4, 0.3)    # 중위협: 주황빨강
+			else:
+				return Color(1.0, 0.6, 0.5)    # 저위협: 연한 빨강
+		"defend", "defend_buff", "buff_defend":
+			return Color(0.4, 0.7, 1.0)        # 방어: 파랑
+		"buff":
+			return Color(1.0, 0.85, 0.3)       # 강화: 노랑
+		"debuff":
+			return Color(0.8, 0.4, 1.0)        # 디버프: 보라
+		"special":
+			return Color(1.0, 0.7, 0.2)        # 특수: 주황
+		_:
+			return Color(0.7, 0.7, 0.7)        # 알 수 없음: 회색
 
 
 # --- 시그널 핸들러 ---
@@ -542,14 +643,21 @@ func _show_sijo_reward_popup(text: String) -> void:
 	tween.tween_callback(popup.queue_free)
 
 
-func _on_sijo_completed(final_card_id: String) -> void:
+func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void:
 	# 전투가 이미 종료된 상태면 추가 효과 적용하지 않음
 	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
 		return
 	AudioManager.play_sfx_by_key("sijo_complete")
-	# 시조 완성 VFX
+	# 시조 완성 VFX — 완성에 사용된 6장 카드명으로 한시 구절 연출
 	if vfx:
-		vfx.sijo_complete_vfx(self)
+		var slot_names: Array[String] = []
+		for slot_id in all_slot_card_ids:
+			var slot_card: CardData = DataLoader.get_card(slot_id)
+			if slot_card:
+				slot_names.append(slot_card.name_ko)
+			else:
+				slot_names.append("…")
+		vfx.sijo_complete_vfx(self, slot_names)
 	# 시조 완성 보상: 마지막 카드 효과 2배 + 기 1 회복 + 카드 1장 드로우
 	var card: CardData = battle_manager._get_battle_card(final_card_id)
 	if card:

@@ -27,7 +27,10 @@
         "romanized": "Bullyangbae"
       },
       "description": "한양 골목의 건달. 빠르고 거칠지만 무모하다.",
-      "hp": { "min": 20, "max": 28 },
+      "hp": {
+        "min": 25,
+        "max": 35
+      },
       "moves": [
         {
           "id": "slash",
@@ -51,17 +54,31 @@
           "intent": "debuff",
           "damage": 0,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "플레이어에게 약화 1 부여. 다음 공격 피해 25% 감소."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["slash", "reckless_flurry", "taunt", "slash", "reckless_flurry"]
+        "sequence": [
+          "slash",
+          "reckless_flurry",
+          "taunt",
+          "slash",
+          "reckless_flurry"
+        ]
       },
       "rewards": {
-        "gold": { "min": 10, "max": 20 },
+        "gold": {
+          "min": 10,
+          "max": 20
+        },
         "card_chance": 0.2,
         "relic_chance": 0.0
       },
@@ -75,7 +92,10 @@
         "romanized": "Pojol"
       },
       "description": "부패한 포도청 관리. 방패와 곤봉을 사용한다.",
-      "hp": { "min": 28, "max": 36 },
+      "hp": {
+        "min": 28,
+        "max": 36
+      },
       "moves": [
         {
           "id": "club_strike",
@@ -105,17 +125,33 @@
           "name": "기합",
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            }
           ],
           "description": "힘(strength) 1 획득. 이후 공격 피해 +1."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["club_strike", "brace", "heavy_blow", "rally", "club_strike", "brace", "heavy_blow"]
+        "sequence": [
+          "club_strike",
+          "brace",
+          "heavy_blow",
+          "rally",
+          "club_strike",
+          "brace",
+          "heavy_blow"
+        ]
       },
       "rewards": {
-        "gold": { "min": 15, "max": 25 },
+        "gold": {
+          "min": 15,
+          "max": 25
+        },
         "card_chance": 0.3,
         "relic_chance": 0.0
       },
@@ -129,7 +165,10 @@
         "romanized": "Wonhon"
       },
       "description": "억울하게 죽어 한양을 떠돌고 있는 귀신. 저주와 공포를 무기로 삼는다.",
-      "hp": { "min": 22, "max": 30 },
+      "hp": {
+        "min": 22,
+        "max": 30
+      },
       "moves": [
         {
           "id": "wail",
@@ -137,8 +176,19 @@
           "intent": "debuff",
           "damage": 0,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player", "note": "취약: 받는 피해 +50%, 2턴" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player",
+              "note": "취약: 받는 피해 +50%, 2턴"
+            }
           ],
           "description": "플레이어에게 약화 1 + 취약 1 부여."
         },
@@ -149,7 +199,13 @@
           "damage": 5,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player", "note": "냉기: 드로우 1장 감소, 다음 턴 해제" }
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player",
+              "note": "냉기: 드로우 1장 감소, 다음 턴 해제"
+            }
           ],
           "description": "5피해 + 냉기(다음 턴 드로우 -1) 부여."
         },
@@ -160,17 +216,32 @@
           "damage": 6,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "6피해 + 약화 1. 원혼의 주력 패턴."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["wail", "cold_touch", "cold_touch", "possession_attempt", "wail", "possession_attempt"]
+        "sequence": [
+          "wail",
+          "cold_touch",
+          "cold_touch",
+          "possession_attempt",
+          "wail",
+          "possession_attempt"
+        ]
       },
       "rewards": {
-        "gold": { "min": 12, "max": 22 },
+        "gold": {
+          "min": 12,
+          "max": 22
+        },
         "card_chance": 0.25,
         "relic_chance": 0.05
       },
@@ -184,7 +255,10 @@
         "romanized": "Dokkaebi"
       },
       "description": "한양 외곽을 배회하는 장난기 많은 도깨비. 예측하기 어렵고 방망이가 강력하다.",
-      "hp": { "min": 30, "max": 40 },
+      "hp": {
+        "min": 30,
+        "max": 40
+      },
       "moves": [
         {
           "id": "club_bash",
@@ -201,7 +275,12 @@
           "damage": 4,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "화상", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "화상",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
           "description": "4피해 + 화상 2 (매 턴 2피해, 2턴)."
         },
@@ -210,7 +289,12 @@
           "name": "기합",
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
           "description": "힘 2 획득. 이후 공격 피해 +2씩 증가."
         },
@@ -225,10 +309,21 @@
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["club_bash", "trick", "club_bash", "strengthen", "slam", "club_bash", "slam"]
+        "sequence": [
+          "club_bash",
+          "trick",
+          "club_bash",
+          "strengthen",
+          "slam",
+          "club_bash",
+          "slam"
+        ]
       },
       "rewards": {
-        "gold": { "min": 18, "max": 28 },
+        "gold": {
+          "min": 18,
+          "max": 28
+        },
         "card_chance": 0.35,
         "relic_chance": 0.05
       },
@@ -242,7 +337,10 @@
         "romanized": "Pojol Daejang"
       },
       "description": "한양 순라군의 대장. 부하들을 이끌며 연타와 방어를 동시에 구사하는 노련한 전사.",
-      "hp": { "min": 32, "max": 42 },
+      "hp": {
+        "min": 32,
+        "max": 42
+      },
       "moves": [
         {
           "id": "rapid_clubs",
@@ -264,7 +362,12 @@
           "name": "대장의 호령",
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
           "description": "기합을 질러 힘 2 획득. 이후 공격 피해 +2."
         },
@@ -279,10 +382,21 @@
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["rapid_clubs", "shield_wall", "captain_command", "heavy_strike", "rapid_clubs", "shield_wall", "heavy_strike"]
+        "sequence": [
+          "rapid_clubs",
+          "shield_wall",
+          "captain_command",
+          "heavy_strike",
+          "rapid_clubs",
+          "shield_wall",
+          "heavy_strike"
+        ]
       },
       "rewards": {
-        "gold": { "min": 16, "max": 26 },
+        "gold": {
+          "min": 16,
+          "max": 26
+        },
         "card_chance": 0.3,
         "relic_chance": 0.0
       },
@@ -297,7 +411,10 @@
         "romanized": "Akgwi"
       },
       "description": "원한이 너무 깊어 악으로 변한 귀신. 독과 저주로 적을 서서히 갉아먹는다.",
-      "hp": { "min": 18, "max": 25 },
+      "hp": {
+        "min": 18,
+        "max": 25
+      },
       "moves": [
         {
           "id": "venom_touch",
@@ -306,7 +423,12 @@
           "damage": 4,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 3, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 3,
+              "target": "player"
+            }
           ],
           "description": "4피해 + 독 3 부여. 누적 독 피해: 3+2+1=6."
         },
@@ -315,8 +437,18 @@
           "name": "저주 낙인",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "취약 2 + 약화 1 부여."
         },
@@ -327,17 +459,32 @@
           "damage": 7,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "7피해 + 냉기 1(다음 턴 드로우 -1) 부여."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["curse_mark", "venom_touch", "spirit_drain", "venom_touch", "curse_mark", "spirit_drain"]
+        "sequence": [
+          "curse_mark",
+          "venom_touch",
+          "spirit_drain",
+          "venom_touch",
+          "curse_mark",
+          "spirit_drain"
+        ]
       },
       "rewards": {
-        "gold": { "min": 10, "max": 20 },
+        "gold": {
+          "min": 10,
+          "max": 20
+        },
         "card_chance": 0.25,
         "relic_chance": 0.08
       },
@@ -352,15 +499,28 @@
         "romanized": "Tamgwan-oli"
       },
       "description": "부패한 조선 관리. 직접 싸우기보다 버프와 약화로 유리한 상황을 만든다.",
-      "hp": { "min": 28, "max": 38 },
+      "hp": {
+        "min": 28,
+        "max": 38
+      },
       "moves": [
         {
           "id": "bribe_power",
           "name": "뇌물 축적",
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" },
-            { "type": "apply_buff", "buff": "thorns", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            },
+            {
+              "type": "apply_buff",
+              "buff": "thorns",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
           "description": "힘 2 + 가시 2 획득. 근접 공격자에게 역피해 유발."
         },
@@ -371,7 +531,12 @@
           "damage": 8,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
           "description": "8피해 + 약화 2. 플레이어 공격력을 크게 낮춘다."
         },
@@ -380,8 +545,18 @@
           "name": "압박 명령",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" },
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "취약 1 + 냉기 1 부여. 다음 턴 드로우 방해."
         },
@@ -396,10 +571,21 @@
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["decree", "bribe_power", "extort", "official_blow", "decree", "extort", "official_blow"]
+        "sequence": [
+          "decree",
+          "bribe_power",
+          "extort",
+          "official_blow",
+          "decree",
+          "extort",
+          "official_blow"
+        ]
       },
       "rewards": {
-        "gold": { "min": 15, "max": 28 },
+        "gold": {
+          "min": 15,
+          "max": 28
+        },
         "card_chance": 0.3,
         "relic_chance": 0.05
       },
@@ -416,7 +602,10 @@
         "romanized": "Imugi"
       },
       "description": "아직 용이 되지 못한 뱀 정령. 독과 위압으로 싸운다.",
-      "hp": { "min": 55, "max": 65 },
+      "hp": {
+        "min": 55,
+        "max": 65
+      },
       "note": "엘리트 — 보스와 일반 몬스터의 중간 단계.",
       "moves": [
         {
@@ -426,7 +615,13 @@
           "damage": 7,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 3, "target": "player", "note": "독: 매 턴 시작 시 n피해 후 n 감소, 0이 되면 소멸" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 3,
+              "target": "player",
+              "note": "독: 매 턴 시작 시 n피해 후 n 감소, 0이 되면 소멸"
+            }
           ],
           "description": "7피해 + 독 3 부여."
         },
@@ -436,7 +631,12 @@
           "intent": "buff_defend",
           "block": 8,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            }
           ],
           "description": "방어도 8 + 힘 1."
         },
@@ -451,10 +651,21 @@
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["poison_bite", "coil", "crushing_squeeze", "poison_bite", "poison_bite", "coil", "crushing_squeeze"]
+        "sequence": [
+          "poison_bite",
+          "coil",
+          "crushing_squeeze",
+          "poison_bite",
+          "poison_bite",
+          "coil",
+          "crushing_squeeze"
+        ]
       },
       "rewards": {
-        "gold": { "min": 25, "max": 40 },
+        "gold": {
+          "min": 25,
+          "max": 40
+        },
         "card_chance": 0.6,
         "relic_chance": 0.25
       },
@@ -468,7 +679,10 @@
         "romanized": "Oksajang"
       },
       "description": "한양 감옥을 관리하는 잔혹한 간수장. 죄수를 도구로 삼아 싸우며 구금 디버프로 적을 제압한다.",
-      "hp": { "min": 50, "max": 65 },
+      "hp": {
+        "min": 50,
+        "max": 65
+      },
       "note": "엘리트 — 소환 메커니즘과 구금 디버프 보유.",
       "moves": [
         {
@@ -484,8 +698,19 @@
           "name": "족쇄",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "구금", "stacks": 2, "target": "player", "note": "구금: 카드 사용 비용 +1, 2턴 지속" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "구금",
+              "stacks": 2,
+              "target": "player",
+              "note": "구금: 카드 사용 비용 +1, 2턴 지속"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "플레이어에게 구금 2(카드 비용 +1, 2턴) + 약화 1 부여."
         },
@@ -495,7 +720,12 @@
           "intent": "summon",
           "description": "죄수 토큰 2명을 전장에 소환한다. 각 HP 12.",
           "summon": [
-            { "enemy_id": "E001", "count": 2, "hp_override": 12, "name_override": "죄수 토큰" }
+            {
+              "enemy_id": "E001",
+              "count": 2,
+              "hp_override": 12,
+              "name_override": "죄수 토큰"
+            }
           ]
         },
         {
@@ -512,17 +742,34 @@
           "intent": "buff_defend",
           "block": 12,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            }
           ],
           "description": "방어도 12 + 힘 1 획득."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["shackle", "summon_prisoner", "prison_lash", "iron_cudgel", "warden_fortify", "shackle", "prison_lash", "iron_cudgel"]
+        "sequence": [
+          "shackle",
+          "summon_prisoner",
+          "prison_lash",
+          "iron_cudgel",
+          "warden_fortify",
+          "shackle",
+          "prison_lash",
+          "iron_cudgel"
+        ]
       },
       "rewards": {
-        "gold": { "min": 28, "max": 42 },
+        "gold": {
+          "min": 28,
+          "max": 42
+        },
         "card_chance": 0.6,
         "relic_chance": 0.25
       },
@@ -537,7 +784,10 @@
         "romanized": "Mudang"
       },
       "description": "신령과 소통하는 무속인. 저주와 소환으로 싸우며 직접 전투는 피하지만 DoT와 소환 압박이 강력하다.",
-      "hp": { "min": 45, "max": 55 },
+      "hp": {
+        "min": 45,
+        "max": 55
+      },
       "note": "엘리트 — 소환과 DoT 복합 메커니즘.",
       "moves": [
         {
@@ -545,8 +795,18 @@
           "name": "신령 의식",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 4,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
           "description": "독 4 + 취약 2 부여. 누적 독 피해: 4+3+2+1=10."
         },
@@ -556,7 +816,12 @@
           "intent": "summon",
           "description": "원혼 2기를 전장에 소환한다. 각 HP 18.",
           "summon": [
-            { "enemy_id": "E003", "count": 2, "hp_override": 18, "name_override": "소환 원혼" }
+            {
+              "enemy_id": "E003",
+              "count": 2,
+              "hp_override": 18,
+              "name_override": "소환 원혼"
+            }
           ]
         },
         {
@@ -566,8 +831,18 @@
           "damage": 8,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 3,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "8피해 + 출혈 3 + 약화 1."
         },
@@ -585,18 +860,40 @@
           "damage": 12,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "12피해 + 냉기 1 + 취약 1. 빙의 직전 압박 공격."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["spirit_ritual", "summon_spirit", "curse_dance", "shamanistic_ward", "possession_call", "spirit_ritual", "curse_dance", "possession_call"]
+        "sequence": [
+          "spirit_ritual",
+          "summon_spirit",
+          "curse_dance",
+          "shamanistic_ward",
+          "possession_call",
+          "spirit_ritual",
+          "curse_dance",
+          "possession_call"
+        ]
       },
       "rewards": {
-        "gold": { "min": 25, "max": 40 },
+        "gold": {
+          "min": 25,
+          "max": 40
+        },
         "card_chance": 0.65,
         "relic_chance": 0.25
       },
