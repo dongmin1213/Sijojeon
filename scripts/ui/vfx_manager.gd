@@ -165,12 +165,15 @@ func flash_screen(parent: Control, color: Color = Color(1, 1, 1, 0.3), duration:
 # --- 시조 완성 연출 ---
 
 func sijo_complete_vfx(parent: Control) -> void:
-	## 시조 완성 시: 화면 플래시 + 큰 텍스트 + 코드 기반 파티클
-	# 화면 플래시
-	flash_screen(parent, Color(1.0, 0.85, 0.3, 0.4), 0.3)
+	## 시조 완성 시: 히트스톱 + 슬로우모션 + 화면 플래시 + 큰 텍스트 + 강화된 파티클
+	# 히트스톱 + 슬로우모션 연출 (순간 정지 → 느린 복귀)
+	_apply_slow_motion(0.05, 0.3)
 
-	# 화면 흔들림
-	screen_shake(12.0, 6.0)
+	# 화면 플래시 (더 밝고 오래 지속)
+	flash_screen(parent, Color(1.0, 0.85, 0.3, 0.55), 0.4)
+
+	# 강화된 화면 흔들림
+	screen_shake(18.0, 5.0)
 
 	# 완성 텍스트 연출
 	var label := _acquire_label()
@@ -178,21 +181,26 @@ func sijo_complete_vfx(parent: Control) -> void:
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.anchors_preset = Control.PRESET_CENTER
-	label.add_theme_font_size_override("font_size", 48)
+	label.add_theme_font_size_override("font_size", 56)
 	label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	label.add_theme_color_override("font_outline_color", Color(0.6, 0.3, 0.0))
+	label.add_theme_constant_override("outline_size", 4)
 	label.pivot_offset = label.size / 2.0
 	label.z_index = 90
 	parent.add_child(label)
 
-	# 스케일 업 + 페이드 아웃
+	# 스케일 업 + 페이드 아웃 (더 역동적)
 	var tween := parent.create_tween()
-	label.scale = Vector2(0.5, 0.5)
-	tween.tween_property(label, "scale", Vector2(1.2, 1.2), 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	tween.tween_property(label, "modulate:a", 0.0, 0.5).set_delay(0.5)
+	label.scale = Vector2(0.3, 0.3)
+	tween.tween_property(label, "scale", Vector2(1.3, 1.3), 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(label, "scale", Vector2(1.1, 1.1), 0.15).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(label, "modulate:a", 0.0, 0.5).set_delay(0.6)
 	tween.tween_callback(_release_label.bind(label))
 
-	# 코드 기반 파티클 (작은 사각형들이 방사형으로 퍼짐)
-	_spawn_particles(parent, 16, Color(1.0, 0.85, 0.3))
+	# 1차 파티클: 빠르게 퍼지는 코어 (24개)
+	_spawn_particles(parent, 24, Color(1.0, 0.85, 0.3))
+	# 2차 파티클: 느리게 퍼지는 외곽 링 (12개, 더 크고 밝음)
+	_spawn_ring_particles(parent, 12, Color(1.0, 0.95, 0.6))
 
 
 func _spawn_particles(parent: Control, count: int, color: Color) -> void:
@@ -217,6 +225,44 @@ func _spawn_particles(parent: Control, count: int, color: Color) -> void:
 		tween.tween_property(particle, "position", target_pos, duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 		tween.tween_property(particle, "modulate:a", 0.0, duration)
 		tween.tween_property(particle, "size", Vector2(2, 2), duration)
+		tween.set_parallel(false)
+		tween.tween_callback(_release_color_rect.bind(particle))
+
+
+# --- 슬로우모션 ---
+
+func _apply_slow_motion(time_scale: float = 0.05, duration: float = 0.3) -> void:
+	## 히트스톱 + 슬로우모션: time_scale까지 즉시 감속 후 duration에 걸쳐 복귀.
+	## process_mode가 ALWAYS인 타이머를 사용하여 time_scale 영향을 받지 않는다.
+	Engine.time_scale = time_scale
+	var timer := get_tree().create_timer(duration, true, false, true)
+	timer.timeout.connect(func(): Engine.time_scale = 1.0)
+
+
+func _spawn_ring_particles(parent: Control, count: int, color: Color) -> void:
+	## 2차 외곽 링 파티클 — 더 크고 느리게 퍼지며 회전하는 효과
+	var center := parent.size / 2.0
+	for i in count:
+		var particle := _acquire_color_rect()
+		particle.size = Vector2(10, 10)
+		particle.color = color.lerp(Color.WHITE, randf_range(0.1, 0.4))
+		particle.position = center
+		particle.z_index = 84
+		particle.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		particle.pivot_offset = Vector2(5, 5)
+		parent.add_child(particle)
+
+		var angle := (TAU / count) * i
+		var distance := randf_range(150.0, 300.0)
+		var target_pos := center + Vector2(cos(angle), sin(angle)) * distance
+		var duration := randf_range(0.7, 1.2)
+
+		var tween := parent.create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(particle, "position", target_pos, duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(particle, "modulate:a", 0.0, duration).set_delay(0.2)
+		tween.tween_property(particle, "size", Vector2(3, 3), duration)
+		tween.tween_property(particle, "rotation", randf_range(-PI, PI), duration)
 		tween.set_parallel(false)
 		tween.tween_callback(_release_color_rect.bind(particle))
 
