@@ -93,6 +93,32 @@ vertical_alignment = 1
 layout_mode = 2
 button_pressed = true
 
+[node name="LanguageSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LanguageTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "언어 / Language"
+horizontal_alignment = 1
+
+[node name="LanguageContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LanguageLabel" type="Label" parent="VBoxContainer/LanguageContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+theme_override_font_sizes/font_size = 28
+text = "언어"
+vertical_alignment = 1
+
+[node name="LanguageOption" type="OptionButton" parent="VBoxContainer/LanguageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+custom_minimum_size = Vector2(0, 50)
+
 [node name="AccessibilitySeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 

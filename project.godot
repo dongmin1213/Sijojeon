@@ -32,6 +32,7 @@ RelicManager="*res://scripts/autoload/relic_manager.gd"
 AchievementManager="*res://scripts/autoload/achievement_manager.gd"
 AccessibilityManager="*res://scripts/autoload/accessibility_manager.gd"
 SafeAreaManager="*res://scripts/autoload/safe_area_manager.gd"
+TranslationManager="*res://scripts/autoload/translation_manager.gd"
 
 [gui]
 
@@ -56,6 +57,12 @@ touch={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations/translations.csv")
+locale/locale_filter_mode=1
+locale/locale_filter=PackedStringArray("en", "ko")
 
 [rendering]
 

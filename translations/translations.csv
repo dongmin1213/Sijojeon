@@ -1,0 +1,103 @@
+keys,ko,en
+UI_TITLE,시조전 (Sijojeon),Sijojeon
+UI_SUBTITLE,조선시대 배경 덱빌딩 로그라이크,A Joseon-era Deckbuilding Roguelike
+UI_NEW_GAME,새 게임,New Game
+UI_CONTINUE,이어하기,Continue
+UI_DAILY_CHALLENGE,일일 도전,Daily Challenge
+UI_DAILY_CHALLENGE_DONE,일일 도전 (완료),Daily Challenge (Done)
+UI_SETTINGS,설정,Settings
+UI_QUIT,종료,Quit
+UI_BACK,돌아가기,Back
+UI_CONFIRM,확인,Confirm
+UI_CANCEL,취소,Cancel
+UI_YES,예,Yes
+UI_NO,아니오,No
+UI_CLOSE,닫기,Close
+SETTINGS_TITLE,설정,Settings
+SETTINGS_BGM,배경음악,BGM
+SETTINGS_SFX,효과음,SFX
+SETTINGS_VIBRATION,진동,Vibration
+SETTINGS_ACCESSIBILITY,접근성,Accessibility
+SETTINGS_FONT_SIZE,글자 크기,Font Size
+SETTINGS_COLORBLIND,색맹 모드,Colorblind Mode
+SETTINGS_COLORBLIND_NONE,없음,None
+SETTINGS_COLORBLIND_RG,적녹색맹,Red-Green
+SETTINGS_COLORBLIND_BY,청황색맹,Blue-Yellow
+SETTINGS_SCREEN_SHAKE,화면 흔들림,Screen Shake
+SETTINGS_LANGUAGE,언어,Language
+SETTINGS_LANGUAGE_KO,한국어,한국어
+SETTINGS_LANGUAGE_EN,English,English
+BATTLE_HP,체력,HP
+BATTLE_HP_TOOLTIP,체력 — 0이 되면 패배합니다,HP — You lose when it reaches 0
+BATTLE_BLOCK,방어도,Block
+BATTLE_QI,기,Qi
+BATTLE_GOLD,금화,Gold
+BATTLE_DECK,덱,Deck
+BATTLE_DISCARD,버린 패,Discard
+BATTLE_EXHAUST,소멸,Exhaust
+BATTLE_END_TURN,턴 종료,End Turn
+BATTLE_ENEMY_INTENT_ATTACK,공격,Attack
+BATTLE_ENEMY_INTENT_DEFEND,방어,Defend
+BATTLE_ENEMY_INTENT_BUFF,강화,Buff
+BATTLE_ENEMY_INTENT_DEBUFF,약화,Debuff
+BATTLE_ENEMY_INTENT_UNKNOWN,불명,Unknown
+BATTLE_VICTORY,전투 승리!,Victory!
+BATTLE_DEFEAT,패배…,Defeat…
+SIJO_FIRST_VERSE,초장,First Verse
+SIJO_MIDDLE_VERSE,중장,Middle Verse
+SIJO_FINAL_VERSE,종장,Final Verse
+SIJO_COMPLETE,시조 완성!,SIJO COMPLETE!
+SIJO_BEAT_3,[3],[3]
+SIJO_BEAT_4,[4],[4]
+SIJO_SLOTS_FILLED,{n}/6 슬롯 채움,{n}/6 slots filled
+CARD_COST,비용: {n},Cost: {n}
+CARD_UPGRADE,강화,Upgrade
+CARD_UPGRADE_COST,강화 비용: {n} 금화,Upgrade Cost: {n} Gold
+CARD_NO_UPGRADE,(강화 효과 없음),(No upgrade effect)
+CARD_REMOVE,카드 제거,Remove Card
+CARD_TYPE_ATTACK,공격,Attack
+CARD_TYPE_DEFENSE,방어,Defense
+CARD_TYPE_SKILL,기술,Skill
+CARD_RARITY_COMMON,일반,Common
+CARD_RARITY_UNCOMMON,고급,Uncommon
+CARD_RARITY_RARE,희귀,Rare
+MAP_ACT,제{n}막,Act {n}
+MAP_REST,휴식처,Rest Site
+MAP_SHOP,상점,Shop
+MAP_ELITE,정예,Elite
+MAP_BOSS,우두머리,Boss
+MAP_EVENT,사건,Event
+MAP_BATTLE,전투,Battle
+REST_TITLE,휴식처,Rest Site
+REST_HEAL,회복 (체력 {n}% 회복),Heal (Restore {n}% HP)
+REST_UPGRADE,카드 강화,Upgrade Card
+REST_REMOVE,카드 제거,Remove Card
+SHOP_TITLE,상점,Shop
+SHOP_BUY,구매,Buy
+SHOP_SOLD_OUT,품절,Sold Out
+SHOP_REMOVE_CARD,카드 제거 서비스,Card Removal Service
+REWARD_TITLE,보상,Rewards
+REWARD_GOLD,금화 {n}개 획득,Gained {n} Gold
+REWARD_CARD,카드 선택,Choose a Card
+REWARD_RELIC,유물 획득,Relic Acquired
+REWARD_SKIP,건너뛰기,Skip
+CHARACTER_DOSA,도사,Daoist Sorcerer
+CHARACTER_MUGWAN,무관,Military Officer
+CHARACTER_MUNGWAN,문관,Scholar Official
+CHARACTER_PHYSICIAN,의원,Physician
+CHARACTER_SHAMAN,무당,Shaman
+CHARACTER_ARCHER,궁수,Archer
+CHARACTER_MERCHANT,상인,Merchant
+RESOURCE_QI,기,Qi
+RESOURCE_STAMINA,기력,Stamina
+RESOURCE_SCHOLARSHIP,학식,Scholarship
+STATUS_BURN,화상,Burn
+STATUS_POISON,독,Poison
+STATUS_CURSE,저주,Curse
+STATUS_WEAKEN,약화,Weakened
+STATUS_VULNERABLE,취약,Vulnerable
+STATUS_STRENGTH,힘,Strength
+STATUS_REGEN,재생,Regen
+MINSHIM_TITLE,민심,Public Sentiment
+JIBUN_TITLE,신분,Social Status
+GWAGEO_TITLE,과거 시험,Civil Exam

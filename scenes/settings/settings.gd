@@ -9,6 +9,7 @@ extends Control
 @onready var font_size_value: Label = $VBoxContainer/FontSizeContainer/FontSizeValue
 @onready var colorblind_option: OptionButton = $VBoxContainer/ColorblindContainer/ColorblindOption
 @onready var screen_shake_check: CheckButton = $VBoxContainer/ScreenShakeContainer/ScreenShakeCheck
+@onready var language_option: OptionButton = $VBoxContainer/LanguageContainer/LanguageOption
 @onready var back_button: Button = $VBoxContainer/BackButton
 
 ## 색맹 모드 옵션
@@ -19,6 +20,11 @@ func _ready() -> void:
 	# 색맹 모드 옵션 추가
 	for mode in COLORBLIND_MODES:
 		colorblind_option.add_item(mode)
+
+	# 언어 옵션 추가
+	for locale in TranslationManager.SUPPORTED_LOCALES:
+		language_option.add_item(TranslationManager.get_locale_display_name(locale))
+	language_option.selected = TranslationManager.get_locale_index()
 
 	# 저장된 설정 로드
 	var settings := SaveManager.load_settings()
@@ -37,6 +43,7 @@ func _ready() -> void:
 	font_size_slider.value_changed.connect(_on_font_size_changed)
 	colorblind_option.item_selected.connect(_on_colorblind_changed)
 	screen_shake_check.toggled.connect(_on_screen_shake_toggled)
+	language_option.item_selected.connect(_on_language_changed)
 	back_button.pressed.connect(_on_back_pressed)
 
 	# 즉시 적용
@@ -74,6 +81,11 @@ func _on_screen_shake_toggled(pressed: bool) -> void:
 	_save()
 
 
+func _on_language_changed(index: int) -> void:
+	var locale: String = TranslationManager.SUPPORTED_LOCALES[index]
+	TranslationManager.set_locale(locale)
+
+
 func _update_font_size_label() -> void:
 	font_size_value.text = "%d%%" % int(font_size_slider.value * 100)
 
@@ -86,6 +98,7 @@ func _save() -> void:
 		"font_size_scale": font_size_slider.value,
 		"colorblind_mode": colorblind_option.selected,
 		"screen_shake_enabled": screen_shake_check.button_pressed,
+		"locale": TranslationManager.get_locale(),
 	})
 
 
