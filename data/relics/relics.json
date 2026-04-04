@@ -1678,6 +1678,7 @@
     {
       "id": "출혈",
       "ko": "출혈",
+      "en": "Bleed",
       "hanja": "出血",
       "description": "매 턴 시작 시 스택 수만큼 피해. 중첩 가능 (최대 10). 전투 종료 시 소멸. R014 저주받은 투구가 공격 카드 사용 시 적에게 1스택씩 적용.",
       "duration_type": "until_combat_end",

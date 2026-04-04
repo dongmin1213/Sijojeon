@@ -11,6 +11,7 @@
   "resource": {
     "id": "학식",
     "ko": "학식",
+    "en": "Scholarship",
     "hanja": "學識",
     "description": "문관 전용 자원. 카드 사용으로 축적되며 특정 카드에서 소비해 강화 효과를 발동한다.",
     "max": 6,
@@ -62,7 +63,7 @@
         "ko": "직언",
         "hanja": "直言",
         "romanized": "Jigeon",
-        "en": ""
+        "en": "Candid Speech"
       },
       "beat": 3,
       "cost": 1,
@@ -74,15 +75,15 @@
       "rarity_stars": "★☆☆☆☆",
       "effect": {
         "ko": "적에게 6 피해를 입힌다.",
-        "en": ""
+        "en": "Deal 6 damage to an enemy."
       },
       "effect_upgraded": {
         "ko": "적에게 9 피해를 입힌다.",
-        "en": ""
+        "en": "Deal 9 damage to an enemy."
       },
       "flavor_text": {
         "ko": "거리낌 없이 아뢰는 한 마디 — 칼 대신 붓 끝에 실린 진실이 적을 관통한다.",
-        "en": ""
+        "en": "A word spoken without hesitation — the truth carried on the brush tip pierces the enemy in place of a blade."
       },
       "balance_rationale": "1코스트 기본 공격. 베기·수결과 완전히 동일한 효율. 문관 스타터 덱 3장 포함. 직언은 무기 없이 문자의 힘으로 공격하는 문관의 정체성 반영.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
@@ -97,7 +98,7 @@
         "ko": "탄핵",
         "hanja": "彈劾",
         "romanized": "Tanhaek",
-        "en": ""
+        "en": "Impeachment"
       },
       "beat": 4,
       "cost": 2,
@@ -109,15 +110,15 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "적에게 10 피해를 입힌다. 학식 1을 소비하면 대상에게 취약(脆弱) 2턴을 부여한다. (취약: 받는 피해 50% 증가)",
-        "en": ""
+        "en": "Deal 10 damage to an enemy. Spend 1 Erudition to apply 2 turns of Vulnerable. (Vulnerable: damage taken increased by 50%)"
       },
       "effect_upgraded": {
         "ko": "적에게 14 피해를 입힌다. 학식 소비 시 취약 3턴 부여.",
-        "en": ""
+        "en": "Deal 14 damage. On Erudition spend, apply 3 turns of Vulnerable."
       },
       "flavor_text": {
         "ko": "왕 앞에 죄상을 낱낱이 고하면 — 적은 벌벌 떨며 모든 것에 취약해진다.",
-        "en": ""
+        "en": "Lay bare every crime before the king — and the enemy trembles, vulnerable to all."
       },
       "balance_rationale": "2코스트 조건부 공격. 기본 10피해는 측면강타와 동급. 학식 1 소비 시 취약 2턴 — 이후 공격 피해가 50% 증가. 학식 없이도 기본 피해가 충분해 어느 상황에서나 플레이 가능.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
@@ -138,7 +139,7 @@
         "ko": "상소",
         "hanja": "上疏",
         "romanized": "Sangso",
-        "en": ""
+        "en": "Royal Petition"
       },
       "beat": 4,
       "cost": 3,
@@ -150,15 +151,15 @@
       "rarity_stars": "★★★★★",
       "effect": {
         "ko": "학식을 모두 소비한다. 모든 적에게 소비한 학식×3 피해를 입힌다 (최소 6).",
-        "en": ""
+        "en": "Consume all Erudition. Deal damage equal to Erudition consumed x3 to ALL enemies (minimum 6)."
       },
       "effect_upgraded": {
         "ko": "학식을 모두 소비한다. 모든 적에게 소비한 학식×4 피해를 입힌다 (최소 8).",
-        "en": ""
+        "en": "Consume all Erudition. Deal Erudition x4 damage to ALL enemies (minimum 8)."
       },
       "flavor_text": {
         "ko": "왕에게 올리는 간곡한 글 한 통 — 글자 하나하나에 담긴 학식이 번개처럼 적진을 휩쓴다.",
-        "en": ""
+        "en": "An earnest petition to the king — each character imbued with learning strikes like lightning across the enemy lines."
       },
       "balance_rationale": "3코스트 학식 소비형 AoE 피니셔. 학식 4 = 12 AoE, 학식 6 = 18 AoE. 시조 완성 보너스(효과 2배) 시 최대 36 AoE. 취약 적에게 사용 시 27~54 AoE로 무관과 어깨를 나란히 함.",
       "sijo_position": "종장 둘째 슬롯 [4] — 학식 전소 피날레",
@@ -180,7 +181,7 @@
         "ko": "경연",
         "hanja": "經筵",
         "romanized": "Gyeongyeon",
-        "en": ""
+        "en": "Royal Lecture"
       },
       "beat": 3,
       "cost": 1,
@@ -192,15 +193,15 @@
       "rarity_stars": "★★☆☆☆",
       "effect": {
         "ko": "방어도 5를 획득한다. 학식 1을 획득한다.",
-        "en": ""
+        "en": "Gain 5 Block. Gain 1 Erudition."
       },
       "effect_upgraded": {
         "ko": "방어도 7을 획득한다. 학식 2를 획득한다.",
-        "en": ""
+        "en": "Gain 7 Block. Gain 2 Erudition."
       },
       "flavor_text": {
         "ko": "경연청에서 학문을 강론하니 — 몸과 마음이 모두 단단해진다.",
-        "en": ""
+        "en": "Lecturing on scholarship at the Royal Academy — body and mind both grow stronger."
       },
       "balance_rationale": "1코스트 방어. 수호(5방어도)와 동일한 방어도에 학식 1 추가. 방어하면서 학식을 축적하는 핵심 루프 카드.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
@@ -216,7 +217,7 @@
         "ko": "예제",
         "hanja": "禮制",
         "romanized": "Yeoje",
-        "en": ""
+        "en": "Rites & Decorum"
       },
       "beat": 4,
       "cost": 2,
@@ -228,15 +229,15 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "방어도 10을 획득한다. 학식 2를 획득한다.",
-        "en": ""
+        "en": "Gain 10 Block. Gain 2 Erudition."
       },
       "effect_upgraded": {
         "ko": "방어도 14를 획득한다. 학식 3을 획득한다.",
-        "en": ""
+        "en": "Gain 14 Block. Gain 3 Erudition."
       },
       "flavor_text": {
         "ko": "예법의 울타리는 그 어떤 갑옷보다 강하다 — 규범이 몸을 감싸면 적의 칼이 튕겨나간다.",
-        "en": ""
+        "en": "The fence of proper ritual is stronger than any armor — when decorum guards you, the enemy's blade bounces off."
       },
       "balance_rationale": "2코스트 방어. 순수 방어 카드 중 2코스트 기준 최고치(10방어도). 학식 2 추가로 경연 2번 대비 방어도 1 추가 + 학식 동일(2).",
       "sijo_position": "초장·중장·종장 둘째 슬롯 [4]",
@@ -252,7 +253,7 @@
         "ko": "독서",
         "hanja": "讀書",
         "romanized": "Dokseo",
-        "en": ""
+        "en": "Reading"
       },
       "beat": 3,
       "cost": 0,
@@ -265,15 +266,15 @@
       "rarity_stars": "★★☆☆☆",
       "effect": {
         "ko": "학식 1을 획득한다. 카드 1장을 드로우한다.",
-        "en": ""
+        "en": "Gain 1 Erudition. Draw 1 card."
       },
       "effect_upgraded": {
         "ko": "학식 2를 획득한다. 카드 1장을 드로우한다.",
-        "en": ""
+        "en": "Gain 2 Erudition. Draw 1 card."
       },
       "flavor_text": {
         "ko": "잠시 책을 펼쳐 마음을 고르니 — 다음 수가 자연히 보인다.",
-        "en": ""
+        "en": "Open a book for a moment to steady the mind — and the next move reveals itself naturally."
       },
       "balance_rationale": "0코스트 학식 적립 + 드로우. 기공의 문관 버전. 0코스트라는 점에서 기 비용 없이 시조 슬롯을 채우고 드로우까지 해결.",
       "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 리듬 스타터",
@@ -289,7 +290,7 @@
         "ko": "격물치지",
         "hanja": "格物致知",
         "romanized": "Gyeongmul Chiji",
-        "en": ""
+        "en": "Investigation of Things"
       },
       "beat": 4,
       "cost": 1,
@@ -302,15 +303,15 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "학식 2를 획득한다. 이번 턴 다음에 사용하는 카드의 비용을 1 감소시킨다 (최소 0).",
-        "en": ""
+        "en": "Gain 2 Erudition. Reduce the cost of the next card you play this turn by 1 (minimum 0)."
       },
       "effect_upgraded": {
         "ko": "학식 3을 획득한다. 이번 턴 다음에 사용하는 카드의 비용을 2 감소시킨다.",
-        "en": ""
+        "en": "Gain 3 Erudition. Reduce the next card's cost by 2."
       },
       "flavor_text": {
         "ko": "사물의 이치를 꿰뚫으니 — 다음 행동이 더 쉬워진다.",
-        "en": ""
+        "en": "Grasp the principles of all things — and the next action becomes easier."
       },
       "balance_rationale": "1코스트 학식 + 다음 카드 비용 감소. 학식 2 = 미래 탄핵/상소 강화. 비용 감소로 상소(3코스트→2코스트) 시전 가능한 콤보 루트 열어줌.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
@@ -330,7 +331,7 @@
         "ko": "박학다식",
         "hanja": "博學多識",
         "romanized": "Bakak Dasik",
-        "en": ""
+        "en": "Broad Learning"
       },
       "beat": 4,
       "cost": 2,
@@ -343,15 +344,15 @@
       "rarity_stars": "★★★★☆",
       "effect": {
         "ko": "학식 3을 획득한다. 카드 1장을 드로우한다.",
-        "en": ""
+        "en": "Gain 3 Erudition. Draw 1 card."
       },
       "effect_upgraded": {
         "ko": "학식 4를 획득한다. 카드 2장을 드로우한다.",
-        "en": ""
+        "en": "Gain 4 Erudition. Draw 2 cards."
       },
       "flavor_text": {
         "ko": "널리 배우고 많이 아는 자 — 한순간에 온 세상의 이치가 손아귀에 들어온다.",
-        "en": ""
+        "en": "One who studies widely and knows much — in an instant, the wisdom of the whole world is in your grasp."
       },
       "balance_rationale": "[ZER-71 조정] 학식 4→3. 기존: 박학다식 1장으로 상소 12 AoE 준비 완료 = 준비 사이클이 너무 빠름. 조정 후: 전략적 깊이 증가. 업그레이드 시 학식 4로 즉시 상소 12 AoE 준비.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
@@ -371,7 +372,7 @@
         "ko": "행차",
         "hanja": "行次",
         "romanized": "Haengcha",
-        "en": ""
+        "en": "Royal Procession"
       },
       "beat": 3,
       "cost": 1,
@@ -384,15 +385,15 @@
       "rarity_stars": "★★☆☆☆",
       "effect": {
         "ko": "방어도 3을 획득한다. 학식 1을 획득한다.",
-        "en": ""
+        "en": "Gain 3 Block. Gain 1 Erudition."
       },
       "effect_upgraded": {
         "ko": "방어도 4를 획득한다. 학식 2를 획득한다.",
-        "en": ""
+        "en": "Gain 4 Block. Gain 2 Erudition."
       },
       "flavor_text": {
         "ko": "관복을 갖춰 입고 거리를 행차하니 — 위세가 적을 위축시키고 학문이 몸을 지킨다.",
-        "en": ""
+        "en": "March in full court dress through the streets — your authority intimidates the enemy while learning guards the body."
       },
       "balance_rationale": "1코스트 이동 카드. 방어도 3은 수호(5)보다 낮지만 학식 1 추가. 시조 [3] 슬롯 채우며 방어+학식을 동시에 처리하는 범용 이동 카드.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
@@ -408,7 +409,7 @@
         "ko": "피화",
         "hanja": "避禍",
         "romanized": "Pihwa",
-        "en": ""
+        "en": "Avoid Disaster"
       },
       "beat": 4,
       "cost": 1,
@@ -421,15 +422,15 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "방어도 5를 획득한다. 이번 턴 시조 슬롯에 카드가 3장 이상 채워져 있으면 학식 2를 추가로 획득한다.",
-        "en": ""
+        "en": "Gain 5 Block. If 3 or more Sijo slots are filled this turn, gain 2 additional Erudition."
       },
       "effect_upgraded": {
         "ko": "방어도 7을 획득한다. 시조 3칸 이상 시 학식 3 추가 획득.",
-        "en": ""
+        "en": "Gain 7 Block. If 3+ Sijo slots filled, gain 3 additional Erudition."
       },
       "flavor_text": {
         "ko": "화를 미리 알고 피해가니 — 닥쳐오는 재앙도 학문 앞에서 방향을 잃는다.",
-        "en": ""
+        "en": "Foresee disaster and step aside — even approaching calamity loses its way before scholarship."
       },
       "balance_rationale": "1코스트 이동 카드. 기본 5방어도는 수호와 동일. 시조 슬롯 3칸 이상 조건 충족 시 학식 2 추가 — 시조 리듬 유지를 직접적으로 보상.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
@@ -450,7 +451,7 @@
         "ko": "고언",
         "hanja": "苦言",
         "romanized": "Goeon",
-        "en": ""
+        "en": "Bitter Counsel"
       },
       "beat": 3,
       "cost": 1,
@@ -462,15 +463,15 @@
       "rarity_stars": "★★☆☆☆",
       "effect": {
         "ko": "적에게 4 피해를 입힌다. 학식 1을 획득한다.",
-        "en": ""
+        "en": "Deal 4 damage to an enemy. Gain 1 Erudition."
       },
       "effect_upgraded": {
         "ko": "적에게 6 피해를 입힌다. 학식 1을 획득한다.",
-        "en": ""
+        "en": "Deal 6 damage to an enemy. Gain 1 Erudition."
       },
       "flavor_text": {
         "ko": "쓴 말은 귀에 거슬리지만 — 옳은 말은 반드시 힘이 있다.",
-        "en": ""
+        "en": "Bitter words grate on the ear — but righteous words always carry force."
       },
       "balance_rationale": "1코스트 공격+학식 겸용. 직언(6피해)보다 피해 2 낮지만 학식 1 획득. 공격하면서 학식을 쌓아야 하는 상황에서 직언과 경쟁. 학식 폭발 아키타입에서 공격 옵션을 추가하면서 학식 엔진을 유지하는 카드. 업그레이드 시 직언과 동등하면서 학식까지 제공.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
@@ -490,7 +491,7 @@
         "ko": "논박",
         "hanja": "論駁",
         "romanized": "Nonbak",
-        "en": ""
+        "en": "Rebuttal"
       },
       "beat": 3,
       "cost": 2,
@@ -502,15 +503,15 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "적에게 8 피해를 입힌다. 학식 1을 소비하면 피해가 6 추가된다.",
-        "en": ""
+        "en": "Deal 8 damage to an enemy. Spend 1 Erudition to deal 6 additional damage."
       },
       "effect_upgraded": {
         "ko": "적에게 10 피해를 입힌다. 학식 소비 시 추가 피해 8.",
-        "en": ""
+        "en": "Deal 10 damage. On Erudition spend, +8 additional damage."
       },
       "flavor_text": {
         "ko": "논리로 상대의 주장을 반박하면 — 그 충격이 실제 타격으로 돌아온다.",
-        "en": ""
+        "en": "Refute the opponent's argument with logic — and the impact becomes a real blow."
       },
       "balance_rationale": "2코스트 조건부 강공격. 기본 8피해는 2코스트 기준 약간 낮지만 학식 1 소비 시 14피해로 탄핵(10피해+취약)보다 즉시 피해 높음. 학식을 취약 세팅이 아닌 즉시 피해로 소비하는 선택지 제공. 빌드 다양성 확보.",
       "sijo_position": "중장·종장 첫 슬롯 [3]",
@@ -531,7 +532,7 @@
         "ko": "논리",
         "hanja": "論理",
         "romanized": "Nolli",
-        "en": ""
+        "en": "Logic"
       },
       "beat": 4,
       "cost": 1,
@@ -544,15 +545,15 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "학식 3을 획득한다. 드로우하는 카드 수가 이번 턴 1 증가한다 (다음 드로우 이펙트가 1장 더).",
-        "en": ""
+        "en": "Gain 3 Erudition. The next draw effect this turn draws 1 additional card."
       },
       "effect_upgraded": {
         "ko": "학식 4를 획득한다. 드로우 증가량 2.",
-        "en": ""
+        "en": "Gain 4 Erudition. Draw bonus increased by 2."
       },
       "flavor_text": {
         "ko": "논리가 명확하면 길이 보인다 — 생각이 빠를수록 다음 수도 더 많이 보인다.",
-        "en": ""
+        "en": "When logic is clear, the path appears — the faster the thought, the more moves you see."
       },
       "balance_rationale": "1코스트 학식+드로우 증폭. 격물치지(W007, 1코스트 학식2+비용감소)와 비슷한 포지션이나 드로우 증폭으로 차별화. 기류(D012, 1코스트 기1+드로우2)의 문관 버전. 박학다식(드로우1)+논리 = 드로우 2장 효과로 효율 증가.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
@@ -572,7 +573,7 @@
         "ko": "문집 편찬",
         "hanja": "文集編纂",
         "romanized": "Munjip Pyeonjhan",
-        "en": ""
+        "en": "Anthology Compilation"
       },
       "beat": 3,
       "cost": 3,
@@ -584,15 +585,15 @@
       "rarity_stars": "★★★★★",
       "effect": {
         "ko": "이번 전투 동안 학식 최대치를 2 증가시킨다 (최대 8로 확장). 학식 2를 획득한다.",
-        "en": ""
+        "en": "For this combat, increase Erudition maximum by 2 (max 8). Gain 2 Erudition."
       },
       "effect_upgraded": {
         "ko": "학식 최대치 3 증가 (최대 9). 학식 4를 획득한다.",
-        "en": ""
+        "en": "Erudition maximum +3 (max 9). Gain 4 Erudition."
       },
       "flavor_text": {
         "ko": "필생의 문집을 엮어내니 — 담을 수 있는 지식의 그릇이 커진다.",
-        "en": ""
+        "en": "Compile a life's anthology — and the vessel for knowledge grows larger."
       },
       "balance_rationale": "3코스트 파워. 학식 최대치 확장으로 상소(W003)의 최대 피해를 최대학식×3에서 8×3=24 AoE(기존 18→24)로 증가. 고가 투자지만 상소 도달 시 폭발력 대폭 향상. 학식 폭발 아키타입의 강력한 후반 파워업.",
       "sijo_position": "초장 첫 슬롯 [3] — 파워업 투자",
@@ -612,7 +613,7 @@
         "ko": "왕의 윤허",
         "hanja": "王의允許",
         "romanized": "Wang-ui Yunheo",
-        "en": ""
+        "en": "Royal Sanction"
       },
       "beat": 4,
       "cost": 3,
@@ -625,15 +626,15 @@
       "rarity_stars": "★★★★★",
       "effect": {
         "ko": "학식을 모두 소비한다. 적에게 소비한 학식×5 피해를 입힌다 (최소 10, 단일 대상).",
-        "en": ""
+        "en": "Consume all Erudition. Deal Erudition x5 damage to a single enemy (minimum 10)."
       },
       "effect_upgraded": {
         "ko": "학식×6 피해. 최소 12.",
-        "en": ""
+        "en": "Deal Erudition x6 damage. Minimum 12."
       },
       "flavor_text": {
         "ko": "왕의 윤허가 떨어지면 — 더 이상 막을 자가 없다. 온 힘을 한 점에 집중시킨다.",
-        "en": ""
+        "en": "When the king's sanction is granted — there is no one left who can stand in the way."
       },
       "balance_rationale": "3코스트 단일 학식 전소 강공격. 상소(W003, 3코스트 학식전소 AoE)의 단일 버전으로 피해 계수 높음. 학식 4 시 20피해, 학식 6 시 30피해. 다수 적 상황에선 상소 우위지만 단일 보스전 특화. 취약 상태 학식6 = 45피해로 무관·도사 최대치에 필적.",
       "sijo_position": "종장 둘째 슬롯 [4] — 단일 피니셔",
@@ -655,7 +656,7 @@
         "ko": "탄압",
         "hanja": "彈壓",
         "romanized": "Tanan",
-        "en": ""
+        "en": "Suppression"
       },
       "beat": 3,
       "cost": 1,
@@ -667,15 +668,15 @@
       "rarity_stars": "★★☆☆☆",
       "effect": {
         "ko": "대상 적에게 약화(弱化) 2를 부여한다. (약화: 다음 공격 피해 25% 감소. 발동 후 1 감소)",
-        "en": ""
+        "en": "Apply 2 Weaken to the target enemy. (Weaken: next attack damage reduced by 25%. Reduces by 1 after each trigger)"
       },
       "effect_upgraded": {
         "ko": "약화 3을 부여한다.",
-        "en": ""
+        "en": "Apply 3 Weaken."
       },
       "flavor_text": {
         "ko": "강자의 권세도 밀어낼 수 있다 — 탄압은 권력이 아닌 논리로 이루어진다.",
-        "en": ""
+        "en": "Even the mighty can be pushed back — suppression is achieved through logic, not force."
       },
       "balance_rationale": "1코스트 단순 약화. 후퇴(M003, 0코스트 방어2+약화1)보다 약화량이 2로 더 많지만 1코스트 소비. 약화 2 = 다음 적의 공격 2회에 각각 25% 피해 감소. 디버프 지배 아키타입의 기본 제어 카드. 문관 스타터 덱과 달리 디버프 중심 빌드에서 핵심 역할.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
@@ -694,7 +695,7 @@
         "ko": "모함",
         "hanja": "謀陷",
         "romanized": "Moham",
-        "en": ""
+        "en": "False Accusation"
       },
       "beat": 4,
       "cost": 2,
@@ -706,15 +707,15 @@
       "rarity_stars": "★★★★☆",
       "effect": {
         "ko": "대상 적에게 약화(弱化) 3과 취약(脆弱) 2를 부여한다.",
-        "en": ""
+        "en": "Apply 3 Weaken and 2 Vulnerable to the target enemy."
       },
       "effect_upgraded": {
         "ko": "약화 4, 취약 3.",
-        "en": ""
+        "en": "Apply 4 Weaken and 3 Vulnerable."
       },
       "flavor_text": {
         "ko": "거짓 모함이 진실처럼 퍼지면 — 강한 자도 흔들리고, 굳건한 자도 무너진다.",
-        "en": ""
+        "en": "When false charges spread like truth — even the strong falter, and the firm crumble."
       },
       "balance_rationale": "2코스트 복합 디버프. 약화3(3회 공격 25%감소)+취약2(2턴 받는피해 50%증가). 총 디버프 가치 = 약화+취약 = 2~3코스트 상당. 탄핵(W002, 학식소비취약)의 순수 디버프 버전. 디버프 지배 아키타입의 핵심 2코스트 설치 카드.",
       "sijo_position": "중장 둘째 슬롯 [4]",
@@ -735,7 +736,7 @@
         "ko": "파직",
         "hanja": "罷職",
         "romanized": "Pajik",
-        "en": ""
+        "en": "Dismissal"
       },
       "beat": 3,
       "cost": 2,
@@ -747,15 +748,15 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "적에게 8 피해를 입힌다. 대상에게 파직(罷職) 상태를 부여한다. (파직: 공격력이 3 감소, 3턴 지속)",
-        "en": ""
+        "en": "Deal 8 damage to an enemy. Apply Dismissal status. (Dismissal: attack power reduced by 3 for 3 turns)"
       },
       "effect_upgraded": {
         "ko": "10 피해. 파직으로 공격력 5 감소, 4턴.",
-        "en": ""
+        "en": "Deal 10 damage. Dismissal: -5 attack power for 4 turns."
       },
       "flavor_text": {
         "ko": "벼슬을 빼앗으면 권세도 사라진다 — 적의 힘을 영구적으로 꺾어버린다.",
-        "en": ""
+        "en": "Strip them of rank and their authority vanishes — permanently break the enemy's power."
       },
       "balance_rationale": "2코스트 공격+공격력 감소 디버프. 8피해는 2코스트 기준 적정. 파직(공격력 3감소 3턴)은 적 공격 9~15 기준 매 턴 3 감소 = 3턴간 9피해 방어 가치. 총 가치 8+9=17피해 상당. 디버프 지배 아키타입의 지속 디버프 카드.",
       "sijo_position": "중장 첫 슬롯 [3]",
@@ -776,7 +777,7 @@
         "ko": "간언",
         "hanja": "諫言",
         "romanized": "Ganeon",
-        "en": ""
+        "en": "Admonition"
       },
       "beat": 4,
       "cost": 1,
@@ -789,15 +790,15 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "카드 1장을 드로우한다. 다음으로 적이 받게 되는 피해에 취약(脆弱) 2를 추가로 부여한다 (이번 턴 한정).",
-        "en": ""
+        "en": "Draw 1 card. Apply 2 Vulnerable to the next damage the enemy receives this turn."
       },
       "effect_upgraded": {
         "ko": "카드 2장을 드로우한다. 취약 3.",
-        "en": ""
+        "en": "Draw 2 cards. Apply 3 Vulnerable."
       },
       "flavor_text": {
         "ko": "왕에게 직접 간언하니 — 아무리 강한 자도 직언 앞에서는 틈이 생긴다.",
-        "en": ""
+        "en": "Admonish the king directly — even the strongest reveal a weakness before frank words."
       },
       "balance_rationale": "1코스트 드로우+조건부 취약. 드로우 1장+이번 턴 취약 부여 = 다음 공격 카드 피해 50% 증가. 격물치지(비용감소) 대신 취약을 부여하는 다른 1코스트 콤보 설정 카드. 간언→직언(9피해×1.5=13.5) = 1코스트 콤보 가치.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
@@ -817,7 +818,7 @@
         "ko": "유배",
         "hanja": "流配",
         "romanized": "Yubae",
-        "en": ""
+        "en": "Exile"
       },
       "beat": 4,
       "cost": 3,
@@ -830,15 +831,15 @@
       "rarity_stars": "★★★★★",
       "effect": {
         "ko": "대상 적에게서 모든 버프를 제거한다. 약화(弱化) 4를 부여한다.",
-        "en": ""
+        "en": "Remove all buffs from the target enemy. Apply 4 Weaken."
       },
       "effect_upgraded": {
         "ko": "모든 버프 제거 + 약화 5. 학식 2 획득.",
-        "en": ""
+        "en": "Remove all buffs + apply 5 Weaken. Gain 2 Erudition."
       },
       "flavor_text": {
         "ko": "유배는 모든 것을 빼앗는다 — 권세도, 힘도, 모든 쌓아온 것이 사라진다.",
-        "en": ""
+        "en": "Exile strips everything away — authority, strength, all that was built vanishes."
       },
       "balance_rationale": "3코스트 버프 제거+약화. 적 버프 제거는 보스의 방어 강화 등을 무력화하는 제어 특화 카드. 약화4 추가로 이후 4회 공격 피해 25% 감소. 보스전 전용 특화 카드지만 일반 전투에서도 약화로 실용성 확보.",
       "sijo_position": "종장 둘째 슬롯 [4] — 제어 피날레",
@@ -858,7 +859,7 @@
         "ko": "수신제가",
         "hanja": "修身齊家",
         "romanized": "Sujin Jega",
-        "en": ""
+        "en": "Self-Cultivation"
       },
       "beat": 3,
       "cost": 0,
@@ -870,15 +871,15 @@
       "rarity_stars": "★★☆☆☆",
       "effect": {
         "ko": "방어도 3을 획득한다. 학식 1을 획득한다.",
-        "en": ""
+        "en": "Gain 3 Block. Gain 1 Erudition."
       },
       "effect_upgraded": {
         "ko": "방어도 5를 획득한다. 학식 1을 획득한다.",
-        "en": ""
+        "en": "Gain 5 Block. Gain 1 Erudition."
       },
       "flavor_text": {
         "ko": "몸을 닦고 집안을 다스리는 것이 먼저 — 기초가 흔들리면 어떤 학문도 소용없다.",
-        "en": ""
+        "en": "Cultivate the self and order the household first — if the foundation shakes, no amount of learning avails."
       },
       "balance_rationale": "0코스트 방어+학식. 기공(도사 0코스트 기+드로우)의 방어 버전. 0코스트로 방어도3+학식1은 독서(W006, 0코스트 학식1+드로우1)의 방어형 대안. 방어·학식 루프 아키타입의 0코스트 주력 카드. 덱 20장 기준 최대 2장 권장.",
       "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 루프 스타터",
@@ -899,7 +900,7 @@
         "ko": "군자",
         "hanja": "君子",
         "romanized": "Gunja",
-        "en": ""
+        "en": "Noble Scholar"
       },
       "beat": 4,
       "cost": 2,
@@ -911,15 +912,15 @@
       "rarity_stars": "★★★★☆",
       "effect": {
         "ko": "방어도 12를 획득한다. 학식 1을 소비하면 방어도를 6 추가 획득한다.",
-        "en": ""
+        "en": "Gain 12 Block. Spend 1 Erudition to gain 6 additional Block."
       },
       "effect_upgraded": {
         "ko": "방어도 15. 학식 소비 시 방어도 +9.",
-        "en": ""
+        "en": "Gain 15 Block. On Erudition spend, +9 additional Block."
       },
       "flavor_text": {
         "ko": "군자는 흔들리지 않는다 — 학문으로 다져진 의지가 방어의 벽이 된다.",
-        "en": ""
+        "en": "The noble scholar does not waver — a will tempered by learning becomes a wall of defense."
       },
       "balance_rationale": "2코스트 조건부 방어 강화. 기본 12방어도는 2코스트 기준 최강(철벽방어G023=14, 예제W005=10). 학식 1 소비 시 18방어도 — 천하무적진(G005, 3코스트 18방어도)을 1코스트 저렴하게 달성. 방어·학식 루프의 핵심 2코스트 방어 카드.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
@@ -941,7 +942,7 @@
         "ko": "청렴",
         "hanja": "淸廉",
         "romanized": "Cheongnyeom",
-        "en": ""
+        "en": "Integrity"
       },
       "beat": 3,
       "cost": 1,
@@ -954,15 +955,15 @@
       "rarity_stars": "★★☆☆☆",
       "effect": {
         "ko": "방어도 5를 획득한다. 현재 학식이 0이라면 방어도를 3 추가 획득한다.",
-        "en": ""
+        "en": "Gain 5 Block. If current Erudition is 0, gain 3 additional Block."
       },
       "effect_upgraded": {
         "ko": "방어도 7. 학식 0 조건 방어도 +4 추가.",
-        "en": ""
+        "en": "Gain 7 Block. If Erudition is 0, gain 4 additional Block."
       },
       "flavor_text": {
         "ko": "깨끗한 마음으로 임하면 — 아무것도 없어도 더 강하다.",
-        "en": ""
+        "en": "Approach with a clean heart — having nothing makes you all the stronger."
       },
       "balance_rationale": "1코스트 역조건 방어. 학식 0(전투 초반)에서 8방어도로 수호(5)보다 강함. 학식이 쌓인 후에는 단순 5방어도로 경연과 동일. 전투 초반 생존에 특화되어 있어 방어·학식 루프의 초반 안정화 카드. 학식 축적에 집중하기 전 버티는 전술.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
@@ -982,7 +983,7 @@
         "ko": "정도",
         "hanja": "正道",
         "romanized": "Jeongdo",
-        "en": ""
+        "en": "Righteous Path"
       },
       "beat": 3,
       "cost": 2,
@@ -994,15 +995,15 @@
       "rarity_stars": "★★★★☆",
       "effect": {
         "ko": "이번 전투 동안, 방어 카드를 사용할 때마다 학식 1을 획득한다.",
-        "en": ""
+        "en": "For the rest of this combat, gain 1 Erudition whenever you play a defense card."
       },
       "effect_upgraded": {
         "ko": "방어 카드 사용 시 학식 2 획득.",
-        "en": ""
+        "en": "Gain 2 Erudition per defense card."
       },
       "flavor_text": {
         "ko": "바른 길을 걸으면 배움이 절로 온다 — 막을 때마다 더 알게 된다.",
-        "en": ""
+        "en": "Walk the righteous path and learning comes naturally — every defense teaches something more."
       },
       "balance_rationale": "2코스트 방어→학식 변환 파워. 이 카드 이후 경연(방어5+학식1)이 방어5+학식2로 상향. 예제(방어10+학식2)가 방어10+학식3으로 상향. 방어 중심 덱에서 자동으로 학식이 빠르게 쌓여 상소 발동을 앞당김. 방어·학식 루프의 핵심 파워.",
       "sijo_position": "초장 둘째 슬롯 [4] — 방어 루프 패시브",
@@ -1023,7 +1024,7 @@
         "ko": "대의",
         "hanja": "大義",
         "romanized": "Daeui",
-        "en": ""
+        "en": "Greater Duty"
       },
       "beat": 4,
       "cost": 3,
@@ -1037,15 +1038,15 @@
       "rarity_stars": "★★★★★",
       "effect": {
         "ko": "학식 3을 획득한다. 방어도 8을 획득한다. 카드 2장을 드로우한다.",
-        "en": ""
+        "en": "Gain 3 Erudition. Gain 8 Block. Draw 2 cards."
       },
       "effect_upgraded": {
         "ko": "학식 4. 방어도 12. 카드 2장 드로우.",
-        "en": ""
+        "en": "Gain 4 Erudition. Gain 12 Block. Draw 2 cards."
       },
       "flavor_text": {
         "ko": "큰 의로움 앞에서는 모든 것이 가능하다 — 학문도, 방어도, 행동도 하나가 된다.",
-        "en": ""
+        "en": "Before the greater duty, all things are possible — learning, defense, and action become one."
       },
       "balance_rationale": "3코스트 종합 지원 카드. 학식3+방어8+드로우2 = 단순 합산 시 3+2+2=7코스트 상당 효과를 3코스트로. 단독으로 독서+경연+박학다식의 효과를 근사. 방어·학식 루프의 3코스트 원턴 셋업 카드. 각 요소의 효율은 개별 카드보다 낮지만 3코스트로 한 턴에 몰아치는 편의성 제공.",
       "sijo_position": "종장 첫 슬롯 [4] — 방어 루프 피날레",
@@ -1066,6 +1067,7 @@
     {
       "id": "취약",
       "ko": "취약",
+      "en": "Vulnerable",
       "hanja": "脆弱",
       "description": "이 상태인 적이 피해를 받으면 피해량이 50% 증가한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
       "duration_type": "turns",
@@ -1074,6 +1076,7 @@
     {
       "id": "파직",
       "ko": "파직",
+      "en": "Dismissed",
       "hanja": "罷職",
       "description": "이 상태인 적의 공격력이 지정된 수치만큼 감소한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
       "duration_type": "turns",

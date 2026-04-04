@@ -6,9 +6,9 @@
     "ko": "한양",
     "description": {
       "ko": "조선의 수도. 부패한 관리, 거리의 불량배, 억울한 귀신이 뒤섞인 도시.",
-      "en": ""
+      "en": "The capital of Joseon. A city teeming with corrupt officials, street thugs, and restless spirits."
     },
-    "en": ""
+    "en": "Hanyang"
   },
   "balance_ref": "ZER-12 (카드 밸런스 스펙). 플레이어 기준: 도사 HP 70 / 무관 HP 80 / 문관 HP 65, 기/턴 3, 스타터 덱 평균 1턴 피해 6~8.",
   "balance_targets": {
@@ -29,11 +29,11 @@
         "ko": "불량배",
         "hanja": "不良輩",
         "romanized": "Bullyangbae",
-        "en": ""
+        "en": "Thug"
       },
       "description": {
         "ko": "한양 골목의 건달. 빠르고 거칠지만 무모하다.",
-        "en": ""
+        "en": "A ruffian from Hanyang's back alleys. Quick and rough, but reckless."
       },
       "hp": {
         "min": 25,
@@ -44,35 +44,35 @@
           "id": "slash",
           "name": {
             "ko": "난도질",
-            "en": ""
+            "en": "Wild Slash"
           },
           "intent": "attack",
           "damage": 7,
           "times": 1,
           "description": {
             "ko": "단순 근접 공격.",
-            "en": ""
+            "en": "A simple melee attack."
           }
         },
         {
           "id": "reckless_flurry",
           "name": {
             "ko": "난타",
-            "en": ""
+            "en": "Reckless Flurry"
           },
           "intent": "attack",
           "damage": 4,
           "times": 3,
           "description": {
             "ko": "3회 연타. 총 9피해. 방어도 관통 불가.",
-            "en": ""
+            "en": "3-hit combo. 9 total damage. Cannot pierce Block."
           }
         },
         {
           "id": "taunt",
           "name": {
             "ko": "도발",
-            "en": ""
+            "en": "Taunt"
           },
           "intent": "debuff",
           "damage": 0,
@@ -86,7 +86,7 @@
           ],
           "description": {
             "ko": "플레이어에게 약화 1 부여. 다음 공격 피해 25% 감소.",
-            "en": ""
+            "en": "Applies 1 Weaken to the player. Next attack deals 25% less damage."
           }
         }
       ],
@@ -116,11 +116,11 @@
         "ko": "포졸",
         "hanja": "捕卒",
         "romanized": "Pojol",
-        "en": ""
+        "en": "Constable"
       },
       "description": {
         "ko": "부패한 포도청 관리. 방패와 곤봉을 사용한다.",
-        "en": ""
+        "en": "A corrupt patrol officer. Wields a shield and cudgel."
       },
       "hp": {
         "min": 28,
@@ -131,48 +131,48 @@
           "id": "club_strike",
           "name": {
             "ko": "곤봉 타격",
-            "en": ""
+            "en": "Cudgel Strike"
           },
           "intent": "attack",
           "damage": 8,
           "times": 1,
           "description": {
             "ko": "묵직한 곤봉 공격.",
-            "en": ""
+            "en": "A heavy cudgel strike."
           }
         },
         {
           "id": "brace",
           "name": {
             "ko": "방패 막기",
-            "en": ""
+            "en": "Shield Block"
           },
           "intent": "defend",
           "block": 6,
           "description": {
             "ko": "방어도 6 획득.",
-            "en": ""
+            "en": "Gain 6 Block."
           }
         },
         {
           "id": "heavy_blow",
           "name": {
             "ko": "철퇴 강타",
-            "en": ""
+            "en": "Iron Mace Smash"
           },
           "intent": "attack",
           "damage": 13,
           "times": 1,
           "description": {
             "ko": "강력한 일격. 패턴 중 최대 피해.",
-            "en": ""
+            "en": "A powerful strike. Maximum damage in the pattern."
           }
         },
         {
           "id": "rally",
           "name": {
             "ko": "기합",
-            "en": ""
+            "en": "War Cry"
           },
           "intent": "buff",
           "effects": [
@@ -185,7 +185,7 @@
           ],
           "description": {
             "ko": "힘(strength) 1 획득. 이후 공격 피해 +1.",
-            "en": ""
+            "en": "Gain 1 Strength. All subsequent attacks deal +1 damage."
           }
         }
       ],
@@ -217,11 +217,11 @@
         "ko": "원혼",
         "hanja": "冤魂",
         "romanized": "Wonhon",
-        "en": ""
+        "en": "Grudge Spirit"
       },
       "description": {
         "ko": "억울하게 죽어 한양을 떠돌고 있는 귀신. 저주와 공포를 무기로 삼는다.",
-        "en": ""
+        "en": "A ghost that wanders Hanyang after an unjust death. Uses curses and fear as weapons."
       },
       "hp": {
         "min": 22,
@@ -232,7 +232,7 @@
           "id": "wail",
           "name": {
             "ko": "통곡",
-            "en": ""
+            "en": "Wailing"
           },
           "intent": "debuff",
           "damage": 0,
@@ -253,14 +253,14 @@
           ],
           "description": {
             "ko": "플레이어에게 약화 1 + 취약 1 부여.",
-            "en": ""
+            "en": "Applies 1 Weaken + 1 Vulnerable to the player."
           }
         },
         {
           "id": "cold_touch",
           "name": {
             "ko": "냉기 접촉",
-            "en": ""
+            "en": "Chilling Touch"
           },
           "intent": "attack",
           "damage": 6,
@@ -276,14 +276,14 @@
           ],
           "description": {
             "ko": "5피해 + 냉기(다음 턴 드로우 -1) 부여.",
-            "en": ""
+            "en": "5 damage + applies Chill (draw -1 next turn)."
           }
         },
         {
           "id": "possession_attempt",
           "name": {
             "ko": "빙의 시도",
-            "en": ""
+            "en": "Possession Attempt"
           },
           "intent": "attack_debuff",
           "damage": 7,
@@ -298,7 +298,7 @@
           ],
           "description": {
             "ko": "6피해 + 약화 1. 원혼의 주력 패턴.",
-            "en": ""
+            "en": "6 damage + 1 Weaken. The Grudge Spirit's main attack."
           }
         }
       ],
@@ -329,11 +329,11 @@
         "ko": "도깨비",
         "hanja": "道鬼",
         "romanized": "Dokkaebi",
-        "en": ""
+        "en": "Dokkaebi"
       },
       "description": {
         "ko": "한양 외곽을 배회하는 장난기 많은 도깨비. 예측하기 어렵고 방망이가 강력하다.",
-        "en": ""
+        "en": "A mischievous goblin roaming the outskirts of Hanyang. Unpredictable, with a powerful club."
       },
       "hp": {
         "min": 30,
@@ -344,21 +344,21 @@
           "id": "club_bash",
           "name": {
             "ko": "방망이 강타",
-            "en": ""
+            "en": "Club Bash"
           },
           "intent": "attack",
           "damage": 11,
           "times": 1,
           "description": {
             "ko": "단순하지만 아픈 방망이 공격.",
-            "en": ""
+            "en": "A simple but painful club strike."
           }
         },
         {
           "id": "trick",
           "name": {
             "ko": "도깨비불",
-            "en": ""
+            "en": "Goblin Fire"
           },
           "intent": "attack_debuff",
           "damage": 5,
@@ -373,14 +373,14 @@
           ],
           "description": {
             "ko": "4피해 + 화상 2 (매 턴 2피해, 2턴).",
-            "en": ""
+            "en": "4 damage + 2 Burn (2 damage per turn, 2 turns)."
           }
         },
         {
           "id": "strengthen",
           "name": {
             "ko": "기합",
-            "en": ""
+            "en": "War Cry"
           },
           "intent": "buff",
           "effects": [
@@ -393,21 +393,21 @@
           ],
           "description": {
             "ko": "힘 2 획득. 이후 공격 피해 +2씩 증가.",
-            "en": ""
+            "en": "Gain 2 Strength. All subsequent attacks deal +2 damage."
           }
         },
         {
           "id": "slam",
           "name": {
             "ko": "도깨비 박치기",
-            "en": ""
+            "en": "Dokkaebi Headbutt"
           },
           "intent": "attack",
           "damage": 14,
           "times": 1,
           "description": {
             "ko": "힘 쌓인 후 사용. 위력적인 일격.",
-            "en": ""
+            "en": "Used after building Strength. A devastating blow."
           }
         }
       ],
@@ -439,11 +439,11 @@
         "ko": "포졸 대장",
         "hanja": "捕卒大將",
         "romanized": "Pojol Daejang",
-        "en": ""
+        "en": "Constable Captain"
       },
       "description": {
         "ko": "한양 순라군의 대장. 부하들을 이끌며 연타와 방어를 동시에 구사하는 노련한 전사.",
-        "en": ""
+        "en": "Captain of Hanyang's patrol guard. A veteran fighter who combines multi-strikes with defense."
       },
       "hp": {
         "min": 32,
@@ -454,34 +454,34 @@
           "id": "rapid_clubs",
           "name": {
             "ko": "연속 곤봉",
-            "en": ""
+            "en": "Rapid Cudgels"
           },
           "intent": "attack",
           "damage": 5,
           "times": 3,
           "description": {
             "ko": "4피해 × 3회 = 12 총피해. 방어도 분산 효과.",
-            "en": ""
+            "en": "4 damage x3 hits = 12 total damage. Splits Block."
           }
         },
         {
           "id": "shield_wall",
           "name": {
             "ko": "방패 진형",
-            "en": ""
+            "en": "Shield Formation"
           },
           "intent": "defend",
           "block": 9,
           "description": {
             "ko": "방패를 들어 방어도 9 획득.",
-            "en": ""
+            "en": "Raise shield to gain 9 Block."
           }
         },
         {
           "id": "captain_command",
           "name": {
             "ko": "대장의 호령",
-            "en": ""
+            "en": "Captain's Command"
           },
           "intent": "buff",
           "effects": [
@@ -494,21 +494,21 @@
           ],
           "description": {
             "ko": "기합을 질러 힘 2 획득. 이후 공격 피해 +2.",
-            "en": ""
+            "en": "Shout a war cry to gain 2 Strength. Subsequent attacks deal +2 damage."
           }
         },
         {
           "id": "heavy_strike",
           "name": {
             "ko": "중검 타격",
-            "en": ""
+            "en": "Heavy Blade Strike"
           },
           "intent": "attack",
           "damage": 16,
           "times": 1,
           "description": {
             "ko": "단발 강타. 힘 쌓인 후 사용.",
-            "en": ""
+            "en": "A single heavy strike. Used after building Strength."
           }
         }
       ],
@@ -541,11 +541,11 @@
         "ko": "악귀",
         "hanja": "惡鬼",
         "romanized": "Akgwi",
-        "en": ""
+        "en": "Fiend"
       },
       "description": {
         "ko": "원한이 너무 깊어 악으로 변한 귀신. 독과 저주로 적을 서서히 갉아먹는다.",
-        "en": ""
+        "en": "A ghost twisted into evil by deep grudge. Slowly devours foes with poison and curses."
       },
       "hp": {
         "min": 18,
@@ -556,7 +556,7 @@
           "id": "venom_touch",
           "name": {
             "ko": "독기 접촉",
-            "en": ""
+            "en": "Venomous Touch"
           },
           "intent": "attack_debuff",
           "damage": 5,
@@ -571,14 +571,14 @@
           ],
           "description": {
             "ko": "4피해 + 독 3 부여. 누적 독 피해: 3+2+1=6.",
-            "en": ""
+            "en": "4 damage + applies 3 Poison. Cumulative poison damage: 3+2+1=6."
           }
         },
         {
           "id": "curse_mark",
           "name": {
             "ko": "저주 낙인",
-            "en": ""
+            "en": "Curse Brand"
           },
           "intent": "debuff",
           "effects": [
@@ -597,14 +597,14 @@
           ],
           "description": {
             "ko": "취약 2 + 약화 1 부여.",
-            "en": ""
+            "en": "Applies 2 Vulnerable + 1 Weaken."
           }
         },
         {
           "id": "spirit_drain",
           "name": {
             "ko": "기력 흡수",
-            "en": ""
+            "en": "Spirit Drain"
           },
           "intent": "attack",
           "damage": 8,
@@ -619,7 +619,7 @@
           ],
           "description": {
             "ko": "7피해 + 냉기 1(다음 턴 드로우 -1) 부여.",
-            "en": ""
+            "en": "7 damage + 1 Chill (draw -1 next turn)."
           }
         }
       ],
@@ -651,11 +651,11 @@
         "ko": "탐관오리",
         "hanja": "貪官汚吏",
         "romanized": "Tamgwan-oli",
-        "en": ""
+        "en": "Corrupt Official"
       },
       "description": {
         "ko": "부패한 조선 관리. 직접 싸우기보다 버프와 약화로 유리한 상황을 만든다.",
-        "en": ""
+        "en": "A corrupt Joseon official. Creates advantages through buffs and debuffs over direct combat."
       },
       "hp": {
         "min": 28,
@@ -666,7 +666,7 @@
           "id": "bribe_power",
           "name": {
             "ko": "뇌물 축적",
-            "en": ""
+            "en": "Bribe Stacking"
           },
           "intent": "buff",
           "effects": [
@@ -685,14 +685,14 @@
           ],
           "description": {
             "ko": "힘 2 + 가시 2 획득. 근접 공격자에게 역피해 유발.",
-            "en": ""
+            "en": "Gain 2 Strength + 2 Thorns. Reflects damage to melee attackers."
           }
         },
         {
           "id": "extort",
           "name": {
             "ko": "착취",
-            "en": ""
+            "en": "Extortion"
           },
           "intent": "attack_debuff",
           "damage": 10,
@@ -707,14 +707,14 @@
           ],
           "description": {
             "ko": "8피해 + 약화 2. 플레이어 공격력을 크게 낮춘다.",
-            "en": ""
+            "en": "8 damage + 2 Weaken. Greatly reduces the player's attack power."
           }
         },
         {
           "id": "decree",
           "name": {
             "ko": "압박 명령",
-            "en": ""
+            "en": "Oppressive Decree"
           },
           "intent": "debuff",
           "effects": [
@@ -733,21 +733,21 @@
           ],
           "description": {
             "ko": "취약 1 + 냉기 1 부여. 다음 턴 드로우 방해.",
-            "en": ""
+            "en": "Applies 1 Vulnerable + 1 Chill. Disrupts next turn's draw."
           }
         },
         {
           "id": "official_blow",
           "name": {
             "ko": "관인 타격",
-            "en": ""
+            "en": "Official Seal Strike"
           },
           "intent": "attack",
           "damage": 12,
           "times": 1,
           "description": {
             "ko": "힘 쌓인 후 사용. 10+힘 피해.",
-            "en": ""
+            "en": "Used after building Strength. 10+Strength damage."
           }
         }
       ],
@@ -780,11 +780,11 @@
         "ko": "포졸 창병",
         "hanja": "捕卒槍兵",
         "romanized": "Pojol Changbyeong",
-        "en": ""
+        "en": "Spear Constable"
       },
       "description": {
         "ko": "포도청 소속 창을 든 포졸. 방패로 몸을 숨기고 기회를 노린다.",
-        "en": ""
+        "en": "A spear-wielding constable. Hides behind a shield and waits for an opening."
       },
       "hp": {
         "min": 30,
@@ -795,35 +795,35 @@
           "id": "shield_stance",
           "name": {
             "ko": "방패 자세",
-            "en": ""
+            "en": "Shield Stance"
           },
           "intent": "defend",
           "damage": 0,
           "block": 8,
           "description": {
             "ko": "방어도 8을 획득한다.",
-            "en": ""
+            "en": "Gain 8 Block."
           }
         },
         {
           "id": "spear_thrust",
           "name": {
             "ko": "창 찌르기",
-            "en": ""
+            "en": "Spear Thrust"
           },
           "intent": "attack",
           "damage": 9,
           "times": 1,
           "description": {
             "ko": "방패 뒤에서 빠르게 창을 찌른다.",
-            "en": ""
+            "en": "Quickly thrusts a spear from behind the shield."
           }
         },
         {
           "id": "shield_bash",
           "name": {
             "ko": "방패 강타",
-            "en": ""
+            "en": "Shield Bash"
           },
           "intent": "attack_debuff",
           "damage": 5,
@@ -838,7 +838,7 @@
           ],
           "description": {
             "ko": "방패로 내려치며 약화 1 부여.",
-            "en": ""
+            "en": "Bashes with a shield, applying 1 Weaken."
           }
         }
       ],
@@ -869,11 +869,11 @@
         "ko": "행수",
         "hanja": "行首",
         "romanized": "Haengsu",
-        "en": ""
+        "en": "Guild Boss"
       },
       "description": {
         "ko": "시장 상인들의 우두머리. 부하를 부려 공격력을 높인다.",
-        "en": ""
+        "en": "Head of the marketplace merchants. Uses underlings to boost attack power."
       },
       "hp": {
         "min": 26,
@@ -884,7 +884,7 @@
           "id": "rally_men",
           "name": {
             "ko": "부하 독려",
-            "en": ""
+            "en": "Rally Underlings"
           },
           "intent": "buff",
           "damage": 0,
@@ -898,35 +898,35 @@
           ],
           "description": {
             "ko": "힘(力) 2를 획득한다.",
-            "en": ""
+            "en": "Gain 2 Strength."
           }
         },
         {
           "id": "club_swing",
           "name": {
             "ko": "몽둥이 휘두르기",
-            "en": ""
+            "en": "Club Swing"
           },
           "intent": "attack",
           "damage": 6,
           "times": 1,
           "description": {
             "ko": "묵직한 몽둥이 공격.",
-            "en": ""
+            "en": "A heavy club strike."
           }
         },
         {
           "id": "gang_up",
           "name": {
             "ko": "집단 구타",
-            "en": ""
+            "en": "Gang Beatdown"
           },
           "intent": "attack",
           "damage": 3,
           "times": 3,
           "description": {
             "ko": "부하들과 함께 3회 연타.",
-            "en": ""
+            "en": "3-hit combo with underlings."
           }
         }
       ],
@@ -957,11 +957,11 @@
         "ko": "기생",
         "hanja": "妓生",
         "romanized": "Gisaeng",
-        "en": ""
+        "en": "Gisaeng"
       },
       "description": {
         "ko": "화려한 외모 뒤에 숨겨진 독. 적을 약화시키고 서서히 잠식한다.",
-        "en": ""
+        "en": "Poison hidden behind a gorgeous facade. Weakens foes and slowly consumes them."
       },
       "hp": {
         "min": 22,
@@ -972,7 +972,7 @@
           "id": "charm",
           "name": {
             "ko": "매혹",
-            "en": ""
+            "en": "Beguile"
           },
           "intent": "debuff",
           "damage": 0,
@@ -986,14 +986,14 @@
           ],
           "description": {
             "ko": "약화 2를 부여한다.",
-            "en": ""
+            "en": "Applies 2 Weaken."
           }
         },
         {
           "id": "poison_wine",
           "name": {
             "ko": "독주",
-            "en": ""
+            "en": "Poisoned Wine"
           },
           "intent": "attack_debuff",
           "damage": 3,
@@ -1008,21 +1008,21 @@
           ],
           "description": {
             "ko": "3 피해 + 독 3 부여.",
-            "en": ""
+            "en": "3 damage + applies 3 Poison."
           }
         },
         {
           "id": "dance",
           "name": {
             "ko": "춤사위",
-            "en": ""
+            "en": "Dance"
           },
           "intent": "defend",
           "damage": 0,
           "block": 5,
           "description": {
             "ko": "우아한 움직임으로 방어도 5 획득.",
-            "en": ""
+            "en": "Gain 5 Block through graceful movement."
           }
         }
       ],
@@ -1053,11 +1053,11 @@
         "ko": "점쟁이",
         "hanja": "占쟁이",
         "romanized": "Jeomjaengi",
-        "en": ""
+        "en": "Fortune Teller"
       },
       "description": {
         "ko": "길거리 점술사. 예측 불가능한 행동으로 플레이어를 교란한다.",
-        "en": ""
+        "en": "A street diviner. Disrupts the player with unpredictable actions."
       },
       "hp": {
         "min": 24,
@@ -1068,7 +1068,7 @@
           "id": "fortune_tell",
           "name": {
             "ko": "점괘",
-            "en": ""
+            "en": "Divination"
           },
           "intent": "buff",
           "damage": 0,
@@ -1088,14 +1088,14 @@
           ],
           "description": {
             "ko": "힘 1 + 방어도 4 획득.",
-            "en": ""
+            "en": "Gain 1 Strength + 4 Block."
           }
         },
         {
           "id": "evil_eye",
           "name": {
             "ko": "사안",
-            "en": ""
+            "en": "Evil Eye"
           },
           "intent": "debuff",
           "damage": 0,
@@ -1109,28 +1109,28 @@
           ],
           "description": {
             "ko": "취약 1을 부여한다.",
-            "en": ""
+            "en": "Applies 1 Vulnerable."
           }
         },
         {
           "id": "spirit_strike",
           "name": {
             "ko": "부적 투척",
-            "en": ""
+            "en": "Talisman Throw"
           },
           "intent": "attack",
           "damage": 8,
           "times": 1,
           "description": {
             "ko": "주술이 담긴 부적을 던진다.",
-            "en": ""
+            "en": "Throws a talisman imbued with sorcery."
           }
         },
         {
           "id": "hex",
           "name": {
             "ko": "저주",
-            "en": ""
+            "en": "Hex"
           },
           "intent": "attack_debuff",
           "damage": 4,
@@ -1145,7 +1145,7 @@
           ],
           "description": {
             "ko": "4 피해 + 주박 1 부여.",
-            "en": ""
+            "en": "4 damage + applies 1 Hex."
           }
         }
       ],
@@ -1178,11 +1178,11 @@
         "ko": "이무기",
         "hanja": "離龍",
         "romanized": "Imugi",
-        "en": ""
+        "en": "Imugi"
       },
       "description": {
         "ko": "아직 용이 되지 못한 뱀 정령. 독과 위압으로 싸운다.",
-        "en": ""
+        "en": "A serpent spirit that has yet to become a dragon. Fights with poison and intimidation."
       },
       "hp": {
         "min": 55,
@@ -1194,7 +1194,7 @@
           "id": "poison_bite",
           "name": {
             "ko": "독아 물기",
-            "en": ""
+            "en": "Venom Bite"
           },
           "intent": "attack_debuff",
           "damage": 7,
@@ -1210,14 +1210,14 @@
           ],
           "description": {
             "ko": "7피해 + 독 3 부여.",
-            "en": ""
+            "en": "7 damage + applies 3 Poison."
           }
         },
         {
           "id": "coil",
           "name": {
             "ko": "몸 감기",
-            "en": ""
+            "en": "Coil"
           },
           "intent": "buff_defend",
           "block": 8,
@@ -1231,21 +1231,21 @@
           ],
           "description": {
             "ko": "방어도 8 + 힘 1.",
-            "en": ""
+            "en": "8 Block + 1 Strength."
           }
         },
         {
           "id": "crushing_squeeze",
           "name": {
             "ko": "압착",
-            "en": ""
+            "en": "Constrict"
           },
           "intent": "attack",
           "damage": 15,
           "times": 1,
           "description": {
             "ko": "치명적인 일격. coil 이후 사용.",
-            "en": ""
+            "en": "A lethal strike. Used after Coil."
           }
         }
       ],
@@ -1277,11 +1277,11 @@
         "ko": "옥사장",
         "hanja": "獄舍長",
         "romanized": "Oksajang",
-        "en": ""
+        "en": "Prison Warden"
       },
       "description": {
         "ko": "한양 감옥을 관리하는 잔혹한 간수장. 죄수를 도구로 삼아 싸우며 구금 디버프로 적을 제압한다.",
-        "en": ""
+        "en": "The cruel warden of Hanyang's prison. Uses prisoners as tools and suppresses foes with Detain debuffs."
       },
       "hp": {
         "min": 50,
@@ -1293,21 +1293,21 @@
           "id": "prison_lash",
           "name": {
             "ko": "채찍질",
-            "en": ""
+            "en": "Lashing"
           },
           "intent": "attack",
           "damage": 10,
           "times": 2,
           "description": {
             "ko": "10피해 × 2회 = 20 총피해. 채찍으로 내리치는 연속 공격.",
-            "en": ""
+            "en": "10 damage x2 hits = 20 total. Consecutive lash strikes."
           }
         },
         {
           "id": "shackle",
           "name": {
             "ko": "족쇄",
-            "en": ""
+            "en": "Shackles"
           },
           "intent": "debuff",
           "effects": [
@@ -1327,19 +1327,19 @@
           ],
           "description": {
             "ko": "플레이어에게 구금 2(카드 비용 +1, 2턴) + 약화 1 부여.",
-            "en": ""
+            "en": "Applies 2 Detain (card cost +1, 2 turns) + 1 Weaken to the player."
           }
         },
         {
           "id": "summon_prisoner",
           "name": {
             "ko": "죄수 소환",
-            "en": ""
+            "en": "Summon Prisoners"
           },
           "intent": "summon",
           "description": {
             "ko": "죄수 토큰 2명을 전장에 소환한다. 각 HP 12.",
-            "en": ""
+            "en": "Summons 2 prisoner tokens to the field. Each has 12 HP."
           },
           "summon": [
             {
@@ -1354,21 +1354,21 @@
           "id": "iron_cudgel",
           "name": {
             "ko": "철퇴 강타",
-            "en": ""
+            "en": "Iron Mace Smash"
           },
           "intent": "attack",
           "damage": 15,
           "times": 1,
           "description": {
             "ko": "묵직한 철퇴 일격. 구금 상태에서 방어 대응 어려움.",
-            "en": ""
+            "en": "A heavy iron mace strike. Hard to defend against while Detained."
           }
         },
         {
           "id": "warden_fortify",
           "name": {
             "ko": "간수 방비",
-            "en": ""
+            "en": "Warden's Guard"
           },
           "intent": "buff_defend",
           "block": 12,
@@ -1382,7 +1382,7 @@
           ],
           "description": {
             "ko": "방어도 12 + 힘 1 획득.",
-            "en": ""
+            "en": "Gain 12 Block + 1 Strength."
           }
         }
       ],
@@ -1416,11 +1416,11 @@
         "ko": "무당",
         "hanja": "巫堂",
         "romanized": "Mudang",
-        "en": ""
+        "en": "Shaman"
       },
       "description": {
         "ko": "신령과 소통하는 무속인. 저주와 소환으로 싸우며 직접 전투는 피하지만 DoT와 소환 압박이 강력하다.",
-        "en": ""
+        "en": "A spirit medium. Fights with curses and summons; avoids direct combat but excels at DoT and summon pressure."
       },
       "hp": {
         "min": 45,
@@ -1432,7 +1432,7 @@
           "id": "spirit_ritual",
           "name": {
             "ko": "신령 의식",
-            "en": ""
+            "en": "Spirit Ritual"
           },
           "intent": "debuff",
           "effects": [
@@ -1451,19 +1451,19 @@
           ],
           "description": {
             "ko": "독 4 + 취약 2 부여. 누적 독 피해: 4+3+2+1=10.",
-            "en": ""
+            "en": "Applies 4 Poison + 2 Vulnerable. Cumulative poison damage: 4+3+2+1=10."
           }
         },
         {
           "id": "summon_spirit",
           "name": {
             "ko": "영혼 소환",
-            "en": ""
+            "en": "Summon Spirits"
           },
           "intent": "summon",
           "description": {
             "ko": "원혼 2기를 전장에 소환한다. 각 HP 18.",
-            "en": ""
+            "en": "Summons 2 Grudge Spirits to the field. Each has 18 HP."
           },
           "summon": [
             {
@@ -1478,7 +1478,7 @@
           "id": "curse_dance",
           "name": {
             "ko": "저주춤",
-            "en": ""
+            "en": "Curse Dance"
           },
           "intent": "attack_debuff",
           "damage": 8,
@@ -1499,27 +1499,27 @@
           ],
           "description": {
             "ko": "8피해 + 출혈 3 + 약화 1.",
-            "en": ""
+            "en": "8 damage + 3 Bleed + 1 Weaken."
           }
         },
         {
           "id": "shamanistic_ward",
           "name": {
             "ko": "부적 방어",
-            "en": ""
+            "en": "Talisman Guard"
           },
           "intent": "defend",
           "block": 11,
           "description": {
             "ko": "부적으로 방어도 11 획득.",
-            "en": ""
+            "en": "Gain 11 Block with a talisman."
           }
         },
         {
           "id": "possession_call",
           "name": {
             "ko": "빙의 부름",
-            "en": ""
+            "en": "Possession Call"
           },
           "intent": "attack_debuff",
           "damage": 12,
@@ -1540,7 +1540,7 @@
           ],
           "description": {
             "ko": "12피해 + 냉기 1 + 취약 1. 빙의 직전 압박 공격.",
-            "en": ""
+            "en": "12 damage + 1 Chill + 1 Vulnerable. A pressing attack before possession."
           }
         }
       ],
@@ -1601,11 +1601,13 @@
     {
       "id": "death_mark",
       "ko": "사망 표식",
+      "en": "Death Mark",
       "description": "스택이 줄어들 때마다 (매 턴 1씩 감소) 플레이어에게 5피해. 전투 종료 시 소멸."
     },
     {
       "id": "출혈",
       "ko": "출혈",
+      "en": "Bleed",
       "hanja": "出血",
       "description": "매 턴 시작 시 스택 수만큼 피해. 중첩 가능 (최대 10). 전투 종료 시 소멸. ZER-56 에서 정의 추가 (R014 저주받은 투구 연동).",
       "duration_type": "until_combat_end",
@@ -1614,11 +1616,13 @@
     {
       "id": "death_countdown",
       "ko": "사망 카운트다운",
+      "en": "Death Countdown",
       "description": "4턴 후 플레이어 현재 HP의 35% 감소. 저승사자(B002) 처치 시 즉시 해제. [ZER-56 조정: 3턴→4턴, 50%→35%]"
     },
     {
       "id": "구금",
       "ko": "구금",
+      "en": "Detention",
       "hanja": "拘禁",
       "description": "카드 사용 비용 +1. 지정 턴 수 후 해제. EL002 옥사장이 사용하는 신규 디버프."
     }
