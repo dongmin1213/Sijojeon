@@ -77,7 +77,7 @@ func _display_relic_offer() -> void:
 	var relic_label := Label.new()
 	relic_label.text = "유물 획득!"
 	relic_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	relic_label.add_theme_font_size_override("font_size", 20)
+	relic_label.add_theme_font_size_override("font_size", 28)
 	relic_label.add_theme_color_override("font_color", RelicManager.get_relic_rarity_color(relic_offer_id))
 	relic_section.add_child(relic_label)
 
@@ -151,6 +151,13 @@ func _display_card_offers() -> void:
 		proceed_button.visible = true
 		return
 
+	# 뷰포트 비례 카드 크기 계산
+	var vp_width := get_viewport().get_visible_rect().size.x
+	var available_width := vp_width * 0.8  # VBoxContainer 앵커 0.1~0.9
+	var card_count := card_offers.size()
+	var card_spacing := 20
+	var card_width := (available_width - card_spacing * (card_count - 1)) / card_count
+
 	for i in card_offers.size():
 		var card_id: String = card_offers[i]
 		var card: CardData = DataLoader.get_card(card_id)
@@ -158,8 +165,11 @@ func _display_card_offers() -> void:
 			continue
 
 		var btn := Button.new()
-		btn.custom_minimum_size = Vector2(200, 280)
+		btn.custom_minimum_size = Vector2(card_width, 320)
+		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		btn.text = _format_card_text(card)
+		btn.add_theme_font_size_override("font_size", 22)
+		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.pressed.connect(_on_card_chosen.bind(i))
 		card_container.add_child(btn)
 

@@ -62,9 +62,13 @@ theme_override_constants/separation = 20
 
 [node name="SkipButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
 text = "건너뛰기"
+theme_override_font_sizes/font_size = 26
 
 [node name="ProceedButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
 text = "계속"
+theme_override_font_sizes/font_size = 26
 visible = false
