@@ -109,7 +109,6 @@ REST_DESCRIPTION,모닥불 앞에서 잠시 쉬어간다.,Rest by the campfire f
 REST_HEAL_BUTTON,휴식 (HP 30% 회복),Rest (Restore 30% HP)
 REST_UPGRADE_BUTTON,카드 강화 (카드 1장 선택),Upgrade Card (Select 1)
 RESULT_DEFEAT_SUBTITLE,어둠 속에 쓰러졌다...,Fallen in the darkness...
-RESULT_VICTORY_SUBTITLE,암행을 마치다!,The journey is complete!
 REWARD_CARD_SELECT,카드 1장을 선택하세요,Choose a card
 SHOP_CARDS_FOR_SALE,판매 카드,Cards for Sale
 SHOP_REFRESH,새로고침 (50 금화),Refresh (50 Gold)
