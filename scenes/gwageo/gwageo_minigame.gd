@@ -90,22 +90,41 @@ func _start_phase(phase: Phase) -> void:
 
 	match phase:
 		Phase.CHOJANG:
-			phase_label.text = "초장(初章) — 카드 3장 선택"
-			instruction_label.text = "채점 기준: 공격·방어·기술 비율 균형\n만점 조건: 각 유형 1장씩 포함"
 			_max_select = 3
 			_offer_cards(5)
+			_max_select = mini(_max_select, _offered_cards.size())
+			phase_label.text = "초장(初章) — 아래에서 카드 %d장을 눌러 선택하세요" % _max_select
+			instruction_label.text = "▶ 공격·방어·기술을 골고루 넣으면 높은 점수!"
 		Phase.JUNGJANG:
-			phase_label.text = "중장(中章) — 카드 3장 선택"
-			instruction_label.text = "채점 기준: 초장 카드와 키워드 시너지\n만점 조건: 시너지 태그 2개 이상 연계"
 			_max_select = 3
 			_offer_cards(5)
+			_max_select = mini(_max_select, _offered_cards.size())
+			phase_label.text = "중장(中章) — 카드 %d장을 눌러 선택하세요" % _max_select
+			instruction_label.text = "▶ 초장 카드와 키워드가 겹칠수록 높은 점수!"
 		Phase.JONGJANG:
-			phase_label.text = "종장(終章) — 카드 2장 선택"
-			instruction_label.text = "채점 기준: 합산 피해량\n만점 조건: 합산 피해 12+"
 			_max_select = 2
 			_offer_cards(4)
+			_max_select = mini(_max_select, _offered_cards.size())
+			phase_label.text = "종장(終章) — 카드 %d장을 눌러 선택하세요" % _max_select
+			instruction_label.text = "▶ 피해량이 높은 카드를 골라 마무리!"
 		Phase.RESULT:
 			_show_result()
+			return
+
+	# 카드가 0장이면 바로 다음 단계로 건너뜀
+	if _offered_cards.is_empty():
+		_on_confirm()
+		return
+
+	selected_label.text = "선택: 0/%d" % _max_select
+	# 선택할 카드가 1장뿐이고 필요 수도 1이면 자동 선택 처리
+	if _max_select == 1 and _offered_cards.size() == 1:
+		_selected_indices.append(0)
+		var btns := card_container.get_children()
+		if btns.size() > 0 and btns[0] is Button:
+			btns[0].button_pressed = true
+		selected_label.text = "선택: 1/1"
+		confirm_button.visible = true
 
 
 func _offer_cards(count: int) -> void:
@@ -126,8 +145,9 @@ func _build_card_buttons() -> void:
 		var card := _offered_cards[i]
 		var btn := Button.new()
 		btn.text = _format_card_text(card)
-		btn.custom_minimum_size = Vector2(0, 80)
+		btn.custom_minimum_size = Vector2(0, 90)
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		btn.add_theme_font_size_override("font_size", 22)
 		btn.toggle_mode = true
 		btn.pressed.connect(_on_card_toggled.bind(i, btn))
 		card_container.add_child(btn)
