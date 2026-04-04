@@ -137,6 +137,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "민심 매수 (100 금화 → 민심 +10)"
 
+[node name="MarketOpenButton" type="Button" parent="VBoxContainer/ExtraSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "시장 개방 (25 금화 → 민심 +8)"
+
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 

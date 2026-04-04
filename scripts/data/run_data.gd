@@ -6,7 +6,7 @@ extends Resource
 @export var character_id: String = ""
 @export var current_hp: int = 70
 @export var max_hp: int = 70
-@export var gold: int = 99
+@export var gold: int = 40
 @export var qi_per_turn: int = 3
 @export var current_act: int = 1
 @export var current_floor: int = 0
@@ -81,7 +81,7 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.character_id = data.get("character_id", "")
 	rd.current_hp = data.get("current_hp", 70)
 	rd.max_hp = data.get("max_hp", 70)
-	rd.gold = data.get("gold", 99)
+	rd.gold = data.get("gold", 40)
 	rd.qi_per_turn = data.get("qi_per_turn", 3)
 	rd.current_act = data.get("current_act", 1)
 	rd.current_floor = data.get("current_floor", 0)

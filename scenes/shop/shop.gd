@@ -32,6 +32,10 @@ const UPGRADE_MAX_COST := 150
 const MINSHIM_BUY_COST := 100
 const MINSHIM_BUY_AMOUNT := 10
 
+# 시장 개방 비용 (저가 민심 획득)
+const MARKET_OPEN_COST := 25
+const MARKET_OPEN_MINSHIM := 8
+
 # 등급별 출현 가중치
 const RARITY_WEIGHTS := {
 	"common": 50,     # rarity 1~2
@@ -69,6 +73,7 @@ const RELIC_PRICES := {
 @onready var upgrade_scroll: ScrollContainer = $VBoxContainer/ExtraSection/UpgradeScrollContainer
 @onready var upgrade_deck_container: GridContainer = $VBoxContainer/ExtraSection/UpgradeScrollContainer/UpgradeDeckContainer
 @onready var minshim_button: Button = $VBoxContainer/ExtraSection/MinshimButton
+@onready var market_open_button: Button = $VBoxContainer/ExtraSection/MarketOpenButton
 @onready var relic_container: HBoxContainer = $VBoxContainer/RelicSection/RelicContainer
 @onready var leave_button: Button = $VBoxContainer/LeaveButton
 
@@ -78,6 +83,7 @@ func _ready() -> void:
 	remove_button.pressed.connect(_on_remove_toggle_pressed)
 	upgrade_button.pressed.connect(_on_upgrade_toggle_pressed)
 	minshim_button.pressed.connect(_on_minshim_buy_pressed)
+	market_open_button.pressed.connect(_on_market_open_pressed)
 	leave_button.pressed.connect(_on_leave_pressed)
 
 	deck_scroll.visible = false
@@ -104,6 +110,7 @@ func _ready() -> void:
 	_update_remove_section()
 	_update_upgrade_section()
 	_update_minshim_button()
+	_update_market_open_button()
 
 
 func _generate_shop_cards() -> void:
@@ -482,6 +489,7 @@ func _on_minshim_buy_pressed() -> void:
 
 	_update_gold_display()
 	_update_minshim_button()
+	_update_market_open_button()
 
 
 func _update_minshim_button() -> void:
@@ -497,6 +505,39 @@ func _update_minshim_button() -> void:
 		minshim_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
 	else:
 		minshim_button.remove_theme_color_override("font_color")
+
+
+func _on_market_open_pressed() -> void:
+	if removal_mode or upgrade_mode:
+		return
+	if GameManager.run_data == null:
+		return
+	if GameManager.run_data.gold < MARKET_OPEN_COST:
+		return
+
+	AudioManager.play_sfx_by_key("coin")
+	GameManager.run_data.gold -= MARKET_OPEN_COST
+	var current: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	GameManager.run_data.narrative_state["minshim"] = clampi(current + MARKET_OPEN_MINSHIM, 0, 100)
+
+	_update_gold_display()
+	_update_market_open_button()
+	_update_minshim_button()
+
+
+func _update_market_open_button() -> void:
+	var minshim: int = 50
+	if GameManager.run_data:
+		minshim = GameManager.run_data.narrative_state.get("minshim", 50)
+	market_open_button.text = "시장 개방 (%d 금화 → 민심 +%d) [현재: %d]" % [MARKET_OPEN_COST, MARKET_OPEN_MINSHIM, minshim]
+
+	if minshim >= 100:
+		market_open_button.disabled = true
+		market_open_button.text = "민심 최대 (100)"
+	elif GameManager.run_data and GameManager.run_data.gold < MARKET_OPEN_COST:
+		market_open_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+	else:
+		market_open_button.remove_theme_color_override("font_color")
 
 
 ## 상점 유물 생성 (등급 가중치 기반 2개)
