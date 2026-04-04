@@ -34,7 +34,7 @@ alignment = 1
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "과거시험(科擧)"
+text = "GWAGEO_TITLE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 42
 theme_override_colors/font_color = Color(0.85, 0.75, 0.3, 1)
@@ -76,7 +76,7 @@ theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
 visible = false
 layout_mode = 2
 custom_minimum_size = Vector2(0, 70)
-text = "제출"
+text = "GWAGEO_SUBMIT"
 theme_override_font_sizes/font_size = 28
 
 [node name="ResultLabel" type="Label" parent="VBoxContainer"]
@@ -92,14 +92,14 @@ theme_override_colors/font_color = Color(1.0, 0.9, 0.6, 1)
 visible = false
 layout_mode = 2
 custom_minimum_size = Vector2(0, 70)
-text = "계속"
+text = "UI_CONTINUE_BUTTON"
 theme_override_font_sizes/font_size = 28
 
 [node name="BribeButton" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 custom_minimum_size = Vector2(0, 60)
-text = "뇌물 50냥 (합격 보장)"
+text = "GWAGEO_BRIBE"
 theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.9, 0.6, 0.2, 1)
 

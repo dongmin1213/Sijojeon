@@ -41,7 +41,7 @@ theme_override_constants/separation = 30
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "캐릭터 선택"
+text = "UI_CHARACTER_SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -59,10 +59,10 @@ theme_override_constants/separation = 20
 custom_minimum_size = Vector2(160, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "뒤로"
+text = "UI_BACK"
 
 [node name="StartButton" type="Button" parent="VBoxContainer/ButtonRow"]
 custom_minimum_size = Vector2(240, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "시작"
+text = "UI_START"

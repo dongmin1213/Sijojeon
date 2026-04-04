@@ -1,6 +1,6 @@
 keys,ko,en
-UI_TITLE,시조전 (Sijojeon),Sijojeon
-UI_SUBTITLE,조선시대 배경 덱빌딩 로그라이크,A Joseon-era Deckbuilding Roguelike
+UI_TITLE,시조전,Sijojeon
+UI_SUBTITLE,Sijojeon,Sijojeon
 UI_NEW_GAME,새 게임,New Game
 UI_CONTINUE,이어하기,Continue
 UI_DAILY_CHALLENGE,일일 도전,Daily Challenge
@@ -100,4 +100,33 @@ STATUS_STRENGTH,힘,Strength
 STATUS_REGEN,재생,Regen
 MINSHIM_TITLE,민심,Public Sentiment
 JIBUN_TITLE,신분,Social Status
-GWAGEO_TITLE,과거 시험,Civil Exam
+GWAGEO_TITLE,과거시험(科擧),Civil Exam (科擧)
+UI_CHARACTER_SELECT,캐릭터 선택,Character Select
+UI_START,시작,Start
+UI_CHRONICLE,연대기,Chronicle
+UI_CONTINUE_BUTTON,계속,Continue
+UI_MAIN_MENU,메인 메뉴,Main Menu
+UI_RETRY,다시 도전,Retry
+REST_DESCRIPTION,모닥불 앞에서 잠시 쉬어간다.,Rest by the campfire for a while.
+REST_HEAL_BUTTON,휴식 (HP 30% 회복),Rest (Restore 30% HP)
+REST_UPGRADE_BUTTON,카드 강화 (카드 1장 선택),Upgrade Card (Select 1)
+RESULT_DEFEAT_SUBTITLE,어둠 속에 쓰러졌다...,Fallen in the darkness...
+RESULT_VICTORY_SUBTITLE,암행을 마치다!,The journey is complete!
+REWARD_CARD_SELECT,카드 1장을 선택하세요,Choose a card
+SHOP_CARDS_FOR_SALE,판매 카드,Cards for Sale
+SHOP_REFRESH,새로고침 (50 금화),Refresh (50 Gold)
+SHOP_REMOVE_CARD_BUTTON,카드 제거 (75 금화),Remove Card (75 Gold)
+SHOP_REMOVE_CARD_INFO,덱에서 카드 1장을 영구 제거합니다,Permanently remove 1 card from your deck
+SHOP_UPGRADE_CARD,카드 강화 (50 금화),Upgrade Card (50 Gold)
+SHOP_UPGRADE_CARD_INFO,덱의 카드 1장을 강화합니다,Upgrade 1 card in your deck
+SHOP_BUY_MINSHIM,민심 매수 (100 금화 → 민심 +10),Buy Sentiment (100 Gold → Sentiment +10)
+SHOP_MARKET_OPEN,시장 개방 (25 금화 → 민심 +8),Open Market (25 Gold → Sentiment +8)
+SHOP_BRIBE,청탁 (60 금화 → 신분 +20),Bribery (60 Gold → Status +20)
+SHOP_RATIONS,군량미 비축 (30 금화 → 방어도 +8),Stockpile Rations (30 Gold → Block +8)
+SHOP_RELICS,유물 판매,Relics for Sale
+SHOP_LEAVE,상점 나가기,Leave Shop
+GWAGEO_SUBMIT,제출,Submit
+GWAGEO_BRIBE,뇌물 50냥 (합격 보장),Bribe 50 Gold (Guaranteed Pass)
+COMBO_SISEON,시선!,Siseon!
+COMBO_JEOLCHANG,절창!,Jeolchang!
+STATUS_STUN,기절,Stunned

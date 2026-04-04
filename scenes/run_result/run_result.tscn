@@ -37,14 +37,14 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.2, 0.2, 1)
 theme_override_font_sizes/font_size = 52
-text = "패배"
+text = "BATTLE_DEFEAT"
 horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.65, 0.55, 1)
 theme_override_font_sizes/font_size = 24
-text = "어둠 속에 쓰러졌다..."
+text = "RESULT_DEFEAT_SUBTITLE"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
@@ -66,10 +66,10 @@ theme_override_constants/separation = 20
 layout_mode = 2
 custom_minimum_size = Vector2(200, 70)
 theme_override_font_sizes/font_size = 28
-text = "메인 메뉴"
+text = "UI_MAIN_MENU"
 
 [node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 70)
 theme_override_font_sizes/font_size = 28
-text = "다시 도전"
+text = "UI_RETRY"

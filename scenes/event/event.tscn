@@ -34,7 +34,7 @@ alignment = 0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "이벤트"
+text = "MAP_EVENT"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 36
 theme_override_colors/font_color = Color(0.3, 0.85, 0.4, 1)
@@ -71,7 +71,7 @@ theme_override_colors/font_color = Color(1.0, 0.9, 0.6, 1)
 visible = false
 layout_mode = 2
 custom_minimum_size = Vector2(0, 70)
-text = "계속"
+text = "UI_CONTINUE_BUTTON"
 theme_override_font_sizes/font_size = 28
 
 [node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]

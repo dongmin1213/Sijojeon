@@ -31,7 +31,7 @@ theme_override_constants/separation = 30
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "설정"
+text = "SETTINGS_TITLE"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="VBoxContainer"]
@@ -46,7 +46,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 theme_override_font_sizes/font_size = 28
-text = "배경음악"
+text = "SETTINGS_BGM"
 vertical_alignment = 1
 
 [node name="BGMSlider" type="HSlider" parent="VBoxContainer/BGMContainer"]
@@ -66,7 +66,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 theme_override_font_sizes/font_size = 28
-text = "효과음"
+text = "SETTINGS_SFX"
 vertical_alignment = 1
 
 [node name="SFXSlider" type="HSlider" parent="VBoxContainer/SFXContainer"]
@@ -86,7 +86,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 theme_override_font_sizes/font_size = 28
-text = "진동"
+text = "SETTINGS_VIBRATION"
 vertical_alignment = 1
 
 [node name="VibrationCheck" type="CheckButton" parent="VBoxContainer/VibrationContainer"]
@@ -99,7 +99,7 @@ layout_mode = 2
 [node name="LanguageTitle" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "언어 / Language"
+text = "SETTINGS_LANGUAGE"
 horizontal_alignment = 1
 
 [node name="LanguageContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -110,7 +110,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 theme_override_font_sizes/font_size = 28
-text = "언어"
+text = "SETTINGS_LANGUAGE"
 vertical_alignment = 1
 
 [node name="LanguageOption" type="OptionButton" parent="VBoxContainer/LanguageContainer"]
@@ -125,7 +125,7 @@ layout_mode = 2
 [node name="AccessibilityTitle" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "접근성"
+text = "SETTINGS_ACCESSIBILITY"
 horizontal_alignment = 1
 
 [node name="FontSizeContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -136,7 +136,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 theme_override_font_sizes/font_size = 28
-text = "글자 크기"
+text = "SETTINGS_FONT_SIZE"
 vertical_alignment = 1
 
 [node name="FontSizeSlider" type="HSlider" parent="VBoxContainer/FontSizeContainer"]
@@ -164,7 +164,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 theme_override_font_sizes/font_size = 28
-text = "색맹 모드"
+text = "SETTINGS_COLORBLIND"
 vertical_alignment = 1
 
 [node name="ColorblindOption" type="OptionButton" parent="VBoxContainer/ColorblindContainer"]
@@ -181,7 +181,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 theme_override_font_sizes/font_size = 28
-text = "화면 흔들림"
+text = "SETTINGS_SCREEN_SHAKE"
 vertical_alignment = 1
 
 [node name="ScreenShakeCheck" type="CheckButton" parent="VBoxContainer/ScreenShakeContainer"]
@@ -196,4 +196,4 @@ size_flags_vertical = 3
 layout_mode = 2
 custom_minimum_size = Vector2(0, 80)
 theme_override_font_sizes/font_size = 36
-text = "돌아가기"
+text = "UI_BACK"

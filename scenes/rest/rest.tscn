@@ -39,14 +39,14 @@ alignment = 0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "휴식처"
+text = "REST_TITLE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 36
 theme_override_colors/font_color = Color(0.9, 0.6, 0.3, 1)
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "모닥불 앞에서 잠시 쉬어간다."
+text = "REST_DESCRIPTION"
 horizontal_alignment = 1
 autowrap_mode = 3
 theme_override_font_sizes/font_size = 22
@@ -59,13 +59,13 @@ theme_override_constants/separation = 12
 [node name="RestButton" type="Button" parent="VBoxContainer/ActionContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 70)
-text = "휴식 (HP 30% 회복)"
+text = "REST_HEAL"
 theme_override_font_sizes/font_size = 26
 
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/ActionContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 70)
-text = "카드 강화 (카드 1장 선택)"
+text = "REST_UPGRADE"
 theme_override_font_sizes/font_size = 26
 
 [node name="CardListContainer" type="VBoxContainer" parent="VBoxContainer"]
@@ -76,7 +76,7 @@ theme_override_constants/separation = 8
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
-text = "← 돌아가기"
+text = "UI_BACK"
 theme_override_font_sizes/font_size = 22
 
 [node name="ResultLabel" type="Label" parent="VBoxContainer"]
@@ -92,7 +92,7 @@ theme_override_colors/font_color = Color(1.0, 0.9, 0.6, 1)
 visible = false
 layout_mode = 2
 custom_minimum_size = Vector2(0, 70)
-text = "계속"
+text = "UI_CONTINUE_BUTTON"
 theme_override_font_sizes/font_size = 28
 
 [node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]

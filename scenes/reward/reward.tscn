@@ -34,7 +34,7 @@ alignment = 1
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "전투 보상"
+text = "REWARD_TITLE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 36
 
@@ -51,7 +51,7 @@ theme_override_constants/separation = 10
 
 [node name="CardSectionLabel" type="Label" parent="VBoxContainer/CardSection"]
 layout_mode = 2
-text = "카드 1장을 선택하세요"
+text = "REWARD_CARD"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 22
 
@@ -63,12 +63,12 @@ theme_override_constants/separation = 20
 [node name="SkipButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 60)
-text = "건너뛰기"
+text = "REWARD_SKIP"
 theme_override_font_sizes/font_size = 26
 
 [node name="ProceedButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 60)
-text = "계속"
+text = "UI_CONTINUE_BUTTON"
 theme_override_font_sizes/font_size = 26
 visible = false

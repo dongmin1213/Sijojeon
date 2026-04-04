@@ -69,7 +69,7 @@ theme_override_colors/font_color = Color(0.97, 0.92, 0.70, 1.0)
 theme_override_colors/font_shadow_color = Color(0.4, 0.1, 0.6, 0.6)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-text = "시조전"
+text = "UI_TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -77,7 +77,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_colors/font_color = Color(0.72, 0.65, 0.50, 1.0)
-text = "Sijojeon"
+text = "UI_SUBTITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -96,37 +96,37 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 custom_minimum_size = Vector2(0, 76)
 theme_override_font_sizes/font_size = 36
-text = "새 게임"
+text = "UI_NEW_GAME"
 
 [node name="ContinueButton" type="Button" parent="TitlePanel/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 76)
 theme_override_font_sizes/font_size = 36
-text = "이어하기"
+text = "UI_CONTINUE"
 
 [node name="DailyChallengeButton" type="Button" parent="TitlePanel/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 76)
 theme_override_font_sizes/font_size = 36
-text = "일일 도전"
+text = "UI_DAILY_CHALLENGE"
 
 [node name="ChronicleButton" type="Button" parent="TitlePanel/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 76)
 theme_override_font_sizes/font_size = 36
-text = "연대기"
+text = "UI_CHRONICLE"
 
 [node name="SettingsButton" type="Button" parent="TitlePanel/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 76)
 theme_override_font_sizes/font_size = 36
-text = "설정"
+text = "UI_SETTINGS"
 
 [node name="QuitButton" type="Button" parent="TitlePanel/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 76)
 theme_override_font_sizes/font_size = 36
-text = "종료"
+text = "UI_QUIT"
 
 ; ─── 버전 표시 ─────────────────────────────────────────────────────────────
 [node name="VersionLabel" type="Label" parent="."]

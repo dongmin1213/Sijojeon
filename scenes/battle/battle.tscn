@@ -128,7 +128,7 @@ theme_override_font_sizes/font_size = 22
 
 [node name="EndTurnButton" type="Button" parent="BattleHUD"]
 layout_mode = 2
-text = "턴 종료"
+text = "BATTLE_END_TURN"
 theme_override_font_sizes/font_size = 28
 
 [node name="HandArea" type="PanelContainer" parent="."]

@@ -39,7 +39,7 @@ alignment = 0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "상점"
+text = "SHOP_TITLE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 36
 
@@ -56,7 +56,7 @@ theme_override_constants/separation = 8
 
 [node name="CardSectionLabel" type="Label" parent="VBoxContainer/CardSection"]
 layout_mode = 2
-text = "판매 카드"
+text = "SHOP_CARDS_FOR_SALE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 22
 
@@ -68,7 +68,7 @@ theme_override_constants/separation = 20
 [node name="RefreshButton" type="Button" parent="VBoxContainer/CardSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "새로고침 (50 금화)"
+text = "SHOP_REFRESH"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -80,11 +80,11 @@ theme_override_constants/separation = 8
 [node name="RemoveButton" type="Button" parent="VBoxContainer/RemoveSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "카드 제거 (75 금화)"
+text = "SHOP_REMOVE_CARD"
 
 [node name="RemoveInfo" type="Label" parent="VBoxContainer/RemoveSection"]
 layout_mode = 2
-text = "덱에서 카드 1장을 영구 제거합니다"
+text = "SHOP_REMOVE_CARD_INFO"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
@@ -111,11 +111,11 @@ theme_override_constants/separation = 8
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "카드 강화 (50 금화)"
+text = "SHOP_UPGRADE_CARD"
 
 [node name="UpgradeInfo" type="Label" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
-text = "덱의 카드 1장을 강화합니다"
+text = "SHOP_UPGRADE_CARD_INFO"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
@@ -135,22 +135,22 @@ theme_override_constants/v_separation = 8
 [node name="MinshimButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "민심 매수 (100 금화 → 민심 +10)"
+text = "SHOP_BUY_MINSHIM"
 
 [node name="MarketOpenButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "시장 개방 (25 금화 → 민심 +8)"
+text = "SHOP_MARKET_OPEN"
 
 [node name="BribeButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "청탁 (60 금화 → 신분 +20)"
+text = "SHOP_BRIBE"
 
 [node name="RationsButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "군량미 비축 (30 금화 → 방어도 +8)"
+text = "SHOP_RATIONS"
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -161,7 +161,7 @@ theme_override_constants/separation = 8
 
 [node name="RelicSectionLabel" type="Label" parent="VBoxContainer/RelicSection"]
 layout_mode = 2
-text = "유물 판매"
+text = "SHOP_RELICS"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 22
 
@@ -173,4 +173,4 @@ theme_override_constants/separation = 16
 [node name="LeaveButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "상점 나가기"
+text = "SHOP_LEAVE"
