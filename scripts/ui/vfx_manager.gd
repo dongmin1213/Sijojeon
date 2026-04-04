@@ -15,6 +15,9 @@ var _label_pool: Array[Label] = []
 var _color_rect_pool: Array[ColorRect] = []
 const POOL_MAX_SIZE := 20
 
+## 노드별 트윈 캐시 — 같은 노드에 중복 트윈 방지
+var _node_tweens: Dictionary = {}  # node_id → Tween
+
 
 func _ready() -> void:
 	set_process(false)
@@ -130,7 +133,7 @@ func spawn_damage_number(parent: Control, global_pos: Vector2, amount: int, is_h
 func spawn_block_number(parent: Control, global_pos: Vector2, amount: int) -> void:
 	## 방어도 획득 숫자(파랑)를 표시한다.
 	var label := _acquire_label()
-	label.text = "+%d 방어" % amount
+	label.text = tr("VFX_BLOCK_FMT") % amount
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.add_theme_font_size_override("font_size", 22)
 	label.add_theme_color_override("font_color", Color(0.3, 0.6, 1.0))
@@ -224,7 +227,7 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 	else:
 		# 카드명 없을 때 기존 단순 텍스트 폴백
 		var label := _acquire_label()
-		label.text = "시조 완성!"
+		label.text = tr("VFX_SIJO_COMPLETE")
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		label.anchors_preset = Control.PRESET_CENTER
@@ -263,7 +266,7 @@ func _spawn_hanshi_overlay(parent: Control, names: Array[String]) -> void:
 
 	# 표제: "시조 완성!" 소형 헤더
 	var header := Label.new()
-	header.text = "— 시 조 완 성 —"
+	header.text = tr("VFX_SIJO_HEADER")
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	header.anchor_left = 0.0
 	header.anchor_right = 1.0
@@ -407,24 +410,31 @@ func bounce_node(node: Control, scale_factor: float = 1.3, duration: float = 0.2
 	## 노드에 바운스 스케일 효과를 적용한다 (상태효과 적용 등)
 	if not is_instance_valid(node):
 		return
+	_kill_node_tween(node)
 	var original_scale := node.scale
 	var tween := node.create_tween()
+	_node_tweens[node.get_instance_id()] = tween
 	tween.tween_property(node, "scale", original_scale * scale_factor, duration * 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(node, "scale", original_scale, duration * 0.6).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(_clear_node_tween.bind(node.get_instance_id()))
 
 
 func shake_node(node: Control, intensity: float = 4.0, duration: float = 0.3) -> void:
 	## 노드를 짧게 좌우로 흔든다 (데미지, 디버프 등)
 	if not is_instance_valid(node):
 		return
+	_kill_node_tween(node)
 	var original_pos := node.position
 	var tween := node.create_tween()
+	_node_tweens[node.get_instance_id()] = tween
 	var steps := 6
+	var current_intensity := intensity
 	for i in steps:
-		var offset := Vector2(randf_range(-intensity, intensity), randf_range(-intensity * 0.5, intensity * 0.5))
-		intensity *= 0.7  # 감쇠
+		var offset := Vector2(randf_range(-current_intensity, current_intensity), randf_range(-current_intensity * 0.5, current_intensity * 0.5))
+		current_intensity *= 0.7  # 감쇠
 		tween.tween_property(node, "position", original_pos + offset, duration / steps)
 	tween.tween_property(node, "position", original_pos, duration / steps)
+	tween.tween_callback(_clear_node_tween.bind(node.get_instance_id()))
 
 
 func flash_node(node: Control, color: Color = Color(1, 1, 1, 0.6), duration: float = 0.15) -> void:
@@ -470,8 +480,9 @@ func animate_hp_bar(label: Label, from_hp: int, to_hp: int, max_hp: int, duratio
 	## HP 라벨 텍스트를 점진적으로 변경하는 카운트 다운 효과
 	if not is_instance_valid(label):
 		return
-
+	_kill_node_tween(label)
 	var tween := label.create_tween()
+	_node_tweens[label.get_instance_id()] = tween
 	var hp_dict := {"value": float(from_hp)}
 
 	tween.tween_method(func(val: float):
@@ -486,3 +497,19 @@ func animate_hp_bar(label: Label, from_hp: int, to_hp: int, max_hp: int, duratio
 		else:
 			label.remove_theme_color_override("font_color")
 	, float(from_hp), float(to_hp), duration)
+	tween.tween_callback(_clear_node_tween.bind(label.get_instance_id()))
+
+
+func _kill_node_tween(node: Control) -> void:
+	## 노드에 실행 중인 트윈이 있으면 중단한다.
+	var nid := node.get_instance_id()
+	if _node_tweens.has(nid):
+		var old_tween: Tween = _node_tweens[nid]
+		if old_tween and old_tween.is_valid():
+			old_tween.kill()
+		_node_tweens.erase(nid)
+
+
+func _clear_node_tween(nid: int) -> void:
+	## 트윈 완료 시 캐시에서 제거한다.
+	_node_tweens.erase(nid)

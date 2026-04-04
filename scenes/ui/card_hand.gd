@@ -24,6 +24,7 @@ const HAND_SCALE_THRESHOLD := 5    # 이 수 이상이면 카드 축소 시작
 const MIN_HAND_SCALE := 0.8        # 카드 최소 축소 비율
 
 var card_widgets: Array[CardUI] = []
+var _widget_pool: Array[CardUI] = []  # 재사용 가능한 CardUI 풀
 var selected_index: int = -1
 var hovered_index: int = -1
 var dragging_index: int = -1
@@ -64,24 +65,12 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleMan
 	hovered_index = -1
 	dragging_index = -1
 
-	# 기존 위젯 제거 (시그널 정리 후 해제)
+	# 기존 위젯을 풀로 반환 (시그널 정리 후 숨기기)
 	for widget in card_widgets:
-		if widget.card_clicked.is_connected(_on_card_clicked):
-			widget.card_clicked.disconnect(_on_card_clicked)
-		if widget.card_hovered.is_connected(_on_card_hovered):
-			widget.card_hovered.disconnect(_on_card_hovered)
-		if widget.card_unhovered.is_connected(_on_card_unhovered):
-			widget.card_unhovered.disconnect(_on_card_unhovered)
-		if widget.card_drag_started.is_connected(_on_card_drag_started):
-			widget.card_drag_started.disconnect(_on_card_drag_started)
-		if widget.card_drag_ended.is_connected(_on_card_drag_ended):
-			widget.card_drag_ended.disconnect(_on_card_drag_ended)
-		if widget.card_zoom_requested.is_connected(_on_card_zoom_requested):
-			widget.card_zoom_requested.disconnect(_on_card_zoom_requested)
-		widget.queue_free()
+		_return_to_pool(widget)
 	card_widgets.clear()
 
-	# 새 카드 위젯 생성
+	# 카드 위젯 생성 (풀에서 가져오거나 새로 인스턴스화)
 	for i in hand_ids.size():
 		var card_id: String = hand_ids[i]
 		var card: CardData = DataLoader.get_card(card_id)
@@ -93,9 +82,7 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleMan
 			card = card.duplicate_card()
 			card.upgraded = true
 
-		var widget: CardUI = CardUIScene.instantiate()
-		add_child(widget)
-
+		var widget: CardUI = _acquire_from_pool()
 		var playable := bm.can_play_card(card) if bm else card.cost <= qi
 		var matches_sijo := (sijo_beat > 0 and card.beat == sijo_beat)
 		widget.setup(card, i, playable, matches_sijo)
@@ -110,6 +97,38 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleMan
 		card_widgets.append(widget)
 
 	_arrange_cards()
+
+
+func _acquire_from_pool() -> CardUI:
+	## 풀에서 CardUI를 꺼내거나 새로 인스턴스화한다.
+	if _widget_pool.size() > 0:
+		var widget: CardUI = _widget_pool.pop_back()
+		widget.visible = true
+		widget.is_selected = false
+		widget.is_hovered = false
+		widget.is_dragging = false
+		return widget
+	var widget: CardUI = CardUIScene.instantiate()
+	add_child(widget)
+	return widget
+
+
+func _return_to_pool(widget: CardUI) -> void:
+	## 위젯을 풀로 반환한다. 시그널 정리 후 숨긴다.
+	if widget.card_clicked.is_connected(_on_card_clicked):
+		widget.card_clicked.disconnect(_on_card_clicked)
+	if widget.card_hovered.is_connected(_on_card_hovered):
+		widget.card_hovered.disconnect(_on_card_hovered)
+	if widget.card_unhovered.is_connected(_on_card_unhovered):
+		widget.card_unhovered.disconnect(_on_card_unhovered)
+	if widget.card_drag_started.is_connected(_on_card_drag_started):
+		widget.card_drag_started.disconnect(_on_card_drag_started)
+	if widget.card_drag_ended.is_connected(_on_card_drag_ended):
+		widget.card_drag_ended.disconnect(_on_card_drag_ended)
+	if widget.card_zoom_requested.is_connected(_on_card_zoom_requested):
+		widget.card_zoom_requested.disconnect(_on_card_zoom_requested)
+	widget.visible = false
+	_widget_pool.append(widget)
 
 
 func _arrange_cards() -> void:
