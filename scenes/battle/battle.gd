@@ -97,12 +97,12 @@ func _ready() -> void:
 	add_child(_keyword_tooltip)
 
 	# 주요 UI 요소 툴팁 설정
-	hp_label.tooltip_text = "체력 — 0이 되면 패배합니다"
-	qi_label.tooltip_text = "기(氣) — 카드를 사용하는 데 필요한 자원입니다. 매 턴 회복됩니다"
-	block_label.tooltip_text = "방어도 — 적의 공격 피해를 대신 받습니다. 턴이 끝나면 사라집니다"
-	end_turn_button.tooltip_text = "턴을 종료하고 적이 행동합니다"
-	draw_pile_label.tooltip_text = "뽑을 카드 더미 — 여기서 카드를 뽑습니다"
-	discard_pile_label.tooltip_text = "버린 카드 더미 — 뽑을 카드가 없으면 섞여서 다시 뽑기 더미가 됩니다"
+	hp_label.tooltip_text = tr("TOOLTIP_HP")
+	qi_label.tooltip_text = tr("TOOLTIP_QI")
+	block_label.tooltip_text = tr("TOOLTIP_BLOCK")
+	end_turn_button.tooltip_text = tr("TOOLTIP_END_TURN")
+	draw_pile_label.tooltip_text = tr("TOOLTIP_DRAW_PILE")
+	discard_pile_label.tooltip_text = tr("TOOLTIP_DISCARD_PILE")
 
 	# 시조 슬롯 UI 초기화 (토글 버튼 포함)
 	_init_sijo_toggle()
@@ -260,7 +260,7 @@ func _update_sijo_summary() -> void:
 		return
 	var filled := sijo_system.current_slot_index if sijo_system else 0
 	var total := SijoSystem.PATTERN.size()
-	_sijo_summary_label.text = "시조 %d/%d" % [filled, total]
+	_sijo_summary_label.text = tr("BATTLE_SIJO_SUMMARY_FMT") % [filled, total]
 
 
 func _init_sijo_slots() -> void:
@@ -299,8 +299,8 @@ func _deferred_refresh_hand_ui() -> void:
 	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat, battle_manager)
 
 	# 덱 정보 갱신
-	draw_pile_label.text = "드로우: %d" % battle_manager.draw_pile.size()
-	discard_pile_label.text = "버림: %d" % battle_manager.discard_pile.size()
+	draw_pile_label.text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
+	discard_pile_label.text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
 
 	# 시조 완성 가능 여부 체크
 	_check_sijo_completable()
@@ -403,7 +403,7 @@ func _update_enemy_ui() -> void:
 			cache["panel"].visible = true
 			cache["hp_label"].text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
 			var block_val: int = enemy.get("block", 0)
-			cache["block_label"].text = "방어: %d" % block_val
+			cache["block_label"].text = tr("BATTLE_ENEMY_BLOCK_FMT") % block_val
 			cache["block_label"].visible = block_val > 0
 			var intent := battle_manager._get_enemy_intent(i)
 			cache["intent_label"].text = _format_intent(intent)
@@ -413,7 +413,7 @@ func _update_enemy_ui() -> void:
 			# 새 적 패널 생성
 			var enemy_name: String = TranslationManager.trd_name(enemy)
 			if enemy_name == "":
-				enemy_name = "적"
+				enemy_name = tr("BATTLE_ENEMY_FALLBACK")
 
 			var panel := PanelContainer.new()
 			var vbox := VBoxContainer.new()
@@ -445,7 +445,7 @@ func _update_enemy_ui() -> void:
 			var enemy_block_label := Label.new()
 			enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			enemy_block_label.add_theme_font_size_override("font_size", 22)
-			enemy_block_label.text = "방어: %d" % block_val
+			enemy_block_label.text = tr("BATTLE_ENEMY_BLOCK_FMT") % block_val
 			enemy_block_label.visible = block_val > 0
 
 			var status_hbox := HBoxContainer.new()
@@ -495,17 +495,17 @@ func _format_intent(intent: Dictionary) -> String:
 			var times: int = intent.get("times", 1)
 			var icon := "⚔"
 			if times > 1:
-				return "%s %s %d×%d" % [icon, name_str, dmg, times] if name_str else "%s 공격 %d×%d" % [icon, dmg, times]
-			return "%s %s %d" % [icon, name_str, dmg] if name_str else "%s 공격 %d" % [icon, dmg]
+				return "%s %s %d×%d" % [icon, name_str, dmg, times] if name_str else "%s %s" % [icon, tr("BATTLE_ATTACK_MULTI_FMT") % [dmg, times]]
+			return "%s %s %d" % [icon, name_str, dmg] if name_str else "%s %s" % [icon, tr("BATTLE_ATTACK_FMT") % dmg]
 		"defend", "defend_buff", "buff_defend":
 			var blk: int = intent.get("block", 0)
-			return "🛡 %s %d" % [name_str, blk] if name_str else "🛡 방어 %d" % blk
+			return "🛡 %s %d" % [name_str, blk] if name_str else "🛡 %s" % (tr("BATTLE_DEFEND_FMT") % blk)
 		"buff":
-			return "⬆ %s" % name_str if name_str else "⬆ 강화"
+			return "⬆ %s" % name_str if name_str else "⬆ %s" % tr("BATTLE_BUFF")
 		"debuff":
-			return "⬇ %s" % name_str if name_str else "⬇ 디버프"
+			return "⬇ %s" % name_str if name_str else "⬇ %s" % tr("BATTLE_DEBUFF")
 		"special":
-			return "✦ %s" % name_str if name_str else "✦ 특수"
+			return "✦ %s" % name_str if name_str else "✦ %s" % tr("BATTLE_SPECIAL")
 		_:
 			return "❓ %s" % name_str if name_str else "❓ ???"
 
@@ -543,7 +543,7 @@ func _on_hand_changed(_new_hand: Array[String]) -> void:
 
 
 func _on_qi_changed(current: int, max_val: int) -> void:
-	qi_label.text = "기(氣): %d/%d" % [current, max_val]
+	qi_label.text = tr("BATTLE_QI_FMT") % [current, max_val]
 	_refresh_hand_ui()
 
 
@@ -570,9 +570,10 @@ func _on_hp_changed(current: int, max_val: int) -> void:
 func _on_block_changed(new_block: int) -> void:
 	var old_block_text := block_label.text
 	var old_block := 0
-	if old_block_text.begins_with("방어: "):
-		old_block = old_block_text.substr(4).strip_edges().to_int()
-	block_label.text = "방어: %d" % new_block
+	var block_prefix := tr("BATTLE_BLOCK_FMT").split("%d")[0]
+	if old_block_text.begins_with(block_prefix):
+		old_block = old_block_text.substr(block_prefix.length()).strip_edges().to_int()
+	block_label.text = tr("BATTLE_BLOCK_FMT") % new_block
 	block_label.visible = new_block > 0
 	# 방어도 획득 시 VFX
 	if vfx and new_block > old_block:
@@ -584,10 +585,17 @@ func _on_block_changed(new_block: int) -> void:
 
 
 func _on_turn_started(turn: int) -> void:
-	turn_label.text = "%d턴" % turn
+	turn_label.text = tr("BATTLE_TURN_FMT") % turn
 	# 턴 전환 배너 VFX
 	if vfx and turn > 1:
-		vfx.turn_transition(self, "%d턴 시작" % turn)
+		vfx.turn_transition(self, tr("BATTLE_TURN_FMT") % turn)
+	# 첫 턴에 카드 꾹 누르기 힌트 표시 (한 번만)
+	if turn == 1:
+		var meta := SaveManager.load_meta()
+		if not meta.get("card_zoom_hint_shown", false):
+			meta["card_zoom_hint_shown"] = true
+			SaveManager.save_meta(meta)
+			_show_card_zoom_hint()
 	# 매 턴 시작 유물 트리거 (삼족오 깃털 등)
 	RelicManager.trigger_turn_start(battle_manager)
 
@@ -597,7 +605,7 @@ func _on_turn_started(turn: int) -> void:
 			battle_manager.player_hp += 1
 			battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
 			if turn == 1:
-				battle_manager.passive_triggered.emit("백성의 축복", "높은 민심으로 매 턴 HP +1 회복")
+				battle_manager.passive_triggered.emit(tr("PASSIVE_MINSHIM_TITLE"), tr("PASSIVE_MINSHIM_DESC"))
 
 
 func _on_enemy_hp_changed(enemy_index: int, current: int, max_val: int) -> void:
@@ -640,6 +648,23 @@ func _on_card_zoom_requested(card_data: CardData) -> void:
 	popup.show_card(card_data)
 
 
+func _show_card_zoom_hint() -> void:
+	## 카드 꾹 누르기 힌트를 2초간 표시
+	var hint_label := Label.new()
+	hint_label.text = tr("BATTLE_CARD_ZOOM_HINT")
+	hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint_label.add_theme_font_size_override("font_size", 20)
+	hint_label.add_theme_color_override("font_color", Color(1, 0.9, 0.6))
+	hint_label.anchors_preset = Control.PRESET_CENTER_BOTTOM
+	hint_label.position.y -= 160
+	add_child(hint_label)
+	# 2초 후 페이드아웃 제거
+	var tween := create_tween()
+	tween.tween_interval(2.0)
+	tween.tween_property(hint_label, "modulate:a", 0.0, 0.5)
+	tween.tween_callback(hint_label.queue_free)
+
+
 func _on_end_turn_pressed() -> void:
 	AudioManager.play_sfx_by_key("end_turn")
 	battle_manager.end_player_turn()
@@ -667,10 +692,10 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 		2:  # 3/6 슬롯 완성 (초장 완성): 기 +1
 			battle_manager.current_qi = mini(battle_manager.current_qi + 1, battle_manager.max_qi)
 			battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-			_show_sijo_reward_popup("초장 완성! 기 +1")
+			_show_sijo_reward_popup(tr("BATTLE_CHOJANG_REWARD"))
 		3:  # 4/6 슬롯 완성 (중장 완성): 카드 1장 드로우
 			battle_manager.draw_cards(1)
-			_show_sijo_reward_popup("중장 완성! 카드 드로우")
+			_show_sijo_reward_popup(tr("BATTLE_JUNGJANG_REWARD"))
 
 
 ## 시조 부분 완성 보상 팝업 텍스트를 표시한다.
@@ -712,13 +737,13 @@ func _check_sijo_combo() -> void:
 		# 절창 보상
 		_apply_jeolchang_reward(job)
 		if vfx:
-			vfx.combo_vfx(self, "절창!", Color(1.0, 0.3, 0.1))
+			vfx.combo_vfx(self, tr("COMBO_JEOLCHANG"), Color(1.0, 0.3, 0.1))
 		AudioManager.play_sfx_by_key("sijo_complete")  # 강한 효과음 재사용
 	else:
 		# 시선 보상
 		_apply_siseon_reward(job)
 		if vfx:
-			vfx.combo_vfx(self, "시선!", Color(0.3, 0.8, 1.0))
+			vfx.combo_vfx(self, tr("COMBO_SISEON"), Color(0.3, 0.8, 1.0))
 		AudioManager.play_sfx_by_key("card_play")
 
 
@@ -726,7 +751,7 @@ func _apply_siseon_reward(job: String) -> void:
 	## 시선 (Tier 1) 보상: 공통 + 직업별
 	# 공통: 다음 카드 코스트 -1
 	battle_manager._next_card_cost_reduce += 1
-	var reward_text := "시선! 다음 카드 비용 -1"
+	var reward_text := tr("BATTLE_SISEON_REWARD")
 
 	match job:
 		"mugwan":
@@ -737,14 +762,14 @@ func _apply_siseon_reward(job: String) -> void:
 			battle_manager.class_resource_changed.emit(
 				battle_manager.current_class_resource,
 				battle_manager.max_class_resource)
-			reward_text += ", 기력 +2"
+			reward_text += ", " + tr("BATTLE_SISEON_STAMINA") % 2
 		"mungwan":
 			# 문관: 카드 1장 드로우
 			battle_manager.draw_cards(1)
-			reward_text += ", 카드 +1"
+			reward_text += ", " + tr("BATTLE_SISEON_CARD") % 1
 
 	_show_sijo_reward_popup(reward_text)
-	battle_manager.passive_triggered.emit("시선", reward_text)
+	battle_manager.passive_triggered.emit(tr("PASSIVE_SISEON"), reward_text)
 
 
 func _apply_jeolchang_reward(job: String) -> void:
@@ -752,7 +777,7 @@ func _apply_jeolchang_reward(job: String) -> void:
 	# 공통: 시선 보상(다음 카드 -1) + 100% 추가 = 다음 카드 무료
 	battle_manager._next_card_cost_reduce += 99  # 사실상 무료
 
-	var reward_text := "절창!"
+	var reward_text := tr("BATTLE_JEOLCHANG_TEXT")
 	match job:
 		"mugwan":
 			# 무관: 적 전체 기절 1턴
@@ -760,14 +785,14 @@ func _apply_jeolchang_reward(job: String) -> void:
 				if battle_manager.enemies[i]["current_hp"] > 0:
 					var target_id := "enemy_%d" % i
 					battle_manager.status_effects.apply_effect(target_id, "기절", 1)
-			reward_text += " 적 전체 기절!"
+			reward_text += " " + tr("BATTLE_JEOLCHANG_STUN")
 		"mungwan":
 			# 문관: 카드 2장 드로우 + 무료
 			battle_manager.draw_cards(2)
-			reward_text += " 카드 +2, 다음 카드 무료!"
+			reward_text += " " + tr("BATTLE_JEOLCHANG_CARD_FREE") % 2
 
 	_show_sijo_reward_popup(reward_text)
-	battle_manager.passive_triggered.emit("절창", reward_text)
+	battle_manager.passive_triggered.emit(tr("PASSIVE_JEOLCHANG"), reward_text)
 
 
 ## 시조 장 완성 시 직업별 자원 보너스 지급.
@@ -788,7 +813,7 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 					battle_manager.class_resource_changed.emit(
 						battle_manager.current_class_resource,
 						battle_manager.max_class_resource)
-					reward_text = "초장 완성! 기력 +1"
+					reward_text = tr("BATTLE_CHOJANG_COMPLETE_STAMINA")
 				"mungwan":
 					# 문관: 학식 +1
 					battle_manager.current_class_resource = mini(
@@ -797,9 +822,9 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 					battle_manager.class_resource_changed.emit(
 						battle_manager.current_class_resource,
 						battle_manager.max_class_resource)
-					reward_text = "초장 완성! 학식 +1"
+					reward_text = tr("BATTLE_CHOJANG_COMPLETE_SCHOLAR")
 				_:
-					reward_text = "초장 완성!"
+					reward_text = tr("BATTLE_CHOJANG_COMPLETE")
 
 		"중장":
 			match job:
@@ -811,7 +836,7 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 					battle_manager.class_resource_changed.emit(
 						battle_manager.current_class_resource,
 						battle_manager.max_class_resource)
-					reward_text = "중장 완성! 기력 +1"
+					reward_text = tr("BATTLE_JUNGJANG_COMPLETE_STAMINA")
 				"mungwan":
 					# 문관: 학식 +1
 					battle_manager.current_class_resource = mini(
@@ -820,7 +845,7 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 					battle_manager.class_resource_changed.emit(
 						battle_manager.current_class_resource,
 						battle_manager.max_class_resource)
-					reward_text = "중장 완성! 학식 +1"
+					reward_text = tr("BATTLE_JUNGJANG_COMPLETE_SCHOLAR")
 				"dosa":
 					# 도사: 기 +1
 					battle_manager.current_qi = mini(
@@ -829,9 +854,9 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 					battle_manager.qi_changed.emit(
 						battle_manager.current_qi,
 						battle_manager.max_qi)
-					reward_text = "중장 완성! 기 +1"
+					reward_text = tr("BATTLE_JUNGJANG_COMPLETE_QI")
 				_:
-					reward_text = "중장 완성!"
+					reward_text = tr("BATTLE_JUNGJANG_COMPLETE")
 
 		"종장":
 			match job:
@@ -843,7 +868,7 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 					battle_manager.class_resource_changed.emit(
 						battle_manager.current_class_resource,
 						battle_manager.max_class_resource)
-					reward_text = "종장 완성! 기력 +3"
+					reward_text = tr("BATTLE_JONGJANG_COMPLETE_STAMINA")
 				"mungwan":
 					# 문관: 학식 +2
 					battle_manager.current_class_resource = mini(
@@ -852,7 +877,7 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 					battle_manager.class_resource_changed.emit(
 						battle_manager.current_class_resource,
 						battle_manager.max_class_resource)
-					reward_text = "종장 완성! 학식 +2"
+					reward_text = tr("BATTLE_JONGJANG_COMPLETE_SCHOLAR")
 				"dosa":
 					# 도사: 기 +1 + 주문 즉시 발동 (다음 카드 비용 0)
 					battle_manager.current_qi = mini(
@@ -862,16 +887,16 @@ func _on_sijo_chapter_completed(chapter: String) -> void:
 						battle_manager.current_qi,
 						battle_manager.max_qi)
 					battle_manager._next_card_cost_reduce += 99  # 다음 카드 무료
-					reward_text = "종장 완성! 기 +1, 다음 주문 무료!"
+					reward_text = tr("BATTLE_JONGJANG_COMPLETE_QI_FREE")
 				_:
-					reward_text = "종장 완성!"
+					reward_text = tr("BATTLE_JONGJANG_COMPLETE")
 
 	# 유물 트리거: 장 완성 (RS104 청사 붓, RS106 오얏나무 가지, RS107 해시계 조각)
 	RelicManager.trigger_on_sijo_chapter_complete(battle_manager, chapter)
 
 	if reward_text != "":
 		_show_sijo_reward_popup(reward_text)
-		battle_manager.passive_triggered.emit("시조 " + chapter, reward_text)
+		battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_CHAPTER") % chapter, reward_text)
 
 
 func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void:
@@ -1045,7 +1070,7 @@ func _on_dot_damage_dealt(target: String, _effect_id: String, amount: int) -> vo
 
 
 func _update_player_status_ui() -> void:
-	block_label.text = "방어: %d" % battle_manager.player_block
+	block_label.text = tr("BATTLE_BLOCK_FMT") % battle_manager.player_block
 	block_label.visible = battle_manager.player_block > 0
 
 	# 플레이어 상태이상 표시 (전용 컨테이너)
@@ -1227,7 +1252,7 @@ func _show_battle_result(victory: bool) -> void:
 	add_child(overlay)
 
 	var label := Label.new()
-	label.text = "승리!" if victory else "패배..."
+	label.text = tr("BATTLE_VICTORY_TEXT") if victory else tr("BATTLE_DEFEAT_TEXT")
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.anchors_preset = Control.PRESET_FULL_RECT

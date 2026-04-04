@@ -29,6 +29,7 @@ func _build_ui() -> void:
 	# 중앙 패널 — 뷰포트 중앙에 명시적 배치
 	_panel = PanelContainer.new()
 	_panel.custom_minimum_size = Vector2(360, 540)
+	_panel.mouse_filter = Control.MOUSE_FILTER_PASS  # 패널 터치가 배경까지 전달
 	var vp_size := get_viewport().get_visible_rect().size
 	_panel.position = Vector2(
 		(vp_size.x - 360) / 2.0,
@@ -47,7 +48,16 @@ func _build_ui() -> void:
 	var vbox := VBoxContainer.new()
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	vbox.add_theme_constant_override("separation", 10)
+	vbox.mouse_filter = Control.MOUSE_FILTER_PASS
 	_panel.add_child(vbox)
+
+	# 닫기 버튼 (우측 상단)
+	var close_btn := Button.new()
+	close_btn.text = "✕"
+	close_btn.size_flags_horizontal = Control.SIZE_SHRINK_END
+	close_btn.add_theme_font_size_override("font_size", 24)
+	close_btn.pressed.connect(_close)
+	vbox.add_child(close_btn)
 
 	# 카드 이름
 	var name_label := Label.new()
@@ -70,8 +80,8 @@ func _build_ui() -> void:
 
 	# 타입 + 희귀도
 	var type_names := {
-		"attack": "공격", "defense": "방어", "spell": "주술",
-		"movement": "이동", "formation": "진형",
+		"attack": tr("CARD_ZOOM_TYPE_ATTACK"), "defense": tr("CARD_ZOOM_TYPE_DEFENSE"), "spell": tr("CARD_ZOOM_TYPE_SPELL"),
+		"movement": tr("CARD_ZOOM_TYPE_MOVEMENT"), "formation": tr("CARD_ZOOM_TYPE_FORMATION"),
 	}
 	var type_label := Label.new()
 	type_label.text = type_names.get(_card_data.type, _card_data.type)
@@ -110,7 +120,7 @@ func _build_ui() -> void:
 		vbox.add_child(kw_sep)
 
 		var kw_title := Label.new()
-		kw_title.text = "📖 키워드"
+		kw_title.text = tr("CARD_ZOOM_KEYWORD_TITLE")
 		kw_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		kw_title.add_theme_font_size_override("font_size", 16)
 		kw_title.add_theme_color_override("font_color", Color(0.8, 0.7, 0.5))
@@ -129,7 +139,7 @@ func _build_ui() -> void:
 
 	# 닫기 안내
 	var hint := Label.new()
-	hint.text = "터치하여 닫기"
+	hint.text = tr("CARD_ZOOM_HINT")
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	hint.add_theme_font_size_override("font_size", 14)
 	hint.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
@@ -138,23 +148,23 @@ func _build_ui() -> void:
 
 func _build_stat_text() -> String:
 	var lines: Array[String] = []
-	lines.append("기(氣): %d  |  음보(拍): %d" % [_card_data.cost, _card_data.beat])
+	lines.append(tr("CARD_ZOOM_STAT_QI_BEAT") % [_card_data.cost, _card_data.beat])
 
 	if _card_data.damage > 0:
-		var dmg := "피해: %d" % _card_data.damage
+		var dmg := tr("CARD_ZOOM_DAMAGE") % _card_data.damage
 		if _card_data.is_aoe:
-			dmg += " (전체)"
+			dmg += " " + tr("SHOP_CARD_DAMAGE_AOE")
 		lines.append(dmg)
 	if _card_data.block_value > 0:
-		lines.append("방어: %d" % _card_data.block_value)
+		lines.append(tr("CARD_ZOOM_BLOCK") % _card_data.block_value)
 	if _card_data.draw_count > 0:
-		lines.append("드로우: +%d" % _card_data.draw_count)
+		lines.append(tr("CARD_ZOOM_DRAW") % _card_data.draw_count)
 	if _card_data.qi_gain > 0:
-		lines.append("기 회복: +%d" % _card_data.qi_gain)
+		lines.append(tr("CARD_ZOOM_QI_GAIN") % _card_data.qi_gain)
 	if _card_data.stamina_cost > 0:
-		lines.append("자원 비용: %d" % _card_data.stamina_cost)
+		lines.append(tr("CARD_ZOOM_RESOURCE_COST") % _card_data.stamina_cost)
 	if _card_data.stamina_gain > 0:
-		lines.append("자원 획득: +%d" % _card_data.stamina_gain)
+		lines.append(tr("CARD_ZOOM_RESOURCE_GAIN") % _card_data.stamina_gain)
 
 	return "\n".join(lines)
 
@@ -206,6 +216,8 @@ func _find_keywords_in_card() -> Array[Dictionary]:
 
 func _on_bg_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
+		_close()
+	elif event is InputEventScreenTouch and event.pressed:
 		_close()
 
 
