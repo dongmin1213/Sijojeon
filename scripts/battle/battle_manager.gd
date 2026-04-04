@@ -1062,6 +1062,8 @@ func _check_phase_transition(enemy_index: int) -> void:
 		return
 
 	var hp_percent: int = trigger.get("hp_percent", 0)
+	if enemy["max_hp"] <= 0:
+		return
 	var current_hp_percent := int(float(enemy["current_hp"]) / float(enemy["max_hp"]) * 100.0)
 	if current_hp_percent > hp_percent:
 		return
