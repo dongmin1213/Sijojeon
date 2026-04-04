@@ -24,13 +24,16 @@
         "romanized": "Yeokjeok Musa"
       },
       "description": "역모에 가담한 궁궐의 정예 무사. 오랜 수련으로 다져진 강한 체력과 화력을 자랑한다.",
-      "hp": { "min": 50, "max": 65 },
+      "hp": {
+        "min": 50,
+        "max": 65
+      },
       "moves": [
         {
           "id": "precision_cut",
           "name": "정밀 베기",
           "intent": "attack",
-          "damage": 14,
+          "damage": 17,
           "times": 1,
           "description": "급소를 노린 강력한 단발 공격."
         },
@@ -38,7 +41,7 @@
           "id": "rapid_assault",
           "name": "속전속결",
           "intent": "attack",
-          "damage": 7,
+          "damage": 8,
           "times": 2,
           "description": "7피해 × 2회 = 14 총피해. 빠른 연속 공격."
         },
@@ -47,7 +50,12 @@
           "name": "역적의 함성",
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 3,
+              "target": "self"
+            }
           ],
           "description": "힘 3 획득. 이후 모든 공격 피해 +3."
         },
@@ -55,17 +63,28 @@
           "id": "finishing_blow",
           "name": "결정타",
           "intent": "attack",
-          "damage": 20,
+          "damage": 24,
           "times": 1,
           "description": "battle_cry 후 사용. 힘+3 시 23피해. 전력을 다한 일격."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["precision_cut", "rapid_assault", "battle_cry", "finishing_blow", "precision_cut", "rapid_assault", "finishing_blow"]
+        "sequence": [
+          "precision_cut",
+          "rapid_assault",
+          "battle_cry",
+          "finishing_blow",
+          "precision_cut",
+          "rapid_assault",
+          "finishing_blow"
+        ]
       },
       "rewards": {
-        "gold": { "min": 25, "max": 40 },
+        "gold": {
+          "min": 25,
+          "max": 40
+        },
         "card_chance": 0.3,
         "relic_chance": 0.05
       },
@@ -79,15 +98,28 @@
         "romanized": "Yeokmo Mungwan"
       },
       "description": "역모에 가담한 간신 문관. 음모와 저주로 상대를 무력화하며, 직접 싸우지 않고 방해한다.",
-      "hp": { "min": 42, "max": 55 },
+      "hp": {
+        "min": 42,
+        "max": 55
+      },
       "moves": [
         {
           "id": "conspiracy",
           "name": "음모",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
           "description": "약화 2 + 취약 2 부여. 플레이어 전투력 대폭 감소."
         },
@@ -96,8 +128,18 @@
           "name": "저주 문서",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 4, "target": "player" },
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 4,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "출혈 4 + 냉기 1 부여. 다음 턴 드로우 방해 + 지속 피해."
         },
@@ -105,7 +147,7 @@
           "id": "iron_brush",
           "name": "철필 공격",
           "intent": "attack",
-          "damage": 11,
+          "damage": 13,
           "times": 1,
           "description": "붓으로 내리치는 의외로 강한 공격."
         },
@@ -120,20 +162,36 @@
           "id": "treacherous_orders",
           "name": "역명 하달",
           "intent": "attack_debuff",
-          "damage": 9,
+          "damage": 11,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 3, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 3,
+              "target": "player"
+            }
           ],
           "description": "9피해 + 약화 3. 최대 공격력 감소."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["conspiracy", "iron_brush", "scroll_curse", "bureaucratic_shield", "treacherous_orders", "conspiracy", "iron_brush"]
+        "sequence": [
+          "conspiracy",
+          "iron_brush",
+          "scroll_curse",
+          "bureaucratic_shield",
+          "treacherous_orders",
+          "conspiracy",
+          "iron_brush"
+        ]
       },
       "rewards": {
-        "gold": { "min": 22, "max": 36 },
+        "gold": {
+          "min": 22,
+          "max": 36
+        },
         "card_chance": 0.3,
         "relic_chance": 0.08
       },
@@ -147,16 +205,25 @@
         "romanized": "Jagaek"
       },
       "description": "역적에게 고용된 검은 그림자. 독침과 기습을 활용하며, 항상 급소를 노린다.",
-      "hp": { "min": 44, "max": 58 },
+      "hp": {
+        "min": 44,
+        "max": 58
+      },
       "moves": [
         {
           "id": "poison_needle",
           "name": "독침",
           "intent": "attack_debuff",
-          "damage": 6,
+          "damage": 7,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 5, "target": "player", "note": "독: 매 턴 시작 시 n피해 후 n 감소, 0이 되면 소멸" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 5,
+              "target": "player",
+              "note": "독: 매 턴 시작 시 n피해 후 n 감소, 0이 되면 소멸"
+            }
           ],
           "description": "6피해 + 독 5 부여. 누적 독 피해: 5+4+3+2+1=15."
         },
@@ -164,7 +231,7 @@
           "id": "shadow_strike",
           "name": "암습",
           "intent": "attack",
-          "damage": 16,
+          "damage": 19,
           "times": 1,
           "description": "그림자 속에서 기습하는 치명적 일격."
         },
@@ -174,7 +241,13 @@
           "intent": "buff_defend",
           "block": 10,
           "effects": [
-            { "type": "apply_buff", "buff": "은신", "stacks": 1, "target": "self", "note": "은신: 다음 공격 피해 +50%, 1회 발동 후 소멸" }
+            {
+              "type": "apply_buff",
+              "buff": "은신",
+              "stacks": 1,
+              "target": "self",
+              "note": "은신: 다음 공격 피해 +50%, 1회 발동 후 소멸"
+            }
           ],
           "description": "방어도 10 + 은신(다음 공격 +50%) 획득."
         },
@@ -182,20 +255,35 @@
           "id": "death_touch",
           "name": "급소 찌르기",
           "intent": "attack",
-          "damage": 12,
+          "damage": 14,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 3,
+              "target": "player"
+            }
           ],
           "description": "12피해 + 출혈 3. 은신 상태에서 사용 시 18피해."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["poison_needle", "vanish", "shadow_strike", "death_touch", "poison_needle", "shadow_strike"]
+        "sequence": [
+          "poison_needle",
+          "vanish",
+          "shadow_strike",
+          "death_touch",
+          "poison_needle",
+          "shadow_strike"
+        ]
       },
       "rewards": {
-        "gold": { "min": 24, "max": 38 },
+        "gold": {
+          "min": 24,
+          "max": 38
+        },
         "card_chance": 0.3,
         "relic_chance": 0.1
       },
@@ -209,16 +297,24 @@
         "romanized": "Eojeon Naegwan"
       },
       "description": "왕의 측근에서 일하는 내관. 음독과 방어막을 사용하며, 겉보기에는 약해 보이지만 독침이 치명적이다.",
-      "hp": { "min": 45, "max": 58 },
+      "hp": {
+        "min": 45,
+        "max": 58
+      },
       "moves": [
         {
           "id": "poison_vial",
           "name": "독약 투여",
           "intent": "attack_debuff",
-          "damage": 5,
+          "damage": 6,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 4,
+              "target": "player"
+            }
           ],
           "description": "5피해 + 독 4 부여."
         },
@@ -228,7 +324,12 @@
           "intent": "buff_defend",
           "block": 13,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            }
           ],
           "description": "방어도 13 + 힘 1."
         },
@@ -237,8 +338,18 @@
           "name": "밀귀 저주",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" },
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 3,
+              "target": "player"
+            }
           ],
           "description": "냉기 1 + 출혈 3. 드로우 방해 + 지속 피해."
         },
@@ -246,17 +357,28 @@
           "id": "eunuch_strike",
           "name": "내관 공격",
           "intent": "attack",
-          "damage": 14,
+          "damage": 17,
           "times": 1,
           "description": "힘 쌓인 후 의외로 강력한 일격."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["poison_vial", "silk_screen", "whisper_curse", "eunuch_strike", "poison_vial", "silk_screen", "eunuch_strike"]
+        "sequence": [
+          "poison_vial",
+          "silk_screen",
+          "whisper_curse",
+          "eunuch_strike",
+          "poison_vial",
+          "silk_screen",
+          "eunuch_strike"
+        ]
       },
       "rewards": {
-        "gold": { "min": 22, "max": 36 },
+        "gold": {
+          "min": 22,
+          "max": 36
+        },
         "card_chance": 0.3,
         "relic_chance": 0.08
       },
@@ -271,7 +393,10 @@
         "romanized": "Geumgun Musa"
       },
       "description": "왕실 근위대 소속 정예 무사. 방어와 반격에 특화되어 있으며, 공격할수록 더 강해진다.",
-      "hp": { "min": 52, "max": 65 },
+      "hp": {
+        "min": 52,
+        "max": 65
+      },
       "moves": [
         {
           "id": "guard_stance",
@@ -279,7 +404,12 @@
           "intent": "buff_defend",
           "block": 15,
           "effects": [
-            { "type": "apply_buff", "buff": "thorns", "stacks": 3, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "thorns",
+              "stacks": 3,
+              "target": "self"
+            }
           ],
           "description": "방어도 15 + 가시 3. 근접 공격 시 역피해 3 유발."
         },
@@ -287,7 +417,7 @@
           "id": "counter_slash",
           "name": "반격 베기",
           "intent": "attack",
-          "damage": 12,
+          "damage": 14,
           "times": 1,
           "description": "방어도 보유 상태에서 반격. 방어도가 있을 때만 사용."
         },
@@ -295,7 +425,7 @@
           "id": "royal_guard_strike",
           "name": "근위 강타",
           "intent": "attack",
-          "damage": 17,
+          "damage": 20,
           "times": 1,
           "description": "전력을 다한 왕실 근위 공격."
         },
@@ -303,21 +433,42 @@
           "id": "armor_break",
           "name": "방호 파괴",
           "intent": "attack_debuff",
-          "damage": 10,
+          "damage": 12,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "10피해 + 취약 2 + 약화 1."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["guard_stance", "counter_slash", "armor_break", "royal_guard_strike", "guard_stance", "counter_slash", "royal_guard_strike"]
+        "sequence": [
+          "guard_stance",
+          "counter_slash",
+          "armor_break",
+          "royal_guard_strike",
+          "guard_stance",
+          "counter_slash",
+          "royal_guard_strike"
+        ]
       },
       "rewards": {
-        "gold": { "min": 24, "max": 38 },
+        "gold": {
+          "min": 24,
+          "max": 38
+        },
         "card_chance": 0.3,
         "relic_chance": 0.08
       },
@@ -332,14 +483,23 @@
         "romanized": "Jeoungseumsaja"
       },
       "description": "이승과 저승의 경계에서 온 죽음의 사자. 사망 카운트다운으로 플레이어를 공포에 빠뜨린다.",
-      "hp": { "min": 40, "max": 55 },
+      "hp": {
+        "min": 40,
+        "max": 55
+      },
       "moves": [
         {
           "id": "death_countdown_apply",
           "name": "사망 선고",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "death_countdown", "stacks": 1, "target": "player", "note": "사망 카운트다운: 4턴 후 현재 HP 35% 감소" }
+            {
+              "type": "apply_debuff",
+              "debuff": "death_countdown",
+              "stacks": 1,
+              "target": "player",
+              "note": "사망 카운트다운: 4턴 후 현재 HP 35% 감소"
+            }
           ],
           "description": "플레이어에게 사망 카운트다운 부여. 4턴 안에 처치하거나 카운트다운 해제 필요."
         },
@@ -347,7 +507,7 @@
           "id": "reaper_scythe",
           "name": "낫 휘두르기",
           "intent": "attack",
-          "damage": 11,
+          "damage": 13,
           "times": 1,
           "description": "낫으로 내리치는 공격."
         },
@@ -355,10 +515,13 @@
           "id": "soul_drain",
           "name": "혼 흡수",
           "intent": "attack",
-          "damage": 8,
+          "damage": 10,
           "times": 1,
           "effects": [
-            { "type": "heal_self", "amount": 5 }
+            {
+              "type": "heal_self",
+              "amount": 5
+            }
           ],
           "description": "8피해를 입히고 그 절반(최대 5)을 자신이 회복."
         },
@@ -366,14 +529,20 @@
           "id": "final_harvest",
           "name": "마지막 수확",
           "intent": "attack",
-          "damage": 15,
+          "damage": 18,
           "times": 1,
           "description": "HP 50% 이하 시 사용. 전력을 다한 마지막 공격."
         }
       ],
       "move_pattern": {
         "type": "conditional_sequential",
-        "sequence": ["death_countdown_apply", "reaper_scythe", "soul_drain", "reaper_scythe", "soul_drain"],
+        "sequence": [
+          "death_countdown_apply",
+          "reaper_scythe",
+          "soul_drain",
+          "reaper_scythe",
+          "soul_drain"
+        ],
         "hp_conditional": {
           "threshold_percent": 50,
           "inject_move": "final_harvest",
@@ -383,7 +552,10 @@
         }
       },
       "rewards": {
-        "gold": { "min": 22, "max": 35 },
+        "gold": {
+          "min": 22,
+          "max": 35
+        },
         "card_chance": 0.3,
         "relic_chance": 0.1
       },
@@ -398,13 +570,16 @@
         "romanized": "Saryeong"
       },
       "description": "어두운 기운이 뭉쳐 생겨난 악령. 모든 적을 동시에 공격하는 광역기와 생명력 흡수로 강인하다.",
-      "hp": { "min": 48, "max": 60 },
+      "hp": {
+        "min": 48,
+        "max": 60
+      },
       "moves": [
         {
           "id": "dark_burst",
           "name": "암흑 폭발",
           "intent": "attack",
-          "damage": 9,
+          "damage": 11,
           "times": 1,
           "aoe": true,
           "description": "9피해 (광역). 단일 전투에서는 단순 9피해."
@@ -413,10 +588,13 @@
           "id": "life_drain",
           "name": "생명 흡수",
           "intent": "attack",
-          "damage": 10,
+          "damage": 12,
           "times": 1,
           "effects": [
-            { "type": "heal_self", "amount": 7 }
+            {
+              "type": "heal_self",
+              "amount": 7
+            }
           ],
           "description": "10피해 + 자신 HP 7 회복."
         },
@@ -425,8 +603,18 @@
           "name": "사기(邪氣)",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 4, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 4,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
           "description": "출혈 4 + 취약 1 부여."
         },
@@ -436,17 +624,33 @@
           "intent": "buff_defend",
           "block": 12,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
           "description": "방어도 12 + 힘 2."
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["evil_aura", "dark_burst", "life_drain", "shadow_form", "dark_burst", "life_drain", "evil_aura"]
+        "sequence": [
+          "evil_aura",
+          "dark_burst",
+          "life_drain",
+          "shadow_form",
+          "dark_burst",
+          "life_drain",
+          "evil_aura"
+        ]
       },
       "rewards": {
-        "gold": { "min": 24, "max": 38 },
+        "gold": {
+          "min": 24,
+          "max": 38
+        },
         "card_chance": 0.3,
         "relic_chance": 0.1
       },
@@ -463,7 +667,10 @@
         "romanized": "Yeokjeok Jangsu"
       },
       "description": "역모를 이끄는 핵심 장수. 강한 개인 전투력과 함께 부하를 지휘하는 능력도 갖추고 있다.",
-      "hp": { "min": 100, "max": 125 },
+      "hp": {
+        "min": 100,
+        "max": 125
+      },
       "note": "엘리트 — 유물 보상 확정. 소환 메커니즘과 강력한 단타를 동시 보유.",
       "moves": [
         {
@@ -487,7 +694,12 @@
           "name": "역모 군기",
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 4, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 4,
+              "target": "self"
+            }
           ],
           "description": "힘 4 획득. 군기를 세워 전의를 고취."
         },
@@ -497,7 +709,12 @@
           "intent": "buff_defend",
           "block": 16,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
           "description": "방어도 16 + 힘 2. 강인한 의지로 버텨냄."
         },
@@ -520,7 +737,15 @@
       ],
       "move_pattern": {
         "type": "conditional_sequential",
-        "sequence": ["general_strike", "command_charge", "war_banner", "iron_will", "cleave", "general_strike", "cleave"],
+        "sequence": [
+          "general_strike",
+          "command_charge",
+          "war_banner",
+          "iron_will",
+          "cleave",
+          "general_strike",
+          "cleave"
+        ],
         "hp_conditional": {
           "threshold_percent": 50,
           "inject_move": "warlord_wrath",
@@ -530,7 +755,10 @@
         }
       },
       "rewards": {
-        "gold": { "min": 40, "max": 60 },
+        "gold": {
+          "min": 40,
+          "max": 60
+        },
         "card_chance": 0.7,
         "relic_chance": 0.35
       },
@@ -544,7 +772,10 @@
         "romanized": "Eosa"
       },
       "description": "역모 측에 매수된 암행어사. 권력을 남용해 플레이어를 압박하고 포졸을 소환해 다수 전선을 형성한다.",
-      "hp": { "min": 80, "max": 95 },
+      "hp": {
+        "min": 80,
+        "max": 95
+      },
       "note": "엘리트 — 소환 + 강압 디버프 복합.",
       "moves": [
         {
@@ -552,8 +783,19 @@
           "name": "강압 심문",
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "구금", "stacks": 3, "target": "player", "note": "구금: 카드 사용 비용 +1, 3턴" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "구금",
+              "stacks": 3,
+              "target": "player",
+              "note": "구금: 카드 사용 비용 +1, 3턴"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
           "description": "플레이어에게 구금 3 + 약화 2 부여. 카드 비용 3턴간 +1."
         },
@@ -563,7 +805,12 @@
           "intent": "summon",
           "description": "궁궐 포졸 2명을 소환한다. 각 HP 18.",
           "summon": [
-            { "enemy_id": "E002", "count": 2, "hp_override": 18, "name_override": "궁궐 포졸" }
+            {
+              "enemy_id": "E002",
+              "count": 2,
+              "hp_override": 18,
+              "name_override": "궁궐 포졸"
+            }
           ]
         },
         {
@@ -573,7 +820,12 @@
           "damage": 14,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
           "description": "14피해 + 취약 2. 어명을 빙자한 강한 공격."
         },
@@ -583,7 +835,12 @@
           "intent": "buff_defend",
           "block": 14,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
           "description": "방어도 14 + 힘 2."
         },
@@ -594,14 +851,26 @@
           "damage": 18,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 4, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 4,
+              "target": "player"
+            }
           ],
           "description": "18피해 + 출혈 4. HP 50% 미만 시 사용."
         }
       ],
       "move_pattern": {
         "type": "conditional_sequential",
-        "sequence": ["coercion", "summon_guards", "royal_decree", "investigator_shield", "coercion", "royal_decree"],
+        "sequence": [
+          "coercion",
+          "summon_guards",
+          "royal_decree",
+          "investigator_shield",
+          "coercion",
+          "royal_decree"
+        ],
         "hp_conditional": {
           "threshold_percent": 50,
           "inject_move": "final_verdict",
@@ -611,7 +880,10 @@
         }
       },
       "rewards": {
-        "gold": { "min": 42, "max": 62 },
+        "gold": {
+          "min": 42,
+          "max": 62
+        },
         "card_chance": 0.65,
         "relic_chance": 0.35
       },
@@ -626,7 +898,10 @@
         "romanized": "Imugi-wang"
       },
       "description": "이무기 중 가장 강한 개체. 용이 되지 못한 분노로 독과 불꽃을 뿜으며 부하 이무기를 소환한다.",
-      "hp": { "min": 90, "max": 110 },
+      "hp": {
+        "min": 90,
+        "max": 110
+      },
       "note": "엘리트 — DoT + 소환 + 다중 공격 복합.",
       "moves": [
         {
@@ -636,7 +911,12 @@
           "damage": 8,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 6, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 6,
+              "target": "player"
+            }
           ],
           "description": "8피해 + 독 6 부여. 누적 독 피해: 6+5+4+3+2+1=21."
         },
@@ -646,7 +926,12 @@
           "intent": "summon",
           "description": "소형 이무기 1마리를 소환한다. HP 30.",
           "summon": [
-            { "enemy_id": "EL001", "count": 1, "hp_override": 30, "name_override": "소형 이무기" }
+            {
+              "enemy_id": "EL001",
+              "count": 1,
+              "hp_override": 30,
+              "name_override": "소형 이무기"
+            }
           ]
         },
         {
@@ -664,8 +949,18 @@
           "damage": 12,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "화상", "stacks": 3, "target": "player" },
-            { "type": "apply_debuff", "debuff": "독", "stacks": 3, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "화상",
+              "stacks": 3,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 3,
+              "target": "player"
+            }
           ],
           "description": "12피해 + 화상 3 + 독 3. 독과 불꽃을 동시에 뿜는다."
         },
@@ -675,7 +970,12 @@
           "intent": "buff_defend",
           "block": 18,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 3,
+              "target": "self"
+            }
           ],
           "description": "방어도 18 + 힘 3. 단단히 감아 방어 자세."
         },
@@ -690,7 +990,15 @@
       ],
       "move_pattern": {
         "type": "conditional_sequential",
-        "sequence": ["king_venom", "tail_sweep", "summon_imugi", "dragon_breath", "serpent_coil", "tail_sweep", "king_venom"],
+        "sequence": [
+          "king_venom",
+          "tail_sweep",
+          "summon_imugi",
+          "dragon_breath",
+          "serpent_coil",
+          "tail_sweep",
+          "king_venom"
+        ],
         "hp_conditional": {
           "threshold_percent": 40,
           "inject_move": "wrath_strike",
@@ -700,7 +1008,10 @@
         }
       },
       "rewards": {
-        "gold": { "min": 45, "max": 65 },
+        "gold": {
+          "min": 45,
+          "max": 65
+        },
         "card_chance": 0.7,
         "relic_chance": 0.4
       },

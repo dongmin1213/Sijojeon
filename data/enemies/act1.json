@@ -36,7 +36,7 @@
           "id": "slash",
           "name": "난도질",
           "intent": "attack",
-          "damage": 6,
+          "damage": 7,
           "times": 1,
           "description": "단순 근접 공격."
         },
@@ -44,7 +44,7 @@
           "id": "reckless_flurry",
           "name": "난타",
           "intent": "attack",
-          "damage": 3,
+          "damage": 4,
           "times": 3,
           "description": "3회 연타. 총 9피해. 방어도 관통 불가."
         },
@@ -101,7 +101,7 @@
           "id": "club_strike",
           "name": "곤봉 타격",
           "intent": "attack",
-          "damage": 7,
+          "damage": 8,
           "times": 1,
           "description": "묵직한 곤봉 공격."
         },
@@ -116,7 +116,7 @@
           "id": "heavy_blow",
           "name": "철퇴 강타",
           "intent": "attack",
-          "damage": 11,
+          "damage": 13,
           "times": 1,
           "description": "강력한 일격. 패턴 중 최대 피해."
         },
@@ -196,7 +196,7 @@
           "id": "cold_touch",
           "name": "냉기 접촉",
           "intent": "attack",
-          "damage": 5,
+          "damage": 6,
           "times": 1,
           "effects": [
             {
@@ -213,7 +213,7 @@
           "id": "possession_attempt",
           "name": "빙의 시도",
           "intent": "attack_debuff",
-          "damage": 6,
+          "damage": 7,
           "times": 1,
           "effects": [
             {
@@ -264,7 +264,7 @@
           "id": "club_bash",
           "name": "방망이 강타",
           "intent": "attack",
-          "damage": 9,
+          "damage": 11,
           "times": 1,
           "description": "단순하지만 아픈 방망이 공격."
         },
@@ -272,7 +272,7 @@
           "id": "trick",
           "name": "도깨비불",
           "intent": "attack_debuff",
-          "damage": 4,
+          "damage": 5,
           "times": 1,
           "effects": [
             {
@@ -302,7 +302,7 @@
           "id": "slam",
           "name": "도깨비 박치기",
           "intent": "attack",
-          "damage": 12,
+          "damage": 14,
           "times": 1,
           "description": "힘 쌓인 후 사용. 위력적인 일격."
         }
@@ -346,7 +346,7 @@
           "id": "rapid_clubs",
           "name": "연속 곤봉",
           "intent": "attack",
-          "damage": 4,
+          "damage": 5,
           "times": 3,
           "description": "4피해 × 3회 = 12 총피해. 방어도 분산 효과."
         },
@@ -375,7 +375,7 @@
           "id": "heavy_strike",
           "name": "중검 타격",
           "intent": "attack",
-          "damage": 13,
+          "damage": 16,
           "times": 1,
           "description": "단발 강타. 힘 쌓인 후 사용."
         }
@@ -420,7 +420,7 @@
           "id": "venom_touch",
           "name": "독기 접촉",
           "intent": "attack_debuff",
-          "damage": 4,
+          "damage": 5,
           "times": 1,
           "effects": [
             {
@@ -456,7 +456,7 @@
           "id": "spirit_drain",
           "name": "기력 흡수",
           "intent": "attack",
-          "damage": 7,
+          "damage": 8,
           "times": 1,
           "effects": [
             {
@@ -528,7 +528,7 @@
           "id": "extort",
           "name": "착취",
           "intent": "attack_debuff",
-          "damage": 8,
+          "damage": 10,
           "times": 1,
           "effects": [
             {
@@ -564,7 +564,7 @@
           "id": "official_blow",
           "name": "관인 타격",
           "intent": "attack",
-          "damage": 10,
+          "damage": 12,
           "times": 1,
           "description": "힘 쌓인 후 사용. 10+힘 피해."
         }

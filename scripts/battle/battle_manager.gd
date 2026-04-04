@@ -22,6 +22,10 @@ var current_qi: int = 0
 var max_qi: int = STARTING_QI
 var turn_number: int = 0
 
+# 시조 실패 패널티 — 다음 턴에 적용
+var sijo_draw_penalty: int = 0  # 종장 미완성 → 드로우 -1
+var sijo_qi_penalty: int = 0    # 시조 슬롯 비어있음 → 기 회복 -1
+
 # 클래스 고유 자원 — 턴 간 유지, 전투 시작 시 0
 # 무관: 기력(氣力), 문관: 학식(學識)
 var current_class_resource: int = 0
@@ -102,6 +106,8 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	max_qi = qi
 	turn_number = 0
 	player_block = 0
+	sijo_draw_penalty = 0
+	sijo_qi_penalty = 0
 	hand.clear()
 	discard_pile.clear()
 	exhaust_pile.clear()
@@ -240,7 +246,12 @@ func begin_player_turn() -> void:
 		player_block = 0
 	block_changed.emit(player_block)
 
-	current_qi = max_qi
+	# 시조 실패 패널티: 기 회복 감소
+	var effective_max_qi := max_qi + sijo_qi_penalty
+	effective_max_qi = maxi(effective_max_qi, 1)  # 최소 1은 회복
+	current_qi = effective_max_qi
+	if sijo_qi_penalty < 0:
+		passive_triggered.emit("시조 공백", "시조 슬롯 비어있음 → 기 회복 %d" % sijo_qi_penalty)
 	qi_changed.emit(current_qi, max_qi)
 	turn_started.emit(turn_number)
 
@@ -259,8 +270,10 @@ func begin_player_turn() -> void:
 				battle_ended.emit(false)
 				return
 
-	# 카드 드로우 (냉기 등 드로우 수정자 적용)
-	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player")
+	# 카드 드로우 (냉기 등 드로우 수정자 적용 + 시조 실패 패널티)
+	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player") + sijo_draw_penalty
+	if sijo_draw_penalty < 0:
+		passive_triggered.emit("시조 미완", "종장 미완성 → 드로우 %d" % sijo_draw_penalty)
 	draw_count = maxi(draw_count, 1)  # 최소 1장은 드로우
 	draw_cards(draw_count)
 
@@ -375,6 +388,25 @@ func end_player_turn() -> void:
 		return
 
 	_change_state(BattleState.PLAYER_TURN_END)
+
+	# 시조 실패 패널티 판정 (다음 턴에 적용)
+	if sijo_system:
+		var filled := sijo_system.get_filled_count()
+		if filled == 0:
+			# 시조 슬롯이 아예 비어있음 → 다음 턴 기 회복 -1
+			sijo_qi_penalty = -1
+			sijo_draw_penalty = 0
+		elif not sijo_system.is_complete():
+			# 종장 미완성 (일부만 채움) → 다음 턴 드로우 -1
+			sijo_draw_penalty = -1
+			sijo_qi_penalty = 0
+		else:
+			# 시조 완성 → 패널티 없음
+			sijo_draw_penalty = 0
+			sijo_qi_penalty = 0
+	else:
+		sijo_draw_penalty = 0
+		sijo_qi_penalty = 0
 
 	# 도사 패시브: 천지기 — 시조 슬롯 3칸 이상이면 기 1 회복
 	if character_id == "dosa" and sijo_system:
