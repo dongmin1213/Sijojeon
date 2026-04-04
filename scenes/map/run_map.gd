@@ -12,14 +12,14 @@ const NODE_COLORS := {
 	MapData.NodeType.GWAGEO: Color(0.85, 0.75, 0.3),  # 황금 (과거시험)
 }
 
-const NODE_LABELS := {
-	MapData.NodeType.BATTLE: "전투",
-	MapData.NodeType.ELITE: "정예",
-	MapData.NodeType.EVENT: "이벤트",
-	MapData.NodeType.SHOP: "상점",
-	MapData.NodeType.REST: "휴식",
-	MapData.NodeType.BOSS: "보스",
-	MapData.NodeType.GWAGEO: "과거",
+var NODE_LABELS := {
+	MapData.NodeType.BATTLE: "NODE_BATTLE",
+	MapData.NodeType.ELITE: "NODE_ELITE",
+	MapData.NodeType.EVENT: "NODE_EVENT",
+	MapData.NodeType.SHOP: "NODE_SHOP",
+	MapData.NodeType.REST: "NODE_REST",
+	MapData.NodeType.BOSS: "NODE_BOSS",
+	MapData.NodeType.GWAGEO: "NODE_GWAGEO",
 }
 
 ## 이모지 대신 텍스트 심볼 사용 — Android에서 이모지 폰트 미포함 시 렌더링 실패 방지
@@ -109,21 +109,21 @@ func _update_hud() -> void:
 	if rd == null:
 		return
 	hp_label.text = "HP: %d/%d" % [rd.current_hp, rd.max_hp]
-	gold_label.text = "금화: %d" % rd.gold
+	gold_label.text = tr("MAP_GOLD_FMT") % rd.gold
 	var act_name: String = MapGenerator.get_act_name(rd.current_act)
-	act_label.text = "%d막 — %s" % [rd.current_act, act_name]
+	act_label.text = tr("MAP_ACT_FMT") % [rd.current_act, act_name]
 
 	# 신분/당파/민심 HUD 업데이트
-	jibun_label.text = "신분: %s" % JibunSystem.get_rank_name(rd.jibun_rank)
+	jibun_label.text = tr("MAP_JIBUN_FMT") % JibunSystem.get_rank_name(rd.jibun_rank)
 	if rd.faction_pair.size() == 2:
 		var fa := FactionSystem.get_faction_name(rd.faction_pair[0])
 		var fb := FactionSystem.get_faction_name(rd.faction_pair[1])
 		var ma: int = rd.faction_meters.get(rd.faction_pair[0], 0)
 		var mb: int = rd.faction_meters.get(rd.faction_pair[1], 0)
-		faction_label.text = "%s:%d vs %s:%d" % [fa, ma, fb, mb]
+		faction_label.text = tr("MAP_FACTION_FMT") % [fa, ma, fb, mb]
 	else:
-		faction_label.text = "당파: --"
-	minshim_label.text = "민심: %d" % rd.narrative_state.get("minshim", 50)
+		faction_label.text = tr("MAP_FACTION_NONE")
+	minshim_label.text = tr("MAP_MINSHIM_FMT") % rd.narrative_state.get("minshim", 50)
 
 	# 막별 배경색 적용
 	var bg_color: Color = ACT_BG_COLORS.get(rd.current_act, ACT_BG_COLORS[1])
@@ -203,7 +203,8 @@ func _build_map() -> void:
 			btn.position = Vector2(x, y)
 
 			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
-			var label_text: String = NODE_LABELS.get(map_node.type, "???")
+			var label_key: String = NODE_LABELS.get(map_node.type, "")
+			var label_text: String = tr(label_key) if label_key != "" else "???"
 			btn.text = "%s\n%s" % [icon_text, label_text]
 
 			btn.add_theme_font_size_override("font_size", font_size)
@@ -300,9 +301,9 @@ func _update_node_states() -> void:
 		# 민란으로 폐업한 상점 표시
 		if nid in disabled_shop_ids and nid not in visited:
 			btn.disabled = true
-			btn.text = "X\n폐업"
+			btn.text = "X\n" + tr("MAP_CLOSED")
 			btn.modulate = Color(0.4, 0.3, 0.3, 0.6)
-			btn.tooltip_text = "민심 부족으로 상점이 문을 닫았습니다"
+			btn.tooltip_text = tr("MAP_CLOSED_TOOLTIP")
 			continue
 
 		if nid in visited:
@@ -314,11 +315,12 @@ func _update_node_states() -> void:
 			# 갈림길 잠금 노드: 금화로 해제 가능
 			var cost: int = _locked_node_costs[nid]
 			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
-			var label_text: String = NODE_LABELS.get(map_node.type, "???")
-			btn.text = "%s\n%s\n[%d금화]" % [icon_text, label_text, cost]
+			var label_key: String = NODE_LABELS.get(map_node.type, "")
+			var label_text: String = tr(label_key) if label_key != "" else "???"
+			btn.text = "%s\n%s\n%s" % [icon_text, label_text, tr("MAP_FORK_COST_FMT") % cost]
 			btn.disabled = false
 			btn.modulate = Color(0.7, 0.6, 0.3, 0.9)
-			btn.tooltip_text = "%d 금화를 지불하면 이 경로를 해제합니다" % cost
+			btn.tooltip_text = tr("MAP_FORK_UNLOCK_TOOLTIP") % cost
 			var style := StyleBoxFlat.new()
 			style.bg_color = Color(0.3, 0.25, 0.1)
 			style.corner_radius_top_left = 8

@@ -212,7 +212,7 @@ func _display_shop_cards() -> void:
 		btn.custom_minimum_size = Vector2(200, 280)
 
 		if entry["sold"]:
-			btn.text = "판매 완료"
+			btn.text = tr("SHOP_SALE_COMPLETE")
 			btn.disabled = true
 			btn.modulate = Color(0.4, 0.4, 0.4)
 		else:
@@ -229,22 +229,22 @@ func _format_card_text(card: CardData, price: int) -> String:
 	var lines: Array[String] = []
 	lines.append(card.get_display_name())
 	lines.append("")
-	lines.append("💰 %d 금화" % price)
+	lines.append(tr("SHOP_CARD_PRICE") % price)
 	lines.append("")
-	lines.append("비용: %d 기" % card.cost)
-	lines.append("음보: %d" % card.beat)
+	lines.append(tr("SHOP_CARD_COST") % card.cost)
+	lines.append(tr("SHOP_CARD_BEAT") % card.beat)
 
 	if card.damage > 0:
-		var dmg_text := "피해: %d" % card.damage
+		var dmg_text := tr("SHOP_CARD_DAMAGE") % card.damage
 		if card.is_aoe:
-			dmg_text += " (전체)"
+			dmg_text += " " + tr("SHOP_CARD_DAMAGE_AOE")
 		lines.append(dmg_text)
 	if card.block_value > 0:
-		lines.append("방어: %d" % card.block_value)
+		lines.append(tr("SHOP_CARD_BLOCK") % card.block_value)
 	if card.draw_count > 0:
-		lines.append("드로우: +%d" % card.draw_count)
+		lines.append(tr("SHOP_CARD_DRAW") % card.draw_count)
 	if card.qi_gain > 0:
-		lines.append("기 회복: +%d" % card.qi_gain)
+		lines.append(tr("SHOP_CARD_QI_GAIN") % card.qi_gain)
 
 	var eff := card.get_current_effect()
 	if eff != "":
@@ -296,14 +296,14 @@ func _on_remove_toggle_pressed() -> void:
 	removal_mode = not removal_mode
 
 	if removal_mode:
-		remove_button.text = "취소"
+		remove_button.text = tr("UI_CANCEL")
 		deck_scroll.visible = true
-		leave_button.text = "제거 취소하고 나가기"
+		leave_button.text = tr("SHOP_CANCEL_REMOVE_LEAVE")
 		_display_deck_for_removal()
 	else:
-		remove_button.text = "카드 제거 (%d 금화)" % _get_removal_cost()
+		remove_button.text = tr("SHOP_REMOVE_COST_FMT") % _get_removal_cost()
 		deck_scroll.visible = false
-		leave_button.text = "상점 나가기"
+		leave_button.text = tr("SHOP_LEAVE")
 
 
 func _display_deck_for_removal() -> void:
@@ -325,7 +325,7 @@ func _display_deck_for_removal() -> void:
 
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(160, 60)
-		btn.text = "%s (비용:%d)" % [card.get_display_name(), card.cost]
+		btn.text = tr("SHOP_DECK_CARD_INFO") % [card.get_display_name(), card.cost]
 
 		if not can_afford:
 			btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
@@ -360,19 +360,19 @@ func _on_remove_card(deck_index: int) -> void:
 
 	# 제거 모드 종료 후 UI 갱신
 	removal_mode = false
-	remove_button.text = "카드 제거 (%d 금화)" % _get_removal_cost()
+	remove_button.text = tr("SHOP_REMOVE_COST_FMT") % _get_removal_cost()
 	deck_scroll.visible = false
-	leave_button.text = "상점 나가기"
+	leave_button.text = tr("SHOP_LEAVE")
 	_update_remove_section()
 	_update_gold_display()
 
 
 func _update_gold_display() -> void:
 	var gold: int = GameManager.run_data.gold if GameManager.run_data else 0
-	gold_label.text = "보유 금화: %d" % gold
+	gold_label.text = tr("SHOP_GOLD_DISPLAY") % gold
 
 	# 새로고침 버튼 갱신
-	refresh_button.text = "새로고침 (%d 금화)" % REFRESH_COST
+	refresh_button.text = tr("SHOP_REFRESH_FMT") % REFRESH_COST
 	if gold < REFRESH_COST:
 		refresh_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
 	else:
@@ -385,8 +385,8 @@ func _update_gold_display() -> void:
 
 func _update_remove_section() -> void:
 	var cost := _get_removal_cost()
-	remove_button.text = "카드 제거 (%d 금화)" % cost
-	remove_info.text = "덱에서 카드 1장을 영구 제거합니다"
+	remove_button.text = tr("SHOP_REMOVE_COST_FMT") % cost
+	remove_info.text = tr("SHOP_REMOVE_CARD_INFO")
 
 	if GameManager.run_data and GameManager.run_data.gold < cost:
 		remove_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
@@ -407,14 +407,14 @@ func _on_upgrade_toggle_pressed() -> void:
 	upgrade_mode = not upgrade_mode
 
 	if upgrade_mode:
-		upgrade_button.text = "취소"
+		upgrade_button.text = tr("UI_CANCEL")
 		upgrade_scroll.visible = true
-		leave_button.text = "강화 취소하고 나가기"
+		leave_button.text = tr("SHOP_CANCEL_UPGRADE_LEAVE")
 		_display_deck_for_upgrade()
 	else:
-		upgrade_button.text = "카드 강화 (%d 금화)" % _get_upgrade_cost()
+		upgrade_button.text = tr("SHOP_UPGRADE_COST_FMT") % _get_upgrade_cost()
 		upgrade_scroll.visible = false
-		leave_button.text = "상점 나가기"
+		leave_button.text = tr("SHOP_LEAVE")
 
 
 func _display_deck_for_upgrade() -> void:
@@ -438,7 +438,7 @@ func _display_deck_for_upgrade() -> void:
 
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(160, 60)
-		btn.text = "%s (비용:%d)" % [card.get_display_name(), card.cost]
+		btn.text = tr("SHOP_DECK_CARD_INFO") % [card.get_display_name(), card.cost]
 
 		if not can_afford:
 			btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
@@ -473,17 +473,17 @@ func _on_upgrade_card(deck_index: int) -> void:
 
 	# 강화 모드 종료
 	upgrade_mode = false
-	upgrade_button.text = "카드 강화 (%d 금화)" % _get_upgrade_cost()
+	upgrade_button.text = tr("SHOP_UPGRADE_COST_FMT") % _get_upgrade_cost()
 	upgrade_scroll.visible = false
-	leave_button.text = "상점 나가기"
+	leave_button.text = tr("SHOP_LEAVE")
 	_update_upgrade_section()
 	_update_gold_display()
 
 
 func _update_upgrade_section() -> void:
 	var cost := _get_upgrade_cost()
-	upgrade_button.text = "카드 강화 (%d 금화)" % cost
-	upgrade_info.text = "덱의 카드 1장을 강화합니다"
+	upgrade_button.text = tr("SHOP_UPGRADE_COST_FMT") % cost
+	upgrade_info.text = tr("SHOP_UPGRADE_CARD_INFO")
 
 	if GameManager.run_data and GameManager.run_data.gold < cost:
 		upgrade_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
@@ -513,11 +513,11 @@ func _update_minshim_button() -> void:
 	var minshim: int = 50
 	if GameManager.run_data:
 		minshim = GameManager.run_data.narrative_state.get("minshim", 50)
-	minshim_button.text = "민심 매수 (%d 금화 → 민심 +%d) [현재: %d]" % [MINSHIM_BUY_COST, MINSHIM_BUY_AMOUNT, minshim]
+	minshim_button.text = tr("SHOP_MINSHIM_BUY_FMT") % [MINSHIM_BUY_COST, MINSHIM_BUY_AMOUNT, minshim]
 
 	if minshim >= 100:
 		minshim_button.disabled = true
-		minshim_button.text = "민심 최대 (100)"
+		minshim_button.text = tr("SHOP_MINSHIM_MAX")
 	elif GameManager.run_data and GameManager.run_data.gold < MINSHIM_BUY_COST:
 		minshim_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
 	else:
@@ -546,11 +546,11 @@ func _update_market_open_button() -> void:
 	var minshim: int = 50
 	if GameManager.run_data:
 		minshim = GameManager.run_data.narrative_state.get("minshim", 50)
-	market_open_button.text = "시장 개방 (%d 금화 → 민심 +%d) [현재: %d]" % [MARKET_OPEN_COST, MARKET_OPEN_MINSHIM, minshim]
+	market_open_button.text = tr("SHOP_MARKET_OPEN_FMT") % [MARKET_OPEN_COST, MARKET_OPEN_MINSHIM, minshim]
 
 	if minshim >= 100:
 		market_open_button.disabled = true
-		market_open_button.text = "민심 최대 (100)"
+		market_open_button.text = tr("SHOP_MINSHIM_MAX")
 	elif GameManager.run_data and GameManager.run_data.gold < MARKET_OPEN_COST:
 		market_open_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
 	else:
@@ -580,7 +580,7 @@ func _update_bribe_button() -> void:
 	var rank_name: String = JibunSystem.RANK_NAMES.get(
 		GameManager.run_data.jibun_rank if GameManager.run_data else 1, "상민"
 	)
-	bribe_button.text = "청탁 (%d 금화 → 신분 +%d) [%s / %d점]" % [BRIBE_COST, BRIBE_JIBUN_AMOUNT, rank_name, jibun_score]
+	bribe_button.text = tr("SHOP_BRIBE_FMT") % [BRIBE_COST, BRIBE_JIBUN_AMOUNT, rank_name, jibun_score]
 
 	if GameManager.run_data and GameManager.run_data.gold < BRIBE_COST:
 		bribe_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
@@ -612,7 +612,7 @@ func _on_rations_pressed() -> void:
 
 
 func _update_rations_button() -> void:
-	rations_button.text = "군량미 비축 (%d 금화 → 다음 전투 방어도 +%d)" % [RATIONS_COST, RATIONS_BLOCK]
+	rations_button.text = tr("SHOP_RATIONS_FMT") % [RATIONS_COST, RATIONS_BLOCK]
 
 	if GameManager.run_data and GameManager.run_data.gold < RATIONS_COST:
 		rations_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
@@ -664,13 +664,13 @@ func _display_shop_relics() -> void:
 		btn.custom_minimum_size = Vector2(220, 160)
 
 		if entry["sold"]:
-			btn.text = "판매 완료"
+			btn.text = tr("SHOP_SALE_COMPLETE")
 			btn.disabled = true
 			btn.modulate = Color(0.4, 0.4, 0.4)
 		else:
 			var relic_name: String = TranslationManager.trd_name(relic_data)
 			var effect_desc: String = TranslationManager.trd(relic_data, "effect_description", "")
-			btn.text = "%s\n%s\n\n%d 금화" % [relic_name, effect_desc, entry["price"]]
+			btn.text = tr("SHOP_RELIC_PRICE_FMT") % [relic_name, effect_desc, entry["price"]]
 			var can_afford: bool = GameManager.run_data != null and GameManager.run_data.gold >= entry["price"]
 			if not can_afford:
 				btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))

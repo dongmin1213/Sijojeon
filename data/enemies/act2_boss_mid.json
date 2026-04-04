@@ -9,11 +9,11 @@
     "ko": "산채 두목",
     "hanja": "山寨頭目",
     "romanized": "Sanchae Dumok",
-    "en": ""
+    "en": "Mountain Fortress Chief"
   },
   "description": {
     "ko": "지리산 산채를 통솔하는 도적 두목. 전투 중반 강력한 보스 형태로 등장한다. 소환과 독, 화상을 결합한 복합 전략.",
-    "en": ""
+    "en": "The bandit chief commanding a Jirisan mountain fortress. Appears as a powerful boss mid-combat. Combines summons, poison, and burn tactics."
   },
   "hp": 110,
   "flavor": "\"이 산은 내 것이다. 살아서 내려가고 싶으면 목숨을 버려라.\"",
@@ -28,12 +28,12 @@
           "id": "bandit_call",
           "name": {
             "ko": "산적 소환",
-            "en": ""
+            "en": "Summon Bandits"
           },
           "intent": "summon",
           "description": {
             "ko": "산적 2명을 소환한다. 각 HP 20.",
-            "en": ""
+            "en": "Summons 2 Bandits. Each has 20 HP."
           },
           "summon": [
             {
@@ -48,21 +48,21 @@
           "id": "mountain_slash",
           "name": {
             "ko": "산악 베기",
-            "en": ""
+            "en": "Mountain Slash"
           },
           "intent": "attack",
           "damage": 14,
           "times": 1,
           "description": {
             "ko": "산악지대에서 단련된 강력한 베기.",
-            "en": ""
+            "en": "A powerful slash honed in the mountains."
           }
         },
         {
           "id": "fire_trap",
           "name": {
             "ko": "불함정",
-            "en": ""
+            "en": "Fire Trap"
           },
           "intent": "attack_debuff",
           "damage": 8,
@@ -77,14 +77,14 @@
           ],
           "description": {
             "ko": "8피해 + 화상 4.",
-            "en": ""
+            "en": "8 damage + 4 Burn."
           }
         },
         {
           "id": "chief_guard",
           "name": {
             "ko": "두목 방어",
-            "en": ""
+            "en": "Chief's Guard"
           },
           "intent": "buff_defend",
           "block": 16,
@@ -98,7 +98,7 @@
           ],
           "description": {
             "ko": "방어도 16 + 힘 2.",
-            "en": ""
+            "en": "16 Block + 2 Strength."
           }
         }
       ],
@@ -126,7 +126,7 @@
           "id": "poison_release",
           "name": {
             "ko": "독 방출",
-            "en": ""
+            "en": "Poison Release"
           },
           "intent": "attack_debuff",
           "damage": 10,
@@ -141,28 +141,28 @@
           ],
           "description": {
             "ko": "10피해 + 독 7. 최대 독 피해 총합: 7+6+...+1=28.",
-            "en": ""
+            "en": "10 damage + 7 Poison. Max cumulative poison: 7+6+...+1=28."
           }
         },
         {
           "id": "berserker_charge",
           "name": {
             "ko": "돌격",
-            "en": ""
+            "en": "Charge"
           },
           "intent": "attack",
           "damage": 10,
           "times": 2,
           "description": {
             "ko": "10피해 × 2회 = 20 총피해. 분노한 돌진.",
-            "en": ""
+            "en": "10 damage x2 = 20 total. An enraged charge."
           }
         },
         {
           "id": "final_roar",
           "name": {
             "ko": "최후의 함성",
-            "en": ""
+            "en": "Final War Cry"
           },
           "intent": "buff",
           "effects": [
@@ -175,7 +175,7 @@
           ],
           "description": {
             "ko": "힘 4 획득. 이후 모든 공격 +4 피해.",
-            "en": ""
+            "en": "Gain 4 Strength. All subsequent attacks deal +4 damage."
           }
         }
       ],

@@ -6,9 +6,9 @@
     "ko": "경복궁",
     "description": {
       "ko": "왕조의 심장부. 역모의 불꽃이 타오르는 궁궐 내전. 역적 무사, 배신한 금위군, 왕좌를 노리는 자객이 판을 치고 있다.",
-      "en": ""
+      "en": "The heart of the dynasty. An inner palace ablaze with the flames of treason. Rebel warriors, traitorous royal guards, and assassins targeting the throne run rampant."
     },
-    "en": ""
+    "en": "Gyeongbok Palace"
   },
   "balance_ref": "ZER-12. 플레이어 기준: HP 25~45(3막 진입 후), 덱 규모 16~22장, 턴당 평균 피해 16~20, 방어도 10~14.",
   "balance_targets": {
@@ -26,11 +26,11 @@
         "ko": "역적 무사",
         "hanja": "逆賊武士",
         "romanized": "Yeokjeok Musa",
-        "en": ""
+        "en": "Rebel Warrior"
       },
       "description": {
         "ko": "역모에 가담한 궁궐의 정예 무사. 오랜 수련으로 다져진 강한 체력과 화력을 자랑한다.",
-        "en": ""
+        "en": "An elite warrior of the palace who joined the rebellion. Boasts strong vitality and firepower forged through years of training."
       },
       "hp": {
         "min": 50,
@@ -41,35 +41,35 @@
           "id": "precision_cut",
           "name": {
             "ko": "정밀 베기",
-            "en": ""
+            "en": "Precision Cut"
           },
           "intent": "attack",
           "damage": 17,
           "times": 1,
           "description": {
             "ko": "급소를 노린 강력한 단발 공격.",
-            "en": ""
+            "en": "A powerful single-hit attack targeting vital points."
           }
         },
         {
           "id": "rapid_assault",
           "name": {
             "ko": "속전속결",
-            "en": ""
+            "en": "Rapid Assault"
           },
           "intent": "attack",
           "damage": 8,
           "times": 2,
           "description": {
             "ko": "7피해 × 2회 = 14 총피해. 빠른 연속 공격.",
-            "en": ""
+            "en": "7 damage x2 hits = 14 total. A swift consecutive attack."
           }
         },
         {
           "id": "battle_cry",
           "name": {
             "ko": "역적의 함성",
-            "en": ""
+            "en": "Rebel's War Cry"
           },
           "intent": "buff",
           "effects": [
@@ -82,21 +82,21 @@
           ],
           "description": {
             "ko": "힘 3 획득. 이후 모든 공격 피해 +3.",
-            "en": ""
+            "en": "Gain 3 Strength. All subsequent attacks deal +3 damage."
           }
         },
         {
           "id": "finishing_blow",
           "name": {
             "ko": "결정타",
-            "en": ""
+            "en": "Finishing Blow"
           },
           "intent": "attack",
           "damage": 24,
           "times": 1,
           "description": {
             "ko": "battle_cry 후 사용. 힘+3 시 23피해. 전력을 다한 일격.",
-            "en": ""
+            "en": "Used after War Cry. 23 damage with Strength+3. An all-out strike."
           }
         }
       ],
@@ -128,11 +128,11 @@
         "ko": "역모 문관",
         "hanja": "逆謀文官",
         "romanized": "Yeokmo Mungwan",
-        "en": ""
+        "en": "Treacherous Scholar"
       },
       "description": {
         "ko": "역모에 가담한 간신 문관. 음모와 저주로 상대를 무력화하며, 직접 싸우지 않고 방해한다.",
-        "en": ""
+        "en": "A treacherous court scholar who joined the rebellion. Neutralizes foes through schemes and curses without fighting directly."
       },
       "hp": {
         "min": 42,
@@ -143,7 +143,7 @@
           "id": "conspiracy",
           "name": {
             "ko": "음모",
-            "en": ""
+            "en": "Conspiracy"
           },
           "intent": "debuff",
           "effects": [
@@ -162,14 +162,14 @@
           ],
           "description": {
             "ko": "약화 2 + 취약 2 부여. 플레이어 전투력 대폭 감소.",
-            "en": ""
+            "en": "Applies 2 Weaken + 2 Vulnerable. Greatly reduces player combat effectiveness."
           }
         },
         {
           "id": "scroll_curse",
           "name": {
             "ko": "저주 문서",
-            "en": ""
+            "en": "Cursed Scroll"
           },
           "intent": "debuff",
           "effects": [
@@ -188,41 +188,41 @@
           ],
           "description": {
             "ko": "출혈 4 + 냉기 1 부여. 다음 턴 드로우 방해 + 지속 피해.",
-            "en": ""
+            "en": "Applies 4 Bleed + 1 Chill. Disrupts next turn's draw + deals DoT."
           }
         },
         {
           "id": "iron_brush",
           "name": {
             "ko": "철필 공격",
-            "en": ""
+            "en": "Iron Brush Strike"
           },
           "intent": "attack",
           "damage": 13,
           "times": 1,
           "description": {
             "ko": "붓으로 내리치는 의외로 강한 공격.",
-            "en": ""
+            "en": "A surprisingly powerful strike with an iron brush."
           }
         },
         {
           "id": "bureaucratic_shield",
           "name": {
             "ko": "관료적 방어막",
-            "en": ""
+            "en": "Bureaucratic Shield"
           },
           "intent": "defend",
           "block": 12,
           "description": {
             "ko": "문서와 관인으로 만든 방어막. 방어도 12 획득.",
-            "en": ""
+            "en": "A barrier made from documents and seals. Gain 12 Block."
           }
         },
         {
           "id": "treacherous_orders",
           "name": {
             "ko": "역명 하달",
-            "en": ""
+            "en": "Treacherous Orders"
           },
           "intent": "attack_debuff",
           "damage": 11,
@@ -237,7 +237,7 @@
           ],
           "description": {
             "ko": "9피해 + 약화 3. 최대 공격력 감소.",
-            "en": ""
+            "en": "9 damage + 3 Weaken. Maximum attack reduction."
           }
         }
       ],
@@ -269,11 +269,11 @@
         "ko": "자객",
         "hanja": "刺客",
         "romanized": "Jagaek",
-        "en": ""
+        "en": "Assassin"
       },
       "description": {
         "ko": "역적에게 고용된 검은 그림자. 독침과 기습을 활용하며, 항상 급소를 노린다.",
-        "en": ""
+        "en": "A dark shadow hired by the rebels. Uses poison needles and ambushes, always targeting vital points."
       },
       "hp": {
         "min": 44,
@@ -284,7 +284,7 @@
           "id": "poison_needle",
           "name": {
             "ko": "독침",
-            "en": ""
+            "en": "Poison Needle"
           },
           "intent": "attack_debuff",
           "damage": 7,
@@ -300,28 +300,28 @@
           ],
           "description": {
             "ko": "6피해 + 독 5 부여. 누적 독 피해: 5+4+3+2+1=15.",
-            "en": ""
+            "en": "6 damage + applies 5 Poison. Cumulative: 5+4+3+2+1=15."
           }
         },
         {
           "id": "shadow_strike",
           "name": {
             "ko": "암습",
-            "en": ""
+            "en": "Shadow Strike"
           },
           "intent": "attack",
           "damage": 19,
           "times": 1,
           "description": {
             "ko": "그림자 속에서 기습하는 치명적 일격.",
-            "en": ""
+            "en": "A lethal strike ambushing from the shadows."
           }
         },
         {
           "id": "vanish",
           "name": {
             "ko": "은신",
-            "en": ""
+            "en": "Stealth"
           },
           "intent": "buff_defend",
           "block": 10,
@@ -336,14 +336,14 @@
           ],
           "description": {
             "ko": "방어도 10 + 은신(다음 공격 +50%) 획득.",
-            "en": ""
+            "en": "10 Block + gains Stealth (next attack +50%)."
           }
         },
         {
           "id": "death_touch",
           "name": {
             "ko": "급소 찌르기",
-            "en": ""
+            "en": "Vital Stab"
           },
           "intent": "attack",
           "damage": 14,
@@ -358,7 +358,7 @@
           ],
           "description": {
             "ko": "12피해 + 출혈 3. 은신 상태에서 사용 시 18피해.",
-            "en": ""
+            "en": "12 damage + 3 Bleed. 18 damage when used from Stealth."
           }
         }
       ],
@@ -389,11 +389,11 @@
         "ko": "어전 내관",
         "hanja": "御前內官",
         "romanized": "Eojeon Naegwan",
-        "en": ""
+        "en": "Palace Eunuch"
       },
       "description": {
         "ko": "왕의 측근에서 일하는 내관. 음독과 방어막을 사용하며, 겉보기에는 약해 보이지만 독침이 치명적이다.",
-        "en": ""
+        "en": "A eunuch serving close to the king. Uses poison and barriers; appears weak but has deadly poison."
       },
       "hp": {
         "min": 45,
@@ -404,7 +404,7 @@
           "id": "poison_vial",
           "name": {
             "ko": "독약 투여",
-            "en": ""
+            "en": "Poison Dosage"
           },
           "intent": "attack_debuff",
           "damage": 6,
@@ -419,14 +419,14 @@
           ],
           "description": {
             "ko": "5피해 + 독 4 부여.",
-            "en": ""
+            "en": "5 damage + applies 4 Poison."
           }
         },
         {
           "id": "silk_screen",
           "name": {
             "ko": "비단 방어막",
-            "en": ""
+            "en": "Silk Barrier"
           },
           "intent": "buff_defend",
           "block": 13,
@@ -440,14 +440,14 @@
           ],
           "description": {
             "ko": "방어도 13 + 힘 1.",
-            "en": ""
+            "en": "13 Block + 1 Strength."
           }
         },
         {
           "id": "whisper_curse",
           "name": {
             "ko": "밀귀 저주",
-            "en": ""
+            "en": "Whispered Curse"
           },
           "intent": "debuff",
           "effects": [
@@ -466,21 +466,21 @@
           ],
           "description": {
             "ko": "냉기 1 + 출혈 3. 드로우 방해 + 지속 피해.",
-            "en": ""
+            "en": "1 Chill + 3 Bleed. Disrupts draw + deals DoT."
           }
         },
         {
           "id": "eunuch_strike",
           "name": {
             "ko": "내관 공격",
-            "en": ""
+            "en": "Eunuch Strike"
           },
           "intent": "attack",
           "damage": 17,
           "times": 1,
           "description": {
             "ko": "힘 쌓인 후 의외로 강력한 일격.",
-            "en": ""
+            "en": "A surprisingly powerful strike after building Strength."
           }
         }
       ],
@@ -513,11 +513,11 @@
         "ko": "금군 무사",
         "hanja": "禁軍武士",
         "romanized": "Geumgun Musa",
-        "en": ""
+        "en": "Royal Guard Warrior"
       },
       "description": {
         "ko": "왕실 근위대 소속 정예 무사. 방어와 반격에 특화되어 있으며, 공격할수록 더 강해진다.",
-        "en": ""
+        "en": "An elite warrior of the royal guard. Specializes in defense and counterattacks; grows stronger with each attack."
       },
       "hp": {
         "min": 52,
@@ -528,7 +528,7 @@
           "id": "guard_stance",
           "name": {
             "ko": "경계 자세",
-            "en": ""
+            "en": "Guard Stance"
           },
           "intent": "buff_defend",
           "block": 15,
@@ -542,42 +542,42 @@
           ],
           "description": {
             "ko": "방어도 15 + 가시 3. 근접 공격 시 역피해 3 유발.",
-            "en": ""
+            "en": "15 Block + 3 Thorns. Reflects 3 damage when hit by melee attacks."
           }
         },
         {
           "id": "counter_slash",
           "name": {
             "ko": "반격 베기",
-            "en": ""
+            "en": "Counter Slash"
           },
           "intent": "attack",
           "damage": 14,
           "times": 1,
           "description": {
             "ko": "방어도 보유 상태에서 반격. 방어도가 있을 때만 사용.",
-            "en": ""
+            "en": "Counterattack while having Block. Only used when Block is active."
           }
         },
         {
           "id": "royal_guard_strike",
           "name": {
             "ko": "근위 강타",
-            "en": ""
+            "en": "Royal Guard Strike"
           },
           "intent": "attack",
           "damage": 20,
           "times": 1,
           "description": {
             "ko": "전력을 다한 왕실 근위 공격.",
-            "en": ""
+            "en": "An all-out royal guard attack."
           }
         },
         {
           "id": "armor_break",
           "name": {
             "ko": "방호 파괴",
-            "en": ""
+            "en": "Armor Break"
           },
           "intent": "attack_debuff",
           "damage": 12,
@@ -598,7 +598,7 @@
           ],
           "description": {
             "ko": "10피해 + 취약 2 + 약화 1.",
-            "en": ""
+            "en": "10 damage + 2 Vulnerable + 1 Weaken."
           }
         }
       ],
@@ -631,11 +631,11 @@
         "ko": "저승사자",
         "hanja": "閻羅使者",
         "romanized": "Jeoungseumsaja",
-        "en": ""
+        "en": "Grim Reaper"
       },
       "description": {
         "ko": "이승과 저승의 경계에서 온 죽음의 사자. 사망 카운트다운으로 플레이어를 공포에 빠뜨린다.",
-        "en": ""
+        "en": "A death messenger from the boundary between life and death. Terrorizes the player with Death Sentence."
       },
       "hp": {
         "min": 40,
@@ -646,7 +646,7 @@
           "id": "death_countdown_apply",
           "name": {
             "ko": "사망 선고",
-            "en": ""
+            "en": "Death Sentence"
           },
           "intent": "debuff",
           "effects": [
@@ -660,28 +660,28 @@
           ],
           "description": {
             "ko": "플레이어에게 사망 카운트다운 부여. 4턴 안에 처치하거나 카운트다운 해제 필요.",
-            "en": ""
+            "en": "Applies Death Sentence to the player. Must defeat within 4 turns or remove the countdown."
           }
         },
         {
           "id": "reaper_scythe",
           "name": {
             "ko": "낫 휘두르기",
-            "en": ""
+            "en": "Scythe Sweep"
           },
           "intent": "attack",
           "damage": 13,
           "times": 1,
           "description": {
             "ko": "낫으로 내리치는 공격.",
-            "en": ""
+            "en": "A strike with a scythe."
           }
         },
         {
           "id": "soul_drain",
           "name": {
             "ko": "혼 흡수",
-            "en": ""
+            "en": "Soul Drain"
           },
           "intent": "attack",
           "damage": 10,
@@ -694,21 +694,21 @@
           ],
           "description": {
             "ko": "8피해를 입히고 그 절반(최대 5)을 자신이 회복.",
-            "en": ""
+            "en": "Deals 8 damage and heals self for half (max 5)."
           }
         },
         {
           "id": "final_harvest",
           "name": {
             "ko": "마지막 수확",
-            "en": ""
+            "en": "Final Harvest"
           },
           "intent": "attack",
           "damage": 18,
           "times": 1,
           "description": {
             "ko": "HP 50% 이하 시 사용. 전력을 다한 마지막 공격.",
-            "en": ""
+            "en": "Used when HP is below 50%. A final all-out attack."
           }
         }
       ],
@@ -746,11 +746,11 @@
         "ko": "사령",
         "hanja": "邪靈",
         "romanized": "Saryeong",
-        "en": ""
+        "en": "Dark Wraith"
       },
       "description": {
         "ko": "어두운 기운이 뭉쳐 생겨난 악령. 모든 적을 동시에 공격하는 광역기와 생명력 흡수로 강인하다.",
-        "en": ""
+        "en": "A malevolent spirit born from condensed dark energy. Powerful with area attacks and life drain."
       },
       "hp": {
         "min": 48,
@@ -761,7 +761,7 @@
           "id": "dark_burst",
           "name": {
             "ko": "암흑 폭발",
-            "en": ""
+            "en": "Dark Burst"
           },
           "intent": "attack",
           "damage": 11,
@@ -769,14 +769,14 @@
           "aoe": true,
           "description": {
             "ko": "9피해 (광역). 단일 전투에서는 단순 9피해.",
-            "en": ""
+            "en": "9 damage (AoE). Simple 9 damage in single combat."
           }
         },
         {
           "id": "life_drain",
           "name": {
             "ko": "생명 흡수",
-            "en": ""
+            "en": "Life Drain"
           },
           "intent": "attack",
           "damage": 12,
@@ -789,14 +789,14 @@
           ],
           "description": {
             "ko": "10피해 + 자신 HP 7 회복.",
-            "en": ""
+            "en": "10 damage + self-heals 7 HP."
           }
         },
         {
           "id": "evil_aura",
           "name": {
             "ko": "사기(邪氣)",
-            "en": ""
+            "en": "Evil Aura"
           },
           "intent": "debuff",
           "effects": [
@@ -815,14 +815,14 @@
           ],
           "description": {
             "ko": "출혈 4 + 취약 1 부여.",
-            "en": ""
+            "en": "Applies 4 Bleed + 1 Vulnerable."
           }
         },
         {
           "id": "shadow_form",
           "name": {
             "ko": "그림자 형체",
-            "en": ""
+            "en": "Shadow Form"
           },
           "intent": "buff_defend",
           "block": 12,
@@ -836,7 +836,7 @@
           ],
           "description": {
             "ko": "방어도 12 + 힘 2.",
-            "en": ""
+            "en": "12 Block + 2 Strength."
           }
         }
       ],
@@ -869,11 +869,11 @@
         "ko": "친위군",
         "hanja": "親衛軍",
         "romanized": "Chinwigun",
-        "en": ""
+        "en": "Royal Bodyguard"
       },
       "description": {
         "ko": "왕의 친위대. 연속 방어로 공격을 막고 반격한다.",
-        "en": ""
+        "en": "The king's personal guard. Blocks attacks with consecutive defense and counterattacks."
       },
       "hp": {
         "min": 52,
@@ -884,35 +884,35 @@
           "id": "iron_defense",
           "name": {
             "ko": "철벽",
-            "en": ""
+            "en": "Iron Fortress"
           },
           "intent": "defend",
           "damage": 0,
           "block": 15,
           "description": {
             "ko": "방어도 15 획득.",
-            "en": ""
+            "en": "Gain 15 Block."
           }
         },
         {
           "id": "counter_strike",
           "name": {
             "ko": "반격",
-            "en": ""
+            "en": "Counterattack"
           },
           "intent": "attack",
           "damage": 12,
           "times": 1,
           "description": {
             "ko": "방어 후 강력한 반격.",
-            "en": ""
+            "en": "A powerful counterattack after defending."
           }
         },
         {
           "id": "shield_wall",
           "name": {
             "ko": "방진",
-            "en": ""
+            "en": "Shield Wall"
           },
           "intent": "defend",
           "damage": 0,
@@ -927,21 +927,21 @@
           ],
           "description": {
             "ko": "방어도 8 + 갑주 4.",
-            "en": ""
+            "en": "8 Block + 4 Armor."
           }
         },
         {
           "id": "execute",
           "name": {
             "ko": "처형",
-            "en": ""
+            "en": "Execution"
           },
           "intent": "attack",
           "damage": 18,
           "times": 1,
           "description": {
             "ko": "모든 힘을 실은 일격.",
-            "en": ""
+            "en": "A strike with all might behind it."
           }
         }
       ],
@@ -973,11 +973,11 @@
         "ko": "화포수",
         "hanja": "火砲手",
         "romanized": "Hwaposu",
-        "en": ""
+        "en": "Cannoneer"
       },
       "description": {
         "ko": "화약 무기를 다루는 군사. 광역 피해와 화상을 입힌다.",
-        "en": ""
+        "en": "A soldier handling gunpowder weapons. Deals area damage and Burn."
       },
       "hp": {
         "min": 44,
@@ -988,7 +988,7 @@
           "id": "cannon_blast",
           "name": {
             "ko": "포격",
-            "en": ""
+            "en": "Cannonade"
           },
           "intent": "attack",
           "damage": 10,
@@ -1003,14 +1003,14 @@
           ],
           "description": {
             "ko": "10 피해 + 화상 3.",
-            "en": ""
+            "en": "10 damage + 3 Burn."
           }
         },
         {
           "id": "reload",
           "name": {
             "ko": "재장전",
-            "en": ""
+            "en": "Reload"
           },
           "intent": "buff",
           "damage": 0,
@@ -1024,28 +1024,28 @@
           ],
           "description": {
             "ko": "힘 2를 획득하며 다음 포격 준비.",
-            "en": ""
+            "en": "Gain 2 Strength while preparing the next shot."
           }
         },
         {
           "id": "grapeshot",
           "name": {
             "ko": "산탄",
-            "en": ""
+            "en": "Grapeshot"
           },
           "intent": "attack",
           "damage": 4,
           "times": 4,
           "description": {
             "ko": "4 피해를 4회. 총 16피해.",
-            "en": ""
+            "en": "4 damage x4 hits. 16 total damage."
           }
         },
         {
           "id": "fire_bomb",
           "name": {
             "ko": "화공",
-            "en": ""
+            "en": "Fire Bomb"
           },
           "intent": "attack_debuff",
           "damage": 6,
@@ -1060,7 +1060,7 @@
           ],
           "description": {
             "ko": "6 피해 + 화상 5.",
-            "en": ""
+            "en": "6 damage + 5 Burn."
           }
         }
       ],
@@ -1092,11 +1092,11 @@
         "ko": "역모 수괴",
         "hanja": "逆謀首魁",
         "romanized": "Yeokmo Sugoe",
-        "en": ""
+        "en": "Rebellion Ringleader"
       },
       "description": {
         "ko": "반란의 우두머리. 강력한 저주와 독으로 상대를 잠식한다.",
-        "en": ""
+        "en": "The leader of the rebellion. Consumes foes with powerful curses and poison."
       },
       "hp": {
         "min": 48,
@@ -1107,7 +1107,7 @@
           "id": "dark_curse",
           "name": {
             "ko": "흑주술",
-            "en": ""
+            "en": "Dark Sorcery"
           },
           "intent": "debuff",
           "damage": 0,
@@ -1127,14 +1127,14 @@
           ],
           "description": {
             "ko": "주박 2 + 독 4. DoT 증폭 콤보.",
-            "en": ""
+            "en": "2 Hex + 4 Poison. A DoT amplification combo."
           }
         },
         {
           "id": "soul_drain",
           "name": {
             "ko": "정기 흡수",
-            "en": ""
+            "en": "Essence Drain"
           },
           "intent": "attack",
           "damage": 8,
@@ -1147,14 +1147,14 @@
           ],
           "description": {
             "ko": "8 피해 + HP 5 회복.",
-            "en": ""
+            "en": "8 damage + heals 5 HP."
           }
         },
         {
           "id": "conspiracy",
           "name": {
             "ko": "음모",
-            "en": ""
+            "en": "Conspiracy"
           },
           "intent": "buff",
           "damage": 0,
@@ -1174,14 +1174,14 @@
           ],
           "description": {
             "ko": "힘 2 + 방어도 8.",
-            "en": ""
+            "en": "2 Strength + 8 Block."
           }
         },
         {
           "id": "death_sentence",
           "name": {
             "ko": "사형 선고",
-            "en": ""
+            "en": "Death Warrant"
           },
           "intent": "attack_debuff",
           "damage": 14,
@@ -1196,7 +1196,7 @@
           ],
           "description": {
             "ko": "14 피해 + 사망표식 1.",
-            "en": ""
+            "en": "14 damage + 1 Death Mark."
           }
         }
       ],
@@ -1228,11 +1228,11 @@
         "ko": "어영청 군관",
         "hanja": "御營廳軍官",
         "romanized": "Eoyeongcheong Gungwan",
-        "en": ""
+        "en": "Royal Battalion Commander"
       },
       "description": {
         "ko": "왕의 직속 부대 지휘관. 2페이즈 전환으로 후반에 폭발한다.",
-        "en": ""
+        "en": "Commander of the king's direct battalion. Explodes in the late phase with a phase transition."
       },
       "hp": {
         "min": 55,
@@ -1243,7 +1243,7 @@
           "id": "command",
           "name": {
             "ko": "호령",
-            "en": ""
+            "en": "War Cry"
           },
           "intent": "buff",
           "damage": 0,
@@ -1263,28 +1263,28 @@
           ],
           "description": {
             "ko": "힘 1 + 방어도 6.",
-            "en": ""
+            "en": "1 Strength + 6 Block."
           }
         },
         {
           "id": "sword_swing",
           "name": {
             "ko": "군도 일섬",
-            "en": ""
+            "en": "Saber Flash"
           },
           "intent": "attack",
           "damage": 10,
           "times": 1,
           "description": {
             "ko": "지휘관의 정확한 참격.",
-            "en": ""
+            "en": "The commander's precise sword slash."
           }
         },
         {
           "id": "rally_troops",
           "name": {
             "ko": "총공격 명령",
-            "en": ""
+            "en": "All-Out Assault Order"
           },
           "intent": "buff",
           "damage": 0,
@@ -1298,28 +1298,28 @@
           ],
           "description": {
             "ko": "HP 50% 이하 시 페이즈 전환. 힘 3 획득.",
-            "en": ""
+            "en": "Phase transition below 50% HP. Gain 3 Strength."
           }
         },
         {
           "id": "charge_attack",
           "name": {
             "ko": "돌격",
-            "en": ""
+            "en": "Charge"
           },
           "intent": "attack",
           "damage": 8,
           "times": 2,
           "description": {
             "ko": "2회 돌격 공격. 총 16피해.",
-            "en": ""
+            "en": "2-hit charge attack. 16 total damage."
           }
         },
         {
           "id": "final_stand",
           "name": {
             "ko": "결사 항전",
-            "en": ""
+            "en": "Last Stand"
           },
           "intent": "attack_debuff",
           "damage": 15,
@@ -1334,7 +1334,7 @@
           ],
           "description": {
             "ko": "15 피해 + 취약 2.",
-            "en": ""
+            "en": "15 damage + 2 Vulnerable."
           }
         }
       ],
@@ -1368,11 +1368,11 @@
         "ko": "역적 장수",
         "hanja": "逆賊將帥",
         "romanized": "Yeokjeok Jangsu",
-        "en": ""
+        "en": "Rebel General"
       },
       "description": {
         "ko": "역모를 이끄는 핵심 장수. 강한 개인 전투력과 함께 부하를 지휘하는 능력도 갖추고 있다.",
-        "en": ""
+        "en": "A key general leading the rebellion. Possesses both strong personal combat prowess and commanding ability."
       },
       "hp": {
         "min": 100,
@@ -1384,35 +1384,35 @@
           "id": "general_strike",
           "name": {
             "ko": "장수의 일격",
-            "en": ""
+            "en": "General's Strike"
           },
           "intent": "attack",
           "damage": 16,
           "times": 1,
           "description": {
             "ko": "장수의 강력한 단발 공격.",
-            "en": ""
+            "en": "The general's powerful single-hit attack."
           }
         },
         {
           "id": "command_charge",
           "name": {
             "ko": "돌격 명령",
-            "en": ""
+            "en": "Charge Order"
           },
           "intent": "summon",
           "summons": "E301",
           "summon_count": 1,
           "description": {
             "ko": "역적 무사 1명 소환. 처치 시 재소환 없음.",
-            "en": ""
+            "en": "Summons 1 Rebel Warrior. No re-summon after defeat."
           }
         },
         {
           "id": "war_banner",
           "name": {
             "ko": "역모 군기",
-            "en": ""
+            "en": "Rebel War Banner"
           },
           "intent": "buff",
           "effects": [
@@ -1425,14 +1425,14 @@
           ],
           "description": {
             "ko": "힘 4 획득. 군기를 세워 전의를 고취.",
-            "en": ""
+            "en": "Gain 4 Strength. Raises the war banner to boost morale."
           }
         },
         {
           "id": "iron_will",
           "name": {
             "ko": "철의 의지",
-            "en": ""
+            "en": "Iron Will"
           },
           "intent": "buff_defend",
           "block": 16,
@@ -1446,35 +1446,35 @@
           ],
           "description": {
             "ko": "방어도 16 + 힘 2. 강인한 의지로 버텨냄.",
-            "en": ""
+            "en": "16 Block + 2 Strength. Endures with iron will."
           }
         },
         {
           "id": "cleave",
           "name": {
             "ko": "횡단 베기",
-            "en": ""
+            "en": "Cleave"
           },
           "intent": "attack",
           "damage": 10,
           "times": 2,
           "description": {
             "ko": "10피해 × 2회 = 20 총피해. 횡으로 두 번 베기.",
-            "en": ""
+            "en": "10 damage x2 = 20 total. Two horizontal slashes."
           }
         },
         {
           "id": "warlord_wrath",
           "name": {
             "ko": "장수의 분노",
-            "en": ""
+            "en": "General's Wrath"
           },
           "intent": "attack",
           "damage": 22,
           "times": 1,
           "description": {
             "ko": "HP 50% 미만 시만 사용. 힘+4 기준 26피해. 절박한 최강 일격.",
-            "en": ""
+            "en": "Used only below 50% HP. 26 damage with Strength+4. A desperate ultimate strike."
           }
         }
       ],
@@ -1513,11 +1513,11 @@
         "ko": "어사",
         "hanja": "御使",
         "romanized": "Eosa",
-        "en": ""
+        "en": "Corrupted Inspector"
       },
       "description": {
         "ko": "역모 측에 매수된 암행어사. 권력을 남용해 플레이어를 압박하고 포졸을 소환해 다수 전선을 형성한다.",
-        "en": ""
+        "en": "A secret royal inspector bribed by the rebels. Abuses power to pressure the player and summons constables to create multiple fronts."
       },
       "hp": {
         "min": 80,
@@ -1529,7 +1529,7 @@
           "id": "coercion",
           "name": {
             "ko": "강압 심문",
-            "en": ""
+            "en": "Coercive Interrogation"
           },
           "intent": "debuff",
           "effects": [
@@ -1549,19 +1549,19 @@
           ],
           "description": {
             "ko": "플레이어에게 구금 3 + 약화 2 부여. 카드 비용 3턴간 +1.",
-            "en": ""
+            "en": "Applies 3 Detain + 2 Weaken. Card costs +1 for 3 turns."
           }
         },
         {
           "id": "summon_guards",
           "name": {
             "ko": "포졸 소환",
-            "en": ""
+            "en": "Summon Constables"
           },
           "intent": "summon",
           "description": {
             "ko": "궁궐 포졸 2명을 소환한다. 각 HP 18.",
-            "en": ""
+            "en": "Summons 2 palace constables. Each has 18 HP."
           },
           "summon": [
             {
@@ -1576,7 +1576,7 @@
           "id": "royal_decree",
           "name": {
             "ko": "어명 선포",
-            "en": ""
+            "en": "Royal Decree"
           },
           "intent": "attack_debuff",
           "damage": 14,
@@ -1591,14 +1591,14 @@
           ],
           "description": {
             "ko": "14피해 + 취약 2. 어명을 빙자한 강한 공격.",
-            "en": ""
+            "en": "14 damage + 2 Vulnerable. A strong attack under the guise of royal orders."
           }
         },
         {
           "id": "investigator_shield",
           "name": {
             "ko": "어사 방패",
-            "en": ""
+            "en": "Inspector's Shield"
           },
           "intent": "buff_defend",
           "block": 14,
@@ -1612,14 +1612,14 @@
           ],
           "description": {
             "ko": "방어도 14 + 힘 2.",
-            "en": ""
+            "en": "14 Block + 2 Strength."
           }
         },
         {
           "id": "final_verdict",
           "name": {
             "ko": "최후 판결",
-            "en": ""
+            "en": "Final Judgment"
           },
           "intent": "attack",
           "damage": 18,
@@ -1634,7 +1634,7 @@
           ],
           "description": {
             "ko": "18피해 + 출혈 4. HP 50% 미만 시 사용.",
-            "en": ""
+            "en": "18 damage + 4 Bleed. Used below 50% HP."
           }
         }
       ],
@@ -1673,11 +1673,11 @@
         "ko": "이무기 왕",
         "hanja": "離龍王",
         "romanized": "Imugi-wang",
-        "en": ""
+        "en": "Imugi King"
       },
       "description": {
         "ko": "이무기 중 가장 강한 개체. 용이 되지 못한 분노로 독과 불꽃을 뿜으며 부하 이무기를 소환한다.",
-        "en": ""
+        "en": "The strongest of all Imugi. Spews poison and flame in fury at never becoming a dragon, while summoning lesser Imugi."
       },
       "hp": {
         "min": 90,
@@ -1689,7 +1689,7 @@
           "id": "king_venom",
           "name": {
             "ko": "왕의 독기",
-            "en": ""
+            "en": "King's Venom"
           },
           "intent": "attack_debuff",
           "damage": 8,
@@ -1704,19 +1704,19 @@
           ],
           "description": {
             "ko": "8피해 + 독 6 부여. 누적 독 피해: 6+5+4+3+2+1=21.",
-            "en": ""
+            "en": "8 damage + 6 Poison. Cumulative: 6+5+4+3+2+1=21."
           }
         },
         {
           "id": "summon_imugi",
           "name": {
             "ko": "이무기 소환",
-            "en": ""
+            "en": "Summon Imugi"
           },
           "intent": "summon",
           "description": {
             "ko": "소형 이무기 1마리를 소환한다. HP 30.",
-            "en": ""
+            "en": "Summons 1 lesser Imugi. 30 HP."
           },
           "summon": [
             {
@@ -1731,21 +1731,21 @@
           "id": "tail_sweep",
           "name": {
             "ko": "꼬리 휩쓸기",
-            "en": ""
+            "en": "Tail Sweep"
           },
           "intent": "attack",
           "damage": 10,
           "times": 2,
           "description": {
             "ko": "10피해 × 2회 = 20 총피해. 광역 꼬리 공격.",
-            "en": ""
+            "en": "10 damage x2 = 20 total. A sweeping tail attack."
           }
         },
         {
           "id": "dragon_breath",
           "name": {
             "ko": "용독기",
-            "en": ""
+            "en": "Dragon's Venom Breath"
           },
           "intent": "attack_debuff",
           "damage": 12,
@@ -1766,14 +1766,14 @@
           ],
           "description": {
             "ko": "12피해 + 화상 3 + 독 3. 독과 불꽃을 동시에 뿜는다.",
-            "en": ""
+            "en": "12 damage + 3 Burn + 3 Poison. Spews poison and flame simultaneously."
           }
         },
         {
           "id": "serpent_coil",
           "name": {
             "ko": "대형 똬리",
-            "en": ""
+            "en": "Grand Coil"
           },
           "intent": "buff_defend",
           "block": 18,
@@ -1787,21 +1787,21 @@
           ],
           "description": {
             "ko": "방어도 18 + 힘 3. 단단히 감아 방어 자세.",
-            "en": ""
+            "en": "18 Block + 3 Strength. Coils tightly into a defensive stance."
           }
         },
         {
           "id": "wrath_strike",
           "name": {
             "ko": "분노의 강타",
-            "en": ""
+            "en": "Furious Strike"
           },
           "intent": "attack",
           "damage": 24,
           "times": 1,
           "description": {
             "ko": "최대 위력의 일격. serpent_coil(힘+3) 후 27피해. HP 40% 이하에서만 사용.",
-            "en": ""
+            "en": "Maximum power strike. 27 damage after Grand Coil (Str+3). Only used below 40% HP."
           }
         }
       ],

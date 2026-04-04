@@ -3,10 +3,10 @@ extends Control
 ## 막 전환 연출 씬. 새로운 막 이름과 설명을 표시한 후 맵으로 이동.
 ## 서사 프레임(암행어사의 여정) 텍스트를 함께 표시한다.
 
-const ACT_DESCRIPTIONS := {
-	1: "왕조의 수도, 한양.\n거리에는 불온한 기운이 감돌고 있다.",
-	2: "험준한 산세의 지리산.\n산적과 요괴가 도사리는 위험한 길.",
-	3: "왕좌를 노리는 역모의 심장부.\n경복궁의 내전에 최후의 결전이 기다린다.",
+var ACT_DESCRIPTIONS := {
+	1: "ACT_DESC_1",
+	2: "ACT_DESC_2",
+	3: "ACT_DESC_3",
 }
 
 @onready var overlay: ColorRect = $Overlay
@@ -23,11 +23,12 @@ func _ready() -> void:
 	var act: int = GameManager.run_data.current_act
 	var act_name: String = MapGenerator.get_act_name(act)
 
-	act_number_label.text = "제 %d 막" % act
+	act_number_label.text = tr("ACT_TRANSITION_FMT") % act
 	act_name_label.text = act_name
 
 	# 막 설명 + 서사 텍스트 결합
-	var desc: String = ACT_DESCRIPTIONS.get(act, "")
+	var desc_key: String = ACT_DESCRIPTIONS.get(act, "")
+	var desc: String = tr(desc_key) if desc_key != "" else ""
 	var narrative := _get_narrative_text_for_act(act)
 	if narrative != "":
 		desc += "\n\n" + narrative

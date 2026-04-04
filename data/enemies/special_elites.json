@@ -9,11 +9,11 @@
         "ko": "대상인 무리",
         "hanja": "大商人",
         "romanized": "Daesangin",
-        "en": ""
+        "en": "Merchant Cartel"
       },
       "description": {
         "ko": "물자를 독점하는 대상인과 그 부하들. 돈의 힘으로 싸운다.",
-        "en": ""
+        "en": "A great merchant and his underlings who monopolize goods. Fights with the power of money."
       },
       "hp": {
         "min": 55,
@@ -24,21 +24,21 @@
           "id": "gold_throw",
           "name": {
             "ko": "엽전 투척",
-            "en": ""
+            "en": "Coin Throw"
           },
           "intent": "attack",
           "damage": 8,
           "times": 1,
           "description": {
             "ko": "엽전을 무기삼아 던진다.",
-            "en": ""
+            "en": "Hurls coins as weapons."
           }
         },
         {
           "id": "hire_thugs",
           "name": {
             "ko": "부하 호출",
-            "en": ""
+            "en": "Call Thugs"
           },
           "intent": "buff",
           "effects": [
@@ -51,14 +51,14 @@
           ],
           "description": {
             "ko": "부하들을 불러 힘 2 획득.",
-            "en": ""
+            "en": "Calls underlings to gain 2 Strength."
           }
         },
         {
           "id": "gold_steal",
           "name": {
             "ko": "골드 강탈",
-            "en": ""
+            "en": "Gold Robbery"
           },
           "intent": "attack_debuff",
           "damage": 5,
@@ -73,21 +73,21 @@
           ],
           "description": {
             "ko": "5피해 + 약화 1. 매 턴 골드 강탈 효과.",
-            "en": ""
+            "en": "5 damage + 1 Weaken. Gold theft effect each turn."
           }
         },
         {
           "id": "heavy_strike",
           "name": {
             "ko": "금고 내리치기",
-            "en": ""
+            "en": "Strongbox Slam"
           },
           "intent": "attack",
           "damage": 14,
           "times": 1,
           "description": {
             "ko": "무거운 금고로 내리친다.",
-            "en": ""
+            "en": "Slams with a heavy strongbox."
           }
         }
       ],
@@ -118,11 +118,11 @@
         "ko": "금부도사 무리",
         "hanja": "禁府都事",
         "romanized": "Gumbu Dosa",
-        "en": ""
+        "en": "Royal Constabulary"
       },
       "description": {
         "ko": "왕의 체포 명령을 수행하는 관리. 포박술과 무력을 겸비한다.",
-        "en": ""
+        "en": "Officials executing the king's arrest orders. Combines binding techniques with armed force."
       },
       "hp": {
         "min": 60,
@@ -133,7 +133,7 @@
           "id": "arrest_order",
           "name": {
             "ko": "체포 명령",
-            "en": ""
+            "en": "Arrest Warrant"
           },
           "intent": "debuff",
           "effects": [
@@ -146,48 +146,48 @@
           ],
           "description": {
             "ko": "약화 2 부여. 포박으로 행동을 제한한다.",
-            "en": ""
+            "en": "Applies 2 Weaken. Restricts actions through binding."
           }
         },
         {
           "id": "sword_slash",
           "name": {
             "ko": "환도 일격",
-            "en": ""
+            "en": "Hwando Strike"
           },
           "intent": "attack",
           "damage": 10,
           "times": 1,
           "description": {
             "ko": "날카로운 환도 베기.",
-            "en": ""
+            "en": "A sharp slash with a curved sword."
           }
         },
         {
           "id": "coordinated_attack",
           "name": {
             "ko": "합동 공격",
-            "en": ""
+            "en": "Coordinated Attack"
           },
           "intent": "attack",
           "damage": 6,
           "times": 2,
           "description": {
             "ko": "두 명이 동시에 공격한다. 6×2.",
-            "en": ""
+            "en": "Two attack simultaneously. 6x2."
           }
         },
         {
           "id": "fortify",
           "name": {
             "ko": "방어 태세",
-            "en": ""
+            "en": "Defensive Stance"
           },
           "intent": "defend",
           "block": 12,
           "description": {
             "ko": "방어도 12 획득.",
-            "en": ""
+            "en": "Gain 12 Block."
           }
         }
       ],

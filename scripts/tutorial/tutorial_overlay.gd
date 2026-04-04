@@ -82,14 +82,14 @@ func _build_ui() -> void:
 	btn_container.add_theme_constant_override("separation", int(20 * ui_scale))
 
 	_next_button = Button.new()
-	_next_button.text = "다음"
+	_next_button.text = tr("TUTORIAL_NEXT")
 	_next_button.add_theme_font_size_override("font_size", maxi(int(26 * ui_scale), 22))
 	_next_button.custom_minimum_size = Vector2(160 * ui_scale, 56 * ui_scale)
 	_next_button.pressed.connect(_on_next_pressed)
 	btn_container.add_child(_next_button)
 
 	_skip_button = Button.new()
-	_skip_button.text = "튜토리얼 건너뛰기"
+	_skip_button.text = tr("TUTORIAL_SKIP")
 	_skip_button.add_theme_font_size_override("font_size", maxi(int(22 * ui_scale), 18))
 	_skip_button.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	_skip_button.custom_minimum_size = Vector2(200 * ui_scale, 50 * ui_scale)
@@ -111,7 +111,7 @@ func show_message(text: String, wait_for_action: bool = false) -> void:
 	_highlight_rect.visible = false
 	_arrow_node.visible = false
 	_next_button.visible = not wait_for_action
-	_next_button.text = "다음"
+	_next_button.text = tr("TUTORIAL_NEXT")
 
 	# 텍스트 패널을 화면 중앙에 배치 (노치/하단 안전 영역 확보)
 	var vp := get_viewport().get_visible_rect().size
@@ -134,7 +134,7 @@ func highlight_area(rect: Rect2, text: String, arrow_dir: String = "down", wait_
 	_text_label.text = text
 	_text_panel.visible = true
 	_next_button.visible = not wait_for_action
-	_next_button.text = "다음"
+	_next_button.text = tr("TUTORIAL_NEXT")
 
 	# 하이라이트 영역 표시
 	_highlight_rect.position = rect.position

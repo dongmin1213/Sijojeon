@@ -65,7 +65,7 @@ func _display(ach: Dictionary) -> void:
 	vbox.add_theme_constant_override("separation", int(2.0 * sf))
 
 	var header := Label.new()
-	header.text = "업적 달성!"
+	header.text = tr("ACHIEVEMENT_UNLOCKED")
 	header.add_theme_font_size_override("font_size", int(14.0 * sf))
 	header.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 	vbox.add_child(header)

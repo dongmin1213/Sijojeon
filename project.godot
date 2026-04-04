@@ -60,7 +60,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/translations.csv")
+locale/translations=PackedStringArray("res://translations/translations.ko.translation", "res://translations/translations.en.translation")
 locale/locale_filter_mode=1
 locale/locale_filter=PackedStringArray("en", "ko")
 

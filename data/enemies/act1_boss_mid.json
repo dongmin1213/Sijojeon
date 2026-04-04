@@ -9,11 +9,11 @@
     "ko": "포청 나졸 대장",
     "hanja": "捕廳邏卒大將",
     "romanized": "Pocheong Najol Daejang",
-    "en": ""
+    "en": "Patrol Chief"
   },
   "description": {
     "ko": "한양 포청의 최강 나졸 대장. 부하들을 이끌고 플레이어를 몰아붙인다. 소환과 방어를 동시에 구사하는 어려운 중간 보스.",
-    "en": ""
+    "en": "The strongest patrol chief of Hanyang. Leads subordinates to corner the player. A challenging mid-boss combining summons and defense."
   },
   "hp": 80,
   "flavor": "\"도망쳐도 소용없다. 포청의 그물을 빠져나간 자는 없느니라.\"",
@@ -28,12 +28,12 @@
           "id": "command_shout",
           "name": {
             "ko": "호령",
-            "en": ""
+            "en": "Command"
           },
           "intent": "summon",
           "description": {
             "ko": "포졸 2명을 소환한다. 각 HP 14.",
-            "en": ""
+            "en": "Summons 2 Constables. Each has 14 HP."
           },
           "summon": [
             {
@@ -48,21 +48,21 @@
           "id": "heavy_cudgel",
           "name": {
             "ko": "대형 곤봉",
-            "en": ""
+            "en": "Heavy Cudgel"
           },
           "intent": "attack",
           "damage": 12,
           "times": 1,
           "description": {
             "ko": "12피해. 강력한 곤봉 일격.",
-            "en": ""
+            "en": "12 damage. A powerful cudgel blow."
           }
         },
         {
           "id": "iron_defense",
           "name": {
             "ko": "철갑 방어",
-            "en": ""
+            "en": "Iron Defense"
           },
           "intent": "buff_defend",
           "block": 12,
@@ -76,21 +76,21 @@
           ],
           "description": {
             "ko": "방어도 12 + 힘 1.",
-            "en": ""
+            "en": "12 Block + 1 Strength."
           }
         },
         {
           "id": "rapid_strike",
           "name": {
             "ko": "속공",
-            "en": ""
+            "en": "Swift Strike"
           },
           "intent": "attack",
           "damage": 7,
           "times": 2,
           "description": {
             "ko": "7피해 × 2회 = 14 총피해.",
-            "en": ""
+            "en": "7 damage x2 hits = 14 total damage."
           }
         }
       ],
@@ -118,21 +118,21 @@
           "id": "enraged_strike",
           "name": {
             "ko": "분노의 강타",
-            "en": ""
+            "en": "Enraged Slam"
           },
           "intent": "attack",
           "damage": 16,
           "times": 1,
           "description": {
             "ko": "분노한 강타. 16+힘 피해.",
-            "en": ""
+            "en": "An enraged slam. 16+Strength damage."
           }
         },
         {
           "id": "collar_grab",
           "name": {
             "ko": "멱살 잡기",
-            "en": ""
+            "en": "Collar Grab"
           },
           "intent": "attack_debuff",
           "damage": 10,
@@ -147,14 +147,14 @@
           ],
           "description": {
             "ko": "10피해 + 구금 2(카드 비용 +1, 2턴).",
-            "en": ""
+            "en": "10 damage + 2 Detain (card cost +1, 2 turns)."
           }
         },
         {
           "id": "iron_defense_2",
           "name": {
             "ko": "철갑 방어",
-            "en": ""
+            "en": "Iron Defense"
           },
           "intent": "buff_defend",
           "block": 14,
@@ -168,7 +168,7 @@
           ],
           "description": {
             "ko": "방어도 14 + 힘 2.",
-            "en": ""
+            "en": "14 Block + 2 Strength."
           }
         }
       ],

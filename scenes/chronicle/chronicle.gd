@@ -4,10 +4,10 @@ extends Control
 ## 전체 진행률, 캐릭터별 클리어 기록, 업적 목록을 표시한다.
 
 # 캐릭터 표시 이름 매핑
-const CHARACTER_NAMES := {
-	"mugwan": "무관 (武官)",
-	"mungwan": "문관 (文官)",
-	"dosa": "도사 (道士)",
+var CHARACTER_NAMES := {
+	"mugwan": "CHAR_NAME_MUGWAN",
+	"mungwan": "CHAR_NAME_MUNGWAN",
+	"dosa": "CHAR_NAME_DOSA",
 }
 
 # 캐릭터 ID 순서
@@ -62,7 +62,7 @@ func _build_ui() -> void:
 
 	# 제목
 	var title := Label.new()
-	title.text = "연대기"
+	title.text = tr("CHRONICLE_TITLE")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 42)
 	title.add_theme_color_override("font_color", COLOR_GOLD)
@@ -83,13 +83,13 @@ func _build_ui() -> void:
 	var char_stats: Dictionary = meta.get("character_stats", {})
 
 	# ── 전체 통계 섹션 ──
-	_add_section_header(content, "전체 진행률")
+	_add_section_header(content, tr("CHRONICLE_OVERALL"))
 	_build_overall_stats(content, stats)
 
 	content.add_child(HSeparator.new())
 
 	# ── 캐릭터별 기록 섹션 ──
-	_add_section_header(content, "캐릭터별 기록")
+	_add_section_header(content, tr("CHRONICLE_CHARACTER_RECORDS"))
 	_build_character_stats(content, char_stats)
 
 	content.add_child(HSeparator.new())
@@ -97,14 +97,14 @@ func _build_ui() -> void:
 	# ── 업적 섹션 ── (meta를 재사용하여 디스크 I/O 반복 방지)
 	var achievements := AchievementManager.get_all_achievements()
 	var unlocked_ids := AchievementManager.get_unlocked_ids(meta)
-	_add_section_header(content, "업적 (%d/%d)" % [unlocked_ids.size(), achievements.size()])
+	_add_section_header(content, tr("CHRONICLE_ACHIEVEMENT_FMT") % [unlocked_ids.size(), achievements.size()])
 	_build_achievements(content, achievements, unlocked_ids, meta)
 
 	content.add_child(HSeparator.new())
 
 	# 뒤로 가기 버튼
 	var back_button := Button.new()
-	back_button.text = "돌아가기"
+	back_button.text = tr("UI_BACK")
 	back_button.custom_minimum_size = Vector2(200, 50)
 	back_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	back_button.pressed.connect(_on_back_pressed)
@@ -134,15 +134,15 @@ func _build_overall_stats(parent: Control, stats: Dictionary) -> void:
 	grid.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	parent.add_child(grid)
 
-	_add_stat_row(grid, "총 도전 횟수", str(total_runs))
-	_add_stat_row(grid, "승리", str(victories), COLOR_GREEN)
-	_add_stat_row(grid, "패배", str(deaths), COLOR_RED)
-	_add_stat_row(grid, "최고 도달 막", "%d막" % best_act if best_act > 0 else "-")
+	_add_stat_row(grid, tr("CHRONICLE_TOTAL_RUNS"), str(total_runs))
+	_add_stat_row(grid, tr("CHRONICLE_VICTORIES"), str(victories), COLOR_GREEN)
+	_add_stat_row(grid, tr("CHRONICLE_DEFEATS"), str(deaths), COLOR_RED)
+	_add_stat_row(grid, tr("RESULT_ACT_REACHED"), "%d" % best_act if best_act > 0 else "-")
 
 	# 승률 표시
 	if total_runs > 0:
 		var win_rate := float(victories) / float(total_runs) * 100.0
-		_add_stat_row(grid, "승률", "%.1f%%" % win_rate)
+		_add_stat_row(grid, tr("CHRONICLE_WIN_RATE"), "%.1f%%" % win_rate)
 
 
 func _add_stat_row(grid: GridContainer, label_text: String, value_text: String, value_color := COLOR_CREAM) -> void:
@@ -186,7 +186,8 @@ func _build_character_stats(parent: Control, char_stats: Dictionary) -> void:
 	var style_template := _create_char_style_template()
 
 	for char_id in CHARACTER_ORDER:
-		var char_name: String = CHARACTER_NAMES.get(char_id, char_id)
+		var char_name_key: String = CHARACTER_NAMES.get(char_id, "")
+		var char_name: String = tr(char_name_key) if char_name_key != "" else char_id
 		var cstats: Dictionary = char_stats.get(char_id, {})
 		var runs: int = cstats.get("runs", 0)
 		var victories: int = cstats.get("victories", 0)
@@ -214,13 +215,13 @@ func _build_character_stats(parent: Control, char_stats: Dictionary) -> void:
 		vbox.add_child(stats_row)
 
 		var runs_label := Label.new()
-		runs_label.text = "도전: %d회" % runs
+		runs_label.text = tr("CHRONICLE_RUNS_FMT") % runs
 		runs_label.add_theme_font_size_override("font_size", 16)
 		runs_label.add_theme_color_override("font_color", COLOR_CREAM)
 		stats_row.add_child(runs_label)
 
 		var wins_label := Label.new()
-		wins_label.text = "승리: %d회" % victories
+		wins_label.text = tr("CHRONICLE_WINS_FMT") % victories
 		wins_label.add_theme_font_size_override("font_size", 16)
 		wins_label.add_theme_color_override("font_color", COLOR_GREEN if victories > 0 else COLOR_DIM)
 		stats_row.add_child(wins_label)
@@ -228,7 +229,7 @@ func _build_character_stats(parent: Control, char_stats: Dictionary) -> void:
 		# 클리어 여부 표시
 		if victories > 0:
 			var clear_label := Label.new()
-			clear_label.text = "★ 클리어"
+			clear_label.text = tr("CHRONICLE_CLEARED")
 			clear_label.add_theme_font_size_override("font_size", 16)
 			clear_label.add_theme_color_override("font_color", COLOR_GOLD)
 			clear_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL

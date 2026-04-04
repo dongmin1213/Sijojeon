@@ -7,11 +7,11 @@
     "ko": "탐학한 수령",
     "hanja": "貪虐守令",
     "romanized": "Tamhak Suryeong",
-    "en": ""
+    "en": "Greedy Magistrate"
   },
   "description": {
     "ko": "고을을 갈취하는 수령. 법보다 주먹, 인보다 돈을 앞세운다. 매 턴마다 세금이라는 이름으로 엽전을 빼앗는다.",
-    "en": ""
+    "en": "A magistrate who extorts his district. Puts fists before law and money before people. Steals coins every turn in the name of taxes."
   },
   "flavor": "\"수확이 없으면 몸으로 갚아라.\"",
   "hp": 120,
@@ -33,34 +33,34 @@
           "id": "extort_strike",
           "name": {
             "ko": "착취 일격",
-            "en": ""
+            "en": "Extortion Strike"
           },
           "intent": "attack",
           "damage": 9,
           "times": 1,
           "description": {
             "ko": "9피해.",
-            "en": ""
+            "en": "9 damage."
           }
         },
         {
           "id": "decree_wall",
           "name": {
             "ko": "관인 방벽",
-            "en": ""
+            "en": "Seal Barrier"
           },
           "intent": "defend",
           "block": 12,
           "description": {
             "ko": "방어도 12 획득.",
-            "en": ""
+            "en": "Gain 12 Block."
           }
         },
         {
           "id": "menace",
           "name": {
             "ko": "위협",
-            "en": ""
+            "en": "Intimidation"
           },
           "intent": "debuff",
           "effects": [
@@ -73,21 +73,21 @@
           ],
           "description": {
             "ko": "약화 1 부여.",
-            "en": ""
+            "en": "Applies 1 Weaken."
           }
         },
         {
           "id": "double_extort",
           "name": {
             "ko": "이중 착취",
-            "en": ""
+            "en": "Double Extortion"
           },
           "intent": "attack",
           "damage": 7,
           "times": 2,
           "description": {
             "ko": "7피해 × 2.",
-            "en": ""
+            "en": "7 damage x2."
           }
         }
       ],
@@ -136,21 +136,21 @@
           "id": "rage_strike",
           "name": {
             "ko": "분노 강타",
-            "en": ""
+            "en": "Rage Slam"
           },
           "intent": "attack",
           "damage": 13,
           "times": 1,
           "description": {
             "ko": "13피해.",
-            "en": ""
+            "en": "13 damage."
           }
         },
         {
           "id": "official_tyranny",
           "name": {
             "ko": "관권 횡포",
-            "en": ""
+            "en": "Official Tyranny"
           },
           "intent": "attack_debuff",
           "damage": 8,
@@ -165,21 +165,21 @@
           ],
           "description": {
             "ko": "8피해 + 취약 2.",
-            "en": ""
+            "en": "8 damage + 2 Vulnerable."
           }
         },
         {
           "id": "iron_decree",
           "name": {
             "ko": "철권 령",
-            "en": ""
+            "en": "Iron Fist Decree"
           },
           "intent": "attack",
           "damage": 10,
           "times": 2,
           "description": {
             "ko": "10피해 × 2.",
-            "en": ""
+            "en": "10 damage x2."
           }
         }
       ],
@@ -219,21 +219,21 @@
           "id": "death_blow",
           "name": {
             "ko": "최후의 일격",
-            "en": ""
+            "en": "Final Blow"
           },
           "intent": "attack",
           "damage": 18,
           "times": 1,
           "description": {
             "ko": "18피해.",
-            "en": ""
+            "en": "18 damage."
           }
         },
         {
           "id": "desperate_block",
           "name": {
             "ko": "필사 방어",
-            "en": ""
+            "en": "Desperate Defense"
           },
           "intent": "defend_buff",
           "block": 8,
@@ -247,7 +247,7 @@
           ],
           "description": {
             "ko": "방어도 8 + 힘 1.",
-            "en": ""
+            "en": "8 Block + 1 Strength."
           }
         }
       ],

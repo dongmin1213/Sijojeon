@@ -86,7 +86,7 @@ func _on_rest() -> void:
 	rd.current_hp = mini(rd.current_hp + actual_heal, rd.max_hp)
 
 	AudioManager.play_sfx_by_key("heal")
-	_show_result("휴식을 취해 HP %d 회복. (%d/%d)" % [actual_heal, rd.current_hp, rd.max_hp])
+	_show_result(tr("REST_HEAL_RESULT_FMT") % [actual_heal, rd.current_hp, rd.max_hp])
 
 
 # --- 카드 강화 ---
@@ -100,7 +100,7 @@ func _on_show_upgrade_list() -> void:
 	action_container.visible = false
 	card_list_scroll.visible = true
 	back_button.visible = true
-	description_label.text = "강화할 카드를 선택하세요."
+	description_label.text = tr("REST_UPGRADE_SELECT")
 
 	# 기존 카드 버튼 정리
 	for child in card_list_container.get_children():
@@ -121,7 +121,7 @@ func _on_show_upgrade_list() -> void:
 		btn.text = "%s\n%s → %s" % [
 			card.get_display_name(),
 			eff,
-			eff_up if eff_up != "" else "(강화 효과 없음)"
+			eff_up if eff_up != "" else tr("REST_NO_UPGRADE")
 		]
 		btn.add_theme_font_size_override("font_size", 22)
 		btn.custom_minimum_size.y = 80
@@ -148,7 +148,7 @@ func _on_upgrade_card(entry: Dictionary) -> void:
 		upgraded_text = card.effect_upgraded
 	else:
 		upgraded_text = card.get_current_effect()
-	_show_result("『%s』 강화 완료!\n%s" % [
+	_show_result(tr("REST_UPGRADE_RESULT_FMT") % [
 		card.get_display_name(),
 		upgraded_text
 	])
@@ -158,7 +158,7 @@ func _on_back_to_actions() -> void:
 	card_list_scroll.visible = false
 	back_button.visible = false
 	action_container.visible = true
-	description_label.text = "모닥불 앞에서 잠시 쉬어간다."
+	description_label.text = tr("REST_CAMPFIRE")
 	_update_action_states()
 
 
@@ -179,10 +179,10 @@ func _show_result(text: String) -> void:
 func _update_status_bar() -> void:
 	if GameManager.run_data:
 		hp_label.text = "HP: %d/%d" % [GameManager.run_data.current_hp, GameManager.run_data.max_hp]
-		gold_label.text = "엽전: %d" % GameManager.run_data.gold
+		gold_label.text = tr("REST_STATUS_GOLD_FMT") % GameManager.run_data.gold
 	else:
 		hp_label.text = "HP: --/--"
-		gold_label.text = "엽전: --"
+		gold_label.text = tr("REST_STATUS_GOLD_FMT").replace("%d", "--")
 
 
 func _return_to_map() -> void:

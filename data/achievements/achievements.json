@@ -4,11 +4,11 @@
       "id": "ACH_FIRST_RUN",
       "name": {
         "ko": "첫 발걸음",
-        "en": ""
+        "en": "First Steps"
       },
       "description": {
         "ko": "첫 번째 런을 완료하다",
-        "en": ""
+        "en": "Complete your first run"
       },
       "type": "total_runs",
       "params": {
@@ -20,11 +20,11 @@
       "id": "ACH_RUNS_3",
       "name": {
         "ko": "반복되는 도전",
-        "en": ""
+        "en": "Recurring Challenge"
       },
       "description": {
         "ko": "총 3회 런을 완료하다",
-        "en": ""
+        "en": "Complete a total of 3 runs"
       },
       "type": "total_runs",
       "params": {
@@ -36,11 +36,11 @@
       "id": "ACH_RUNS_10",
       "name": {
         "ko": "불굴의 의지",
-        "en": ""
+        "en": "Indomitable Will"
       },
       "description": {
         "ko": "총 10회 런을 완료하다",
-        "en": ""
+        "en": "Complete a total of 10 runs"
       },
       "type": "total_runs",
       "params": {
@@ -52,11 +52,11 @@
       "id": "ACH_RUNS_30",
       "name": {
         "ko": "천하를 돌아다닌 자",
-        "en": ""
+        "en": "Wanderer of the Realm"
       },
       "description": {
         "ko": "총 30회 런을 완료하다",
-        "en": ""
+        "en": "Complete a total of 30 runs"
       },
       "type": "total_runs",
       "params": {
@@ -68,11 +68,11 @@
       "id": "ACH_FIRST_VICTORY",
       "name": {
         "ko": "왕조의 수호자",
-        "en": ""
+        "en": "Guardian of the Dynasty"
       },
       "description": {
         "ko": "최초 승리를 거두다",
-        "en": ""
+        "en": "Achieve your first victory"
       },
       "type": "total_victories",
       "params": {
@@ -84,11 +84,11 @@
       "id": "ACH_VICTORIES_3",
       "name": {
         "ko": "삼전삼승 (三戰三勝)",
-        "en": ""
+        "en": "Three Battles, Three Victories"
       },
       "description": {
         "ko": "총 3회 승리를 거두다",
-        "en": ""
+        "en": "Achieve a total of 3 victories"
       },
       "type": "total_victories",
       "params": {
@@ -100,11 +100,11 @@
       "id": "ACH_VICTORIES_5",
       "name": {
         "ko": "백전노장 (百戰老將)",
-        "en": ""
+        "en": "Battle-Hardened Veteran"
       },
       "description": {
         "ko": "총 5회 승리를 거두다",
-        "en": ""
+        "en": "Achieve a total of 5 victories"
       },
       "type": "total_victories",
       "params": {
@@ -116,11 +116,11 @@
       "id": "ACH_VICTORIES_10",
       "name": {
         "ko": "대관절 이기는 법",
-        "en": ""
+        "en": "The Art of Winning"
       },
       "description": {
         "ko": "총 10회 승리를 거두다",
-        "en": ""
+        "en": "Achieve a total of 10 victories"
       },
       "type": "total_victories",
       "params": {
@@ -143,11 +143,11 @@
       "id": "ACH_VICTORIES_20",
       "name": {
         "ko": "풍운아 (風雲兒)",
-        "en": ""
+        "en": "Child of Wind and Cloud"
       },
       "description": {
         "ko": "총 20회 승리를 거두다",
-        "en": ""
+        "en": "Achieve a total of 20 victories"
       },
       "type": "total_victories",
       "params": {
@@ -165,11 +165,11 @@
       "id": "ACH_REACH_ACT2",
       "name": {
         "ko": "제 2막 진입",
-        "en": ""
+        "en": "Entering Act 2"
       },
       "description": {
         "ko": "제 2막에 도달하다",
-        "en": ""
+        "en": "Reach Act 2"
       },
       "type": "best_act",
       "params": {
@@ -181,11 +181,11 @@
       "id": "ACH_REACH_ACT3",
       "name": {
         "ko": "최후의 관문",
-        "en": ""
+        "en": "The Final Gate"
       },
       "description": {
         "ko": "제 3막에 도달하다",
-        "en": ""
+        "en": "Reach Act 3"
       },
       "type": "best_act",
       "params": {
@@ -197,11 +197,11 @@
       "id": "ACH_MUGWAN_VICTORY",
       "name": {
         "ko": "무관의 길",
-        "en": ""
+        "en": "Path of the Warrior"
       },
       "description": {
         "ko": "무관으로 승리하다",
-        "en": ""
+        "en": "Win a run as the Warrior"
       },
       "type": "character_victory",
       "params": {
@@ -213,11 +213,11 @@
       "id": "ACH_MUNGWAN_VICTORY",
       "name": {
         "ko": "문관의 길",
-        "en": ""
+        "en": "Path of the Scholar"
       },
       "description": {
         "ko": "문관으로 승리하다",
-        "en": ""
+        "en": "Win a run as the Scholar"
       },
       "type": "character_victory",
       "params": {
@@ -229,11 +229,11 @@
       "id": "ACH_DOSA_VICTORY",
       "name": {
         "ko": "도사의 길",
-        "en": ""
+        "en": "Path of the Mystic"
       },
       "description": {
         "ko": "도사로 승리하다",
-        "en": ""
+        "en": "Win a run as the Mystic"
       },
       "type": "character_victory",
       "params": {
@@ -245,11 +245,11 @@
       "id": "ACH_ALL_CHARACTERS",
       "name": {
         "ko": "만능 관리 (萬能官吏)",
-        "en": ""
+        "en": "Master of All Trades"
       },
       "description": {
         "ko": "모든 캐릭터로 승리하다",
-        "en": ""
+        "en": "Win a run with every character"
       },
       "type": "all_characters_victory",
       "params": {
@@ -276,11 +276,11 @@
       "id": "ACH_MUGWAN_RUNS_5",
       "name": {
         "ko": "무골 (武骨)",
-        "en": ""
+        "en": "Iron Bones"
       },
       "description": {
         "ko": "무관으로 5회 런을 완료하다",
-        "en": ""
+        "en": "Complete 5 runs as the Warrior"
       },
       "type": "character_runs",
       "params": {
@@ -306,11 +306,11 @@
       "id": "ACH_MUGWAN_VICTORIES_3",
       "name": {
         "ko": "삼도 제패 (三道制覇)",
-        "en": ""
+        "en": "Conqueror of Three Provinces"
       },
       "description": {
         "ko": "무관으로 3회 승리하다",
-        "en": ""
+        "en": "Win 3 runs as the Warrior"
       },
       "type": "character_victories_n",
       "params": {
@@ -323,11 +323,11 @@
       "id": "ACH_MUGWAN_ASCENSION_1",
       "name": {
         "ko": "무관의 시험",
-        "en": ""
+        "en": "Warrior's Trial"
       },
       "description": {
         "ko": "무관으로 귀신 1단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 1 as the Warrior"
       },
       "type": "character_ascension",
       "params": {
@@ -340,11 +340,11 @@
       "id": "ACH_MUGWAN_ASCENSION_5",
       "name": {
         "ko": "무관의 혼",
-        "en": ""
+        "en": "Warrior's Spirit"
       },
       "description": {
         "ko": "무관으로 귀신 5단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 5 as the Warrior"
       },
       "type": "character_ascension",
       "params": {
@@ -368,11 +368,11 @@
       "id": "ACH_MUGWAN_ASCENSION_10",
       "name": {
         "ko": "무신 (武神)",
-        "en": ""
+        "en": "God of War"
       },
       "description": {
         "ko": "무관으로 귀신 10단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 10 as the Warrior"
       },
       "type": "character_ascension",
       "params": {
@@ -391,11 +391,11 @@
       "id": "ACH_MUNGWAN_RUNS_5",
       "name": {
         "ko": "문필 (文筆)",
-        "en": ""
+        "en": "The Literary Brush"
       },
       "description": {
         "ko": "문관으로 5회 런을 완료하다",
-        "en": ""
+        "en": "Complete 5 runs as the Scholar"
       },
       "type": "character_runs",
       "params": {
@@ -421,11 +421,11 @@
       "id": "ACH_MUNGWAN_VICTORIES_3",
       "name": {
         "ko": "삼독 (三讀)",
-        "en": ""
+        "en": "Thrice Read"
       },
       "description": {
         "ko": "문관으로 3회 승리하다",
-        "en": ""
+        "en": "Win 3 runs as the Scholar"
       },
       "type": "character_victories_n",
       "params": {
@@ -438,11 +438,11 @@
       "id": "ACH_MUNGWAN_ASCENSION_1",
       "name": {
         "ko": "문관의 시험",
-        "en": ""
+        "en": "Scholar's Trial"
       },
       "description": {
         "ko": "문관으로 귀신 1단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 1 as the Scholar"
       },
       "type": "character_ascension",
       "params": {
@@ -455,11 +455,11 @@
       "id": "ACH_MUNGWAN_ASCENSION_5",
       "name": {
         "ko": "문관의 지",
-        "en": ""
+        "en": "Scholar's Wisdom"
       },
       "description": {
         "ko": "문관으로 귀신 5단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 5 as the Scholar"
       },
       "type": "character_ascension",
       "params": {
@@ -483,11 +483,11 @@
       "id": "ACH_MUNGWAN_ASCENSION_10",
       "name": {
         "ko": "문성 (文聖)",
-        "en": ""
+        "en": "Sage of Letters"
       },
       "description": {
         "ko": "문관으로 귀신 10단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 10 as the Scholar"
       },
       "type": "character_ascension",
       "params": {
@@ -506,11 +506,11 @@
       "id": "ACH_DOSA_RUNS_5",
       "name": {
         "ko": "수련 (修練)",
-        "en": ""
+        "en": "Ascetic Training"
       },
       "description": {
         "ko": "도사로 5회 런을 완료하다",
-        "en": ""
+        "en": "Complete 5 runs as the Mystic"
       },
       "type": "character_runs",
       "params": {
@@ -536,11 +536,11 @@
       "id": "ACH_DOSA_VICTORIES_3",
       "name": {
         "ko": "삼청 (三淸)",
-        "en": ""
+        "en": "The Three Purities"
       },
       "description": {
         "ko": "도사로 3회 승리하다",
-        "en": ""
+        "en": "Win 3 runs as the Mystic"
       },
       "type": "character_victories_n",
       "params": {
@@ -553,11 +553,11 @@
       "id": "ACH_DOSA_ASCENSION_1",
       "name": {
         "ko": "도사의 시험",
-        "en": ""
+        "en": "Mystic's Trial"
       },
       "description": {
         "ko": "도사로 귀신 1단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 1 as the Mystic"
       },
       "type": "character_ascension",
       "params": {
@@ -570,11 +570,11 @@
       "id": "ACH_DOSA_ASCENSION_5",
       "name": {
         "ko": "도사의 기",
-        "en": ""
+        "en": "Mystic's Qi"
       },
       "description": {
         "ko": "도사로 귀신 5단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 5 as the Mystic"
       },
       "type": "character_ascension",
       "params": {
@@ -598,11 +598,11 @@
       "id": "ACH_DOSA_ASCENSION_10",
       "name": {
         "ko": "선인 (仙人)",
-        "en": ""
+        "en": "The Immortal"
       },
       "description": {
         "ko": "도사로 귀신 10단계 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 10 as the Mystic"
       },
       "type": "character_ascension",
       "params": {
@@ -621,11 +621,11 @@
       "id": "ACH_ASCENSION_10",
       "name": {
         "ko": "전설의 풍류객",
-        "en": ""
+        "en": "Legendary Wandering Poet"
       },
       "description": {
         "ko": "어떤 캐릭터로든 귀신 10단계를 클리어하다",
-        "en": ""
+        "en": "Clear Gwisin Level 10 with any character"
       },
       "type": "any_ascension",
       "params": {
@@ -648,11 +648,11 @@
       "id": "ACH_ALL_ASCENSION_1",
       "name": {
         "ko": "삼도귀신 (三道鬼神)",
-        "en": ""
+        "en": "Ghosts of Three Paths"
       },
       "description": {
         "ko": "세 캐릭터 모두 귀신 1단계 이상 클리어",
-        "en": ""
+        "en": "Clear Gwisin Level 1 or higher with all three characters"
       },
       "type": "all_ascension_min",
       "params": {

@@ -8,11 +8,11 @@
     "ko": "쌍두 호랑이",
     "hanja": "兩頭虎",
     "romanized": "Ssangdu Horangi",
-    "en": ""
+    "en": "Twin-Headed Tiger"
   },
   "description": {
     "ko": "지리산 산신이 분노하여 내보낸 양두의 화신. 두 머리 각각이 독립된 의지를 가지며, 하나가 쓰러지면 나머지는 극한의 분노에 빠진다.",
-    "en": ""
+    "en": "An incarnation of wrath sent by the mountain god of Jirisan. Each head has independent will; when one falls, the other enters a state of extreme rage."
   },
   "hp": 160,
   "hp_total": 160,
@@ -60,7 +60,7 @@
           "id": "left_bite",
           "name": {
             "ko": "좌두 물기",
-            "en": ""
+            "en": "Left Head Bite"
           },
           "intent": "attack",
           "damage": 10,
@@ -68,14 +68,14 @@
           "source": "left_head",
           "description": {
             "ko": "좌두의 기본 물기 공격.",
-            "en": ""
+            "en": "The left head's basic bite attack."
           }
         },
         {
           "id": "right_claw",
           "name": {
             "ko": "우두 할퀴기",
-            "en": ""
+            "en": "Right Head Claw"
           },
           "intent": "attack",
           "damage": 8,
@@ -83,14 +83,14 @@
           "source": "right_head",
           "description": {
             "ko": "우두의 8피해 × 2회 할퀴기. 방어도 분산.",
-            "en": ""
+            "en": "The right head's 8 damage x2 claw. Splits Block."
           }
         },
         {
           "id": "dual_roar",
           "name": {
             "ko": "쌍두 포효",
-            "en": ""
+            "en": "Twin Roar"
           },
           "intent": "debuff",
           "source": "both_heads",
@@ -110,14 +110,14 @@
           ],
           "description": {
             "ko": "두 머리가 동시에 포효. 취약 2 + 약화 1 부여.",
-            "en": ""
+            "en": "Both heads roar simultaneously. Applies 2 Vulnerable + 1 Weaken."
           }
         },
         {
           "id": "coordinated_pounce",
           "name": {
             "ko": "협공 돌진",
-            "en": ""
+            "en": "Coordinated Pounce"
           },
           "intent": "attack",
           "damage": 7,
@@ -133,14 +133,14 @@
           ],
           "description": {
             "ko": "양 머리가 동시에 돌진. 7피해 × 2회 = 14 총피해 + 출혈 2.",
-            "en": ""
+            "en": "Both heads pounce simultaneously. 7 damage x2 = 14 total + 2 Bleed."
           }
         },
         {
           "id": "territorial_buff",
           "name": {
             "ko": "산신의 가호",
-            "en": ""
+            "en": "Mountain God's Blessing"
           },
           "intent": "buff",
           "source": "both_heads",
@@ -160,7 +160,7 @@
           ],
           "description": {
             "ko": "양 머리 모두 힘 2 획득. 산신의 분노가 깃든다.",
-            "en": ""
+            "en": "Both heads gain 2 Strength. Imbued with the mountain god's fury."
           }
         }
       ],
@@ -210,49 +210,49 @@
           "id": "enraged_bite",
           "name": {
             "ko": "광란의 물기",
-            "en": ""
+            "en": "Frenzied Bite"
           },
           "intent": "attack",
           "damage": 16,
           "times": 1,
           "description": {
             "ko": "분노한 머리의 강렬한 물기. 힘+5 반영 시 21피해.",
-            "en": ""
+            "en": "A fierce bite from the enraged head. 21 damage with Strength+5."
           }
         },
         {
           "id": "frenzy_claw",
           "name": {
             "ko": "광란 할퀴기",
-            "en": ""
+            "en": "Frenzy Claw"
           },
           "intent": "attack",
           "damage": 8,
           "times": 3,
           "description": {
             "ko": "8피해 × 3회 = 24 총피해. 힘+5 적용 시 13×3=39.",
-            "en": ""
+            "en": "8 damage x3 = 24 total. With Strength+5: 13x3=39."
           }
         },
         {
           "id": "death_pounce",
           "name": {
             "ko": "사멸 돌진",
-            "en": ""
+            "en": "Death Pounce"
           },
           "intent": "attack",
           "damage": 22,
           "times": 1,
           "description": {
             "ko": "HP < 30%일 때 사용. 최후의 전력 공격.",
-            "en": ""
+            "en": "Used when HP < 30%. A final all-out attack."
           }
         },
         {
           "id": "howl_of_grief",
           "name": {
             "ko": "비탄의 울부짖음",
-            "en": ""
+            "en": "Howl of Grief"
           },
           "intent": "debuff",
           "effects": [
@@ -271,7 +271,7 @@
           ],
           "description": {
             "ko": "동료 머리의 죽음을 애도하는 울부짖음. 취약 3 + 약화 2.",
-            "en": ""
+            "en": "A howl mourning the fallen head. 3 Vulnerable + 2 Weaken."
           }
         }
       ],

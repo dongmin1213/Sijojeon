@@ -9,11 +9,11 @@
     "ko": "대무당 천령",
     "hanja": "大巫堂 天靈",
     "romanized": "Daemudang Cheonryeong",
-    "en": ""
+    "en": "Grand Shaman Cheonryeong"
   },
   "description": {
     "ko": "한양 외곽 신령 마을의 대무당. EL003 무당의 상위 형태. 강력한 소환과 저주, 시조 리듬을 방해하는 특수 패턴을 보유한다.",
-    "en": ""
+    "en": "Grand shaman of a spirit village on the outskirts of Hanyang. An advanced form of the Shaman. Possesses powerful summons, curses, and a unique pattern that disrupts Sijo rhythm."
   },
   "hp": 120,
   "flavor": "\"신령이 너를 인정하지 않는다. 여기서 돌아가라.\"",
@@ -29,7 +29,7 @@
           "id": "grand_ritual",
           "name": {
             "ko": "대신령 의식",
-            "en": ""
+            "en": "Grand Spirit Ritual"
           },
           "intent": "debuff",
           "effects": [
@@ -48,19 +48,19 @@
           ],
           "description": {
             "ko": "독 5 + 취약 2. 시조 리듬 방해 시작.",
-            "en": ""
+            "en": "5 Poison + 2 Vulnerable. Begins disrupting Sijo rhythm."
           }
         },
         {
           "id": "summon_spirits_mass",
           "name": {
             "ko": "영혼 대소환",
-            "en": ""
+            "en": "Mass Spirit Summon"
           },
           "intent": "summon",
           "description": {
             "ko": "원혼 2기 + 악귀 1기 소환. 각 HP 15.",
-            "en": ""
+            "en": "Summons 2 Grudge Spirits + 1 Fiend. Each has 15 HP."
           },
           "summon": [
             {
@@ -81,7 +81,7 @@
           "id": "shaman_guard",
           "name": {
             "ko": "신령 방어막",
-            "en": ""
+            "en": "Spirit Barrier"
           },
           "intent": "buff_defend",
           "block": 15,
@@ -95,14 +95,14 @@
           ],
           "description": {
             "ko": "방어도 15 + 힘 2.",
-            "en": ""
+            "en": "15 Block + 2 Strength."
           }
         },
         {
           "id": "rhythm_break",
           "name": {
             "ko": "리듬 끊기",
-            "en": ""
+            "en": "Rhythm Break"
           },
           "intent": "special",
           "effects": [
@@ -114,21 +114,21 @@
           ],
           "description": {
             "ko": "플레이어의 시조 진행 슬롯 1개를 초기화한다. (ZER-101 시조 시스템 연동)",
-            "en": ""
+            "en": "Resets 1 of the player's Sijo progress slots."
           }
         },
         {
           "id": "spirit_strike",
           "name": {
             "ko": "신령 타격",
-            "en": ""
+            "en": "Spirit Strike"
           },
           "intent": "attack",
           "damage": 13,
           "times": 1,
           "description": {
             "ko": "13+힘 피해의 신령 공격.",
-            "en": ""
+            "en": "13+Strength damage spirit attack."
           }
         }
       ],
@@ -156,7 +156,7 @@
           "id": "mass_curse",
           "name": {
             "ko": "대저주",
-            "en": ""
+            "en": "Grand Curse"
           },
           "intent": "debuff",
           "effects": [
@@ -181,28 +181,28 @@
           ],
           "description": {
             "ko": "독 6 + 출혈 5 + 취약 2 복합 저주.",
-            "en": ""
+            "en": "6 Poison + 5 Bleed + 2 Vulnerable compound curse."
           }
         },
         {
           "id": "possession_blast",
           "name": {
             "ko": "빙의 폭발",
-            "en": ""
+            "en": "Possession Blast"
           },
           "intent": "attack",
           "damage": 16,
           "times": 1,
           "description": {
             "ko": "16+힘 피해.",
-            "en": ""
+            "en": "16+Strength damage."
           }
         },
         {
           "id": "rhythm_break_2",
           "name": {
             "ko": "리듬 파괴",
-            "en": ""
+            "en": "Rhythm Shatter"
           },
           "intent": "special",
           "effects": [
@@ -214,7 +214,7 @@
           ],
           "description": {
             "ko": "시조 슬롯 2개 초기화. 시조 완성 방해.",
-            "en": ""
+            "en": "Resets 2 Sijo slots. Prevents Sijo completion."
           }
         }
       ],
@@ -240,7 +240,7 @@
           "id": "divine_wrath",
           "name": {
             "ko": "천령의 분노",
-            "en": ""
+            "en": "Wrath of Cheonryeong"
           },
           "intent": "attack",
           "damage": 20,
@@ -255,21 +255,21 @@
           ],
           "description": {
             "ko": "20+힘 피해 + 취약 3.",
-            "en": ""
+            "en": "20+Strength damage + 3 Vulnerable."
           }
         },
         {
           "id": "spirit_barrage",
           "name": {
             "ko": "영혼 폭격",
-            "en": ""
+            "en": "Spirit Barrage"
           },
           "intent": "attack",
           "damage": 8,
           "times": 3,
           "description": {
             "ko": "8피해 × 3회 = 24 총피해.",
-            "en": ""
+            "en": "8 damage x3 hits = 24 total damage."
           }
         }
       ],

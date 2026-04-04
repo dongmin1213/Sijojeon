@@ -8,11 +8,11 @@
     "ko": "판서 이무령",
     "hanja": "判書 李茂令",
     "romanized": "Panseo Yi Mu-ryeong",
-    "en": ""
+    "en": "Minister Yi Mu-ryeong"
   },
   "description": {
     "ko": "한양을 손아귀에 쥐고 있는 부패한 이조판서. 왕명을 빙자해 백성을 착취하며, 그의 인장 하나가 사람의 목숨을 좌우한다. 격식을 무기로 삼고 권력으로 방패를 친다.",
-    "en": ""
+    "en": "A corrupt Minister of Personnel who grips Hanyang in his fist. Exploits the people under the guise of royal orders; a single stamp of his seal decides life or death. Wields formality as a weapon and power as a shield."
   },
   "hp": 115,
   "flavor": "\"감히 누가 판서의 앞을 막느냐. 이 인장이 곧 법이니라.\"",
@@ -27,7 +27,7 @@
           "id": "authority_gaze",
           "name": {
             "ko": "권위의 눈초리",
-            "en": ""
+            "en": "Authoritative Gaze"
           },
           "intent": "debuff",
           "damage": 0,
@@ -47,55 +47,55 @@
           ],
           "description": {
             "ko": "플레이어에게 약화 1 + 취약 1 부여. 이번 턴 반격 억제.",
-            "en": ""
+            "en": "Applies 1 Weaken + 1 Vulnerable to the player. Suppresses counterattack this turn."
           }
         },
         {
           "id": "seal_strike",
           "name": {
             "ko": "인장 타격",
-            "en": ""
+            "en": "Seal Strike"
           },
           "intent": "attack",
           "damage": 10,
           "times": 1,
           "description": {
             "ko": "묵직한 관인으로 내리치는 공격.",
-            "en": ""
+            "en": "A strike with a heavy official seal."
           }
         },
         {
           "id": "official_shield",
           "name": {
             "ko": "관인 방패",
-            "en": ""
+            "en": "Official Shield"
           },
           "intent": "defend",
           "block": 14,
           "description": {
             "ko": "관료적 권위로 둘러싼 방어막. 방어도 14 획득.",
-            "en": ""
+            "en": "A barrier of bureaucratic authority. Gain 14 Block."
           }
         },
         {
           "id": "summon_guard",
           "name": {
             "ko": "금의위 소환",
-            "en": ""
+            "en": "Summon Royal Guard"
           },
           "intent": "summon",
           "summons": "E002",
           "summon_count": 1,
           "description": {
             "ko": "포졸 1명을 소환. 처치 시 재소환 없음.",
-            "en": ""
+            "en": "Summons 1 Constable. No re-summon after defeat."
           }
         },
         {
           "id": "red_tape",
           "name": {
             "ko": "문서 지옥",
-            "en": ""
+            "en": "Red Tape"
           },
           "intent": "debuff",
           "effects": [
@@ -114,7 +114,7 @@
           ],
           "description": {
             "ko": "관료주의의 속박. 냉기 1(다음 턴 드로우 -1) + 약화 1 부여.",
-            "en": ""
+            "en": "Shackles of bureaucracy. Applies 1 Chill (draw -1 next turn) + 1 Weaken."
           }
         }
       ],
@@ -164,21 +164,21 @@
           "id": "golden_seal_slam",
           "name": {
             "ko": "금인 강타",
-            "en": ""
+            "en": "Golden Seal Slam"
           },
           "intent": "attack",
           "damage": 14,
           "times": 1,
           "description": {
             "ko": "금인을 들어 내리찍는 강력한 일격. 힘 보너스 적용.",
-            "en": ""
+            "en": "A powerful slam with the golden seal. Strength bonus applied."
           }
         },
         {
           "id": "abuse_of_power",
           "name": {
             "ko": "권력 남용",
-            "en": ""
+            "en": "Abuse of Power"
           },
           "intent": "attack_debuff",
           "damage": 8,
@@ -199,28 +199,28 @@
           ],
           "description": {
             "ko": "8피해 + 약화 2 + 취약 1. 플레이어 전투력 대폭 감소.",
-            "en": ""
+            "en": "8 damage + 2 Weaken + 1 Vulnerable. Greatly reduces the player's combat effectiveness."
           }
         },
         {
           "id": "double_seal",
           "name": {
             "ko": "이중 인장",
-            "en": ""
+            "en": "Double Seal"
           },
           "intent": "attack",
           "damage": 9,
           "times": 2,
           "description": {
             "ko": "9피해 × 2회 = 18 총피해. 방어도 분산 효과.",
-            "en": ""
+            "en": "9 damage x2 hits = 18 total damage. Splits Block."
           }
         },
         {
           "id": "enraged_fortify",
           "name": {
             "ko": "분노 강화",
-            "en": ""
+            "en": "Enraged Fortify"
           },
           "intent": "buff",
           "effects": [
@@ -233,7 +233,7 @@
           ],
           "description": {
             "ko": "힘 2 추가 획득. 이후 공격 피해가 더욱 강해진다.",
-            "en": ""
+            "en": "Gain 2 additional Strength. Subsequent attacks become even stronger."
           }
         }
       ],
@@ -281,7 +281,7 @@
           "id": "royal_decree_strike",
           "name": {
             "ko": "왕명 집행",
-            "en": ""
+            "en": "Royal Decree Execution"
           },
           "intent": "attack",
           "damage": 8,
@@ -296,28 +296,28 @@
           ],
           "description": {
             "ko": "8피해 × 3회 = 24 총피해 + 플레이어 버프 1개 박탈.",
-            "en": ""
+            "en": "8 damage x3 hits = 24 total damage + strips 1 buff from the player."
           }
         },
         {
           "id": "seal_of_wrath",
           "name": {
             "ko": "진노의 인장",
-            "en": ""
+            "en": "Seal of Wrath"
           },
           "intent": "attack",
           "damage": 22,
           "times": 1,
           "description": {
             "ko": "분노가 극에 달한 단발 최대 피해 공격.",
-            "en": ""
+            "en": "A single maximum-damage attack fueled by peak fury."
           }
         },
         {
           "id": "final_authority",
           "name": {
             "ko": "최후의 권위",
-            "en": ""
+            "en": "Final Authority"
           },
           "intent": "defend_buff",
           "block": 10,
@@ -331,7 +331,7 @@
           ],
           "description": {
             "ko": "방어도 10 + 힘 1. 극단적 상황에서의 마지막 방어 시도.",
-            "en": ""
+            "en": "10 Block + 1 Strength. A last defensive effort in dire circumstances."
           }
         }
       ],

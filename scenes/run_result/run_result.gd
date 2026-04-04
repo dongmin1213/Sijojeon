@@ -2,10 +2,10 @@ extends Control
 
 ## 런 결과 화면. 클리어/사망 통계를 표시하고 메인메뉴로 복귀.
 
-const CHARACTER_NAMES := {
-	"dosa": "도사 (道士)",
-	"mugwan": "무관 (武官)",
-	"mungwan": "문관 (文官)",
+var CHARACTER_NAMES := {
+	"dosa": "CHAR_NAME_DOSA",
+	"mugwan": "CHAR_NAME_MUGWAN",
+	"mungwan": "CHAR_NAME_MUNGWAN",
 }
 
 var _is_victory: bool = false
@@ -32,42 +32,43 @@ func _ready() -> void:
 
 func _setup_display() -> void:
 	if _is_victory:
-		title_label.text = "승리"
+		title_label.text = tr("RESULT_VICTORY")
 		title_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
-		subtitle_label.text = "역모를 물리치고 왕조를 지켜냈다!"
+		subtitle_label.text = tr("RESULT_VICTORY_SUBTITLE")
 		overlay.color = Color(0.02, 0.05, 0.08, 0.9)
 	else:
-		title_label.text = "패배"
+		title_label.text = tr("RESULT_DEFEAT")
 		title_label.add_theme_color_override("font_color", Color(0.8, 0.2, 0.2))
-		subtitle_label.text = "어둠 속에 쓰러졌다..."
+		subtitle_label.text = tr("RESULT_DEFEAT_SUBTITLE_ALT")
 		overlay.color = Color(0.08, 0.02, 0.02, 0.9)
 
 
 func _populate_stats() -> void:
 	var rd: RunData = GameManager.run_data
 	if rd == null:
-		_add_stat_row("데이터 없음", "-")
+		_add_stat_row(tr("RESULT_NO_DATA"), "-")
 		return
 
-	var char_name: String = CHARACTER_NAMES.get(rd.character_id, rd.character_id)
-	_add_stat_row("캐릭터", char_name)
-	_add_stat_row("도달한 막", "제 %d 막" % rd.current_act)
-	_add_stat_row("방문한 노드", "%d 개" % rd.visited_nodes.size())
-	_add_stat_row("체력", "%d / %d" % [rd.current_hp, rd.max_hp])
-	_add_stat_row("소지 금화", "%d 냥" % rd.gold)
-	_add_stat_row("덱 카드 수", "%d 장" % rd.deck.size())
-	_add_stat_row("강화한 카드", "%d 장" % rd.upgraded_cards.size())
-	_add_stat_row("제거한 카드", "%d 장" % rd.card_removals_count)
-	_add_stat_row("획득 유물", "%d 개" % rd.relics.size())
+	var char_name_key: String = CHARACTER_NAMES.get(rd.character_id, "")
+	var char_name: String = tr(char_name_key) if char_name_key != "" else rd.character_id
+	_add_stat_row(tr("RESULT_CHARACTER"), char_name)
+	_add_stat_row(tr("RESULT_ACT_REACHED"), tr("RESULT_ACT_FMT") % rd.current_act)
+	_add_stat_row(tr("RESULT_NODES_VISITED"), tr("RESULT_NODES_FMT") % rd.visited_nodes.size())
+	_add_stat_row(tr("RESULT_HP"), "%d / %d" % [rd.current_hp, rd.max_hp])
+	_add_stat_row(tr("RESULT_GOLD_HELD"), tr("RESULT_GOLD_FMT") % rd.gold)
+	_add_stat_row(tr("RESULT_DECK_SIZE"), tr("RESULT_UNIT_CARDS") % rd.deck.size())
+	_add_stat_row(tr("RESULT_UPGRADED"), tr("RESULT_UNIT_CARDS") % rd.upgraded_cards.size())
+	_add_stat_row(tr("RESULT_REMOVED"), tr("RESULT_UNIT_CARDS") % rd.card_removals_count)
+	_add_stat_row(tr("RESULT_RELICS"), tr("RESULT_UNIT_COUNT") % rd.relics.size())
 
 	# 누적 런 통계
 	var meta := SaveManager.load_meta()
 	if meta.has("stats"):
 		var s: Dictionary = meta["stats"]
 		_add_stat_row("", "")  # 빈 줄 구분
-		_add_stat_row("총 도전 횟수", "%d 회" % s.get("total_runs", 0))
-		_add_stat_row("총 승리", "%d 회" % s.get("victories", 0))
-		_add_stat_row("총 패배", "%d 회" % s.get("deaths", 0))
+		_add_stat_row(tr("RESULT_TOTAL_RUNS"), tr("RESULT_UNIT_TIMES") % s.get("total_runs", 0))
+		_add_stat_row(tr("RESULT_TOTAL_VICTORIES"), tr("RESULT_UNIT_TIMES") % s.get("victories", 0))
+		_add_stat_row(tr("RESULT_TOTAL_DEFEATS"), tr("RESULT_UNIT_TIMES") % s.get("deaths", 0))
 
 
 func _populate_achievements() -> void:
@@ -78,7 +79,7 @@ func _populate_achievements() -> void:
 		return
 
 	_add_stat_row("", "")
-	_add_stat_row("── 업적 ──", "")
+	_add_stat_row(tr("RESULT_ACHIEVEMENTS"), "")
 
 	var all_achs := AchievementManager.get_all_achievements()
 	var unlocked_count := 0
@@ -89,7 +90,7 @@ func _populate_achievements() -> void:
 			var name_text: String = "★ " + TranslationManager.trd(ach, "name", "")
 			_add_stat_row(name_text, TranslationManager.trd(ach, "description", ""))
 
-	_add_stat_row("달성률", "%d / %d" % [unlocked_count, all_achs.size()])
+	_add_stat_row(tr("RESULT_ACHIEVEMENT_RATE"), "%d / %d" % [unlocked_count, all_achs.size()])
 
 
 func _add_stat_row(label_text: String, value_text: String) -> void:

@@ -7,11 +7,11 @@
       "trigger": "run_start",
       "title": {
         "ko": "어사출두 (御史出頭)",
-        "en": ""
+        "en": "The Secret Inspector Departs"
       },
       "text": {
         "ko": "임금의 밀지가 당신의 손에 쥐어졌다.\n\"백성의 고통을 눈으로 보고, 귀로 듣고, 몸으로 겪어라.\"\n당신은 이제 암행어사다. 정체를 숨기고 길을 나선다.",
-        "en": ""
+        "en": "The King's secret decree has been placed in your hands.\n\"See the people's suffering with your eyes, hear it with your ears, and endure it with your body.\"\nYou are now a Secret Royal Inspector. You conceal your identity and set forth upon the road."
       }
     },
     {
@@ -19,11 +19,11 @@
       "trigger": "evt_amhaengosa_talk",
       "title": {
         "ko": "단서를 얻다",
-        "en": ""
+        "en": "A Clue Revealed"
       },
       "text": {
         "ko": "진짜 암행어사를 만났다.\n그가 남긴 단서들이 머릿속에서 퍼즐처럼 맞춰지기 시작한다.\n이제 누가 진짜 적인지 보인다.",
-        "en": ""
+        "en": "You have met the true Secret Inspector.\nThe clues he left behind begin to fall into place like pieces of a puzzle.\nNow you can see who the real enemy is."
       }
     },
     {
@@ -31,11 +31,11 @@
       "trigger": "act3_start",
       "title": {
         "ko": "어사출두 — 최후",
-        "en": ""
+        "en": "The Inspector Reveals Himself — The Final Hour"
       },
       "text": {
         "ko": "마패를 꺼낼 시간이 왔다.\n탐관들이 버티고 있다. 하지만 당신의 뒤에는 백성이 있다.",
-        "en": ""
+        "en": "The time has come to reveal the Royal Seal.\nThe corrupt officials stand their ground. But the people stand behind you."
       }
     },
     {
@@ -43,19 +43,19 @@
       "trigger": "run_victory",
       "title_ally": {
         "ko": "백성의 기억",
-        "en": ""
+        "en": "Remembered by the People"
       },
       "text_ally": {
         "ko": "암행어사와 함께 썩은 뿌리를 뽑아냈다.\n당신의 이름은 기록되지 않지만, 백성들은 기억할 것이다.",
-        "en": ""
+        "en": "Together with the Secret Inspector, you uprooted the corruption.\nYour name will not be written in the records, but the people will remember."
       },
       "title_no_ally": {
         "ko": "홀로 선 자의 길",
-        "en": ""
+        "en": "The Path of One Who Stood Alone"
       },
       "text_no_ally": {
         "ko": "아무도 도와주지 않았다. 그래도 해냈다.\n역사는 당신을 기록하지 않을 것이다. 그것으로 충분하다.",
-        "en": ""
+        "en": "No one came to your aid. Yet you prevailed.\nHistory will not record your name. That is enough."
       }
     }
   ]

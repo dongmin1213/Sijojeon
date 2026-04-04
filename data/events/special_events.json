@@ -20,20 +20,20 @@
         "ko": "사도세자 사건",
         "description": {
           "ko": "한밤중에 밀서 하나가 도착했다. \"왕세자가 뒤주에 갇혔습니다. 어서 구해주십시오.\" 측근의 얼굴이 새하얗게 질려 있다.",
-          "en": ""
+          "en": "A secret letter arrives at midnight. \"The Crown Prince has been locked in a rice chest. Please, save him at once.\" Your aide's face is deathly pale."
         },
-        "en": ""
+        "en": "The Crown Prince Sado Incident"
       },
       "flavor_text": {
         "ko": "\"지금 구하지 않으면 영영 늦습니다.\"",
-        "en": ""
+        "en": "\"If we don't save him now, it will be too late.\""
       },
       "choices": [
         {
           "id": "save_prince",
           "text": {
             "ko": "세자를 구한다.",
-            "en": ""
+            "en": "Save the Crown Prince."
           },
           "effect_type": "faction_change",
           "effect_value": 30,
@@ -52,7 +52,7 @@
           },
           "result_text": {
             "ko": "밤새 세자를 피신시켰다. 남인·소론의 신망을 얻었지만, 노론의 눈 밖에 났다.",
-            "en": ""
+            "en": "You spirit the Prince away through the night. The Namin and Soron factions praise you, but the Noron turn hostile."
           },
           "effect_type_3": "minshim_change",
           "effect_meta_3": {
@@ -63,7 +63,7 @@
           "id": "obey_king",
           "text": {
             "ko": "왕명에 따른다.",
-            "en": ""
+            "en": "Obey the King's command."
           },
           "effect_type": "faction_change",
           "effect_meta": {
@@ -86,7 +86,7 @@
           },
           "result_text": {
             "ko": "왕명패를 받았다. 피해 카드 피해량 +2 (죄책감으로 인한 분노 — 다음 전투 힘 +2). 노론 호감 +30, 남인·소론 -30.",
-            "en": ""
+            "en": "You receive the King's command tablet. Attack card damage +2 (rage born from guilt — next combat Strength +2). Noron favor +30, Namin/Soron -30."
           },
           "effect_type_4": "minshim_change",
           "effect_meta_4": {
@@ -97,7 +97,7 @@
           "id": "flee",
           "text": {
             "ko": "도망친다.",
-            "en": ""
+            "en": "Flee."
           },
           "effect_type": "faction_change",
           "effect_meta": {
@@ -110,7 +110,7 @@
           },
           "result_text": {
             "ko": "황급히 몸을 피했다. 모든 세력의 신망을 잃었다.",
-            "en": ""
+            "en": "You flee in haste, losing the trust of all factions."
           },
           "effect_type_2": "minshim_change",
           "effect_meta_2": {
@@ -138,20 +138,20 @@
         "ko": "수상한 선비",
         "description": {
           "ko": "장시에 갓을 눌러쓴 선비가 홀로 앉아 있다. 화려한 비단옷도, 패도도 없지만 눈빛이 범상치 않다. 어딘지 모르게 무언가를 기록하고 있는 것 같다.",
-          "en": ""
+          "en": "A scholar in a pressed-down hat sits alone at the market. No fine silk robes or badge of office, yet his gaze is anything but ordinary. He seems to be recording something."
         },
-        "en": ""
+        "en": "The Suspicious Scholar"
       },
       "flavor_text": {
         "ko": "\"...당신도 느끼시오? 이 장시의 악취를.\"",
-        "en": ""
+        "en": "\"...Can you smell it too? The stench of this market.\""
       },
       "choices": [
         {
           "id": "talk",
           "text": {
             "ko": "말을 건다.",
-            "en": ""
+            "en": "Strike up a conversation."
           },
           "effect_type": "narrative_flag_set",
           "effect_meta": {
@@ -164,14 +164,14 @@
           },
           "result_text": {
             "ko": "그가 암행어사임을 알아챘다. 그는 당신에게 부패 사건의 단서를 넘겨준다. 이후 부패 관련 이벤트 연쇄 선택이 개방된다.",
-            "en": ""
+            "en": "You realize he is a Royal Inspector in disguise. He passes you clues about a corruption case. Corruption-related event chains become available."
           }
         },
         {
           "id": "ignore",
           "text": {
             "ko": "무시한다.",
-            "en": ""
+            "en": "Ignore him."
           },
           "effect_type": "shop_price_discount",
           "effect_meta": {
@@ -180,14 +180,14 @@
           },
           "result_text": {
             "ko": "그는 탐관오리를 처단하고 지나갔다. 부패한 상인들이 도망가 이번 상점 가격이 30% 하락한다.",
-            "en": ""
+            "en": "He moves on and punishes the corrupt officials. Corrupt merchants flee, reducing shop prices by 30%."
           }
         },
         {
           "id": "show_status",
           "text": {
             "ko": "[신분 양반(3) 이상 전용] 신분증을 내보인다.",
-            "en": ""
+            "en": "[Rank Yangban (3) or higher] Show your credentials."
           },
           "trigger_condition": "status_rank_ge_3",
           "effect_type": "next_boss_hp_modifier",
@@ -196,7 +196,7 @@
           },
           "result_text": {
             "ko": "암행어사가 협력을 제안했다. 다음 보스 HP 20% 감소.",
-            "en": ""
+            "en": "The Royal Inspector proposes an alliance. Next boss HP reduced by 20%."
           }
         }
       ]
@@ -219,20 +219,20 @@
         "ko": "매점매석",
         "description": {
           "ko": "도성으로 가는 길목에서 대상인의 수레 행렬을 마주쳤다. 쌀, 소금, 포목이 가득 실려 있다. 상인의 부하들이 길을 막아서며 소리친다. \"비켜라! 이 물건 전부 우리 것이다!\"",
-          "en": ""
+          "en": "On the road to the capital, you encounter a caravan of a great merchant. The carts overflow with rice, salt, and cloth. The merchant's men block the road, shouting, \"Out of the way! These goods are all ours!\""
         },
-        "en": ""
+        "en": "The Great Hoarding"
       },
       "flavor_text": {
         "ko": "\"한 달 뒤에 이 쌀 한 가마가 지금의 세 배가 될 것이오.\"",
-        "en": ""
+        "en": "\"In a month, a single sack of this rice will cost three times what it does now.\""
       },
       "choices": [
         {
           "id": "punish",
           "text": {
             "ko": "대상인을 응징한다. (전투 발동)",
-            "en": ""
+            "en": "Punish the merchant. (Triggers combat)"
           },
           "effect_type": "forced_combat_with_reward",
           "effect_meta": {
@@ -244,14 +244,14 @@
           },
           "result_text": {
             "ko": "대상인과 그 부하들이 무기를 든다. 이겨야 한다. 승리하면 이번 상점에서 카드 1장을 무료로 가져갈 수 있다.",
-            "en": ""
+            "en": "The merchant and his men draw weapons. You must prevail. Victory grants 1 free card from the next shop."
           }
         },
         {
           "id": "invest",
           "text": {
             "ko": "거래에 참여한다. (엽전 80 투자)",
-            "en": ""
+            "en": "Join the venture. (Invest 80 gold)"
           },
           "effect_type": "gold_loss",
           "effect_value": 80,
@@ -263,7 +263,7 @@
           },
           "result_text": {
             "ko": "엽전 80을 투자했다. 3개 상점 이후 150냥을 돌려받는다. 단, 당신이 매점매석에 가담했다는 소문이 퍼진다.",
-            "en": ""
+            "en": "You invest 80 gold. After 3 shops, you'll receive 150 nyang back. However, rumors spread that you took part in the hoarding."
           },
           "effect_type_2": "minshim_change",
           "effect_meta_2": {
@@ -274,7 +274,7 @@
           "id": "pass",
           "text": {
             "ko": "그냥 지나친다.",
-            "en": ""
+            "en": "Simply pass by."
           },
           "effect_type": "shop_price_penalty",
           "effect_meta": {
@@ -283,7 +283,7 @@
           },
           "result_text": {
             "ko": "아무것도 하지 않았다. 물가가 폭등해 이번 상점 카드 가격이 50% 올랐다.",
-            "en": ""
+            "en": "You do nothing. Prices skyrocket — card prices in the next shop increase by 50%."
           }
         }
       ]
@@ -306,20 +306,20 @@
         "ko": "사화 (士禍)",
         "description": {
           "ko": "선왕의 제문이 역모로 지목되었다. 학자들이 처형당하고 있다. 당신의 스승이 명단에 올랐다는 소식이 들린다.",
-          "en": ""
+          "en": "The late King's eulogy has been branded as treason. Scholars are being executed. Word arrives that your mentor is on the list."
         },
-        "en": ""
+        "en": "The Literati Purge"
       },
       "flavor_text": {
         "ko": "\"도망치면 살고, 남으면 죽는다. 그런데 살아야 할 이유가 있는가?\"",
-        "en": ""
+        "en": "\"Flee and live, stay and die. But is there a reason worth living for?\""
       },
       "choices": [
         {
           "id": "hide_teacher",
           "text": {
             "ko": "스승을 숨겨준다.",
-            "en": ""
+            "en": "Hide your mentor."
           },
           "effect_type": "forced_elite_immediate",
           "effect_meta": {
@@ -333,14 +333,14 @@
           },
           "result_text": {
             "ko": "금부도사들이 들이닥쳤다! 즉시 전투가 발동된다. 이겨낸다면 스승에게서 전설 카드 3장 중 1장을 받는다.",
-            "en": ""
+            "en": "The secret police storm in! Combat begins immediately. If you prevail, your mentor rewards you with 1 of 3 legendary cards."
           }
         },
         {
           "id": "pretend",
           "text": {
             "ko": "모른 척한다.",
-            "en": ""
+            "en": "Pretend you don't know."
           },
           "effect_type": "card_remove_random",
           "effect_meta": {
@@ -349,14 +349,14 @@
           },
           "result_text": {
             "ko": "스승이 끌려갔다. 스타터 카드 1장이 영구히 사라진다 (죄책감).",
-            "en": ""
+            "en": "Your mentor is dragged away. 1 starter card is permanently removed (guilt)."
           }
         },
         {
           "id": "betray",
           "text": {
             "ko": "고변한다. (스승을 고발한다)",
-            "en": ""
+            "en": "Inform on him. (Betray your mentor)"
           },
           "effect_type": "status_rank_change",
           "effect_meta": {
@@ -368,7 +368,7 @@
           },
           "result_text": {
             "ko": "신분이 2단계 도약했다. 그러나 배신자라는 꼬리표가 붙는다. 이후 NPC들의 반응이 달라진다.",
-            "en": ""
+            "en": "Your rank jumps 2 levels. However, you are branded a traitor. NPCs will react differently to you."
           },
           "effect_type_2": "minshim_change",
           "effect_meta_2": {
@@ -396,20 +396,20 @@
         "ko": "민란 (民亂)",
         "description": {
           "ko": "성난 백성들이 길을 막고 있다. \"당신도 그 탐관들의 일당이오?\" 횃불과 농기구를 든 무리가 노려본다.",
-          "en": ""
+          "en": "Furious commoners block the road. \"Are you one of those corrupt officials' lackeys?\" A crowd bearing torches and farming tools glares at you."
         },
-        "en": ""
+        "en": "The People's Uprising"
       },
       "flavor_text": {
         "ko": "\"더 이상 못 참겠소! 이 길을 지나려면 우리와 싸워야 하오!\"",
-        "en": ""
+        "en": "\"We can't take it anymore! If you want to pass, you'll have to fight us!\""
       },
       "choices": [
         {
           "id": "fight_through",
           "text": {
             "ko": "강제로 돌파한다.",
-            "en": ""
+            "en": "Force your way through."
           },
           "effect_type": "hp_loss",
           "effect_value": 25,
@@ -419,14 +419,14 @@
           },
           "result_text": {
             "ko": "백성들과 싸워 돌파했다. 승리해도 기쁘지 않다. HP 25 손실. 민심이 더 떨어졌다.",
-            "en": ""
+            "en": "You fight through the crowd. Even in victory, there is no joy. Lose 25 HP. Public favor drops further."
           }
         },
         {
           "id": "apologize",
           "text": {
             "ko": "무릎 꿇고 사죄한다.",
-            "en": ""
+            "en": "Kneel and beg forgiveness."
           },
           "effect_type": "hp_loss",
           "effect_value": 20,
@@ -436,14 +436,14 @@
           },
           "result_text": {
             "ko": "백성들이 분노를 삭이며 길을 비켜준다. HP 20 손실. 민심이 크게 회복되었다.",
-            "en": ""
+            "en": "The people's anger subsides and they make way. Lose 20 HP. Public favor recovers greatly."
           }
         },
         {
           "id": "offer_gold",
           "text": {
             "ko": "엽전을 나눠준다. (엽전 60)",
-            "en": ""
+            "en": "Distribute coins to the people. (60 gold)"
           },
           "effect_type": "gold_loss",
           "effect_value": 60,
@@ -453,7 +453,7 @@
           },
           "result_text": {
             "ko": "백성들이 엽전을 받고 자리를 비켜준다. 엽전 60 소비. 민심이 크게 회복되었다.",
-            "en": ""
+            "en": "The people accept the coins and clear the way. Spend 60 gold. Public favor recovers greatly."
           }
         }
       ]
@@ -477,20 +477,20 @@
         "ko": "당쟁 (黨爭)",
         "description": {
           "ko": "당쟁이 극에 달했다. 조정이 두 파로 갈라져 피를 부르고 있다. 양측이 당신에게 결단을 요구한다.",
-          "en": ""
+          "en": "Factional strife has reached its peak. The court is split in two, and blood is being called for. Both sides demand your decision."
         },
-        "en": ""
+        "en": "The Factional Strife"
       },
       "flavor_text": {
         "ko": "\"중립은 없소. 지금 편을 들지 않으면 양측 모두의 적이 되오.\"",
-        "en": ""
+        "en": "\"There is no neutrality. Choose a side now, or become the enemy of both.\""
       },
       "choices": [
         {
           "id": "side_with_faction",
           "text": {
             "ko": "내 당파의 손을 들어준다.",
-            "en": ""
+            "en": "Support my own faction."
           },
           "effect_type": "relic_gain",
           "effect_value": 1,
@@ -504,14 +504,14 @@
           },
           "result_text": {
             "ko": "내 당파의 유물을 획득했다. 라이벌 당파의 자객이 공격해 온다!",
-            "en": ""
+            "en": "You acquire your faction's relic. An assassin from the rival faction attacks!"
           }
         },
         {
           "id": "royal_order",
           "text": {
             "ko": "[신분 당상관(4) 이상] 왕의 명으로 양측을 진정시킨다.",
-            "en": ""
+            "en": "[Rank Dangsanggwan (4) or higher] Calm both sides by royal decree."
           },
           "trigger_condition": "status_rank_ge_4",
           "effect_type": "relic_gain",
@@ -523,7 +523,7 @@
           },
           "result_text": {
             "ko": "왕명으로 양측을 진정시켰다. 양측 당파 미터 -50. 조정의 중립 유물을 획득했다.",
-            "en": ""
+            "en": "By royal decree, you pacify both factions. Both faction meters -50. Gain a neutral court relic."
           },
           "effect_type_2": "status_rank_change",
           "effect_meta_2": {
@@ -534,7 +534,7 @@
           "id": "flee_dangjeng",
           "text": {
             "ko": "도망친다.",
-            "en": ""
+            "en": "Flee."
           },
           "effect_type": "faction_change",
           "effect_meta": {
@@ -547,7 +547,7 @@
           },
           "result_text": {
             "ko": "양측 당파 미터 -30. 민심이 떨어졌다. 현재 챕터의 남은 이벤트가 전투로 교체된다.",
-            "en": ""
+            "en": "Both faction meters -30. Public favor drops. Remaining events in this chapter are replaced with combat."
           }
         }
       ]

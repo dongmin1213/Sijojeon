@@ -2,14 +2,18 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://csv_translations"
+uid="uid://bbbg1aq3qp0wc"
 
 [deps]
 
+files=["res://translations/translations.ko.translation", "res://translations/translations.en.translation"]
+
 source_file="res://translations/translations.csv"
-dest_files=["res://.godot/imported/translations.csv-hash.ko.translation", "res://.godot/imported/translations.csv-hash.en.translation"]
+dest_files=["res://translations/translations.ko.translation", "res://translations/translations.en.translation"]
 
 [params]
 
 compress=true
 delimiter=0
+unescape_keys=false
+unescape_translations=true

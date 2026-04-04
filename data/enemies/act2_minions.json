@@ -8,11 +8,11 @@
       "name": {
         "ko": "병사",
         "hanja": "兵士",
-        "en": ""
+        "en": "Soldier"
       },
       "description": {
         "ko": "군관 휘하의 졸병. 약하지만 숫자로 압박한다.",
-        "en": ""
+        "en": "A foot soldier under the Military Officer. Weak, but overwhelms with numbers."
       },
       "hp": {
         "min": 18,
@@ -23,27 +23,27 @@
           "id": "spear_thrust",
           "name": {
             "ko": "창 찌르기",
-            "en": ""
+            "en": "Spear Thrust"
           },
           "intent": "attack",
           "damage": 7,
           "times": 1,
           "description": {
             "ko": "7피해.",
-            "en": ""
+            "en": "7 damage."
           }
         },
         {
           "id": "shield_up",
           "name": {
             "ko": "방패 올리기",
-            "en": ""
+            "en": "Raise Shield"
           },
           "intent": "defend",
           "block": 6,
           "description": {
             "ko": "방어도 6.",
-            "en": ""
+            "en": "6 Block."
           }
         }
       ],
@@ -61,11 +61,11 @@
       "name": {
         "ko": "당파 추종자",
         "hanja": "黨派追從者",
-        "en": ""
+        "en": "Faction Follower"
       },
       "description": {
         "ko": "탐관의 정치적 동조자. 전투력보다 숫자로 압박한다.",
-        "en": ""
+        "en": "A political sympathizer of the corrupt officials. Overwhelms with numbers rather than strength."
       },
       "hp": {
         "min": 25,
@@ -76,27 +76,27 @@
           "id": "mob_strike",
           "name": {
             "ko": "폭도 공격",
-            "en": ""
+            "en": "Mob Strike"
           },
           "intent": "attack",
           "damage": 7,
           "times": 1,
           "description": {
             "ko": "7피해.",
-            "en": ""
+            "en": "7 damage."
           }
         },
         {
           "id": "mob_defend",
           "name": {
             "ko": "폭도 방어",
-            "en": ""
+            "en": "Mob Guard"
           },
           "intent": "defend",
           "block": 8,
           "description": {
             "ko": "방어도 8.",
-            "en": ""
+            "en": "8 Block."
           }
         }
       ],

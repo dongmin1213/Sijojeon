@@ -7,11 +7,11 @@
     "ko": "탐관 연합",
     "hanja": "貪官聯合",
     "romanized": "Tamgwan Alliance",
-    "en": ""
+    "en": "Corrupt Officials' Coalition"
   },
   "description": {
     "ko": "지방을 갈취하는 탐관들이 한데 뭉쳐 대항한다. 각자의 이익을 지키기 위해 연합했지만, 그들의 목표는 오직 하나 — 증거를 없애는 것.",
-    "en": ""
+    "en": "Corrupt officials who extort the provinces have banded together. United to protect their interests, their sole goal is to destroy the evidence."
   },
   "flavor": "\"우리가 한 일이 무엇인지 알면서도 막으려 하는가? 왕명을 앞세우면 된다.\"",
   "hp": 175,
@@ -33,34 +33,34 @@
           "id": "monopoly_strike",
           "name": {
             "ko": "독점 강타",
-            "en": ""
+            "en": "Monopoly Strike"
           },
           "intent": "attack",
           "damage": 12,
           "times": 1,
           "description": {
             "ko": "12피해.",
-            "en": ""
+            "en": "12 damage."
           }
         },
         {
           "id": "market_wall",
           "name": {
             "ko": "시장 방벽",
-            "en": ""
+            "en": "Market Wall"
           },
           "intent": "defend",
           "block": 16,
           "description": {
             "ko": "방어도 16.",
-            "en": ""
+            "en": "16 Block."
           }
         },
         {
           "id": "price_gouge",
           "name": {
             "ko": "가격 폭등",
-            "en": ""
+            "en": "Price Gouging"
           },
           "intent": "debuff",
           "effects": [
@@ -73,21 +73,21 @@
           ],
           "description": {
             "ko": "약화 2.",
-            "en": ""
+            "en": "2 Weaken."
           }
         },
         {
           "id": "coalition_strike",
           "name": {
             "ko": "연합 강타",
-            "en": ""
+            "en": "Coalition Strike"
           },
           "intent": "attack",
           "damage": 8,
           "times": 2,
           "description": {
             "ko": "8피해 × 2.",
-            "en": ""
+            "en": "8 damage x2."
           }
         }
       ],
@@ -146,21 +146,21 @@
           "id": "coordinated_assault",
           "name": {
             "ko": "연합 공세",
-            "en": ""
+            "en": "Coordinated Assault"
           },
           "intent": "attack",
           "damage": 15,
           "times": 1,
           "description": {
             "ko": "15피해.",
-            "en": ""
+            "en": "15 damage."
           }
         },
         {
           "id": "faction_shield",
           "name": {
             "ko": "당파 방패",
-            "en": ""
+            "en": "Faction Shield"
           },
           "intent": "defend_buff",
           "block": 12,
@@ -174,14 +174,14 @@
           ],
           "description": {
             "ko": "방어도 12 + 힘 1.",
-            "en": ""
+            "en": "12 Block + 1 Strength."
           }
         },
         {
           "id": "smear_campaign",
           "name": {
             "ko": "모략",
-            "en": ""
+            "en": "Scheme"
           },
           "intent": "attack_debuff",
           "damage": 10,
@@ -202,7 +202,7 @@
           ],
           "description": {
             "ko": "10피해 + 취약 2 + 약화 1.",
-            "en": ""
+            "en": "10 damage + 2 Vulnerable + 1 Weaken."
           }
         }
       ],
@@ -246,7 +246,7 @@
           "id": "royal_impersonation",
           "name": {
             "ko": "왕명 사칭 집행",
-            "en": ""
+            "en": "False Royal Decree Execution"
           },
           "intent": "attack_debuff",
           "damage": 10,
@@ -260,14 +260,14 @@
           ],
           "description": {
             "ko": "10피해 × 3 + 플레이어 버프 1개 박탈.",
-            "en": ""
+            "en": "10 damage x3 + strips 1 buff from the player."
           }
         },
         {
           "id": "desperate_authority",
           "name": {
             "ko": "최후 권위",
-            "en": ""
+            "en": "Final Authority"
           },
           "intent": "defend_buff",
           "block": 12,
@@ -281,21 +281,21 @@
           ],
           "description": {
             "ko": "방어도 12 + 힘 2.",
-            "en": ""
+            "en": "12 Block + 2 Strength."
           }
         },
         {
           "id": "final_verdict",
           "name": {
             "ko": "최종 선고",
-            "en": ""
+            "en": "Final Verdict"
           },
           "intent": "attack",
           "damage": 25,
           "times": 1,
           "description": {
             "ko": "25피해 단발 최대 공격.",
-            "en": ""
+            "en": "25 damage. Maximum single-hit attack."
           }
         }
       ],

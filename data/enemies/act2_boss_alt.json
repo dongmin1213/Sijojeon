@@ -9,11 +9,11 @@
     "ko": "구미호 대요",
     "hanja": "九尾狐 大妖",
     "romanized": "Gumiho Daeyō",
-    "en": ""
+    "en": "Gumiho Archfiend"
   },
   "description": {
     "ko": "아홉 꼬리를 모두 가진 전설의 구미호. EL203의 상위 존재. 매혹과 변신으로 플레이어를 극도로 혼란에 빠뜨린다.",
-    "en": ""
+    "en": "A legendary nine-tailed fox with all nine tails. A superior being to the Nine-Tailed Fox elite. Throws the player into extreme confusion with enchantment and shapeshifting."
   },
   "hp": 145,
   "flavor": "\"나는 천 년을 살았다. 네가 가진 것이 무엇이든 이미 알고 있다.\"",
@@ -29,7 +29,7 @@
           "id": "beguile",
           "name": {
             "ko": "매혹",
-            "en": ""
+            "en": "Charm"
           },
           "intent": "debuff",
           "effects": [
@@ -48,14 +48,14 @@
           ],
           "description": {
             "ko": "약화 3 + 취약 2. 플레이어 공격/방어 모두 저하.",
-            "en": ""
+            "en": "3 Weaken + 2 Vulnerable. Reduces both the player's offense and defense."
           }
         },
         {
           "id": "fox_fire",
           "name": {
             "ko": "여우불",
-            "en": ""
+            "en": "Fox Fire"
           },
           "intent": "attack_debuff",
           "damage": 12,
@@ -70,14 +70,14 @@
           ],
           "description": {
             "ko": "12피해 + 화상 5.",
-            "en": ""
+            "en": "12 damage + 5 Burn."
           }
         },
         {
           "id": "illusion_guard",
           "name": {
             "ko": "환영 방어",
-            "en": ""
+            "en": "Illusion Guard"
           },
           "intent": "buff_defend",
           "block": 18,
@@ -91,21 +91,21 @@
           ],
           "description": {
             "ko": "방어도 18 + 힘 2. 환영으로 방어도를 형성.",
-            "en": ""
+            "en": "18 Block + 2 Strength. Block formed through illusion."
           }
         },
         {
           "id": "nine_tails_slash",
           "name": {
             "ko": "구미 베기",
-            "en": ""
+            "en": "Nine-Tail Slash"
           },
           "intent": "attack",
           "damage": 8,
           "times": 3,
           "description": {
             "ko": "8피해 × 3회(꼬리 하나씩) = 24 총피해.",
-            "en": ""
+            "en": "8 damage x3 hits (one tail each) = 24 total damage."
           }
         }
       ],
@@ -138,19 +138,19 @@
           "id": "transformation",
           "name": {
             "ko": "변신",
-            "en": ""
+            "en": "Shapeshifting"
           },
           "intent": "special",
           "description": {
             "ko": "플레이어 카드 1장을 복사해 사용한다. (고유 메카닉)",
-            "en": ""
+            "en": "Copies 1 card from the player and uses it. (Unique mechanic)"
           }
         },
         {
           "id": "soul_harvest",
           "name": {
             "ko": "영혼 수확",
-            "en": ""
+            "en": "Soul Harvest"
           },
           "intent": "attack",
           "damage": 14,
@@ -163,14 +163,14 @@
           ],
           "description": {
             "ko": "14피해 + 자힐 10.",
-            "en": ""
+            "en": "14 damage + self-heal 10."
           }
         },
         {
           "id": "curse_barrage",
           "name": {
             "ko": "저주 폭격",
-            "en": ""
+            "en": "Curse Barrage"
           },
           "intent": "debuff",
           "effects": [
@@ -189,7 +189,7 @@
           ],
           "description": {
             "ko": "독 6 + 출혈 4.",
-            "en": ""
+            "en": "6 Poison + 4 Bleed."
           }
         }
       ],
@@ -215,7 +215,7 @@
           "id": "true_form",
           "name": {
             "ko": "진신 현현",
-            "en": ""
+            "en": "True Form Revealed"
           },
           "intent": "buff",
           "effects": [
@@ -228,28 +228,28 @@
           ],
           "description": {
             "ko": "힘 5 획득. 진짜 모습을 드러낸다.",
-            "en": ""
+            "en": "Gain 5 Strength. Reveals its true form."
           }
         },
         {
           "id": "thousand_year_strike",
           "name": {
             "ko": "천년의 일격",
-            "en": ""
+            "en": "Millennium Strike"
           },
           "intent": "attack",
           "damage": 25,
           "times": 1,
           "description": {
             "ko": "25+힘 피해. 힘+5 기준 30피해.",
-            "en": ""
+            "en": "25+Strength damage. 30 damage with Strength+5."
           }
         },
         {
           "id": "fox_wildfire",
           "name": {
             "ko": "여우불 폭풍",
-            "en": ""
+            "en": "Fox Fire Storm"
           },
           "intent": "attack_debuff",
           "damage": 10,
@@ -271,7 +271,7 @@
           ],
           "description": {
             "ko": "10피해 + 화상 6 + 독 4. 광역 범위.",
-            "en": ""
+            "en": "10 damage + 6 Burn + 4 Poison. Area effect."
           }
         }
       ],

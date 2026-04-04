@@ -8,11 +8,11 @@
     "ko": "군관",
     "hanja": "軍官",
     "romanized": "Gungan",
-    "en": ""
+    "en": "Military Officer"
   },
   "description": {
     "ko": "군역을 면제해주는 대가로 포은(布銀)을 강요하는 부패한 무관. 자신의 병사들이 쓰러지면 오히려 더 결사적으로 싸운다.",
-    "en": ""
+    "en": "A corrupt military officer who demands cloth-tax in exchange for military service exemption. Fights even more desperately when his soldiers fall."
   },
   "flavor": "\"군역을 대신할 포은 300냥을 내라.\"",
   "hp": 95,
@@ -63,34 +63,34 @@
           "id": "command_strike",
           "name": {
             "ko": "지휘 타격",
-            "en": ""
+            "en": "Command Strike"
           },
           "intent": "attack",
           "damage": 10,
           "times": 1,
           "description": {
             "ko": "10피해.",
-            "en": ""
+            "en": "10 damage."
           }
         },
         {
           "id": "fortify",
           "name": {
             "ko": "방비",
-            "en": ""
+            "en": "Fortify"
           },
           "intent": "defend",
           "block": 14,
           "description": {
             "ko": "방어도 14.",
-            "en": ""
+            "en": "14 Block."
           }
         },
         {
           "id": "recruit",
           "name": {
             "ko": "보충 소집",
-            "en": ""
+            "en": "Recruit"
           },
           "intent": "summon",
           "summon": [
@@ -103,14 +103,14 @@
           ],
           "description": {
             "ko": "병사 1명 추가 소환.",
-            "en": ""
+            "en": "Summons 1 additional soldier."
           }
         },
         {
           "id": "order_attack",
           "name": {
             "ko": "공격 명령",
-            "en": ""
+            "en": "Attack Order"
           },
           "intent": "attack_debuff",
           "damage": 8,
@@ -125,7 +125,7 @@
           ],
           "description": {
             "ko": "8피해 + 약화 1.",
-            "en": ""
+            "en": "8 damage + 1 Weaken."
           }
         }
       ],
@@ -170,35 +170,35 @@
           "id": "solo_fury",
           "name": {
             "ko": "홀로 분전",
-            "en": ""
+            "en": "Lone Fury"
           },
           "intent": "attack",
           "damage": 14,
           "times": 1,
           "description": {
             "ko": "14피해.",
-            "en": ""
+            "en": "14 damage."
           }
         },
         {
           "id": "desperate_slash",
           "name": {
             "ko": "필사 참격",
-            "en": ""
+            "en": "Desperate Slash"
           },
           "intent": "attack",
           "damage": 9,
           "times": 2,
           "description": {
             "ko": "9피해 × 2.",
-            "en": ""
+            "en": "9 damage x2."
           }
         },
         {
           "id": "iron_will",
           "name": {
             "ko": "철의 의지",
-            "en": ""
+            "en": "Iron Will"
           },
           "intent": "defend_buff",
           "block": 10,
@@ -212,7 +212,7 @@
           ],
           "description": {
             "ko": "방어도 10 + 힘 1.",
-            "en": ""
+            "en": "10 Block + 1 Strength."
           }
         }
       ],

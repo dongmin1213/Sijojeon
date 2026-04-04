@@ -8,11 +8,11 @@
     "ko": "역적 대감",
     "hanja": "逆賊大監",
     "romanized": "Yeokjeok Daegam",
-    "en": ""
+    "en": "Rebel Lord"
   },
   "description": {
     "ko": "왕위를 노리는 역모의 주모자. 오랜 세월 실세를 쥐고 흔들었던 대감으로, 겉으로는 충신의 탈을 쓰고 안으로는 왕좌를 갈망해 왔다. 3페이즈에 걸쳐 역모의 전모를 드러낸다.",
-    "en": ""
+    "en": "The mastermind of the rebellion who covets the throne. A lord who held real power for years, wearing the mask of a loyal subject while yearning for the throne. Reveals the full scope of his treason across 3 phases."
   },
   "hp": 195,
   "flavor": "\"왕이란 자격 있는 자가 앉는 것이니라. 그 자리는 내 것이다.\"",
@@ -28,21 +28,21 @@
           "id": "call_to_arms",
           "name": {
             "ko": "거병 령",
-            "en": ""
+            "en": "Call to Arms"
           },
           "intent": "summon",
           "summons": "E301",
           "summon_count": 2,
           "description": {
             "ko": "역적 무사 2명 소환. 처치 시 재소환 없음.",
-            "en": ""
+            "en": "Summons 2 Rebel Warriors. No re-summon after defeat."
           }
         },
         {
           "id": "scheme",
           "name": {
             "ko": "음모 획책",
-            "en": ""
+            "en": "Plot Scheme"
           },
           "intent": "debuff",
           "effects": [
@@ -61,48 +61,48 @@
           ],
           "description": {
             "ko": "약화 2 + 냉기 1 부여. 플레이어의 대응 능력을 제한.",
-            "en": ""
+            "en": "Applies 2 Weaken + 1 Chill. Limits the player's response capability."
           }
         },
         {
           "id": "noble_shield",
           "name": {
             "ko": "귀족의 방패",
-            "en": ""
+            "en": "Noble's Shield"
           },
           "intent": "defend",
           "block": 18,
           "description": {
             "ko": "귀족으로서의 특권으로 만든 강력한 방어막. 방어도 18 획득.",
-            "en": ""
+            "en": "A powerful barrier made from noble privilege. Gain 18 Block."
           }
         },
         {
           "id": "seal_authority",
           "name": {
             "ko": "인장 휘두르기",
-            "en": ""
+            "en": "Seal Brandish"
           },
           "intent": "attack",
           "damage": 12,
           "times": 1,
           "description": {
             "ko": "예상 밖의 직접 공격. 대감의 개인 무력.",
-            "en": ""
+            "en": "An unexpected direct attack. The lord's personal combat skill."
           }
         },
         {
           "id": "summon_assassin",
           "name": {
             "ko": "자객 파견",
-            "en": ""
+            "en": "Dispatch Assassin"
           },
           "intent": "summon",
           "summons": "E303",
           "summon_count": 1,
           "description": {
             "ko": "자객 1명 소환. 처치 시 재소환 없음.",
-            "en": ""
+            "en": "Summons 1 Assassin. No re-summon after defeat."
           }
         }
       ],
@@ -158,7 +158,7 @@
           "id": "poison_edict",
           "name": {
             "ko": "독 어명",
-            "en": ""
+            "en": "Poison Edict"
           },
           "intent": "debuff",
           "effects": [
@@ -177,14 +177,14 @@
           ],
           "description": {
             "ko": "독 6 + 취약 2 부여. 독 누적 피해: 6+5+4+3+2+1=21.",
-            "en": ""
+            "en": "Applies 6 Poison + 2 Vulnerable. Cumulative poison damage: 21."
           }
         },
         {
           "id": "curse_volley",
           "name": {
             "ko": "저주 연사",
-            "en": ""
+            "en": "Curse Volley"
           },
           "intent": "debuff",
           "effects": [
@@ -209,14 +209,14 @@
           ],
           "description": {
             "ko": "약화 3 + 출혈 5 + 냉기 1. 3개 상태이상 동시 부여.",
-            "en": ""
+            "en": "3 Weaken + 5 Bleed + 1 Chill. Applies 3 status effects simultaneously."
           }
         },
         {
           "id": "corrupted_strike",
           "name": {
             "ko": "부패의 일격",
-            "en": ""
+            "en": "Corrupted Strike"
           },
           "intent": "attack",
           "damage": 14,
@@ -231,14 +231,14 @@
           ],
           "description": {
             "ko": "14피해(힘+4 적용 시 18) + 출혈 3.",
-            "en": ""
+            "en": "14 damage (18 with Str+4) + 3 Bleed."
           }
         },
         {
           "id": "iron_will_2",
           "name": {
             "ko": "역적의 철의",
-            "en": ""
+            "en": "Rebel's Iron Will"
           },
           "intent": "defend_buff",
           "block": 15,
@@ -252,14 +252,14 @@
           ],
           "description": {
             "ko": "방어도 15 + 힘 2 추가. 분노가 방어까지 강화.",
-            "en": ""
+            "en": "15 Block + 2 Strength. Rage strengthens even defense."
           }
         },
         {
           "id": "combo_debuff",
           "name": {
             "ko": "오욕의 낙인",
-            "en": ""
+            "en": "Brand of Disgrace"
           },
           "intent": "attack_debuff",
           "damage": 10,
@@ -280,7 +280,7 @@
           ],
           "description": {
             "ko": "10피해 × 2회(힘+4 기준 14×2=28) + 약화 2 + 취약 1.",
-            "en": ""
+            "en": "10 damage x2 (14x2=28 with Str+4) + 2 Weaken + 1 Vulnerable."
           }
         }
       ],
@@ -342,7 +342,7 @@
           "id": "berserk_slash",
           "name": {
             "ko": "광전 베기",
-            "en": ""
+            "en": "Berserk Slash"
           },
           "intent": "attack",
           "damage": 14,
@@ -357,28 +357,28 @@
           ],
           "description": {
             "ko": "14피해 × 2회(힘+6 기준 20×2=40) + 출혈 2. 분노 적용 시 60피해.",
-            "en": ""
+            "en": "14 damage x2 (20x2=40 with Str+6) + 2 Bleed. 60 damage with Rage."
           }
         },
         {
           "id": "wrath_of_the_fallen",
           "name": {
             "ko": "패자의 분노",
-            "en": ""
+            "en": "Wrath of the Fallen"
           },
           "intent": "attack",
           "damage": 28,
           "times": 1,
           "description": {
             "ko": "힘+6 기준 34피해. 분노 적용 시 51피해. 최대 단발 피해.",
-            "en": ""
+            "en": "34 damage with Str+6. 51 with Rage. Maximum single-hit damage."
           }
         },
         {
           "id": "self_destruction",
           "name": {
             "ko": "자폭 어명",
-            "en": ""
+            "en": "Self-Destruct Decree"
           },
           "intent": "attack",
           "damage": 10,
@@ -393,14 +393,14 @@
           ],
           "description": {
             "ko": "10피해 × 3회(힘+6 기준 16×3=48) + 자신도 15피해. HP 낮을수록 사용 빈도 증가.",
-            "en": ""
+            "en": "10 damage x3 (16x3=48 with Str+6) + self-damage 15. Used more frequently at low HP."
           }
         },
         {
           "id": "last_edict",
           "name": {
             "ko": "최후의 어명",
-            "en": ""
+            "en": "Final Edict"
           },
           "intent": "attack_debuff",
           "damage": 20,
@@ -421,7 +421,7 @@
           ],
           "description": {
             "ko": "20피해(힘+6+분노 기준 39피해) + 취약 3 + 약화 3. 페이즈 3 시작 직후 사용.",
-            "en": ""
+            "en": "20 damage (39 with Str+6+Rage) + 3 Vulnerable + 3 Weaken. Used right after Phase 3 begins."
           }
         }
       ],
