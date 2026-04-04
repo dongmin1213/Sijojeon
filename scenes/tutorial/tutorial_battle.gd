@@ -204,12 +204,9 @@ func _update_enemy_ui() -> void:
 			var intent := battle_manager._get_enemy_intent(i)
 			cache["intent_label"].text = _format_intent(intent)
 		else:
-			var name_data = enemy.get("name", {})
-			var enemy_name: String = ""
-			if name_data is Dictionary:
-				enemy_name = name_data.get("ko", "적")
-			elif name_data is String:
-				enemy_name = name_data
+			var enemy_name: String = TranslationManager.trd_name(enemy)
+			if enemy_name == "":
+				enemy_name = "적"
 
 			var panel := PanelContainer.new()
 			var vbox := VBoxContainer.new()
@@ -336,7 +333,7 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 	if index < sijo_slot_labels.size():
 		var card: CardData = DataLoader.get_card(card_id)
 		if card:
-			sijo_slot_labels[index].text = card.name_ko
+			sijo_slot_labels[index].text = card.get_display_name()
 		else:
 			sijo_slot_labels[index].text = card_id
 		sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))

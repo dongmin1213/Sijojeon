@@ -8,54 +8,105 @@
       "name": {
         "ko": "대상인 무리",
         "hanja": "大商人",
-        "romanized": "Daesangin"
+        "romanized": "Daesangin",
+        "en": ""
       },
-      "description": "물자를 독점하는 대상인과 그 부하들. 돈의 힘으로 싸운다.",
-      "hp": { "min": 55, "max": 65 },
+      "description": {
+        "ko": "물자를 독점하는 대상인과 그 부하들. 돈의 힘으로 싸운다.",
+        "en": ""
+      },
+      "hp": {
+        "min": 55,
+        "max": 65
+      },
       "moves": [
         {
           "id": "gold_throw",
-          "name": "엽전 투척",
+          "name": {
+            "ko": "엽전 투척",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 1,
-          "description": "엽전을 무기삼아 던진다."
+          "description": {
+            "ko": "엽전을 무기삼아 던진다.",
+            "en": ""
+          }
         },
         {
           "id": "hire_thugs",
-          "name": "부하 호출",
+          "name": {
+            "ko": "부하 호출",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
-          "description": "부하들을 불러 힘 2 획득."
+          "description": {
+            "ko": "부하들을 불러 힘 2 획득.",
+            "en": ""
+          }
         },
         {
           "id": "gold_steal",
-          "name": "골드 강탈",
+          "name": {
+            "ko": "골드 강탈",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 5,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "5피해 + 약화 1. 매 턴 골드 강탈 효과."
+          "description": {
+            "ko": "5피해 + 약화 1. 매 턴 골드 강탈 효과.",
+            "en": ""
+          }
         },
         {
           "id": "heavy_strike",
-          "name": "금고 내리치기",
+          "name": {
+            "ko": "금고 내리치기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
-          "description": "무거운 금고로 내리친다."
+          "description": {
+            "ko": "무거운 금고로 내리친다.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["gold_throw", "hire_thugs", "gold_steal", "heavy_strike", "gold_throw", "gold_steal"]
+        "sequence": [
+          "gold_throw",
+          "hire_thugs",
+          "gold_steal",
+          "heavy_strike",
+          "gold_throw",
+          "gold_steal"
+        ]
       },
       "rewards": {
-        "gold": { "min": 30, "max": 50 },
+        "gold": {
+          "min": 30,
+          "max": 50
+        },
         "card_chance": 0.5,
         "relic_chance": 0.2
       },
@@ -66,50 +117,96 @@
       "name": {
         "ko": "금부도사 무리",
         "hanja": "禁府都事",
-        "romanized": "Gumbu Dosa"
+        "romanized": "Gumbu Dosa",
+        "en": ""
       },
-      "description": "왕의 체포 명령을 수행하는 관리. 포박술과 무력을 겸비한다.",
-      "hp": { "min": 60, "max": 70 },
+      "description": {
+        "ko": "왕의 체포 명령을 수행하는 관리. 포박술과 무력을 겸비한다.",
+        "en": ""
+      },
+      "hp": {
+        "min": 60,
+        "max": 70
+      },
       "moves": [
         {
           "id": "arrest_order",
-          "name": "체포 명령",
+          "name": {
+            "ko": "체포 명령",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "약화 2 부여. 포박으로 행동을 제한한다."
+          "description": {
+            "ko": "약화 2 부여. 포박으로 행동을 제한한다.",
+            "en": ""
+          }
         },
         {
           "id": "sword_slash",
-          "name": "환도 일격",
+          "name": {
+            "ko": "환도 일격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 1,
-          "description": "날카로운 환도 베기."
+          "description": {
+            "ko": "날카로운 환도 베기.",
+            "en": ""
+          }
         },
         {
           "id": "coordinated_attack",
-          "name": "합동 공격",
+          "name": {
+            "ko": "합동 공격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 6,
           "times": 2,
-          "description": "두 명이 동시에 공격한다. 6×2."
+          "description": {
+            "ko": "두 명이 동시에 공격한다. 6×2.",
+            "en": ""
+          }
         },
         {
           "id": "fortify",
-          "name": "방어 태세",
+          "name": {
+            "ko": "방어 태세",
+            "en": ""
+          },
           "intent": "defend",
           "block": 12,
-          "description": "방어도 12 획득."
+          "description": {
+            "ko": "방어도 12 획득.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["arrest_order", "sword_slash", "coordinated_attack", "fortify", "sword_slash", "coordinated_attack"]
+        "sequence": [
+          "arrest_order",
+          "sword_slash",
+          "coordinated_attack",
+          "fortify",
+          "sword_slash",
+          "coordinated_attack"
+        ]
       },
       "rewards": {
-        "gold": { "min": 25, "max": 40 },
+        "gold": {
+          "min": 25,
+          "max": 40
+        },
         "card_chance": 0.7,
         "relic_chance": 0.3
       },

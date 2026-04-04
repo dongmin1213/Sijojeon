@@ -4,14 +4,17 @@
   "act": 2,
   "balance_ref": "ZER-98 (적 종류 추가). 2막 중간 보스. 플레이어 기준: HP 35~55, 덱 규모 12~16장, 턴당 피해 12~16. 목표 전투 길이: 10~14턴.",
   "note": "2막 중간 지점에 등장하는 선택형 보스 노드.",
-
   "id": "B_ACT2_MID",
   "name": {
     "ko": "산채 두목",
     "hanja": "山寨頭目",
-    "romanized": "Sanchae Dumok"
+    "romanized": "Sanchae Dumok",
+    "en": ""
   },
-  "description": "지리산 산채를 통솔하는 도적 두목. 전투 중반 강력한 보스 형태로 등장한다. 소환과 독, 화상을 결합한 복합 전략.",
+  "description": {
+    "ko": "지리산 산채를 통솔하는 도적 두목. 전투 중반 강력한 보스 형태로 등장한다. 소환과 독, 화상을 결합한 복합 전략.",
+    "en": ""
+  },
   "hp": 110,
   "flavor": "\"이 산은 내 것이다. 살아서 내려가고 싶으면 목숨을 버려라.\"",
   "phases": [
@@ -23,46 +26,93 @@
       "moves": [
         {
           "id": "bandit_call",
-          "name": "산적 소환",
+          "name": {
+            "ko": "산적 소환",
+            "en": ""
+          },
           "intent": "summon",
-          "description": "산적 2명을 소환한다. 각 HP 20.",
+          "description": {
+            "ko": "산적 2명을 소환한다. 각 HP 20.",
+            "en": ""
+          },
           "summon": [
-            { "enemy_id": "E201", "count": 2, "hp_override": 20, "name_override": "산적 부하" }
+            {
+              "enemy_id": "E201",
+              "count": 2,
+              "hp_override": 20,
+              "name_override": "산적 부하"
+            }
           ]
         },
         {
           "id": "mountain_slash",
-          "name": "산악 베기",
+          "name": {
+            "ko": "산악 베기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
-          "description": "산악지대에서 단련된 강력한 베기."
+          "description": {
+            "ko": "산악지대에서 단련된 강력한 베기.",
+            "en": ""
+          }
         },
         {
           "id": "fire_trap",
-          "name": "불함정",
+          "name": {
+            "ko": "불함정",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 8,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "화상", "stacks": 4, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "화상",
+              "stacks": 4,
+              "target": "player"
+            }
           ],
-          "description": "8피해 + 화상 4."
+          "description": {
+            "ko": "8피해 + 화상 4.",
+            "en": ""
+          }
         },
         {
           "id": "chief_guard",
-          "name": "두목 방어",
+          "name": {
+            "ko": "두목 방어",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 16,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
-          "description": "방어도 16 + 힘 2."
+          "description": {
+            "ko": "방어도 16 + 힘 2.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["bandit_call", "mountain_slash", "fire_trap", "chief_guard", "mountain_slash", "fire_trap", "bandit_call"]
+        "sequence": [
+          "bandit_call",
+          "mountain_slash",
+          "fire_trap",
+          "chief_guard",
+          "mountain_slash",
+          "fire_trap",
+          "bandit_call"
+        ]
       }
     },
     {
@@ -74,41 +124,79 @@
       "moves": [
         {
           "id": "poison_release",
-          "name": "독 방출",
+          "name": {
+            "ko": "독 방출",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 7, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 7,
+              "target": "player"
+            }
           ],
-          "description": "10피해 + 독 7. 최대 독 피해 총합: 7+6+...+1=28."
+          "description": {
+            "ko": "10피해 + 독 7. 최대 독 피해 총합: 7+6+...+1=28.",
+            "en": ""
+          }
         },
         {
           "id": "berserker_charge",
-          "name": "돌격",
+          "name": {
+            "ko": "돌격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 2,
-          "description": "10피해 × 2회 = 20 총피해. 분노한 돌진."
+          "description": {
+            "ko": "10피해 × 2회 = 20 총피해. 분노한 돌진.",
+            "en": ""
+          }
         },
         {
           "id": "final_roar",
-          "name": "최후의 함성",
+          "name": {
+            "ko": "최후의 함성",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 4, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 4,
+              "target": "self"
+            }
           ],
-          "description": "힘 4 획득. 이후 모든 공격 +4 피해."
+          "description": {
+            "ko": "힘 4 획득. 이후 모든 공격 +4 피해.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["poison_release", "berserker_charge", "final_roar", "berserker_charge", "poison_release", "berserker_charge"]
+        "sequence": [
+          "poison_release",
+          "berserker_charge",
+          "final_roar",
+          "berserker_charge",
+          "poison_release",
+          "berserker_charge"
+        ]
       }
     }
   ],
   "rewards": {
-    "gold": { "min": 60, "max": 85 },
+    "gold": {
+      "min": 60,
+      "max": 85
+    },
     "card_reward_count": 3,
     "relic_chance": 0.6
   },

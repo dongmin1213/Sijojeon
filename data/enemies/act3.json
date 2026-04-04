@@ -4,7 +4,11 @@
   "act": 3,
   "act_name": {
     "ko": "경복궁",
-    "description": "왕조의 심장부. 역모의 불꽃이 타오르는 궁궐 내전. 역적 무사, 배신한 금위군, 왕좌를 노리는 자객이 판을 치고 있다."
+    "description": {
+      "ko": "왕조의 심장부. 역모의 불꽃이 타오르는 궁궐 내전. 역적 무사, 배신한 금위군, 왕좌를 노리는 자객이 판을 치고 있다.",
+      "en": ""
+    },
+    "en": ""
   },
   "balance_ref": "ZER-12. 플레이어 기준: HP 25~45(3막 진입 후), 덱 규모 16~22장, 턴당 평균 피해 16~20, 방어도 10~14.",
   "balance_targets": {
@@ -21,9 +25,13 @@
       "name": {
         "ko": "역적 무사",
         "hanja": "逆賊武士",
-        "romanized": "Yeokjeok Musa"
+        "romanized": "Yeokjeok Musa",
+        "en": ""
       },
-      "description": "역모에 가담한 궁궐의 정예 무사. 오랜 수련으로 다져진 강한 체력과 화력을 자랑한다.",
+      "description": {
+        "ko": "역모에 가담한 궁궐의 정예 무사. 오랜 수련으로 다져진 강한 체력과 화력을 자랑한다.",
+        "en": ""
+      },
       "hp": {
         "min": 50,
         "max": 65
@@ -31,23 +39,38 @@
       "moves": [
         {
           "id": "precision_cut",
-          "name": "정밀 베기",
+          "name": {
+            "ko": "정밀 베기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 17,
           "times": 1,
-          "description": "급소를 노린 강력한 단발 공격."
+          "description": {
+            "ko": "급소를 노린 강력한 단발 공격.",
+            "en": ""
+          }
         },
         {
           "id": "rapid_assault",
-          "name": "속전속결",
+          "name": {
+            "ko": "속전속결",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 2,
-          "description": "7피해 × 2회 = 14 총피해. 빠른 연속 공격."
+          "description": {
+            "ko": "7피해 × 2회 = 14 총피해. 빠른 연속 공격.",
+            "en": ""
+          }
         },
         {
           "id": "battle_cry",
-          "name": "역적의 함성",
+          "name": {
+            "ko": "역적의 함성",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
             {
@@ -57,15 +80,24 @@
               "target": "self"
             }
           ],
-          "description": "힘 3 획득. 이후 모든 공격 피해 +3."
+          "description": {
+            "ko": "힘 3 획득. 이후 모든 공격 피해 +3.",
+            "en": ""
+          }
         },
         {
           "id": "finishing_blow",
-          "name": "결정타",
+          "name": {
+            "ko": "결정타",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 24,
           "times": 1,
-          "description": "battle_cry 후 사용. 힘+3 시 23피해. 전력을 다한 일격."
+          "description": {
+            "ko": "battle_cry 후 사용. 힘+3 시 23피해. 전력을 다한 일격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -95,9 +127,13 @@
       "name": {
         "ko": "역모 문관",
         "hanja": "逆謀文官",
-        "romanized": "Yeokmo Mungwan"
+        "romanized": "Yeokmo Mungwan",
+        "en": ""
       },
-      "description": "역모에 가담한 간신 문관. 음모와 저주로 상대를 무력화하며, 직접 싸우지 않고 방해한다.",
+      "description": {
+        "ko": "역모에 가담한 간신 문관. 음모와 저주로 상대를 무력화하며, 직접 싸우지 않고 방해한다.",
+        "en": ""
+      },
       "hp": {
         "min": 42,
         "max": 55
@@ -105,7 +141,10 @@
       "moves": [
         {
           "id": "conspiracy",
-          "name": "음모",
+          "name": {
+            "ko": "음모",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -121,11 +160,17 @@
               "target": "player"
             }
           ],
-          "description": "약화 2 + 취약 2 부여. 플레이어 전투력 대폭 감소."
+          "description": {
+            "ko": "약화 2 + 취약 2 부여. 플레이어 전투력 대폭 감소.",
+            "en": ""
+          }
         },
         {
           "id": "scroll_curse",
-          "name": "저주 문서",
+          "name": {
+            "ko": "저주 문서",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -141,26 +186,44 @@
               "target": "player"
             }
           ],
-          "description": "출혈 4 + 냉기 1 부여. 다음 턴 드로우 방해 + 지속 피해."
+          "description": {
+            "ko": "출혈 4 + 냉기 1 부여. 다음 턴 드로우 방해 + 지속 피해.",
+            "en": ""
+          }
         },
         {
           "id": "iron_brush",
-          "name": "철필 공격",
+          "name": {
+            "ko": "철필 공격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 13,
           "times": 1,
-          "description": "붓으로 내리치는 의외로 강한 공격."
+          "description": {
+            "ko": "붓으로 내리치는 의외로 강한 공격.",
+            "en": ""
+          }
         },
         {
           "id": "bureaucratic_shield",
-          "name": "관료적 방어막",
+          "name": {
+            "ko": "관료적 방어막",
+            "en": ""
+          },
           "intent": "defend",
           "block": 12,
-          "description": "문서와 관인으로 만든 방어막. 방어도 12 획득."
+          "description": {
+            "ko": "문서와 관인으로 만든 방어막. 방어도 12 획득.",
+            "en": ""
+          }
         },
         {
           "id": "treacherous_orders",
-          "name": "역명 하달",
+          "name": {
+            "ko": "역명 하달",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 11,
           "times": 1,
@@ -172,7 +235,10 @@
               "target": "player"
             }
           ],
-          "description": "9피해 + 약화 3. 최대 공격력 감소."
+          "description": {
+            "ko": "9피해 + 약화 3. 최대 공격력 감소.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -202,9 +268,13 @@
       "name": {
         "ko": "자객",
         "hanja": "刺客",
-        "romanized": "Jagaek"
+        "romanized": "Jagaek",
+        "en": ""
       },
-      "description": "역적에게 고용된 검은 그림자. 독침과 기습을 활용하며, 항상 급소를 노린다.",
+      "description": {
+        "ko": "역적에게 고용된 검은 그림자. 독침과 기습을 활용하며, 항상 급소를 노린다.",
+        "en": ""
+      },
       "hp": {
         "min": 44,
         "max": 58
@@ -212,7 +282,10 @@
       "moves": [
         {
           "id": "poison_needle",
-          "name": "독침",
+          "name": {
+            "ko": "독침",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 7,
           "times": 1,
@@ -225,19 +298,31 @@
               "note": "독: 매 턴 시작 시 n피해 후 n 감소, 0이 되면 소멸"
             }
           ],
-          "description": "6피해 + 독 5 부여. 누적 독 피해: 5+4+3+2+1=15."
+          "description": {
+            "ko": "6피해 + 독 5 부여. 누적 독 피해: 5+4+3+2+1=15.",
+            "en": ""
+          }
         },
         {
           "id": "shadow_strike",
-          "name": "암습",
+          "name": {
+            "ko": "암습",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 19,
           "times": 1,
-          "description": "그림자 속에서 기습하는 치명적 일격."
+          "description": {
+            "ko": "그림자 속에서 기습하는 치명적 일격.",
+            "en": ""
+          }
         },
         {
           "id": "vanish",
-          "name": "은신",
+          "name": {
+            "ko": "은신",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 10,
           "effects": [
@@ -249,11 +334,17 @@
               "note": "은신: 다음 공격 피해 +50%, 1회 발동 후 소멸"
             }
           ],
-          "description": "방어도 10 + 은신(다음 공격 +50%) 획득."
+          "description": {
+            "ko": "방어도 10 + 은신(다음 공격 +50%) 획득.",
+            "en": ""
+          }
         },
         {
           "id": "death_touch",
-          "name": "급소 찌르기",
+          "name": {
+            "ko": "급소 찌르기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
@@ -265,7 +356,10 @@
               "target": "player"
             }
           ],
-          "description": "12피해 + 출혈 3. 은신 상태에서 사용 시 18피해."
+          "description": {
+            "ko": "12피해 + 출혈 3. 은신 상태에서 사용 시 18피해.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -294,9 +388,13 @@
       "name": {
         "ko": "어전 내관",
         "hanja": "御前內官",
-        "romanized": "Eojeon Naegwan"
+        "romanized": "Eojeon Naegwan",
+        "en": ""
       },
-      "description": "왕의 측근에서 일하는 내관. 음독과 방어막을 사용하며, 겉보기에는 약해 보이지만 독침이 치명적이다.",
+      "description": {
+        "ko": "왕의 측근에서 일하는 내관. 음독과 방어막을 사용하며, 겉보기에는 약해 보이지만 독침이 치명적이다.",
+        "en": ""
+      },
       "hp": {
         "min": 45,
         "max": 58
@@ -304,7 +402,10 @@
       "moves": [
         {
           "id": "poison_vial",
-          "name": "독약 투여",
+          "name": {
+            "ko": "독약 투여",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 6,
           "times": 1,
@@ -316,11 +417,17 @@
               "target": "player"
             }
           ],
-          "description": "5피해 + 독 4 부여."
+          "description": {
+            "ko": "5피해 + 독 4 부여.",
+            "en": ""
+          }
         },
         {
           "id": "silk_screen",
-          "name": "비단 방어막",
+          "name": {
+            "ko": "비단 방어막",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 13,
           "effects": [
@@ -331,11 +438,17 @@
               "target": "self"
             }
           ],
-          "description": "방어도 13 + 힘 1."
+          "description": {
+            "ko": "방어도 13 + 힘 1.",
+            "en": ""
+          }
         },
         {
           "id": "whisper_curse",
-          "name": "밀귀 저주",
+          "name": {
+            "ko": "밀귀 저주",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -351,15 +464,24 @@
               "target": "player"
             }
           ],
-          "description": "냉기 1 + 출혈 3. 드로우 방해 + 지속 피해."
+          "description": {
+            "ko": "냉기 1 + 출혈 3. 드로우 방해 + 지속 피해.",
+            "en": ""
+          }
         },
         {
           "id": "eunuch_strike",
-          "name": "내관 공격",
+          "name": {
+            "ko": "내관 공격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 17,
           "times": 1,
-          "description": "힘 쌓인 후 의외로 강력한 일격."
+          "description": {
+            "ko": "힘 쌓인 후 의외로 강력한 일격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -390,9 +512,13 @@
       "name": {
         "ko": "금군 무사",
         "hanja": "禁軍武士",
-        "romanized": "Geumgun Musa"
+        "romanized": "Geumgun Musa",
+        "en": ""
       },
-      "description": "왕실 근위대 소속 정예 무사. 방어와 반격에 특화되어 있으며, 공격할수록 더 강해진다.",
+      "description": {
+        "ko": "왕실 근위대 소속 정예 무사. 방어와 반격에 특화되어 있으며, 공격할수록 더 강해진다.",
+        "en": ""
+      },
       "hp": {
         "min": 52,
         "max": 65
@@ -400,7 +526,10 @@
       "moves": [
         {
           "id": "guard_stance",
-          "name": "경계 자세",
+          "name": {
+            "ko": "경계 자세",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 15,
           "effects": [
@@ -411,27 +540,45 @@
               "target": "self"
             }
           ],
-          "description": "방어도 15 + 가시 3. 근접 공격 시 역피해 3 유발."
+          "description": {
+            "ko": "방어도 15 + 가시 3. 근접 공격 시 역피해 3 유발.",
+            "en": ""
+          }
         },
         {
           "id": "counter_slash",
-          "name": "반격 베기",
+          "name": {
+            "ko": "반격 베기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
-          "description": "방어도 보유 상태에서 반격. 방어도가 있을 때만 사용."
+          "description": {
+            "ko": "방어도 보유 상태에서 반격. 방어도가 있을 때만 사용.",
+            "en": ""
+          }
         },
         {
           "id": "royal_guard_strike",
-          "name": "근위 강타",
+          "name": {
+            "ko": "근위 강타",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 20,
           "times": 1,
-          "description": "전력을 다한 왕실 근위 공격."
+          "description": {
+            "ko": "전력을 다한 왕실 근위 공격.",
+            "en": ""
+          }
         },
         {
           "id": "armor_break",
-          "name": "방호 파괴",
+          "name": {
+            "ko": "방호 파괴",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 12,
           "times": 1,
@@ -449,7 +596,10 @@
               "target": "player"
             }
           ],
-          "description": "10피해 + 취약 2 + 약화 1."
+          "description": {
+            "ko": "10피해 + 취약 2 + 약화 1.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -480,9 +630,13 @@
       "name": {
         "ko": "저승사자",
         "hanja": "閻羅使者",
-        "romanized": "Jeoungseumsaja"
+        "romanized": "Jeoungseumsaja",
+        "en": ""
       },
-      "description": "이승과 저승의 경계에서 온 죽음의 사자. 사망 카운트다운으로 플레이어를 공포에 빠뜨린다.",
+      "description": {
+        "ko": "이승과 저승의 경계에서 온 죽음의 사자. 사망 카운트다운으로 플레이어를 공포에 빠뜨린다.",
+        "en": ""
+      },
       "hp": {
         "min": 40,
         "max": 55
@@ -490,7 +644,10 @@
       "moves": [
         {
           "id": "death_countdown_apply",
-          "name": "사망 선고",
+          "name": {
+            "ko": "사망 선고",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -501,19 +658,31 @@
               "note": "사망 카운트다운: 4턴 후 현재 HP 35% 감소"
             }
           ],
-          "description": "플레이어에게 사망 카운트다운 부여. 4턴 안에 처치하거나 카운트다운 해제 필요."
+          "description": {
+            "ko": "플레이어에게 사망 카운트다운 부여. 4턴 안에 처치하거나 카운트다운 해제 필요.",
+            "en": ""
+          }
         },
         {
           "id": "reaper_scythe",
-          "name": "낫 휘두르기",
+          "name": {
+            "ko": "낫 휘두르기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 13,
           "times": 1,
-          "description": "낫으로 내리치는 공격."
+          "description": {
+            "ko": "낫으로 내리치는 공격.",
+            "en": ""
+          }
         },
         {
           "id": "soul_drain",
-          "name": "혼 흡수",
+          "name": {
+            "ko": "혼 흡수",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 1,
@@ -523,15 +692,24 @@
               "amount": 5
             }
           ],
-          "description": "8피해를 입히고 그 절반(최대 5)을 자신이 회복."
+          "description": {
+            "ko": "8피해를 입히고 그 절반(최대 5)을 자신이 회복.",
+            "en": ""
+          }
         },
         {
           "id": "final_harvest",
-          "name": "마지막 수확",
+          "name": {
+            "ko": "마지막 수확",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 18,
           "times": 1,
-          "description": "HP 50% 이하 시 사용. 전력을 다한 마지막 공격."
+          "description": {
+            "ko": "HP 50% 이하 시 사용. 전력을 다한 마지막 공격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -567,9 +745,13 @@
       "name": {
         "ko": "사령",
         "hanja": "邪靈",
-        "romanized": "Saryeong"
+        "romanized": "Saryeong",
+        "en": ""
       },
-      "description": "어두운 기운이 뭉쳐 생겨난 악령. 모든 적을 동시에 공격하는 광역기와 생명력 흡수로 강인하다.",
+      "description": {
+        "ko": "어두운 기운이 뭉쳐 생겨난 악령. 모든 적을 동시에 공격하는 광역기와 생명력 흡수로 강인하다.",
+        "en": ""
+      },
       "hp": {
         "min": 48,
         "max": 60
@@ -577,16 +759,25 @@
       "moves": [
         {
           "id": "dark_burst",
-          "name": "암흑 폭발",
+          "name": {
+            "ko": "암흑 폭발",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 11,
           "times": 1,
           "aoe": true,
-          "description": "9피해 (광역). 단일 전투에서는 단순 9피해."
+          "description": {
+            "ko": "9피해 (광역). 단일 전투에서는 단순 9피해.",
+            "en": ""
+          }
         },
         {
           "id": "life_drain",
-          "name": "생명 흡수",
+          "name": {
+            "ko": "생명 흡수",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
@@ -596,11 +787,17 @@
               "amount": 7
             }
           ],
-          "description": "10피해 + 자신 HP 7 회복."
+          "description": {
+            "ko": "10피해 + 자신 HP 7 회복.",
+            "en": ""
+          }
         },
         {
           "id": "evil_aura",
-          "name": "사기(邪氣)",
+          "name": {
+            "ko": "사기(邪氣)",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -616,11 +813,17 @@
               "target": "player"
             }
           ],
-          "description": "출혈 4 + 취약 1 부여."
+          "description": {
+            "ko": "출혈 4 + 취약 1 부여.",
+            "en": ""
+          }
         },
         {
           "id": "shadow_form",
-          "name": "그림자 형체",
+          "name": {
+            "ko": "그림자 형체",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 12,
           "effects": [
@@ -631,7 +834,10 @@
               "target": "self"
             }
           ],
-          "description": "방어도 12 + 힘 2."
+          "description": {
+            "ko": "방어도 12 + 힘 2.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -662,9 +868,13 @@
       "name": {
         "ko": "친위군",
         "hanja": "親衛軍",
-        "romanized": "Chinwigun"
+        "romanized": "Chinwigun",
+        "en": ""
       },
-      "description": "왕의 친위대. 연속 방어로 공격을 막고 반격한다.",
+      "description": {
+        "ko": "왕의 친위대. 연속 방어로 공격을 막고 반격한다.",
+        "en": ""
+      },
       "hp": {
         "min": 52,
         "max": 64
@@ -672,23 +882,38 @@
       "moves": [
         {
           "id": "iron_defense",
-          "name": "철벽",
+          "name": {
+            "ko": "철벽",
+            "en": ""
+          },
           "intent": "defend",
           "damage": 0,
           "block": 15,
-          "description": "방어도 15 획득."
+          "description": {
+            "ko": "방어도 15 획득.",
+            "en": ""
+          }
         },
         {
           "id": "counter_strike",
-          "name": "반격",
+          "name": {
+            "ko": "반격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": "방어 후 강력한 반격."
+          "description": {
+            "ko": "방어 후 강력한 반격.",
+            "en": ""
+          }
         },
         {
           "id": "shield_wall",
-          "name": "방진",
+          "name": {
+            "ko": "방진",
+            "en": ""
+          },
           "intent": "defend",
           "damage": 0,
           "block": 8,
@@ -700,15 +925,24 @@
               "target": "self"
             }
           ],
-          "description": "방어도 8 + 갑주 4."
+          "description": {
+            "ko": "방어도 8 + 갑주 4.",
+            "en": ""
+          }
         },
         {
           "id": "execute",
-          "name": "처형",
+          "name": {
+            "ko": "처형",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 18,
           "times": 1,
-          "description": "모든 힘을 실은 일격."
+          "description": {
+            "ko": "모든 힘을 실은 일격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -738,9 +972,13 @@
       "name": {
         "ko": "화포수",
         "hanja": "火砲手",
-        "romanized": "Hwaposu"
+        "romanized": "Hwaposu",
+        "en": ""
       },
-      "description": "화약 무기를 다루는 군사. 광역 피해와 화상을 입힌다.",
+      "description": {
+        "ko": "화약 무기를 다루는 군사. 광역 피해와 화상을 입힌다.",
+        "en": ""
+      },
       "hp": {
         "min": 44,
         "max": 56
@@ -748,7 +986,10 @@
       "moves": [
         {
           "id": "cannon_blast",
-          "name": "포격",
+          "name": {
+            "ko": "포격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 1,
@@ -760,11 +1001,17 @@
               "target": "player"
             }
           ],
-          "description": "10 피해 + 화상 3."
+          "description": {
+            "ko": "10 피해 + 화상 3.",
+            "en": ""
+          }
         },
         {
           "id": "reload",
-          "name": "재장전",
+          "name": {
+            "ko": "재장전",
+            "en": ""
+          },
           "intent": "buff",
           "damage": 0,
           "effects": [
@@ -775,19 +1022,31 @@
               "target": "self"
             }
           ],
-          "description": "힘 2를 획득하며 다음 포격 준비."
+          "description": {
+            "ko": "힘 2를 획득하며 다음 포격 준비.",
+            "en": ""
+          }
         },
         {
           "id": "grapeshot",
-          "name": "산탄",
+          "name": {
+            "ko": "산탄",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 4,
           "times": 4,
-          "description": "4 피해를 4회. 총 16피해."
+          "description": {
+            "ko": "4 피해를 4회. 총 16피해.",
+            "en": ""
+          }
         },
         {
           "id": "fire_bomb",
-          "name": "화공",
+          "name": {
+            "ko": "화공",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 6,
           "times": 1,
@@ -799,7 +1058,10 @@
               "target": "player"
             }
           ],
-          "description": "6 피해 + 화상 5."
+          "description": {
+            "ko": "6 피해 + 화상 5.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -829,9 +1091,13 @@
       "name": {
         "ko": "역모 수괴",
         "hanja": "逆謀首魁",
-        "romanized": "Yeokmo Sugoe"
+        "romanized": "Yeokmo Sugoe",
+        "en": ""
       },
-      "description": "반란의 우두머리. 강력한 저주와 독으로 상대를 잠식한다.",
+      "description": {
+        "ko": "반란의 우두머리. 강력한 저주와 독으로 상대를 잠식한다.",
+        "en": ""
+      },
       "hp": {
         "min": 48,
         "max": 60
@@ -839,7 +1105,10 @@
       "moves": [
         {
           "id": "dark_curse",
-          "name": "흑주술",
+          "name": {
+            "ko": "흑주술",
+            "en": ""
+          },
           "intent": "debuff",
           "damage": 0,
           "effects": [
@@ -856,11 +1125,17 @@
               "target": "player"
             }
           ],
-          "description": "주박 2 + 독 4. DoT 증폭 콤보."
+          "description": {
+            "ko": "주박 2 + 독 4. DoT 증폭 콤보.",
+            "en": ""
+          }
         },
         {
           "id": "soul_drain",
-          "name": "정기 흡수",
+          "name": {
+            "ko": "정기 흡수",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 1,
@@ -870,11 +1145,17 @@
               "value": 5
             }
           ],
-          "description": "8 피해 + HP 5 회복."
+          "description": {
+            "ko": "8 피해 + HP 5 회복.",
+            "en": ""
+          }
         },
         {
           "id": "conspiracy",
-          "name": "음모",
+          "name": {
+            "ko": "음모",
+            "en": ""
+          },
           "intent": "buff",
           "damage": 0,
           "effects": [
@@ -891,11 +1172,17 @@
               "target": "self"
             }
           ],
-          "description": "힘 2 + 방어도 8."
+          "description": {
+            "ko": "힘 2 + 방어도 8.",
+            "en": ""
+          }
         },
         {
           "id": "death_sentence",
-          "name": "사형 선고",
+          "name": {
+            "ko": "사형 선고",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 14,
           "times": 1,
@@ -907,7 +1194,10 @@
               "target": "player"
             }
           ],
-          "description": "14 피해 + 사망표식 1."
+          "description": {
+            "ko": "14 피해 + 사망표식 1.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -937,9 +1227,13 @@
       "name": {
         "ko": "어영청 군관",
         "hanja": "御營廳軍官",
-        "romanized": "Eoyeongcheong Gungwan"
+        "romanized": "Eoyeongcheong Gungwan",
+        "en": ""
       },
-      "description": "왕의 직속 부대 지휘관. 2페이즈 전환으로 후반에 폭발한다.",
+      "description": {
+        "ko": "왕의 직속 부대 지휘관. 2페이즈 전환으로 후반에 폭발한다.",
+        "en": ""
+      },
       "hp": {
         "min": 55,
         "max": 68
@@ -947,7 +1241,10 @@
       "moves": [
         {
           "id": "command",
-          "name": "호령",
+          "name": {
+            "ko": "호령",
+            "en": ""
+          },
           "intent": "buff",
           "damage": 0,
           "effects": [
@@ -964,19 +1261,31 @@
               "target": "self"
             }
           ],
-          "description": "힘 1 + 방어도 6."
+          "description": {
+            "ko": "힘 1 + 방어도 6.",
+            "en": ""
+          }
         },
         {
           "id": "sword_swing",
-          "name": "군도 일섬",
+          "name": {
+            "ko": "군도 일섬",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 1,
-          "description": "지휘관의 정확한 참격."
+          "description": {
+            "ko": "지휘관의 정확한 참격.",
+            "en": ""
+          }
         },
         {
           "id": "rally_troops",
-          "name": "총공격 명령",
+          "name": {
+            "ko": "총공격 명령",
+            "en": ""
+          },
           "intent": "buff",
           "damage": 0,
           "effects": [
@@ -987,19 +1296,31 @@
               "target": "self"
             }
           ],
-          "description": "HP 50% 이하 시 페이즈 전환. 힘 3 획득."
+          "description": {
+            "ko": "HP 50% 이하 시 페이즈 전환. 힘 3 획득.",
+            "en": ""
+          }
         },
         {
           "id": "charge_attack",
-          "name": "돌격",
+          "name": {
+            "ko": "돌격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 2,
-          "description": "2회 돌격 공격. 총 16피해."
+          "description": {
+            "ko": "2회 돌격 공격. 총 16피해.",
+            "en": ""
+          }
         },
         {
           "id": "final_stand",
-          "name": "결사 항전",
+          "name": {
+            "ko": "결사 항전",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 15,
           "times": 1,
@@ -1011,7 +1332,10 @@
               "target": "player"
             }
           ],
-          "description": "15 피해 + 취약 2."
+          "description": {
+            "ko": "15 피해 + 취약 2.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -1043,9 +1367,13 @@
       "name": {
         "ko": "역적 장수",
         "hanja": "逆賊將帥",
-        "romanized": "Yeokjeok Jangsu"
+        "romanized": "Yeokjeok Jangsu",
+        "en": ""
       },
-      "description": "역모를 이끄는 핵심 장수. 강한 개인 전투력과 함께 부하를 지휘하는 능력도 갖추고 있다.",
+      "description": {
+        "ko": "역모를 이끄는 핵심 장수. 강한 개인 전투력과 함께 부하를 지휘하는 능력도 갖추고 있다.",
+        "en": ""
+      },
       "hp": {
         "min": 100,
         "max": 125
@@ -1054,23 +1382,38 @@
       "moves": [
         {
           "id": "general_strike",
-          "name": "장수의 일격",
+          "name": {
+            "ko": "장수의 일격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 16,
           "times": 1,
-          "description": "장수의 강력한 단발 공격."
+          "description": {
+            "ko": "장수의 강력한 단발 공격.",
+            "en": ""
+          }
         },
         {
           "id": "command_charge",
-          "name": "돌격 명령",
+          "name": {
+            "ko": "돌격 명령",
+            "en": ""
+          },
           "intent": "summon",
           "summons": "E301",
           "summon_count": 1,
-          "description": "역적 무사 1명 소환. 처치 시 재소환 없음."
+          "description": {
+            "ko": "역적 무사 1명 소환. 처치 시 재소환 없음.",
+            "en": ""
+          }
         },
         {
           "id": "war_banner",
-          "name": "역모 군기",
+          "name": {
+            "ko": "역모 군기",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
             {
@@ -1080,11 +1423,17 @@
               "target": "self"
             }
           ],
-          "description": "힘 4 획득. 군기를 세워 전의를 고취."
+          "description": {
+            "ko": "힘 4 획득. 군기를 세워 전의를 고취.",
+            "en": ""
+          }
         },
         {
           "id": "iron_will",
-          "name": "철의 의지",
+          "name": {
+            "ko": "철의 의지",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 16,
           "effects": [
@@ -1095,23 +1444,38 @@
               "target": "self"
             }
           ],
-          "description": "방어도 16 + 힘 2. 강인한 의지로 버텨냄."
+          "description": {
+            "ko": "방어도 16 + 힘 2. 강인한 의지로 버텨냄.",
+            "en": ""
+          }
         },
         {
           "id": "cleave",
-          "name": "횡단 베기",
+          "name": {
+            "ko": "횡단 베기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 2,
-          "description": "10피해 × 2회 = 20 총피해. 횡으로 두 번 베기."
+          "description": {
+            "ko": "10피해 × 2회 = 20 총피해. 횡으로 두 번 베기.",
+            "en": ""
+          }
         },
         {
           "id": "warlord_wrath",
-          "name": "장수의 분노",
+          "name": {
+            "ko": "장수의 분노",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 22,
           "times": 1,
-          "description": "HP 50% 미만 시만 사용. 힘+4 기준 26피해. 절박한 최강 일격."
+          "description": {
+            "ko": "HP 50% 미만 시만 사용. 힘+4 기준 26피해. 절박한 최강 일격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -1148,9 +1512,13 @@
       "name": {
         "ko": "어사",
         "hanja": "御使",
-        "romanized": "Eosa"
+        "romanized": "Eosa",
+        "en": ""
       },
-      "description": "역모 측에 매수된 암행어사. 권력을 남용해 플레이어를 압박하고 포졸을 소환해 다수 전선을 형성한다.",
+      "description": {
+        "ko": "역모 측에 매수된 암행어사. 권력을 남용해 플레이어를 압박하고 포졸을 소환해 다수 전선을 형성한다.",
+        "en": ""
+      },
       "hp": {
         "min": 80,
         "max": 95
@@ -1159,7 +1527,10 @@
       "moves": [
         {
           "id": "coercion",
-          "name": "강압 심문",
+          "name": {
+            "ko": "강압 심문",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -1176,13 +1547,22 @@
               "target": "player"
             }
           ],
-          "description": "플레이어에게 구금 3 + 약화 2 부여. 카드 비용 3턴간 +1."
+          "description": {
+            "ko": "플레이어에게 구금 3 + 약화 2 부여. 카드 비용 3턴간 +1.",
+            "en": ""
+          }
         },
         {
           "id": "summon_guards",
-          "name": "포졸 소환",
+          "name": {
+            "ko": "포졸 소환",
+            "en": ""
+          },
           "intent": "summon",
-          "description": "궁궐 포졸 2명을 소환한다. 각 HP 18.",
+          "description": {
+            "ko": "궁궐 포졸 2명을 소환한다. 각 HP 18.",
+            "en": ""
+          },
           "summon": [
             {
               "enemy_id": "E002",
@@ -1194,7 +1574,10 @@
         },
         {
           "id": "royal_decree",
-          "name": "어명 선포",
+          "name": {
+            "ko": "어명 선포",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 14,
           "times": 1,
@@ -1206,11 +1589,17 @@
               "target": "player"
             }
           ],
-          "description": "14피해 + 취약 2. 어명을 빙자한 강한 공격."
+          "description": {
+            "ko": "14피해 + 취약 2. 어명을 빙자한 강한 공격.",
+            "en": ""
+          }
         },
         {
           "id": "investigator_shield",
-          "name": "어사 방패",
+          "name": {
+            "ko": "어사 방패",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 14,
           "effects": [
@@ -1221,11 +1610,17 @@
               "target": "self"
             }
           ],
-          "description": "방어도 14 + 힘 2."
+          "description": {
+            "ko": "방어도 14 + 힘 2.",
+            "en": ""
+          }
         },
         {
           "id": "final_verdict",
-          "name": "최후 판결",
+          "name": {
+            "ko": "최후 판결",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 18,
           "times": 1,
@@ -1237,7 +1632,10 @@
               "target": "player"
             }
           ],
-          "description": "18피해 + 출혈 4. HP 50% 미만 시 사용."
+          "description": {
+            "ko": "18피해 + 출혈 4. HP 50% 미만 시 사용.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -1274,9 +1672,13 @@
       "name": {
         "ko": "이무기 왕",
         "hanja": "離龍王",
-        "romanized": "Imugi-wang"
+        "romanized": "Imugi-wang",
+        "en": ""
       },
-      "description": "이무기 중 가장 강한 개체. 용이 되지 못한 분노로 독과 불꽃을 뿜으며 부하 이무기를 소환한다.",
+      "description": {
+        "ko": "이무기 중 가장 강한 개체. 용이 되지 못한 분노로 독과 불꽃을 뿜으며 부하 이무기를 소환한다.",
+        "en": ""
+      },
       "hp": {
         "min": 90,
         "max": 110
@@ -1285,7 +1687,10 @@
       "moves": [
         {
           "id": "king_venom",
-          "name": "왕의 독기",
+          "name": {
+            "ko": "왕의 독기",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 8,
           "times": 1,
@@ -1297,13 +1702,22 @@
               "target": "player"
             }
           ],
-          "description": "8피해 + 독 6 부여. 누적 독 피해: 6+5+4+3+2+1=21."
+          "description": {
+            "ko": "8피해 + 독 6 부여. 누적 독 피해: 6+5+4+3+2+1=21.",
+            "en": ""
+          }
         },
         {
           "id": "summon_imugi",
-          "name": "이무기 소환",
+          "name": {
+            "ko": "이무기 소환",
+            "en": ""
+          },
           "intent": "summon",
-          "description": "소형 이무기 1마리를 소환한다. HP 30.",
+          "description": {
+            "ko": "소형 이무기 1마리를 소환한다. HP 30.",
+            "en": ""
+          },
           "summon": [
             {
               "enemy_id": "EL001",
@@ -1315,15 +1729,24 @@
         },
         {
           "id": "tail_sweep",
-          "name": "꼬리 휩쓸기",
+          "name": {
+            "ko": "꼬리 휩쓸기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 2,
-          "description": "10피해 × 2회 = 20 총피해. 광역 꼬리 공격."
+          "description": {
+            "ko": "10피해 × 2회 = 20 총피해. 광역 꼬리 공격.",
+            "en": ""
+          }
         },
         {
           "id": "dragon_breath",
-          "name": "용독기",
+          "name": {
+            "ko": "용독기",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 12,
           "times": 1,
@@ -1341,11 +1764,17 @@
               "target": "player"
             }
           ],
-          "description": "12피해 + 화상 3 + 독 3. 독과 불꽃을 동시에 뿜는다."
+          "description": {
+            "ko": "12피해 + 화상 3 + 독 3. 독과 불꽃을 동시에 뿜는다.",
+            "en": ""
+          }
         },
         {
           "id": "serpent_coil",
-          "name": "대형 똬리",
+          "name": {
+            "ko": "대형 똬리",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 18,
           "effects": [
@@ -1356,15 +1785,24 @@
               "target": "self"
             }
           ],
-          "description": "방어도 18 + 힘 3. 단단히 감아 방어 자세."
+          "description": {
+            "ko": "방어도 18 + 힘 3. 단단히 감아 방어 자세.",
+            "en": ""
+          }
         },
         {
           "id": "wrath_strike",
-          "name": "분노의 강타",
+          "name": {
+            "ko": "분노의 강타",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 24,
           "times": 1,
-          "description": "최대 위력의 일격. serpent_coil(힘+3) 후 27피해. HP 40% 이하에서만 사용."
+          "description": {
+            "ko": "최대 위력의 일격. serpent_coil(힘+3) 후 27피해. HP 40% 이하에서만 사용.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {

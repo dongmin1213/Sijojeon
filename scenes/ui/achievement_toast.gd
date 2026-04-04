@@ -71,13 +71,13 @@ func _display(ach: Dictionary) -> void:
 	vbox.add_child(header)
 
 	var name_label := Label.new()
-	name_label.text = ach.get("name", "")
+	name_label.text = TranslationManager.trd(ach, "name", "")
 	name_label.add_theme_font_size_override("font_size", int(20.0 * sf))
 	name_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
 	vbox.add_child(name_label)
 
 	var desc_label := Label.new()
-	desc_label.text = ach.get("description", "")
+	desc_label.text = TranslationManager.trd(ach, "description", "")
 	desc_label.add_theme_font_size_override("font_size", int(14.0 * sf))
 	desc_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8))
 	vbox.add_child(desc_label)

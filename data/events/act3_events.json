@@ -4,40 +4,69 @@
   "act": 3,
   "act_name": {
     "ko": "경복궁",
-    "description": "왕조의 심장부. 역모의 불꽃이 타오르는 궁궐 내전."
+    "description": {
+      "ko": "왕조의 심장부. 역모의 불꽃이 타오르는 궁궐 내전.",
+      "en": ""
+    },
+    "en": ""
   },
   "events": [
     {
       "id": "EVT_A3_001",
       "title": {
         "ko": "충신의 밀서",
-        "description": "궁궐 복도에서 한 관리가 몰래 다가와 밀서를 건넨다."
+        "description": {
+          "ko": "궁궐 복도에서 한 관리가 몰래 다가와 밀서를 건넨다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"역적의 배치도를 입수했소. 이것이 도움이 될 것이오.\"",
+      "flavor_text": {
+        "ko": "\"역적의 배치도를 입수했소. 이것이 도움이 될 것이오.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "accept",
-          "text": "밀서를 받아 역적 배치를 파악한다.",
+          "text": {
+            "ko": "밀서를 받아 역적 배치를 파악한다.",
+            "en": ""
+          },
           "effect_type": "buff_next_combat",
           "effect_value_bonus": {
             "buff": "strength",
             "stacks": 3
           },
-          "result_text": "역적의 약점을 파악했다. 다음 전투 힘 +3."
+          "result_text": {
+            "ko": "역적의 약점을 파악했다. 다음 전투 힘 +3.",
+            "en": ""
+          }
         },
         {
           "id": "demand_more",
-          "text": "더 많은 정보를 요구한다.",
+          "text": {
+            "ko": "더 많은 정보를 요구한다.",
+            "en": ""
+          },
           "effect_type": "card_gain",
           "effect_value": 1,
-          "result_text": "관리가 비밀 무공 서적을 건넨다. 카드 1장 획득."
+          "result_text": {
+            "ko": "관리가 비밀 무공 서적을 건넨다. 카드 1장 획득.",
+            "en": ""
+          }
         },
         {
           "id": "refuse",
-          "text": "함정일 수 있다며 거절한다.",
+          "text": {
+            "ko": "함정일 수 있다며 거절한다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 25,
-          "result_text": "관리가 보상으로 엽전을 놓고 간다. 엽전 25 획득."
+          "result_text": {
+            "ko": "관리가 보상으로 엽전을 놓고 간다. 엽전 25 획득.",
+            "en": ""
+          }
         }
       ]
     },
@@ -45,36 +74,67 @@
       "id": "EVT_A3_002",
       "title": {
         "ko": "궁녀의 부탁",
-        "description": "떨고 있는 궁녀가 길을 막는다. 역적에게 쫓기고 있는 듯하다."
+        "description": {
+          "ko": "떨고 있는 궁녀가 길을 막는다. 역적에게 쫓기고 있는 듯하다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"제발 숨겨주세요... 그들이 오고 있어요.\"",
+      "flavor_text": {
+        "ko": "\"제발 숨겨주세요... 그들이 오고 있어요.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "hide",
-          "text": "궁녀를 숨겨주고 역적을 따돌린다.",
+          "text": {
+            "ko": "궁녀를 숨겨주고 역적을 따돌린다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 15,
-          "result_text": "궁녀가 감사히 여기며 비장의 약을 건넨다. HP 15 회복."
+          "result_text": {
+            "ko": "궁녀가 감사히 여기며 비장의 약을 건넨다. HP 15 회복.",
+            "en": ""
+          }
         },
         {
           "id": "fight_guards",
-          "text": "추격하는 역적 병사를 상대한다.",
+          "text": {
+            "ko": "추격하는 역적 병사를 상대한다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 12,
-          "result_text": "병사를 물리쳤다. HP 12 손실, 엽전 40 + 카드 1장 획득.",
+          "result_text": {
+            "ko": "병사를 물리쳤다. HP 12 손실, 엽전 40 + 카드 1장 획득.",
+            "en": ""
+          },
           "effect_type_bonus": "gold_gain",
           "effect_value_bonus": 40,
-          "result_text_full": "HP 12 손실 → 엽전 40 + 카드 1장 획득."
+          "result_text_full": {
+            "ko": "HP 12 손실 → 엽전 40 + 카드 1장 획득.",
+            "en": ""
+          }
         },
         {
           "id": "betray",
-          "text": "궁녀의 위치를 역적에게 알린다.",
+          "text": {
+            "ko": "궁녀의 위치를 역적에게 알린다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 60,
-          "result_text": "역적이 보상으로 엽전을 건넨다. 엽전 60 획득, 최대 HP -5.",
+          "result_text": {
+            "ko": "역적이 보상으로 엽전을 건넨다. 엽전 60 획득, 최대 HP -5.",
+            "en": ""
+          },
           "effect_type_bonus": "max_hp_loss",
           "effect_value_bonus": 5,
-          "result_text_full": "엽전 60 획득 → 최대 HP -5."
+          "result_text_full": {
+            "ko": "엽전 60 획득 → 최대 HP -5.",
+            "en": ""
+          }
         }
       ]
     },
@@ -82,34 +142,59 @@
       "id": "EVT_A3_003",
       "title": {
         "ko": "어의의 치료실",
-        "description": "궁궐 한쪽에 어의의 치료실이 아직 남아 있다. 약재가 풍부하다."
+        "description": {
+          "ko": "궁궐 한쪽에 어의의 치료실이 아직 남아 있다. 약재가 풍부하다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"아직 쓸 수 있는 약재가 남아있소.\"",
+      "flavor_text": {
+        "ko": "\"아직 쓸 수 있는 약재가 남아있소.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "full_heal",
-          "text": "어의의 치료를 받는다. (엽전 50)",
+          "text": {
+            "ko": "어의의 치료를 받는다. (엽전 50)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 50,
-          "result_text": "어의의 명의술로 몸이 완전히 회복된다. 엽전 50 소비, HP 완전 회복.",
+          "result_text": {
+            "ko": "어의의 명의술로 몸이 완전히 회복된다. 엽전 50 소비, HP 완전 회복.",
+            "en": ""
+          },
           "effect_type_bonus": "hp_full_heal",
           "effect_value_bonus": 0
         },
         {
           "id": "max_hp",
-          "text": "영약을 복용한다. (엽전 30)",
+          "text": {
+            "ko": "영약을 복용한다. (엽전 30)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 30,
-          "result_text": "영약의 효과로 체질이 강화된다. 엽전 30 소비, 최대 HP +5.",
+          "result_text": {
+            "ko": "영약의 효과로 체질이 강화된다. 엽전 30 소비, 최대 HP +5.",
+            "en": ""
+          },
           "effect_type_bonus": "max_hp_gain",
           "effect_value_bonus": 5
         },
         {
           "id": "steal",
-          "text": "약재를 훔쳐 달아난다.",
+          "text": {
+            "ko": "약재를 훔쳐 달아난다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 25,
-          "result_text": "약재로 자가 치료했다. HP 25 회복."
+          "result_text": {
+            "ko": "약재로 자가 치료했다. HP 25 회복.",
+            "en": ""
+          }
         }
       ]
     },
@@ -117,33 +202,61 @@
       "id": "EVT_A3_004",
       "title": {
         "ko": "역적의 함정",
-        "description": "궁궐 통로에 설치된 역적의 함정. 앞서간 자의 흔적이 남아 있다."
+        "description": {
+          "ko": "궁궐 통로에 설치된 역적의 함정. 앞서간 자의 흔적이 남아 있다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "바닥에 미세한 실이 걸려 있다.",
+      "flavor_text": {
+        "ko": "바닥에 미세한 실이 걸려 있다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "disarm",
-          "text": "조심스럽게 함정을 해제한다.",
+          "text": {
+            "ko": "조심스럽게 함정을 해제한다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 30,
-          "result_text": "함정 장치를 분해하여 값진 부품을 얻었다. 엽전 30 획득."
+          "result_text": {
+            "ko": "함정 장치를 분해하여 값진 부품을 얻었다. 엽전 30 획득.",
+            "en": ""
+          }
         },
         {
           "id": "trigger",
-          "text": "일부러 함정을 작동시켜 적을 유인한다.",
+          "text": {
+            "ko": "일부러 함정을 작동시켜 적을 유인한다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 10,
-          "result_text": "함정에 맞았지만 달려온 역적 병사의 물건을 빼앗았다.",
+          "result_text": {
+            "ko": "함정에 맞았지만 달려온 역적 병사의 물건을 빼앗았다.",
+            "en": ""
+          },
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus": 1,
-          "result_text_full": "HP 10 손실 → 유물 1개 획득."
+          "result_text_full": {
+            "ko": "HP 10 손실 → 유물 1개 획득.",
+            "en": ""
+          }
         },
         {
           "id": "detour",
-          "text": "우회한다.",
+          "text": {
+            "ko": "우회한다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "안전하게 다른 길로 돌아간다."
+          "result_text": {
+            "ko": "안전하게 다른 길로 돌아간다.",
+            "en": ""
+          }
         }
       ]
     },
@@ -151,33 +264,61 @@
       "id": "EVT_A3_005",
       "title": {
         "ko": "왕의 서재",
-        "description": "역적이 미처 약탈하지 못한 왕의 서재를 발견했다."
+        "description": {
+          "ko": "역적이 미처 약탈하지 못한 왕의 서재를 발견했다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "서가에는 비전서와 왕실의 보물이 남아 있다.",
+      "flavor_text": {
+        "ko": "서가에는 비전서와 왕실의 보물이 남아 있다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "study",
-          "text": "비전서를 연구한다.",
+          "text": {
+            "ko": "비전서를 연구한다.",
+            "en": ""
+          },
           "effect_type": "card_gain",
           "effect_value": 1,
-          "result_text": "강력한 무공의 비급을 깨달았다. 카드 1장 획득."
+          "result_text": {
+            "ko": "강력한 무공의 비급을 깨달았다. 카드 1장 획득.",
+            "en": ""
+          }
         },
         {
           "id": "treasure",
-          "text": "보물을 챙긴다.",
+          "text": {
+            "ko": "보물을 챙긴다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 50,
-          "result_text": "왕실 보물을 챙겼다. 엽전 50 획득."
+          "result_text": {
+            "ko": "왕실 보물을 챙겼다. 엽전 50 획득.",
+            "en": ""
+          }
         },
         {
           "id": "both",
-          "text": "전부 가져간다.",
+          "text": {
+            "ko": "전부 가져간다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 30,
-          "result_text": "욕심에 서두르다 일부만 챙겼다. 엽전 30 + HP 8 손실.",
+          "result_text": {
+            "ko": "욕심에 서두르다 일부만 챙겼다. 엽전 30 + HP 8 손실.",
+            "en": ""
+          },
           "effect_type_bonus": "hp_loss",
           "effect_value_bonus": 8,
-          "result_text_full": "엽전 30 획득 → HP 8 손실."
+          "result_text_full": {
+            "ko": "엽전 30 획득 → HP 8 손실.",
+            "en": ""
+          }
         }
       ]
     },
@@ -185,33 +326,58 @@
       "id": "EVT_A3_006",
       "title": {
         "ko": "전투 전야",
-        "description": "최후의 결전을 앞두고 잠시 쉴 수 있는 방을 찾았다."
+        "description": {
+          "ko": "최후의 결전을 앞두고 잠시 쉴 수 있는 방을 찾았다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "마지막 준비를 할 시간이다.",
+      "flavor_text": {
+        "ko": "마지막 준비를 할 시간이다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "rest",
-          "text": "몸을 쉬어 체력을 회복한다.",
+          "text": {
+            "ko": "몸을 쉬어 체력을 회복한다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 20,
-          "result_text": "잠시나마 몸을 추스렸다. HP 20 회복."
+          "result_text": {
+            "ko": "잠시나마 몸을 추스렸다. HP 20 회복.",
+            "en": ""
+          }
         },
         {
           "id": "sharpen",
-          "text": "무기를 갈고 정신을 가다듬는다.",
+          "text": {
+            "ko": "무기를 갈고 정신을 가다듬는다.",
+            "en": ""
+          },
           "effect_type": "buff_next_combat",
           "effect_value_bonus": {
             "buff": "strength",
             "stacks": 4
           },
-          "result_text": "결의를 다졌다. 다음 전투 힘 +4."
+          "result_text": {
+            "ko": "결의를 다졌다. 다음 전투 힘 +4.",
+            "en": ""
+          }
         },
         {
           "id": "pray",
-          "text": "왕실 사당에서 기도한다.",
+          "text": {
+            "ko": "왕실 사당에서 기도한다.",
+            "en": ""
+          },
           "effect_type": "max_hp_gain",
           "effect_value": 5,
-          "result_text": "선왕의 가호가 느껴진다. 최대 HP +5."
+          "result_text": {
+            "ko": "선왕의 가호가 느껴진다. 최대 HP +5.",
+            "en": ""
+          }
         }
       ]
     },
@@ -219,34 +385,59 @@
       "id": "EVT_A3_007",
       "title": {
         "ko": "왕의 밀명",
-        "description": "어둠 속에서 내관이 다가온다. \"전하께서 밀명을 내리셨습니다. 들으시겠습니까?\""
+        "description": {
+          "ko": "어둠 속에서 내관이 다가온다. \"전하께서 밀명을 내리셨습니다. 들으시겠습니까?\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "두루마리에는 왕의 친필이 적혀있다.",
+      "flavor_text": {
+        "ko": "두루마리에는 왕의 친필이 적혀있다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "accept_mission",
-          "text": "밀명을 받아들인다.",
+          "text": {
+            "ko": "밀명을 받아들인다.",
+            "en": ""
+          },
           "effect_type": "relic_gain",
           "effect_meta": {
             "rarity": 4
           },
-          "result_text": "전하의 신임을 받아 전설 유물 1개를 하사받는다.",
+          "result_text": {
+            "ko": "전하의 신임을 받아 전설 유물 1개를 하사받는다.",
+            "en": ""
+          },
           "note": "전설 유물 1개 획득."
         },
         {
           "id": "reject_for_gold",
-          "text": "거절하고 보상만 받는다.",
+          "text": {
+            "ko": "거절하고 보상만 받는다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 80,
-          "result_text": "엽전 80을 챙긴다.",
+          "result_text": {
+            "ko": "엽전 80을 챙긴다.",
+            "en": ""
+          },
           "note": "골드 80 획득."
         },
         {
           "id": "ignore_all",
-          "text": "모른 척 자리를 피한다.",
+          "text": {
+            "ko": "모른 척 자리를 피한다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "모르는 척 자리를 피했다.",
+          "result_text": {
+            "ko": "모르는 척 자리를 피했다.",
+            "en": ""
+          },
           "note": "중립."
         }
       ]
@@ -255,32 +446,57 @@
       "id": "EVT_A3_008",
       "title": {
         "ko": "역모 문서",
-        "description": "죽은 역적 문관의 품에서 두루마리가 나왔다. 역모의 전모가 적혀 있는 듯하다."
+        "description": {
+          "ko": "죽은 역적 문관의 품에서 두루마리가 나왔다. 역모의 전모가 적혀 있는 듯하다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "이 문서 하나가 모든 것을 바꿀 수 있다.",
+      "flavor_text": {
+        "ko": "이 문서 하나가 모든 것을 바꿀 수 있다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "use_document",
-          "text": "문서를 이용해 협박한다.",
+          "text": {
+            "ko": "문서를 이용해 협박한다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 100,
-          "result_text": "역모 가담자들이 입막음 비용으로 엽전 100을 건넨다.",
+          "result_text": {
+            "ko": "역모 가담자들이 입막음 비용으로 엽전 100을 건넨다.",
+            "en": ""
+          },
           "note": "골드 100 획득."
         },
         {
           "id": "submit",
-          "text": "문서를 왕에게 올린다.",
+          "text": {
+            "ko": "문서를 왕에게 올린다.",
+            "en": ""
+          },
           "effect_type": "max_hp_gain",
           "effect_value": 15,
-          "result_text": "충성심을 인정받아 최대 HP +15.",
+          "result_text": {
+            "ko": "충성심을 인정받아 최대 HP +15.",
+            "en": ""
+          },
           "note": "최대 HP +15."
         },
         {
           "id": "destroy",
-          "text": "문서를 태워버린다.",
+          "text": {
+            "ko": "문서를 태워버린다.",
+            "en": ""
+          },
           "effect_type": "card_remove_free",
           "effect_value": 1,
-          "result_text": "증거를 없앴다. 덱에서 카드 1장을 무료로 제거할 수 있다.",
+          "result_text": {
+            "ko": "증거를 없앴다. 덱에서 카드 1장을 무료로 제거할 수 있다.",
+            "en": ""
+          },
           "note": "무료 카드 제거 1회."
         }
       ]
@@ -289,32 +505,57 @@
       "id": "EVT_A3_009",
       "title": {
         "ko": "마지막 결전 전야",
-        "description": "최후의 전투를 앞두고 낡은 주막에 들렀다. 술잔을 기울이며 지나온 길을 돌아본다."
+        "description": {
+          "ko": "최후의 전투를 앞두고 낡은 주막에 들렀다. 술잔을 기울이며 지나온 길을 돌아본다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"오늘 밤이 지나면 모든 것이 결판나겠지.\"",
+      "flavor_text": {
+        "ko": "\"오늘 밤이 지나면 모든 것이 결판나겠지.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "rest_fully",
-          "text": "푹 쉬며 몸을 회복한다.",
+          "text": {
+            "ko": "푹 쉬며 몸을 회복한다.",
+            "en": ""
+          },
           "effect_type": "hp_full_heal",
           "effect_value": 0,
-          "result_text": "편안한 잠을 자고 일어나니 몸이 한결 가볍다. HP 완전 회복.",
+          "result_text": {
+            "ko": "편안한 잠을 자고 일어나니 몸이 한결 가볍다. HP 완전 회복.",
+            "en": ""
+          },
           "note": "HP 완전 회복."
         },
         {
           "id": "sharpen_skills",
-          "text": "덱을 정비하고 전술을 다듬는다.",
+          "text": {
+            "ko": "덱을 정비하고 전술을 다듬는다.",
+            "en": ""
+          },
           "effect_type": "card_upgrade_free",
           "effect_value": 1,
-          "result_text": "덱에서 카드 1장을 무료로 강화한다.",
+          "result_text": {
+            "ko": "덱에서 카드 1장을 무료로 강화한다.",
+            "en": ""
+          },
           "note": "무료 카드 강화 1장."
         },
         {
           "id": "drink_courage",
-          "text": "술을 마시며 기운을 모은다.",
+          "text": {
+            "ko": "술을 마시며 기운을 모은다.",
+            "en": ""
+          },
           "effect_type": "next_battle_block",
           "effect_value": 20,
-          "result_text": "다음 전투 시작 시 방어도 20 추가 획득.",
+          "result_text": {
+            "ko": "다음 전투 시작 시 방어도 20 추가 획득.",
+            "en": ""
+          },
           "note": "다음 전투 시작 방어도 +20."
         }
       ]
@@ -323,38 +564,63 @@
       "id": "EVT_SG_001",
       "title": {
         "ko": "보부상의 짐",
-        "description": "보부상이 무거운 짐을 지고 고개를 넘고 있다. 짐 속에 희귀한 물건이 보인다."
+        "description": {
+          "ko": "보부상이 무거운 짐을 지고 고개를 넘고 있다. 짐 속에 희귀한 물건이 보인다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"좋은 물건 있소! 다 팔아야 고향에 돌아갈 수 있다오.\"",
+      "flavor_text": {
+        "ko": "\"좋은 물건 있소! 다 팔아야 고향에 돌아갈 수 있다오.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "buy_rare",
-          "text": "희귀 물건을 산다. (금화 -25, 유물 획득)",
+          "text": {
+            "ko": "희귀 물건을 산다. (금화 -25, 유물 획득)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 25,
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus": 1,
-          "result_text": "진귀한 물건을 구입했다. 유물 1개 획득!",
+          "result_text": {
+            "ko": "진귀한 물건을 구입했다. 유물 1개 획득!",
+            "en": ""
+          },
           "note": "금화→유물. 고비용."
         },
         {
           "id": "buy_cheap",
-          "text": "잡화를 산다. (금화 -8, HP +10)",
+          "text": {
+            "ko": "잡화를 산다. (금화 -8, HP +10)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 8,
           "effect_type_bonus": "hp_gain",
           "effect_value_bonus": 10,
-          "result_text": "약재와 음식을 구입했다. HP 10 회복.",
+          "result_text": {
+            "ko": "약재와 음식을 구입했다. HP 10 회복.",
+            "en": ""
+          },
           "note": "금화→HP."
         },
         {
           "id": "help_carry",
-          "text": "짐을 옮겨준다. (금화 +8, 민심 +2)",
+          "text": {
+            "ko": "짐을 옮겨준다. (금화 +8, 민심 +2)",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 8,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": 2,
-          "result_text": "짐을 도와주자 감사히 여기며 노자를 건넸다.",
+          "result_text": {
+            "ko": "짐을 도와주자 감사히 여기며 노자를 건넸다.",
+            "en": ""
+          },
           "note": "무료 보상."
         }
       ]
@@ -363,33 +629,55 @@
       "id": "EVT_SG_002",
       "title": {
         "ko": "대동강 교역선",
-        "description": "대동강에 정박한 교역선. 청나라 상인이 물건을 펼쳐놓고 있다."
+        "description": {
+          "ko": "대동강에 정박한 교역선. 청나라 상인이 물건을 펼쳐놓고 있다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"조선 양반! 이 물건은 중원에서도 구하기 힘든 것이오.\"",
+      "flavor_text": {
+        "ko": "\"조선 양반! 이 물건은 중원에서도 구하기 힘든 것이오.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "trade_big",
-          "text": "대규모 교역을 한다. (금화 -30, 카드 3장 중 선택 + 유물)",
+          "text": {
+            "ko": "대규모 교역을 한다. (금화 -30, 카드 3장 중 선택 + 유물)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 30,
           "effect_type_bonus": "card_choice",
           "effect_value_bonus": 3,
-          "result_text": "금화 30을 투자하여 진귀한 물건들을 얻었다. 카드 선택 + 유물.",
+          "result_text": {
+            "ko": "금화 30을 투자하여 진귀한 물건들을 얻었다. 카드 선택 + 유물.",
+            "en": ""
+          },
           "note": "고비용 최대 보상."
         },
         {
           "id": "trade_small",
-          "text": "소규모 거래를 한다. (금화 -12, 카드 1장)",
+          "text": {
+            "ko": "소규모 거래를 한다. (금화 -12, 카드 1장)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 12,
           "effect_type_bonus": "card_gain",
           "effect_value_bonus": 1,
-          "result_text": "적당한 물건을 구입했다. 카드 1장 획득.",
+          "result_text": {
+            "ko": "적당한 물건을 구입했다. 카드 1장 획득.",
+            "en": ""
+          },
           "note": "표준 거래."
         },
         {
           "id": "gamble_trade",
-          "text": "도박 거래를 제안한다.",
+          "text": {
+            "ko": "도박 거래를 제안한다.",
+            "en": ""
+          },
           "effect_type": "random",
           "win_chance": 0.5,
           "outcomes": [
@@ -397,16 +685,25 @@
               "weight": 50,
               "effect_type": "gold_gain",
               "effect_value": 40,
-              "text": "대박! 금화 40을 벌었다!"
+              "text": {
+                "ko": "대박! 금화 40을 벌었다!",
+                "en": ""
+              }
             },
             {
               "weight": 50,
               "effect_type": "gold_loss",
               "effect_value": 20,
-              "text": "사기를 당했다. 금화 20 손실."
+              "text": {
+                "ko": "사기를 당했다. 금화 20 손실.",
+                "en": ""
+              }
             }
           ],
-          "result_text": "50% 확률로 금화 40 획득 또는 20 손실.",
+          "result_text": {
+            "ko": "50% 확률로 금화 40 획득 또는 20 손실.",
+            "en": ""
+          },
           "note": "고위험 도박."
         }
       ]
@@ -415,36 +712,61 @@
       "id": "EVT_SG_003",
       "title": {
         "ko": "역관의 제안",
-        "description": "역관(통역관)이 비밀 교역을 제안한다. 위험하지만 수익이 크다."
+        "description": {
+          "ko": "역관(통역관)이 비밀 교역을 제안한다. 위험하지만 수익이 크다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이 물건을 국경 너머로 가져가면 — 열 배의 값을 받을 수 있소.\"",
+      "flavor_text": {
+        "ko": "\"이 물건을 국경 너머로 가져가면 — 열 배의 값을 받을 수 있소.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "smuggle",
-          "text": "밀무역에 참여한다. (금화 +40, HP -10, 민심 -5)",
+          "text": {
+            "ko": "밀무역에 참여한다. (금화 +40, HP -10, 민심 -5)",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 40,
           "effect_type_bonus": "hp_loss",
           "effect_value_bonus": 10,
-          "result_text": "밀무역으로 큰 돈을 벌었으나, 관군에게 쫓기다 부상을 입었다. 소문도 퍼졌다.",
+          "result_text": {
+            "ko": "밀무역으로 큰 돈을 벌었으나, 관군에게 쫓기다 부상을 입었다. 소문도 퍼졌다.",
+            "en": ""
+          },
           "note": "최대 금화. HP+민심 리스크."
         },
         {
           "id": "legal_trade",
-          "text": "합법적 교역만 한다. (금화 +15, 민심 +3)",
+          "text": {
+            "ko": "합법적 교역만 한다. (금화 +15, 민심 +3)",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 15,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": 3,
-          "result_text": "정당한 거래로 적당한 수익과 평판을 얻었다.",
+          "result_text": {
+            "ko": "정당한 거래로 적당한 수익과 평판을 얻었다.",
+            "en": ""
+          },
           "note": "안전한 보상."
         },
         {
           "id": "report_smuggle",
-          "text": "밀무역을 관아에 고발한다. (민심 +8)",
+          "text": {
+            "ko": "밀무역을 관아에 고발한다. (민심 +8)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 8,
-          "result_text": "밀무역을 고발하자 백성들이 환호했다. 민심이 크게 올랐다.",
+          "result_text": {
+            "ko": "밀무역을 고발하자 백성들이 환호했다. 민심이 크게 올랐다.",
+            "en": ""
+          },
           "note": "민심 루트."
         }
       ]
@@ -453,13 +775,23 @@
       "id": "EVT_SG_004",
       "title": {
         "ko": "시장의 도박판",
-        "description": "시장 한쪽에서 도박판이 벌어지고 있다. 판돈이 상당하다."
+        "description": {
+          "ko": "시장 한쪽에서 도박판이 벌어지고 있다. 판돈이 상당하다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"한 판 하시겠소? 운이 좋으면 대박이오!\"",
+      "flavor_text": {
+        "ko": "\"한 판 하시겠소? 운이 좋으면 대박이오!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "gamble_big",
-          "text": "큰 판돈으로 참여한다. (금화 -20)",
+          "text": {
+            "ko": "큰 판돈으로 참여한다. (금화 -20)",
+            "en": ""
+          },
           "effect_type": "random",
           "win_chance": 0.4,
           "outcomes": [
@@ -467,21 +799,33 @@
               "weight": 40,
               "effect_type": "gold_gain",
               "effect_value": 60,
-              "text": "대승! 금화 60을 쓸어담았다!"
+              "text": {
+                "ko": "대승! 금화 60을 쓸어담았다!",
+                "en": ""
+              }
             },
             {
               "weight": 60,
               "effect_type": "gold_loss",
               "effect_value": 20,
-              "text": "참패. 금화 20을 모두 잃었다."
+              "text": {
+                "ko": "참패. 금화 20을 모두 잃었다.",
+                "en": ""
+              }
             }
           ],
-          "result_text": "40% 확률로 금화 60 획득(순이익 40), 60% 확률로 금화 20 손실.",
+          "result_text": {
+            "ko": "40% 확률로 금화 60 획득(순이익 40), 60% 확률로 금화 20 손실.",
+            "en": ""
+          },
           "note": "고위험 도박. 기대값은 손해."
         },
         {
           "id": "gamble_small",
-          "text": "소액으로 참여한다. (금화 -5)",
+          "text": {
+            "ko": "소액으로 참여한다. (금화 -5)",
+            "en": ""
+          },
           "effect_type": "random",
           "win_chance": 0.5,
           "outcomes": [
@@ -489,26 +833,41 @@
               "weight": 50,
               "effect_type": "gold_gain",
               "effect_value": 15,
-              "text": "이겼다! 금화 15 획득."
+              "text": {
+                "ko": "이겼다! 금화 15 획득.",
+                "en": ""
+              }
             },
             {
               "weight": 50,
               "effect_type": "gold_loss",
               "effect_value": 5,
-              "text": "졌다. 금화 5 손실."
+              "text": {
+                "ko": "졌다. 금화 5 손실.",
+                "en": ""
+              }
             }
           ],
-          "result_text": "50% 확률 금화 15 획득 또는 5 손실.",
+          "result_text": {
+            "ko": "50% 확률 금화 15 획득 또는 5 손실.",
+            "en": ""
+          },
           "note": "저위험 도박."
         },
         {
           "id": "bust_gambling",
-          "text": "도박판을 엎는다. (민심 +4, HP -5)",
+          "text": {
+            "ko": "도박판을 엎는다. (민심 +4, HP -5)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 4,
           "effect_type_bonus": "hp_loss",
           "effect_value_bonus": 5,
-          "result_text": "도박꾼들에게 맞았지만 백성들이 감사해한다.",
+          "result_text": {
+            "ko": "도박꾼들에게 맞았지만 백성들이 감사해한다.",
+            "en": ""
+          },
           "note": "민심 + HP 손실."
         }
       ]
@@ -517,33 +876,55 @@
       "id": "EVT_SG_005",
       "title": {
         "ko": "약재상의 비약",
-        "description": "약재상이 특별한 비약을 판매하고 있다. 효과가 대단하다고 자랑하지만 부작용도 있을 수 있다."
+        "description": {
+          "ko": "약재상이 특별한 비약을 판매하고 있다. 효과가 대단하다고 자랑하지만 부작용도 있을 수 있다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이 약을 마시면 힘이 솟구치오! 단, 한 번뿐이오.\"",
+      "flavor_text": {
+        "ko": "\"이 약을 마시면 힘이 솟구치오! 단, 한 번뿐이오.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "buy_elixir",
-          "text": "비약을 구입한다. (금화 -15, 최대 HP +8)",
+          "text": {
+            "ko": "비약을 구입한다. (금화 -15, 최대 HP +8)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 15,
           "effect_type_bonus": "max_hp_gain",
           "effect_value_bonus": 8,
-          "result_text": "비약을 마시자 몸이 강해졌다! 최대 HP +8.",
+          "result_text": {
+            "ko": "비약을 마시자 몸이 강해졌다! 최대 HP +8.",
+            "en": ""
+          },
           "note": "금화→영구 HP 증가."
         },
         {
           "id": "buy_poison",
-          "text": "독약을 구입한다. (금화 -10, 다음 전투 적 독 5 시작)",
+          "text": {
+            "ko": "독약을 구입한다. (금화 -10, 다음 전투 적 독 5 시작)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 10,
           "effect_type_bonus": "buff_next_combat",
           "effect_value_bonus": 5,
-          "result_text": "은밀히 독약을 구입했다. 다음 전투 시작 시 적에게 독 5 부여.",
+          "result_text": {
+            "ko": "은밀히 독약을 구입했다. 다음 전투 시작 시 적에게 독 5 부여.",
+            "en": ""
+          },
           "note": "금화→전투 유틸리티."
         },
         {
           "id": "haggle",
-          "text": "값을 깎는다.",
+          "text": {
+            "ko": "값을 깎는다.",
+            "en": ""
+          },
           "effect_type": "random",
           "win_chance": 0.5,
           "outcomes": [
@@ -551,16 +932,25 @@
               "weight": 50,
               "effect_type": "hp_gain",
               "effect_value": 15,
-              "text": "흥정에 성공! 약재상이 감탄하며 약재를 공짜로 준다. HP 15 회복."
+              "text": {
+                "ko": "흥정에 성공! 약재상이 감탄하며 약재를 공짜로 준다. HP 15 회복.",
+                "en": ""
+              }
             },
             {
               "weight": 50,
               "effect_type": "hp_loss",
               "effect_value": 5,
-              "text": "흥정에 실패. 화난 약재상이 던진 약병에 맞았다. HP 5 손실."
+              "text": {
+                "ko": "흥정에 실패. 화난 약재상이 던진 약병에 맞았다. HP 5 손실.",
+                "en": ""
+              }
             }
           ],
-          "result_text": "50% 확률 HP 15 회복 또는 5 손실.",
+          "result_text": {
+            "ko": "50% 확률 HP 15 회복 또는 5 손실.",
+            "en": ""
+          },
           "note": "확률 기반."
         }
       ]

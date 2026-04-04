@@ -5,56 +5,108 @@
   "regular_enemies": [
     {
       "id": "E_BYEONGSA",
-      "name": { "ko": "병사", "hanja": "兵士" },
-      "description": "군관 휘하의 졸병. 약하지만 숫자로 압박한다.",
-      "hp": { "min": 18, "max": 24 },
+      "name": {
+        "ko": "병사",
+        "hanja": "兵士",
+        "en": ""
+      },
+      "description": {
+        "ko": "군관 휘하의 졸병. 약하지만 숫자로 압박한다.",
+        "en": ""
+      },
+      "hp": {
+        "min": 18,
+        "max": 24
+      },
       "moves": [
         {
           "id": "spear_thrust",
-          "name": "창 찌르기",
+          "name": {
+            "ko": "창 찌르기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 7,
           "times": 1,
-          "description": "7피해."
+          "description": {
+            "ko": "7피해.",
+            "en": ""
+          }
         },
         {
           "id": "shield_up",
-          "name": "방패 올리기",
+          "name": {
+            "ko": "방패 올리기",
+            "en": ""
+          },
           "intent": "defend",
           "block": 6,
-          "description": "방어도 6."
+          "description": {
+            "ko": "방어도 6.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["spear_thrust", "shield_up", "spear_thrust"]
+        "sequence": [
+          "spear_thrust",
+          "shield_up",
+          "spear_thrust"
+        ]
       }
     },
     {
       "id": "E_DANGPA_FOLLOWER",
-      "name": { "ko": "당파 추종자", "hanja": "黨派追從者" },
-      "description": "탐관의 정치적 동조자. 전투력보다 숫자로 압박한다.",
-      "hp": { "min": 25, "max": 32 },
+      "name": {
+        "ko": "당파 추종자",
+        "hanja": "黨派追從者",
+        "en": ""
+      },
+      "description": {
+        "ko": "탐관의 정치적 동조자. 전투력보다 숫자로 압박한다.",
+        "en": ""
+      },
+      "hp": {
+        "min": 25,
+        "max": 32
+      },
       "moves": [
         {
           "id": "mob_strike",
-          "name": "폭도 공격",
+          "name": {
+            "ko": "폭도 공격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 7,
           "times": 1,
-          "description": "7피해."
+          "description": {
+            "ko": "7피해.",
+            "en": ""
+          }
         },
         {
           "id": "mob_defend",
-          "name": "폭도 방어",
+          "name": {
+            "ko": "폭도 방어",
+            "en": ""
+          },
           "intent": "defend",
           "block": 8,
-          "description": "방어도 8."
+          "description": {
+            "ko": "방어도 8.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["mob_strike", "mob_defend", "mob_strike"]
+        "sequence": [
+          "mob_strike",
+          "mob_defend",
+          "mob_strike"
+        ]
       }
     }
   ]

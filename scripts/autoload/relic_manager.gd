@@ -702,15 +702,12 @@ func get_relic_display_name(relic_id: String) -> String:
 	var relic := DataLoader.get_relic(relic_id)
 	if relic.is_empty():
 		return relic_id
-	var name_data = relic.get("name", {})
-	if name_data is Dictionary:
-		return name_data.get("ko", relic_id)
-	return str(name_data)
+	return TranslationManager.trd_name(relic)
 
 
 func get_relic_description(relic_id: String) -> String:
 	var relic := DataLoader.get_relic(relic_id)
-	return relic.get("effect_description", "")
+	return TranslationManager.trd(relic, "effect_description", "")
 
 
 func get_relic_rarity_color(relic_id: String) -> Color:

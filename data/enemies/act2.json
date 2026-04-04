@@ -4,7 +4,11 @@
   "act": 2,
   "act_name": {
     "ko": "지리산",
-    "description": "신라의 피가 스민 산줄기. 산채를 차린 도적, 오랜 원한을 품은 귀신, 산신의 화신이 뒤섞인 험준한 영역."
+    "description": {
+      "ko": "신라의 피가 스민 산줄기. 산채를 차린 도적, 오랜 원한을 품은 귀신, 산신의 화신이 뒤섞인 험준한 영역.",
+      "en": ""
+    },
+    "en": ""
   },
   "balance_ref": "ZER-12 (카드 밸런스 스펙). 플레이어 기준: HP 40~55(1막 소모 후), 덱 규모 12~16장, 턴당 평균 피해 10~14, 방어도 7~10.",
   "balance_targets": {
@@ -21,9 +25,13 @@
       "name": {
         "ko": "산적",
         "hanja": "山賊",
-        "romanized": "Sanjok"
+        "romanized": "Sanjok",
+        "en": ""
       },
-      "description": "지리산 산채에 은거하는 도적 두목의 부하. 빠른 연타와 기습에 능하다.",
+      "description": {
+        "ko": "지리산 산채에 은거하는 도적 두목의 부하. 빠른 연타와 기습에 능하다.",
+        "en": ""
+      },
       "hp": {
         "min": 36,
         "max": 48
@@ -31,23 +39,38 @@
       "moves": [
         {
           "id": "slash_combo",
-          "name": "칼 연타",
+          "name": {
+            "ko": "칼 연타",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 6,
           "times": 2,
-          "description": "5피해 × 2회 = 10 총피해."
+          "description": {
+            "ko": "5피해 × 2회 = 10 총피해.",
+            "en": ""
+          }
         },
         {
           "id": "ambush_strike",
-          "name": "기습",
+          "name": {
+            "ko": "기습",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 16,
           "times": 1,
-          "description": "강력한 단발 기습. 2막 기준 단일 최대 피해."
+          "description": {
+            "ko": "강력한 단발 기습. 2막 기준 단일 최대 피해.",
+            "en": ""
+          }
         },
         {
           "id": "sharpen",
-          "name": "칼 갈기",
+          "name": {
+            "ko": "칼 갈기",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
             {
@@ -57,15 +80,24 @@
               "target": "self"
             }
           ],
-          "description": "힘 2 획득. 이후 공격 피해 +2씩 증가."
+          "description": {
+            "ko": "힘 2 획득. 이후 공격 피해 +2씩 증가.",
+            "en": ""
+          }
         },
         {
           "id": "quick_slash",
-          "name": "빠른 베기",
+          "name": {
+            "ko": "빠른 베기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 1,
-          "description": "단순한 단발 공격."
+          "description": {
+            "ko": "단순한 단발 공격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -94,9 +126,13 @@
       "name": {
         "ko": "처녀귀신",
         "hanja": "處女鬼神",
-        "romanized": "Cheonyeo Gwisin"
+        "romanized": "Cheonyeo Gwisin",
+        "en": ""
       },
-      "description": "한 많은 죽음을 맞이한 처녀의 원혼. 저주와 울음으로 플레이어의 의지를 꺾는다.",
+      "description": {
+        "ko": "한 많은 죽음을 맞이한 처녀의 원혼. 저주와 울음으로 플레이어의 의지를 꺾는다.",
+        "en": ""
+      },
       "hp": {
         "min": 30,
         "max": 42
@@ -104,7 +140,10 @@
       "moves": [
         {
           "id": "lamentation",
-          "name": "원한의 울부짖음",
+          "name": {
+            "ko": "원한의 울부짖음",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -120,11 +159,17 @@
               "target": "player"
             }
           ],
-          "description": "플레이어에게 약화 2 + 취약 1 부여. 공격력 크게 감소."
+          "description": {
+            "ko": "플레이어에게 약화 2 + 취약 1 부여. 공격력 크게 감소.",
+            "en": ""
+          }
         },
         {
           "id": "spirit_grasp",
-          "name": "손길",
+          "name": {
+            "ko": "손길",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 11,
           "times": 1,
@@ -137,11 +182,17 @@
               "note": "냉기: 다음 턴 드로우 1장 감소"
             }
           ],
-          "description": "9피해 + 냉기 1 부여."
+          "description": {
+            "ko": "9피해 + 냉기 1 부여.",
+            "en": ""
+          }
         },
         {
           "id": "curse",
-          "name": "저주",
+          "name": {
+            "ko": "저주",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -152,15 +203,24 @@
               "note": "출혈: 피해 받을 때마다 +2 추가 피해, 스택 1 감소"
             }
           ],
-          "description": "플레이어에게 출혈 3 부여."
+          "description": {
+            "ko": "플레이어에게 출혈 3 부여.",
+            "en": ""
+          }
         },
         {
           "id": "wail_strike",
-          "name": "귀신 강습",
+          "name": {
+            "ko": "귀신 강습",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 13,
           "times": 1,
-          "description": "원한이 담긴 강습 공격."
+          "description": {
+            "ko": "원한이 담긴 강습 공격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -190,9 +250,13 @@
       "name": {
         "ko": "산사 승병",
         "hanja": "山寺 僧兵",
-        "romanized": "Sansa Seungbyeong"
+        "romanized": "Sansa Seungbyeong",
+        "en": ""
       },
-      "description": "지리산 절에서 무예를 닦은 승려 병사. 수비와 반격을 동시에 구사하며, 인내심이 강하다.",
+      "description": {
+        "ko": "지리산 절에서 무예를 닦은 승려 병사. 수비와 반격을 동시에 구사하며, 인내심이 강하다.",
+        "en": ""
+      },
       "hp": {
         "min": 42,
         "max": 55
@@ -200,22 +264,37 @@
       "moves": [
         {
           "id": "iron_defense",
-          "name": "철벽 수비",
+          "name": {
+            "ko": "철벽 수비",
+            "en": ""
+          },
           "intent": "defend",
           "block": 14,
-          "description": "방어도 14 획득. 강력한 방어 자세."
+          "description": {
+            "ko": "방어도 14 획득. 강력한 방어 자세.",
+            "en": ""
+          }
         },
         {
           "id": "staff_strike",
-          "name": "석장 타격",
+          "name": {
+            "ko": "석장 타격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": "묵직한 석장 공격."
+          "description": {
+            "ko": "묵직한 석장 공격.",
+            "en": ""
+          }
         },
         {
           "id": "counterflow",
-          "name": "역류",
+          "name": {
+            "ko": "역류",
+            "en": ""
+          },
           "intent": "attack_buff",
           "damage": 8,
           "times": 1,
@@ -228,11 +307,17 @@
               "note": "가시: 근접 공격 받을 때마다 공격자에게 3피해"
             }
           ],
-          "description": "7피해 + 가시 3 획득. 근접 공격을 위험하게 만듦."
+          "description": {
+            "ko": "7피해 + 가시 3 획득. 근접 공격을 위험하게 만듦.",
+            "en": ""
+          }
         },
         {
           "id": "meditate",
-          "name": "좌선",
+          "name": {
+            "ko": "좌선",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 8,
           "effects": [
@@ -243,15 +328,24 @@
               "target": "self"
             }
           ],
-          "description": "방어도 8 + 힘 1 획득. 수행으로 내공 쌓기."
+          "description": {
+            "ko": "방어도 8 + 힘 1 획득. 수행으로 내공 쌓기.",
+            "en": ""
+          }
         },
         {
           "id": "sweeping_staff",
-          "name": "광풍 석장",
+          "name": {
+            "ko": "광풍 석장",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 17,
           "times": 1,
-          "description": "힘 쌓인 후 사용하는 강력한 일격."
+          "description": {
+            "ko": "힘 쌓인 후 사용하는 강력한 일격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -282,9 +376,13 @@
       "name": {
         "ko": "독사",
         "hanja": "毒蛇",
-        "romanized": "Doksa"
+        "romanized": "Doksa",
+        "en": ""
       },
-      "description": "지리산 수풀에 도사린 맹독 뱀. 독을 중첩시키며 연속 물기로 빠른 피해를 입힌다.",
+      "description": {
+        "ko": "지리산 수풀에 도사린 맹독 뱀. 독을 중첩시키며 연속 물기로 빠른 피해를 입힌다.",
+        "en": ""
+      },
       "hp": {
         "min": 30,
         "max": 42
@@ -292,7 +390,10 @@
       "moves": [
         {
           "id": "venom_fang",
-          "name": "독아 물기",
+          "name": {
+            "ko": "독아 물기",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 6,
           "times": 1,
@@ -304,19 +405,31 @@
               "target": "player"
             }
           ],
-          "description": "5피해 + 독 4 부여. 누적 독 피해: 4+3+2+1=10."
+          "description": {
+            "ko": "5피해 + 독 4 부여. 누적 독 피해: 4+3+2+1=10.",
+            "en": ""
+          }
         },
         {
           "id": "rapid_bite",
-          "name": "연속 물기",
+          "name": {
+            "ko": "연속 물기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 5,
           "times": 3,
-          "description": "4피해 × 3회 = 12 총피해. 방어도 분산."
+          "description": {
+            "ko": "4피해 × 3회 = 12 총피해. 방어도 분산.",
+            "en": ""
+          }
         },
         {
           "id": "coil_up",
-          "name": "똬리",
+          "name": {
+            "ko": "똬리",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
             {
@@ -326,11 +439,17 @@
               "target": "self"
             }
           ],
-          "description": "힘 2 획득. 독 물기 피해 증폭 준비."
+          "description": {
+            "ko": "힘 2 획득. 독 물기 피해 증폭 준비.",
+            "en": ""
+          }
         },
         {
           "id": "lethal_injection",
-          "name": "치사 독주",
+          "name": {
+            "ko": "치사 독주",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -346,7 +465,10 @@
               "target": "player"
             }
           ],
-          "description": "독 5 + 취약 1. 독 폭탄 준비."
+          "description": {
+            "ko": "독 5 + 취약 1. 독 폭탄 준비.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -377,9 +499,13 @@
       "name": {
         "ko": "산령",
         "hanja": "山靈",
-        "romanized": "Sanryeong"
+        "romanized": "Sanryeong",
+        "en": ""
       },
-      "description": "지리산에 오래 깃든 산의 정령. 방어와 기(氣) 흡수로 플레이어의 전력을 갉아먹는다.",
+      "description": {
+        "ko": "지리산에 오래 깃든 산의 정령. 방어와 기(氣) 흡수로 플레이어의 전력을 갉아먹는다.",
+        "en": ""
+      },
       "hp": {
         "min": 35,
         "max": 45
@@ -387,14 +513,23 @@
       "moves": [
         {
           "id": "stone_shell",
-          "name": "돌 껍질",
+          "name": {
+            "ko": "돌 껍질",
+            "en": ""
+          },
           "intent": "defend",
           "block": 13,
-          "description": "돌처럼 단단한 방어도 13 획득."
+          "description": {
+            "ko": "돌처럼 단단한 방어도 13 획득.",
+            "en": ""
+          }
         },
         {
           "id": "ki_drain",
-          "name": "기(氣) 흡수",
+          "name": {
+            "ko": "기(氣) 흡수",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 1,
@@ -413,19 +548,31 @@
               "note": "플레이어의 기를 빼앗아 자신이 강해짐"
             }
           ],
-          "description": "8피해 + 플레이어 약화 2 부여 + 자신 힘 1 획득."
+          "description": {
+            "ko": "8피해 + 플레이어 약화 2 부여 + 자신 힘 1 획득.",
+            "en": ""
+          }
         },
         {
           "id": "mountain_pulse",
-          "name": "산맥 진동",
+          "name": {
+            "ko": "산맥 진동",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 13,
           "times": 1,
-          "description": "산의 힘을 담은 충격파 공격."
+          "description": {
+            "ko": "산의 힘을 담은 충격파 공격.",
+            "en": ""
+          }
         },
         {
           "id": "regenerate",
-          "name": "자연 회복",
+          "name": {
+            "ko": "자연 회복",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
             {
@@ -436,7 +583,10 @@
               "note": "재생: 매 턴 시작 시 4HP 회복, 2턴 지속"
             }
           ],
-          "description": "자연 에너지로 재생 4(2턴) 획득. 이 구간 처치 속도 저하."
+          "description": {
+            "ko": "자연 에너지로 재생 4(2턴) 획득. 이 구간 처치 속도 저하.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -467,9 +617,13 @@
       "name": {
         "ko": "도술사",
         "hanja": "道術士",
-        "romanized": "Dosulsa"
+        "romanized": "Dosulsa",
+        "en": ""
       },
-      "description": "도술로 무장한 산채 출신 술사. 화상 주문과 소환으로 위협적인 압박을 가한다.",
+      "description": {
+        "ko": "도술로 무장한 산채 출신 술사. 화상 주문과 소환으로 위협적인 압박을 가한다.",
+        "en": ""
+      },
       "hp": {
         "min": 32,
         "max": 44
@@ -477,7 +631,10 @@
       "moves": [
         {
           "id": "fire_spell",
-          "name": "화염 주문",
+          "name": {
+            "ko": "화염 주문",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 8,
           "times": 1,
@@ -489,13 +646,22 @@
               "target": "player"
             }
           ],
-          "description": "7피해 + 화상 3 부여 (매 턴 3피해, 3턴)."
+          "description": {
+            "ko": "7피해 + 화상 3 부여 (매 턴 3피해, 3턴).",
+            "en": ""
+          }
         },
         {
           "id": "summon_spirit_fox",
-          "name": "도깨비불 소환",
+          "name": {
+            "ko": "도깨비불 소환",
+            "en": ""
+          },
           "intent": "summon",
-          "description": "도깨비불 토큰 1개를 소환한다. HP 10, 매 턴 화상 1 부여.",
+          "description": {
+            "ko": "도깨비불 토큰 1개를 소환한다. HP 10, 매 턴 화상 1 부여.",
+            "en": ""
+          },
           "summon": [
             {
               "enemy_id": "E004",
@@ -507,18 +673,30 @@
         },
         {
           "id": "arcane_bolt",
-          "name": "도술 화살",
+          "name": {
+            "ko": "도술 화살",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 12,
           "times": 2,
-          "description": "10피해 × 2회 = 20 총피해. 도술 에너지 집중 방출."
+          "description": {
+            "ko": "10피해 × 2회 = 20 총피해. 도술 에너지 집중 방출.",
+            "en": ""
+          }
         },
         {
           "id": "ward",
-          "name": "호신부",
+          "name": {
+            "ko": "호신부",
+            "en": ""
+          },
           "intent": "defend",
           "block": 10,
-          "description": "호신부를 펼쳐 방어도 10 획득."
+          "description": {
+            "ko": "호신부를 펼쳐 방어도 10 획득.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -549,9 +727,13 @@
       "name": {
         "ko": "갈호",
         "hanja": "渴虎",
-        "romanized": "Galho"
+        "romanized": "Galho",
+        "en": ""
       },
-      "description": "굶주린 호랑이. 배고픔에 사나워진 야수로, 강타와 돌진으로 거칠게 몰아붙인다.",
+      "description": {
+        "ko": "굶주린 호랑이. 배고픔에 사나워진 야수로, 강타와 돌진으로 거칠게 몰아붙인다.",
+        "en": ""
+      },
       "hp": {
         "min": 42,
         "max": 55
@@ -559,15 +741,24 @@
       "moves": [
         {
           "id": "fierce_bite",
-          "name": "맹렬한 물기",
+          "name": {
+            "ko": "맹렬한 물기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
-          "description": "야수의 강렬한 물기 공격."
+          "description": {
+            "ko": "야수의 강렬한 물기 공격.",
+            "en": ""
+          }
         },
         {
           "id": "charge",
-          "name": "돌진",
+          "name": {
+            "ko": "돌진",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 2,
@@ -579,11 +770,17 @@
               "target": "player"
             }
           ],
-          "description": "8피해 × 2회 = 16 총피해 + 취약 1. 빠른 돌진 공격."
+          "description": {
+            "ko": "8피해 × 2회 = 16 총피해 + 취약 1. 빠른 돌진 공격.",
+            "en": ""
+          }
         },
         {
           "id": "hungry_roar",
-          "name": "굶주린 포효",
+          "name": {
+            "ko": "굶주린 포효",
+            "en": ""
+          },
           "intent": "buff_debuff",
           "effects": [
             {
@@ -599,15 +796,24 @@
               "target": "player"
             }
           ],
-          "description": "자신 힘 3 + 플레이어 약화 1."
+          "description": {
+            "ko": "자신 힘 3 + 플레이어 약화 1.",
+            "en": ""
+          }
         },
         {
           "id": "killing_pounce",
-          "name": "살육 도약",
+          "name": {
+            "ko": "살육 도약",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 19,
           "times": 1,
-          "description": "힘 3 쌓인 후 사용. 16+3=19피해."
+          "description": {
+            "ko": "힘 3 쌓인 후 사용. 16+3=19피해.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -638,9 +844,13 @@
       "name": {
         "ko": "별감",
         "hanja": "別監",
-        "romanized": "Byeolgam"
+        "romanized": "Byeolgam",
+        "en": ""
       },
-      "description": "궁궐 감시관. 면역력이 높고 꾸준한 압박을 가한다.",
+      "description": {
+        "ko": "궁궐 감시관. 면역력이 높고 꾸준한 압박을 가한다.",
+        "en": ""
+      },
       "hp": {
         "min": 42,
         "max": 52
@@ -648,7 +858,10 @@
       "moves": [
         {
           "id": "inspection",
-          "name": "검열",
+          "name": {
+            "ko": "검열",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 8,
           "times": 1,
@@ -660,11 +873,17 @@
               "target": "player"
             }
           ],
-          "description": "8 피해 + 냉기 1 (다음 턴 드로우 -1)."
+          "description": {
+            "ko": "8 피해 + 냉기 1 (다음 턴 드로우 -1).",
+            "en": ""
+          }
         },
         {
           "id": "iron_will",
-          "name": "철심",
+          "name": {
+            "ko": "철심",
+            "en": ""
+          },
           "intent": "defend",
           "damage": 0,
           "block": 12,
@@ -676,15 +895,24 @@
               "target": "self"
             }
           ],
-          "description": "방어도 12 + 디버프 면역 1턴."
+          "description": {
+            "ko": "방어도 12 + 디버프 면역 1턴.",
+            "en": ""
+          }
         },
         {
           "id": "authority_strike",
-          "name": "직권 남용",
+          "name": {
+            "ko": "직권 남용",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": "강력한 단일 타격."
+          "description": {
+            "ko": "강력한 단일 타격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -713,9 +941,13 @@
       "name": {
         "ko": "토포사",
         "hanja": "討捕使",
-        "romanized": "Toposa"
+        "romanized": "Toposa",
+        "en": ""
       },
-      "description": "도적 토벌 전문 관리. 이중 공격으로 빈틈을 노린다.",
+      "description": {
+        "ko": "도적 토벌 전문 관리. 이중 공격으로 빈틈을 노린다.",
+        "en": ""
+      },
       "hp": {
         "min": 38,
         "max": 48
@@ -723,23 +955,38 @@
       "moves": [
         {
           "id": "double_slash",
-          "name": "쌍칼",
+          "name": {
+            "ko": "쌍칼",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 6,
           "times": 2,
-          "description": "6 피해를 2회. 총 12피해."
+          "description": {
+            "ko": "6 피해를 2회. 총 12피해.",
+            "en": ""
+          }
         },
         {
           "id": "pursuit",
-          "name": "추격",
+          "name": {
+            "ko": "추격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 1,
-          "description": "도주를 허락하지 않는 강타."
+          "description": {
+            "ko": "도주를 허락하지 않는 강타.",
+            "en": ""
+          }
         },
         {
           "id": "ambush_stance",
-          "name": "매복 자세",
+          "name": {
+            "ko": "매복 자세",
+            "en": ""
+          },
           "intent": "buff",
           "damage": 0,
           "effects": [
@@ -750,11 +997,17 @@
               "target": "self"
             }
           ],
-          "description": "힘 3 획득."
+          "description": {
+            "ko": "힘 3 획득.",
+            "en": ""
+          }
         },
         {
           "id": "binding_net",
-          "name": "포승줄",
+          "name": {
+            "ko": "포승줄",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 5,
           "times": 1,
@@ -766,7 +1019,10 @@
               "target": "player"
             }
           ],
-          "description": "5 피해 + 구금 1 (카드 비용 +1)."
+          "description": {
+            "ko": "5 피해 + 구금 1 (카드 비용 +1).",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -795,9 +1051,13 @@
       "name": {
         "ko": "당파 자객",
         "hanja": "黨派刺客",
-        "romanized": "Dangpa Jagaek"
+        "romanized": "Dangpa Jagaek",
+        "en": ""
       },
-      "description": "정치 암살자. 빠른 기습과 도주를 반복한다.",
+      "description": {
+        "ko": "정치 암살자. 빠른 기습과 도주를 반복한다.",
+        "en": ""
+      },
       "hp": {
         "min": 32,
         "max": 42
@@ -805,7 +1065,10 @@
       "moves": [
         {
           "id": "stealth",
-          "name": "은신",
+          "name": {
+            "ko": "은신",
+            "en": ""
+          },
           "intent": "buff",
           "damage": 0,
           "effects": [
@@ -822,19 +1085,31 @@
               "target": "self"
             }
           ],
-          "description": "방어도 6 + 다음 공격 +5 피해."
+          "description": {
+            "ko": "방어도 6 + 다음 공격 +5 피해.",
+            "en": ""
+          }
         },
         {
           "id": "assassinate",
-          "name": "암살",
+          "name": {
+            "ko": "암살",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
-          "description": "은신 후 강력한 일격."
+          "description": {
+            "ko": "은신 후 강력한 일격.",
+            "en": ""
+          }
         },
         {
           "id": "smoke_bomb",
-          "name": "연막",
+          "name": {
+            "ko": "연막",
+            "en": ""
+          },
           "intent": "debuff",
           "damage": 0,
           "effects": [
@@ -845,15 +1120,24 @@
               "target": "player"
             }
           ],
-          "description": "연막으로 약화 2 부여."
+          "description": {
+            "ko": "연막으로 약화 2 부여.",
+            "en": ""
+          }
         },
         {
           "id": "backstab",
-          "name": "배후습격",
+          "name": {
+            "ko": "배후습격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 7,
           "times": 2,
-          "description": "뒤에서 2회 기습. 총 14피해."
+          "description": {
+            "ko": "뒤에서 2회 기습. 총 14피해.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -882,9 +1166,13 @@
       "name": {
         "ko": "역관",
         "hanja": "譯官",
-        "romanized": "Yeokgwan"
+        "romanized": "Yeokgwan",
+        "en": ""
       },
-      "description": "통역 겸 밀정. 적의 버프를 훔치는 교활한 상대.",
+      "description": {
+        "ko": "통역 겸 밀정. 적의 버프를 훔치는 교활한 상대.",
+        "en": ""
+      },
       "hp": {
         "min": 36,
         "max": 46
@@ -892,7 +1180,10 @@
       "moves": [
         {
           "id": "steal_buff",
-          "name": "기밀 탈취",
+          "name": {
+            "ko": "기밀 탈취",
+            "en": ""
+          },
           "intent": "debuff",
           "damage": 0,
           "effects": [
@@ -902,11 +1193,17 @@
               "target": "player"
             }
           ],
-          "description": "플레이어의 버프 1스택을 훔쳐온다."
+          "description": {
+            "ko": "플레이어의 버프 1스택을 훔쳐온다.",
+            "en": ""
+          }
         },
         {
           "id": "coded_message",
-          "name": "암호문",
+          "name": {
+            "ko": "암호문",
+            "en": ""
+          },
           "intent": "buff",
           "damage": 0,
           "effects": [
@@ -923,19 +1220,31 @@
               "target": "self"
             }
           ],
-          "description": "힘 1 + 방어도 5."
+          "description": {
+            "ko": "힘 1 + 방어도 5.",
+            "en": ""
+          }
         },
         {
           "id": "trade_strike",
-          "name": "교역 타격",
+          "name": {
+            "ko": "교역 타격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 9,
           "times": 1,
-          "description": "정보력으로 급소를 노리는 공격."
+          "description": {
+            "ko": "정보력으로 급소를 노리는 공격.",
+            "en": ""
+          }
         },
         {
           "id": "intelligence",
-          "name": "첩보",
+          "name": {
+            "ko": "첩보",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 4,
           "times": 1,
@@ -947,7 +1256,10 @@
               "target": "player"
             }
           ],
-          "description": "4 피해 + 취약 1."
+          "description": {
+            "ko": "4 피해 + 취약 1.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -976,9 +1288,13 @@
       "name": {
         "ko": "부패 관원",
         "hanja": "腐敗官員",
-        "romanized": "Bupae Gwanwon"
+        "romanized": "Bupae Gwanwon",
+        "en": ""
       },
-      "description": "뇌물로 배를 채운 탐관. 민심을 직접 하락시킨다.",
+      "description": {
+        "ko": "뇌물로 배를 채운 탐관. 민심을 직접 하락시킨다.",
+        "en": ""
+      },
       "hp": {
         "min": 40,
         "max": 50
@@ -986,7 +1302,10 @@
       "moves": [
         {
           "id": "extortion",
-          "name": "수탈",
+          "name": {
+            "ko": "수탈",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 7,
           "times": 1,
@@ -996,19 +1315,31 @@
               "value": -3
             }
           ],
-          "description": "7 피해 + 민심 3 하락."
+          "description": {
+            "ko": "7 피해 + 민심 3 하락.",
+            "en": ""
+          }
         },
         {
           "id": "bribe_guard",
-          "name": "매수",
+          "name": {
+            "ko": "매수",
+            "en": ""
+          },
           "intent": "defend",
           "damage": 0,
           "block": 10,
-          "description": "뇌물로 호위를 고용. 방어도 10."
+          "description": {
+            "ko": "뇌물로 호위를 고용. 방어도 10.",
+            "en": ""
+          }
         },
         {
           "id": "false_decree",
-          "name": "위조 교지",
+          "name": {
+            "ko": "위조 교지",
+            "en": ""
+          },
           "intent": "debuff",
           "damage": 0,
           "effects": [
@@ -1023,15 +1354,24 @@
               "value": -2
             }
           ],
-          "description": "구금 1 + 민심 2 하락."
+          "description": {
+            "ko": "구금 1 + 민심 2 하락.",
+            "en": ""
+          }
         },
         {
           "id": "heavy_blow",
-          "name": "곤장",
+          "name": {
+            "ko": "곤장",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 11,
           "times": 1,
-          "description": "무거운 곤장 공격."
+          "description": {
+            "ko": "무거운 곤장 공격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -1062,9 +1402,13 @@
       "name": {
         "ko": "백호",
         "hanja": "白虎",
-        "romanized": "Baekho"
+        "romanized": "Baekho",
+        "en": ""
       },
-      "description": "지리산 산신의 사자로 여겨지는 거대한 흰 호랑이. 야수적 본능과 분노로 싸운다.",
+      "description": {
+        "ko": "지리산 산신의 사자로 여겨지는 거대한 흰 호랑이. 야수적 본능과 분노로 싸운다.",
+        "en": ""
+      },
       "hp": {
         "min": 80,
         "max": 100
@@ -1073,23 +1417,38 @@
       "moves": [
         {
           "id": "lunge",
-          "name": "도약 강습",
+          "name": {
+            "ko": "도약 강습",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": "빠른 도약으로 내리치는 공격."
+          "description": {
+            "ko": "빠른 도약으로 내리치는 공격.",
+            "en": ""
+          }
         },
         {
           "id": "claw_flurry",
-          "name": "발톱 난타",
+          "name": {
+            "ko": "발톱 난타",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 5,
           "times": 3,
-          "description": "5피해 × 3회 = 15 총피해. 방어도 분산."
+          "description": {
+            "ko": "5피해 × 3회 = 15 총피해. 방어도 분산.",
+            "en": ""
+          }
         },
         {
           "id": "roar",
-          "name": "포효",
+          "name": {
+            "ko": "포효",
+            "en": ""
+          },
           "intent": "debuff_buff",
           "effects": [
             {
@@ -1105,19 +1464,31 @@
               "target": "self"
             }
           ],
-          "description": "플레이어에게 취약 2 부여 + 자신이 힘 2 획득."
+          "description": {
+            "ko": "플레이어에게 취약 2 부여 + 자신이 힘 2 획득.",
+            "en": ""
+          }
         },
         {
           "id": "savage_pounce",
-          "name": "맹렬한 돌진",
+          "name": {
+            "ko": "맹렬한 돌진",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 18,
           "times": 1,
-          "description": "HP 60% 미만 시만 사용. 분노한 호랑이의 전력 공격."
+          "description": {
+            "ko": "HP 60% 미만 시만 사용. 분노한 호랑이의 전력 공격.",
+            "en": ""
+          }
         },
         {
           "id": "territorial_growl",
-          "name": "영역 수호",
+          "name": {
+            "ko": "영역 수호",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
             {
@@ -1127,7 +1498,10 @@
               "target": "self"
             }
           ],
-          "description": "힘 3 획득. 영역 침범에 분노."
+          "description": {
+            "ko": "힘 3 획득. 영역 침범에 분노.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -1162,9 +1536,13 @@
       "name": {
         "ko": "도적 두목",
         "hanja": "盜賊頭目",
-        "romanized": "Dojeok Dumok"
+        "romanized": "Dojeok Dumok",
+        "en": ""
       },
-      "description": "지리산 산채를 지배하는 우두머리 도적. 부하를 이끌고 싸우며 강인한 체력과 전술적 지휘 능력을 보유한다.",
+      "description": {
+        "ko": "지리산 산채를 지배하는 우두머리 도적. 부하를 이끌고 싸우며 강인한 체력과 전술적 지휘 능력을 보유한다.",
+        "en": ""
+      },
       "hp": {
         "min": 65,
         "max": 80
@@ -1173,17 +1551,29 @@
       "moves": [
         {
           "id": "leader_slash",
-          "name": "두목의 일격",
+          "name": {
+            "ko": "두목의 일격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
-          "description": "도적 두목의 강력한 단발 공격."
+          "description": {
+            "ko": "도적 두목의 강력한 단발 공격.",
+            "en": ""
+          }
         },
         {
           "id": "summon_bandits",
-          "name": "부하 소환",
+          "name": {
+            "ko": "부하 소환",
+            "en": ""
+          },
           "intent": "summon",
-          "description": "산적 2명을 전장에 소환한다. 각 HP 15.",
+          "description": {
+            "ko": "산적 2명을 전장에 소환한다. 각 HP 15.",
+            "en": ""
+          },
           "summon": [
             {
               "enemy_id": "E201",
@@ -1194,7 +1584,10 @@
         },
         {
           "id": "battle_roar",
-          "name": "전투 포효",
+          "name": {
+            "ko": "전투 포효",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
             {
@@ -1204,11 +1597,17 @@
               "target": "self"
             }
           ],
-          "description": "힘 3 획득. 전의를 불태운다."
+          "description": {
+            "ko": "힘 3 획득. 전의를 불태운다.",
+            "en": ""
+          }
         },
         {
           "id": "savage_combo",
-          "name": "맹타 연격",
+          "name": {
+            "ko": "맹타 연격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 2,
@@ -1220,11 +1619,17 @@
               "target": "player"
             }
           ],
-          "description": "8피해 × 2회 = 16 총피해 + 출혈 2."
+          "description": {
+            "ko": "8피해 × 2회 = 16 총피해 + 출혈 2.",
+            "en": ""
+          }
         },
         {
           "id": "fortify_stance",
-          "name": "결사 방어",
+          "name": {
+            "ko": "결사 방어",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 14,
           "effects": [
@@ -1235,7 +1640,10 @@
               "target": "self"
             }
           ],
-          "description": "방어도 14 + 힘 1. 최후의 방어선."
+          "description": {
+            "ko": "방어도 14 + 힘 1. 최후의 방어선.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -1267,9 +1675,13 @@
       "name": {
         "ko": "구미호",
         "hanja": "九尾狐",
-        "romanized": "Gumiho"
+        "romanized": "Gumiho",
+        "en": ""
       },
-      "description": "천 년을 산 아홉 꼬리 여우. 매혹으로 적의 의지를 빼앗고 DoT로 서서히 파멸시킨다.",
+      "description": {
+        "ko": "천 년을 산 아홉 꼬리 여우. 매혹으로 적의 의지를 빼앗고 DoT로 서서히 파멸시킨다.",
+        "en": ""
+      },
       "hp": {
         "min": 70,
         "max": 85
@@ -1278,7 +1690,10 @@
       "moves": [
         {
           "id": "bewitch",
-          "name": "매혹",
+          "name": {
+            "ko": "매혹",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
             {
@@ -1295,11 +1710,17 @@
               "target": "player"
             }
           ],
-          "description": "플레이어에게 매혹 2 + 약화 1 부여. 공격력 대폭 감소."
+          "description": {
+            "ko": "플레이어에게 매혹 2 + 약화 1 부여. 공격력 대폭 감소.",
+            "en": ""
+          }
         },
         {
           "id": "fox_fire",
-          "name": "여우불",
+          "name": {
+            "ko": "여우불",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 9,
           "times": 1,
@@ -1317,19 +1738,31 @@
               "target": "player"
             }
           ],
-          "description": "9피해 + 화상 3 + 독 2. 복합 DoT 부여."
+          "description": {
+            "ko": "9피해 + 화상 3 + 독 2. 복합 DoT 부여.",
+            "en": ""
+          }
         },
         {
           "id": "nine_tails_lash",
-          "name": "구미 채찍",
+          "name": {
+            "ko": "구미 채찍",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 6,
           "times": 3,
-          "description": "6피해 × 3회 = 18 총피해. 아홉 꼬리로 휘두르는 다타 공격."
+          "description": {
+            "ko": "6피해 × 3회 = 18 총피해. 아홉 꼬리로 휘두르는 다타 공격.",
+            "en": ""
+          }
         },
         {
           "id": "illusion_step",
-          "name": "환영 이동",
+          "name": {
+            "ko": "환영 이동",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 13,
           "effects": [
@@ -1341,11 +1774,17 @@
               "note": "회피: 다음 공격 한 번을 무효화. 1회 후 소멸."
             }
           ],
-          "description": "방어도 13 + 회피(다음 공격 1회 무효화) 획득."
+          "description": {
+            "ko": "방어도 13 + 회피(다음 공격 1회 무효화) 획득.",
+            "en": ""
+          }
         },
         {
           "id": "soul_drain",
-          "name": "혼 흡수",
+          "name": {
+            "ko": "혼 흡수",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 13,
           "times": 1,
@@ -1364,7 +1803,10 @@
               "note": "혼을 빼앗아 자신이 강해짐"
             }
           ],
-          "description": "13피해 + 플레이어 매혹 1 + 자신 힘 2."
+          "description": {
+            "ko": "13피해 + 플레이어 매혹 1 + 자신 힘 2.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {

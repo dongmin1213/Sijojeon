@@ -3,17 +3,19 @@
   "type": "boss",
   "act": 3,
   "balance_ref": "ZER-12. 플레이어 기준: HP 20~40(3막 보스 전), 덱 규모 18~24장, 턴당 피해 18~24, 방어도 12~16. 보스 목표 전투 길이: 15~18턴. 시조 완성 2~3회 필수.",
-
   "id": "B_ACT3_FINAL",
   "name": {
     "ko": "역적 대감",
     "hanja": "逆賊大監",
-    "romanized": "Yeokjeok Daegam"
+    "romanized": "Yeokjeok Daegam",
+    "en": ""
   },
-  "description": "왕위를 노리는 역모의 주모자. 오랜 세월 실세를 쥐고 흔들었던 대감으로, 겉으로는 충신의 탈을 쓰고 안으로는 왕좌를 갈망해 왔다. 3페이즈에 걸쳐 역모의 전모를 드러낸다.",
+  "description": {
+    "ko": "왕위를 노리는 역모의 주모자. 오랜 세월 실세를 쥐고 흔들었던 대감으로, 겉으로는 충신의 탈을 쓰고 안으로는 왕좌를 갈망해 왔다. 3페이즈에 걸쳐 역모의 전모를 드러낸다.",
+    "en": ""
+  },
   "hp": 195,
   "flavor": "\"왕이란 자격 있는 자가 앉는 것이니라. 그 자리는 내 것이다.\"",
-
   "phases": [
     {
       "phase": 1,
@@ -24,44 +26,84 @@
       "moves": [
         {
           "id": "call_to_arms",
-          "name": "거병 령",
+          "name": {
+            "ko": "거병 령",
+            "en": ""
+          },
           "intent": "summon",
           "summons": "E301",
           "summon_count": 2,
-          "description": "역적 무사 2명 소환. 처치 시 재소환 없음."
+          "description": {
+            "ko": "역적 무사 2명 소환. 처치 시 재소환 없음.",
+            "en": ""
+          }
         },
         {
           "id": "scheme",
-          "name": "음모 획책",
+          "name": {
+            "ko": "음모 획책",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "약화 2 + 냉기 1 부여. 플레이어의 대응 능력을 제한."
+          "description": {
+            "ko": "약화 2 + 냉기 1 부여. 플레이어의 대응 능력을 제한.",
+            "en": ""
+          }
         },
         {
           "id": "noble_shield",
-          "name": "귀족의 방패",
+          "name": {
+            "ko": "귀족의 방패",
+            "en": ""
+          },
           "intent": "defend",
           "block": 18,
-          "description": "귀족으로서의 특권으로 만든 강력한 방어막. 방어도 18 획득."
+          "description": {
+            "ko": "귀족으로서의 특권으로 만든 강력한 방어막. 방어도 18 획득.",
+            "en": ""
+          }
         },
         {
           "id": "seal_authority",
-          "name": "인장 휘두르기",
+          "name": {
+            "ko": "인장 휘두르기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": "예상 밖의 직접 공격. 대감의 개인 무력."
+          "description": {
+            "ko": "예상 밖의 직접 공격. 대감의 개인 무력.",
+            "en": ""
+          }
         },
         {
           "id": "summon_assassin",
-          "name": "자객 파견",
+          "name": {
+            "ko": "자객 파견",
+            "en": ""
+          },
           "intent": "summon",
           "summons": "E303",
           "summon_count": 1,
-          "description": "자객 1명 소환. 처치 시 재소환 없음."
+          "description": {
+            "ko": "자객 1명 소환. 처치 시 재소환 없음.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -88,66 +130,158 @@
         "type": "hp_threshold",
         "hp_percent": 65,
         "on_trigger": [
-          { "type": "cleanse_debuffs", "target": "self" },
-          { "type": "apply_buff", "buff": "strength", "stacks": 4, "target": "self" },
-          { "type": "apply_buff", "buff": "분노", "stacks": 2, "target": "self", "note": "분노: 공격력 +50%, 받는 피해 +25%, 2턴 지속" },
-          { "type": "dialogue", "text": "어리석은 것! 내 진면목을 보여주마. 역모의 칼은 이미 왕의 목전에 닿아있느니라!" }
+          {
+            "type": "cleanse_debuffs",
+            "target": "self"
+          },
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 4,
+            "target": "self"
+          },
+          {
+            "type": "apply_buff",
+            "buff": "분노",
+            "stacks": 2,
+            "target": "self",
+            "note": "분노: 공격력 +50%, 받는 피해 +25%, 2턴 지속"
+          },
+          {
+            "type": "dialogue",
+            "text": "어리석은 것! 내 진면목을 보여주마. 역모의 칼은 이미 왕의 목전에 닿아있느니라!"
+          }
         ]
       },
       "moves": [
         {
           "id": "poison_edict",
-          "name": "독 어명",
+          "name": {
+            "ko": "독 어명",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 6, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 6,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "독 6 + 취약 2 부여. 독 누적 피해: 6+5+4+3+2+1=21."
+          "description": {
+            "ko": "독 6 + 취약 2 부여. 독 누적 피해: 6+5+4+3+2+1=21.",
+            "en": ""
+          }
         },
         {
           "id": "curse_volley",
-          "name": "저주 연사",
+          "name": {
+            "ko": "저주 연사",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 3, "target": "player" },
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 5, "target": "player" },
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 3,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 5,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "약화 3 + 출혈 5 + 냉기 1. 3개 상태이상 동시 부여."
+          "description": {
+            "ko": "약화 3 + 출혈 5 + 냉기 1. 3개 상태이상 동시 부여.",
+            "en": ""
+          }
         },
         {
           "id": "corrupted_strike",
-          "name": "부패의 일격",
+          "name": {
+            "ko": "부패의 일격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 3, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 3,
+              "target": "player"
+            }
           ],
-          "description": "14피해(힘+4 적용 시 18) + 출혈 3."
+          "description": {
+            "ko": "14피해(힘+4 적용 시 18) + 출혈 3.",
+            "en": ""
+          }
         },
         {
           "id": "iron_will_2",
-          "name": "역적의 철의",
+          "name": {
+            "ko": "역적의 철의",
+            "en": ""
+          },
           "intent": "defend_buff",
           "block": 15,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
-          "description": "방어도 15 + 힘 2 추가. 분노가 방어까지 강화."
+          "description": {
+            "ko": "방어도 15 + 힘 2 추가. 분노가 방어까지 강화.",
+            "en": ""
+          }
         },
         {
           "id": "combo_debuff",
-          "name": "오욕의 낙인",
+          "name": {
+            "ko": "오욕의 낙인",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 2,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "10피해 × 2회(힘+4 기준 14×2=28) + 약화 2 + 취약 1."
+          "description": {
+            "ko": "10피해 × 2회(힘+4 기준 14×2=28) + 약화 2 + 취약 1.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -173,9 +307,23 @@
         "type": "hp_threshold",
         "hp_percent": 30,
         "on_trigger": [
-          { "type": "cleanse_all", "target": "self" },
-          { "type": "apply_buff", "buff": "strength", "stacks": 6, "target": "self" },
-          { "type": "apply_buff", "buff": "분노", "stacks": 4, "target": "self", "note": "분노: 공격력 +50%, 받는 피해 +25%, 4턴 지속" },
+          {
+            "type": "cleanse_all",
+            "target": "self"
+          },
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 6,
+            "target": "self"
+          },
+          {
+            "type": "apply_buff",
+            "buff": "분노",
+            "stacks": 4,
+            "target": "self",
+            "note": "분노: 공격력 +50%, 받는 피해 +25%, 4턴 지속"
+          },
           {
             "type": "apply_debuff",
             "debuff": "death_countdown",
@@ -183,32 +331,55 @@
             "target": "player",
             "note": "사망 카운트다운: 4턴 후 플레이어 현재 HP 50% 강제 감소. 역적 대감 처치 시 즉시 해제."
           },
-          { "type": "dialogue", "text": "왕좌는 내 것! 죽으면서도 너를 데려가겠다! 어명이니라!!" }
+          {
+            "type": "dialogue",
+            "text": "왕좌는 내 것! 죽으면서도 너를 데려가겠다! 어명이니라!!"
+          }
         ]
       },
       "moves": [
         {
           "id": "berserk_slash",
-          "name": "광전 베기",
+          "name": {
+            "ko": "광전 베기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 2,
           "effects": [
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "14피해 × 2회(힘+6 기준 20×2=40) + 출혈 2. 분노 적용 시 60피해."
+          "description": {
+            "ko": "14피해 × 2회(힘+6 기준 20×2=40) + 출혈 2. 분노 적용 시 60피해.",
+            "en": ""
+          }
         },
         {
           "id": "wrath_of_the_fallen",
-          "name": "패자의 분노",
+          "name": {
+            "ko": "패자의 분노",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 28,
           "times": 1,
-          "description": "힘+6 기준 34피해. 분노 적용 시 51피해. 최대 단발 피해."
+          "description": {
+            "ko": "힘+6 기준 34피해. 분노 적용 시 51피해. 최대 단발 피해.",
+            "en": ""
+          }
         },
         {
           "id": "self_destruction",
-          "name": "자폭 어명",
+          "name": {
+            "ko": "자폭 어명",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 3,
@@ -220,19 +391,38 @@
               "note": "자신도 15피해를 입는 자폭 기술"
             }
           ],
-          "description": "10피해 × 3회(힘+6 기준 16×3=48) + 자신도 15피해. HP 낮을수록 사용 빈도 증가."
+          "description": {
+            "ko": "10피해 × 3회(힘+6 기준 16×3=48) + 자신도 15피해. HP 낮을수록 사용 빈도 증가.",
+            "en": ""
+          }
         },
         {
           "id": "last_edict",
-          "name": "최후의 어명",
+          "name": {
+            "ko": "최후의 어명",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 20,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 3, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 3, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 3,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 3,
+              "target": "player"
+            }
           ],
-          "description": "20피해(힘+6+분노 기준 39피해) + 취약 3 + 약화 3. 페이즈 3 시작 직후 사용."
+          "description": {
+            "ko": "20피해(힘+6+분노 기준 39피해) + 취약 3 + 약화 3. 페이즈 3 시작 직후 사용.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -248,9 +438,11 @@
       }
     }
   ],
-
   "rewards": {
-    "gold": { "min": 100, "max": 130 },
+    "gold": {
+      "min": 100,
+      "max": 130
+    },
     "relic": "최종 보스 유물 1개 (확정) + 런 클리어 보상",
     "relic_candidates": [
       {
@@ -276,9 +468,7 @@
       }
     ]
   },
-
   "balance_note": "HP 195. 페이즈 1(195→127=68HP): 소환 관리 + 방어 중심 — 7~8턴. 페이즈 2(127→59=68HP): 상태이상 폭격 + 힘+4 공격 — 6~7턴, 독 제거나 빠른 딜 필수. 페이즈 3(59→0=59HP): 사망 카운트다운(4턴) + 광전사 모드 — 4턴 내 처치. 힘+6+분노 wrath_of_the_fallen = 34×1.5=51피해. self_destruction은 자신도 15피해 → 실질 처치 기여. 시조 완성 2회 이상 필수. 방어도 20+ + 상태이상 제거 카드 1장 이상 권장.",
-
   "design_notes": {
     "thematic_concept": "GDD의 '역적 대감 — 3페이즈: 소환 → 상태이상 → 광전사' 충실 구현. 조선 역모 클라이맥스 테마. 각 페이즈가 역모의 단계(병력 동원 → 독살 음모 → 최후의 반란)를 상징.",
     "mechanical_pillar": "페이즈별 완전히 다른 위협 유형 — 1페이즈: 다수 대상 관리, 2페이즈: 상태이상 누적 해소, 3페이즈: 타임어택 DPS 레이스. 플레이어 덱의 모든 측면을 테스트.",

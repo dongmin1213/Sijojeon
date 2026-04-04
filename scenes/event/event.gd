@@ -172,10 +172,20 @@ func _check_trigger_condition(condition: String) -> bool:
 			return true
 
 
-## 한국어 텍스트를 추출한다. Dictionary면 "ko" 키, String이면 그대로.
+## 로케일에 맞는 텍스트를 추출한다. Dictionary면 현재 로케일 키, String이면 그대로.
 func _get_text(data) -> String:
 	if data is Dictionary:
-		return str(data.get("ko", ""))
+		var locale := TranslationServer.get_locale()
+		if data.has(locale) and str(data[locale]) != "":
+			return str(data[locale])
+		# 폴백: ko → en → 첫 번째 값
+		if data.has("ko"):
+			return str(data["ko"])
+		if data.has("en"):
+			return str(data["en"])
+		if not data.is_empty():
+			return str(data.values()[0])
+		return ""
 	return str(data) if data != null else ""
 
 
@@ -183,7 +193,7 @@ func _get_text(data) -> String:
 func _get_description() -> String:
 	var title_data = _event_data.get("title", {})
 	if title_data is Dictionary and title_data.has("description"):
-		return str(title_data["description"])
+		return _get_text(title_data["description"])
 	return _get_text(_event_data.get("description", ""))
 
 
@@ -830,8 +840,9 @@ func _format_card_choice_text(card: CardData) -> String:
 		lines.append("피해: %d%s" % [card.damage, " (전체)" if card.is_aoe else ""])
 	if card.block_value > 0:
 		lines.append("방어: %d" % card.block_value)
-	if card.effect != "":
-		lines.append(card.effect)
+	var eff := card.get_current_effect()
+	if eff != "":
+		lines.append(eff)
 	return "\n".join(lines)
 
 

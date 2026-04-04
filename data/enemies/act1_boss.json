@@ -3,17 +3,19 @@
   "type": "boss",
   "act": 1,
   "balance_ref": "ZER-12 (카드 밸런스 스펙). 플레이어 기준: HP 70, 기/턴 3, 스타터 덱 평균 1턴 피해 6~8, 방어도 5. 보스 목표 전투 길이: 12~15턴.",
-
   "id": "B_ACT1_FINAL",
   "name": {
     "ko": "판서 이무령",
     "hanja": "判書 李茂令",
-    "romanized": "Panseo Yi Mu-ryeong"
+    "romanized": "Panseo Yi Mu-ryeong",
+    "en": ""
   },
-  "description": "한양을 손아귀에 쥐고 있는 부패한 이조판서. 왕명을 빙자해 백성을 착취하며, 그의 인장 하나가 사람의 목숨을 좌우한다. 격식을 무기로 삼고 권력으로 방패를 친다.",
+  "description": {
+    "ko": "한양을 손아귀에 쥐고 있는 부패한 이조판서. 왕명을 빙자해 백성을 착취하며, 그의 인장 하나가 사람의 목숨을 좌우한다. 격식을 무기로 삼고 권력으로 방패를 친다.",
+    "en": ""
+  },
   "hp": 115,
   "flavor": "\"감히 누가 판서의 앞을 막느냐. 이 인장이 곧 법이니라.\"",
-
   "phases": [
     {
       "phase": 1,
@@ -23,47 +25,97 @@
       "moves": [
         {
           "id": "authority_gaze",
-          "name": "권위의 눈초리",
+          "name": {
+            "ko": "권위의 눈초리",
+            "en": ""
+          },
           "intent": "debuff",
           "damage": 0,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "플레이어에게 약화 1 + 취약 1 부여. 이번 턴 반격 억제."
+          "description": {
+            "ko": "플레이어에게 약화 1 + 취약 1 부여. 이번 턴 반격 억제.",
+            "en": ""
+          }
         },
         {
           "id": "seal_strike",
-          "name": "인장 타격",
+          "name": {
+            "ko": "인장 타격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 1,
-          "description": "묵직한 관인으로 내리치는 공격."
+          "description": {
+            "ko": "묵직한 관인으로 내리치는 공격.",
+            "en": ""
+          }
         },
         {
           "id": "official_shield",
-          "name": "관인 방패",
+          "name": {
+            "ko": "관인 방패",
+            "en": ""
+          },
           "intent": "defend",
           "block": 14,
-          "description": "관료적 권위로 둘러싼 방어막. 방어도 14 획득."
+          "description": {
+            "ko": "관료적 권위로 둘러싼 방어막. 방어도 14 획득.",
+            "en": ""
+          }
         },
         {
           "id": "summon_guard",
-          "name": "금의위 소환",
+          "name": {
+            "ko": "금의위 소환",
+            "en": ""
+          },
           "intent": "summon",
           "summons": "E002",
           "summon_count": 1,
-          "description": "포졸 1명을 소환. 처치 시 재소환 없음."
+          "description": {
+            "ko": "포졸 1명을 소환. 처치 시 재소환 없음.",
+            "en": ""
+          }
         },
         {
           "id": "red_tape",
-          "name": "문서 지옥",
+          "name": {
+            "ko": "문서 지옥",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "관료주의의 속박. 냉기 1(다음 턴 드로우 -1) + 약화 1 부여."
+          "description": {
+            "ko": "관료주의의 속박. 냉기 1(다음 턴 드로우 -1) + 약화 1 부여.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -88,48 +140,101 @@
         "type": "hp_threshold",
         "hp_percent": 65,
         "on_trigger": [
-          { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" },
-          { "type": "apply_buff", "buff": "thorns", "stacks": 2, "target": "self", "note": "가시: 근접 공격 받을 때마다 공격자에게 2피해" },
-          { "type": "dialogue", "text": "감히 판서를 건드려! 목이 열 개라도 모자라겠구나!" }
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 3,
+            "target": "self"
+          },
+          {
+            "type": "apply_buff",
+            "buff": "thorns",
+            "stacks": 2,
+            "target": "self",
+            "note": "가시: 근접 공격 받을 때마다 공격자에게 2피해"
+          },
+          {
+            "type": "dialogue",
+            "text": "감히 판서를 건드려! 목이 열 개라도 모자라겠구나!"
+          }
         ]
       },
       "moves": [
         {
           "id": "golden_seal_slam",
-          "name": "금인 강타",
+          "name": {
+            "ko": "금인 강타",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
-          "description": "금인을 들어 내리찍는 강력한 일격. 힘 보너스 적용."
+          "description": {
+            "ko": "금인을 들어 내리찍는 강력한 일격. 힘 보너스 적용.",
+            "en": ""
+          }
         },
         {
           "id": "abuse_of_power",
-          "name": "권력 남용",
+          "name": {
+            "ko": "권력 남용",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 8,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "8피해 + 약화 2 + 취약 1. 플레이어 전투력 대폭 감소."
+          "description": {
+            "ko": "8피해 + 약화 2 + 취약 1. 플레이어 전투력 대폭 감소.",
+            "en": ""
+          }
         },
         {
           "id": "double_seal",
-          "name": "이중 인장",
+          "name": {
+            "ko": "이중 인장",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 9,
           "times": 2,
-          "description": "9피해 × 2회 = 18 총피해. 방어도 분산 효과."
+          "description": {
+            "ko": "9피해 × 2회 = 18 총피해. 방어도 분산 효과.",
+            "en": ""
+          }
         },
         {
           "id": "enraged_fortify",
-          "name": "분노 강화",
+          "name": {
+            "ko": "분노 강화",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
-          "description": "힘 2 추가 획득. 이후 공격 피해가 더욱 강해진다."
+          "description": {
+            "ko": "힘 2 추가 획득. 이후 공격 피해가 더욱 강해진다.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -153,7 +258,10 @@
         "type": "hp_threshold",
         "hp_percent": 30,
         "on_trigger": [
-          { "type": "cleanse_debuffs", "target": "self" },
+          {
+            "type": "cleanse_debuffs",
+            "target": "self"
+          },
           {
             "type": "apply_debuff",
             "debuff": "death_countdown",
@@ -161,39 +269,70 @@
             "target": "player",
             "note": "사망 카운트다운: 4턴 후 플레이어 현재 HP 40% 강제 감소. 판서 처치 시 즉시 해제."
           },
-          { "type": "dialogue", "text": "왕명이니라! 이 자를 당장 처형하라!" }
+          {
+            "type": "dialogue",
+            "text": "왕명이니라! 이 자를 당장 처형하라!"
+          }
         ],
         "balance_note": "[ZER-84 수정] 페이즈 3 진입 시 힘 +2 제거. 기존: 힘 5(페이즈 2)+2=7 → 왕명 집행 45피해 즉사 위험. 수정 후: 힘 최대 5 유지 → 왕명 집행 최대 39피해. 카운트다운(4턴) 긴장감이 페이즈 3 핵심 압박 수단으로 충분."
       },
       "moves": [
         {
           "id": "royal_decree_strike",
-          "name": "왕명 집행",
+          "name": {
+            "ko": "왕명 집행",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 3,
           "effects": [
-            { "type": "strip_buff", "count": 1, "target": "player", "note": "플레이어 버프 1개를 무작위로 제거" }
+            {
+              "type": "strip_buff",
+              "count": 1,
+              "target": "player",
+              "note": "플레이어 버프 1개를 무작위로 제거"
+            }
           ],
-          "description": "8피해 × 3회 = 24 총피해 + 플레이어 버프 1개 박탈."
+          "description": {
+            "ko": "8피해 × 3회 = 24 총피해 + 플레이어 버프 1개 박탈.",
+            "en": ""
+          }
         },
         {
           "id": "seal_of_wrath",
-          "name": "진노의 인장",
+          "name": {
+            "ko": "진노의 인장",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 22,
           "times": 1,
-          "description": "분노가 극에 달한 단발 최대 피해 공격."
+          "description": {
+            "ko": "분노가 극에 달한 단발 최대 피해 공격.",
+            "en": ""
+          }
         },
         {
           "id": "final_authority",
-          "name": "최후의 권위",
+          "name": {
+            "ko": "최후의 권위",
+            "en": ""
+          },
           "intent": "defend_buff",
           "block": 10,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            }
           ],
-          "description": "방어도 10 + 힘 1. 극단적 상황에서의 마지막 방어 시도."
+          "description": {
+            "ko": "방어도 10 + 힘 1. 극단적 상황에서의 마지막 방어 시도.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -208,9 +347,11 @@
       }
     }
   ],
-
   "rewards": {
-    "gold": { "min": 70, "max": 90 },
+    "gold": {
+      "min": 70,
+      "max": 90
+    },
     "relic": "보스 유물 1개 (확정)",
     "relic_candidates": [
       {
@@ -229,9 +370,7 @@
       }
     ]
   },
-
   "balance_note": "HP 115. 페이즈 1(115→75=40HP) 약 5-6턴, 페이즈 2(75→35=40HP) 약 5-6턴, 페이즈 3(35→0=35HP) 약 4-5턴. 총 14-17턴 목표. 페이즈 2 진입 시 힘+3 → golden_seal_slam(14+3=17), double_seal(9+3=12×2=24). 페이즈 3 사망 카운트다운(4턴) 내 처치 필요 → 시조 완성 DPS 레이스 강요. royal_decree_strike의 버프 박탈은 플레이어 장기 전략 붕괴 위협. 방어도 적극 활용(15+ 유지 권장)으로 2페이즈 생존 가능.",
-
   "design_notes": {
     "thematic_concept": "조선 1막 최종 보스로서 '부패한 권위'를 테마. 일반 몬스터(불량배, 포졸)와 달리 공식적 권력을 무기로 사용. 법과 왕명이 억압의 도구가 되는 Joseon 사회 비판 반영.",
     "mechanical_pillar": "페이즈마다 플레이어에게 다른 형태의 압박: 1페이즈=디버프 누적, 2페이즈=딜+버프(가시)로 근접 패널티, 3페이즈=타임어택(카운트다운)+버프 파괴.",

@@ -109,10 +109,17 @@ func _on_show_upgrade_list() -> void:
 	for entry in cards:
 		var card: CardData = entry["card_data"]
 		var btn := Button.new()
+		var eff := card.get_current_effect()
+		var eff_up := ""
+		var locale := TranslationServer.get_locale()
+		if locale == "en" and card.effect_upgraded_en != "":
+			eff_up = card.effect_upgraded_en
+		elif card.effect_upgraded != "":
+			eff_up = card.effect_upgraded
 		btn.text = "%s — %s → %s" % [
 			card.get_display_name(),
-			card.effect,
-			card.effect_upgraded if card.effect_upgraded != "" else "(강화 효과 없음)"
+			eff,
+			eff_up if eff_up != "" else "(강화 효과 없음)"
 		]
 		btn.add_theme_font_size_override("font_size", 18)
 		btn.pressed.connect(_on_upgrade_card.bind(entry))
@@ -130,9 +137,17 @@ func _on_upgrade_card(entry: Dictionary) -> void:
 	AudioManager.play_sfx_by_key("upgrade")
 	GameManager.run_data.upgraded_cards.append(card_id)
 
+	var upgraded_text := ""
+	var loc := TranslationServer.get_locale()
+	if loc == "en" and card.effect_upgraded_en != "":
+		upgraded_text = card.effect_upgraded_en
+	elif card.effect_upgraded != "":
+		upgraded_text = card.effect_upgraded
+	else:
+		upgraded_text = card.get_current_effect()
 	_show_result("『%s』 강화 완료!\n%s" % [
 		card.get_display_name(),
-		card.effect_upgraded if card.effect_upgraded != "" else card.effect
+		upgraded_text
 	])
 
 

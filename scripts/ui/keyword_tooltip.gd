@@ -97,8 +97,8 @@ func show_tooltip(keyword_id: String, global_pos: Vector2) -> void:
 		else:
 			return
 	else:
-		_name_label.text = kw.get("name", keyword_id)
-		_desc_label.text = kw.get("description", "")
+		_name_label.text = _get_localized(kw, "name", keyword_id)
+		_desc_label.text = _get_localized(kw, "description", "")
 		var color_hex: String = kw.get("color", "#FFD966")
 		_name_label.add_theme_color_override("font_color", Color.from_string(color_hex, Color(1, 0.85, 0.3)))
 
@@ -128,6 +128,19 @@ func show_tooltip(keyword_id: String, global_pos: Vector2) -> void:
 func hide_tooltip() -> void:
 	_panel.visible = false
 	_visible = false
+
+
+## 다국어 딕셔너리에서 현재 로케일에 맞는 텍스트 반환.
+func _get_localized(kw: Dictionary, field: String, fallback: String) -> String:
+	var value = kw.get(field, fallback)
+	if value is Dictionary:
+		var locale := TranslationServer.get_locale()
+		if value.has(locale) and str(value[locale]) != "":
+			return str(value[locale])
+		if value.has("ko"):
+			return str(value["ko"])
+		return fallback
+	return str(value) if value else fallback
 
 
 ## 키워드 ID로 데이터가 있는지 확인

@@ -411,12 +411,9 @@ func _update_enemy_ui() -> void:
 			_build_status_icons(cache["status_hbox"], "enemy_%d" % i)
 		else:
 			# 새 적 패널 생성
-			var name_data = enemy.get("name", {})
-			var enemy_name: String = ""
-			if name_data is Dictionary:
-				enemy_name = name_data.get("ko", "적")
-			elif name_data is String:
-				enemy_name = name_data
+			var enemy_name: String = TranslationManager.trd_name(enemy)
+			if enemy_name == "":
+				enemy_name = "적"
 
 			var panel := PanelContainer.new()
 			var vbox := VBoxContainer.new()
@@ -483,14 +480,9 @@ func _get_enemy_silhouette(enemy: Dictionary) -> String:
 	if combat_type == "elite":
 		return "[*]"
 	# 일반 적: 이름 첫 글자 기반
-	var name_data = enemy.get("name", {})
-	var ko_name: String = ""
-	if name_data is Dictionary:
-		ko_name = name_data.get("ko", "")
-	elif name_data is String:
-		ko_name = name_data
-	if ko_name.length() > 0:
-		return "<%s>" % ko_name[0]
+	var disp_name: String = TranslationManager.trd_name(enemy, false)
+	if disp_name.length() > 0:
+		return "<%s>" % disp_name[0]
 	return "<X>"
 
 
@@ -658,7 +650,7 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 	if index < sijo_slot_labels.size():
 		var card: CardData = DataLoader.get_card(card_id)
 		if card:
-			sijo_slot_labels[index].text = card.name_ko
+			sijo_slot_labels[index].text = card.get_display_name()
 		else:
 			sijo_slot_labels[index].text = card_id
 		sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
@@ -893,7 +885,7 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void
 		for slot_id in all_slot_card_ids:
 			var slot_card: CardData = DataLoader.get_card(slot_id)
 			if slot_card:
-				slot_names.append(slot_card.name_ko)
+				slot_names.append(slot_card.get_display_name())
 			else:
 				slot_names.append("…")
 		vfx.sijo_complete_vfx(self, slot_names)

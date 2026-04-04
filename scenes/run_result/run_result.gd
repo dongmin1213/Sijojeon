@@ -86,8 +86,8 @@ func _populate_achievements() -> void:
 		var ach_id: String = ach.get("id", "")
 		if ach_id in unlocked_ids:
 			unlocked_count += 1
-			var name_text: String = "★ " + ach.get("name", "")
-			_add_stat_row(name_text, ach.get("description", ""))
+			var name_text: String = "★ " + TranslationManager.trd(ach, "name", "")
+			_add_stat_row(name_text, TranslationManager.trd(ach, "description", ""))
 
 	_add_stat_row("달성률", "%d / %d" % [unlocked_count, all_achs.size()])
 

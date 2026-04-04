@@ -11,283 +11,475 @@
       "name": {
         "ko": "회피",
         "hanja": "回避",
-        "romanized": "Hoepi"
+        "romanized": "Hoepi",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "defense",
-      "subtypes": ["movement"],
+      "subtypes": [
+        "movement"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "방어도 4를 획득한다. 이번 턴에 이미 카드를 1장 이상 사용했다면 방어도를 3 추가 획득한다.",
-      "effect_upgraded": "방어도 5를 획득한다. 이미 카드를 사용했다면 방어도를 4 추가 획득한다.",
-      "flavor_text": "적의 칼끝을 한 발짝 비켜서면 — 흘려내는 것이 막는 것보다 강하다.",
+      "effect": {
+        "ko": "방어도 4를 획득한다. 이번 턴에 이미 카드를 1장 이상 사용했다면 방어도를 3 추가 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 5를 획득한다. 이미 카드를 사용했다면 방어도를 4 추가 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "적의 칼끝을 한 발짝 비켜서면 — 흘려내는 것이 막는 것보다 강하다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 기본 4방어도. 수호(5)보다 1 낮지만, 두 번째 이상 사용 시 최대 7방어도로 수호를 초과. 이동 카드의 포지셔닝 특성상 후반 슬롯에 배치되는 경향을 반영.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "block": 4 }
+      "values": {
+        "block": 4
+      }
     },
     {
       "id": "M002",
       "name": {
         "ko": "도약",
         "hanja": "跳躍",
-        "romanized": "Doyak"
+        "romanized": "Doyak",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "movement",
-      "subtypes": ["defense", "attack_buff"],
+      "subtypes": [
+        "defense",
+        "attack_buff"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "방어도 3을 획득한다. 이번 턴 다음에 사용하는 공격 카드의 피해를 +4 증가시킨다.",
-      "effect_upgraded": "방어도 4를 획득한다. 다음 공격 카드 피해 +6 증가.",
-      "flavor_text": "땅을 박차고 솟구쳐 — 올라가는 순간, 적은 나의 칼끝을 잃는다.",
+      "effect": {
+        "ko": "방어도 3을 획득한다. 이번 턴 다음에 사용하는 공격 카드의 피해를 +4 증가시킨다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 4를 획득한다. 다음 공격 카드 피해 +6 증가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "땅을 박차고 솟구쳐 — 올라가는 순간, 적은 나의 칼끝을 잃는다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트로 방어(3) + 공격버프(+4) 이중 효과. 이동→공격 연계의 핵심 카드. 시조 포지션상 초장 [3]에서 리듬 오프너 역할.",
       "sijo_position": "초장 첫 슬롯 [3] — 이동 시퀀스 오프너",
       "upgrade_cost": 75,
-      "values": { "block": 3, "next_attack_bonus": 4 }
+      "values": {
+        "block": 3,
+        "next_attack_bonus": 4
+      }
     },
     {
       "id": "M003",
       "name": {
         "ko": "후퇴",
         "hanja": "後退",
-        "romanized": "Hutoe"
+        "romanized": "Hutoe",
+        "en": ""
       },
       "beat": 3,
       "cost": 0,
       "type": "movement",
-      "subtypes": ["defense", "debuff"],
+      "subtypes": [
+        "defense",
+        "debuff"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "방어도 2를 획득한다. 대상 적에게 약화(弱化) 1을 부여한다.",
-      "effect_upgraded": "방어도 3을 획득한다. 약화 2를 부여한다.",
-      "flavor_text": "물러서는 것은 도망이 아니다 — 적의 힘을 빼앗는 계략이다.",
+      "effect": {
+        "ko": "방어도 2를 획득한다. 대상 적에게 약화(弱化) 1을 부여한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 3을 획득한다. 약화 2를 부여한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "물러서는 것은 도망이 아니다 — 적의 힘을 빼앗는 계략이다.",
+        "en": ""
+      },
       "balance_rationale": "0코스트. 2방어도 + 약화1. 덱 20장 기준 최대 2장 권장.",
       "sijo_position": "초장 첫 슬롯 [3] — 무료 리듬 스타터",
       "upgrade_cost": 50,
-      "values": { "block": 2, "weaken": 1 }
+      "values": {
+        "block": 2,
+        "weaken": 1
+      }
     },
     {
       "id": "M004",
       "name": {
         "ko": "측면 강타",
         "hanja": "側面强打",
-        "romanized": "Eukmyeon Gangta"
+        "romanized": "Eukmyeon Gangta",
+        "en": ""
       },
       "beat": 4,
       "cost": 2,
       "type": "attack",
-      "subtypes": ["movement"],
+      "subtypes": [
+        "movement"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "적에게 10 피해를 입힌다. 현재 방어도가 1 이상이면 피해를 5 추가로 입힌다.",
-      "effect_upgraded": "적에게 14 피해를 입힌다. 방어도가 있으면 피해 7 추가.",
-      "flavor_text": "허리를 낮춰 측면으로 파고드는 한 발 — 막을 틈도 없이 파고든다.",
+      "effect": {
+        "ko": "적에게 10 피해를 입힌다. 현재 방어도가 1 이상이면 피해를 5 추가로 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 14 피해를 입힌다. 방어도가 있으면 피해 7 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "허리를 낮춰 측면으로 파고드는 한 발 — 막을 틈도 없이 파고든다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 조건부 공격. 기본 10피해는 2코스트 기준 적정. 방어도 조건(이동 콤보 후 자연스럽게 충족)으로 최대 15피해.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "damage": 10 }
+      "values": {
+        "damage": 10
+      }
     },
     {
       "id": "M005",
       "name": {
         "ko": "포복",
         "hanja": "匍匐",
-        "romanized": "Pobok"
+        "romanized": "Pobok",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "movement",
-      "subtypes": ["defense", "draw"],
+      "subtypes": [
+        "defense",
+        "draw"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "방어도 5를 획득하고 카드 1장을 드로우한다.",
-      "effect_upgraded": "방어도 7을 획득하고 카드 1장을 드로우한다.",
-      "flavor_text": "낮게 기어 적의 시야를 벗어나며 — 다음 수를 준비한다.",
+      "effect": {
+        "ko": "방어도 5를 획득하고 카드 1장을 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 7을 획득하고 카드 1장을 드로우한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "낮게 기어 적의 시야를 벗어나며 — 다음 수를 준비한다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 수호(5방어도)와 동일한 방어도에 드로우 1장 추가. 덱 가속 + 방어를 동시에 처리하는 범용 이동 카드.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "block": 5, "draw": 1 }
+      "values": {
+        "block": 5,
+        "draw": 1
+      }
     },
     {
       "id": "M006",
       "name": {
         "ko": "선제 공격",
         "hanja": "先制攻擊",
-        "romanized": "Seongje Gonggyeok"
+        "romanized": "Seongje Gonggyeok",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "attack",
-      "subtypes": ["movement"],
+      "subtypes": [
+        "movement"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "적에게 7 피해를 입힌다.",
-      "effect_upgraded": "적에게 10 피해를 입힌다.",
-      "flavor_text": "먼저 치는 자가 이긴다 — 선수를 잡으면 전장의 흐름이 바뀐다.",
+      "effect": {
+        "ko": "적에게 7 피해를 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 10 피해를 입힌다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "먼저 치는 자가 이긴다 — 선수를 잡으면 전장의 흐름이 바뀐다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 기본 공격(7피해)으로 직언(6피해)보다 1 높음. 공통 카드의 공격 옵션 추가. [4] 음보로 [3] 음보 기본 공격과 시조 슬롯 차별화. 업그레이드 시 10피해 = 2코스트 카드에 준하는 성능.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 50,
-      "values": { "damage": 7 }
+      "values": {
+        "damage": 7
+      }
     },
     {
       "id": "M007",
       "name": {
         "ko": "방어 자세",
         "hanja": "防禦姿勢",
-        "romanized": "Bangeo Jase"
+        "romanized": "Bangeo Jase",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "defense",
-      "subtypes": ["movement"],
+      "subtypes": [
+        "movement"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "방어도 6을 획득한다.",
-      "effect_upgraded": "방어도 9를 획득한다.",
-      "flavor_text": "자세를 낮추고 방패를 높이면 — 어떤 공격도 뚫을 수 없다.",
+      "effect": {
+        "ko": "방어도 6을 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 9를 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "자세를 낮추고 방패를 높이면 — 어떤 공격도 뚫을 수 없다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 방어(6)로 수호(5)보다 1 높음. 공통 카드의 방어 옵션 강화. [4] 음보로 [3] 음보 방어 카드와 시조 슬롯 차별화. 업그레이드 시 9방어도 = 2코스트 방어 카드에 근접.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 50,
-      "values": { "block": 6 }
+      "values": {
+        "block": 6
+      }
     },
     {
       "id": "M008",
       "name": {
         "ko": "눈치",
         "hanja": "眼色",
-        "romanized": "Nunchi"
+        "romanized": "Nunchi",
+        "en": ""
       },
       "beat": 3,
       "cost": 0,
       "type": "spell",
-      "subtypes": ["draw"],
+      "subtypes": [
+        "draw"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "카드 2장을 드로우한다.",
-      "effect_upgraded": "카드 3장을 드로우한다.",
-      "flavor_text": "상황을 빠르게 읽어내면 — 어떤 패도 손에 잡힌다.",
+      "effect": {
+        "ko": "카드 2장을 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "카드 3장을 드로우한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "상황을 빠르게 읽어내면 — 어떤 패도 손에 잡힌다.",
+        "en": ""
+      },
       "balance_rationale": "0코스트 드로우 2장. 기공(0코스트 기+드로우1)보다 드로우가 1 더 많지만 기 획득 없음. 모든 직업에서 덱 순환 가속에 활용 가능. 0코스트 카드는 시조 슬롯을 소비하므로 덱 20장 기준 최대 1장 권장.",
       "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 드로우",
       "upgrade_cost": 50,
-      "values": { "draw": 2 }
+      "values": {
+        "draw": 2
+      }
     },
     {
       "id": "M009",
       "name": {
         "ko": "기회 포착",
         "hanja": "機會捕捉",
-        "romanized": "Gihoe Poche"
+        "romanized": "Gihoe Poche",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["draw", "cost_reduce"],
+      "subtypes": [
+        "draw",
+        "cost_reduce"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "카드 1장을 드로우한다. 이번 턴 다음에 사용하는 카드의 비용을 1 감소시킨다 (최소 0).",
-      "effect_upgraded": "카드 2장을 드로우한다. 다음 카드 비용 1 감소.",
-      "flavor_text": "기회는 준비된 자에게만 온다 — 찰나의 순간을 놓치지 말라.",
+      "effect": {
+        "ko": "카드 1장을 드로우한다. 이번 턴 다음에 사용하는 카드의 비용을 1 감소시킨다 (최소 0).",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "카드 2장을 드로우한다. 다음 카드 비용 1 감소.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "기회는 준비된 자에게만 온다 — 찰나의 순간을 놓치지 말라.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 드로우+비용 감소. 격물치지(W007, 1코스트 학식2+비용감소)의 공통 버전. 드로우+비용감소 조합은 모든 직업에서 콤보 설정에 활용 가능. 단, 학식을 제공하지 않아 문관에선 격물치지보다 약함. 무관·도사에서 범용 콤보 스타터.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "draw": 1, "cost_reduce_next": 1 }
+      "values": {
+        "draw": 1,
+        "cost_reduce_next": 1
+      }
     },
     {
       "id": "M010",
       "name": {
         "ko": "버티기",
         "hanja": "堅持",
-        "romanized": "Beotigi"
+        "romanized": "Beotigi",
+        "en": ""
       },
       "beat": 3,
       "cost": 2,
       "type": "defense",
-      "subtypes": ["movement"],
+      "subtypes": [
+        "movement"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "방어도 15를 획득한다.",
-      "effect_upgraded": "방어도 20을 획득한다.",
-      "flavor_text": "어떤 상황에서도 버틴다 — 포기하지 않는 것이 최강의 방어다.",
+      "effect": {
+        "ko": "방어도 15를 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 20을 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "어떤 상황에서도 버틴다 — 포기하지 않는 것이 최강의 방어다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 고방어 카드. 철벽방어(G023, 2코스트 14방어도)보다 1 높은 15방어도. 공통 카드이므로 모든 직업의 방어 덱 빌드를 지원. 업그레이드 시 20방어도는 3코스트급 성능으로 강력한 업그레이드 목표 제공.",
       "sijo_position": "중장·종장 첫 슬롯 [3]",
       "upgrade_cost": 75,
-      "values": { "block": 15 }
+      "values": {
+        "block": 15
+      }
     },
     {
       "id": "M011",
       "name": {
         "ko": "흥",
         "hanja": "興",
-        "romanized": "Heung"
+        "romanized": "Heung",
+        "en": ""
       },
       "beat": 0,
       "beat_note": "와일드 — 어느 시조 슬롯에나 배치 가능 ([3] 또는 [4] 슬롯 모두 허용)",
       "cost": 1,
       "type": "spell",
-      "subtypes": ["wildcard", "draw"],
+      "subtypes": [
+        "wildcard",
+        "draw"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
-      "effect_upgraded": "카드 2장을 드로우한다. 이 카드는 어느 슬롯에나 배치 가능.",
-      "flavor_text": "흥이 나면 장단이 맞고 — 리듬이 흐르는 곳에 자연스레 스며든다.",
+      "effect": {
+        "ko": "카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "카드 2장을 드로우한다. 이 카드는 어느 슬롯에나 배치 가능.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "흥이 나면 장단이 맞고 — 리듬이 흐르는 곳에 자연스레 스며든다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 드로우 1. 직접 효과는 weak하나 와일드 슬롯 유연성이 핵심 가치. 시조 슬롯 완성에 막히는 상황(beat 불일치)을 해소하는 전략적 보험 카드. 덱당 1~2장 권장. 업그레이드 시 드로우 2로 비용 효율 크게 향상.",
       "sijo_position": "어느 슬롯이든 가능 — 완성 직전 마지막 슬롯 채우기용 추천",
       "upgrade_cost": 75,
-      "values": { "draw": 1 }
+      "values": {
+        "draw": 1
+      }
     },
     {
       "id": "M012",
       "name": {
         "ko": "여백",
         "hanja": "餘白",
-        "romanized": "Yeobaek"
+        "romanized": "Yeobaek",
+        "en": ""
       },
       "beat": 0,
       "beat_note": "와일드 — 어느 시조 슬롯에나 배치 가능 ([3] 또는 [4] 슬롯 모두 허용)",
       "cost": 0,
       "type": "defense",
-      "subtypes": ["wildcard", "movement"],
+      "subtypes": [
+        "wildcard",
+        "movement"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "방어도 2를 획득한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
-      "effect_upgraded": "방어도 4를 획득한다. 어느 슬롯에나 배치 가능.",
-      "flavor_text": "빈 공간도 시의 일부다 — 여백을 채울 줄 아는 자가 시조를 완성한다.",
+      "effect": {
+        "ko": "방어도 2를 획득한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 4를 획득한다. 어느 슬롯에나 배치 가능.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "빈 공간도 시의 일부다 — 여백을 채울 줄 아는 자가 시조를 완성한다.",
+        "en": ""
+      },
       "balance_rationale": "0코스트 방어 2 + 와일드 슬롯. 0코스트 카드는 시조 슬롯을 소비하므로 패 효율이 낮지만, 와일드 속성으로 beat 불일치 상황을 0비용으로 해소. 시조 완성을 중시하는 빌드에서 콤보 연결 카드. 덱당 최대 1장 권장.",
       "sijo_position": "어느 슬롯이든 가능 — 초장/중장/종장 첫 슬롯 [3] 미스 시 대타",
       "upgrade_cost": 50,
-      "values": { "block": 2 }
+      "values": {
+        "block": 2
+      }
     },
-
     {
       "id": "M013",
       "name": {
         "ko": "낭송",
         "hanja": "朗誦",
-        "romanized": "Nangseong"
+        "romanized": "Nangseong",
+        "en": ""
       },
       "beat": 5,
       "cost": 1,
       "type": "defense",
-      "subtypes": ["movement"],
+      "subtypes": [
+        "movement"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "방어도 7을 획득한다.",
-      "effect_upgraded": "방어도 10을 획득한다.",
-      "flavor_text": "목청을 높여 시를 낭송하면 — 리듬이 몸을 감싸 어떤 타격도 막아낸다.",
+      "effect": {
+        "ko": "방어도 7을 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 10을 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "목청을 높여 시를 낭송하면 — 리듬이 몸을 감싸 어떤 타격도 막아낸다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 beat:5 방어도 7. 종장 [5] 슬롯 전용으로 슬롯 희소성 보상 (+1 방어도). 업그레이드 시 10방어도는 2코스트급. 종장에서 방어를 마무리하는 빌드의 핵심 카드.",
       "sijo_position": "종장 둘째 슬롯 [5] 전용",
       "upgrade_cost": 50,
-      "values": { "block": 7 }
+      "values": {
+        "block": 7
+      }
     },
     {
       "id": "M014",
       "name": {
         "ko": "절창",
         "hanja": "絶唱",
-        "romanized": "Jeolchang"
+        "romanized": "Jeolchang",
+        "en": ""
       },
       "beat": 5,
       "cost": 2,
@@ -295,191 +487,327 @@
       "subtypes": [],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
-      "effect": "적에게 13 피해를 입힌다. 이번 턴에 시조 1줄을 완성했다면 피해를 7 추가로 입힌다.",
-      "effect_upgraded": "적에게 18 피해를 입힌다. 시조 완성 시 피해 10 추가.",
-      "flavor_text": "마지막 구절을 노래로 맺으며 — 하늘을 찌르는 기세로 적을 베어낸다.",
+      "effect": {
+        "ko": "적에게 13 피해를 입힌다. 이번 턴에 시조 1줄을 완성했다면 피해를 7 추가로 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 18 피해를 입힌다. 시조 완성 시 피해 10 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "마지막 구절을 노래로 맺으며 — 하늘을 찌르는 기세로 적을 베어낸다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 13피해(기준: 12피해 +1 보정). 시조 완성 조건은 종장 [5] 슬롯에서 자연스럽게 충족되므로 실질 20피해. 업그레이드 시 28피해는 게임 최고 수준 단일 피해. beat:5 희소성과 시조 완성 조건 이중 장치.",
       "sijo_position": "종장 둘째 슬롯 [5] 전용 — 시조 피니셔",
       "upgrade_cost": 100,
-      "values": { "damage": 13, "sijo_complete_bonus": 7 }
+      "values": {
+        "damage": 13,
+        "sijo_complete_bonus": 7
+      }
     },
     {
       "id": "M015",
       "name": {
         "ko": "여운",
         "hanja": "餘韻",
-        "romanized": "Yeoun"
+        "romanized": "Yeoun",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["draw", "energy"],
+      "subtypes": [
+        "draw",
+        "energy"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "카드 1장을 드로우한다. 이번 턴에 시조 1줄을 완성했다면 기(氣) 2를 획득한다.",
-      "effect_upgraded": "카드 2장을 드로우한다. 시조 완성 시 기(氣) 3을 획득한다.",
-      "flavor_text": "시 한 줄이 끝나도 여운이 남아 — 그 흐름에서 새로운 힘이 솟아난다.",
+      "effect": {
+        "ko": "카드 1장을 드로우한다. 이번 턴에 시조 1줄을 완성했다면 기(氣) 2를 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "카드 2장을 드로우한다. 시조 완성 시 기(氣) 3을 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "시 한 줄이 끝나도 여운이 남아 — 그 흐름에서 새로운 힘이 솟아난다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 드로우1 + 조건부 기 2. 시조 완성 보상 루프의 핵심. 기 2 = 다음 슬롯 카드 2회 추가 사용 가능. 시조 완성이 어렵지 않은 중후반 턴에서 안정적 가치 발휘. 업그레이드 시 드로우2+기3으로 폭발적 가속.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "draw": 1, "qi_gain_if_sijo": 2 }
+      "values": {
+        "draw": 1,
+        "qi_gain_if_sijo": 2
+      }
     },
     {
       "id": "M016",
       "name": {
         "ko": "음조 조율",
         "hanja": "音調調律",
-        "romanized": "Eumjo Joyul"
+        "romanized": "Eumjo Joyul",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["draw"],
+      "subtypes": [
+        "draw"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "손에서 카드 1장을 버린다. 카드 2장을 드로우한다.",
-      "effect_upgraded": "손에서 카드 1장을 버린다. 카드 3장을 드로우한다.",
-      "flavor_text": "맞지 않는 박자를 버리고 — 새로운 가락을 찾는다.",
+      "effect": {
+        "ko": "손에서 카드 1장을 버린다. 카드 2장을 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "손에서 카드 1장을 버린다. 카드 3장을 드로우한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "맞지 않는 박자를 버리고 — 새로운 가락을 찾는다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 -1+2 = 순수 드로우 +1. 패 품질 향상 및 beat 불일치 카드 처리. StS Acrobatics(0코스트 -1+3)보다 1기 비쌉니다만, beat:3 슬롯을 자연스럽게 채워 시조 진행 방해 없음. 불필요한 공통/직업 카드를 솎아내는 덱 압축 수단.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "discard": 1, "draw": 2 }
+      "values": {
+        "discard": 1,
+        "draw": 2
+      }
     },
     {
       "id": "M017",
       "name": {
         "ko": "화답",
         "hanja": "和答",
-        "romanized": "Hwadap"
+        "romanized": "Hwadap",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "defense",
-      "subtypes": ["movement"],
+      "subtypes": [
+        "movement"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "방어도 4를 획득한다. 직전에 사용한 카드의 음보(beat)가 3이었다면 방어도를 5 추가 획득한다.",
-      "effect_upgraded": "방어도 5를 획득한다. 직전 카드 beat:3이면 방어도 7 추가.",
-      "flavor_text": "앞의 구절이 낮으면 뒤의 구절은 높아진다 — 장단이 맞을 때 방어가 완성된다.",
+      "effect": {
+        "ko": "방어도 4를 획득한다. 직전에 사용한 카드의 음보(beat)가 3이었다면 방어도를 5 추가 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 5를 획득한다. 직전 카드 beat:3이면 방어도 7 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "앞의 구절이 낮으면 뒤의 구절은 높아진다 — 장단이 맞을 때 방어가 완성된다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 기본 4방어도. [3]→[4] 연속 배치(시조 자연 순서)를 충족하면 9방어도. 시조 리듬대로 사용할 때 보상. 무조건 9방어도를 주지 않아 덱 구성 전략 필요. 업그레이드 시 최대 12방어도.",
       "sijo_position": "초장·중장 둘째 슬롯 [4] — [3] 슬롯 직후 사용 권장",
       "upgrade_cost": 75,
-      "values": { "block": 4, "block_if_prev_beat3": 5 }
+      "values": {
+        "block": 4,
+        "block_if_prev_beat3": 5
+      }
     },
     {
       "id": "M018",
       "name": {
         "ko": "결연",
         "hanja": "結緣",
-        "romanized": "Gyeoryeon"
+        "romanized": "Gyeoryeon",
+        "en": ""
       },
       "beat": 0,
       "beat_note": "와일드 — 어느 시조 슬롯에나 배치 가능 ([3], [4], [5] 슬롯 모두 허용)",
       "cost": 1,
       "type": "spell",
-      "subtypes": ["wildcard", "energy", "draw"],
+      "subtypes": [
+        "wildcard",
+        "energy",
+        "draw"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "기(氣) 1을 획득하고 카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
-      "effect_upgraded": "기(氣) 2를 획득하고 카드 2장을 드로우한다. 어느 슬롯에나 배치 가능.",
-      "flavor_text": "인연이 맺어지는 곳엔 — 기(氣)와 흐름이 자연스레 따라온다.",
+      "effect": {
+        "ko": "기(氣) 1을 획득하고 카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "기(氣) 2를 획득하고 카드 2장을 드로우한다. 어느 슬롯에나 배치 가능.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "인연이 맺어지는 곳엔 — 기(氣)와 흐름이 자연스레 따라온다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 와일드. 흥(1코스트 드로우1)보다 기 회복 추가 제공. 세 번째 와일드카드로 beat 불일치 해소 + 자원 생성 겸용. 흥·여백이 이미 있는 경우 교체 우선순위를 두는 덱 구성 판단 필요.",
       "sijo_position": "어느 슬롯이든 가능 — beat:5 포함 전 슬롯 대응",
       "upgrade_cost": 75,
-      "values": { "qi_gain": 1, "draw": 1 }
+      "values": {
+        "qi_gain": 1,
+        "draw": 1
+      }
     },
-
     {
       "id": "M019",
       "name": {
         "ko": "명상",
         "hanja": "冥想",
-        "romanized": "Myeongsang"
+        "romanized": "Myeongsang",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["energy"],
+      "subtypes": [
+        "energy"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "기(氣) 2를 획득한다.",
-      "effect_upgraded": "기(氣) 3을 획득한다.",
-      "flavor_text": "고요히 앉아 숨을 고르면 — 기가 차오르고 마음이 맑아진다.",
+      "effect": {
+        "ko": "기(氣) 2를 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "기(氣) 3을 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "고요히 앉아 숨을 고르면 — 기가 차오르고 마음이 맑아진다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 기 2 획득. 직접 행동력 추가. 도사 기공(0코스트 기1+드로우1)보다 비용이 있으나 기 획득량이 2배. 어느 직업이나 기 부족 상황을 즉시 해소. 기 회전이 빠른 빌드에서 에너지 안전망 역할.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "qi_gain": 2 }
+      "values": {
+        "qi_gain": 2
+      }
     },
     {
       "id": "M020",
       "name": {
         "ko": "집중",
         "hanja": "集中",
-        "romanized": "Jipjung"
+        "romanized": "Jipjung",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["buff", "draw"],
+      "subtypes": [
+        "buff",
+        "draw"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "카드 1장을 드로우한다. 이번 턴 다음에 사용하는 카드의 피해 또는 방어도를 +3 증가시킨다.",
-      "effect_upgraded": "카드 1장을 드로우한다. 다음 카드 피해 또는 방어도 +5 증가.",
-      "flavor_text": "하나에 집중하면 — 어떤 수도 더 깊어진다.",
+      "effect": {
+        "ko": "카드 1장을 드로우한다. 이번 턴 다음에 사용하는 카드의 피해 또는 방어도를 +3 증가시킨다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "카드 1장을 드로우한다. 다음 카드 피해 또는 방어도 +5 증가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "하나에 집중하면 — 어떤 수도 더 깊어진다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 드로우1 + 범용 버프(+3). 도약(1코스트 방어3+공격버프4)보다 버프량은 낮지만 공격·방어 모두에 적용되어 직업 무관 범용성 높음. 공통 카드의 유연성 강점.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "draw": 1, "next_card_bonus": 3 }
+      "values": {
+        "draw": 1,
+        "next_card_bonus": 3
+      }
     },
     {
       "id": "M021",
       "name": {
         "ko": "갱생",
         "hanja": "更生",
-        "romanized": "Gaengsaeng"
+        "romanized": "Gaengsaeng",
+        "en": ""
       },
       "beat": 3,
       "cost": 2,
       "type": "spell",
-      "subtypes": ["draw", "recover"],
+      "subtypes": [
+        "draw",
+        "recover"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "버린 카드 더미에서 카드 2장을 선택해 손으로 가져온다.",
-      "effect_upgraded": "버린 카드 더미에서 카드 3장을 선택해 손으로 가져온다.",
-      "flavor_text": "버린 것도 되살릴 수 있다 — 사라진 기운도 다시 모인다.",
+      "effect": {
+        "ko": "버린 카드 더미에서 카드 2장을 선택해 손으로 가져온다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "버린 카드 더미에서 카드 3장을 선택해 손으로 가져온다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "버린 것도 되살릴 수 있다 — 사라진 기운도 다시 모인다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 카드 회수. 덱 순환이 아닌 사용한 카드 재활용. 콤보 피스(업그레이드 공격 카드, 절창 등) 재회수나 버티기 재사용에 전략적 가치. 2코스트로 기 효율 낮지만 후반 결정적 역할 가능.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 75,
-      "values": { "recover_from_discard": 2 }
+      "values": {
+        "recover_from_discard": 2
+      }
     },
-
     {
       "id": "M022",
       "name": {
         "ko": "독공",
         "hanja": "篤工",
-        "romanized": "Dokkong"
+        "romanized": "Dokkong",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["draw", "buff"],
+      "subtypes": [
+        "draw",
+        "buff"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "카드 1장을 드로우한다. 현재 덱에 직업 전용 카드가 5장 이상 있다면 기(氣) 2를 추가 획득한다.",
-      "effect_upgraded": "카드 2장을 드로우한다. 직업 전용 카드 5장 이상이면 기(氣) 3 추가.",
-      "flavor_text": "한 길을 깊이 파면 — 기(氣)가 저절로 따라온다.",
+      "effect": {
+        "ko": "카드 1장을 드로우한다. 현재 덱에 직업 전용 카드가 5장 이상 있다면 기(氣) 2를 추가 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "카드 2장을 드로우한다. 직업 전용 카드 5장 이상이면 기(氣) 3 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "한 길을 깊이 파면 — 기(氣)가 저절로 따라온다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 드로우1 + 조건부 기 2. 직업 전문화 빌드 보상. 덱의 50% 이상을 직업 카드로 채울 때 안정적으로 발동(20장 덱 기준 10장 직업 카드). 공통 카드를 최소화한 순수 직업 빌드를 장려.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "draw": 1, "qi_gain_if_class_cards": 2, "class_cards_threshold": 5 }
+      "values": {
+        "draw": 1,
+        "qi_gain_if_class_cards": 2,
+        "class_cards_threshold": 5
+      }
     },
     {
       "id": "M023",
       "name": {
         "ko": "도전",
         "hanja": "挑戰",
-        "romanized": "Dojeon"
+        "romanized": "Dojeon",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
@@ -487,669 +815,1181 @@
       "subtypes": [],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "적에게 5 피해를 입힌다. 내 방어도가 0이면 피해를 10 추가로 입힌다.",
-      "effect_upgraded": "적에게 8 피해를 입힌다. 방어도 0이면 피해 12 추가.",
-      "flavor_text": "아무것도 없을 때 — 오히려 가장 과감하게 칼을 던진다.",
+      "effect": {
+        "ko": "적에게 5 피해를 입힌다. 내 방어도가 0이면 피해를 10 추가로 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 8 피해를 입힌다. 방어도 0이면 피해 12 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "아무것도 없을 때 — 오히려 가장 과감하게 칼을 던진다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 기본 5피해. 방어도 0 조건 충족 시 15피해(2.5코스트 상당). 방어도를 쌓지 않는 공격 특화 빌드를 명시적으로 지원. 무관 방패 빌드와는 상성이 나쁘나, 도전 중심 빌드에서 콤보 연계 가능.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 75,
-      "values": { "damage": 5, "damage_if_no_block": 10 }
+      "values": {
+        "damage": 5,
+        "damage_if_no_block": 10
+      }
     },
     {
       "id": "M024",
       "name": {
         "ko": "역습",
         "hanja": "逆襲",
-        "romanized": "Yeogeup"
+        "romanized": "Yeogeup",
+        "en": ""
       },
       "beat": 4,
       "cost": 2,
       "type": "attack",
-      "subtypes": ["defense"],
+      "subtypes": [
+        "defense"
+      ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
-      "effect": "현재 방어도의 절반(내림)만큼 피해를 입힌다. 최소 8, 최대 20.",
-      "effect_upgraded": "현재 방어도의 절반만큼 피해. 최소 12, 최대 25.",
-      "flavor_text": "막아낸 힘을 — 그대로 돌려보낸다.",
+      "effect": {
+        "ko": "현재 방어도의 절반(내림)만큼 피해를 입힌다. 최소 8, 최대 20.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "현재 방어도의 절반만큼 피해. 최소 12, 최대 25.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "막아낸 힘을 — 그대로 돌려보낸다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 방어도→피해 전환. 방어도 16이면 8피해(약함), 방어도 40이면 20피해(강함). 버티기(M010, 2코스트 15방어도)+역습 콤보: 총 4코스트 15방어+7피해. 방어 중심 빌드에 화력 출구 제공. 상한(20/25)으로 폭발적 스케일링 억제.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
       "upgrade_cost": 100,
-      "values": { "damage_half_of_block": true, "damage_min": 8, "damage_max": 20 }
+      "values": {
+        "damage_half_of_block": true,
+        "damage_min": 8,
+        "damage_max": 20
+      }
     },
-
     {
       "id": "M025",
       "name": {
         "ko": "읊조림",
         "hanja": "吟詠",
-        "romanized": "Eumjolim"
+        "romanized": "Eumjolim",
+        "en": ""
       },
       "beat": 3,
       "cost": 0,
       "type": "spell",
-      "subtypes": ["energy", "sijo"],
+      "subtypes": [
+        "energy",
+        "sijo"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "기(氣) 1을 획득한다. 이번 턴에 시조 슬롯을 2칸 이상 채웠다면 기 1을 추가 획득한다.",
-      "effect_upgraded": "기(氣) 1을 획득한다. 시조 슬롯 2칸 이상이면 기 2를 추가 획득한다.",
-      "flavor_text": "나지막이 읊조리면 — 시의 흐름 속에서 기가 피어오른다.",
+      "effect": {
+        "ko": "기(氣) 1을 획득한다. 이번 턴에 시조 슬롯을 2칸 이상 채웠다면 기 1을 추가 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "기(氣) 1을 획득한다. 시조 슬롯 2칸 이상이면 기 2를 추가 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "나지막이 읊조리면 — 시의 흐름 속에서 기가 피어오른다.",
+        "en": ""
+      },
       "balance_rationale": "0코스트 기 1. 시조 진행 조건 충족 시 기 2(명상의 무료 버전). 시조 리듬에 맞춰 플레이할 때 보상. 0코스트 + beat:3으로 시조 초장 스타터에 적합.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "qi_gain": 1, "qi_bonus_if_sijo_slots": 1, "sijo_slots_threshold": 2 }
+      "values": {
+        "qi_gain": 1,
+        "qi_bonus_if_sijo_slots": 1,
+        "sijo_slots_threshold": 2
+      }
     },
     {
       "id": "M026",
       "name": {
         "ko": "운율",
         "hanja": "韻律",
-        "romanized": "Unryul"
+        "romanized": "Unryul",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["draw", "sijo"],
+      "subtypes": [
+        "draw",
+        "sijo"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "카드 2장을 드로우한다. 손에 있는 카드 중 다음 시조 슬롯의 음보와 일치하는 카드가 없다면 카드 1장을 추가 드로우한다.",
-      "effect_upgraded": "카드 3장을 드로우한다. 음보 불일치 시 카드 1장 추가 드로우.",
-      "flavor_text": "운율이 맞지 않을 때 — 더 넓게 찾으면 맞는 가락이 보인다.",
+      "effect": {
+        "ko": "카드 2장을 드로우한다. 손에 있는 카드 중 다음 시조 슬롯의 음보와 일치하는 카드가 없다면 카드 1장을 추가 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "카드 3장을 드로우한다. 음보 불일치 시 카드 1장 추가 드로우.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "운율이 맞지 않을 때 — 더 넓게 찾으면 맞는 가락이 보인다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 드로우 2. beat 불일치 보정으로 시조 완성 확률 향상. 눈치(0코스트 드로우2)보다 1 비싸지만 조건부 +1 드로우로 가치 보상. 시조 중심 덱의 핵심 유틸리티.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "draw": 2, "draw_if_no_beat_match": 1 }
+      "values": {
+        "draw": 2,
+        "draw_if_no_beat_match": 1
+      }
     },
     {
       "id": "M027",
       "name": {
         "ko": "퇴고",
         "hanja": "推敲",
-        "romanized": "Toego"
+        "romanized": "Toego",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["draw", "sijo"],
+      "subtypes": [
+        "draw",
+        "sijo"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "손에서 카드 1장을 선택해 덱 맨 위로 넣는다. 카드 2장을 드로우하고 기(氣) 1을 획득한다.",
-      "effect_upgraded": "카드 1장을 덱 맨 위로. 카드 2장 드로우 + 기(氣) 2 획득.",
-      "flavor_text": "한 글자를 고치고 또 고치면 — 비로소 완벽한 시가 된다.",
+      "effect": {
+        "ko": "손에서 카드 1장을 선택해 덱 맨 위로 넣는다. 카드 2장을 드로우하고 기(氣) 1을 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "카드 1장을 덱 맨 위로. 카드 2장 드로우 + 기(氣) 2 획득.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "한 글자를 고치고 또 고치면 — 비로소 완벽한 시가 된다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 패 교환(1장 위→2장 드로우) + 기 1. 음조 조율(1코스트 버리기+드로우2)과 유사하나 버리지 않고 덱 위로 재배치. 핵심 카드를 잃지 않으면서 패 품질 향상.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 75,
-      "values": { "topdeck": 1, "draw": 2, "qi_gain": 1 }
+      "values": {
+        "topdeck": 1,
+        "draw": 2,
+        "qi_gain": 1
+      }
     },
     {
       "id": "M028",
       "name": {
         "ko": "시상",
         "hanja": "詩想",
-        "romanized": "Sisang"
+        "romanized": "Sisang",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["energy", "sijo"],
+      "subtypes": [
+        "energy",
+        "sijo"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "기(氣) 2를 획득한다. 이번 턴에 시조 1줄(초장 또는 중장)을 완성하면 카드 1장을 드로우한다.",
-      "effect_upgraded": "기(氣) 3을 획득한다. 시조 1줄 완성 시 카드 2장 드로우.",
-      "flavor_text": "시가 떠오르면 — 몸에 기가 차오르고 머리가 맑아진다.",
+      "effect": {
+        "ko": "기(氣) 2를 획득한다. 이번 턴에 시조 1줄(초장 또는 중장)을 완성하면 카드 1장을 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "기(氣) 3을 획득한다. 시조 1줄 완성 시 카드 2장 드로우.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "시가 떠오르면 — 몸에 기가 차오르고 머리가 맑아진다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 기 2 = 명상과 동일하나 beat:4. 시조 완성 보너스로 차별화. 명상(beat:3)과 시조 슬롯을 분산 배치하여 덱 유연성 제공.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 50,
-      "values": { "qi_gain": 2, "draw_if_sijo_line": 1 }
+      "values": {
+        "qi_gain": 2,
+        "draw_if_sijo_line": 1
+      }
     },
     {
       "id": "M029",
       "name": {
         "ko": "영감",
         "hanja": "靈感",
-        "romanized": "Yeonggam"
+        "romanized": "Yeonggam",
+        "en": ""
       },
       "beat": 5,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["energy", "draw", "sijo"],
+      "subtypes": [
+        "energy",
+        "draw",
+        "sijo"
+      ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
-      "effect": "기(氣) 1을 획득하고 카드 1장을 드로우한다. 이번 턴 시조를 완성하면 기(氣) 3을 추가 획득하고 카드 2장을 추가 드로우한다.",
-      "effect_upgraded": "기(氣) 2를 획득하고 카드 2장을 드로우한다. 시조 완성 시 기(氣) 4 + 카드 2장 추가.",
-      "flavor_text": "하늘에서 내려온 영감이 — 종장을 완성하고 모든 것을 열어젖힌다.",
+      "effect": {
+        "ko": "기(氣) 1을 획득하고 카드 1장을 드로우한다. 이번 턴 시조를 완성하면 기(氣) 3을 추가 획득하고 카드 2장을 추가 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "기(氣) 2를 획득하고 카드 2장을 드로우한다. 시조 완성 시 기(氣) 4 + 카드 2장 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "하늘에서 내려온 영감이 — 종장을 완성하고 모든 것을 열어젖힌다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 beat:5 종장 전용. 기본 효과는 약하나 시조 완성 시 폭발적 보상(총 기4 + 드로우3). 절창(M014)이 피해 피니셔라면 영감은 자원 폭발 피니셔. beat:5 희소성으로 밸런스.",
       "sijo_position": "종장 둘째 슬롯 [5] 전용 — 시조 완성 자원 폭발",
       "upgrade_cost": 100,
-      "values": { "qi_gain": 1, "draw": 1, "qi_gain_if_sijo_complete": 3, "draw_if_sijo_complete": 2 }
+      "values": {
+        "qi_gain": 1,
+        "draw": 1,
+        "qi_gain_if_sijo_complete": 3,
+        "draw_if_sijo_complete": 2
+      }
     },
-
     {
       "id": "M030",
       "name": {
         "ko": "연타",
         "hanja": "連打",
-        "romanized": "Yeonta"
+        "romanized": "Yeonta",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "attack",
-      "subtypes": ["combo"],
+      "subtypes": [
+        "combo"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "적에게 3 피해를 3회 입힌다.",
-      "effect_upgraded": "적에게 4 피해를 3회 입힌다.",
-      "flavor_text": "한 번으로 끝나지 않는다 — 빈틈을 찾을 때까지 계속 친다.",
+      "effect": {
+        "ko": "적에게 3 피해를 3회 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 4 피해를 3회 입힌다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "한 번으로 끝나지 않는다 — 빈틈을 찾을 때까지 계속 친다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 총 9피해(3×3). 선제 공격(7)보다 총합 높지만 다회 히트라 방어도에 약함. 독/취약 등 스택별 효과와 시너지. 힘(力) 버프 시 3×(3+N)으로 스케일링.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "damage": 3, "times": 3 }
+      "values": {
+        "damage": 3,
+        "times": 3
+      }
     },
     {
       "id": "M031",
       "name": {
         "ko": "질풍참",
         "hanja": "疾風斬",
-        "romanized": "Jilpungcham"
+        "romanized": "Jilpungcham",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "attack",
-      "subtypes": ["combo"],
+      "subtypes": [
+        "combo"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "적에게 5 피해를 입힌다. 이번 턴에 공격 카드를 이미 1장 이상 사용했다면 피해를 5 추가로 입힌다.",
-      "effect_upgraded": "적에게 7 피해를 입힌다. 공격 카드 사용 시 피해 7 추가.",
-      "flavor_text": "바람처럼 빠르게 — 첫 타격이 끝나기 전에 두 번째가 이어진다.",
+      "effect": {
+        "ko": "적에게 5 피해를 입힌다. 이번 턴에 공격 카드를 이미 1장 이상 사용했다면 피해를 5 추가로 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 7 피해를 입힌다. 공격 카드 사용 시 피해 7 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "바람처럼 빠르게 — 첫 타격이 끝나기 전에 두 번째가 이어진다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 기본 5. 공격 연타 조건 충족 시 10(2코스트급). 연타(M030)→질풍참 콤보로 자연스럽게 조건 충족. 공격 중심 빌드의 중추.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "damage": 5, "damage_if_attacked": 5 }
+      "values": {
+        "damage": 5,
+        "damage_if_attacked": 5
+      }
     },
     {
       "id": "M032",
       "name": {
         "ko": "견제",
         "hanja": "牽制",
-        "romanized": "Gyeonje"
+        "romanized": "Gyeonje",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "attack",
-      "subtypes": ["debuff"],
+      "subtypes": [
+        "debuff"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "적에게 4 피해를 입히고 약화(弱化) 1을 부여한다.",
-      "effect_upgraded": "적에게 6 피해를 입히고 약화(弱化) 2를 부여한다.",
-      "flavor_text": "적의 급소를 노려 움직임을 제한한다 — 다음 수에서 확실히 잡는다.",
+      "effect": {
+        "ko": "적에게 4 피해를 입히고 약화(弱化) 1을 부여한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 6 피해를 입히고 약화(弱化) 2를 부여한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "적의 급소를 노려 움직임을 제한한다 — 다음 수에서 확실히 잡는다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 4피해 + 약화1. 후퇴(M003, 0코스트 2방어+약화1)보다 공격적. 피해+디버프 복합으로 공격 빌드의 방어적 옵션.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "damage": 4, "weaken": 1 }
+      "values": {
+        "damage": 4,
+        "weaken": 1
+      }
     },
     {
       "id": "M033",
       "name": {
         "ko": "몸놀림",
         "hanja": "身法",
-        "romanized": "Momnollim"
+        "romanized": "Momnollim",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "defense",
-      "subtypes": ["combo", "draw"],
+      "subtypes": [
+        "combo",
+        "draw"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "방어도 3을 획득한다. 이번 턴에 공격 카드를 2장 이상 사용했다면 카드 2장을 드로우한다.",
-      "effect_upgraded": "방어도 5를 획득한다. 공격 2장 이상 시 카드 2장 드로우.",
-      "flavor_text": "몸을 쉬지 않고 움직이면 — 공격과 방어가 하나가 된다.",
+      "effect": {
+        "ko": "방어도 3을 획득한다. 이번 턴에 공격 카드를 2장 이상 사용했다면 카드 2장을 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 5를 획득한다. 공격 2장 이상 시 카드 2장 드로우.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "몸을 쉬지 않고 움직이면 — 공격과 방어가 하나가 된다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 방어3 기본. 공격 2장 조건 시 방어3+드로우2로 가치 폭발. 연타+질풍참 후 몸놀림으로 연결하는 콤보 라인 완성. 공격 빌드에 방어+드로우 보충.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "block": 3, "draw_if_attacks": 2, "attacks_threshold": 2 }
+      "values": {
+        "block": 3,
+        "draw_if_attacks": 2,
+        "attacks_threshold": 2
+      }
     },
     {
       "id": "M034",
       "name": {
         "ko": "승부수",
         "hanja": "勝負手",
-        "romanized": "Seungbusu"
+        "romanized": "Seungbusu",
+        "en": ""
       },
       "beat": 4,
       "cost": 2,
       "type": "attack",
-      "subtypes": ["combo"],
+      "subtypes": [
+        "combo"
+      ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
-      "effect": "적에게 8 피해를 입힌다. 이번 턴에 사용한 공격 카드 수 ×3만큼 피해를 추가로 입힌다.",
-      "effect_upgraded": "적에게 10 피해를 입힌다. 공격 카드 수 ×4 추가 피해.",
-      "flavor_text": "마지막 한 수에 모든 것을 건다 — 승부는 여기서 갈린다.",
+      "effect": {
+        "ko": "적에게 8 피해를 입힌다. 이번 턴에 사용한 공격 카드 수 ×3만큼 피해를 추가로 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 10 피해를 입힌다. 공격 카드 수 ×4 추가 피해.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "마지막 한 수에 모든 것을 건다 — 승부는 여기서 갈린다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 8피해 기본. 공격 3장 사용 시 8+9=17피해. 연타→질풍참→승부수 콤보: 9+10+17=36피해(4코스트). 공격 특화 빌드의 피니셔. 기(氣) 소비가 큰 대신 폭발력 보상.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
       "upgrade_cost": 100,
-      "values": { "damage": 8, "damage_per_attack_played": 3 }
+      "values": {
+        "damage": 8,
+        "damage_per_attack_played": 3
+      }
     },
     {
       "id": "M035",
       "name": {
         "ko": "탈기",
         "hanja": "脫氣",
-        "romanized": "Talgi"
+        "romanized": "Talgi",
+        "en": ""
       },
       "beat": 3,
       "cost": 0,
       "type": "attack",
-      "subtypes": ["debuff"],
+      "subtypes": [
+        "debuff"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "적에게 3 피해를 입히고 취약(脆弱) 1을 부여한다.",
-      "effect_upgraded": "적에게 5 피해를 입히고 취약(脆弱) 1을 부여한다.",
-      "flavor_text": "급소를 정확히 노리면 — 적의 몸이 흔들린다.",
+      "effect": {
+        "ko": "적에게 3 피해를 입히고 취약(脆弱) 1을 부여한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 5 피해를 입히고 취약(脆弱) 1을 부여한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "급소를 정확히 노리면 — 적의 몸이 흔들린다.",
+        "en": ""
+      },
       "balance_rationale": "0코스트 3피해+취약1. 무료 디버프 부여로 후속 공격(연타·질풍참·승부수) 피해 50% 증가 유도. 공격 콤보의 저코스트 셋업 카드.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "damage": 3, "vulnerable": 1 }
+      "values": {
+        "damage": 3,
+        "vulnerable": 1
+      }
     },
     {
       "id": "M036",
       "name": {
         "ko": "반격세",
         "hanja": "反擊勢",
-        "romanized": "Bangyeokse"
+        "romanized": "Bangyeokse",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "defense",
-      "subtypes": ["combo"],
+      "subtypes": [
+        "combo"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "방어도 5를 획득한다. 이번 턴에 피격당했다면 적에게 8 피해를 입힌다.",
-      "effect_upgraded": "방어도 7을 획득한다. 피격 시 적에게 12 피해.",
-      "flavor_text": "적의 공격을 받아낸 뒤 — 그 기세를 이용해 되친다.",
+      "effect": {
+        "ko": "방어도 5를 획득한다. 이번 턴에 피격당했다면 적에게 8 피해를 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "방어도 7을 획득한다. 피격 시 적에게 12 피해.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "적의 공격을 받아낸 뒤 — 그 기세를 이용해 되친다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 방어5 + 조건부 8피해. 조건(이번 턴 피격)은 적 공격 턴에 자연스럽게 충족. 방어+반격 복합으로 방어 빌드에 화력 제공. 역습(M024)보다 저코스트·저위력.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "block": 5, "damage_if_hit": 8 }
+      "values": {
+        "block": 5,
+        "damage_if_hit": 8
+      }
     },
     {
       "id": "M037",
       "name": {
         "ko": "일섬",
         "hanja": "一閃",
-        "romanized": "Ilseom"
+        "romanized": "Ilseom",
+        "en": ""
       },
       "beat": 5,
       "cost": 2,
       "type": "attack",
-      "subtypes": ["combo"],
+      "subtypes": [
+        "combo"
+      ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
-      "effect": "적에게 15 피해를 입힌다. 이번 턴에 공격 카드를 3장 이상 사용했다면 이 카드는 소멸(消滅)한다. 소멸 시 적에게 15 피해를 추가로 입힌다.",
-      "effect_upgraded": "적에게 20 피해를 입힌다. 공격 3장 이상 후 소멸 시 20 추가 피해.",
-      "flavor_text": "빛이 번쩍하면 — 모든 것이 끝나 있다.",
+      "effect": {
+        "ko": "적에게 15 피해를 입힌다. 이번 턴에 공격 카드를 3장 이상 사용했다면 이 카드는 소멸(消滅)한다. 소멸 시 적에게 15 피해를 추가로 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 20 피해를 입힌다. 공격 3장 이상 후 소멸 시 20 추가 피해.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "빛이 번쩍하면 — 모든 것이 끝나 있다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 beat:5 종장 전용. 기본 15피해(2코스트 적정). 공격 3장 후 사용 시 소멸+30피해(게임 최고 단일 피해). 소멸 패널티로 반복 사용 불가. 절창(M014)의 공격 특화 대안.",
       "sijo_position": "종장 둘째 슬롯 [5] 전용 — 공격 콤보 피니셔",
       "upgrade_cost": 100,
-      "values": { "damage": 15, "exhaust_bonus_damage": 15, "attacks_threshold": 3 }
+      "values": {
+        "damage": 15,
+        "exhaust_bonus_damage": 15,
+        "attacks_threshold": 3
+      }
     },
-
     {
       "id": "M038",
       "name": {
         "ko": "선동",
         "hanja": "煽動",
-        "romanized": "Seondong"
+        "romanized": "Seondong",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["minshim"],
+      "subtypes": [
+        "minshim"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "민심을 5 증가시킨다.",
-      "effect_upgraded": "민심을 8 증가시킨다.",
-      "flavor_text": "백성의 마음을 움직이는 한마디 — 민심이 곧 힘이다.",
+      "effect": {
+        "ko": "민심을 5 증가시킨다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "민심을 8 증가시킨다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "백성의 마음을 움직이는 한마디 — 민심이 곧 힘이다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 민심+5. 전투 중 민심 조작의 기본 카드. 민심은 보스전·이벤트에 누적 영향하므로 전투 중 투자 가치 있음. 안정적 민심 빌드의 기반.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "minshim_change": 5 }
+      "values": {
+        "minshim_change": 5
+      }
     },
     {
       "id": "M039",
       "name": {
         "ko": "회유",
         "hanja": "懷柔",
-        "romanized": "Hoeyu"
+        "romanized": "Hoeyu",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["minshim", "debuff"],
+      "subtypes": [
+        "minshim",
+        "debuff"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "민심을 3 증가시킨다. 적에게 약화(弱化) 2를 부여한다.",
-      "effect_upgraded": "민심을 5 증가시킨다. 약화(弱化) 3을 부여한다.",
-      "flavor_text": "적도 결국은 사람이다 — 달래면 칼끝이 무뎌진다.",
+      "effect": {
+        "ko": "민심을 3 증가시킨다. 적에게 약화(弱化) 2를 부여한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "민심을 5 증가시킨다. 약화(弱化) 3을 부여한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "적도 결국은 사람이다 — 달래면 칼끝이 무뎌진다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 민심+3 + 약화2. 선동(민심+5)보다 민심 효과 낮지만 전투 유틸리티(약화2) 추가. 민심 빌드와 디버프 빌드의 교차점.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "minshim_change": 3, "weaken": 2 }
+      "values": {
+        "minshim_change": 3,
+        "weaken": 2
+      }
     },
     {
       "id": "M040",
       "name": {
         "ko": "위엄",
         "hanja": "威嚴",
-        "romanized": "Wieom"
+        "romanized": "Wieom",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["status", "buff"],
+      "subtypes": [
+        "status",
+        "buff"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "현재 신분이 3품 이상이면 힘(力) 2를 획득한다. 6품 이하이면 방어도 6을 획득한다.",
-      "effect_upgraded": "3품 이상이면 힘(力) 3. 6품 이하이면 방어도 9.",
-      "flavor_text": "높은 자리에서 나오는 위엄은 — 칼보다 무겁다.",
+      "effect": {
+        "ko": "현재 신분이 3품 이상이면 힘(力) 2를 획득한다. 6품 이하이면 방어도 6을 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "3품 이상이면 힘(力) 3. 6품 이하이면 방어도 9.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "높은 자리에서 나오는 위엄은 — 칼보다 무겁다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 신분 조건부 효과. 고신분=공격 버프(영구 힘), 저신분=방어 보충. 신분 시스템을 전투에 직접 연동. 어떤 신분이든 가치 있으나 빌드 방향에 따라 신분 관리 동기 부여.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "strength_if_high_rank": 2, "block_if_low_rank": 6, "rank_threshold": 3 }
+      "values": {
+        "strength_if_high_rank": 2,
+        "block_if_low_rank": 6,
+        "rank_threshold": 3
+      }
     },
     {
       "id": "M041",
       "name": {
         "ko": "모략",
         "hanja": "謀略",
-        "romanized": "Moryak"
+        "romanized": "Moryak",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["draw", "deck_manipulation"],
+      "subtypes": [
+        "draw",
+        "deck_manipulation"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "덱에서 비용 0인 카드를 1장 찾아 손에 넣는다. 카드 1장을 드로우한다.",
-      "effect_upgraded": "비용 0 카드 1장 서치 + 카드 2장 드로우.",
-      "flavor_text": "좋은 계략은 자원을 아끼는 것에서 시작한다.",
+      "effect": {
+        "ko": "덱에서 비용 0인 카드를 1장 찾아 손에 넣는다. 카드 1장을 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "비용 0 카드 1장 서치 + 카드 2장 드로우.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "좋은 계략은 자원을 아끼는 것에서 시작한다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 서치(0코스트 카드) + 드로우1. 탈기(M035)·읊조림(M025)·여백(M012) 등 0코스트 카드를 정확히 찾아 콤보 셋업. 덱 빌딩에서 0코스트 카드 수를 늘릴 동기 부여.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 75,
-      "values": { "search_cost_0": 1, "draw": 1 }
+      "values": {
+        "search_cost_0": 1,
+        "draw": 1
+      }
     },
     {
       "id": "M042",
       "name": {
         "ko": "세력 확장",
         "hanja": "勢力擴張",
-        "romanized": "Seryeok Hwakjang"
+        "romanized": "Seryeok Hwakjang",
+        "en": ""
       },
       "beat": 4,
       "cost": 2,
       "type": "spell",
-      "subtypes": ["minshim", "status"],
+      "subtypes": [
+        "minshim",
+        "status"
+      ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
-      "effect": "민심을 8 증가시킨다. 신분을 1단계 올린다. 이 카드는 소멸한다.",
-      "effect_upgraded": "민심을 12 증가시킨다. 신분을 1단계 올린다. 이 카드는 소멸한다.",
-      "flavor_text": "백성의 지지를 받으면 — 자연스레 자리가 높아진다.",
+      "effect": {
+        "ko": "민심을 8 증가시킨다. 신분을 1단계 올린다. 이 카드는 소멸한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "민심을 12 증가시킨다. 신분을 1단계 올린다. 이 카드는 소멸한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "백성의 지지를 받으면 — 자연스레 자리가 높아진다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 소멸. 민심+8과 신분 승급 동시 획득. 소멸 패널티로 1회용이나 신분 승급의 즉각적 전투 보상(위엄·M040 등)과 런 전체 효과를 고려하면 강력. 레어리티 4로 획득 제한.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 100,
-      "values": { "minshim_change": 8, "rank_up": 1, "exhaust": true }
+      "values": {
+        "minshim_change": 8,
+        "rank_up": 1,
+        "exhaust": true
+      }
     },
     {
       "id": "M043",
       "name": {
         "ko": "간언",
         "hanja": "諫言",
-        "romanized": "Ganeon"
+        "romanized": "Ganeon",
+        "en": ""
       },
       "beat": 3,
       "cost": 0,
       "type": "spell",
-      "subtypes": ["minshim", "draw"],
+      "subtypes": [
+        "minshim",
+        "draw"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "민심을 2 증가시킨다. 카드 1장을 드로우한다.",
-      "effect_upgraded": "민심을 4 증가시킨다. 카드 1장을 드로우한다.",
-      "flavor_text": "임금에게 올리는 직언 — 민심을 대변하면 모두가 귀 기울인다.",
+      "effect": {
+        "ko": "민심을 2 증가시킨다. 카드 1장을 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "민심을 4 증가시킨다. 카드 1장을 드로우한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "임금에게 올리는 직언 — 민심을 대변하면 모두가 귀 기울인다.",
+        "en": ""
+      },
       "balance_rationale": "0코스트 민심+2 + 드로우1. 눈치(0코스트 드로우2)보다 드로우 1 적으나 민심 보너스. 민심 빌드에서 덱 순환을 방해하지 않는 무료 민심 획득 수단.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "minshim_change": 2, "draw": 1 }
+      "values": {
+        "minshim_change": 2,
+        "draw": 1
+      }
     },
     {
       "id": "M044",
       "name": {
         "ko": "책봉",
         "hanja": "冊封",
-        "romanized": "Chaekbong"
+        "romanized": "Chaekbong",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["status", "buff"],
+      "subtypes": [
+        "status",
+        "buff"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "현재 민심이 60 이상이면 힘(力) 1과 갑주(甲冑) 3을 획득한다. 민심이 30 미만이면 취약 1을 받지만 기(氣) 2를 획득한다.",
-      "effect_upgraded": "민심 60 이상: 힘 2 + 갑주 5. 민심 30 미만: 취약 1 + 기 3.",
-      "flavor_text": "관직을 받으면 힘이 생기고 — 민심이 낮으면 자리가 흔들린다.",
+      "effect": {
+        "ko": "현재 민심이 60 이상이면 힘(力) 1과 갑주(甲冑) 3을 획득한다. 민심이 30 미만이면 취약 1을 받지만 기(氣) 2를 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "민심 60 이상: 힘 2 + 갑주 5. 민심 30 미만: 취약 1 + 기 3.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "관직을 받으면 힘이 생기고 — 민심이 낮으면 자리가 흔들린다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트. 민심 상태에 따라 효과 분기. 고민심=영구 공방 버프, 저민심=기 보충(자해 디버프 포함). 민심 관리에 전투적 보상을 직접 연결. 어느 민심이든 활용 가능하나 고민심이 압도적으로 유리.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "strength_if_minshim_high": 1, "armor_if_minshim_high": 3, "minshim_high_threshold": 60, "qi_if_minshim_low": 2, "vulnerable_if_minshim_low": 1, "minshim_low_threshold": 30 }
+      "values": {
+        "strength_if_minshim_high": 1,
+        "armor_if_minshim_high": 3,
+        "minshim_high_threshold": 60,
+        "qi_if_minshim_low": 2,
+        "vulnerable_if_minshim_low": 1,
+        "minshim_low_threshold": 30
+      }
     },
-
     {
       "id": "M045",
       "name": {
         "ko": "저주",
         "hanja": "詛呪",
-        "romanized": "Jeoju"
+        "romanized": "Jeoju",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "attack",
-      "subtypes": ["curse", "dot"],
+      "subtypes": [
+        "curse",
+        "dot"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "적에게 2 피해를 입히고 독(毒) 4를 부여한다.",
-      "effect_upgraded": "적에게 3 피해를 입히고 독(毒) 6을 부여한다.",
-      "flavor_text": "보이지 않는 독이 스며들면 — 서서히 무너진다.",
+      "effect": {
+        "ko": "적에게 2 피해를 입히고 독(毒) 4를 부여한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 3 피해를 입히고 독(毒) 6을 부여한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "보이지 않는 독이 스며들면 — 서서히 무너진다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 2피해 + 독4. 즉시 피해 낮지만 독4는 4+3+2+1=10 총 피해. 실질 12피해(4턴). DoT 빌드의 기본 카드. 독 스태킹으로 누적 효과 극대화.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "damage": 2, "poison": 4 }
+      "values": {
+        "damage": 2,
+        "poison": 4
+      }
     },
     {
       "id": "M046",
       "name": {
         "ko": "부적",
         "hanja": "符籍",
-        "romanized": "Bujeok"
+        "romanized": "Bujeok",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["curse", "dot"],
+      "subtypes": [
+        "curse",
+        "dot"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "적에게 주박(呪縛) 2를 부여한다. 방어도 4를 획득한다.",
-      "effect_upgraded": "주박(呪縛) 3을 부여한다. 방어도 6을 획득한다.",
-      "flavor_text": "부적 한 장에 담긴 주술 — 적의 몸에 스며들어 고통을 배가시킨다.",
+      "effect": {
+        "ko": "적에게 주박(呪縛) 2를 부여한다. 방어도 4를 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "주박(呪縛) 3을 부여한다. 방어도 6을 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "부적 한 장에 담긴 주술 — 적의 몸에 스며들어 고통을 배가시킨다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 주박2 + 방어4. 주박은 DoT 1.5배 증폭. 저주(독4)→부적(주박2): 독 피해가 1.5배로 증가. DoT 빌드의 증폭 카드. 방어도 4로 생존력도 보충.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "jubak": 2, "block": 4 }
+      "values": {
+        "jubak": 2,
+        "block": 4
+      }
     },
     {
       "id": "M047",
       "name": {
         "ko": "역병",
         "hanja": "疫病",
-        "romanized": "Yeokbyeong"
+        "romanized": "Yeokbyeong",
+        "en": ""
       },
       "beat": 3,
       "cost": 2,
       "type": "attack",
-      "subtypes": ["curse", "dot"],
+      "subtypes": [
+        "curse",
+        "dot"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "적에게 독(毒) 3과 화상(火傷) 3을 부여한다. 적에게 이미 독이 있다면 독을 3 추가 부여한다.",
-      "effect_upgraded": "독(毒) 4 + 화상(火傷) 4를 부여한다. 기존 독 시 독 4 추가.",
-      "flavor_text": "전염병이 퍼지듯 — 한 번 걸리면 빠져나올 수 없다.",
+      "effect": {
+        "ko": "적에게 독(毒) 3과 화상(火傷) 3을 부여한다. 적에게 이미 독이 있다면 독을 3 추가 부여한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "독(毒) 4 + 화상(火傷) 4를 부여한다. 기존 독 시 독 4 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "전염병이 퍼지듯 — 한 번 걸리면 빠져나올 수 없다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 독3+화상3(기본) 또는 독6+화상3(독 조건). DoT 복합 스태킹. 저주(M045) 후 사용 시 독 6+3+화상 3 = 턴당 9피해 시작. 2코스트로 비싸지만 장기 피해량 극대화.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 75,
-      "values": { "poison": 3, "burn": 3, "poison_bonus_if_poisoned": 3 }
+      "values": {
+        "poison": 3,
+        "burn": 3,
+        "poison_bonus_if_poisoned": 3
+      }
     },
     {
       "id": "M048",
       "name": {
         "ko": "사혈",
         "hanja": "瀉血",
-        "romanized": "Sahyeol"
+        "romanized": "Sahyeol",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "attack",
-      "subtypes": ["curse", "dot"],
+      "subtypes": [
+        "curse",
+        "dot"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "적에게 출혈(出血) 4를 부여한다. 적의 독(毒) 스택이 3 이상이면 출혈을 3 추가 부여한다.",
-      "effect_upgraded": "출혈(出血) 6을 부여한다. 독 3 이상 시 출혈 4 추가.",
-      "flavor_text": "독이 퍼진 몸에 칼을 대면 — 피가 멈추지 않는다.",
+      "effect": {
+        "ko": "적에게 출혈(出血) 4를 부여한다. 적의 독(毒) 스택이 3 이상이면 출혈을 3 추가 부여한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "출혈(出血) 6을 부여한다. 독 3 이상 시 출혈 4 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "독이 퍼진 몸에 칼을 대면 — 피가 멈추지 않는다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 출혈4(기본) 또는 출혈7(독 조건). 출혈은 방어도 획득 시 추가 피해라 적 방어 턴에도 효과적. 저주→사혈 콤보로 독+출혈 이중 DoT. 방어형 적에게 특히 강력.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "bleed": 4, "bleed_bonus_if_poisoned": 3, "poison_threshold": 3 }
+      "values": {
+        "bleed": 4,
+        "bleed_bonus_if_poisoned": 3,
+        "poison_threshold": 3
+      }
     },
     {
       "id": "M049",
       "name": {
         "ko": "독살",
         "hanja": "毒殺",
-        "romanized": "Doksal"
+        "romanized": "Doksal",
+        "en": ""
       },
       "beat": 5,
       "cost": 2,
       "type": "attack",
-      "subtypes": ["curse", "dot"],
+      "subtypes": [
+        "curse",
+        "dot"
+      ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
-      "effect": "적의 현재 독(毒) 스택의 2배만큼 즉시 피해를 입힌다. 독 스택을 절반(내림)으로 줄인다.",
-      "effect_upgraded": "독 스택의 3배만큼 즉시 피해. 독 스택을 절반으로 줄인다.",
-      "flavor_text": "축적된 독을 한순간에 터뜨린다 — 죽음이 한꺼번에 찾아온다.",
+      "effect": {
+        "ko": "적의 현재 독(毒) 스택의 2배만큼 즉시 피해를 입힌다. 독 스택을 절반(내림)으로 줄인다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "독 스택의 3배만큼 즉시 피해. 독 스택을 절반으로 줄인다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "축적된 독을 한순간에 터뜨린다 — 죽음이 한꺼번에 찾아온다.",
+        "en": ""
+      },
       "balance_rationale": "2코스트 beat:5 종장 전용. 독10 기준 20피해+독5로 감소. 독 스태킹 후 피니셔. 절창(피해), 영감(자원) 과 함께 세 번째 종장 피니셔 옵션. 독 빌드 전용이라 덱 구성 의존도 높음.",
       "sijo_position": "종장 둘째 슬롯 [5] 전용 — DoT 피니셔",
       "upgrade_cost": 100,
-      "values": { "damage_poison_multiplier": 2, "poison_reduce_half": true }
+      "values": {
+        "damage_poison_multiplier": 2,
+        "poison_reduce_half": true
+      }
     },
-
     {
       "id": "M050",
       "name": {
         "ko": "뇌물",
         "hanja": "賂物",
-        "romanized": "Noemul"
+        "romanized": "Noemul",
+        "en": ""
       },
       "beat": 3,
       "cost": 0,
       "type": "spell",
-      "subtypes": ["gold", "debuff"],
+      "subtypes": [
+        "gold",
+        "debuff"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "금화 5를 소비한다. 적에게 약화(弱化) 2와 취약(脆弱) 1을 부여한다.",
-      "effect_upgraded": "금화 5를 소비한다. 약화(弱化) 3 + 취약(脆弱) 2를 부여한다.",
-      "flavor_text": "돈으로 살 수 없는 것은 없다 — 적의 의지마저도.",
+      "effect": {
+        "ko": "금화 5를 소비한다. 적에게 약화(弱化) 2와 취약(脆弱) 1을 부여한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "금화 5를 소비한다. 약화(弱化) 3 + 취약(脆弱) 2를 부여한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "돈으로 살 수 없는 것은 없다 — 적의 의지마저도.",
+        "en": ""
+      },
       "balance_rationale": "0코스트(기) + 금화5 소비. 기를 쓰지 않고 약화2+취약1 부여. 강력한 디버프 조합이나 금화 리소스를 전투에 투자하는 트레이드오프. 금화 풍부한 런에서 강력.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "gold_cost": 5, "weaken": 2, "vulnerable": 1 }
+      "values": {
+        "gold_cost": 5,
+        "weaken": 2,
+        "vulnerable": 1
+      }
     },
     {
       "id": "M051",
       "name": {
         "ko": "용병",
         "hanja": "傭兵",
-        "romanized": "Yongbyeong"
+        "romanized": "Yongbyeong",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "attack",
-      "subtypes": ["gold"],
+      "subtypes": [
+        "gold"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "적에게 6 피해를 입힌다. 금화 3을 소비하면 피해를 6 추가로 입힌다.",
-      "effect_upgraded": "적에게 8 피해를 입힌다. 금화 3 소비 시 피해 8 추가.",
-      "flavor_text": "돈을 쓰면 칼이 더 날카로워진다 — 용병은 정직하다.",
+      "effect": {
+        "ko": "적에게 6 피해를 입힌다. 금화 3을 소비하면 피해를 6 추가로 입힌다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "적에게 8 피해를 입힌다. 금화 3 소비 시 피해 8 추가.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "돈을 쓰면 칼이 더 날카로워진다 — 용병은 정직하다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 6피해 기본(선제 공격-1). 금화3 투자 시 12피해(2코스트급). 금화 여유 시 1코스트로 2코스트 성능 획득. 금화 빌드의 핵심 공격 카드.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "damage": 6, "gold_cost_optional": 3, "damage_bonus": 6 }
+      "values": {
+        "damage": 6,
+        "gold_cost_optional": 3,
+        "damage_bonus": 6
+      }
     },
     {
       "id": "M052",
       "name": {
         "ko": "매관매직",
         "hanja": "賣官賣職",
-        "romanized": "Maegwan Maejik"
+        "romanized": "Maegwan Maejik",
+        "en": ""
       },
       "beat": 4,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["gold", "buff"],
+      "subtypes": [
+        "gold",
+        "buff"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "금화 8을 소비한다. 힘(力) 2를 획득하고 방어도 6을 획득한다. 민심을 3 감소시킨다.",
-      "effect_upgraded": "금화 8 소비. 힘(力) 3 + 방어도 8. 민심 3 감소.",
-      "flavor_text": "관직을 돈으로 사면 — 힘은 얻지만 민심은 잃는다.",
+      "effect": {
+        "ko": "금화 8을 소비한다. 힘(力) 2를 획득하고 방어도 6을 획득한다. 민심을 3 감소시킨다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "금화 8 소비. 힘(力) 3 + 방어도 8. 민심 3 감소.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "관직을 돈으로 사면 — 힘은 얻지만 민심은 잃는다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트 + 금화8. 힘2(영구)+방어6 = 매우 강력. 민심-3 페널티로 밸런스. 금화+민심 트레이드오프. 민심을 신경 쓰지 않는 빌드에서 극강. 민심 빌드와 역시너지.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "gold_cost": 8, "strength": 2, "block": 6, "minshim_change": -3 }
+      "values": {
+        "gold_cost": 8,
+        "strength": 2,
+        "block": 6,
+        "minshim_change": -3
+      }
     },
     {
       "id": "M053",
       "name": {
         "ko": "조공",
         "hanja": "朝貢",
-        "romanized": "Jogong"
+        "romanized": "Jogong",
+        "en": ""
       },
       "beat": 3,
       "cost": 1,
       "type": "spell",
-      "subtypes": ["gold", "draw"],
+      "subtypes": [
+        "gold",
+        "draw"
+      ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
-      "effect": "금화 3을 소비한다. 카드 3장을 드로우한다.",
-      "effect_upgraded": "금화 3을 소비한다. 카드 4장을 드로우한다.",
-      "flavor_text": "공물을 바치면 — 더 많은 것이 돌아온다.",
+      "effect": {
+        "ko": "금화 3을 소비한다. 카드 3장을 드로우한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "금화 3을 소비한다. 카드 4장을 드로우한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "공물을 바치면 — 더 많은 것이 돌아온다.",
+        "en": ""
+      },
       "balance_rationale": "1코스트+금화3 = 드로우3. 눈치(0코스트 드로우2) 대비 금화3으로 드로우+1. 금화를 덱 순환 가속에 투자. 금화 빌드에서 콤보 피스 빠르게 모으기.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
-      "values": { "gold_cost": 3, "draw": 3 }
+      "values": {
+        "gold_cost": 3,
+        "draw": 3
+      }
     },
     {
       "id": "M054",
       "name": {
         "ko": "교역",
         "hanja": "交易",
-        "romanized": "Gyoyeok"
+        "romanized": "Gyoyeok",
+        "en": ""
       },
       "beat": 4,
       "cost": 0,
       "type": "spell",
-      "subtypes": ["gold", "energy"],
+      "subtypes": [
+        "gold",
+        "energy"
+      ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
-      "effect": "금화 5를 소비한다. 기(氣) 3을 획득한다.",
-      "effect_upgraded": "금화 5를 소비한다. 기(氣) 4를 획득한다.",
-      "flavor_text": "금화가 흐르는 곳에 — 기(氣)도 따라 흐른다.",
+      "effect": {
+        "ko": "금화 5를 소비한다. 기(氣) 3을 획득한다.",
+        "en": ""
+      },
+      "effect_upgraded": {
+        "ko": "금화 5를 소비한다. 기(氣) 4를 획득한다.",
+        "en": ""
+      },
+      "flavor_text": {
+        "ko": "금화가 흐르는 곳에 — 기(氣)도 따라 흐른다.",
+        "en": ""
+      },
       "balance_rationale": "0코스트(기)+금화5 = 기3 획득. 명상(1코스트 기2)보다 기 효율 높지만 금화 소비. 금화→기 전환으로 한 턴에 기 폭발적 사용 가능. 외교 빌드의 에너지 엔진.",
       "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "upgrade_cost": 75,
-      "values": { "gold_cost": 5, "qi_gain": 3 }
+      "values": {
+        "gold_cost": 5,
+        "qi_gain": 3
+      }
     }
   ],
   "status_conditions_referenced": [
@@ -1163,19 +2003,123 @@
   ],
   "card_count_summary": {
     "total": 54,
-    "by_beat": { "beat_3": 22, "beat_4": 24, "beat_5": 5, "wildcard_0": 3 },
-    "by_type": { "defense": 8, "attack": 14, "movement": 2, "spell": 30 },
-    "new_v02": ["M013", "M014", "M015", "M016", "M017", "M018", "M019", "M020", "M021", "M022", "M023", "M024"],
-    "new_v03_ZER244": ["M025", "M026", "M027", "M028", "M029", "M030", "M031", "M032", "M033", "M034", "M035", "M036", "M037", "M038", "M039", "M040", "M041", "M042", "M043", "M044", "M045", "M046", "M047", "M048", "M049", "M050", "M051", "M052", "M053", "M054"],
+    "by_beat": {
+      "beat_3": 22,
+      "beat_4": 24,
+      "beat_5": 5,
+      "wildcard_0": 3
+    },
+    "by_type": {
+      "defense": 8,
+      "attack": 14,
+      "movement": 2,
+      "spell": 30
+    },
+    "new_v02": [
+      "M013",
+      "M014",
+      "M015",
+      "M016",
+      "M017",
+      "M018",
+      "M019",
+      "M020",
+      "M021",
+      "M022",
+      "M023",
+      "M024"
+    ],
+    "new_v03_ZER244": [
+      "M025",
+      "M026",
+      "M027",
+      "M028",
+      "M029",
+      "M030",
+      "M031",
+      "M032",
+      "M033",
+      "M034",
+      "M035",
+      "M036",
+      "M037",
+      "M038",
+      "M039",
+      "M040",
+      "M041",
+      "M042",
+      "M043",
+      "M044",
+      "M045",
+      "M046",
+      "M047",
+      "M048",
+      "M049",
+      "M050",
+      "M051",
+      "M052",
+      "M053",
+      "M054"
+    ],
     "design_groups": {
-      "sijo_completion_assist": ["M013", "M014", "M015", "M016", "M017", "M018"],
-      "utility": ["M019", "M020", "M021"],
-      "build_fork": ["M022", "M023", "M024"],
-      "simun_poetry": ["M025", "M026", "M027", "M028", "M029"],
-      "muye_martial": ["M030", "M031", "M032", "M033", "M034", "M035", "M036", "M037"],
-      "chaekryak_strategy": ["M038", "M039", "M040", "M041", "M042", "M043", "M044"],
-      "sulbeop_sorcery": ["M045", "M046", "M047", "M048", "M049"],
-      "oegyo_diplomacy": ["M050", "M051", "M052", "M053", "M054"]
+      "sijo_completion_assist": [
+        "M013",
+        "M014",
+        "M015",
+        "M016",
+        "M017",
+        "M018"
+      ],
+      "utility": [
+        "M019",
+        "M020",
+        "M021"
+      ],
+      "build_fork": [
+        "M022",
+        "M023",
+        "M024"
+      ],
+      "simun_poetry": [
+        "M025",
+        "M026",
+        "M027",
+        "M028",
+        "M029"
+      ],
+      "muye_martial": [
+        "M030",
+        "M031",
+        "M032",
+        "M033",
+        "M034",
+        "M035",
+        "M036",
+        "M037"
+      ],
+      "chaekryak_strategy": [
+        "M038",
+        "M039",
+        "M040",
+        "M041",
+        "M042",
+        "M043",
+        "M044"
+      ],
+      "sulbeop_sorcery": [
+        "M045",
+        "M046",
+        "M047",
+        "M048",
+        "M049"
+      ],
+      "oegyo_diplomacy": [
+        "M050",
+        "M051",
+        "M052",
+        "M053",
+        "M054"
+      ]
     }
   }
 }

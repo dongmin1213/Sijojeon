@@ -309,13 +309,13 @@ func _build_achievements(parent: Control, achievements: Array[Dictionary], unloc
 		hbox.add_child(info_vbox)
 
 		var name_label := Label.new()
-		name_label.text = ach.get("name", "")
+		name_label.text = TranslationManager.trd(ach, "name", "")
 		name_label.add_theme_font_size_override("font_size", 18)
 		name_label.add_theme_color_override("font_color", COLOR_CREAM if is_unlocked else COLOR_DIM)
 		info_vbox.add_child(name_label)
 
 		var desc_label := Label.new()
-		desc_label.text = ach.get("description", "")
+		desc_label.text = TranslationManager.trd(ach, "description", "")
 		desc_label.add_theme_font_size_override("font_size", 14)
 		desc_label.add_theme_color_override("font_color", COLOR_LABEL if is_unlocked else Color(0.45, 0.4, 0.35))
 		info_vbox.add_child(desc_label)

@@ -1,412 +1,680 @@
 {
-	"achievements": [
-
-		{
-			"id": "ACH_FIRST_RUN",
-			"name": "첫 발걸음",
-			"description": "첫 번째 런을 완료하다",
-			"type": "total_runs",
-			"params": { "min_runs": 1 },
-			"icon": "foot"
-		},
-		{
-			"id": "ACH_RUNS_3",
-			"name": "반복되는 도전",
-			"description": "총 3회 런을 완료하다",
-			"type": "total_runs",
-			"params": { "min_runs": 3 },
-			"icon": "repeat"
-		},
-		{
-			"id": "ACH_RUNS_10",
-			"name": "불굴의 의지",
-			"description": "총 10회 런을 완료하다",
-			"type": "total_runs",
-			"params": { "min_runs": 10 },
-			"icon": "flame"
-		},
-		{
-			"id": "ACH_RUNS_30",
-			"name": "천하를 돌아다닌 자",
-			"description": "총 30회 런을 완료하다",
-			"type": "total_runs",
-			"params": { "min_runs": 30 },
-			"icon": "road"
-		},
-
-		{
-			"id": "ACH_FIRST_VICTORY",
-			"name": "왕조의 수호자",
-			"description": "최초 승리를 거두다",
-			"type": "total_victories",
-			"params": { "min_victories": 1 },
-			"icon": "crown"
-		},
-		{
-			"id": "ACH_VICTORIES_3",
-			"name": "삼전삼승 (三戰三勝)",
-			"description": "총 3회 승리를 거두다",
-			"type": "total_victories",
-			"params": { "min_victories": 3 },
-			"icon": "star"
-		},
-		{
-			"id": "ACH_VICTORIES_5",
-			"name": "백전노장 (百戰老將)",
-			"description": "총 5회 승리를 거두다",
-			"type": "total_victories",
-			"params": { "min_victories": 5 },
-			"icon": "medal"
-		},
-		{
-			"id": "ACH_VICTORIES_10",
-			"name": "대관절 이기는 법",
-			"description": "총 10회 승리를 거두다",
-			"type": "total_victories",
-			"params": { "min_victories": 10 },
-			"icon": "victory_gem",
-			"unlock_reward": {
-				"type": "relic",
-				"id": "R_ACH_001",
-				"name_ko": "승전비 (勝戰碑)",
-				"description_ko": "전투 시작 시 기(氣) 1을 추가로 획득한다.",
-				"flavor_ko": "열 번의 승리가 새겨진 돌비석. 손에 쥐면 자신감이 솟구친다.",
-				"trigger": "battle_start",
-				"effect_code": "grant_qi_1_on_battle_start",
-				"rarity": 3,
-				"class_restriction": null
-			}
-		},
-		{
-			"id": "ACH_VICTORIES_20",
-			"name": "풍운아 (風雲兒)",
-			"description": "총 20회 승리를 거두다",
-			"type": "total_victories",
-			"params": { "min_victories": 20 },
-			"icon": "wind_hero",
-			"unlock_reward": {
-				"type": "card_back",
-				"id": "BACK_GOLD",
-				"name_ko": "황금 시조",
-				"description_ko": "황금빛 시조 무늬 카드 뒷면"
-			}
-		},
-
-		{
-			"id": "ACH_REACH_ACT2",
-			"name": "제 2막 진입",
-			"description": "제 2막에 도달하다",
-			"type": "best_act",
-			"params": { "min_act": 2 },
-			"icon": "gate"
-		},
-		{
-			"id": "ACH_REACH_ACT3",
-			"name": "최후의 관문",
-			"description": "제 3막에 도달하다",
-			"type": "best_act",
-			"params": { "min_act": 3 },
-			"icon": "castle"
-		},
-
-		{
-			"id": "ACH_MUGWAN_VICTORY",
-			"name": "무관의 길",
-			"description": "무관으로 승리하다",
-			"type": "character_victory",
-			"params": { "character_id": "mugwan" },
-			"icon": "sword"
-		},
-		{
-			"id": "ACH_MUNGWAN_VICTORY",
-			"name": "문관의 길",
-			"description": "문관으로 승리하다",
-			"type": "character_victory",
-			"params": { "character_id": "mungwan" },
-			"icon": "scroll"
-		},
-		{
-			"id": "ACH_DOSA_VICTORY",
-			"name": "도사의 길",
-			"description": "도사로 승리하다",
-			"type": "character_victory",
-			"params": { "character_id": "dosa" },
-			"icon": "talisman"
-		},
-		{
-			"id": "ACH_ALL_CHARACTERS",
-			"name": "만능 관리 (萬能官吏)",
-			"description": "모든 캐릭터로 승리하다",
-			"type": "all_characters_victory",
-			"params": { "character_ids": ["mugwan", "mungwan", "dosa"] },
-			"icon": "trophy",
-			"unlock_reward": {
-				"type": "relic",
-				"id": "R_ACH_005",
-				"name_ko": "삼재 도감 (三才圖鑑)",
-				"description_ko": "런 시작 시 무관·문관·도사 전용 카드 중 무작위 1장을 손에 추가한다.",
-				"flavor_ko": "하늘·땅·사람의 이치를 담은 비서. 어느 직업의 비법이든 꿰뚫는다.",
-				"trigger": "run_start",
-				"effect_code": "draw_random_any_class_card_once",
-				"rarity": 4,
-				"class_restriction": null
-			}
-		},
-
-		{
-			"id": "ACH_MUGWAN_RUNS_5",
-			"name": "무골 (武骨)",
-			"description": "무관으로 5회 런을 완료하다",
-			"type": "character_runs",
-			"params": { "character_id": "mugwan", "min_runs": 5 },
-			"icon": "iron_bone",
-			"unlock_reward": {
-				"type": "card",
-				"id": "M_ACH_001",
-				"name_ko": "기마 돌격 (騎馬突擊)",
-				"description_ko": "피해 12를 입힌다. 이번 턴 카드를 2장 이상 사용했다면 피해 +8.",
-				"flavor_ko": "말 위에서 익힌 돌격술. 전장을 누빈 자만이 쓸 수 있다.",
-				"class": "mugwan",
-				"beat": 2,
-				"cost": 2,
-				"type": "attack",
-				"rarity": 3,
-				"effect_code": "attack_12_plus8_if_2cards_played",
-				"unlock_source": "achievement"
-			}
-		},
-		{
-			"id": "ACH_MUGWAN_VICTORIES_3",
-			"name": "삼도 제패 (三道制覇)",
-			"description": "무관으로 3회 승리하다",
-			"type": "character_victories_n",
-			"params": { "character_id": "mugwan", "min_victories": 3 },
-			"icon": "three_swords"
-		},
-		{
-			"id": "ACH_MUGWAN_ASCENSION_1",
-			"name": "무관의 시험",
-			"description": "무관으로 귀신 1단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "mugwan", "min_level": 1 },
-			"icon": "mugwan_ghost_1"
-		},
-		{
-			"id": "ACH_MUGWAN_ASCENSION_5",
-			"name": "무관의 혼",
-			"description": "무관으로 귀신 5단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "mugwan", "min_level": 5 },
-			"icon": "mugwan_ghost_5",
-			"unlock_reward": {
-				"type": "relic",
-				"id": "R_ACH_002",
-				"name_ko": "호신 갑주 (護身甲胄)",
-				"description_ko": "전투 시작 시 방어도 8을 얻는다. 귀신 단계 3 이상일 때 방어도 +4 추가.",
-				"flavor_ko": "귀신 5단계를 넘은 무관의 몸을 지킨 갑옷. 긁힌 자국조차 훈장이다.",
-				"trigger": "battle_start",
-				"effect_code": "block_8_plus4_if_ascension_3plus",
-				"rarity": 3,
-				"class_restriction": "mugwan"
-			}
-		},
-		{
-			"id": "ACH_MUGWAN_ASCENSION_10",
-			"name": "무신 (武神)",
-			"description": "무관으로 귀신 10단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "mugwan", "min_level": 10 },
-			"icon": "mugwan_god",
-			"unlock_reward": {
-				"type": "card_back",
-				"id": "BACK_MUGWAN",
-				"name_ko": "철혈 무관",
-				"description_ko": "피와 철로 물든 무관의 전통 카드 뒷면"
-			}
-		},
-
-		{
-			"id": "ACH_MUNGWAN_RUNS_5",
-			"name": "문필 (文筆)",
-			"description": "문관으로 5회 런을 완료하다",
-			"type": "character_runs",
-			"params": { "character_id": "mungwan", "min_runs": 5 },
-			"icon": "quill",
-			"unlock_reward": {
-				"type": "card",
-				"id": "W_ACH_001",
-				"name_ko": "상소문 (上疏文)",
-				"description_ko": "덱을 섞고 카드 3장을 뽑는다. 다음 카드 비용이 0이 된다.",
-				"flavor_ko": "왕에게 올린 글 한 장이 국운을 바꾼다. 문관의 붓은 칼보다 강하다.",
-				"class": "mungwan",
-				"beat": 3,
-				"cost": 1,
-				"type": "skill",
-				"rarity": 3,
-				"effect_code": "shuffle_draw3_zero_cost_next",
-				"unlock_source": "achievement"
-			}
-		},
-		{
-			"id": "ACH_MUNGWAN_VICTORIES_3",
-			"name": "삼독 (三讀)",
-			"description": "문관으로 3회 승리하다",
-			"type": "character_victories_n",
-			"params": { "character_id": "mungwan", "min_victories": 3 },
-			"icon": "three_scrolls"
-		},
-		{
-			"id": "ACH_MUNGWAN_ASCENSION_1",
-			"name": "문관의 시험",
-			"description": "문관으로 귀신 1단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "mungwan", "min_level": 1 },
-			"icon": "mungwan_ghost_1"
-		},
-		{
-			"id": "ACH_MUNGWAN_ASCENSION_5",
-			"name": "문관의 지",
-			"description": "문관으로 귀신 5단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "mungwan", "min_level": 5 },
-			"icon": "mungwan_ghost_5",
-			"unlock_reward": {
-				"type": "relic",
-				"id": "R_ACH_003",
-				"name_ko": "옥새 (玉璽)",
-				"description_ko": "전투 종료 시 스킬 카드를 1장 사용했다면 기(氣) 1을 다음 턴으로 이월한다.",
-				"flavor_ko": "왕의 도장. 이 도장이 찍힌 문서는 세상 어디서나 통한다.",
-				"trigger": "battle_end",
-				"effect_code": "carry_qi1_if_skill_used",
-				"rarity": 3,
-				"class_restriction": "mungwan"
-			}
-		},
-		{
-			"id": "ACH_MUNGWAN_ASCENSION_10",
-			"name": "문성 (文聖)",
-			"description": "문관으로 귀신 10단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "mungwan", "min_level": 10 },
-			"icon": "mungwan_god",
-			"unlock_reward": {
-				"type": "card_back",
-				"id": "BACK_MUNGWAN",
-				"name_ko": "청풍 문관",
-				"description_ko": "먹향 물든 청풍의 문관 전통 카드 뒷면"
-			}
-		},
-
-		{
-			"id": "ACH_DOSA_RUNS_5",
-			"name": "수련 (修練)",
-			"description": "도사로 5회 런을 완료하다",
-			"type": "character_runs",
-			"params": { "character_id": "dosa", "min_runs": 5 },
-			"icon": "meditation",
-			"unlock_reward": {
-				"type": "card",
-				"id": "D_ACH_001",
-				"name_ko": "천지현황 (天地玄黃)",
-				"description_ko": "기(氣) 2를 획득한다. 이번 런에서 시조를 10회 이상 완성했다면 카드 1장을 뽑는다.",
-				"flavor_ko": "천지의 이치를 깨달은 도사만이 읽을 수 있는 주문. 하늘은 검고 땅은 누르다.",
-				"class": "dosa",
-				"beat": 1,
-				"cost": 0,
-				"type": "skill",
-				"rarity": 3,
-				"effect_code": "gain_qi2_draw1_if_sijo10",
-				"unlock_source": "achievement"
-			}
-		},
-		{
-			"id": "ACH_DOSA_VICTORIES_3",
-			"name": "삼청 (三淸)",
-			"description": "도사로 3회 승리하다",
-			"type": "character_victories_n",
-			"params": { "character_id": "dosa", "min_victories": 3 },
-			"icon": "three_talismans"
-		},
-		{
-			"id": "ACH_DOSA_ASCENSION_1",
-			"name": "도사의 시험",
-			"description": "도사로 귀신 1단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "dosa", "min_level": 1 },
-			"icon": "dosa_ghost_1"
-		},
-		{
-			"id": "ACH_DOSA_ASCENSION_5",
-			"name": "도사의 기",
-			"description": "도사로 귀신 5단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "dosa", "min_level": 5 },
-			"icon": "dosa_ghost_5",
-			"unlock_reward": {
-				"type": "relic",
-				"id": "R_ACH_004",
-				"name_ko": "선기옥형 (璿璣玉衡)",
-				"description_ko": "시조 완성 시마다 화상(火傷) 또는 독(毒) 중 더 높은 수치가 적에게 1 추가된다.",
-				"flavor_ko": "하늘의 기운을 측정하는 천문기기. 도사가 시조를 완성할 때마다 우주가 반응한다.",
-				"trigger": "sijo_complete",
-				"effect_code": "apply_burn_or_poison_1_on_sijo",
-				"rarity": 3,
-				"class_restriction": "dosa"
-			}
-		},
-		{
-			"id": "ACH_DOSA_ASCENSION_10",
-			"name": "선인 (仙人)",
-			"description": "도사로 귀신 10단계 클리어",
-			"type": "character_ascension",
-			"params": { "character_id": "dosa", "min_level": 10 },
-			"icon": "dosa_god",
-			"unlock_reward": {
-				"type": "card_back",
-				"id": "BACK_DOSA",
-				"name_ko": "자하 도사",
-				"description_ko": "붉은 노을빛 도사의 전통 카드 뒷면"
-			}
-		},
-
-		{
-			"id": "ACH_ASCENSION_10",
-			"name": "전설의 풍류객",
-			"description": "어떤 캐릭터로든 귀신 10단계를 클리어하다",
-			"type": "any_ascension",
-			"params": {
-				"character_ids": ["mugwan", "mungwan", "dosa"],
-				"min_level": 10
-			},
-			"icon": "legend_star",
-			"unlock_reward": {
-				"type": "card_back",
-				"id": "BACK_LEGEND",
-				"name_ko": "황금 귀신",
-				"description_ko": "귀신 10단계 완료자에게 주어지는 황금빛 귀신 카드 뒷면"
-			}
-		},
-		{
-			"id": "ACH_ALL_ASCENSION_1",
-			"name": "삼도귀신 (三道鬼神)",
-			"description": "세 캐릭터 모두 귀신 1단계 이상 클리어",
-			"type": "all_ascension_min",
-			"params": {
-				"character_ids": ["mugwan", "mungwan", "dosa"],
-				"min_level": 1
-			},
-			"icon": "three_ghosts",
-			"unlock_reward": {
-				"type": "relic",
-				"id": "R_ACH_006",
-				"name_ko": "세 도의 부적 (三道符)",
-				"description_ko": "런 시작 시 무작위 직업 전용 유물 1개를 추가로 획득한다.",
-				"flavor_ko": "세 길을 모두 걷는 자는 세 길의 가호를 받는다.",
-				"trigger": "run_start",
-				"effect_code": "grant_random_class_relic_once",
-				"rarity": 4,
-				"class_restriction": null
-			}
-		}
-	]
+  "achievements": [
+    {
+      "id": "ACH_FIRST_RUN",
+      "name": {
+        "ko": "첫 발걸음",
+        "en": ""
+      },
+      "description": {
+        "ko": "첫 번째 런을 완료하다",
+        "en": ""
+      },
+      "type": "total_runs",
+      "params": {
+        "min_runs": 1
+      },
+      "icon": "foot"
+    },
+    {
+      "id": "ACH_RUNS_3",
+      "name": {
+        "ko": "반복되는 도전",
+        "en": ""
+      },
+      "description": {
+        "ko": "총 3회 런을 완료하다",
+        "en": ""
+      },
+      "type": "total_runs",
+      "params": {
+        "min_runs": 3
+      },
+      "icon": "repeat"
+    },
+    {
+      "id": "ACH_RUNS_10",
+      "name": {
+        "ko": "불굴의 의지",
+        "en": ""
+      },
+      "description": {
+        "ko": "총 10회 런을 완료하다",
+        "en": ""
+      },
+      "type": "total_runs",
+      "params": {
+        "min_runs": 10
+      },
+      "icon": "flame"
+    },
+    {
+      "id": "ACH_RUNS_30",
+      "name": {
+        "ko": "천하를 돌아다닌 자",
+        "en": ""
+      },
+      "description": {
+        "ko": "총 30회 런을 완료하다",
+        "en": ""
+      },
+      "type": "total_runs",
+      "params": {
+        "min_runs": 30
+      },
+      "icon": "road"
+    },
+    {
+      "id": "ACH_FIRST_VICTORY",
+      "name": {
+        "ko": "왕조의 수호자",
+        "en": ""
+      },
+      "description": {
+        "ko": "최초 승리를 거두다",
+        "en": ""
+      },
+      "type": "total_victories",
+      "params": {
+        "min_victories": 1
+      },
+      "icon": "crown"
+    },
+    {
+      "id": "ACH_VICTORIES_3",
+      "name": {
+        "ko": "삼전삼승 (三戰三勝)",
+        "en": ""
+      },
+      "description": {
+        "ko": "총 3회 승리를 거두다",
+        "en": ""
+      },
+      "type": "total_victories",
+      "params": {
+        "min_victories": 3
+      },
+      "icon": "star"
+    },
+    {
+      "id": "ACH_VICTORIES_5",
+      "name": {
+        "ko": "백전노장 (百戰老將)",
+        "en": ""
+      },
+      "description": {
+        "ko": "총 5회 승리를 거두다",
+        "en": ""
+      },
+      "type": "total_victories",
+      "params": {
+        "min_victories": 5
+      },
+      "icon": "medal"
+    },
+    {
+      "id": "ACH_VICTORIES_10",
+      "name": {
+        "ko": "대관절 이기는 법",
+        "en": ""
+      },
+      "description": {
+        "ko": "총 10회 승리를 거두다",
+        "en": ""
+      },
+      "type": "total_victories",
+      "params": {
+        "min_victories": 10
+      },
+      "icon": "victory_gem",
+      "unlock_reward": {
+        "type": "relic",
+        "id": "R_ACH_001",
+        "name_ko": "승전비 (勝戰碑)",
+        "description_ko": "전투 시작 시 기(氣) 1을 추가로 획득한다.",
+        "flavor_ko": "열 번의 승리가 새겨진 돌비석. 손에 쥐면 자신감이 솟구친다.",
+        "trigger": "battle_start",
+        "effect_code": "grant_qi_1_on_battle_start",
+        "rarity": 3,
+        "class_restriction": null
+      }
+    },
+    {
+      "id": "ACH_VICTORIES_20",
+      "name": {
+        "ko": "풍운아 (風雲兒)",
+        "en": ""
+      },
+      "description": {
+        "ko": "총 20회 승리를 거두다",
+        "en": ""
+      },
+      "type": "total_victories",
+      "params": {
+        "min_victories": 20
+      },
+      "icon": "wind_hero",
+      "unlock_reward": {
+        "type": "card_back",
+        "id": "BACK_GOLD",
+        "name_ko": "황금 시조",
+        "description_ko": "황금빛 시조 무늬 카드 뒷면"
+      }
+    },
+    {
+      "id": "ACH_REACH_ACT2",
+      "name": {
+        "ko": "제 2막 진입",
+        "en": ""
+      },
+      "description": {
+        "ko": "제 2막에 도달하다",
+        "en": ""
+      },
+      "type": "best_act",
+      "params": {
+        "min_act": 2
+      },
+      "icon": "gate"
+    },
+    {
+      "id": "ACH_REACH_ACT3",
+      "name": {
+        "ko": "최후의 관문",
+        "en": ""
+      },
+      "description": {
+        "ko": "제 3막에 도달하다",
+        "en": ""
+      },
+      "type": "best_act",
+      "params": {
+        "min_act": 3
+      },
+      "icon": "castle"
+    },
+    {
+      "id": "ACH_MUGWAN_VICTORY",
+      "name": {
+        "ko": "무관의 길",
+        "en": ""
+      },
+      "description": {
+        "ko": "무관으로 승리하다",
+        "en": ""
+      },
+      "type": "character_victory",
+      "params": {
+        "character_id": "mugwan"
+      },
+      "icon": "sword"
+    },
+    {
+      "id": "ACH_MUNGWAN_VICTORY",
+      "name": {
+        "ko": "문관의 길",
+        "en": ""
+      },
+      "description": {
+        "ko": "문관으로 승리하다",
+        "en": ""
+      },
+      "type": "character_victory",
+      "params": {
+        "character_id": "mungwan"
+      },
+      "icon": "scroll"
+    },
+    {
+      "id": "ACH_DOSA_VICTORY",
+      "name": {
+        "ko": "도사의 길",
+        "en": ""
+      },
+      "description": {
+        "ko": "도사로 승리하다",
+        "en": ""
+      },
+      "type": "character_victory",
+      "params": {
+        "character_id": "dosa"
+      },
+      "icon": "talisman"
+    },
+    {
+      "id": "ACH_ALL_CHARACTERS",
+      "name": {
+        "ko": "만능 관리 (萬能官吏)",
+        "en": ""
+      },
+      "description": {
+        "ko": "모든 캐릭터로 승리하다",
+        "en": ""
+      },
+      "type": "all_characters_victory",
+      "params": {
+        "character_ids": [
+          "mugwan",
+          "mungwan",
+          "dosa"
+        ]
+      },
+      "icon": "trophy",
+      "unlock_reward": {
+        "type": "relic",
+        "id": "R_ACH_005",
+        "name_ko": "삼재 도감 (三才圖鑑)",
+        "description_ko": "런 시작 시 무관·문관·도사 전용 카드 중 무작위 1장을 손에 추가한다.",
+        "flavor_ko": "하늘·땅·사람의 이치를 담은 비서. 어느 직업의 비법이든 꿰뚫는다.",
+        "trigger": "run_start",
+        "effect_code": "draw_random_any_class_card_once",
+        "rarity": 4,
+        "class_restriction": null
+      }
+    },
+    {
+      "id": "ACH_MUGWAN_RUNS_5",
+      "name": {
+        "ko": "무골 (武骨)",
+        "en": ""
+      },
+      "description": {
+        "ko": "무관으로 5회 런을 완료하다",
+        "en": ""
+      },
+      "type": "character_runs",
+      "params": {
+        "character_id": "mugwan",
+        "min_runs": 5
+      },
+      "icon": "iron_bone",
+      "unlock_reward": {
+        "type": "attack",
+        "id": "M_ACH_001",
+        "name_ko": "기마 돌격 (騎馬突擊)",
+        "description_ko": "피해 12를 입힌다. 이번 턴 카드를 2장 이상 사용했다면 피해 +8.",
+        "flavor_ko": "말 위에서 익힌 돌격술. 전장을 누빈 자만이 쓸 수 있다.",
+        "class": "mugwan",
+        "beat": 2,
+        "cost": 2,
+        "rarity": 3,
+        "effect_code": "attack_12_plus8_if_2cards_played",
+        "unlock_source": "achievement"
+      }
+    },
+    {
+      "id": "ACH_MUGWAN_VICTORIES_3",
+      "name": {
+        "ko": "삼도 제패 (三道制覇)",
+        "en": ""
+      },
+      "description": {
+        "ko": "무관으로 3회 승리하다",
+        "en": ""
+      },
+      "type": "character_victories_n",
+      "params": {
+        "character_id": "mugwan",
+        "min_victories": 3
+      },
+      "icon": "three_swords"
+    },
+    {
+      "id": "ACH_MUGWAN_ASCENSION_1",
+      "name": {
+        "ko": "무관의 시험",
+        "en": ""
+      },
+      "description": {
+        "ko": "무관으로 귀신 1단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "mugwan",
+        "min_level": 1
+      },
+      "icon": "mugwan_ghost_1"
+    },
+    {
+      "id": "ACH_MUGWAN_ASCENSION_5",
+      "name": {
+        "ko": "무관의 혼",
+        "en": ""
+      },
+      "description": {
+        "ko": "무관으로 귀신 5단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "mugwan",
+        "min_level": 5
+      },
+      "icon": "mugwan_ghost_5",
+      "unlock_reward": {
+        "type": "relic",
+        "id": "R_ACH_002",
+        "name_ko": "호신 갑주 (護身甲胄)",
+        "description_ko": "전투 시작 시 방어도 8을 얻는다. 귀신 단계 3 이상일 때 방어도 +4 추가.",
+        "flavor_ko": "귀신 5단계를 넘은 무관의 몸을 지킨 갑옷. 긁힌 자국조차 훈장이다.",
+        "trigger": "battle_start",
+        "effect_code": "block_8_plus4_if_ascension_3plus",
+        "rarity": 3,
+        "class_restriction": "mugwan"
+      }
+    },
+    {
+      "id": "ACH_MUGWAN_ASCENSION_10",
+      "name": {
+        "ko": "무신 (武神)",
+        "en": ""
+      },
+      "description": {
+        "ko": "무관으로 귀신 10단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "mugwan",
+        "min_level": 10
+      },
+      "icon": "mugwan_god",
+      "unlock_reward": {
+        "type": "card_back",
+        "id": "BACK_MUGWAN",
+        "name_ko": "철혈 무관",
+        "description_ko": "피와 철로 물든 무관의 전통 카드 뒷면"
+      }
+    },
+    {
+      "id": "ACH_MUNGWAN_RUNS_5",
+      "name": {
+        "ko": "문필 (文筆)",
+        "en": ""
+      },
+      "description": {
+        "ko": "문관으로 5회 런을 완료하다",
+        "en": ""
+      },
+      "type": "character_runs",
+      "params": {
+        "character_id": "mungwan",
+        "min_runs": 5
+      },
+      "icon": "quill",
+      "unlock_reward": {
+        "type": "skill",
+        "id": "W_ACH_001",
+        "name_ko": "상소문 (上疏文)",
+        "description_ko": "덱을 섞고 카드 3장을 뽑는다. 다음 카드 비용이 0이 된다.",
+        "flavor_ko": "왕에게 올린 글 한 장이 국운을 바꾼다. 문관의 붓은 칼보다 강하다.",
+        "class": "mungwan",
+        "beat": 3,
+        "cost": 1,
+        "rarity": 3,
+        "effect_code": "shuffle_draw3_zero_cost_next",
+        "unlock_source": "achievement"
+      }
+    },
+    {
+      "id": "ACH_MUNGWAN_VICTORIES_3",
+      "name": {
+        "ko": "삼독 (三讀)",
+        "en": ""
+      },
+      "description": {
+        "ko": "문관으로 3회 승리하다",
+        "en": ""
+      },
+      "type": "character_victories_n",
+      "params": {
+        "character_id": "mungwan",
+        "min_victories": 3
+      },
+      "icon": "three_scrolls"
+    },
+    {
+      "id": "ACH_MUNGWAN_ASCENSION_1",
+      "name": {
+        "ko": "문관의 시험",
+        "en": ""
+      },
+      "description": {
+        "ko": "문관으로 귀신 1단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "mungwan",
+        "min_level": 1
+      },
+      "icon": "mungwan_ghost_1"
+    },
+    {
+      "id": "ACH_MUNGWAN_ASCENSION_5",
+      "name": {
+        "ko": "문관의 지",
+        "en": ""
+      },
+      "description": {
+        "ko": "문관으로 귀신 5단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "mungwan",
+        "min_level": 5
+      },
+      "icon": "mungwan_ghost_5",
+      "unlock_reward": {
+        "type": "relic",
+        "id": "R_ACH_003",
+        "name_ko": "옥새 (玉璽)",
+        "description_ko": "전투 종료 시 스킬 카드를 1장 사용했다면 기(氣) 1을 다음 턴으로 이월한다.",
+        "flavor_ko": "왕의 도장. 이 도장이 찍힌 문서는 세상 어디서나 통한다.",
+        "trigger": "battle_end",
+        "effect_code": "carry_qi1_if_skill_used",
+        "rarity": 3,
+        "class_restriction": "mungwan"
+      }
+    },
+    {
+      "id": "ACH_MUNGWAN_ASCENSION_10",
+      "name": {
+        "ko": "문성 (文聖)",
+        "en": ""
+      },
+      "description": {
+        "ko": "문관으로 귀신 10단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "mungwan",
+        "min_level": 10
+      },
+      "icon": "mungwan_god",
+      "unlock_reward": {
+        "type": "card_back",
+        "id": "BACK_MUNGWAN",
+        "name_ko": "청풍 문관",
+        "description_ko": "먹향 물든 청풍의 문관 전통 카드 뒷면"
+      }
+    },
+    {
+      "id": "ACH_DOSA_RUNS_5",
+      "name": {
+        "ko": "수련 (修練)",
+        "en": ""
+      },
+      "description": {
+        "ko": "도사로 5회 런을 완료하다",
+        "en": ""
+      },
+      "type": "character_runs",
+      "params": {
+        "character_id": "dosa",
+        "min_runs": 5
+      },
+      "icon": "meditation",
+      "unlock_reward": {
+        "type": "skill",
+        "id": "D_ACH_001",
+        "name_ko": "천지현황 (天地玄黃)",
+        "description_ko": "기(氣) 2를 획득한다. 이번 런에서 시조를 10회 이상 완성했다면 카드 1장을 뽑는다.",
+        "flavor_ko": "천지의 이치를 깨달은 도사만이 읽을 수 있는 주문. 하늘은 검고 땅은 누르다.",
+        "class": "dosa",
+        "beat": 1,
+        "cost": 0,
+        "rarity": 3,
+        "effect_code": "gain_qi2_draw1_if_sijo10",
+        "unlock_source": "achievement"
+      }
+    },
+    {
+      "id": "ACH_DOSA_VICTORIES_3",
+      "name": {
+        "ko": "삼청 (三淸)",
+        "en": ""
+      },
+      "description": {
+        "ko": "도사로 3회 승리하다",
+        "en": ""
+      },
+      "type": "character_victories_n",
+      "params": {
+        "character_id": "dosa",
+        "min_victories": 3
+      },
+      "icon": "three_talismans"
+    },
+    {
+      "id": "ACH_DOSA_ASCENSION_1",
+      "name": {
+        "ko": "도사의 시험",
+        "en": ""
+      },
+      "description": {
+        "ko": "도사로 귀신 1단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "dosa",
+        "min_level": 1
+      },
+      "icon": "dosa_ghost_1"
+    },
+    {
+      "id": "ACH_DOSA_ASCENSION_5",
+      "name": {
+        "ko": "도사의 기",
+        "en": ""
+      },
+      "description": {
+        "ko": "도사로 귀신 5단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "dosa",
+        "min_level": 5
+      },
+      "icon": "dosa_ghost_5",
+      "unlock_reward": {
+        "type": "relic",
+        "id": "R_ACH_004",
+        "name_ko": "선기옥형 (璿璣玉衡)",
+        "description_ko": "시조 완성 시마다 화상(火傷) 또는 독(毒) 중 더 높은 수치가 적에게 1 추가된다.",
+        "flavor_ko": "하늘의 기운을 측정하는 천문기기. 도사가 시조를 완성할 때마다 우주가 반응한다.",
+        "trigger": "sijo_complete",
+        "effect_code": "apply_burn_or_poison_1_on_sijo",
+        "rarity": 3,
+        "class_restriction": "dosa"
+      }
+    },
+    {
+      "id": "ACH_DOSA_ASCENSION_10",
+      "name": {
+        "ko": "선인 (仙人)",
+        "en": ""
+      },
+      "description": {
+        "ko": "도사로 귀신 10단계 클리어",
+        "en": ""
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "dosa",
+        "min_level": 10
+      },
+      "icon": "dosa_god",
+      "unlock_reward": {
+        "type": "card_back",
+        "id": "BACK_DOSA",
+        "name_ko": "자하 도사",
+        "description_ko": "붉은 노을빛 도사의 전통 카드 뒷면"
+      }
+    },
+    {
+      "id": "ACH_ASCENSION_10",
+      "name": {
+        "ko": "전설의 풍류객",
+        "en": ""
+      },
+      "description": {
+        "ko": "어떤 캐릭터로든 귀신 10단계를 클리어하다",
+        "en": ""
+      },
+      "type": "any_ascension",
+      "params": {
+        "character_ids": [
+          "mugwan",
+          "mungwan",
+          "dosa"
+        ],
+        "min_level": 10
+      },
+      "icon": "legend_star",
+      "unlock_reward": {
+        "type": "card_back",
+        "id": "BACK_LEGEND",
+        "name_ko": "황금 귀신",
+        "description_ko": "귀신 10단계 완료자에게 주어지는 황금빛 귀신 카드 뒷면"
+      }
+    },
+    {
+      "id": "ACH_ALL_ASCENSION_1",
+      "name": {
+        "ko": "삼도귀신 (三道鬼神)",
+        "en": ""
+      },
+      "description": {
+        "ko": "세 캐릭터 모두 귀신 1단계 이상 클리어",
+        "en": ""
+      },
+      "type": "all_ascension_min",
+      "params": {
+        "character_ids": [
+          "mugwan",
+          "mungwan",
+          "dosa"
+        ],
+        "min_level": 1
+      },
+      "icon": "three_ghosts",
+      "unlock_reward": {
+        "type": "relic",
+        "id": "R_ACH_006",
+        "name_ko": "세 도의 부적 (三道符)",
+        "description_ko": "런 시작 시 무작위 직업 전용 유물 1개를 추가로 획득한다.",
+        "flavor_ko": "세 길을 모두 걷는 자는 세 길의 가호를 받는다.",
+        "trigger": "run_start",
+        "effect_code": "grant_random_class_relic_once",
+        "rarity": 4,
+        "class_restriction": null
+      }
+    }
+  ]
 }

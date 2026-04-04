@@ -3,18 +3,20 @@
   "type": "boss",
   "act": 2,
   "balance_ref": "ZER-12. 플레이어 기준: HP 30~50(2막 진입 후), 덱 규모 14~18장, 턴당 피해 12~18, 방어도 8~12. 보스 목표 전투 길이: 14~18턴.",
-
   "id": "B_ACT2_FINAL",
   "name": {
     "ko": "쌍두 호랑이",
     "hanja": "兩頭虎",
-    "romanized": "Ssangdu Horangi"
+    "romanized": "Ssangdu Horangi",
+    "en": ""
   },
-  "description": "지리산 산신이 분노하여 내보낸 양두의 화신. 두 머리 각각이 독립된 의지를 가지며, 하나가 쓰러지면 나머지는 극한의 분노에 빠진다.",
+  "description": {
+    "ko": "지리산 산신이 분노하여 내보낸 양두의 화신. 두 머리 각각이 독립된 의지를 가지며, 하나가 쓰러지면 나머지는 극한의 분노에 빠진다.",
+    "en": ""
+  },
   "hp": 160,
   "hp_total": 160,
   "flavor": "\"하나가 쓰러질 때, 다른 하나가 진정한 이빨을 드러낸다.\"",
-
   "special_mechanic": {
     "name": "이두 독립 체력 (Two-Head HP)",
     "description": "쌍두 호랑이는 두 개의 독립적 머리(좌두·우두)를 가진다. 각 머리는 별도 HP 80을 보유. 한쪽 머리가 처치되면 남은 머리가 즉시 분노 상태로 전환된다. 두 머리를 모두 처치해야 전투 종료.",
@@ -22,20 +24,31 @@
       "name": "좌두 (左頭)",
       "hp": 80,
       "on_death": [
-        { "type": "trigger_phase", "phase_label": "우두 분노" },
-        { "type": "dialogue", "text": "우두: 크아아아! 형제를 죽이다니!" }
+        {
+          "type": "trigger_phase",
+          "phase_label": "우두 분노"
+        },
+        {
+          "type": "dialogue",
+          "text": "우두: 크아아아! 형제를 죽이다니!"
+        }
       ]
     },
     "right_head": {
       "name": "우두 (右頭)",
       "hp": 80,
       "on_death": [
-        { "type": "trigger_phase", "phase_label": "좌두 분노" },
-        { "type": "dialogue", "text": "좌두: 크르르르! 이 원한을 갚겠다!" }
+        {
+          "type": "trigger_phase",
+          "phase_label": "좌두 분노"
+        },
+        {
+          "type": "dialogue",
+          "text": "좌두: 크르르르! 이 원한을 갚겠다!"
+        }
       ]
     }
   },
-
   "phases": [
     {
       "phase": 1,
@@ -45,60 +58,124 @@
       "moves": [
         {
           "id": "left_bite",
-          "name": "좌두 물기",
+          "name": {
+            "ko": "좌두 물기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 10,
           "times": 1,
           "source": "left_head",
-          "description": "좌두의 기본 물기 공격."
+          "description": {
+            "ko": "좌두의 기본 물기 공격.",
+            "en": ""
+          }
         },
         {
           "id": "right_claw",
-          "name": "우두 할퀴기",
+          "name": {
+            "ko": "우두 할퀴기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 2,
           "source": "right_head",
-          "description": "우두의 8피해 × 2회 할퀴기. 방어도 분산."
+          "description": {
+            "ko": "우두의 8피해 × 2회 할퀴기. 방어도 분산.",
+            "en": ""
+          }
         },
         {
           "id": "dual_roar",
-          "name": "쌍두 포효",
+          "name": {
+            "ko": "쌍두 포효",
+            "en": ""
+          },
           "intent": "debuff",
           "source": "both_heads",
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "두 머리가 동시에 포효. 취약 2 + 약화 1 부여."
+          "description": {
+            "ko": "두 머리가 동시에 포효. 취약 2 + 약화 1 부여.",
+            "en": ""
+          }
         },
         {
           "id": "coordinated_pounce",
-          "name": "협공 돌진",
+          "name": {
+            "ko": "협공 돌진",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 7,
           "times": 2,
           "source": "both_heads",
           "effects": [
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "양 머리가 동시에 돌진. 7피해 × 2회 = 14 총피해 + 출혈 2."
+          "description": {
+            "ko": "양 머리가 동시에 돌진. 7피해 × 2회 = 14 총피해 + 출혈 2.",
+            "en": ""
+          }
         },
         {
           "id": "territorial_buff",
-          "name": "산신의 가호",
+          "name": {
+            "ko": "산신의 가호",
+            "en": ""
+          },
           "intent": "buff",
           "source": "both_heads",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "left_head" },
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "right_head" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "left_head"
+            },
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "right_head"
+            }
           ],
-          "description": "양 머리 모두 힘 2 획득. 산신의 분노가 깃든다."
+          "description": {
+            "ko": "양 머리 모두 힘 2 획득. 산신의 분노가 깃든다.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["left_bite", "right_claw", "dual_roar", "coordinated_pounce", "territorial_buff", "left_bite", "right_claw", "coordinated_pounce"]
+        "sequence": [
+          "left_bite",
+          "right_claw",
+          "dual_roar",
+          "coordinated_pounce",
+          "territorial_buff",
+          "left_bite",
+          "right_claw",
+          "coordinated_pounce"
+        ]
       }
     },
     {
@@ -109,61 +186,117 @@
       "phase_trigger": {
         "type": "either_head_killed",
         "on_trigger": [
-          { "type": "apply_buff", "buff": "strength", "stacks": 5, "target": "surviving_head" },
-          { "type": "apply_buff", "buff": "분노", "stacks": 3, "target": "surviving_head", "note": "분노: 공격력 +50%, 받는 피해 +25%, 3턴 지속" },
-          { "type": "dialogue", "text": "으르렁… 이놈, 목숨이 아깝지도 않느냐!" }
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 5,
+            "target": "surviving_head"
+          },
+          {
+            "type": "apply_buff",
+            "buff": "분노",
+            "stacks": 3,
+            "target": "surviving_head",
+            "note": "분노: 공격력 +50%, 받는 피해 +25%, 3턴 지속"
+          },
+          {
+            "type": "dialogue",
+            "text": "으르렁… 이놈, 목숨이 아깝지도 않느냐!"
+          }
         ]
       },
       "moves": [
         {
           "id": "enraged_bite",
-          "name": "광란의 물기",
+          "name": {
+            "ko": "광란의 물기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 16,
           "times": 1,
-          "description": "분노한 머리의 강렬한 물기. 힘+5 반영 시 21피해."
+          "description": {
+            "ko": "분노한 머리의 강렬한 물기. 힘+5 반영 시 21피해.",
+            "en": ""
+          }
         },
         {
           "id": "frenzy_claw",
-          "name": "광란 할퀴기",
+          "name": {
+            "ko": "광란 할퀴기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 3,
-          "description": "8피해 × 3회 = 24 총피해. 힘+5 적용 시 13×3=39."
+          "description": {
+            "ko": "8피해 × 3회 = 24 총피해. 힘+5 적용 시 13×3=39.",
+            "en": ""
+          }
         },
         {
           "id": "death_pounce",
-          "name": "사멸 돌진",
+          "name": {
+            "ko": "사멸 돌진",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 22,
           "times": 1,
-          "description": "HP < 30%일 때 사용. 최후의 전력 공격."
+          "description": {
+            "ko": "HP < 30%일 때 사용. 최후의 전력 공격.",
+            "en": ""
+          }
         },
         {
           "id": "howl_of_grief",
-          "name": "비탄의 울부짖음",
+          "name": {
+            "ko": "비탄의 울부짖음",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 3, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 3,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "동료 머리의 죽음을 애도하는 울부짖음. 취약 3 + 약화 2."
+          "description": {
+            "ko": "동료 머리의 죽음을 애도하는 울부짖음. 취약 3 + 약화 2.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["howl_of_grief", "enraged_bite", "frenzy_claw", "enraged_bite", "frenzy_claw", "death_pounce"]
+        "sequence": [
+          "howl_of_grief",
+          "enraged_bite",
+          "frenzy_claw",
+          "enraged_bite",
+          "frenzy_claw",
+          "death_pounce"
+        ]
       }
     }
   ],
-
   "targeting_notes": {
     "strategy": "플레이어는 어느 머리를 먼저 처치할지 선택 가능. 두 머리의 총 피해량이 비슷하므로 도착 데미지 총량은 동일. 단, 좌두는 단타 고데미지 / 우두는 다타 방어도 분산 특화 — 플레이 스타일에 맞는 처치 순서 선택 권장.",
     "counterplay": "분노 상태는 받는 피해 +25% → 분노 돌입 즉시 취약 카드 사용 시 폭딜 가능. 방어도 적극 유지로 frenzy_claw 방어 필수."
   },
-
   "rewards": {
-    "gold": { "min": 80, "max": 100 },
+    "gold": {
+      "min": 80,
+      "max": 100
+    },
     "relic": "보스 유물 1개 (확정)",
     "relic_candidates": [
       {
@@ -182,9 +315,7 @@
       }
     ]
   },
-
   "balance_note": "총 HP 160 (머리당 80). 1페이즈: 양 머리로 협공 — 협공 돌진(7×2=14)+출혈이 주요 위협. 2페이즈: 힘+5+분노 상태 분노의 물기(16+5+분노=약24), frenzy_claw(8+5=13×3=39총). 플레이어 방어도 15+ 유지 필수. 취약(+50%)과 분노(받는 피해+25%)가 겹치면 폭딜 가능 — 상태이상 카드 보유 시 유리.",
-
   "design_notes": {
     "thematic_concept": "GDD의 '쌍두 호랑이 — HP 독립 머리 2개, 한쪽 처치 시 다른 쪽 분노' 설계 충실 구현. 머리 처치 순서라는 전술 선택지 부여.",
     "mechanical_pillar": "이두 독립 체력 시스템으로 플레이어에게 '어느 머리를 먼저 공략할 것인가'라는 전략적 선택 강요. 분노 페이즈 전환은 반격 기회이기도 함 (분노 시 받는 피해 증가).",

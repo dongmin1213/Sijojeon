@@ -2,17 +2,19 @@
   "version": "0.1",
   "type": "boss",
   "act": 2,
-
   "id": "B_ACT2_TAMGWAN",
   "name": {
     "ko": "탐관 연합",
     "hanja": "貪官聯合",
-    "romanized": "Tamgwan Alliance"
+    "romanized": "Tamgwan Alliance",
+    "en": ""
   },
-  "description": "지방을 갈취하는 탐관들이 한데 뭉쳐 대항한다. 각자의 이익을 지키기 위해 연합했지만, 그들의 목표는 오직 하나 — 증거를 없애는 것.",
+  "description": {
+    "ko": "지방을 갈취하는 탐관들이 한데 뭉쳐 대항한다. 각자의 이익을 지키기 위해 연합했지만, 그들의 목표는 오직 하나 — 증거를 없애는 것.",
+    "en": ""
+  },
   "flavor": "\"우리가 한 일이 무엇인지 알면서도 막으려 하는가? 왕명을 앞세우면 된다.\"",
   "hp": 175,
-
   "phases": [
     {
       "phase": 1,
@@ -29,35 +31,64 @@
       "moves": [
         {
           "id": "monopoly_strike",
-          "name": "독점 강타",
+          "name": {
+            "ko": "독점 강타",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": "12피해."
+          "description": {
+            "ko": "12피해.",
+            "en": ""
+          }
         },
         {
           "id": "market_wall",
-          "name": "시장 방벽",
+          "name": {
+            "ko": "시장 방벽",
+            "en": ""
+          },
           "intent": "defend",
           "block": 16,
-          "description": "방어도 16."
+          "description": {
+            "ko": "방어도 16.",
+            "en": ""
+          }
         },
         {
           "id": "price_gouge",
-          "name": "가격 폭등",
+          "name": {
+            "ko": "가격 폭등",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "약화 2."
+          "description": {
+            "ko": "약화 2.",
+            "en": ""
+          }
         },
         {
           "id": "coalition_strike",
-          "name": "연합 강타",
+          "name": {
+            "ko": "연합 강타",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 2,
-          "description": "8피해 × 2."
+          "description": {
+            "ko": "8피해 × 2.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -78,12 +109,30 @@
           {
             "type": "summon",
             "summon": [
-              { "enemy_id": "E_DANGPA_FOLLOWER", "count": 1, "hp_override": 30, "name_override": "당파 추종자" },
-              { "enemy_id": "E_DANGPA_FOLLOWER", "count": 1, "hp_override": 30, "name_override": "당파 추종자" }
+              {
+                "enemy_id": "E_DANGPA_FOLLOWER",
+                "count": 1,
+                "hp_override": 30,
+                "name_override": "당파 추종자"
+              },
+              {
+                "enemy_id": "E_DANGPA_FOLLOWER",
+                "count": 1,
+                "hp_override": 30,
+                "name_override": "당파 추종자"
+              }
             ]
           },
-          { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" },
-          { "type": "dialogue", "text": "동지들이여! 이 역도를 처단하라!" }
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 2,
+            "target": "self"
+          },
+          {
+            "type": "dialogue",
+            "text": "동지들이여! 이 역도를 처단하라!"
+          }
         ]
       }
     },
@@ -95,33 +144,66 @@
       "moves": [
         {
           "id": "coordinated_assault",
-          "name": "연합 공세",
+          "name": {
+            "ko": "연합 공세",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 15,
           "times": 1,
-          "description": "15피해."
+          "description": {
+            "ko": "15피해.",
+            "en": ""
+          }
         },
         {
           "id": "faction_shield",
-          "name": "당파 방패",
+          "name": {
+            "ko": "당파 방패",
+            "en": ""
+          },
           "intent": "defend_buff",
           "block": 12,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 1, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            }
           ],
-          "description": "방어도 12 + 힘 1."
+          "description": {
+            "ko": "방어도 12 + 힘 1.",
+            "en": ""
+          }
         },
         {
           "id": "smear_campaign",
-          "name": "모략",
+          "name": {
+            "ko": "모략",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": "10피해 + 취약 2 + 약화 1."
+          "description": {
+            "ko": "10피해 + 취약 2 + 약화 1.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -138,14 +220,20 @@
         "type": "hp_threshold",
         "hp_percent": 30,
         "on_trigger": [
-          { "type": "cleanse_debuffs", "target": "self" },
+          {
+            "type": "cleanse_debuffs",
+            "target": "self"
+          },
           {
             "type": "apply_debuff",
             "debuff": "death_countdown",
             "stacks": 4,
             "target": "player"
           },
-          { "type": "dialogue", "text": "왕명이니라! 이 역도를 즉시 처형하라!" }
+          {
+            "type": "dialogue",
+            "text": "왕명이니라! 이 역도를 즉시 처형하라!"
+          }
         ]
       }
     },
@@ -156,32 +244,59 @@
       "moves": [
         {
           "id": "royal_impersonation",
-          "name": "왕명 사칭 집행",
+          "name": {
+            "ko": "왕명 사칭 집행",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 3,
           "effects": [
-            { "type": "strip_buff", "count": 1, "target": "player" }
+            {
+              "type": "strip_buff",
+              "count": 1,
+              "target": "player"
+            }
           ],
-          "description": "10피해 × 3 + 플레이어 버프 1개 박탈."
+          "description": {
+            "ko": "10피해 × 3 + 플레이어 버프 1개 박탈.",
+            "en": ""
+          }
         },
         {
           "id": "desperate_authority",
-          "name": "최후 권위",
+          "name": {
+            "ko": "최후 권위",
+            "en": ""
+          },
           "intent": "defend_buff",
           "block": 12,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
-          "description": "방어도 12 + 힘 2."
+          "description": {
+            "ko": "방어도 12 + 힘 2.",
+            "en": ""
+          }
         },
         {
           "id": "final_verdict",
-          "name": "최종 선고",
+          "name": {
+            "ko": "최종 선고",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 25,
           "times": 1,
-          "description": "25피해 단발 최대 공격."
+          "description": {
+            "ko": "25피해 단발 최대 공격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
@@ -195,12 +310,12 @@
       }
     }
   ],
-
   "rewards": {
-    "gold": { "min": 90, "max": 110 }
+    "gold": {
+      "min": 90,
+      "max": 110
+    }
   },
-
   "minshim_on_defeat": 20,
-
   "balance_note": "HP 175. 전투 길이 목표: 14~18턴. 페이즈 1 카드비용+1, 페이즈 2 소환+힘, 페이즈 3 카운트다운 4턴."
 }

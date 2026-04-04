@@ -4,14 +4,17 @@
   "act": 1,
   "balance_ref": "ZER-98 (적 종류 추가). 1막 대체 보스. 플레이어 기준: HP 60~75, 덱 규모 10~14장. 목표 전투 길이: 12~15턴.",
   "note": "1막 B_ACT1_FINAL의 대체 보스. 룬 또는 어센션 조건에 따라 등장.",
-
   "id": "B_ACT1_ALT",
   "name": {
     "ko": "대무당 천령",
     "hanja": "大巫堂 天靈",
-    "romanized": "Daemudang Cheonryeong"
+    "romanized": "Daemudang Cheonryeong",
+    "en": ""
   },
-  "description": "한양 외곽 신령 마을의 대무당. EL003 무당의 상위 형태. 강력한 소환과 저주, 시조 리듬을 방해하는 특수 패턴을 보유한다.",
+  "description": {
+    "ko": "한양 외곽 신령 마을의 대무당. EL003 무당의 상위 형태. 강력한 소환과 저주, 시조 리듬을 방해하는 특수 패턴을 보유한다.",
+    "en": ""
+  },
   "hp": 120,
   "flavor": "\"신령이 너를 인정하지 않는다. 여기서 돌아가라.\"",
   "unique_mechanic": "리듬 방해: 매 3턴마다 플레이어의 시조 슬롯 1개를 초기화한다. (슬롯 채워진 상태에서 진행 중이면 가장 최근 슬롯 초기화)",
@@ -24,55 +27,122 @@
       "moves": [
         {
           "id": "grand_ritual",
-          "name": "대신령 의식",
+          "name": {
+            "ko": "대신령 의식",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 5, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 5,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "독 5 + 취약 2. 시조 리듬 방해 시작."
+          "description": {
+            "ko": "독 5 + 취약 2. 시조 리듬 방해 시작.",
+            "en": ""
+          }
         },
         {
           "id": "summon_spirits_mass",
-          "name": "영혼 대소환",
+          "name": {
+            "ko": "영혼 대소환",
+            "en": ""
+          },
           "intent": "summon",
-          "description": "원혼 2기 + 악귀 1기 소환. 각 HP 15.",
+          "description": {
+            "ko": "원혼 2기 + 악귀 1기 소환. 각 HP 15.",
+            "en": ""
+          },
           "summon": [
-            { "enemy_id": "E003", "count": 2, "hp_override": 15, "name_override": "소환 원혼" },
-            { "enemy_id": "E006", "count": 1, "hp_override": 15, "name_override": "소환 악귀" }
+            {
+              "enemy_id": "E003",
+              "count": 2,
+              "hp_override": 15,
+              "name_override": "소환 원혼"
+            },
+            {
+              "enemy_id": "E006",
+              "count": 1,
+              "hp_override": 15,
+              "name_override": "소환 악귀"
+            }
           ]
         },
         {
           "id": "shaman_guard",
-          "name": "신령 방어막",
+          "name": {
+            "ko": "신령 방어막",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 15,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
-          "description": "방어도 15 + 힘 2."
+          "description": {
+            "ko": "방어도 15 + 힘 2.",
+            "en": ""
+          }
         },
         {
           "id": "rhythm_break",
-          "name": "리듬 끊기",
+          "name": {
+            "ko": "리듬 끊기",
+            "en": ""
+          },
           "intent": "special",
           "effects": [
-            { "type": "reset_sijo_slot", "count": 1, "note": "플레이어 시조 슬롯 1개 초기화" }
+            {
+              "type": "reset_sijo_slot",
+              "count": 1,
+              "note": "플레이어 시조 슬롯 1개 초기화"
+            }
           ],
-          "description": "플레이어의 시조 진행 슬롯 1개를 초기화한다. (ZER-101 시조 시스템 연동)"
+          "description": {
+            "ko": "플레이어의 시조 진행 슬롯 1개를 초기화한다. (ZER-101 시조 시스템 연동)",
+            "en": ""
+          }
         },
         {
           "id": "spirit_strike",
-          "name": "신령 타격",
+          "name": {
+            "ko": "신령 타격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 13,
           "times": 1,
-          "description": "13+힘 피해의 신령 공격."
+          "description": {
+            "ko": "13+힘 피해의 신령 공격.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["grand_ritual", "summon_spirits_mass", "spirit_strike", "shaman_guard", "rhythm_break", "grand_ritual", "spirit_strike"]
+        "sequence": [
+          "grand_ritual",
+          "summon_spirits_mass",
+          "spirit_strike",
+          "shaman_guard",
+          "rhythm_break",
+          "grand_ritual",
+          "spirit_strike"
+        ]
       }
     },
     {
@@ -84,36 +154,79 @@
       "moves": [
         {
           "id": "mass_curse",
-          "name": "대저주",
+          "name": {
+            "ko": "대저주",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 6, "target": "player" },
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 5, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 6,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 5,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "독 6 + 출혈 5 + 취약 2 복합 저주."
+          "description": {
+            "ko": "독 6 + 출혈 5 + 취약 2 복합 저주.",
+            "en": ""
+          }
         },
         {
           "id": "possession_blast",
-          "name": "빙의 폭발",
+          "name": {
+            "ko": "빙의 폭발",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 16,
           "times": 1,
-          "description": "16+힘 피해."
+          "description": {
+            "ko": "16+힘 피해.",
+            "en": ""
+          }
         },
         {
           "id": "rhythm_break_2",
-          "name": "리듬 파괴",
+          "name": {
+            "ko": "리듬 파괴",
+            "en": ""
+          },
           "intent": "special",
           "effects": [
-            { "type": "reset_sijo_slot", "count": 2, "note": "플레이어 시조 슬롯 2개 초기화" }
+            {
+              "type": "reset_sijo_slot",
+              "count": 2,
+              "note": "플레이어 시조 슬롯 2개 초기화"
+            }
           ],
-          "description": "시조 슬롯 2개 초기화. 시조 완성 방해."
+          "description": {
+            "ko": "시조 슬롯 2개 초기화. 시조 완성 방해.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["mass_curse", "possession_blast", "rhythm_break_2", "mass_curse", "possession_blast"]
+        "sequence": [
+          "mass_curse",
+          "possession_blast",
+          "rhythm_break_2",
+          "mass_curse",
+          "possession_blast"
+        ]
       }
     },
     {
@@ -125,32 +238,57 @@
       "moves": [
         {
           "id": "divine_wrath",
-          "name": "천령의 분노",
+          "name": {
+            "ko": "천령의 분노",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 20,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 3, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 3,
+              "target": "player"
+            }
           ],
-          "description": "20+힘 피해 + 취약 3."
+          "description": {
+            "ko": "20+힘 피해 + 취약 3.",
+            "en": ""
+          }
         },
         {
           "id": "spirit_barrage",
-          "name": "영혼 폭격",
+          "name": {
+            "ko": "영혼 폭격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 3,
-          "description": "8피해 × 3회 = 24 총피해."
+          "description": {
+            "ko": "8피해 × 3회 = 24 총피해.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["divine_wrath", "spirit_barrage", "divine_wrath", "spirit_barrage"]
+        "sequence": [
+          "divine_wrath",
+          "spirit_barrage",
+          "divine_wrath",
+          "spirit_barrage"
+        ]
       }
     }
   ],
   "rewards": {
-    "gold": { "min": 65, "max": 90 },
+    "gold": {
+      "min": 65,
+      "max": 90
+    },
     "card_reward_count": 3,
     "relic_chance": 1.0,
     "special_note": "전설 등급 유물 드롭 가능"

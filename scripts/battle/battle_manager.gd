@@ -476,7 +476,7 @@ func execute_enemy_turn() -> void:
 		# 기절 상태면 행동 스킵
 		if status_effects.get_stacks(enemy_target, "기절") > 0:
 			status_effects.consume_stacks(enemy_target, "기절", 1)
-			passive_triggered.emit("기절", "적 %s 기절 — 행동 불가!" % enemy.get("name", {}).get("ko", "적"))
+			passive_triggered.emit("기절", "적 %s 기절 — 행동 불가!" % TranslationManager.trd_name(enemy, false))
 		else:
 			# 적 행동 실행 (디버프 감소 전에 행동해야 취약 등이 적용됨)
 			var intent := _get_enemy_intent(i)
@@ -1192,8 +1192,7 @@ func _apply_battle_start_effect(enemy_index: int, eff: Dictionary) -> void:
 			if text != "":
 				var boss_name: String = ""
 				if enemy_index < enemies.size():
-					var name_data = enemies[enemy_index].get("name", {})
-					boss_name = name_data.get("ko", "") if name_data is Dictionary else str(name_data)
+					boss_name = TranslationManager.trd_name(enemies[enemy_index], false)
 				passive_triggered.emit(boss_name, text)
 
 
@@ -1211,8 +1210,9 @@ func _trigger_ally_death_effects(dead_index: int) -> void:
 				"gain_block":
 					var value: int = eff.get("value", 0)
 					enemies[i]["block"] += value
-					var name_data = enemies[i].get("name", {})
-					var enemy_name: String = name_data.get("ko", "적") if name_data is Dictionary else str(name_data)
+					var enemy_name: String = TranslationManager.trd_name(enemies[i], false)
+					if enemy_name == "":
+						enemy_name = "적"
 					passive_triggered.emit(enemy_name, "부하를 잃고 방어도 %d 획득" % value)
 					enemy_hp_changed.emit(i, enemies[i]["current_hp"], enemies[i]["max_hp"])
 				"apply_buff":

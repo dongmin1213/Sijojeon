@@ -134,20 +134,23 @@ func _build_character_list() -> void:
 		var starting_relic_name := ""
 		var starting_relic_effect := ""
 		if char_entry.has("starting_relic"):
-			starting_relic_name = char_entry["starting_relic"].get("name", {}).get("ko", "")
-			starting_relic_effect = char_entry["starting_relic"].get("effect", "")
+			starting_relic_name = TranslationManager.trd_name(char_entry["starting_relic"])
+			starting_relic_effect = TranslationManager.trd(char_entry["starting_relic"], "effect", "")
 
 		var passive_name := ""
 		var passive_desc := ""
 		if skills.has("passive"):
-			passive_name = skills["passive"].get("ko", "")
-			passive_desc = skills["passive"].get("description", "")
+			passive_name = TranslationManager.trd(skills, "passive", "")
+			var passive_data = skills.get("passive", {})
+			if passive_data is Dictionary:
+				passive_desc = TranslationManager.trd(passive_data, "description", "")
 
 		var active_name := ""
 		var active_desc := ""
 		if skills.has("active_skill") and skills["active_skill"].has("name"):
-			active_name = skills["active_skill"]["name"].get("ko", "")
-			active_desc = skills["active_skill"]["name"].get("description", "")
+			var skill_name_data: Dictionary = skills["active_skill"]["name"]
+			active_name = TranslationManager.trd(skills["active_skill"], "name", "")
+			active_desc = TranslationManager.trd(skill_name_data, "description", "")
 
 		_character_list.append({
 			"id": char_id,
@@ -525,7 +528,7 @@ func _create_achievement_panel() -> PanelContainer:
 		info_vbox.add_theme_constant_override("separation", 2)
 
 		var name_label := Label.new()
-		name_label.text = ach.get("name", "")
+		name_label.text = TranslationManager.trd(ach, "name", "")
 		name_label.add_theme_font_size_override("font_size", int(22 * ach_ui_scale))
 		if is_unlocked:
 			name_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
@@ -534,7 +537,7 @@ func _create_achievement_panel() -> PanelContainer:
 		info_vbox.add_child(name_label)
 
 		var desc_label := Label.new()
-		desc_label.text = ach.get("description", "")
+		desc_label.text = TranslationManager.trd(ach, "description", "")
 		desc_label.add_theme_font_size_override("font_size", int(18 * ach_ui_scale))
 		desc_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 		info_vbox.add_child(desc_label)

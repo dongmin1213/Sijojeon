@@ -5,6 +5,7 @@ extends Resource
 
 @export var id: String = ""
 @export var name_ko: String = ""
+@export var name_en: String = ""
 @export var name_hanja: String = ""
 @export var name_romanized: String = ""
 @export var beat: int = 3
@@ -14,8 +15,11 @@ extends Resource
 @export var rarity: int = 1
 @export var pool: String = ""  # "common", "dosa", "mugwan"
 @export var effect: String = ""
+@export var effect_en: String = ""
 @export var effect_upgraded: String = ""
+@export var effect_upgraded_en: String = ""
 @export var flavor_text: String = ""
+@export var flavor_text_en: String = ""
 @export var upgrade_cost: int = 75
 @export var upgraded: bool = false
 
@@ -70,6 +74,7 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 	var name_data = data.get("name", {})
 	if name_data is Dictionary:
 		card.name_ko = name_data.get("ko", "")
+		card.name_en = name_data.get("en", "")
 		card.name_hanja = name_data.get("hanja", "")
 		card.name_romanized = name_data.get("romanized", "")
 	elif name_data is String:
@@ -86,9 +91,28 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 
 	card.rarity = data.get("rarity", 1)
 	card.pool = card_pool
-	card.effect = data.get("effect", "")
-	card.effect_upgraded = data.get("effect_upgraded", "")
-	card.flavor_text = data.get("flavor_text", "")
+
+	# 다국어 텍스트 필드 파싱 (Dictionary 또는 String)
+	var effect_data = data.get("effect", "")
+	if effect_data is Dictionary:
+		card.effect = effect_data.get("ko", "")
+		card.effect_en = effect_data.get("en", "")
+	else:
+		card.effect = str(effect_data) if effect_data else ""
+
+	var effect_up_data = data.get("effect_upgraded", "")
+	if effect_up_data is Dictionary:
+		card.effect_upgraded = effect_up_data.get("ko", "")
+		card.effect_upgraded_en = effect_up_data.get("en", "")
+	else:
+		card.effect_upgraded = str(effect_up_data) if effect_up_data else ""
+
+	var flavor_data = data.get("flavor_text", "")
+	if flavor_data is Dictionary:
+		card.flavor_text = flavor_data.get("ko", "")
+		card.flavor_text_en = flavor_data.get("en", "")
+	else:
+		card.flavor_text = str(flavor_data) if flavor_data else ""
 	card.upgrade_cost = data.get("upgrade_cost", 75)
 
 	var values = data.get("values", {})
@@ -147,21 +171,40 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 
 
 func get_display_name() -> String:
+	var locale := TranslationServer.get_locale()
+	if locale == "en" and name_en != "":
+		return name_en
+	if locale == "en" and name_romanized != "":
+		return name_romanized
 	if name_hanja != "":
 		return "%s(%s)" % [name_ko, name_hanja]
 	return name_ko
 
 
 func get_current_effect() -> String:
+	var locale := TranslationServer.get_locale()
+	if locale == "en":
+		if upgraded and effect_upgraded_en != "":
+			return effect_upgraded_en
+		if effect_en != "":
+			return effect_en
 	if upgraded and effect_upgraded != "":
 		return effect_upgraded
 	return effect
+
+
+func get_flavor_text() -> String:
+	var locale := TranslationServer.get_locale()
+	if locale == "en" and flavor_text_en != "":
+		return flavor_text_en
+	return flavor_text
 
 
 func duplicate_card() -> CardData:
 	var copy := CardData.new()
 	copy.id = id
 	copy.name_ko = name_ko
+	copy.name_en = name_en
 	copy.name_hanja = name_hanja
 	copy.name_romanized = name_romanized
 	copy.beat = beat
@@ -171,8 +214,11 @@ func duplicate_card() -> CardData:
 	copy.rarity = rarity
 	copy.pool = pool
 	copy.effect = effect
+	copy.effect_en = effect_en
 	copy.effect_upgraded = effect_upgraded
+	copy.effect_upgraded_en = effect_upgraded_en
 	copy.flavor_text = flavor_text
+	copy.flavor_text_en = flavor_text_en
 	copy.upgrade_cost = upgrade_cost
 	copy.upgraded = upgraded
 	copy.damage = damage

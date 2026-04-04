@@ -4,42 +4,74 @@
   "act": 1,
   "act_name": {
     "ko": "한양",
-    "description": "조선의 수도. 부패한 관리, 거리의 불량배, 억울한 귀신이 뒤섞인 도시."
+    "description": {
+      "ko": "조선의 수도. 부패한 관리, 거리의 불량배, 억울한 귀신이 뒤섞인 도시.",
+      "en": ""
+    },
+    "en": ""
   },
   "events": [
     {
       "id": "EVT_A1_001",
       "title": {
         "ko": "늙은 행인",
-        "description": "지팡이에 의지한 노인이 길목에 쓰러져 있다. 가까이 다가가니 눈을 뜨며 말을 건넨다."
+        "description": {
+          "ko": "지팡이에 의지한 노인이 길목에 쓰러져 있다. 가까이 다가가니 눈을 뜨며 말을 건넨다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"젊은이, 이 늙은이를 도와주겠소?\"",
+      "flavor_text": {
+        "ko": "\"젊은이, 이 늙은이를 도와주겠소?\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "help",
-          "text": "노인을 일으켜 부축해준다.",
+          "text": {
+            "ko": "노인을 일으켜 부축해준다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 8,
-          "result_text": "노인이 감사히 여기며 호주머니에서 상처 치료약을 꺼내준다. HP 8 회복.",
+          "result_text": {
+            "ko": "노인이 감사히 여기며 호주머니에서 상처 치료약을 꺼내준다. HP 8 회복.",
+            "en": ""
+          },
           "note": "선행 선택. 중간 HP 회복."
         },
         {
           "id": "gold",
-          "text": "\"괜찮으시오?\" 물으며 엽전을 건넨다.",
+          "text": {
+            "ko": "\"괜찮으시오?\" 물으며 엽전을 건넨다.",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 15,
-          "result_text": "노인이 엽전을 받고 보답으로 귀한 유물 조각을 건넨다.",
+          "result_text": {
+            "ko": "노인이 엽전을 받고 보답으로 귀한 유물 조각을 건넨다.",
+            "en": ""
+          },
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus": 1,
-          "result_text_full": "엽전 15 소비 → 유물 1개 획득.",
+          "result_text_full": {
+            "ko": "엽전 15 소비 → 유물 1개 획득.",
+            "en": ""
+          },
           "note": "금전 소비 후 유물 획득."
         },
         {
           "id": "ignore",
-          "text": "못 본 척 지나친다.",
+          "text": {
+            "ko": "못 본 척 지나친다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "노인의 원망스러운 시선이 등 뒤를 찌른다. 아무 일도 일어나지 않는다.",
+          "result_text": {
+            "ko": "노인의 원망스러운 시선이 등 뒤를 찌른다. 아무 일도 일어나지 않는다.",
+            "en": ""
+          },
           "note": "중립 결과."
         }
       ]
@@ -48,44 +80,78 @@
       "id": "EVT_A1_002",
       "title": {
         "ko": "포졸의 검문",
-        "description": "포도청 포졸 두 명이 길목을 막고 서 있다. \"거기 서시오! 신분을 밝히시오.\""
+        "description": {
+          "ko": "포도청 포졸 두 명이 길목을 막고 서 있다. \"거기 서시오! 신분을 밝히시오.\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"통행 허가증이 없으면 묶어가야겠소.\"",
+      "flavor_text": {
+        "ko": "\"통행 허가증이 없으면 묶어가야겠소.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "bribe",
-          "text": "엽전을 쥐어주며 넘어간다.",
+          "text": {
+            "ko": "엽전을 쥐어주며 넘어간다.",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 20,
-          "result_text": "포졸들이 슬쩍 엽전을 집어넣고 길을 비워준다. 엽전 20 소비.",
+          "result_text": {
+            "ko": "포졸들이 슬쩍 엽전을 집어넣고 길을 비워준다. 엽전 20 소비.",
+            "en": ""
+          },
           "note": "금전 소비로 무사 통과."
         },
         {
           "id": "talk",
-          "text": "당당하게 신분을 밝히고 설득한다.",
+          "text": {
+            "ko": "당당하게 신분을 밝히고 설득한다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 5,
-          "result_text": "말다툼이 길어지더니 포졸이 곤봉을 들어 한 대 친다. HP 5 손실.",
+          "result_text": {
+            "ko": "말다툼이 길어지더니 포졸이 곤봉을 들어 한 대 친다. HP 5 손실.",
+            "en": ""
+          },
           "note": "설득 실패. 소량 HP 손실."
         },
         {
           "id": "fight",
-          "text": "포졸들을 제압하고 지나간다.",
+          "text": {
+            "ko": "포졸들을 제압하고 지나간다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 12,
-          "result_text": "포졸을 쓰러뜨렸지만 싸움 중 부상을 입었다. HP 12 손실. 엽전 25 획득.",
+          "result_text": {
+            "ko": "포졸을 쓰러뜨렸지만 싸움 중 부상을 입었다. HP 12 손실. 엽전 25 획득.",
+            "en": ""
+          },
           "effect_type_bonus": "gold_gain",
           "effect_value_bonus": 25,
-          "result_text_full": "HP 12 손실 + 엽전 25 획득.",
+          "result_text_full": {
+            "ko": "HP 12 손실 + 엽전 25 획득.",
+            "en": ""
+          },
           "note": "전투 결과. HP 손실 + 골드 획득."
         },
         {
           "id": "minshim_respect",
-          "text": "[민심 70+] 백성들의 지지를 받아 포졸이 스스로 길을 비켜준다.",
+          "text": {
+            "ko": "[민심 70+] 백성들의 지지를 받아 포졸이 스스로 길을 비켜준다.",
+            "en": ""
+          },
           "trigger_condition": "minshim_ge_70",
           "effect_type": "gold_gain",
           "effect_value": 15,
-          "result_text": "민심이 높아 포졸마저 존경의 눈빛이다. 오히려 노자돈을 건네준다. 엽전 15 획득.",
+          "result_text": {
+            "ko": "민심이 높아 포졸마저 존경의 눈빛이다. 오히려 노자돈을 건네준다. 엽전 15 획득.",
+            "en": ""
+          },
           "note": "민심 70+ 전용. 무조건 이득."
         }
       ]
@@ -94,34 +160,59 @@
       "id": "EVT_A1_003",
       "title": {
         "ko": "억울한 원혼",
-        "description": "한 여인의 귀신이 골목 어귀에 서 있다. 눈물을 흘리며 억울함을 호소하는 눈빛이다."
+        "description": {
+          "ko": "한 여인의 귀신이 골목 어귀에 서 있다. 눈물을 흘리며 억울함을 호소하는 눈빛이다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"...억울해요. 저 좀 도와주세요.\"",
+      "flavor_text": {
+        "ko": "\"...억울해요. 저 좀 도와주세요.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "listen",
-          "text": "원혼의 이야기를 들어준다.",
+          "text": {
+            "ko": "원혼의 이야기를 들어준다.",
+            "en": ""
+          },
           "effect_type": "max_hp_gain",
           "effect_value": 5,
-          "result_text": "원혼의 사연을 들어주자 한이 조금 풀렸는지 은혜로 최대 HP +5를 내려준다.",
+          "result_text": {
+            "ko": "원혼의 사연을 들어주자 한이 조금 풀렸는지 은혜로 최대 HP +5를 내려준다.",
+            "en": ""
+          },
           "note": "최대 HP 영구 증가."
         },
         {
           "id": "exorcise",
-          "text": "부적을 사용해 원혼을 진정시킨다.",
+          "text": {
+            "ko": "부적을 사용해 원혼을 진정시킨다.",
+            "en": ""
+          },
           "effect_type": "card_gain",
           "effect_value": 1,
           "effect_card_pool": "common",
-          "result_text": "원혼이 감사히 떠나며 강력한 부적 카드를 남긴다. 카드 1장 획득.",
+          "result_text": {
+            "ko": "원혼이 감사히 떠나며 강력한 부적 카드를 남긴다. 카드 1장 획득.",
+            "en": ""
+          },
           "note": "특수 카드 획득. 부적(blessing) 유형."
         },
         {
           "id": "flee",
-          "text": "겁에 질려 도망친다.",
+          "text": {
+            "ko": "겁에 질려 도망친다.",
+            "en": ""
+          },
           "effect_type": "debuff",
           "effect_value": 1,
           "debuff_type": "약화",
-          "result_text": "도망치다 넘어져 다음 전투 시작 시 약화 1 상태로 돌입한다.",
+          "result_text": {
+            "ko": "도망치다 넘어져 다음 전투 시작 시 약화 1 상태로 돌입한다.",
+            "en": ""
+          },
           "note": "다음 전투 시작 시 약화 1 적용."
         }
       ]
@@ -130,49 +221,86 @@
       "id": "EVT_A1_004",
       "title": {
         "ko": "수상한 약장수",
-        "description": "알록달록한 약들을 늘어놓은 행상인이 노점을 펼쳐놓고 있다. \"좋은 약 있소이다!\""
+        "description": {
+          "ko": "알록달록한 약들을 늘어놓은 행상인이 노점을 펼쳐놓고 있다. \"좋은 약 있소이다!\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이 약 하나면 만병통치! 단돈 30냥!\"",
+      "flavor_text": {
+        "ko": "\"이 약 하나면 만병통치! 단돈 30냥!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "buy_heal",
-          "text": "회복약을 구입한다. (엽전 30)",
+          "text": {
+            "ko": "회복약을 구입한다. (엽전 30)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 30,
-          "result_text": "회복약이 효과가 있었다! 엽전 30 소비, HP 15 회복.",
+          "result_text": {
+            "ko": "회복약이 효과가 있었다! 엽전 30 소비, HP 15 회복.",
+            "en": ""
+          },
           "effect_type_bonus": "hp_gain",
           "effect_value_bonus": 15,
-          "result_text_full": "엽전 30 소비 → HP 15 회복.",
+          "result_text_full": {
+            "ko": "엽전 30 소비 → HP 15 회복.",
+            "en": ""
+          },
           "note": "금전 소비 + HP 회복."
         },
         {
           "id": "buy_potion",
-          "text": "정체불명의 강장제를 구입한다. (엽전 20)",
+          "text": {
+            "ko": "정체불명의 강장제를 구입한다. (엽전 20)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 20,
-          "result_text": "강장제를 마시자 힘이 솟는 것 같다. 엽전 20 소비, 최대 HP +3.",
+          "result_text": {
+            "ko": "강장제를 마시자 힘이 솟는 것 같다. 엽전 20 소비, 최대 HP +3.",
+            "en": ""
+          },
           "effect_type_bonus": "max_hp_gain",
           "effect_value_bonus": 3,
-          "result_text_full": "엽전 20 소비 → 최대 HP +3.",
+          "result_text_full": {
+            "ko": "엽전 20 소비 → 최대 HP +3.",
+            "en": ""
+          },
           "note": "저렴한 대신 최대 HP 소폭 증가."
         },
         {
           "id": "ignore",
-          "text": "관심 없다며 지나친다.",
+          "text": {
+            "ko": "관심 없다며 지나친다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "행상인이 야유를 퍼붓는다. 신경 쓰지 않는다.",
+          "result_text": {
+            "ko": "행상인이 야유를 퍼붓는다. 신경 쓰지 않는다.",
+            "en": ""
+          },
           "note": "중립."
         },
         {
           "id": "minshim_discount",
-          "text": "[민심 70+] 약장수가 명성을 듣고 특별 할인을 제안한다.",
+          "text": {
+            "ko": "[민심 70+] 약장수가 명성을 듣고 특별 할인을 제안한다.",
+            "en": ""
+          },
           "trigger_condition": "minshim_ge_70",
           "effect_type": "hp_gain",
           "effect_value": 20,
           "effect_type_bonus": "max_hp_gain",
           "effect_value_bonus": 3,
-          "result_text": "\"영웅에게 파는 약은 공짜지요!\" HP 20 회복, 최대 HP +3.",
+          "result_text": {
+            "ko": "\"영웅에게 파는 약은 공짜지요!\" HP 20 회복, 최대 HP +3.",
+            "en": ""
+          },
           "note": "��심 70+ 전용. 무료 대형 회복."
         }
       ]
@@ -181,41 +309,72 @@
       "id": "EVT_A1_005",
       "title": {
         "ko": "신당 (神堂)",
-        "description": "길가에 작은 신당이 있다. 촛불이 켜져 있고 제물이 놓여 있다."
+        "description": {
+          "ko": "길가에 작은 신당이 있다. 촛불이 켜져 있고 제물이 놓여 있다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "신당 앞에 서면 어딘지 모르게 기운이 느껴진다.",
+      "flavor_text": {
+        "ko": "신당 앞에 서면 어딘지 모르게 기운이 느껴진다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "pray",
-          "text": "정성껏 절을 올린다.",
+          "text": {
+            "ko": "정성껏 절을 올린다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 12,
-          "result_text": "신령이 감응하여 몸의 기운이 회복된다. HP 12 회복.",
+          "result_text": {
+            "ko": "신령이 감응하여 몸의 기운이 회복된다. HP 12 회복.",
+            "en": ""
+          },
           "note": "HP 회복."
         },
         {
           "id": "offer_gold",
-          "text": "제물로 엽전 10냥을 바친다.",
+          "text": {
+            "ko": "제물로 엽전 10냥을 바친다.",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 10,
-          "result_text": "신령의 은혜로 다음 전투에 강화된 상태로 임한다. 엽전 10 소비, 다음 전투 시작 시 힘 2 버프.",
+          "result_text": {
+            "ko": "신령의 은혜로 다음 전투에 강화된 상태로 임한다. 엽전 10 소비, 다음 전투 시작 시 힘 2 버프.",
+            "en": ""
+          },
           "effect_type_bonus": "buff_next_combat",
           "effect_value_bonus": {
             "buff": "strength",
             "stacks": 2
           },
-          "result_text_full": "엽전 10 소비 → 다음 전투 힘(strength) +2.",
+          "result_text_full": {
+            "ko": "엽전 10 소비 → 다음 전투 힘(strength) +2.",
+            "en": ""
+          },
           "note": "금전 소비 → 전투 버프."
         },
         {
           "id": "desecrate",
-          "text": "제물 음식을 집어먹는다.",
+          "text": {
+            "ko": "제물 음식을 집어먹는다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 5,
-          "result_text": "배는 채웠지만 신령이 노하여 저주를 내린다. HP 5 회복, 최대 HP -5.",
+          "result_text": {
+            "ko": "배는 채웠지만 신령이 노하여 저주를 내린다. HP 5 회복, 최대 HP -5.",
+            "en": ""
+          },
           "effect_type_bonus": "max_hp_loss",
           "effect_value_bonus": 5,
-          "result_text_full": "HP +5 회복 → 최대 HP -5 (영구).",
+          "result_text_full": {
+            "ko": "HP +5 회복 → 최대 HP -5 (영구).",
+            "en": ""
+          },
           "note": "단기 이득 + 영구 손해. 리스크 선택."
         }
       ]
@@ -224,38 +383,69 @@
       "id": "EVT_A1_006",
       "title": {
         "ko": "도박판",
-        "description": "뒷골목에서 상인들이 투전판을 벌이고 있다. \"한 판 끼어보시겠소?\""
+        "description": {
+          "ko": "뒷골목에서 상인들이 투전판을 벌이고 있다. \"한 판 끼어보시겠소?\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"한 번만 더! 이번엔 반드시!\"",
+      "flavor_text": {
+        "ko": "\"한 번만 더! 이번엔 반드시!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "gamble_small",
-          "text": "소판에 끼어든다. (엽전 15 베팅)",
+          "text": {
+            "ko": "소판에 끼어든다. (엽전 15 베팅)",
+            "en": ""
+          },
           "effect_type": "gold_random",
           "effect_value_win": 30,
           "effect_value_lose": -15,
           "win_chance": 0.5,
-          "result_text_win": "패가 좋았다! 엽전 30 획득.",
-          "result_text_lose": "패가 나빴다. 엽전 15 소실.",
+          "result_text_win": {
+            "ko": "패가 좋았다! 엽전 30 획득.",
+            "en": ""
+          },
+          "result_text_lose": {
+            "ko": "패가 나빴다. 엽전 15 소실.",
+            "en": ""
+          },
           "note": "50% 확률로 2배 반환. 도박."
         },
         {
           "id": "gamble_big",
-          "text": "대판에 올인한다. (엽전 30 베팅)",
+          "text": {
+            "ko": "대판에 올인한다. (엽전 30 베팅)",
+            "en": ""
+          },
           "effect_type": "gold_random",
           "effect_value_win": 75,
           "effect_value_lose": -30,
           "win_chance": 0.35,
-          "result_text_win": "대박! 엽전 75 획득!",
-          "result_text_lose": "빈털터리가 됐다. 엽전 30 소실.",
+          "result_text_win": {
+            "ko": "대박! 엽전 75 획득!",
+            "en": ""
+          },
+          "result_text_lose": {
+            "ko": "빈털터리가 됐다. 엽전 30 소실.",
+            "en": ""
+          },
           "note": "35% 확률로 2.5배 반환. 고위험 고수익."
         },
         {
           "id": "walk_away",
-          "text": "구경만 하다 자리를 뜬다.",
+          "text": {
+            "ko": "구경만 하다 자리를 뜬다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "현명한 선택이다. 아무 일도 없었다.",
+          "result_text": {
+            "ko": "현명한 선택이다. 아무 일도 없었다.",
+            "en": ""
+          },
           "note": "중립."
         }
       ]
@@ -264,51 +454,85 @@
       "id": "EVT_A1_007",
       "title": {
         "ko": "버려진 행낭",
-        "description": "길 한쪽에 누군가 버리고 간 낡은 행낭이 놓여 있다."
+        "description": {
+          "ko": "길 한쪽에 누군가 버리고 간 낡은 행낭이 놓여 있다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "행낭 안에서 무언가 묵직한 것이 느껴진다.",
+      "flavor_text": {
+        "ko": "행낭 안에서 무언가 묵직한 것이 느껴진다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "open",
-          "text": "행낭을 열어본다.",
+          "text": {
+            "ko": "행낭을 열어본다.",
+            "en": ""
+          },
           "effect_type": "random",
           "outcomes": [
             {
               "weight": 40,
               "effect_type": "gold_gain",
               "effect_value": 35,
-              "text": "엽전 35냥이 들어 있었다!"
+              "text": {
+                "ko": "엽전 35냥이 들어 있었다!",
+                "en": ""
+              }
             },
             {
               "weight": 35,
               "effect_type": "card_gain",
               "effect_value": 1,
-              "text": "낡은 두루마리 — 카드 1장 획득."
+              "text": {
+                "ko": "낡은 두루마리 — 카드 1장 획득.",
+                "en": ""
+              }
             },
             {
               "weight": 25,
               "effect_type": "hp_loss",
               "effect_value": 10,
-              "text": "함정이었다! 독이 뿜어져 나온다. HP 10 손실."
+              "text": {
+                "ko": "함정이었다! 독이 뿜어져 나온다. HP 10 손실.",
+                "en": ""
+              }
             }
           ],
-          "result_text": "행낭을 열어 내용물을 확인한다.",
+          "result_text": {
+            "ko": "행낭을 열어 내용물을 확인한다.",
+            "en": ""
+          },
           "note": "40% 금전, 35% 카드, 25% HP 손실 트랩."
         },
         {
           "id": "take_whole",
-          "text": "행낭째 들고 간다.",
+          "text": {
+            "ko": "행낭째 들고 간다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 20,
-          "result_text": "나중에 열어보니 잡동사니와 엽전 20냥이 섞여 있었다.",
+          "result_text": {
+            "ko": "나중에 열어보니 잡동사니와 엽전 20냥이 섞여 있었다.",
+            "en": ""
+          },
           "note": "안전하지만 소량 금전."
         },
         {
           "id": "ignore",
-          "text": "남의 물건이니 그냥 지나친다.",
+          "text": {
+            "ko": "남의 물건이니 그냥 지나친다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "미련 없이 걸음을 옮긴다.",
+          "result_text": {
+            "ko": "미련 없이 걸음을 옮긴다.",
+            "en": ""
+          },
           "note": "중립."
         }
       ]
@@ -317,38 +541,69 @@
       "id": "EVT_A1_008",
       "title": {
         "ko": "거리의 의원",
-        "description": "초라한 행색의 의원이 무료로 진맥을 봐주겠다고 한다. \"어디 불편한 곳 없으시오?\""
+        "description": {
+          "ko": "초라한 행색의 의원이 무료로 진맥을 봐주겠다고 한다. \"어디 불편한 곳 없으시오?\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"명의라면 모르겠지만 이 정도 실력으로...\"",
+      "flavor_text": {
+        "ko": "\"명의라면 모르겠지만 이 정도 실력으로...\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "full_treatment",
-          "text": "전체 치료를 받는다. (엽전 40)",
+          "text": {
+            "ko": "전체 치료를 받는다. (엽전 40)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 40,
-          "result_text": "의원의 침 치료로 몸이 한결 가뿐해진다. 엽전 40 소비, HP 완전 회복.",
+          "result_text": {
+            "ko": "의원의 침 치료로 몸이 한결 가뿐해진다. 엽전 40 소비, HP 완전 회복.",
+            "en": ""
+          },
           "effect_type_bonus": "hp_full_heal",
           "effect_value_bonus": 0,
-          "result_text_full": "엽전 40 소비 → HP 완전 회복.",
+          "result_text_full": {
+            "ko": "엽전 40 소비 → HP 완전 회복.",
+            "en": ""
+          },
           "note": "비용이 높지만 완전 회복."
         },
         {
           "id": "partial_treatment",
-          "text": "간단한 처치만 받는다. (엽전 15)",
+          "text": {
+            "ko": "간단한 처치만 받는다. (엽전 15)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 15,
-          "result_text": "간단한 응급처치를 받는다. 엽전 15 소비, HP 20 회복.",
+          "result_text": {
+            "ko": "간단한 응급처치를 받는다. 엽전 15 소비, HP 20 회복.",
+            "en": ""
+          },
           "effect_type_bonus": "hp_gain",
           "effect_value_bonus": 20,
-          "result_text_full": "엽전 15 소비 → HP 20 회복.",
+          "result_text_full": {
+            "ko": "엽전 15 소비 → HP 20 회복.",
+            "en": ""
+          },
           "note": "중간 비용, 중간 회복."
         },
         {
           "id": "refuse",
-          "text": "괜찮다며 거절한다.",
+          "text": {
+            "ko": "괜찮다며 거절한다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "의원이 아쉬운 표정으로 고개를 끄덕인다.",
+          "result_text": {
+            "ko": "의원이 아쉬운 표정으로 고개를 끄덕인다.",
+            "en": ""
+          },
           "note": "중립."
         }
       ]
@@ -357,25 +612,41 @@
       "id": "EVT_A1_009",
       "title": {
         "ko": "버려진 카드 뭉치",
-        "description": "골목 구석에서 먼지 쌓인 카드 묶음을 발견한다. 누군가 버리고 간 듯하다."
+        "description": {
+          "ko": "골목 구석에서 먼지 쌓인 카드 묶음을 발견한다. 누군가 버리고 간 듯하다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "손때가 묻은 카드들 — 주인이 있었을 텐데.",
+      "flavor_text": {
+        "ko": "손때가 묻은 카드들 — 주인이 있었을 텐데.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "take_random",
-          "text": "무작위로 1장을 집는다.",
+          "text": {
+            "ko": "무작위로 1장을 집는다.",
+            "en": ""
+          },
           "effect_type": "card_gain",
           "effect_value": 1,
           "effect_meta": {
             "rarity": "random",
             "class": "any"
           },
-          "result_text": "무작위 카드 1장을 덱에 추가한다.",
+          "result_text": {
+            "ko": "무작위 카드 1장을 덱에 추가한다.",
+            "en": ""
+          },
           "note": "무료 카드 1장 획득 (등급 무작위)."
         },
         {
           "id": "take_common",
-          "text": "공통 카드 1장을 고른다.",
+          "text": {
+            "ko": "공통 카드 1장을 고른다.",
+            "en": ""
+          },
           "effect_type": "card_choice",
           "effect_value": 1,
           "effect_meta": {
@@ -383,15 +654,24 @@
             "class": "common",
             "choice_count": 3
           },
-          "result_text": "공통 카드 3장 중 1장을 선택해 덱에 추가한다.",
+          "result_text": {
+            "ko": "공통 카드 3장 중 1장을 선택해 덱에 추가한다.",
+            "en": ""
+          },
           "note": "공통 카드 3선택 1."
         },
         {
           "id": "leave",
-          "text": "손대지 않고 지나친다.",
+          "text": {
+            "ko": "손대지 않고 지나친다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "필요 없을 것 같아 그냥 지나친다.",
+          "result_text": {
+            "ko": "필요 없을 것 같아 그냥 지나친다.",
+            "en": ""
+          },
           "note": "중립."
         }
       ]
@@ -400,47 +680,78 @@
       "id": "EVT_A1_010",
       "title": {
         "ko": "굶주린 걸인",
-        "description": "뼈만 남은 걸인이 음식을 구걸하고 있다. \"제발... 며칠째 굶었습니다.\""
+        "description": {
+          "ko": "뼈만 남은 걸인이 음식을 구걸하고 있다. \"제발... 며칠째 굶었습니다.\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"먹을 것만 있으면 무엇이든 드리겠습니다.\"",
+      "flavor_text": {
+        "ko": "\"먹을 것만 있으면 무엇이든 드리겠습니다.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "feed",
-          "text": "음식을 나눠준다. (엽전 10 소비)",
+          "text": {
+            "ko": "음식을 나눠준다. (엽전 10 소비)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 10,
-          "result_text": "걸인이 눈물을 흘리며 오래된 부적 하나를 건네준다. 골드 10 소비, 유물 1개 획득.",
+          "result_text": {
+            "ko": "걸인이 눈물을 흘리며 오래된 부적 하나를 건네준다. 골드 10 소비, 유물 1개 획득.",
+            "en": ""
+          },
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus": 1,
           "note": "소비 후 유물 보상."
         },
         {
           "id": "share_hp",
-          "text": "상처 치료약을 나눠준다. (HP 10 소비)",
+          "text": {
+            "ko": "상처 치료약을 나눠준다. (HP 10 소비)",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 10,
-          "result_text": "걸인이 감사해하며 소식을 전해준다. HP 10 소비, 다음 전투 방어도 +10 (1회).",
+          "result_text": {
+            "ko": "걸인이 감사해하며 소식을 전해준다. HP 10 소비, 다음 전투 방어도 +10 (1회).",
+            "en": ""
+          },
           "effect_type_bonus": "next_battle_block",
           "effect_value_bonus": 10,
           "note": "HP 소비 → 다음 전투 방어도 +10."
         },
         {
           "id": "ignore",
-          "text": "외면한다.",
+          "text": {
+            "ko": "외면한다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "걸인의 눈빛이 슬프게 돌아선다.",
+          "result_text": {
+            "ko": "걸인의 눈빛이 슬프게 돌아선다.",
+            "en": ""
+          },
           "note": "중립."
         },
         {
           "id": "minshim_help",
-          "text": "[민심 70+] 마을 사람들이 함께 나서서 걸인을 돕는다.",
+          "text": {
+            "ko": "[민심 70+] 마을 사람들이 함께 나서서 걸인을 돕는다.",
+            "en": ""
+          },
           "trigger_condition": "minshim_ge_70",
           "effect_type": "hp_gain",
           "effect_value": 10,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": 5,
-          "result_text": "백성들의 선의가 퍼져나간다. HP 10 회복, 민심 +5.",
+          "result_text": {
+            "ko": "백성들의 선의가 퍼져나간다. HP 10 회복, 민심 +5.",
+            "en": ""
+          },
           "note": "민��� 70+ 전용. HP 회복 + 민심 추가 상승."
         }
       ]
@@ -449,35 +760,60 @@
       "id": "EVT_A1_011",
       "title": {
         "ko": "신령 나무",
-        "description": "거대한 느티나무 앞에 향이 피워져 있다. 나무에 가까이 가자 이상한 기운이 느껴진다."
+        "description": {
+          "ko": "거대한 느티나무 앞에 향이 피워져 있다. 나무에 가까이 가자 이상한 기운이 느껴진다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이 나무에게 소원을 빌면 이루어진다더군요.\"",
+      "flavor_text": {
+        "ko": "\"이 나무에게 소원을 빌면 이루어진다더군요.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "pray_hp",
-          "text": "건강을 빈다.",
+          "text": {
+            "ko": "건강을 빈다.",
+            "en": ""
+          },
           "effect_type": "max_hp_gain",
           "effect_value": 8,
-          "result_text": "나무의 기운이 몸에 스며든다. 최대 HP +8.",
+          "result_text": {
+            "ko": "나무의 기운이 몸에 스며든다. 최대 HP +8.",
+            "en": ""
+          },
           "note": "최대 HP 영구 +8."
         },
         {
           "id": "pray_power",
-          "text": "힘을 빈다.",
+          "text": {
+            "ko": "힘을 빈다.",
+            "en": ""
+          },
           "effect_type": "relic_gain",
           "effect_value": 1,
           "effect_meta": {
             "rarity": 2
           },
-          "result_text": "나무 아래에서 고급 유물 1개가 나타난다. 고급 유물 획득.",
+          "result_text": {
+            "ko": "나무 아래에서 고급 유물 1개가 나타난다. 고급 유물 획득.",
+            "en": ""
+          },
           "note": "고급 등급 유물 1개 획득."
         },
         {
           "id": "pray_path",
-          "text": "길을 빈다.",
+          "text": {
+            "ko": "길을 빈다.",
+            "en": ""
+          },
           "effect_type": "reveal_map",
           "effect_value": 1,
-          "result_text": "앞으로 나아갈 길이 머릿속에 떠오른다. 다음 2층의 맵 노드가 공개된다.",
+          "result_text": {
+            "ko": "앞으로 나아갈 길이 머릿속에 떠오른다. 다음 2층의 맵 노드가 공개된다.",
+            "en": ""
+          },
           "note": "맵 공개 효과."
         }
       ]
@@ -486,38 +822,63 @@
       "id": "EVT_A1_012",
       "title": {
         "ko": "떠돌이 상인",
-        "description": "행상 짐을 진 상인이 길을 걷다 발을 접질렸다. \"아이고! 발목을 삐었네...\""
+        "description": {
+          "ko": "행상 짐을 진 상인이 길을 걷다 발을 접질렸다. \"아이고! 발목을 삐었네...\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"도와주신다면 특별한 물건을 드리겠소.\"",
+      "flavor_text": {
+        "ko": "\"도와주신다면 특별한 물건을 드리겠소.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "help_for_card",
-          "text": "상인을 부축해준다.",
+          "text": {
+            "ko": "상인을 부축해준다.",
+            "en": ""
+          },
           "effect_type": "card_choice",
           "effect_value": 1,
           "effect_meta": {
             "rarity": 2,
             "choice_count": 3
           },
-          "result_text": "상인이 짐 속에서 고급 카드 3장을 꺼낸다. 그 중 1장을 선택해 덱에 추가.",
+          "result_text": {
+            "ko": "상인이 짐 속에서 고급 카드 3장을 꺼낸다. 그 중 1장을 선택해 덱에 추가.",
+            "en": ""
+          },
           "note": "고급 카드 3선택 1 (무료)."
         },
         {
           "id": "buy_relic",
-          "text": "유물을 구매한다. (엽전 50 소비)",
+          "text": {
+            "ko": "유물을 구매한다. (엽전 50 소비)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 50,
-          "result_text": "상인이 보따리에서 귀한 물건을 꺼낸다. 골드 50 소비, 희귀 유물 1개 획득.",
+          "result_text": {
+            "ko": "상인이 보따리에서 귀한 물건을 꺼낸다. 골드 50 소비, 희귀 유물 1개 획득.",
+            "en": ""
+          },
           "effect_type_bonus": "relic_gain_rarity3",
           "effect_value_bonus": 1,
           "note": "골드 50 소비 → 희귀 유물 획득."
         },
         {
           "id": "ignore",
-          "text": "바쁘다며 지나친다.",
+          "text": {
+            "ko": "바쁘다며 지나친다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "상인이 홀로 절뚝거리며 걷는다.",
+          "result_text": {
+            "ko": "상인이 홀로 절뚝거리며 걷는다.",
+            "en": ""
+          },
           "note": "중립."
         }
       ]
@@ -526,37 +887,62 @@
       "id": "EVT_DJ_001",
       "title": {
         "ko": "노론과 남인의 갈림길",
-        "description": "한양 거리에서 노론과 남인 학자들이 격렬하게 논쟁하고 있다. 양쪽 모두 당신에게 편을 들어달라고 요청한다."
+        "description": {
+          "ko": "한양 거리에서 노론과 남인 학자들이 격렬하게 논쟁하고 있다. 양쪽 모두 당신에게 편을 들어달라고 요청한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이 나라의 미래는 어느 쪽이 옳은가에 달려 있소!\"",
+      "flavor_text": {
+        "ko": "\"이 나라의 미래는 어느 쪽이 옳은가에 달려 있소!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "noron",
-          "text": "노론 편에 선다. (신분 +1, 민심 -5)",
+          "text": {
+            "ko": "노론 편에 선다. (신분 +1, 민심 -5)",
+            "en": ""
+          },
           "effect_type": "rank_up",
           "effect_value": 1,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": -5,
-          "result_text": "노론의 지지를 받아 관직이 올랐으나, 남인을 지지하던 백성들의 원망을 샀다.",
+          "result_text": {
+            "ko": "노론의 지지를 받아 관직이 올랐으나, 남인을 지지하던 백성들의 원망을 샀다.",
+            "en": ""
+          },
           "note": "신분 상승 + 민심 하락. 고신분 빌드에 유리."
         },
         {
           "id": "namin",
-          "text": "남인 편에 선다. (민심 +8, 신분 -1)",
+          "text": {
+            "ko": "남인 편에 선다. (민심 +8, 신분 -1)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 8,
           "effect_type_bonus": "rank_down",
           "effect_value_bonus": 1,
-          "result_text": "남인의 대의를 지지하자 백성들이 환호하지만, 권력층에서 밀려난다.",
+          "result_text": {
+            "ko": "남인의 대의를 지지하자 백성들이 환호하지만, 권력층에서 밀려난다.",
+            "en": ""
+          },
           "note": "민심 상승 + 신분 하락. 민심 빌드에 유리."
         },
         {
           "id": "neutral",
-          "text": "양쪽 모두 거절한다.",
+          "text": {
+            "ko": "양쪽 모두 거절한다.",
+            "en": ""
+          },
           "effect_type": "card_gain",
           "effect_value": 1,
           "effect_card_pool": "common",
-          "result_text": "양비론을 펴자 양쪽 모두 실망하지만, 중립의 지혜를 얻었다. 카드 1장 획득.",
+          "result_text": {
+            "ko": "양비론을 펴자 양쪽 모두 실망하지만, 중립의 지혜를 얻었다. 카드 1장 획득.",
+            "en": ""
+          },
           "note": "안전한 중립 선택. 카드 보상."
         }
       ]
@@ -565,36 +951,61 @@
       "id": "EVT_DJ_002",
       "title": {
         "ko": "탕평책의 시험",
-        "description": "임금이 탕평책을 논의하는 자리에 당신을 불렀다. 당파를 초월한 인재 등용을 지지할 것인가?"
+        "description": {
+          "ko": "임금이 탕평책을 논의하는 자리에 당신을 불렀다. 당파를 초월한 인재 등용을 지지할 것인가?",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"당색을 버리고 오직 능력만 볼 수 있겠느냐?\"",
+      "flavor_text": {
+        "ko": "\"당색을 버리고 오직 능력만 볼 수 있겠느냐?\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "support",
-          "text": "탕평책을 적극 지지한다. (민심 +5, 금화 -10)",
+          "text": {
+            "ko": "탕평책을 적극 지지한다. (민심 +5, 금화 -10)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 5,
           "effect_type_bonus": "gold_loss",
           "effect_value_bonus": 10,
-          "result_text": "임금의 신임을 얻었으나, 양당 핵심 인사들에게 뇌물을 써야 했다.",
+          "result_text": {
+            "ko": "임금의 신임을 얻었으나, 양당 핵심 인사들에게 뇌물을 써야 했다.",
+            "en": ""
+          },
           "note": "민심+금화 트레이드오프."
         },
         {
           "id": "oppose",
-          "text": "기존 당론을 고수한다. (신분 유지, HP -8)",
+          "text": {
+            "ko": "기존 당론을 고수한다. (신분 유지, HP -8)",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 8,
-          "result_text": "당론을 지킨 대가로 반대파의 공격을 받았다. 하지만 같은 당의 지지는 굳건하다.",
+          "result_text": {
+            "ko": "당론을 지킨 대가로 반대파의 공격을 받았다. 하지만 같은 당의 지지는 굳건하다.",
+            "en": ""
+          },
           "note": "HP 손실이지만 리스크 낮은 선택."
         },
         {
           "id": "scheme",
-          "text": "겉으로 지지하면서 뒤에서 당파를 키운다. (힘 +1, 민심 -3)",
+          "text": {
+            "ko": "겉으로 지지하면서 뒤에서 당파를 키운다. (힘 +1, 민심 -3)",
+            "en": ""
+          },
           "effect_type": "buff_next_combat",
           "effect_value": 1,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": -3,
-          "result_text": "양면 작전으로 힘을 키웠으나 민심이 조금 동요한다. 다음 전투 힘 +1.",
+          "result_text": {
+            "ko": "양면 작전으로 힘을 키웠으나 민심이 조금 동요한다. 다음 전투 힘 +1.",
+            "en": ""
+          },
           "note": "전투 버프 + 민심 페널티."
         }
       ]
@@ -603,36 +1014,61 @@
       "id": "EVT_DJ_003",
       "title": {
         "ko": "당쟁의 희생자",
-        "description": "길가에 당쟁으로 귀양 가는 관리의 행렬이 보인다. 그의 가족이 울며 도움을 호소한다."
+        "description": {
+          "ko": "길가에 당쟁으로 귀양 가는 관리의 행렬이 보인다. 그의 가족이 울며 도움을 호소한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"억울합니다! 죄 없이 귀양을 가게 되었습니다!\"",
+      "flavor_text": {
+        "ko": "\"억울합니다! 죄 없이 귀양을 가게 되었습니다!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "help_family",
-          "text": "금화를 주어 가족을 돕는다. (금화 -15, 민심 +6)",
+          "text": {
+            "ko": "금화를 주어 가족을 돕는다. (금화 -15, 민심 +6)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 15,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": 6,
-          "result_text": "가족에게 금화를 건네자 주변 백성들이 감동했다. 민심이 크게 올랐다.",
+          "result_text": {
+            "ko": "가족에게 금화를 건네자 주변 백성들이 감동했다. 민심이 크게 올랐다.",
+            "en": ""
+          },
           "note": "금화 투자 → 민심 보상."
         },
         {
           "id": "petition",
-          "text": "상소를 올려 구명한다. (HP -10, 카드 획득)",
+          "text": {
+            "ko": "상소를 올려 구명한다. (HP -10, 카드 획득)",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 10,
           "effect_type_bonus": "card_gain",
           "effect_value_bonus": 1,
-          "result_text": "상소가 받아들여졌으나, 반대파의 보복으로 부상을 입었다. 감사의 표시로 비전 카드를 얻었다.",
+          "result_text": {
+            "ko": "상소가 받아들여졌으나, 반대파의 보복으로 부상을 입었다. 감사의 표시로 비전 카드를 얻었다.",
+            "en": ""
+          },
           "note": "HP 리스크 + 카드 보상."
         },
         {
           "id": "ignore_dj",
-          "text": "정치에 관여하지 않는다.",
+          "text": {
+            "ko": "정치에 관여하지 않는다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "행렬이 지나가고, 먼지만 남았다.",
+          "result_text": {
+            "ko": "행렬이 지나가고, 먼지만 남았다.",
+            "en": ""
+          },
           "note": "안전한 선택."
         }
       ]
@@ -641,36 +1077,61 @@
       "id": "EVT_DJ_004",
       "title": {
         "ko": "밀서",
-        "description": "누군가 당신에게 밀서를 전달했다. 뜯어보니 반대 당파의 비밀 모의가 적혀 있다."
+        "description": {
+          "ko": "누군가 당신에게 밀서를 전달했다. 뜯어보니 반대 당파의 비밀 모의가 적혀 있다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이것을 어찌 쓰느냐에 따라 당신의 운명이 갈린다.\"",
+      "flavor_text": {
+        "ko": "\"이것을 어찌 쓰느냐에 따라 당신의 운명이 갈린다.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "report",
-          "text": "임금에게 밀고한다. (신분 +1, 민심 -3)",
+          "text": {
+            "ko": "임금에게 밀고한다. (신분 +1, 민심 -3)",
+            "en": ""
+          },
           "effect_type": "rank_up",
           "effect_value": 1,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": -3,
-          "result_text": "밀고한 공로로 승진했으나 밀정이라는 소문이 퍼져 민심이 떨어졌다.",
+          "result_text": {
+            "ko": "밀고한 공로로 승진했으나 밀정이라는 소문이 퍼져 민심이 떨어졌다.",
+            "en": ""
+          },
           "note": "신분 상승의 어두운 면."
         },
         {
           "id": "blackmail",
-          "text": "반대파를 협박해 금화를 뜯어낸다. (금화 +25, HP -5)",
+          "text": {
+            "ko": "반대파를 협박해 금화를 뜯어낸다. (금화 +25, HP -5)",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 25,
           "effect_type_bonus": "hp_loss",
           "effect_value_bonus": 5,
-          "result_text": "금화를 얻었지만 자객의 습격을 받아 부상을 입었다.",
+          "result_text": {
+            "ko": "금화를 얻었지만 자객의 습격을 받아 부상을 입었다.",
+            "en": ""
+          },
           "note": "고위험 고수익."
         },
         {
           "id": "burn",
-          "text": "밀서를 태워버린다. (민심 +3)",
+          "text": {
+            "ko": "밀서를 태워버린다. (민심 +3)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 3,
-          "result_text": "불의와 거리를 두는 자세에 주변 사람들이 감탄했다.",
+          "result_text": {
+            "ko": "불의와 거리를 두는 자세에 주변 사람들이 감탄했다.",
+            "en": ""
+          },
           "note": "안전한 민심 소량 보상."
         }
       ]
@@ -679,35 +1140,60 @@
       "id": "EVT_DJ_005",
       "title": {
         "ko": "당론 논쟁",
-        "description": "성균관 앞에서 양당 유생들의 논쟁이 격화되고 있다. 학문과 정치가 뒤섞인 혼란 속에서 선택을 해야 한다."
+        "description": {
+          "ko": "성균관 앞에서 양당 유생들의 논쟁이 격화되고 있다. 학문과 정치가 뒤섞인 혼란 속에서 선택을 해야 한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"학문은 정치를 위한 것인가, 진리를 위한 것인가!\"",
+      "flavor_text": {
+        "ko": "\"학문은 정치를 위한 것인가, 진리를 위한 것인가!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "debate_win",
-          "text": "논쟁에 참여하여 논파한다.",
+          "text": {
+            "ko": "논쟁에 참여하여 논파한다.",
+            "en": ""
+          },
           "trigger_condition": "minshim_ge_50",
           "effect_type": "card_choice",
           "effect_value": 3,
-          "result_text": "민심의 지지를 등에 업고 논쟁에서 승리했다! 카드 3장 중 1장 선택.",
+          "result_text": {
+            "ko": "민심의 지지를 등에 업고 논쟁에서 승리했다! 카드 3장 중 1장 선택.",
+            "en": ""
+          },
           "note": "민심 50 이상 조건. 카드 선택 보상."
         },
         {
           "id": "mediate",
-          "text": "양쪽을 중재한다. (민심 +4, 기(氣) +1 다음 전투)",
+          "text": {
+            "ko": "양쪽을 중재한다. (민심 +4, 기(氣) +1 다음 전투)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 4,
           "effect_type_bonus": "buff_next_combat",
           "effect_value_bonus": 1,
-          "result_text": "중재에 성공하여 양쪽의 존경을 받았다.",
+          "result_text": {
+            "ko": "중재에 성공하여 양쪽의 존경을 받았다.",
+            "en": ""
+          },
           "note": "안정적 보상."
         },
         {
           "id": "walk_away",
-          "text": "시끄러운 곳을 피한다.",
+          "text": {
+            "ko": "시끄러운 곳을 피한다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 5,
-          "result_text": "한적한 곳에서 쉬며 기력을 회복했다. HP 5 회복.",
+          "result_text": {
+            "ko": "한적한 곳에서 쉬며 기력을 회복했다. HP 5 회복.",
+            "en": ""
+          },
           "note": "HP 회복."
         }
       ]
@@ -716,36 +1202,61 @@
       "id": "EVT_SH_001",
       "title": {
         "ko": "실학자의 서재",
-        "description": "길을 걷다 실학자의 서재를 발견했다. 벽에는 서양 세계 지도와 신기한 도구들이 가득하다."
+        "description": {
+          "ko": "길을 걷다 실학자의 서재를 발견했다. 벽에는 서양 세계 지도와 신기한 도구들이 가득하다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"지식은 실용에서 나오는 법이오. 원하신다면 가르쳐 드리리다.\"",
+      "flavor_text": {
+        "ko": "\"지식은 실용에서 나오는 법이오. 원하신다면 가르쳐 드리리다.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "learn_weapon",
-          "text": "무기 개량법을 배운다. (금화 -12, 힘 영구 +1)",
+          "text": {
+            "ko": "무기 개량법을 배운다. (금화 -12, 힘 영구 +1)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 12,
           "effect_type_bonus": "permanent_strength",
           "effect_value_bonus": 1,
-          "result_text": "서양식 단련법을 배워 공격력이 영구히 상승했다. 힘 +1.",
+          "result_text": {
+            "ko": "서양식 단련법을 배워 공격력이 영구히 상승했다. 힘 +1.",
+            "en": ""
+          },
           "note": "금화→영구 공격 버프. 고효율 투자."
         },
         {
           "id": "learn_medicine",
-          "text": "의술을 배운다. (금화 -8, 최대 HP +5)",
+          "text": {
+            "ko": "의술을 배운다. (금화 -8, 최대 HP +5)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 8,
           "effect_type_bonus": "max_hp_gain",
           "effect_value_bonus": 5,
-          "result_text": "약초 활용법을 익혀 체력이 늘었다. 최대 HP +5.",
+          "result_text": {
+            "ko": "약초 활용법을 익혀 체력이 늘었다. 최대 HP +5.",
+            "en": ""
+          },
           "note": "금화→최대 HP. 안전한 투자."
         },
         {
           "id": "decline_sh",
-          "text": "관심 없다며 지나친다.",
+          "text": {
+            "ko": "관심 없다며 지나친다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "실학자가 아쉬워하며 문을 닫는다.",
+          "result_text": {
+            "ko": "실학자가 아쉬워하며 문을 닫는다.",
+            "en": ""
+          },
           "note": "패스."
         }
       ]
@@ -754,36 +1265,61 @@
       "id": "EVT_SH_002",
       "title": {
         "ko": "기이한 발명품",
-        "description": "실학자가 새로운 발명품을 보여준다. 서양의 기술을 응용한 전투 도구라고 한다."
+        "description": {
+          "ko": "실학자가 새로운 발명품을 보여준다. 서양의 기술을 응용한 전투 도구라고 한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이것은 아직 시험 단계요. 하지만 제대로 쓰면 대단한 물건이 될 거요.\"",
+      "flavor_text": {
+        "ko": "\"이것은 아직 시험 단계요. 하지만 제대로 쓰면 대단한 물건이 될 거요.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "buy_device",
-          "text": "발명품을 구입한다. (금화 -20, 유물 획득)",
+          "text": {
+            "ko": "발명품을 구입한다. (금화 -20, 유물 획득)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 20,
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus": 1,
-          "result_text": "금화 20을 지불하고 기이한 발명품을 얻었다. 유물 1개 획득.",
+          "result_text": {
+            "ko": "금화 20을 지불하고 기이한 발명품을 얻었다. 유물 1개 획득.",
+            "en": ""
+          },
           "note": "금화→유물. 고비용 고보상."
         },
         {
           "id": "help_test",
-          "text": "시험을 도와주겠다고 한다. (HP -8, 카드 강화 1장)",
+          "text": {
+            "ko": "시험을 도와주겠다고 한다. (HP -8, 카드 강화 1장)",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 8,
           "effect_type_bonus": "card_upgrade",
           "effect_value_bonus": 1,
-          "result_text": "시험 중 부상을 입었지만, 감사의 표시로 카드 1장을 강화해주었다.",
+          "result_text": {
+            "ko": "시험 중 부상을 입었지만, 감사의 표시로 카드 1장을 강화해주었다.",
+            "en": ""
+          },
           "note": "HP→카드 강화."
         },
         {
           "id": "pass_sh2",
-          "text": "위험해 보인다며 거절한다.",
+          "text": {
+            "ko": "위험해 보인다며 거절한다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 5,
-          "result_text": "실학자가 실망하며 위로의 엽전을 건넨다. 금화 5 획득.",
+          "result_text": {
+            "ko": "실학자가 실망하며 위로의 엽전을 건넨다. 금화 5 획득.",
+            "en": ""
+          },
           "note": "소량 금화."
         }
       ]
@@ -792,13 +1328,23 @@
       "id": "EVT_SH_003",
       "title": {
         "ko": "수학 시험",
-        "description": "실학자가 산학(算學) 문제를 내밀며 말한다."
+        "description": {
+          "ko": "실학자가 산학(算學) 문제를 내밀며 말한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이 문제를 풀면 비전(秘傳)을 전수하겠소.\"",
+      "flavor_text": {
+        "ko": "\"이 문제를 풀면 비전(秘傳)을 전수하겠소.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "solve",
-          "text": "문제를 풀어본다.",
+          "text": {
+            "ko": "문제를 풀어본다.",
+            "en": ""
+          },
           "effect_type": "random",
           "win_chance": 0.6,
           "outcomes": [
@@ -806,34 +1352,55 @@
               "weight": 60,
               "effect_type": "card_choice",
               "effect_value": 3,
-              "text": "정답! 실학자가 감탄하며 비전 카드 3장 중 선택 기회를 준다."
+              "text": {
+                "ko": "정답! 실학자가 감탄하며 비전 카드 3장 중 선택 기회를 준다.",
+                "en": ""
+              }
             },
             {
               "weight": 40,
               "effect_type": "hp_loss",
               "effect_value": 5,
-              "text": "오답. 실학자가 혀를 차며 머리를 쥐어박는다. HP 5 손실."
+              "text": {
+                "ko": "오답. 실학자가 혀를 차며 머리를 쥐어박는다. HP 5 손실.",
+                "en": ""
+              }
             }
           ],
-          "result_text": "60% 확률로 카드 선택, 40% 확률로 HP 손실.",
+          "result_text": {
+            "ko": "60% 확률로 카드 선택, 40% 확률로 HP 손실.",
+            "en": ""
+          },
           "note": "확률 기반 도전."
         },
         {
           "id": "pay_tuition",
-          "text": "수업료를 내고 직접 배운다. (금화 -15, 카드 획득)",
+          "text": {
+            "ko": "수업료를 내고 직접 배운다. (금화 -15, 카드 획득)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 15,
           "effect_type_bonus": "card_gain",
           "effect_value_bonus": 1,
-          "result_text": "금화 15를 내고 실학의 기초를 배웠다. 카드 1장 획득.",
+          "result_text": {
+            "ko": "금화 15를 내고 실학의 기초를 배웠다. 카드 1장 획득.",
+            "en": ""
+          },
           "note": "안전한 금화→카드."
         },
         {
           "id": "skip_sh3",
-          "text": "산학에는 관심 없다.",
+          "text": {
+            "ko": "산학에는 관심 없다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "실학자가 한숨을 쉬며 돌아간다.",
+          "result_text": {
+            "ko": "실학자가 한숨을 쉬며 돌아간다.",
+            "en": ""
+          },
           "note": "패스."
         }
       ]
@@ -842,34 +1409,59 @@
       "id": "EVT_SH_004",
       "title": {
         "ko": "천문 관측",
-        "description": "밤하늘을 관측하던 실학자가 당신을 부른다. 별자리에 비밀이 있다고 한다."
+        "description": {
+          "ko": "밤하늘을 관측하던 실학자가 당신을 부른다. 별자리에 비밀이 있다고 한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"하늘의 이치를 알면 — 땅의 싸움도 보인다오.\"",
+      "flavor_text": {
+        "ko": "\"하늘의 이치를 알면 — 땅의 싸움도 보인다오.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "observe",
-          "text": "함께 별을 관측한다. (다음 전투 취약 면역)",
+          "text": {
+            "ko": "함께 별을 관측한다. (다음 전투 취약 면역)",
+            "en": ""
+          },
           "effect_type": "buff_next_combat",
           "effect_value": 1,
-          "result_text": "별의 위치를 파악하니 적의 움직임이 읽힌다. 다음 전투 취약 면역.",
+          "result_text": {
+            "ko": "별의 위치를 파악하니 적의 움직임이 읽힌다. 다음 전투 취약 면역.",
+            "en": ""
+          },
           "note": "디버프 방어 버프."
         },
         {
           "id": "buy_chart",
-          "text": "천문도를 구입한다. (금화 -10, 맵 노드 공개)",
+          "text": {
+            "ko": "천문도를 구입한다. (금화 -10, 맵 노드 공개)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 10,
           "effect_type_bonus": "reveal_map",
           "effect_value_bonus": 3,
-          "result_text": "천문도 덕분에 앞길이 환히 보인다. 맵 노드 3개 공개.",
+          "result_text": {
+            "ko": "천문도 덕분에 앞길이 환히 보인다. 맵 노드 3개 공개.",
+            "en": ""
+          },
           "note": "금화→맵 정보."
         },
         {
           "id": "rest",
-          "text": "밤하늘 아래 쉰다. (HP +8)",
+          "text": {
+            "ko": "밤하늘 아래 쉰다. (HP +8)",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 8,
-          "result_text": "별빛 아래 평온히 쉬며 기력을 회복했다.",
+          "result_text": {
+            "ko": "별빛 아래 평온히 쉬며 기력을 회복했다.",
+            "en": ""
+          },
           "note": "HP 회복."
         }
       ]
@@ -878,36 +1470,61 @@
       "id": "EVT_SH_005",
       "title": {
         "ko": "활자 인쇄소",
-        "description": "실학자가 운영하는 활자 인쇄소. 다양한 서적과 비전서가 쌓여 있다."
+        "description": {
+          "ko": "실학자가 운영하는 활자 인쇄소. 다양한 서적과 비전서가 쌓여 있다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"원하시는 지식이 있다면 — 값을 치르시오.\"",
+      "flavor_text": {
+        "ko": "\"원하시는 지식이 있다면 — 값을 치르시오.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "upgrade_card",
-          "text": "비전서로 카드를 강화한다. (금화 -25, 카드 2장 강화)",
+          "text": {
+            "ko": "비전서로 카드를 강화한다. (금화 -25, 카드 2장 강화)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 25,
           "effect_type_bonus": "card_upgrade",
           "effect_value_bonus": 2,
-          "result_text": "비전서의 지식으로 카드 2장을 강화했다!",
+          "result_text": {
+            "ko": "비전서의 지식으로 카드 2장을 강화했다!",
+            "en": ""
+          },
           "note": "고비용 다중 강화."
         },
         {
           "id": "buy_book",
-          "text": "서적을 구입한다. (금화 -10, 카드 1장 획득)",
+          "text": {
+            "ko": "서적을 구입한다. (금화 -10, 카드 1장 획득)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 10,
           "effect_type_bonus": "card_gain",
           "effect_value_bonus": 1,
-          "result_text": "유용한 서적을 구입했다. 카드 1장 획득.",
+          "result_text": {
+            "ko": "유용한 서적을 구입했다. 카드 1장 획득.",
+            "en": ""
+          },
           "note": "기본 구매."
         },
         {
           "id": "browse",
-          "text": "구경만 한다.",
+          "text": {
+            "ko": "구경만 한다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 3,
-          "result_text": "서적을 읽으며 마음의 안정을 얻었다. HP 3 회복.",
+          "result_text": {
+            "ko": "서적을 읽으며 마음의 안정을 얻었다. HP 3 회복.",
+            "en": ""
+          },
           "note": "소량 HP."
         }
       ]

@@ -4,14 +4,17 @@
   "act": 2,
   "balance_ref": "ZER-98 (적 종류 추가). 2막 대체 보스. 플레이어 기준: HP 25~45, 덱 규모 14~18장. 목표 전투 길이: 14~18턴.",
   "note": "2막 B_ACT2_FINAL의 대체 보스. 어센션 5+ 또는 특정 이벤트 조건에서 등장.",
-
   "id": "B_ACT2_ALT",
   "name": {
     "ko": "구미호 대요",
     "hanja": "九尾狐 大妖",
-    "romanized": "Gumiho Daeyō"
+    "romanized": "Gumiho Daeyō",
+    "en": ""
   },
-  "description": "아홉 꼬리를 모두 가진 전설의 구미호. EL203의 상위 존재. 매혹과 변신으로 플레이어를 극도로 혼란에 빠뜨린다.",
+  "description": {
+    "ko": "아홉 꼬리를 모두 가진 전설의 구미호. EL203의 상위 존재. 매혹과 변신으로 플레이어를 극도로 혼란에 빠뜨린다.",
+    "en": ""
+  },
   "hp": 145,
   "flavor": "\"나는 천 년을 살았다. 네가 가진 것이 무엇이든 이미 알고 있다.\"",
   "unique_mechanic": "변신: 페이즈 전환 시 B_ACT2_ALT가 잠시 플레이어의 카드 1장을 복사해 자신의 행동으로 사용한다.",
@@ -24,47 +27,99 @@
       "moves": [
         {
           "id": "beguile",
-          "name": "매혹",
+          "name": {
+            "ko": "매혹",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 3, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 3,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": "약화 3 + 취약 2. 플레이어 공격/방어 모두 저하."
+          "description": {
+            "ko": "약화 3 + 취약 2. 플레이어 공격/방어 모두 저하.",
+            "en": ""
+          }
         },
         {
           "id": "fox_fire",
-          "name": "여우불",
+          "name": {
+            "ko": "여우불",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 12,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "화상", "stacks": 5, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "화상",
+              "stacks": 5,
+              "target": "player"
+            }
           ],
-          "description": "12피해 + 화상 5."
+          "description": {
+            "ko": "12피해 + 화상 5.",
+            "en": ""
+          }
         },
         {
           "id": "illusion_guard",
-          "name": "환영 방어",
+          "name": {
+            "ko": "환영 방어",
+            "en": ""
+          },
           "intent": "buff_defend",
           "block": 18,
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
-          "description": "방어도 18 + 힘 2. 환영으로 방어도를 형성."
+          "description": {
+            "ko": "방어도 18 + 힘 2. 환영으로 방어도를 형성.",
+            "en": ""
+          }
         },
         {
           "id": "nine_tails_slash",
-          "name": "구미 베기",
+          "name": {
+            "ko": "구미 베기",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 8,
           "times": 3,
-          "description": "8피해 × 3회(꼬리 하나씩) = 24 총피해."
+          "description": {
+            "ko": "8피해 × 3회(꼬리 하나씩) = 24 총피해.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["beguile", "fox_fire", "illusion_guard", "nine_tails_slash", "beguile", "fox_fire", "nine_tails_slash"]
+        "sequence": [
+          "beguile",
+          "fox_fire",
+          "illusion_guard",
+          "nine_tails_slash",
+          "beguile",
+          "fox_fire",
+          "nine_tails_slash"
+        ]
       }
     },
     {
@@ -81,35 +136,72 @@
       "moves": [
         {
           "id": "transformation",
-          "name": "변신",
+          "name": {
+            "ko": "변신",
+            "en": ""
+          },
           "intent": "special",
-          "description": "플레이어 카드 1장을 복사해 사용한다. (고유 메카닉)"
+          "description": {
+            "ko": "플레이어 카드 1장을 복사해 사용한다. (고유 메카닉)",
+            "en": ""
+          }
         },
         {
           "id": "soul_harvest",
-          "name": "영혼 수확",
+          "name": {
+            "ko": "영혼 수확",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 14,
           "times": 1,
           "effects": [
-            { "type": "heal_self", "amount": 10 }
+            {
+              "type": "heal_self",
+              "amount": 10
+            }
           ],
-          "description": "14피해 + 자힐 10."
+          "description": {
+            "ko": "14피해 + 자힐 10.",
+            "en": ""
+          }
         },
         {
           "id": "curse_barrage",
-          "name": "저주 폭격",
+          "name": {
+            "ko": "저주 폭격",
+            "en": ""
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 6, "target": "player" },
-            { "type": "apply_debuff", "debuff": "출혈", "stacks": 4, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 6,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "출혈",
+              "stacks": 4,
+              "target": "player"
+            }
           ],
-          "description": "독 6 + 출혈 4."
+          "description": {
+            "ko": "독 6 + 출혈 4.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["transformation", "soul_harvest", "curse_barrage", "transformation", "soul_harvest"]
+        "sequence": [
+          "transformation",
+          "soul_harvest",
+          "curse_barrage",
+          "transformation",
+          "soul_harvest"
+        ]
       }
     },
     {
@@ -121,43 +213,85 @@
       "moves": [
         {
           "id": "true_form",
-          "name": "진신 현현",
+          "name": {
+            "ko": "진신 현현",
+            "en": ""
+          },
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 5, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 5,
+              "target": "self"
+            }
           ],
-          "description": "힘 5 획득. 진짜 모습을 드러낸다."
+          "description": {
+            "ko": "힘 5 획득. 진짜 모습을 드러낸다.",
+            "en": ""
+          }
         },
         {
           "id": "thousand_year_strike",
-          "name": "천년의 일격",
+          "name": {
+            "ko": "천년의 일격",
+            "en": ""
+          },
           "intent": "attack",
           "damage": 25,
           "times": 1,
-          "description": "25+힘 피해. 힘+5 기준 30피해."
+          "description": {
+            "ko": "25+힘 피해. 힘+5 기준 30피해.",
+            "en": ""
+          }
         },
         {
           "id": "fox_wildfire",
-          "name": "여우불 폭풍",
+          "name": {
+            "ko": "여우불 폭풍",
+            "en": ""
+          },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 1,
           "aoe": true,
           "effects": [
-            { "type": "apply_debuff", "debuff": "화상", "stacks": 6, "target": "player" },
-            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "화상",
+              "stacks": 6,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 4,
+              "target": "player"
+            }
           ],
-          "description": "10피해 + 화상 6 + 독 4. 광역 범위."
+          "description": {
+            "ko": "10피해 + 화상 6 + 독 4. 광역 범위.",
+            "en": ""
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["true_form", "thousand_year_strike", "fox_wildfire", "thousand_year_strike", "fox_wildfire"]
+        "sequence": [
+          "true_form",
+          "thousand_year_strike",
+          "fox_wildfire",
+          "thousand_year_strike",
+          "fox_wildfire"
+        ]
       }
     }
   ],
   "rewards": {
-    "gold": { "min": 75, "max": 100 },
+    "gold": {
+      "min": 75,
+      "max": 100
+    },
     "card_reward_count": 3,
     "relic_chance": 1.0,
     "special_note": "전설 등급 유물 드롭 확정"

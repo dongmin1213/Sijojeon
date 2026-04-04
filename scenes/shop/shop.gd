@@ -246,9 +246,10 @@ func _format_card_text(card: CardData, price: int) -> String:
 	if card.qi_gain > 0:
 		lines.append("기 회복: +%d" % card.qi_gain)
 
-	if card.effect != "":
+	var eff := card.get_current_effect()
+	if eff != "":
 		lines.append("")
-		lines.append(card.effect)
+		lines.append(eff)
 
 	return "\n".join(lines)
 
@@ -667,13 +668,8 @@ func _display_shop_relics() -> void:
 			btn.disabled = true
 			btn.modulate = Color(0.4, 0.4, 0.4)
 		else:
-			var relic_name: String = ""
-			var name_data = relic_data.get("name", {})
-			if name_data is Dictionary:
-				relic_name = str(name_data.get("ko", entry["relic_id"]))
-			else:
-				relic_name = str(name_data)
-			var effect_desc: String = str(relic_data.get("effect_description", ""))
+			var relic_name: String = TranslationManager.trd_name(relic_data)
+			var effect_desc: String = TranslationManager.trd(relic_data, "effect_description", "")
 			btn.text = "%s\n%s\n\n%d 금화" % [relic_name, effect_desc, entry["price"]]
 			var can_afford: bool = GameManager.run_data != null and GameManager.run_data.gold >= entry["price"]
 			if not can_afford:

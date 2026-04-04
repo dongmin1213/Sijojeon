@@ -201,9 +201,10 @@ func _format_card_text(card: CardData) -> String:
 	if card.qi_gain > 0:
 		lines.append("기 회복: +%d" % card.qi_gain)
 
-	if card.effect != "":
+	var eff := card.get_current_effect()
+	if eff != "":
 		lines.append("")
-		lines.append(card.effect)
+		lines.append(eff)
 
 	return "\n".join(lines)
 

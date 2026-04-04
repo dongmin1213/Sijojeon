@@ -51,12 +51,7 @@ func _add_relic_icon(relic_id: String) -> void:
 	panel.custom_minimum_size = icon_size
 
 	var label := Label.new()
-	var name_data = relic.get("name", {})
-	var display_name: String = ""
-	if name_data is Dictionary:
-		display_name = name_data.get("ko", relic_id)
-	else:
-		display_name = str(name_data)
+	var display_name: String = TranslationManager.trd_name(relic)
 
 	# 이름의 앞 2글자를 아이콘으로 사용 (1글자로는 의미 전달 부족)
 	label.text = display_name.substr(0, 2) if display_name.length() >= 2 else display_name

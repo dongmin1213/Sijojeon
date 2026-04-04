@@ -93,7 +93,7 @@ func _get_narrative_text_for_act(act: int) -> String:
 			if s.get("stage") == 0:
 				shown.append(0)
 				rd.narrative_state["shown_narrative_stages"] = shown
-				return "— %s —\n%s" % [s.get("title", ""), s.get("text", "")]
+				return "— %s —\n%s" % [TranslationManager.trd(s, "title", ""), TranslationManager.trd(s, "text", "")]
 
 	# 3막 진입 — stage 3 표시
 	if act == 3 and not shown.has(3):
@@ -101,7 +101,7 @@ func _get_narrative_text_for_act(act: int) -> String:
 			if s.get("stage") == 3:
 				shown.append(3)
 				rd.narrative_state["shown_narrative_stages"] = shown
-				return "— %s —\n%s" % [s.get("title", ""), s.get("text", "")]
+				return "— %s —\n%s" % [TranslationManager.trd(s, "title", ""), TranslationManager.trd(s, "text", "")]
 
 	# stage 2 (조사 단계 진입 직후) — 2막 전환 시 표시
 	if stage >= 2 and not shown.has(2):
@@ -109,7 +109,7 @@ func _get_narrative_text_for_act(act: int) -> String:
 			if s.get("stage") == 2:
 				shown.append(2)
 				rd.narrative_state["shown_narrative_stages"] = shown
-				return "— %s —\n%s" % [s.get("title", ""), s.get("text", "")]
+				return "— %s —\n%s" % [TranslationManager.trd(s, "title", ""), TranslationManager.trd(s, "text", "")]
 
 	return ""
 

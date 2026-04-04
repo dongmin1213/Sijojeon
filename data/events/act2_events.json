@@ -4,48 +4,86 @@
   "act": 2,
   "act_name": {
     "ko": "지리산",
-    "description": "험준한 산세와 깊은 숲. 산적, 요괴, 수도하는 승려가 공존하는 위험한 길."
+    "description": {
+      "ko": "험준한 산세와 깊은 숲. 산적, 요괴, 수도하는 승려가 공존하는 위험한 길.",
+      "en": ""
+    },
+    "en": ""
   },
   "events": [
     {
       "id": "EVT_A2_001",
       "title": {
         "ko": "산사의 승려",
-        "description": "지리산 깊은 곳의 작은 암자에서 한 승려가 좌선하고 있다. 다가가자 눈을 뜬다."
+        "description": {
+          "ko": "지리산 깊은 곳의 작은 암자에서 한 승려가 좌선하고 있다. 다가가자 눈을 뜬다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"산을 오르는 자에게는 반드시 이유가 있는 법.\"",
+      "flavor_text": {
+        "ko": "\"산을 오르는 자에게는 반드시 이유가 있는 법.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "meditate",
-          "text": "함께 좌선에 들어간다.",
+          "text": {
+            "ko": "함께 좌선에 들어간다.",
+            "en": ""
+          },
           "effect_type": "max_hp_gain",
           "effect_value": 4,
-          "result_text": "깊은 명상으로 심신이 단련된다. 최대 HP +4."
+          "result_text": {
+            "ko": "깊은 명상으로 심신이 단련된다. 최대 HP +4.",
+            "en": ""
+          }
         },
         {
           "id": "ask_teaching",
-          "text": "무예의 가르침을 청한다.",
+          "text": {
+            "ko": "무예의 가르침을 청한다.",
+            "en": ""
+          },
           "effect_type": "card_gain",
           "effect_value": 1,
-          "result_text": "승려가 비전의 한 수를 알려준다. 카드 1장 획득."
+          "result_text": {
+            "ko": "승려가 비전의 한 수를 알려준다. 카드 1장 획득.",
+            "en": ""
+          }
         },
         {
           "id": "rob",
-          "text": "암자의 보물을 훔친다.",
+          "text": {
+            "ko": "암자의 보물을 훔친다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 45,
-          "result_text": "금불상을 챙겼다. 엽전 45 획득. 하지만 죄업이 깊어진다.",
+          "result_text": {
+            "ko": "금불상을 챙겼다. 엽전 45 획득. 하지만 죄업이 깊어진다.",
+            "en": ""
+          },
           "effect_type_bonus": "max_hp_loss",
           "effect_value_bonus": 3,
-          "result_text_full": "엽전 45 획득 → 최대 HP -3."
+          "result_text_full": {
+            "ko": "엽전 45 획득 → 최대 HP -3.",
+            "en": ""
+          }
         },
         {
           "id": "minshim_blessing",
-          "text": "[��심 70+] 승려가 백성의 은인이라며 축복을 내려준다.",
+          "text": {
+            "ko": "[��심 70+] 승려가 백성의 은인이라며 축복을 내려준다.",
+            "en": ""
+          },
           "trigger_condition": "minshim_ge_70",
           "effect_type": "hp_full_heal",
           "effect_value": 0,
-          "result_text": "\"백성을 위하는 마음이 부처의 자비와 같소이다.\" HP 완전 회복!",
+          "result_text": {
+            "ko": "\"백성을 위하는 마음이 부처의 자비와 같소이다.\" HP 완전 회복!",
+            "en": ""
+          },
           "note": "민심 70+ 전용. 완전 회복."
         }
       ]
@@ -54,41 +92,75 @@
       "id": "EVT_A2_002",
       "title": {
         "ko": "산적의 매복",
-        "description": "숲 사이로 무장한 산적들이 길을 막는다. 두목이 앞으로 나선다."
+        "description": {
+          "ko": "숲 사이로 무장한 산적들이 길을 막는다. 두목이 앞으로 나선다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"재물을 놓고 가면 목숨은 살려주마.\"",
+      "flavor_text": {
+        "ko": "\"재물을 놓고 가면 목숨은 살려주마.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "pay",
-          "text": "순순히 통행료를 낸다. (엽전 25)",
+          "text": {
+            "ko": "순순히 통행료를 낸다. (엽전 25)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 25,
-          "result_text": "산적들이 비켜선다. 엽전 25 소비."
+          "result_text": {
+            "ko": "산적들이 비켜선다. 엽전 25 소비.",
+            "en": ""
+          }
         },
         {
           "id": "fight",
-          "text": "산적들과 맞서 싸운다.",
+          "text": {
+            "ko": "산적들과 맞서 싸운다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 15,
-          "result_text": "격전 끝에 산적을 물리쳤다. HP 15 손실, 엽전 40 획득.",
+          "result_text": {
+            "ko": "격전 끝에 산적을 물리쳤다. HP 15 손실, 엽전 40 획득.",
+            "en": ""
+          },
           "effect_type_bonus": "gold_gain",
           "effect_value_bonus": 40,
-          "result_text_full": "HP 15 손실 → 엽전 40 획득."
+          "result_text_full": {
+            "ko": "HP 15 손실 → 엽전 40 획득.",
+            "en": ""
+          }
         },
         {
           "id": "negotiate",
-          "text": "두목과 담판을 짓는다.",
+          "text": {
+            "ko": "두목과 담판을 짓는다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 8,
-          "result_text": "구타를 당한 후 겨우 풀려났다. HP 8 손실."
+          "result_text": {
+            "ko": "구타를 당한 후 겨우 풀려났다. HP 8 손실.",
+            "en": ""
+          }
         },
         {
           "id": "minshim_surrender",
-          "text": "[민심 70+] ��적들이 명성을 듣고 스스로 물러난다.",
+          "text": {
+            "ko": "[민심 70+] ��적들이 명성을 듣고 스스로 물러난다.",
+            "en": ""
+          },
           "trigger_condition": "minshim_ge_70",
           "effect_type": "gold_gain",
           "effect_value": 30,
-          "result_text": "\"저분이 바로 그 영웅이란다. 건드리면 큰일 난다!\" 산적이 두고 간 보물에서 엽전 30 획득.",
+          "result_text": {
+            "ko": "\"저분이 바로 그 영웅이란다. 건드리면 큰일 난다!\" 산적이 두고 간 보물에서 엽전 30 획득.",
+            "en": ""
+          },
           "note": "민심 70+ 전용. 전투 회피 + 보상."
         }
       ]
@@ -97,34 +169,62 @@
       "id": "EVT_A2_003",
       "title": {
         "ko": "약초 채집터",
-        "description": "산 중턱에 희귀 약초가 자라는 곳을 발견했다."
+        "description": {
+          "ko": "산 중턱에 희귀 약초가 자라는 곳을 발견했다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "산삼의 향기가 코끝을 스친다.",
+      "flavor_text": {
+        "ko": "산삼의 향기가 코끝을 스친다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "gather_carefully",
-          "text": "조심스럽게 약초를 채집한다.",
+          "text": {
+            "ko": "조심스럽게 약초를 채집한다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 20,
-          "result_text": "산삼으로 기운을 보충했다. HP 20 회복."
+          "result_text": {
+            "ko": "산삼으로 기운을 보충했다. HP 20 회복.",
+            "en": ""
+          }
         },
         {
           "id": "gather_all",
-          "text": "욕심내어 전부 캐낸다.",
+          "text": {
+            "ko": "욕심내어 전부 캐낸다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 10,
-          "result_text": "서두르다 독초와 섞었다. HP 10 회복, 다음 전투 시작 시 독 3.",
+          "result_text": {
+            "ko": "서두르다 독초와 섞었다. HP 10 회복, 다음 전투 시작 시 독 3.",
+            "en": ""
+          },
           "effect_type_bonus": "debuff",
           "debuff_type": "독",
           "effect_value_bonus": 3,
-          "result_text_full": "HP 10 회복 → 다음 전투 독 3."
+          "result_text_full": {
+            "ko": "HP 10 회복 → 다음 전투 독 3.",
+            "en": ""
+          }
         },
         {
           "id": "sell_location",
-          "text": "채집터 위치를 약장수에게 판다.",
+          "text": {
+            "ko": "채집터 위치를 약장수에게 판다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 35,
-          "result_text": "약장수가 큰 값에 위치 정보를 사간다. 엽전 35 획득."
+          "result_text": {
+            "ko": "약장수가 큰 값에 위치 정보를 사간다. 엽전 35 획득.",
+            "en": ""
+          }
         }
       ]
     },
@@ -132,26 +232,48 @@
       "id": "EVT_A2_004",
       "title": {
         "ko": "산신령의 시련",
-        "description": "안개가 자욱한 고갯길에서 호랑이 형상의 산신령이 나타난다."
+        "description": {
+          "ko": "안개가 자욱한 고갯길에서 호랑이 형상의 산신령이 나타난다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이 산을 지나려면 시련을 통과해야 하느니라.\"",
+      "flavor_text": {
+        "ko": "\"이 산을 지나려면 시련을 통과해야 하느니라.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "accept_trial",
-          "text": "시련을 받아들인다.",
+          "text": {
+            "ko": "시련을 받아들인다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 10,
-          "result_text": "시련을 통과했다. HP 10 손실, 최대 HP +6.",
+          "result_text": {
+            "ko": "시련을 통과했다. HP 10 손실, 최대 HP +6.",
+            "en": ""
+          },
           "effect_type_bonus": "max_hp_gain",
           "effect_value_bonus": 6,
-          "result_text_full": "HP 10 손실 → 최대 HP +6."
+          "result_text_full": {
+            "ko": "HP 10 손실 → 최대 HP +6.",
+            "en": ""
+          }
         },
         {
           "id": "offer_respect",
-          "text": "경의를 표하고 제물을 바친다. (엽전 20)",
+          "text": {
+            "ko": "경의를 표하고 제물을 바친다. (엽전 20)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 20,
-          "result_text": "산신령이 흡족히 여기며 축복을 내린다. 다음 전투 힘 +3.",
+          "result_text": {
+            "ko": "산신령이 흡족히 여기며 축복을 내린다. 다음 전투 힘 +3.",
+            "en": ""
+          },
           "effect_type_bonus": "buff_next_combat",
           "effect_value_bonus": {
             "buff": "strength",
@@ -160,11 +282,17 @@
         },
         {
           "id": "flee",
-          "text": "무시하고 도망친다.",
+          "text": {
+            "ko": "무시하고 도망친다.",
+            "en": ""
+          },
           "effect_type": "debuff",
           "debuff_type": "약화",
           "effect_value": 2,
-          "result_text": "산신령의 분노로 기운이 빠진다. 다음 전투 약화 2."
+          "result_text": {
+            "ko": "산신령의 분노로 기운이 빠진다. 다음 전투 약화 2.",
+            "en": ""
+          }
         }
       ]
     },
@@ -172,36 +300,67 @@
       "id": "EVT_A2_005",
       "title": {
         "ko": "폭포 수련장",
-        "description": "거대한 폭포 아래에서 무인이 수련하고 있다. 자리를 권한다."
+        "description": {
+          "ko": "거대한 폭포 아래에서 무인이 수련하고 있다. 자리를 권한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"폭포 아래 서 보시오. 심신이 단련될 것이오.\"",
+      "flavor_text": {
+        "ko": "\"폭포 아래 서 보시오. 심신이 단련될 것이오.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "train",
-          "text": "폭포 아래에서 수련한다.",
+          "text": {
+            "ko": "폭포 아래에서 수련한다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 8,
-          "result_text": "고된 수련이었지만 한층 강해진 느낌이다. HP 8 손실, 카드 1장 획득.",
+          "result_text": {
+            "ko": "고된 수련이었지만 한층 강해진 느낌이다. HP 8 손실, 카드 1장 획득.",
+            "en": ""
+          },
           "effect_type_bonus": "card_gain",
           "effect_value_bonus": 1,
-          "result_text_full": "HP 8 손실 → 카드 1장 획득."
+          "result_text_full": {
+            "ko": "HP 8 손실 → 카드 1장 획득.",
+            "en": ""
+          }
         },
         {
           "id": "rest",
-          "text": "폭포 옆에서 쉬어간다.",
+          "text": {
+            "ko": "폭포 옆에서 쉬어간다.",
+            "en": ""
+          },
           "effect_type": "hp_gain",
           "effect_value": 12,
-          "result_text": "맑은 물로 갈증을 해소하고 쉬었다. HP 12 회복."
+          "result_text": {
+            "ko": "맑은 물로 갈증을 해소하고 쉬었다. HP 12 회복.",
+            "en": ""
+          }
         },
         {
           "id": "challenge",
-          "text": "무인에게 대련을 청한다.",
+          "text": {
+            "ko": "무인에게 대련을 청한다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 18,
-          "result_text": "무인이 너무 강했다. HP 18 손실, 하지만 엽전 50 획득.",
+          "result_text": {
+            "ko": "무인이 너무 강했다. HP 18 손실, 하지만 엽전 50 획득.",
+            "en": ""
+          },
           "effect_type_bonus": "gold_gain",
           "effect_value_bonus": 50,
-          "result_text_full": "HP 18 손실 → 엽전 50 획득."
+          "result_text_full": {
+            "ko": "HP 18 손실 → 엽전 50 획득.",
+            "en": ""
+          }
         }
       ]
     },
@@ -209,49 +368,83 @@
       "id": "EVT_A2_006",
       "title": {
         "ko": "버려진 광산",
-        "description": "산 중턱에 폐광이 보인다. 입구에서 희미한 빛이 새어나온다."
+        "description": {
+          "ko": "산 중턱에 폐광이 보인다. 입구에서 희미한 빛이 새어나온다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "깊은 곳에서 금속 부딪히는 소리가 들린다.",
+      "flavor_text": {
+        "ko": "깊은 곳에서 금속 부딪히는 소리가 들린다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "explore",
-          "text": "광산 안으로 들어간다.",
+          "text": {
+            "ko": "광산 안으로 들어간다.",
+            "en": ""
+          },
           "effect_type": "random",
           "outcomes": [
             {
               "weight": 40,
               "effect_type": "gold_gain",
               "effect_value": 55,
-              "text": "금맥을 발견했다! 엽전 55 획득."
+              "text": {
+                "ko": "금맥을 발견했다! 엽전 55 획득.",
+                "en": ""
+              }
             },
             {
               "weight": 30,
               "effect_type": "relic_gain",
               "effect_value": 1,
-              "text": "광부가 남긴 유물을 발견했다."
+              "text": {
+                "ko": "광부가 남긴 유물을 발견했다.",
+                "en": ""
+              }
             },
             {
               "weight": 30,
               "effect_type": "hp_loss",
               "effect_value": 15,
-              "text": "갱도가 무너졌다! HP 15 손실."
+              "text": {
+                "ko": "갱도가 무너졌다! HP 15 손실.",
+                "en": ""
+              }
             }
           ],
-          "result_text": "광산 속으로 발걸음을 옮긴다."
+          "result_text": {
+            "ko": "광산 속으로 발걸음을 옮긴다.",
+            "en": ""
+          }
         },
         {
           "id": "mine_entrance",
-          "text": "입구 근처만 살펴본다.",
+          "text": {
+            "ko": "입구 근처만 살펴본다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 20,
-          "result_text": "입구에서 잡광석을 주웠다. 엽전 20 획득."
+          "result_text": {
+            "ko": "입구에서 잡광석을 주웠다. 엽전 20 획득.",
+            "en": ""
+          }
         },
         {
           "id": "ignore",
-          "text": "위험해 보여 지나친다.",
+          "text": {
+            "ko": "위험해 보여 지나친다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "안전하게 길을 계속한다."
+          "result_text": {
+            "ko": "안전하게 길을 계속한다.",
+            "en": ""
+          }
         }
       ]
     },
@@ -259,51 +452,82 @@
       "id": "EVT_A2_007",
       "title": {
         "ko": "산신의 시험",
-        "description": "거대한 바위 위에 노인이 앉아 있다. 범상치 않은 기운에 발이 멈춘다. \"이 산의 힘을 시험해 주겠다.\""
+        "description": {
+          "ko": "거대한 바위 위에 노인이 앉아 있다. 범상치 않은 기운에 발이 멈춘다. \"이 산의 힘을 시험해 주겠다.\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"세 가지 길이 있다. 어떤 길을 택하겠느냐?\"",
+      "flavor_text": {
+        "ko": "\"세 가지 길이 있다. 어떤 길을 택하겠느냐?\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "strength_test",
-          "text": "힘을 시험받는다.",
+          "text": {
+            "ko": "힘을 시험받는다.",
+            "en": ""
+          },
           "effect_type": "random",
           "outcomes": [
             {
               "weight": 60,
               "effect_type": "max_hp_gain",
               "effect_value": 12,
-              "text": "산신이 고개를 끄덕인다. 최대 HP +12."
+              "text": {
+                "ko": "산신이 고개를 끄덕인다. 최대 HP +12.",
+                "en": ""
+              }
             },
             {
               "weight": 40,
               "effect_type": "hp_loss",
               "effect_value": 20,
-              "text": "힘이 부족했다. HP 20 손실."
+              "text": {
+                "ko": "힘이 부족했다. HP 20 손실.",
+                "en": ""
+              }
             }
           ],
-          "result_text": "산신의 시험에 응한다."
+          "result_text": {
+            "ko": "산신의 시험에 응한다.",
+            "en": ""
+          }
         },
         {
           "id": "wisdom_test",
-          "text": "지혜를 시험받는다.",
+          "text": {
+            "ko": "지혜를 시험받는다.",
+            "en": ""
+          },
           "effect_type": "card_choice",
           "effect_value": 1,
           "effect_meta": {
             "rarity": 3,
             "choice_count": 3
           },
-          "result_text": "산신이 미소 짓는다. 희귀 카드 3장 중 1장을 선택해 덱에 추가.",
+          "result_text": {
+            "ko": "산신이 미소 짓는다. 희귀 카드 3장 중 1장을 선택해 덱에 추가.",
+            "en": ""
+          },
           "note": "희귀 카드 3선택 1."
         },
         {
           "id": "courage_test",
-          "text": "용기를 시험받는다.",
+          "text": {
+            "ko": "용기를 시험받는다.",
+            "en": ""
+          },
           "effect_type": "relic_gain",
           "effect_value": 1,
           "effect_meta": {
             "rarity": 3
           },
-          "result_text": "두려움 없이 다가가자 산신이 희귀 유물을 건넨다.",
+          "result_text": {
+            "ko": "두려움 없이 다가가자 산신이 희귀 유물을 건넨다.",
+            "en": ""
+          },
           "note": "희귀 유물 1개 획득."
         }
       ]
@@ -312,36 +536,61 @@
       "id": "EVT_A2_008",
       "title": {
         "ko": "독사의 굴",
-        "description": "길 가운데 독사 둥지가 있다. 우회로는 멀리 돌아가야 한다."
+        "description": {
+          "ko": "길 가운데 독사 둥지가 있다. 우회로는 멀리 돌아가야 한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "독사들이 혀를 날름거리며 경계한다.",
+      "flavor_text": {
+        "ko": "독사들이 혀를 날름거리며 경계한다.",
+        "en": ""
+      },
       "choices": [
         {
           "id": "antidote",
-          "text": "해독제를 써서 지나간다. (HP 10 소비)",
+          "text": {
+            "ko": "해독제를 써서 지나간다. (HP 10 소비)",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 10,
-          "result_text": "독에 조금 노출됐지만 지나갔다. HP 10 손실. 독사 비늘 유물 획득.",
+          "result_text": {
+            "ko": "독에 조금 노출됐지만 지나갔다. HP 10 손실. 독사 비늘 유물 획득.",
+            "en": ""
+          },
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus": 1,
           "note": "HP 소비 → 유물 획득."
         },
         {
           "id": "detour",
-          "text": "멀리 돌아간다.",
+          "text": {
+            "ko": "멀리 돌아간다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 25,
-          "result_text": "돌아가다가 버려진 짐을 발견한다. 골드 25 획득.",
+          "result_text": {
+            "ko": "돌아가다가 버려진 짐을 발견한다. 골드 25 획득.",
+            "en": ""
+          },
           "note": "우회로에서 골드 획득."
         },
         {
           "id": "fight",
-          "text": "독사를 처치하고 지나간다.",
+          "text": {
+            "ko": "독사를 처치하고 지나간다.",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 15,
           "effect_type_bonus": "max_hp_gain",
           "effect_value_bonus": 5,
-          "result_text": "독사를 처치했지만 한 번 물렸다. HP 15 손실, 최대 HP +5.",
+          "result_text": {
+            "ko": "독사를 처치했지만 한 번 물렸다. HP 15 손실, 최대 HP +5.",
+            "en": ""
+          },
           "note": "HP 손실이 있지만 최대 HP 성장."
         }
       ]
@@ -350,36 +599,61 @@
       "id": "EVT_A2_009",
       "title": {
         "ko": "도술 수련자",
-        "description": "산속 동굴 앞에서 젊은 도술사가 수련 중이다. \"당신, 수련에 관심 있소?\""
+        "description": {
+          "ko": "산속 동굴 앞에서 젊은 도술사가 수련 중이다. \"당신, 수련에 관심 있소?\"",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"내 기술을 일부 전수해줄 수 있소.\"",
+      "flavor_text": {
+        "ko": "\"내 기술을 일부 전수해줄 수 있소.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "learn_spell",
-          "text": "도술을 배운다. (HP 15 소비)",
+          "text": {
+            "ko": "도술을 배운다. (HP 15 소비)",
+            "en": ""
+          },
           "effect_type": "hp_loss",
           "effect_value": 15,
-          "result_text": "혹독한 수련 끝에 도술 카드 1장을 배웠다. HP 15 손실, 도사 카드 1장 (무작위) 덱 추가.",
+          "result_text": {
+            "ko": "혹독한 수련 끝에 도술 카드 1장을 배웠다. HP 15 손실, 도사 카드 1장 (무작위) 덱 추가.",
+            "en": ""
+          },
           "effect_type_bonus": "card_gain_class",
           "effect_value_bonus": "dosa",
           "note": "HP 소비 → 도사 카드 1장 획득 (직업 무관)."
         },
         {
           "id": "trade_gold",
-          "text": "엽전을 주고 카드를 구매한다. (엽전 35)",
+          "text": {
+            "ko": "엽전을 주고 카드를 구매한다. (엽전 35)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 35,
-          "result_text": "엽전 35 소비, 카드 3장 중 1장을 선택.",
+          "result_text": {
+            "ko": "엽전 35 소비, 카드 3장 중 1장을 선택.",
+            "en": ""
+          },
           "effect_type_bonus": "card_choice_class",
           "effect_value_bonus": "dosa",
           "note": "골드 소비 → 도사 카드 3선택 1."
         },
         {
           "id": "pass",
-          "text": "관심 없다며 지나친다.",
+          "text": {
+            "ko": "관심 없다며 지나친다.",
+            "en": ""
+          },
           "effect_type": "none",
           "effect_value": 0,
-          "result_text": "도술사가 아쉽다는 듯 다시 수련에 들어간다.",
+          "result_text": {
+            "ko": "도술사가 아쉽다는 듯 다시 수련에 들어간다.",
+            "en": ""
+          },
           "note": "중립."
         }
       ]
@@ -388,36 +662,61 @@
       "id": "EVT_AH_001",
       "title": {
         "ko": "암행어사 출두",
-        "description": "마을에 도착하니 암행어사가 출두하여 탐관을 처벌하고 있다. 당신에게도 도움을 요청한다."
+        "description": {
+          "ko": "마을에 도착하니 암행어사가 출두하여 탐관을 처벌하고 있다. 당신에게도 도움을 요청한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"암행어사 출두요! 이 고을의 부패를 척결하겠소!\"",
+      "flavor_text": {
+        "ko": "\"암행어사 출두요! 이 고을의 부패를 척결하겠소!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "assist",
-          "text": "암행어사를 돕는다. (민심 +10, 금화 -5)",
+          "text": {
+            "ko": "암행어사를 돕는다. (민심 +10, 금화 -5)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 10,
           "effect_type_bonus": "gold_loss",
           "effect_value_bonus": 5,
-          "result_text": "부패 관리를 몰아내자 백성들이 열광한다! 민심이 크게 올랐다.",
+          "result_text": {
+            "ko": "부패 관리를 몰아내자 백성들이 열광한다! 민심이 크게 올랐다.",
+            "en": ""
+          },
           "note": "민심 대폭 상승. 금화 소량 소비."
         },
         {
           "id": "expose",
-          "text": "숨겨진 비리 증거를 제출한다. (민심 +6, 신분 -1)",
+          "text": {
+            "ko": "숨겨진 비리 증거를 제출한다. (민심 +6, 신분 -1)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 6,
           "effect_type_bonus": "rank_down",
           "effect_value_bonus": 1,
-          "result_text": "증거 덕분에 더 많은 관리가 처벌받았다. 하지만 권력층에서 밀려났다.",
+          "result_text": {
+            "ko": "증거 덕분에 더 많은 관리가 처벌받았다. 하지만 권력층에서 밀려났다.",
+            "en": ""
+          },
           "note": "민심 상승 + 신분 하락."
         },
         {
           "id": "stay_silent",
-          "text": "관여하지 않는다.",
+          "text": {
+            "ko": "관여하지 않는다.",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 10,
-          "result_text": "혼란을 틈타 떨어진 엽전을 주웠다. 금화 10 획득.",
+          "result_text": {
+            "ko": "혼란을 틈타 떨어진 엽전을 주웠다. 금화 10 획득.",
+            "en": ""
+          },
           "note": "금화 획득."
         }
       ]
@@ -426,36 +725,61 @@
       "id": "EVT_AH_002",
       "title": {
         "ko": "숨겨진 곡간",
-        "description": "암행어사의 단서를 따라가니 관리가 숨겨둔 대규모 곡간을 발견했다."
+        "description": {
+          "ko": "암행어사의 단서를 따라가니 관리가 숨겨둔 대규모 곡간을 발견했다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"이 곡식은 백성의 것이오! 모두 돌려보내야 하오!\"",
+      "flavor_text": {
+        "ko": "\"이 곡식은 백성의 것이오! 모두 돌려보내야 하오!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "return_grain",
-          "text": "곡식을 백성에게 돌려준다. (민심 +12, HP 전체 회복)",
+          "text": {
+            "ko": "곡식을 백성에게 돌려준다. (민심 +12, HP 전체 회복)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 12,
           "effect_type_bonus": "hp_full_heal",
           "effect_value_bonus": 0,
-          "result_text": "백성들이 감격의 눈물을 흘린다. 감사의 보답으로 치료와 음식을 대접받았다.",
+          "result_text": {
+            "ko": "백성들이 감격의 눈물을 흘린다. 감사의 보답으로 치료와 음식을 대접받았다.",
+            "en": ""
+          },
           "note": "최대 보상. 민심+HP 완전 회복."
         },
         {
           "id": "take_some",
-          "text": "일부를 가져간다. (금화 +30, 민심 -5)",
+          "text": {
+            "ko": "일부를 가져간다. (금화 +30, 민심 -5)",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 30,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": -5,
-          "result_text": "곡식 일부를 팔아 금화를 벌었으나 소문이 나서 민심이 떨어졌다.",
+          "result_text": {
+            "ko": "곡식 일부를 팔아 금화를 벌었으나 소문이 나서 민심이 떨어졌다.",
+            "en": ""
+          },
           "note": "금화 대량 획득 + 민심 페널티."
         },
         {
           "id": "report_only",
-          "text": "관아에 보고만 한다. (민심 +3)",
+          "text": {
+            "ko": "관아에 보고만 한다. (민심 +3)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 3,
-          "result_text": "관아에서 처리하겠다고 한다. 민심이 소폭 올랐다.",
+          "result_text": {
+            "ko": "관아에서 처리하겠다고 한다. 민심이 소폭 올랐다.",
+            "en": ""
+          },
           "note": "안전한 소량 보상."
         }
       ]
@@ -464,38 +788,63 @@
       "id": "EVT_AH_003",
       "title": {
         "ko": "뇌물 제안",
-        "description": "부패한 현감이 당신에게 몰래 접근하여 뇌물을 제안한다."
+        "description": {
+          "ko": "부패한 현감이 당신에게 몰래 접근하여 뇌물을 제안한다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"나를 봐주시오. 이 정도면 충분하지 않겠소?\"",
+      "flavor_text": {
+        "ko": "\"나를 봐주시오. 이 정도면 충분하지 않겠소?\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "accept_bribe",
-          "text": "뇌물을 받는다. (금화 +20, 민심 -8)",
+          "text": {
+            "ko": "뇌물을 받는다. (금화 +20, 민심 -8)",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 20,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": -8,
-          "result_text": "금화를 받았으나 소문이 퍼져 민심이 크게 떨어졌다.",
+          "result_text": {
+            "ko": "금화를 받았으나 소문이 퍼져 민심이 크게 떨어졌다.",
+            "en": ""
+          },
           "note": "금화 vs 민심 트레이드오프."
         },
         {
           "id": "refuse_report",
-          "text": "거절하고 고발한다. (민심 +8, 카드 획득)",
+          "text": {
+            "ko": "거절하고 고발한다. (민심 +8, 카드 획득)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 8,
           "effect_type_bonus": "card_gain",
           "effect_value_bonus": 1,
-          "result_text": "정의로운 행동에 백성들이 감동했다. 마을 장로가 비전서를 선물했다.",
+          "result_text": {
+            "ko": "정의로운 행동에 백성들이 감동했다. 마을 장로가 비전서를 선물했다.",
+            "en": ""
+          },
           "note": "민심 + 카드. 정의 루트."
         },
         {
           "id": "negotiate",
-          "text": "자진 사퇴를 권유한다. (민심 +4, 금화 +10)",
+          "text": {
+            "ko": "자진 사퇴를 권유한다. (민심 +4, 금화 +10)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 4,
           "effect_type_bonus": "gold_gain",
           "effect_value_bonus": 10,
-          "result_text": "현감이 자진 사퇴하며 위로금을 건넸다. 민심도 소폭 올랐다.",
+          "result_text": {
+            "ko": "현감이 자진 사퇴하며 위로금을 건넸다. 민심도 소폭 올랐다.",
+            "en": ""
+          },
           "note": "절충안. 양쪽 소량 보상."
         }
       ]
@@ -504,34 +853,59 @@
       "id": "EVT_AH_004",
       "title": {
         "ko": "억울한 죄수",
-        "description": "옥사에서 억울하게 투옥된 죄수가 도움을 호소한다. 조사해보니 부패 관리의 모함이었다."
+        "description": {
+          "ko": "옥사에서 억울하게 투옥된 죄수가 도움을 호소한다. 조사해보니 부패 관리의 모함이었다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"제발 구해주시오! 제 가족이 굶어가고 있소!\"",
+      "flavor_text": {
+        "ko": "\"제발 구해주시오! 제 가족이 굶어가고 있소!\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "free_prisoner",
-          "text": "증거를 모아 석방시킨다. (민심 +7, HP -6)",
+          "text": {
+            "ko": "증거를 모아 석방시킨다. (민심 +7, HP -6)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 7,
           "effect_type_bonus": "hp_loss",
           "effect_value_bonus": 6,
-          "result_text": "석방에 성공했으나 관리의 보복으로 부상을 입었다. 백성들의 지지를 얻었다.",
+          "result_text": {
+            "ko": "석방에 성공했으나 관리의 보복으로 부상을 입었다. 백성들의 지지를 얻었다.",
+            "en": ""
+          },
           "note": "HP 리스크 + 민심."
         },
         {
           "id": "bribe_jailer",
-          "text": "간수를 매수한다. (금화 -15)",
+          "text": {
+            "ko": "간수를 매수한다. (금화 -15)",
+            "en": ""
+          },
           "effect_type": "gold_loss",
           "effect_value": 15,
-          "result_text": "간수에게 금화를 건네 죄수를 빼냈다. 깔끔하게 해결.",
+          "result_text": {
+            "ko": "간수에게 금화를 건네 죄수를 빼냈다. 깔끔하게 해결.",
+            "en": ""
+          },
           "note": "금화만 소비. 리스크 없음."
         },
         {
           "id": "ignore_ah4",
-          "text": "관여하지 않는다.",
+          "text": {
+            "ko": "관여하지 않는다.",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": -2,
-          "result_text": "죄수의 원망스러운 눈빛이 마음에 걸린다. 주변 백성들도 실망했다.",
+          "result_text": {
+            "ko": "죄수의 원망스러운 눈빛이 마음에 걸린다. 주변 백성들도 실망했다.",
+            "en": ""
+          },
           "note": "민심 소폭 하락."
         }
       ]
@@ -540,36 +914,61 @@
       "id": "EVT_AH_005",
       "title": {
         "ko": "암행어사의 마패",
-        "description": "길에서 암행어사의 마패를 주웠다. 이것이 있으면 어디서든 권위를 행사할 수 있다."
+        "description": {
+          "ko": "길에서 암행어사의 마패를 주웠다. 이것이 있으면 어디서든 권위를 행사할 수 있다.",
+          "en": ""
+        },
+        "en": ""
       },
-      "flavor_text": "\"마패를 가진 자는 — 왕의 대리인이다.\"",
+      "flavor_text": {
+        "ko": "\"마패를 가진 자는 — 왕의 대리인이다.\"",
+        "en": ""
+      },
       "choices": [
         {
           "id": "use_mapat",
-          "text": "마패를 사용해 부패를 척결한다. (민심 +10, 신분 +1, 소멸)",
+          "text": {
+            "ko": "마패를 사용해 부패를 척결한다. (민심 +10, 신분 +1, 소멸)",
+            "en": ""
+          },
           "effect_type": "minshim_change",
           "effect_value": 10,
           "effect_type_bonus": "rank_up",
           "effect_value_bonus": 1,
-          "result_text": "마패를 내세워 고을의 부패를 척결했다! 민심이 크게 오르고 신분도 올랐다.",
+          "result_text": {
+            "ko": "마패를 내세워 고을의 부패를 척결했다! 민심이 크게 오르고 신분도 올랐다.",
+            "en": ""
+          },
           "note": "최대 보상. 1회 이벤트."
         },
         {
           "id": "sell_mapat",
-          "text": "마패를 높은 가격에 판다. (금화 +35)",
+          "text": {
+            "ko": "마패를 높은 가격에 판다. (금화 +35)",
+            "en": ""
+          },
           "effect_type": "gold_gain",
           "effect_value": 35,
-          "result_text": "마패를 비싼 값에 팔았다. 금화 35 획득.",
+          "result_text": {
+            "ko": "마패를 비싼 값에 팔았다. 금화 35 획득.",
+            "en": ""
+          },
           "note": "금화 대량 획득."
         },
         {
           "id": "return_mapat",
-          "text": "주인에게 돌려준다. (카드 강화 1장, 민심 +3)",
+          "text": {
+            "ko": "주인에게 돌려준다. (카드 강화 1장, 민심 +3)",
+            "en": ""
+          },
           "effect_type": "card_upgrade",
           "effect_value": 1,
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": 3,
-          "result_text": "어사가 감사히 여기며 비전을 전수해주었다. 카드 1장 강화 + 민심 소폭 상승.",
+          "result_text": {
+            "ko": "어사가 감사히 여기며 비전을 전수해주었다. 카드 1장 강화 + 민심 소폭 상승.",
+            "en": ""
+          },
           "note": "카드 강화 + 소량 민심."
         }
       ]
