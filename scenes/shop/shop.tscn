@@ -142,6 +142,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "시장 개방 (25 금화 → 민심 +8)"
 
+[node name="BribeButton" type="Button" parent="VBoxContainer/ExtraSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "청탁 (60 금화 → 신분 +20)"
+
+[node name="RationsButton" type="Button" parent="VBoxContainer/ExtraSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "군량미 비축 (30 금화 → 방어도 +8)"
+
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 

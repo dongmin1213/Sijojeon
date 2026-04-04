@@ -36,6 +36,14 @@ const MINSHIM_BUY_AMOUNT := 10
 const MARKET_OPEN_COST := 25
 const MARKET_OPEN_MINSHIM := 8
 
+# 청탁 비용 (신분 점수 상승)
+const BRIBE_COST := 60
+const BRIBE_JIBUN_AMOUNT := 20
+
+# 군량미 비축 비용 (다음 전투 방어도 +8)
+const RATIONS_COST := 30
+const RATIONS_BLOCK := 8
+
 # 등급별 출현 가중치
 const RARITY_WEIGHTS := {
 	"common": 50,     # rarity 1~2
@@ -74,6 +82,8 @@ const RELIC_PRICES := {
 @onready var upgrade_deck_container: GridContainer = $VBoxContainer/ExtraSection/UpgradeScrollContainer/UpgradeDeckContainer
 @onready var minshim_button: Button = $VBoxContainer/ExtraSection/MinshimButton
 @onready var market_open_button: Button = $VBoxContainer/ExtraSection/MarketOpenButton
+@onready var bribe_button: Button = $VBoxContainer/ExtraSection/BribeButton
+@onready var rations_button: Button = $VBoxContainer/ExtraSection/RationsButton
 @onready var relic_container: HBoxContainer = $VBoxContainer/RelicSection/RelicContainer
 @onready var leave_button: Button = $VBoxContainer/LeaveButton
 
@@ -84,6 +94,8 @@ func _ready() -> void:
 	upgrade_button.pressed.connect(_on_upgrade_toggle_pressed)
 	minshim_button.pressed.connect(_on_minshim_buy_pressed)
 	market_open_button.pressed.connect(_on_market_open_pressed)
+	bribe_button.pressed.connect(_on_bribe_pressed)
+	rations_button.pressed.connect(_on_rations_pressed)
 	leave_button.pressed.connect(_on_leave_pressed)
 
 	deck_scroll.visible = false
@@ -365,6 +377,10 @@ func _update_gold_display() -> void:
 	else:
 		refresh_button.remove_theme_color_override("font_color")
 
+	# 추가 구매 버튼 색상 갱신
+	_update_bribe_button()
+	_update_rations_button()
+
 
 func _update_remove_section() -> void:
 	var cost := _get_removal_cost()
@@ -538,6 +554,69 @@ func _update_market_open_button() -> void:
 		market_open_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
 	else:
 		market_open_button.remove_theme_color_override("font_color")
+
+
+## 청탁 구매 (신분 점수 +20)
+func _on_bribe_pressed() -> void:
+	if removal_mode or upgrade_mode:
+		return
+	if GameManager.run_data == null:
+		return
+	if GameManager.run_data.gold < BRIBE_COST:
+		return
+
+	AudioManager.play_sfx_by_key("coin")
+	GameManager.run_data.gold -= BRIBE_COST
+	JibunSystem.add_score(GameManager.run_data, BRIBE_JIBUN_AMOUNT)
+
+	_update_gold_display()
+
+
+func _update_bribe_button() -> void:
+	var jibun_score: int = 0
+	if GameManager.run_data:
+		jibun_score = GameManager.run_data.jibun_score
+	var rank_name: String = JibunSystem.RANK_NAMES.get(
+		GameManager.run_data.jibun_rank if GameManager.run_data else 1, "상민"
+	)
+	bribe_button.text = "청탁 (%d 금화 → 신분 +%d) [%s / %d점]" % [BRIBE_COST, BRIBE_JIBUN_AMOUNT, rank_name, jibun_score]
+
+	if GameManager.run_data and GameManager.run_data.gold < BRIBE_COST:
+		bribe_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+	else:
+		bribe_button.remove_theme_color_override("font_color")
+
+
+## 군량미 비축 구매 (다음 전투 방어도 +8)
+func _on_rations_pressed() -> void:
+	if removal_mode or upgrade_mode:
+		return
+	if GameManager.run_data == null:
+		return
+	if GameManager.run_data.gold < RATIONS_COST:
+		return
+
+	AudioManager.play_sfx_by_key("coin")
+	GameManager.run_data.gold -= RATIONS_COST
+
+	# pending_effects에 다음 전투 방어도 효과 추가
+	if not GameManager.run_data.narrative_state.has("pending_effects"):
+		GameManager.run_data.narrative_state["pending_effects"] = []
+	GameManager.run_data.narrative_state["pending_effects"].append({
+		"type": "next_battle_block",
+		"block": RATIONS_BLOCK,
+	})
+
+	_update_gold_display()
+
+
+func _update_rations_button() -> void:
+	rations_button.text = "군량미 비축 (%d 금화 → 다음 전투 방어도 +%d)" % [RATIONS_COST, RATIONS_BLOCK]
+
+	if GameManager.run_data and GameManager.run_data.gold < RATIONS_COST:
+		rations_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+	else:
+		rations_button.remove_theme_color_override("font_color")
 
 
 ## 상점 유물 생성 (등급 가중치 기반 2개)
