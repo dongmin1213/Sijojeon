@@ -95,6 +95,14 @@ func _ready() -> void:
 	_keyword_tooltip = KeywordTooltip.new()
 	add_child(_keyword_tooltip)
 
+	# 주요 UI 요소 툴팁 설정
+	hp_label.tooltip_text = "체력 — 0이 되면 패배합니다"
+	qi_label.tooltip_text = "기(氣) — 카드를 사용하는 데 필요한 자원입니다. 매 턴 회복됩니다"
+	block_label.tooltip_text = "방어도 — 적의 공격 피해를 대신 받습니다. 턴이 끝나면 사라집니다"
+	end_turn_button.tooltip_text = "턴을 종료하고 적이 행동합니다"
+	draw_pile_label.tooltip_text = "뽑을 카드 더미 — 여기서 카드를 뽑습니다"
+	discard_pile_label.tooltip_text = "버린 카드 더미 — 뽑을 카드가 없으면 섞여서 다시 뽑기 더미가 됩니다"
+
 	# 시조 슬롯 UI 초기화 (토글 버튼 포함)
 	_init_sijo_toggle()
 	_init_sijo_slots()
@@ -721,6 +729,7 @@ func _init_active_skill_button() -> void:
 	_active_skill_button = Button.new()
 	var skill_name := battle_manager.get_active_skill_name()
 	_active_skill_button.text = skill_name
+	_active_skill_button.tooltip_text = battle_manager.get_active_skill_description()
 	_active_skill_button.pressed.connect(_on_active_skill_pressed)
 	_active_skill_button.custom_minimum_size = Vector2(160, 56)
 	_active_skill_button.add_theme_font_size_override("font_size", 24)

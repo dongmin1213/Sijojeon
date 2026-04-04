@@ -1326,3 +1326,14 @@ func get_active_skill_name() -> String:
 			return "경연개설"
 		_:
 			return ""
+
+
+## 액티브 스킬 설명을 반환한다.
+func get_active_skill_description() -> String:
+	match character_id:
+		"mugwan":
+			return "보유 병사 토큰 수만큼 기(氣)를 회복합니다. (최대 3, 전투당 1회)"
+		"mungwan":
+			return "학식을 3 즉시 획득합니다. (전투당 1회)"
+		_:
+			return ""
