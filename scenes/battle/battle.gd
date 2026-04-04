@@ -184,15 +184,15 @@ func _init_sijo_toggle() -> void:
 	var sijo_area := $SijoArea
 	_sijo_toggle_button = Button.new()
 	_sijo_toggle_button.text = "▼"
-	_sijo_toggle_button.custom_minimum_size = Vector2(40, 40)
-	_sijo_toggle_button.add_theme_font_size_override("font_size", 16)
+	_sijo_toggle_button.custom_minimum_size = Vector2(56, 56)
+	_sijo_toggle_button.add_theme_font_size_override("font_size", 24)
 	_sijo_toggle_button.pressed.connect(_on_sijo_toggle_pressed)
 	sijo_area.add_child(_sijo_toggle_button)
 	sijo_area.move_child(_sijo_toggle_button, 0)
 
 	_sijo_summary_label = Label.new()
 	_sijo_summary_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_sijo_summary_label.add_theme_font_size_override("font_size", 14)
+	_sijo_summary_label.add_theme_font_size_override("font_size", 22)
 	_sijo_summary_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
 	_sijo_summary_label.visible = false
 	sijo_area.add_child(_sijo_summary_label)
@@ -225,7 +225,8 @@ func _init_sijo_slots() -> void:
 		var label := Label.new()
 		label.text = "[%d]" % SijoSystem.PATTERN[i]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.custom_minimum_size = Vector2(120, 60)
+		label.custom_minimum_size = Vector2(140, 70)
+		label.add_theme_font_size_override("font_size", 24)
 		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 		sijo_container.add_child(label)
 		sijo_slot_labels.append(label)
@@ -315,19 +316,23 @@ func _update_enemy_ui() -> void:
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			name_label.add_theme_font_size_override("font_size", 24)
 			var hp_lbl := Label.new()
 			hp_lbl.text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
 			hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			hp_lbl.add_theme_font_size_override("font_size", 22)
 
 			var intent_label := Label.new()
 			intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			intent_label.add_theme_color_override("font_color", Color(1, 0.4, 0.4))
+			intent_label.add_theme_font_size_override("font_size", 22)
 			var intent := battle_manager._get_enemy_intent(i)
 			intent_label.text = _format_intent(intent)
 
 			var block_val: int = enemy.get("block", 0)
 			var enemy_block_label := Label.new()
 			enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			enemy_block_label.add_theme_font_size_override("font_size", 22)
 			enemy_block_label.text = "방어: %d" % block_val
 			enemy_block_label.visible = block_val > 0
 
@@ -522,7 +527,7 @@ func _show_sijo_reward_popup(text: String) -> void:
 	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup.anchors_preset = Control.PRESET_CENTER_TOP
 	popup.position.y = 120
-	popup.add_theme_font_size_override("font_size", 16)
+	popup.add_theme_font_size_override("font_size", 24)
 	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.5))
 	add_child(popup)
 	var tween := create_tween()
@@ -579,7 +584,7 @@ func _on_relic_triggered(relic_id: String, description: String) -> void:
 	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup.anchors_preset = Control.PRESET_CENTER_TOP
 	popup.position.y = 60
-	popup.add_theme_font_size_override("font_size", 16)
+	popup.add_theme_font_size_override("font_size", 24)
 	popup.add_theme_color_override("font_color", RelicManager.get_relic_rarity_color(relic_id))
 	add_child(popup)
 	# 1.5초 후 자동 제거
@@ -592,6 +597,7 @@ func _init_class_resource_ui() -> void:
 	_class_resource_label = Label.new()
 	var res_name := battle_manager.get_class_resource_name()
 	_class_resource_label.text = "%s: 0/%d" % [res_name, battle_manager.max_class_resource]
+	_class_resource_label.add_theme_font_size_override("font_size", 28)
 	_class_resource_label.add_theme_color_override("font_color", battle_manager.get_class_resource_color())
 	$BattleHUD/PlayerInfo.add_child(_class_resource_label)
 
@@ -601,7 +607,8 @@ func _init_active_skill_button() -> void:
 	var skill_name := battle_manager.get_active_skill_name()
 	_active_skill_button.text = skill_name
 	_active_skill_button.pressed.connect(_on_active_skill_pressed)
-	_active_skill_button.custom_minimum_size = Vector2(120, 40)
+	_active_skill_button.custom_minimum_size = Vector2(160, 56)
+	_active_skill_button.add_theme_font_size_override("font_size", 24)
 	$BattleHUD.add_child(_active_skill_button)
 
 
@@ -618,7 +625,7 @@ func _on_passive_triggered(skill_name: String, description: String) -> void:
 	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup.anchors_preset = Control.PRESET_CENTER_TOP
 	popup.position.y = 90
-	popup.add_theme_font_size_override("font_size", 14)
+	popup.add_theme_font_size_override("font_size", 22)
 	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.6))
 	add_child(popup)
 	var tween := create_tween()
@@ -720,7 +727,7 @@ func _build_status_icons(container: HBoxContainer, target: String) -> void:
 
 			var label := Label.new()
 			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			label.add_theme_font_size_override("font_size", 11)
+			label.add_theme_font_size_override("font_size", 18)
 
 			if def:
 				label.add_theme_color_override("font_color", def.color)

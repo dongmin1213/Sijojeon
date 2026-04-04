@@ -46,8 +46,8 @@ var _long_press_timer: Timer = null
 var _long_press_triggered: bool = false
 
 # 뷰포트 기준 카드 크기 비율 (1080x1920 기본 해상도 기준)
-const BASE_CARD_WIDTH := 140.0
-const BASE_CARD_HEIGHT := 200.0
+const BASE_CARD_WIDTH := 180.0
+const BASE_CARD_HEIGHT := 250.0
 const BASE_VIEWPORT_WIDTH := 1080.0
 
 # 카드 타입별 색상

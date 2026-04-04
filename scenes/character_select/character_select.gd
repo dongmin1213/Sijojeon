@@ -24,7 +24,7 @@ func _ready() -> void:
 	# 뷰포트 비례 UI 스케일링 적용
 	var vp_size := get_viewport().get_visible_rect().size
 	var ui_scale := minf(vp_size.x / 1080.0, vp_size.y / 1920.0)
-	title_label.add_theme_font_size_override("font_size", int(32 * ui_scale))
+	title_label.add_theme_font_size_override("font_size", maxi(int(42 * ui_scale), 36))
 	card_container.add_theme_constant_override("separation", int(20 * ui_scale))
 
 	start_button.disabled = true
@@ -182,12 +182,12 @@ func _build_character_cards() -> void:
 	var panel_min_w := minf(300.0 * scale_x, (available_w - separation * (card_count - 1)) / card_count)
 	var panel_min_h := 420.0 * ui_scale
 
-	# 스케일된 폰트 크기 계산 (고DPI 기기에서 최소 크기 보장)
-	var fs_name := maxi(int(26 * ui_scale), 26)
-	var fs_stat := maxi(int(20 * ui_scale), 24)
-	var fs_skill_header := maxi(int(18 * ui_scale), 22)
-	var fs_skill_desc := maxi(int(16 * ui_scale), 20)
-	var fs_lock := maxi(int(28 * ui_scale), 28)
+	# 스케일된 폰트 크기 계산 (모바일 가독성 확보)
+	var fs_name := maxi(int(34 * ui_scale), 30)
+	var fs_stat := maxi(int(28 * ui_scale), 26)
+	var fs_skill_header := maxi(int(26 * ui_scale), 24)
+	var fs_skill_desc := maxi(int(22 * ui_scale), 22)
+	var fs_lock := maxi(int(36 * ui_scale), 30)
 	var margin_h := int(16 * ui_scale)
 	var margin_v := int(12 * ui_scale)
 

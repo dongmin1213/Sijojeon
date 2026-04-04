@@ -35,7 +35,7 @@ const NODE_ICONS := {
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
 const BASE_VIEWPORT_WIDTH := 1080.0
-const BASE_NODE_SIZE := Vector2(160, 80)
+const BASE_NODE_SIZE := Vector2(200, 100)
 const BASE_ROW_SPACING := 160.0
 const BASE_MAP_PADDING_X := 80.0
 const BASE_MAP_PADDING_TOP := 40.0
@@ -139,7 +139,7 @@ func _build_map() -> void:
 	var padding_x := BASE_MAP_PADDING_X * scale_factor
 	var padding_top := BASE_MAP_PADDING_TOP * scale_factor
 	var padding_bottom := BASE_MAP_PADDING_BOTTOM * scale_factor
-	var font_size := int(20.0 * scale_factor)
+	var font_size := maxi(int(28.0 * scale_factor), 24)
 
 	# 행 간격: 뷰포트 높이에 맞춰 동적 계산 (노드가 화면에 균등 분포)
 	var available_height: float = viewport_height - padding_top - padding_bottom - node_size.y
