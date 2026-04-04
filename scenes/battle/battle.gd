@@ -156,10 +156,40 @@ func _start_battle() -> void:
 			for e in enemy_data:
 				var orig_hp: int = e.get("hp", 100)
 				e["hp"] = maxi(int(orig_hp * boss_mod), 1)
-		# 민심 29- → 보스에 "민란" 추가 페이즈 삽입
+
+		# 민심 구간별 보스 전투 영향
 		var minshim: int = rd.narrative_state.get("minshim", 50)
-		if minshim < 30:
+		if minshim >= 80:
+			# 민심 80~100: 보스 HP -20%, 플레이어 매 턴 HP +1 회복
+			for e in enemy_data:
+				var orig_hp: int = e.get("hp", 100)
+				e["hp"] = maxi(int(orig_hp * 0.8), 1)
+			rd.set_meta("minshim_boss_heal", true)
+		elif minshim >= 30 and minshim <= 49:
+			# 민심 30~49: 보스 HP +10%
+			for e in enemy_data:
+				var orig_hp: int = e.get("hp", 100)
+				e["hp"] = int(orig_hp * 1.1)
+		elif minshim >= 10 and minshim <= 29:
+			# 민심 10~29: 보스에 저항군 추가 페이즈 삽입
+			_inject_resistance_phase(enemy_data)
+		elif minshim < 10:
+			# 민심 0~9: 보스에 민란군 강화 페이즈 삽입
 			_inject_minran_phase(enemy_data)
+
+	# 신분 등급별 적 HP 보정
+	if rd.current_node_type == MapData.NodeType.ELITE:
+		var elite_hp_mod: float = JibunSystem.get_elite_hp_modifier(rd)
+		if elite_hp_mod != 1.0:
+			for e in enemy_data:
+				var orig_hp: int = e.get("hp", 100)
+				e["hp"] = int(orig_hp * elite_hp_mod)
+	elif is_boss:
+		var boss_hp_mod: float = JibunSystem.get_boss_hp_modifier(rd)
+		if boss_hp_mod != 1.0:
+			for e in enemy_data:
+				var orig_hp: int = e.get("hp", 100)
+				e["hp"] = int(orig_hp * boss_hp_mod)
 
 	_prev_player_hp = rd.current_hp
 	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
@@ -568,6 +598,14 @@ func _on_turn_started(turn: int) -> void:
 		vfx.turn_transition(self, "%d턴 시작" % turn)
 	# 매 턴 시작 유물 트리거 (삼족오 깃털 등)
 	RelicManager.trigger_turn_start(battle_manager)
+
+	# 민심 80+ 보스전: 매 턴 HP +1 회복
+	if GameManager.run_data and GameManager.run_data.has_meta("minshim_boss_heal"):
+		if battle_manager.player_hp < battle_manager.player_max_hp:
+			battle_manager.player_hp += 1
+			battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
+			if turn == 1:
+				battle_manager.passive_triggered.emit("백성의 축복", "높은 민심으로 매 턴 HP +1 회복")
 
 
 func _on_enemy_hp_changed(enemy_index: int, current: int, max_val: int) -> void:
@@ -1045,6 +1083,10 @@ func _on_battle_ended(victory: bool) -> void:
 	card_hand.visible = false
 	$HandArea.visible = false
 
+	# 민심 보스전 회복 메타 정리
+	if GameManager.run_data and GameManager.run_data.has_meta("minshim_boss_heal"):
+		GameManager.run_data.remove_meta("minshim_boss_heal")
+
 	# 상태 효과 아이콘 캐시 정리 (메모리 누수 방지)
 	for target in _status_icon_cache:
 		for eid in _status_icon_cache[target]:
@@ -1072,10 +1114,13 @@ func _on_battle_ended(victory: bool) -> void:
 
 		# 전투 승리 시 신분 점수 부여
 		if GameManager.run_data:
-			JibunSystem.on_battle_victory(
+			var rank_change = JibunSystem.on_battle_victory(
 				GameManager.run_data,
 				GameManager.run_data.current_node_type
 			)
+			# 승급 발생 시 보상 정보를 메타에 저장
+			if rank_change is Array and rank_change[1] > rank_change[0]:
+				GameManager.run_data.set_meta("jibun_rank_up", rank_change[1])
 
 		# 보스 처치 시 민심 변동 + 골드 환급
 		_apply_post_battle_minshim()
@@ -1150,7 +1195,50 @@ func _consume_boss_hp_modifier() -> float:
 	return modifier
 
 
-## 민심 29- 시 보스에 "민란" 추가 페이즈를 삽입한다.
+## 민심 10~29 시 보스에 "저항군" 추가 페이즈를 삽입한다.
+## 보스 HP 25% 구간에서 발동하며, 민란보다 약한 버전이다.
+func _inject_resistance_phase(enemy_data: Array[Dictionary]) -> void:
+	for enemy in enemy_data:
+		var phases: Array = enemy.get("phases", [])
+		if phases.is_empty():
+			continue
+
+		var resist_phase := {
+			"phase": phases.size() + 1,
+			"hp_threshold_label": "25% → 0% (저항군)",
+			"hp_threshold_min": 0,
+			"description": "저항군이 전장에 합류한다!",
+			"phase_trigger": {
+				"type": "hp_threshold",
+				"hp_percent": 25,
+				"on_trigger": [
+					{"type": "dialogue", "text": "저항군이 나타났다! 혼란이 가중된다!"},
+					{"type": "apply_buff", "buff": "strength", "stacks": 2}
+				]
+			},
+			"moves": [
+				{
+					"id": "resist_charge",
+					"name": {"ko": "저항군 습격"},
+					"intent": "attack",
+					"damage": 12,
+					"effects": []
+				},
+				{
+					"id": "resist_rally",
+					"name": {"ko": "결집"},
+					"intent": "defend",
+					"block": 10,
+					"effects": []
+				}
+			],
+			"move_pattern": {"type": "sequential", "sequence": [0, 1]}
+		}
+		phases.append(resist_phase)
+		enemy["phases"] = phases
+
+
+## 민심 0~9 시 보스에 "민란" 추가 페이즈를 삽입한다.
 ## 마지막 페이즈로 추가되며, 보스 HP 15% 구간에서 발동한다.
 func _inject_minran_phase(enemy_data: Array[Dictionary]) -> void:
 	for enemy in enemy_data:

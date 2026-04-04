@@ -131,7 +131,14 @@ func _pick_node_type(row: int, boss_row: int, act: int) -> MapData.NodeType:
 		return MapData.NodeType.BOSS
 
 	var act_weights: Dictionary = ACT_ROW_WEIGHTS.get(act, ACT_ROW_WEIGHTS[1])
-	var weights: Dictionary = act_weights.get(row, act_weights.get(1, {}))
+	var weights: Dictionary = act_weights.get(row, act_weights.get(1, {})).duplicate()
+
+	# 신분 등급 2+(중인): 엘리트 등장률 +5%p
+	if GameManager.run_data and weights.has("ELITE"):
+		var elite_bonus: float = JibunSystem.get_elite_spawn_bonus(GameManager.run_data)
+		if elite_bonus > 0.0:
+			weights["ELITE"] += int(elite_bonus * 100.0)  # 5% → +5 가중치
+
 	var total_weight := 0
 	for w in weights.values():
 		total_weight += w

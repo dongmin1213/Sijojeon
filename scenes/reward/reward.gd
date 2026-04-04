@@ -35,6 +35,7 @@ func _ready() -> void:
 	_try_relic_reward()
 	_generate_card_offers()
 	_display_card_offers()
+	_check_rank_up_reward()
 
 
 func _load_rewards() -> void:
@@ -112,6 +113,11 @@ func _on_relic_claimed() -> void:
 
 func _apply_gold() -> void:
 	if GameManager.run_data:
+		# 천민 신분: 전투 보상 금화 +50%
+		var gold_mult: float = JibunSystem.get_gold_reward_multiplier(GameManager.run_data)
+		# 판서/정승(5등급): 모든 전투 보상 +30%
+		gold_mult *= JibunSystem.get_all_reward_multiplier(GameManager.run_data)
+		reward_gold = int(reward_gold * gold_mult)
 		GameManager.run_data.gold += reward_gold
 		if reward_gold > 0:
 			AudioManager.play_sfx_by_key("coin")
@@ -132,12 +138,15 @@ func _generate_card_offers() -> void:
 	pool_cards.append_array(class_cards)
 	pool_cards.append_array(common_cards)
 
+	# 상민 신분: 카드 보상 선택지 +1
+	var offer_count: int = CARD_OFFER_COUNT + JibunSystem.get_card_offer_bonus(GameManager.run_data)
+
 	# 스타터 덱에 이미 있는 카드 제외하지 않음 (중복 허용 — StS 스타일)
-	# 셔플 후 상위 3장 선택
+	# 셔플 후 선택
 	var shuffled: Array[CardData] = pool_cards.duplicate()
 	shuffled.shuffle()
 
-	for i in mini(CARD_OFFER_COUNT, shuffled.size()):
+	for i in mini(offer_count, shuffled.size()):
 		card_offers.append(shuffled[i].id)
 
 
@@ -230,6 +239,185 @@ func _on_skip_pressed() -> void:
 	card_selected = true
 	skip_button.visible = false
 	proceed_button.visible = true
+
+
+func _check_rank_up_reward() -> void:
+	## 신분 승급 즉각 보상을 확인하고 UI를 표시한다.
+	if not GameManager.run_data or not GameManager.run_data.has_meta("jibun_rank_up"):
+		return
+
+	var new_rank: int = GameManager.run_data.get_meta("jibun_rank_up")
+	GameManager.run_data.remove_meta("jibun_rank_up")
+
+	var reward_type: String = JibunSystem.RANK_UP_REWARDS.get(new_rank, "")
+	if reward_type == "":
+		return
+
+	var rank_name: String = JibunSystem.get_rank_name(new_rank)
+	var desc: String = JibunSystem.RANK_UP_REWARD_DESC.get(new_rank, "")
+
+	# 승급 보상 섹션 UI 생성
+	var rank_section := VBoxContainer.new()
+	rank_section.name = "RankUpSection"
+
+	var rank_label := Label.new()
+	rank_label.text = "🎉 %s 승급!" % rank_name
+	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	rank_label.add_theme_font_size_override("font_size", 30)
+	rank_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	rank_section.add_child(rank_label)
+
+	var desc_label := Label.new()
+	desc_label.text = desc
+	desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	desc_label.add_theme_font_size_override("font_size", 20)
+	rank_section.add_child(desc_label)
+
+	match reward_type:
+		"card_select":
+			_build_rank_card_select(rank_section)
+		"card_remove_free":
+			_build_rank_card_remove(rank_section)
+		"relic_select":
+			_build_rank_relic_select(rank_section)
+		"card_upgrade":
+			_build_rank_card_upgrade(rank_section)
+
+	# 카드 섹션 앞에 삽입
+	$VBoxContainer.add_child(rank_section)
+	$VBoxContainer.move_child(rank_section, $VBoxContainer.get_children().find(card_section))
+
+
+func _build_rank_card_select(parent: VBoxContainer) -> void:
+	## 중인 승급 보상: 카드 1장 추가 선택 UI
+	var offers: Array[String] = []
+	if GameManager.run_data:
+		var character_id: String = GameManager.run_data.character_id
+		var pool: Array[CardData] = DataLoader.get_cards_by_pool(character_id)
+		pool.append_array(DataLoader.get_cards_by_pool("common"))
+		pool.shuffle()
+		for i in mini(3, pool.size()):
+			offers.append(pool[i].id)
+
+	var container := HBoxContainer.new()
+	container.alignment = BoxContainer.ALIGNMENT_CENTER
+	for card_id in offers:
+		var card: CardData = DataLoader.get_card(card_id)
+		if card == null:
+			continue
+		var btn := Button.new()
+		btn.custom_minimum_size = Vector2(200, 120)
+		btn.text = "%s\n비용: %d기" % [card.get_display_name(), card.cost]
+		btn.add_theme_font_size_override("font_size", 18)
+		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		btn.pressed.connect(_on_rank_card_chosen.bind(card_id, container))
+		container.add_child(btn)
+	parent.add_child(container)
+
+
+func _on_rank_card_chosen(card_id: String, container: HBoxContainer) -> void:
+	if GameManager.run_data:
+		GameManager.run_data.deck.append(card_id)
+		AudioManager.play_sfx_by_key("card_draw")
+	for btn in container.get_children():
+		if btn is Button:
+			btn.disabled = true
+
+
+func _build_rank_card_remove(parent: VBoxContainer) -> void:
+	## 양반 승급 보상: 카드 제거 1회 무료
+	if not GameManager.run_data or GameManager.run_data.deck.is_empty():
+		return
+
+	var container := HBoxContainer.new()
+	container.alignment = BoxContainer.ALIGNMENT_CENTER
+
+	# 덱에서 최대 5장까지 선택지 표시
+	var deck_sample: Array[String] = GameManager.run_data.deck.duplicate()
+	deck_sample.shuffle()
+	for i in mini(5, deck_sample.size()):
+		var card_id: String = deck_sample[i]
+		var card: CardData = DataLoader.get_card(card_id)
+		if card == null:
+			continue
+		var btn := Button.new()
+		btn.custom_minimum_size = Vector2(180, 100)
+		btn.text = "제거: %s" % card.get_display_name()
+		btn.add_theme_font_size_override("font_size", 16)
+		btn.pressed.connect(_on_rank_card_removed.bind(card_id, container))
+		container.add_child(btn)
+	parent.add_child(container)
+
+
+func _on_rank_card_removed(card_id: String, container: HBoxContainer) -> void:
+	if GameManager.run_data:
+		var idx: int = GameManager.run_data.deck.find(card_id)
+		if idx >= 0:
+			GameManager.run_data.deck.remove_at(idx)
+			AudioManager.play_sfx_by_key("card_draw")
+	for btn in container.get_children():
+		if btn is Button:
+			btn.disabled = true
+
+
+func _build_rank_relic_select(parent: VBoxContainer) -> void:
+	## 당상관 승급 보상: 유물 선택 1회 추가
+	var relic_id: String = RelicManager.roll_relic_reward("elite")
+	if relic_id == "":
+		return
+
+	var btn := Button.new()
+	btn.custom_minimum_size = Vector2(300, 80)
+	var relic_name := RelicManager.get_relic_display_name(relic_id)
+	var relic_desc := RelicManager.get_relic_description(relic_id)
+	btn.text = "%s\n%s" % [relic_name, relic_desc]
+	btn.add_theme_font_size_override("font_size", 18)
+	btn.pressed.connect(func():
+		RelicManager.acquire_relic(relic_id)
+		btn.disabled = true
+		btn.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+	)
+	parent.add_child(btn)
+
+
+func _build_rank_card_upgrade(parent: VBoxContainer) -> void:
+	## 판서/정승 승급 보상: 덱 카드 1장 강화 선택
+	if not GameManager.run_data or GameManager.run_data.deck.is_empty():
+		return
+
+	var container := HBoxContainer.new()
+	container.alignment = BoxContainer.ALIGNMENT_CENTER
+
+	# 업그레이드 가능한 카드 중 최대 5장 표시
+	var upgradeable: Array[String] = []
+	for cid in GameManager.run_data.deck:
+		if not cid.ends_with("_plus"):
+			upgradeable.append(cid)
+	upgradeable.shuffle()
+
+	for i in mini(5, upgradeable.size()):
+		var card_id: String = upgradeable[i]
+		var card: CardData = DataLoader.get_card(card_id)
+		if card == null:
+			continue
+		var btn := Button.new()
+		btn.custom_minimum_size = Vector2(180, 100)
+		btn.text = "강화: %s" % card.get_display_name()
+		btn.add_theme_font_size_override("font_size", 16)
+		btn.pressed.connect(_on_rank_card_upgraded.bind(card_id, container))
+		container.add_child(btn)
+	parent.add_child(container)
+
+
+func _on_rank_card_upgraded(card_id: String, container: HBoxContainer) -> void:
+	if GameManager.run_data:
+		var idx: int = GameManager.run_data.deck.find(card_id)
+		if idx >= 0:
+			GameManager.run_data.deck[idx] = card_id + "_plus"
+			AudioManager.play_sfx_by_key("card_draw")
+	for btn in container.get_children():
+		if btn is Button:
+			btn.disabled = true
 
 
 func _on_proceed_pressed() -> void:

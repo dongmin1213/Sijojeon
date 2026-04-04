@@ -268,6 +268,13 @@ func _on_choice_selected(choice: Dictionary) -> void:
 	# 메인 효과 적용
 	result_text = _apply_effect(choice, effect_type)
 
+	# 민심 30 미만: 20% 확률로 부정적 추가 효과 발생
+	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	if minshim < 30 and randf() < 0.2:
+		var penalty_hp: int = randi_range(3, 8)
+		GameManager.run_data.current_hp = maxi(GameManager.run_data.current_hp - penalty_hp, 1)
+		result_text += "\n\n[민심 불안] 불만을 품은 백성이 돌을 던졌다! HP -%d" % penalty_hp
+
 	# 보너스 효과 적용
 	var bonus_type: String = str(choice.get("effect_type_bonus", ""))
 	if bonus_type != "":

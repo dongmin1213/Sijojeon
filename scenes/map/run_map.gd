@@ -483,6 +483,19 @@ func _on_node_pressed(node_id: int) -> void:
 	# 자동 저장
 	GameManager.save_current_run()
 
+	# 민심 0~9 구간: 비전투 노드 이동 시 25% 확률 강제 전투 삽입
+	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	if minshim < 10 and map_node.type not in [MapData.NodeType.BATTLE, MapData.NodeType.ELITE, MapData.NodeType.BOSS]:
+		if randf() < 0.25:
+			# 원래 목적지 정보를 저장하고 강제 전투로 전환
+			GameManager.run_data.set_meta("minran_forced_original_type", map_node.type)
+			GameManager.run_data.set_meta("minran_forced_original_encounter", map_node.encounter_id)
+			GameManager.run_data.current_node_type = MapData.NodeType.BATTLE
+			GameManager.run_data.current_encounter_id = "E001"  # 민란군 기본 적
+			GameManager.save_current_run()
+			GameManager.change_state(GameManager.GameState.BATTLE)
+			return
+
 	# 노드 타입에 따라 씬 전환
 	match map_node.type:
 		MapData.NodeType.BATTLE, MapData.NodeType.ELITE:
