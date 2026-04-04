@@ -9,9 +9,9 @@
     "romanized": "Gwisin Danji",
     "description": {
       "ko": "강해질수록 귀신도 넘는다는 조선식 표현. 단계 숫자가 높을수록 더 강한 귀신과 싸우는 난이도.",
-      "en": ""
+      "en": "A Joseon expression meaning one surpasses even ghosts as one grows stronger. Higher levels mean fighting fiercer spirits."
     },
-    "en": ""
+    "en": "Gwisin Level"
   },
   "unlock_rule": "단계 n 해금 조건: 단계 n-1로 런 완료 (엔딩 도달). 단계 0은 기본 해금.",
   "curse_card": {
@@ -20,7 +20,7 @@
       "ko": "뒤주",
       "hanja": "柜",
       "romanized": "Dweju",
-      "en": ""
+      "en": "Rice Chest"
     },
     "beat": 3,
     "cost": 0,
@@ -31,15 +31,15 @@
     "rarity": 0,
     "effect": {
       "ko": "사용 시 플레이어에게 피해 5를 입힌다. (소멸 불가, 덱에서 제거 불가)",
-      "en": ""
+      "en": "When played, deal 5 damage to yourself. (Cannot be exhausted or removed from deck)"
     },
     "effect_upgraded": {
       "ko": "업그레이드 불가",
-      "en": ""
+      "en": "Cannot be upgraded"
     },
     "flavor_text": {
       "ko": "뒤주 안에 갇혀 굶어 죽은 자의 한이 서린 — 아무도 열지 못하는 저주.",
-      "en": ""
+      "en": "The bitter resentment of one who starved to death locked inside a rice chest — a curse no one can undo."
     },
     "balance_rationale": "저주 카드. 0코스트이지만 사용 시 자해 5. 손에 들어오면 반드시 플레이해야 하는 상황에서 패널티. 어센션 3단계 이상에서 시작 덱에 포함. 카드 제거 불가로 런 내내 부담.",
     "sijo_position": "초장 첫 슬롯 [3] — 하지만 절대 먼저 사용하면 안 됨",
@@ -53,7 +53,7 @@
       "level": 0,
       "description": {
         "ko": "기본 난이도. 수정자 없음.",
-        "en": ""
+        "en": "Base difficulty. No modifiers."
       },
       "unlock_condition": "기본 해금",
       "modifiers": [],
@@ -61,14 +61,14 @@
       "score_bonus": 0,
       "name": {
         "ko": "기본",
-        "en": ""
+        "en": "Base"
       }
     },
     {
       "level": 1,
       "description": {
         "ko": "적들이 조금 더 강해졌다.",
-        "en": ""
+        "en": "Enemies have grown slightly stronger."
       },
       "unlock_condition": "단계 0으로 런 완료",
       "modifiers": [
@@ -82,7 +82,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10%",
-            "en": ""
+            "en": "All enemy HP +10%"
           }
         }
       ],
@@ -90,14 +90,14 @@
       "score_bonus": 10,
       "name": {
         "ko": "귀신 1단계",
-        "en": ""
+        "en": "Gwisin Level 1"
       }
     },
     {
       "level": 2,
       "description": {
         "ko": "카드 제거가 더 비싸진다.",
-        "en": ""
+        "en": "Card removal costs more."
       },
       "unlock_condition": "단계 1로 런 완료",
       "modifiers": [
@@ -111,7 +111,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적)",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative)"
           }
         },
         {
@@ -123,7 +123,7 @@
           "cumulative": true,
           "description": {
             "ko": "상점 카드 제거 비용 +25골드",
-            "en": ""
+            "en": "Shop card removal cost +25 gold"
           }
         }
       ],
@@ -131,14 +131,14 @@
       "score_bonus": 20,
       "name": {
         "ko": "귀신 2단계",
-        "en": ""
+        "en": "Gwisin Level 2"
       }
     },
     {
       "level": 3,
       "description": {
         "ko": "시작 덱에 저주가 깃든다.",
-        "en": ""
+        "en": "A curse inhabits your starting deck."
       },
       "unlock_condition": "단계 2로 런 완료",
       "modifiers": [
@@ -152,7 +152,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적)",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative)"
           }
         },
         {
@@ -164,7 +164,7 @@
           "cumulative": true,
           "description": {
             "ko": "카드 제거 비용 +25골드 (누적)",
-            "en": ""
+            "en": "Card removal cost +25 gold (cumulative)"
           }
         },
         {
@@ -176,7 +176,7 @@
           "cumulative": true,
           "description": {
             "ko": "시작 덱에 저주 카드 '뒤주' 1장 추가",
-            "en": ""
+            "en": "Add 1 curse card 'Rice Chest' to starting deck"
           }
         }
       ],
@@ -184,14 +184,14 @@
       "score_bonus": 35,
       "name": {
         "ko": "귀신 3단계",
-        "en": ""
+        "en": "Gwisin Level 3"
       }
     },
     {
       "level": 4,
       "description": {
         "ko": "정예를 만나면 먼저 약해진다.",
-        "en": ""
+        "en": "You start weakened against elites."
       },
       "unlock_condition": "단계 3으로 런 완료",
       "modifiers": [
@@ -205,7 +205,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적)",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative)"
           }
         },
         {
@@ -217,7 +217,7 @@
           "cumulative": true,
           "description": {
             "ko": "카드 제거 비용 +25골드 (누적)",
-            "en": ""
+            "en": "Card removal cost +25 gold (cumulative)"
           }
         },
         {
@@ -229,7 +229,7 @@
           "cumulative": true,
           "description": {
             "ko": "시작 덱에 뒤주 1장 (누적)",
-            "en": ""
+            "en": "1 Rice Chest in starting deck (cumulative)"
           }
         },
         {
@@ -242,7 +242,7 @@
           "cumulative": true,
           "description": {
             "ko": "정예 전투 시작 시 플레이어에게 약화(弱化) 2턴 부여",
-            "en": ""
+            "en": "Apply Weaken to player for 2 turns at the start of elite combat"
           }
         }
       ],
@@ -250,14 +250,14 @@
       "score_bonus": 50,
       "name": {
         "ko": "귀신 4단계",
-        "en": ""
+        "en": "Gwisin Level 4"
       }
     },
     {
       "level": 5,
       "description": {
         "ko": "보스를 쓰러뜨려도 회복할 수 없다.",
-        "en": ""
+        "en": "No healing after defeating a boss."
       },
       "unlock_condition": "단계 4로 런 완료",
       "modifiers": [
@@ -271,7 +271,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적)",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative)"
           }
         },
         {
@@ -283,7 +283,7 @@
           "cumulative": true,
           "description": {
             "ko": "카드 제거 비용 +25골드 (누적)",
-            "en": ""
+            "en": "Card removal cost +25 gold (cumulative)"
           }
         },
         {
@@ -295,7 +295,7 @@
           "cumulative": true,
           "description": {
             "ko": "시작 덱에 뒤주 1장 (누적)",
-            "en": ""
+            "en": "1 Rice Chest in starting deck (cumulative)"
           }
         },
         {
@@ -308,7 +308,7 @@
           "cumulative": true,
           "description": {
             "ko": "정예 전투 시작 시 약화 2턴 (누적)",
-            "en": ""
+            "en": "Weaken for 2 turns at elite combat start (cumulative)"
           }
         },
         {
@@ -319,7 +319,7 @@
           "cumulative": true,
           "description": {
             "ko": "보스 처치 후 HP 회복 없음 (기존 최대 HP 20% → 0%)",
-            "en": ""
+            "en": "No HP recovery after boss kill (was 20% max HP, now 0%)"
           }
         }
       ],
@@ -327,14 +327,14 @@
       "score_bonus": 70,
       "name": {
         "ko": "귀신 5단계",
-        "en": ""
+        "en": "Gwisin Level 5"
       }
     },
     {
       "level": 6,
       "description": {
         "ko": "상점의 모든 것이 비싸진다.",
-        "en": ""
+        "en": "Everything in the shop costs more."
       },
       "unlock_condition": "단계 5로 런 완료",
       "modifiers": [
@@ -348,7 +348,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적)",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative)"
           }
         },
         {
@@ -360,7 +360,7 @@
           "cumulative": true,
           "description": {
             "ko": "카드 제거 비용 +25골드 (누적)",
-            "en": ""
+            "en": "Card removal cost +25 gold (cumulative)"
           }
         },
         {
@@ -372,7 +372,7 @@
           "cumulative": true,
           "description": {
             "ko": "시작 덱에 뒤주 1장 (누적)",
-            "en": ""
+            "en": "1 Rice Chest in starting deck (cumulative)"
           }
         },
         {
@@ -385,7 +385,7 @@
           "cumulative": true,
           "description": {
             "ko": "정예 전투 시작 시 약화 2턴 (누적)",
-            "en": ""
+            "en": "Weaken for 2 turns at elite combat start (cumulative)"
           }
         },
         {
@@ -396,7 +396,7 @@
           "cumulative": true,
           "description": {
             "ko": "보스 처치 후 HP 회복 없음 (누적)",
-            "en": ""
+            "en": "No HP recovery after boss kill (cumulative)"
           }
         },
         {
@@ -408,7 +408,7 @@
           "cumulative": true,
           "description": {
             "ko": "상점 카드 및 유물 가격 +20%",
-            "en": ""
+            "en": "Shop card and relic prices +20%"
           }
         }
       ],
@@ -416,14 +416,14 @@
       "score_bonus": 90,
       "name": {
         "ko": "귀신 6단계",
-        "en": ""
+        "en": "Gwisin Level 6"
       }
     },
     {
       "level": 7,
       "description": {
         "ko": "전투마다 추가 적이 등장한다.",
-        "en": ""
+        "en": "An extra enemy appears in each battle."
       },
       "unlock_condition": "단계 6으로 런 완료",
       "modifiers": [
@@ -437,7 +437,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적)",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative)"
           }
         },
         {
@@ -449,7 +449,7 @@
           "cumulative": true,
           "description": {
             "ko": "카드 제거 비용 +25골드 (누적)",
-            "en": ""
+            "en": "Card removal cost +25 gold (cumulative)"
           }
         },
         {
@@ -461,7 +461,7 @@
           "cumulative": true,
           "description": {
             "ko": "시작 덱에 뒤주 1장 (누적)",
-            "en": ""
+            "en": "1 Rice Chest in starting deck (cumulative)"
           }
         },
         {
@@ -474,7 +474,7 @@
           "cumulative": true,
           "description": {
             "ko": "정예 전투 시작 시 약화 2턴 (누적)",
-            "en": ""
+            "en": "Weaken for 2 turns at elite combat start (cumulative)"
           }
         },
         {
@@ -485,7 +485,7 @@
           "cumulative": true,
           "description": {
             "ko": "보스 처치 후 HP 회복 없음 (누적)",
-            "en": ""
+            "en": "No HP recovery after boss kill (cumulative)"
           }
         },
         {
@@ -497,7 +497,7 @@
           "cumulative": true,
           "description": {
             "ko": "상점 가격 +20% (누적)",
-            "en": ""
+            "en": "Shop prices +20% (cumulative)"
           }
         },
         {
@@ -508,7 +508,7 @@
           "count": 1,
           "description": {
             "ko": "일반 전투에 추가 미니 적 1마리 등장 (HP 6~10, 공격 4)",
-            "en": ""
+            "en": "1 extra mini enemy spawns in normal combat (HP 6-10, ATK 4)"
           },
           "cumulative": true
         }
@@ -517,14 +517,14 @@
       "score_bonus": 115,
       "name": {
         "ko": "귀신 7단계",
-        "en": ""
+        "en": "Gwisin Level 7"
       }
     },
     {
       "level": 8,
       "description": {
         "ko": "기(氣)가 줄어들었다.",
-        "en": ""
+        "en": "Your Qi has been reduced."
       },
       "unlock_condition": "단계 7로 런 완료",
       "modifiers": [
@@ -538,7 +538,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적)",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative)"
           }
         },
         {
@@ -550,7 +550,7 @@
           "cumulative": true,
           "description": {
             "ko": "카드 제거 비용 +25골드 (누적)",
-            "en": ""
+            "en": "Card removal cost +25 gold (cumulative)"
           }
         },
         {
@@ -562,7 +562,7 @@
           "cumulative": true,
           "description": {
             "ko": "시작 덱에 뒤주 1장 (누적)",
-            "en": ""
+            "en": "1 Rice Chest in starting deck (cumulative)"
           }
         },
         {
@@ -575,7 +575,7 @@
           "cumulative": true,
           "description": {
             "ko": "정예 전투 시작 시 약화 2턴 (누적)",
-            "en": ""
+            "en": "Weaken for 2 turns at elite combat start (cumulative)"
           }
         },
         {
@@ -586,7 +586,7 @@
           "cumulative": true,
           "description": {
             "ko": "보스 처치 후 HP 회복 없음 (누적)",
-            "en": ""
+            "en": "No HP recovery after boss kill (cumulative)"
           }
         },
         {
@@ -598,7 +598,7 @@
           "cumulative": true,
           "description": {
             "ko": "상점 가격 +20% (누적)",
-            "en": ""
+            "en": "Shop prices +20% (cumulative)"
           }
         },
         {
@@ -610,7 +610,7 @@
           "cumulative": true,
           "description": {
             "ko": "일반 전투 추가 미니 적 1마리 (누적)",
-            "en": ""
+            "en": "1 extra mini enemy in normal combat (cumulative)"
           }
         },
         {
@@ -622,7 +622,7 @@
           "cumulative": true,
           "description": {
             "ko": "턴당 기(氣) 기본값 -1 (3 → 2기)",
-            "en": ""
+            "en": "Base Qi per turn -1 (3 → 2 Qi)"
           }
         }
       ],
@@ -630,14 +630,14 @@
       "score_bonus": 145,
       "name": {
         "ko": "귀신 8단계",
-        "en": ""
+        "en": "Gwisin Level 8"
       }
     },
     {
       "level": 9,
       "description": {
         "ko": "저주가 쌓인다.",
-        "en": ""
+        "en": "Curses accumulate."
       },
       "unlock_condition": "단계 8로 런 완료",
       "modifiers": [
@@ -651,7 +651,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적) — 총 ×1.10^9 ≈ +235%",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative) — total x1.10^9 ≈ +235%"
           }
         },
         {
@@ -663,7 +663,7 @@
           "cumulative": true,
           "description": {
             "ko": "카드 제거 비용 +25골드 (누적)",
-            "en": ""
+            "en": "Card removal cost +25 gold (cumulative)"
           }
         },
         {
@@ -676,7 +676,7 @@
           "cumulative": true,
           "description": {
             "ko": "시작 덱에 뒤주 2장 추가 (1단계 1장 + 2장 = 총 3장)",
-            "en": ""
+            "en": "Add 2 Rice Chests to starting deck (1 from earlier + 2 = 3 total)"
           }
         },
         {
@@ -689,7 +689,7 @@
           "cumulative": true,
           "description": {
             "ko": "정예 전투 시작 시 약화 2턴 (누적)",
-            "en": ""
+            "en": "Weaken for 2 turns at elite combat start (cumulative)"
           }
         },
         {
@@ -700,7 +700,7 @@
           "cumulative": true,
           "description": {
             "ko": "보스 처치 후 HP 회복 없음 (누적)",
-            "en": ""
+            "en": "No HP recovery after boss kill (cumulative)"
           }
         },
         {
@@ -712,7 +712,7 @@
           "cumulative": true,
           "description": {
             "ko": "상점 가격 +20% (누적)",
-            "en": ""
+            "en": "Shop prices +20% (cumulative)"
           }
         },
         {
@@ -724,7 +724,7 @@
           "cumulative": true,
           "description": {
             "ko": "일반 전투 추가 미니 적 1마리 (누적)",
-            "en": ""
+            "en": "1 extra mini enemy in normal combat (cumulative)"
           }
         },
         {
@@ -736,7 +736,7 @@
           "cumulative": true,
           "description": {
             "ko": "턴당 기 기본값 -1 (3 → 2기) (누적)",
-            "en": ""
+            "en": "Base Qi per turn -1 (3 → 2 Qi) (cumulative)"
           }
         }
       ],
@@ -744,14 +744,14 @@
       "score_bonus": 180,
       "name": {
         "ko": "귀신 9단계",
-        "en": ""
+        "en": "Gwisin Level 9"
       }
     },
     {
       "level": 10,
       "description": {
         "ko": "최고 난이도. 모든 저주가 쌓이고, 보스는 더욱 강하다. 이 단계를 클리어하면 전설이 된다.",
-        "en": ""
+        "en": "Maximum difficulty. All curses stack, and bosses are even stronger. Clear this level to become a legend."
       },
       "unlock_condition": "단계 9로 런 완료",
       "modifiers": [
@@ -765,7 +765,7 @@
           "cumulative": true,
           "description": {
             "ko": "모든 적 HP +10% (누적)",
-            "en": ""
+            "en": "All enemy HP +10% (cumulative)"
           }
         },
         {
@@ -777,7 +777,7 @@
           "cumulative": true,
           "description": {
             "ko": "카드 제거 비용 +25골드 (누적)",
-            "en": ""
+            "en": "Card removal cost +25 gold (cumulative)"
           }
         },
         {
@@ -789,7 +789,7 @@
           "cumulative": true,
           "description": {
             "ko": "시작 덱 뒤주 2장 추가 (총 3장) (누적)",
-            "en": ""
+            "en": "Add 2 Rice Chests to starting deck (3 total) (cumulative)"
           }
         },
         {
@@ -802,7 +802,7 @@
           "cumulative": true,
           "description": {
             "ko": "정예 전투 시작 시 약화 2턴 (누적)",
-            "en": ""
+            "en": "Weaken for 2 turns at elite combat start (cumulative)"
           }
         },
         {
@@ -813,7 +813,7 @@
           "cumulative": true,
           "description": {
             "ko": "보스 처치 후 HP 회복 없음 (누적)",
-            "en": ""
+            "en": "No HP recovery after boss kill (cumulative)"
           }
         },
         {
@@ -825,7 +825,7 @@
           "cumulative": true,
           "description": {
             "ko": "상점 가격 +20% (누적)",
-            "en": ""
+            "en": "Shop prices +20% (cumulative)"
           }
         },
         {
@@ -837,7 +837,7 @@
           "cumulative": true,
           "description": {
             "ko": "일반 전투 추가 미니 적 1마리 (누적)",
-            "en": ""
+            "en": "1 extra mini enemy in normal combat (cumulative)"
           }
         },
         {
@@ -849,7 +849,7 @@
           "cumulative": true,
           "description": {
             "ko": "턴당 기 기본값 -1 (누적)",
-            "en": ""
+            "en": "Base Qi per turn -1 (cumulative)"
           }
         },
         {
@@ -863,7 +863,7 @@
           "note": "10단계 전용 추가 수정자. 적 HP +10%^10 에 추가로 곱하기.",
           "description": {
             "ko": "모든 보스 HP 추가 +30%",
-            "en": ""
+            "en": "All boss HP +30% additional"
           }
         },
         {
@@ -889,7 +889,7 @@
           "cumulative": false,
           "description": {
             "ko": "최종 보스에 새 페이즈 추가 — '분노의 귀신' 페이즈 (HP 20 추가, AoE 12 공격)",
-            "en": ""
+            "en": "New phase added to final boss — 'Wrathful Ghost' phase (HP +20, AoE 12 attack)"
           }
         }
       ],
@@ -902,7 +902,7 @@
       },
       "name": {
         "ko": "귀신 10단계 (최고 난이도)",
-        "en": ""
+        "en": "Gwisin Level 10 (Maximum Difficulty)"
       }
     }
   ],
@@ -918,7 +918,8 @@
     "name": {
       "ko": "영혼 잔해",
       "hanja": "靈魂殘骸",
-      "romanized": "Yeonghon Janhae"
+      "romanized": "Yeonghon Janhae",
+      "en": "Soul Remnant"
     },
     "hp": {
       "min": 6,

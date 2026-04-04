@@ -13,7 +13,7 @@
       },
       "label": {
         "ko": "일반",
-        "en": ""
+        "en": "Common"
       }
     },
     "2_uncommon": {
@@ -25,7 +25,7 @@
       },
       "label": {
         "ko": "고급",
-        "en": ""
+        "en": "Uncommon"
       }
     },
     "3_rare": {
@@ -37,7 +37,7 @@
       },
       "label": {
         "ko": "희귀",
-        "en": ""
+        "en": "Rare"
       }
     },
     "4_legendary": {
@@ -47,7 +47,7 @@
       },
       "label": {
         "ko": "전설",
-        "en": ""
+        "en": "Legendary"
       }
     }
   },
@@ -58,22 +58,22 @@
         "ko": "편자",
         "hanja": "鞭子",
         "romanized": "Pyeonja",
-        "en": ""
+        "en": "Horsewhip"
       },
       "rarity": 1,
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 방어도 5를 즉시 획득한다.",
-        "en": ""
+        "en": "Gain 5 Block at the start of each combat."
       },
       "effect_description": {
         "ko": "각 전투 첫 턴 전 방어도 5 생성",
-        "en": ""
+        "en": "Gain 5 Block before the first turn of each combat."
       },
       "flavor_text": {
         "ko": "낡은 채찍이지만, 몸을 감싸는 기세만큼은 새것이다.",
-        "en": ""
+        "en": "An old whip, yet its commanding presence feels brand new."
       },
       "balance_rationale": "일반 유물. 1막 적 최대 피해 8 기준, 방어도 5는 약 62% 흡수. 매 전투 안정성 제공. 수호(5) 카드 1장과 동등 — 그러나 핸드 1장을 쓰지 않아도 된다는 가치.",
       "obtain_from": [
@@ -91,22 +91,22 @@
         "ko": "평안 부적",
         "hanja": "平安符籍",
         "romanized": "Pyeongan Bujeok",
-        "en": ""
+        "en": "Peace Talisman"
       },
       "rarity": 1,
       "class_restriction": null,
       "trigger": "on_buff_apply_to_self",
       "effect": {
         "ko": "자신에게 버프(긍정 상태이상)를 부여할 때 지속 시간이 1턴 연장된다.",
-        "en": ""
+        "en": "When applying a buff to yourself, its duration is extended by 1 turn."
       },
       "effect_description": {
         "ko": "자기 버프 지속 턴 +1",
-        "en": ""
+        "en": "Self-buff duration +1 turn."
       },
       "flavor_text": {
         "ko": "무속 선생이 써준 글귀 한 장 — 기도가 담겨 있어 더 오래 지속된다.",
-        "en": ""
+        "en": "A prayer written by a shaman — its blessing lingers longer than expected."
       },
       "balance_rationale": "상태이상 버프 의존도가 높은 문관·무당에게 특히 유리. 단순 수치가 아닌 '지속 연장'으로 카드 순서 전략성을 높임. 직접 피해 없으므로 일반 등급 적합.",
       "obtain_from": [
@@ -124,22 +124,22 @@
         "ko": "행운의 엽전",
         "hanja": "幸運葉錢",
         "romanized": "Haengwun Yeopjeon",
-        "en": ""
+        "en": "Lucky Coin"
       },
       "rarity": 1,
       "class_restriction": null,
       "trigger": "on_combat_victory",
       "effect": {
         "ko": "전투 승리 시 골드 10을 추가 획득한다.",
-        "en": ""
+        "en": "Gain 10 additional Gold upon winning a combat."
       },
       "effect_description": {
         "ko": "전투 승리마다 골드 +10",
-        "en": ""
+        "en": "Gold +10 per combat victory."
       },
       "flavor_text": {
         "ko": "동그란 구멍 사이로 복이 쌓인다. 이 돈은 쓰는 게 아니라 부르는 것이다.",
-        "en": ""
+        "en": "Fortune gathers through the round hole. This coin is not for spending — it is for calling."
       },
       "balance_rationale": "런 당 전투 10~13회 기준 약 100~130G 추가. 상점 카드 1장 제거(75G) 또는 구매(75G) 1회분에 해당. 경제 순환 촉진. 일반 등급 적합.",
       "obtain_from": [
@@ -157,22 +157,22 @@
         "ko": "봉황 깃털",
         "hanja": "鳳凰羽",
         "romanized": "Bonghwang Gitteo",
-        "en": ""
+        "en": "Phoenix Feather"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "on_deck_shuffle",
       "effect": {
         "ko": "드로우 더미가 소진되어 셔플될 때마다 카드 1장을 추가로 드로우한다.",
-        "en": ""
+        "en": "Whenever the draw pile is exhausted and reshuffled, draw 1 additional card."
       },
       "effect_description": {
         "ko": "셔플 발동 시 무료 드로우 +1",
-        "en": ""
+        "en": "Draw +1 on shuffle."
       },
       "flavor_text": {
         "ko": "봉황은 천 년에 한 번 날갯짓한다. 그 깃털 하나에 시대가 담긴다.",
-        "en": ""
+        "en": "The phoenix flaps its wings once every thousand years. A single feather holds an era."
       },
       "balance_rationale": "덱이 얇을수록 셔플 빈도가 높아져 상시 +1 드로우에 가까워짐. 카드 제거 전략과 시너지. 드로우는 곧 행동력 — 고급 등급 적합. 과도한 드로우 엔진 방지를 위해 셔플 당 1회로 제한.",
       "obtain_from": [
@@ -189,22 +189,22 @@
         "ko": "홍삼 뿌리",
         "hanja": "紅蔘根",
         "romanized": "Hongsam Ppuri",
-        "en": ""
+        "en": "Red Ginseng Root"
       },
       "rarity": 1,
       "class_restriction": null,
       "trigger": "on_elite_victory",
       "effect": {
         "ko": "정예 전투 승리 시 체력 8을 회복한다.",
-        "en": ""
+        "en": "Restore 8 HP upon winning an elite combat."
       },
       "effect_description": {
         "ko": "정예 전투 클리어 시 체력 +8",
-        "en": ""
+        "en": "HP +8 on elite victory."
       },
       "flavor_text": {
         "ko": "조선 최고의 약재. 기운이 빠진 몸에 한 모금이면 생기가 돈다.",
-        "en": ""
+        "en": "The finest medicine in Joseon. A single sip revives a weary body."
       },
       "balance_rationale": "정예 전투(막당 1~2회)에서만 발동. 런 전체 약 4회 × 8 = 32 HP. 총 HP 대비 ~40% 수준의 '총 회복량'. 일반 회복 이벤트(휴식처 30%)보다 낮아 일반 등급 적합.",
       "obtain_from": [
@@ -221,22 +221,22 @@
         "ko": "호신검",
         "hanja": "護身劍",
         "romanized": "Hosin Geom",
-        "en": ""
+        "en": "Guardian Blade"
       },
       "rarity": 2,
       "class_restriction": "무관",
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 이번 전투 동안 기력(行動力) 최대치가 1 증가한다. (턴당 AP 4)",
-        "en": ""
+        "en": "At the start of combat, max Stamina is increased by 1 for this fight. (4 AP per turn)"
       },
       "effect_description": {
         "ko": "매 전투 AP 최대치 +1 (무관 전용)",
-        "en": ""
+        "en": "Max AP +1 per combat (Warrior only)."
       },
       "flavor_text": {
         "ko": "무관의 허리춤에는 반드시 비상용 단검 한 자루. 이것이 있으면 손이 하나 더 생긴다.",
-        "en": ""
+        "en": "A warrior always keeps an emergency dagger at the waist. With it, you gain an extra hand."
       },
       "balance_rationale": "AP 1 = 기대 피해 약 6~8. 전투당 5~8턴 × 6~8 = 30~64 추가 피해 잠재. 다만 카드가 없으면 무용지물이라 '카드 수 확보' 전략을 요구. 무관 전용이므로 고급 등급 적합.",
       "obtain_from": [
@@ -253,22 +253,22 @@
         "ko": "사서",
         "hanja": "四書",
         "romanized": "Saseo",
-        "en": ""
+        "en": "Four Books"
       },
       "rarity": 2,
       "class_restriction": "문관",
       "trigger": "on_first_card_play_per_turn",
       "effect": {
         "ko": "매 턴 첫 번째 카드를 사용할 때 카드 1장을 추가로 드로우한다.",
-        "en": ""
+        "en": "Draw 1 additional card when you play the first card each turn."
       },
       "effect_description": {
         "ko": "턴당 첫 카드 사용 시 드로우 +1 (문관 전용)",
-        "en": ""
+        "en": "Draw +1 on first card played per turn (Scholar only)."
       },
       "flavor_text": {
         "ko": "대학·논어·맹자·중용. 넘기는 손이 빠를수록 지식이 쌓인다.",
-        "en": ""
+        "en": "Great Learning, Analects, Mencius, Doctrine of the Mean. The faster you turn the pages, the more knowledge accumulates."
       },
       "balance_rationale": "턴당 +1 드로우 = 사실상 시작 핸드 6장. 학식 누적 전략(콤보) 특성상 많은 카드가 필요한 문관에게 최적. 단, 첫 카드를 낭비할 유인이 생겨 의사결정 복잡도 증가.",
       "obtain_from": [
@@ -285,22 +285,22 @@
         "ko": "동의보감",
         "hanja": "東醫寶鑑",
         "romanized": "Dongui Bogam",
-        "en": ""
+        "en": "Dongui Bogam"
       },
       "rarity": 2,
       "class_restriction": "의원",
       "trigger": "on_apply_poison",
       "effect": {
         "ko": "독(毒)을 부여할 때 스택이 1 추가된다.",
-        "en": ""
+        "en": "When applying Poison, add 1 extra stack."
       },
       "effect_description": {
         "ko": "독 부여 스택 +1 (의원 전용)",
-        "en": ""
+        "en": "Poison stacks +1 (Physician only)."
       },
       "flavor_text": {
         "ko": "허준이 남긴 의학서. 독의 이름과 해독법이 나란히 적혀 있다.",
-        "en": ""
+        "en": "The medical text left by Heo Jun. Poisons and their antidotes are written side by side."
       },
       "balance_rationale": "독 1스택 = 첫 틱 1 피해 → 복리 누적. +1 스택은 독 카드 1장당 약 4~6 추가 피해로 환산. 의원 특화 자원이므로 다른 직업에게 무용. 고급 등급 적합.",
       "obtain_from": [
@@ -317,22 +317,22 @@
         "ko": "무당 방울",
         "hanja": "巫鈴",
         "romanized": "Muring",
-        "en": ""
+        "en": "Shaman Bell"
       },
       "rarity": 2,
       "class_restriction": "무당",
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 영력(靈力)을 2 추가 획득한다.",
-        "en": ""
+        "en": "Gain 2 additional Spirit Power at the start of combat."
       },
       "effect_description": {
         "ko": "전투 시작 영력 +2 (무당 전용)",
-        "en": ""
+        "en": "Spirit Power +2 at battle start (Shaman only)."
       },
       "flavor_text": {
         "ko": "소리를 낼수록 귀신이 더 가까이 온다.",
-        "en": ""
+        "en": "The louder it rings, the closer the spirits draw near."
       },
       "balance_rationale": "영력 2 = 소환 카드 1~2회 추가 사용 가능. 초반 소환 전략을 앞당겨 전투 첫 번째 사이클을 강화. 영력 자원 의존성이 높은 무당에게 핵심 유물.",
       "obtain_from": [
@@ -349,22 +349,22 @@
         "ko": "각궁",
         "hanja": "角弓",
         "romanized": "Gakgung",
-        "en": ""
+        "en": "Horn Bow"
       },
       "rarity": 2,
       "class_restriction": "궁수",
       "trigger": "passive",
       "effect": {
         "ko": "화살(矢) 최대 보유량이 3 증가하고, 전투 시작 시 화살 2개를 추가로 지급한다.",
-        "en": ""
+        "en": "Max arrow capacity increased by 3, and gain 2 extra arrows at the start of combat."
       },
       "effect_description": {
         "ko": "화살 최대 +3, 전투 시작 화살 +2 (궁수 전용)",
-        "en": ""
+        "en": "Max arrows +3, arrows +2 at battle start (Archer only)."
       },
       "flavor_text": {
         "ko": "쇠뿔로 만든 활은 탄성이 뛰어나 멀리, 더 많이 쏠 수 있다.",
-        "en": ""
+        "en": "A bow made of ox horn — its elasticity allows farther and more frequent shots."
       },
       "balance_rationale": "궁수의 핵심 제약은 화살 고갈. 최대량 +3은 한 전투에서 2~3회 추가 발사 잠재. 시작 화살 +2는 초반 폭발력 강화. 궁수 전용 리소스라 직접 수치 비교가 무의미하지만, 의존 전략 활성화에 충분.",
       "obtain_from": [
@@ -381,22 +381,22 @@
         "ko": "상단 장부",
         "hanja": "商團帳簿",
         "romanized": "Sangdan Jangbu",
-        "en": ""
+        "en": "Merchant Ledger"
       },
       "rarity": 2,
       "class_restriction": "상인",
       "trigger": "on_enter_shop",
       "effect": {
         "ko": "상점에 입장할 때마다 골드 35를 추가로 획득한다. (런당 최대 2회)",
-        "en": ""
+        "en": "Gain 35 Gold each time you enter a shop. (Max 2 times per run)"
       },
       "effect_description": {
         "ko": "상점 입장 시 골드 +35 (최대 2회, 상인 전용)",
-        "en": ""
+        "en": "Gold +35 on shop entry (max 2 per run, Merchant only)."
       },
       "flavor_text": {
         "ko": "상단의 신용장. 저잣거리 어디서나 통한다.",
-        "en": ""
+        "en": "A trade guild's letter of credit. Accepted anywhere in the marketplace."
       },
       "balance_rationale": "상점 2회 × 35G = 70G. 카드 제거 1회 분량(75G)에 가깝다. 상인의 골드→효과 전환 전략을 지원하되, '런당 2회' 제한으로 무한 골드 스노우볼 방지.",
       "obtain_from": [
@@ -414,22 +414,22 @@
         "ko": "어사마패",
         "hanja": "御使馬牌",
         "romanized": "Eosamamapae",
-        "en": ""
+        "en": "Royal Inspector's Badge"
       },
       "rarity": 3,
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 가장 체력이 높은 적에게 취약(脆弱) 2를 부여한다.",
-        "en": ""
+        "en": "At the start of combat, apply 2 Vulnerable to the enemy with the highest HP."
       },
       "effect_description": {
         "ko": "전투 시작 강적에게 취약 2 (모든 직업)",
-        "en": ""
+        "en": "Apply Vulnerable 2 to the strongest enemy at battle start (all classes)."
       },
       "flavor_text": {
         "ko": "왕의 명을 받은 암행어사. 이 패 앞에서는 적도 잠시 멈칫한다.",
-        "en": ""
+        "en": "A secret royal inspector bearing the king's command. Even enemies hesitate before this badge."
       },
       "balance_rationale": "취약 2 = 2턴간 받는 피해 +50%. 이미 가장 위협적인 적에게 적용되어 초반 집중 처리 전략 강화. 다인 전투에서는 타겟 우선순위를 자동 결정해 의사결정 보조. 희귀 등급 적합.",
       "obtain_from": [
@@ -448,22 +448,22 @@
         "ko": "만파식적",
         "hanja": "萬波息笛",
         "romanized": "Manpasikjeok",
-        "en": ""
+        "en": "Manpasikjeok"
       },
       "rarity": 3,
       "class_restriction": null,
       "trigger": "on_enter_boss_combat",
       "effect": {
         "ko": "보스 전투에 진입할 때 현재 최대 체력의 25%를 회복한다.",
-        "en": ""
+        "en": "Restore 25% of max HP when entering a boss combat."
       },
       "effect_description": {
         "ko": "보스 전입 시 최대 HP의 25% 회복 (모든 직업)",
-        "en": ""
+        "en": "Restore 25% max HP on boss entry (all classes)."
       },
       "flavor_text": {
         "ko": "신라의 피리 소리가 파도를 잠재웠듯, 이 소리는 죽어가는 용사를 일으킨다.",
-        "en": ""
+        "en": "As the Silla flute once calmed the waves, its melody now revives the dying warrior."
       },
       "balance_rationale": "보스 전 3회 발동. 무관 기준 80 × 25% = 20 HP 회복. 이는 휴식처 회복(30%) 2/3 수준. 보스 직전에 발동하므로 의사결정에 영향 없음 — 단순 체력 버퍼. 희귀 등급 적합.",
       "obtain_from": [
@@ -480,22 +480,22 @@
         "ko": "저주받은 투구",
         "hanja": "呪冑",
         "romanized": "Juchu",
-        "en": ""
+        "en": "Cursed Helm"
       },
       "rarity": 3,
       "class_restriction": null,
       "trigger": "dual",
       "effect": {
         "ko": "공격 카드 사용 시 대상에게 출혈(出血) 1을 추가로 부여한다. 단, 매 전투 시작 시 자신에게 독(毒) 3이 부여된다.",
-        "en": ""
+        "en": "When playing an attack card, apply 1 additional Bleed to the target. However, gain 3 Poison on yourself at the start of each combat."
       },
       "effect_description": {
         "ko": "공격 카드마다 적에게 출혈 +1 / 전투 시작 독 3 자해 (모든 직업)",
-        "en": ""
+        "en": "Bleed +1 per attack card / self-inflict Poison 3 at battle start (all classes)."
       },
       "flavor_text": {
         "ko": "전장에 떨어진 투구는 주인을 가리지 않는다. 다만 쓰는 자에게 반드시 대가를 요구한다.",
-        "en": ""
+        "en": "A helm found on the battlefield chooses no master. But it always demands a price from its wearer."
       },
       "balance_rationale": "위험-보상 유물. 출혈 1 × 공격 카드 수 = 상당한 누적 피해. 그러나 독 3 자해는 첫 3턴간 3+2+1=6 HP 손실. 빠른 처리 덱에서는 이득, 지구전 덱에서는 부담. 플레이스타일 선택 압박.",
       "obtain_from": [
@@ -513,22 +513,22 @@
         "ko": "삼족오 깃털",
         "hanja": "三足烏羽",
         "romanized": "Samjogo Gitteo",
-        "en": ""
+        "en": "Three-Legged Crow Feather"
       },
       "rarity": 4,
       "class_restriction": null,
       "trigger": "on_turn_start",
       "effect": {
         "ko": "매 턴 시작 시 행동력(行動力) 1을 추가로 획득한다. 단, 시작 덱에 저주 카드 2장이 추가된다.",
-        "en": ""
+        "en": "Gain 1 additional AP at the start of each turn. However, 2 Curse cards are added to your starting deck."
       },
       "effect_description": {
         "ko": "매 턴 AP +1 / 시작 덱에 저주 2장 추가 (모든 직업, 전설)",
-        "en": ""
+        "en": "AP +1 per turn / 2 Curse cards added to starting deck (all classes, Legendary)."
       },
       "flavor_text": {
         "ko": "세발 까마귀의 깃털에는 태양의 기운이 깃들어 있다. 하지만 태양은 모든 것을 태운다.",
-        "en": ""
+        "en": "The three-legged crow's feather holds the power of the sun. But the sun burns everything."
       },
       "balance_rationale": "전설 등급. AP +1/턴은 약 30~50% 행동력 증가 — 매우 강력. 저주 카드 2장(무기력, 오물)은 핸드 오염 및 드로우 낭비를 유발. '카드 제거' 전략 또는 저주 내성 카드와의 시너지를 요구하는 고위험-고보상 설계.",
       "obtain_from": [
@@ -545,22 +545,22 @@
         "ko": "부적 낭",
         "hanja": "符籍囊",
         "romanized": "Bujeok Nang",
-        "en": ""
+        "en": "Talisman Pouch"
       },
       "rarity": 2,
       "class_restriction": "도사",
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 손패에 무작위 부적 카드 1장 추가.",
-        "en": ""
+        "en": "Add 1 random Talisman card to your hand at the start of combat."
       },
       "effect_description": {
         "ko": "전투 시작 시 부적 카드 1장 추가 (도사 전용, 시작 유물)",
-        "en": ""
+        "en": "Add 1 Talisman card at battle start (Taoist only, starting relic)."
       },
       "flavor_text": {
         "ko": "천 주머니에 담긴 부적이 전투 시작을 알린다.",
-        "en": ""
+        "en": "The talismans in the cloth pouch herald the start of battle."
       },
       "balance_rationale": "도사 시작 유물. 0코스트 카드 1장 선물 — 시조 초장 슬롯을 채우거나 기 관리에 활용 가능.",
       "obtain_from": [
@@ -574,22 +574,22 @@
         "ko": "마패",
         "hanja": "馬牌",
         "romanized": "Mapae",
-        "en": ""
+        "en": "Horse Medallion"
       },
       "rarity": 2,
       "class_restriction": "무관",
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 병사 토큰 1개를 자동으로 생성한다.",
-        "en": ""
+        "en": "Automatically create 1 Soldier Token at the start of combat."
       },
       "effect_description": {
         "ko": "전투 시작 시 병사 토큰 1개 생성 (무관 전용, 시작 유물)",
-        "en": ""
+        "en": "Create 1 Soldier Token at battle start (Warrior only, starting relic)."
       },
       "flavor_text": {
         "ko": "국왕의 명을 받은 장수의 마패 — 출전과 동시에 부하가 집결한다.",
-        "en": ""
+        "en": "A commander's medallion bearing the king's orders — troops rally the moment battle begins."
       },
       "balance_rationale": "무관 시작 유물. 첫 턴부터 지휘통솔 패시브 발동. 방어도 2 보너스 + 첫 토큰으로 돌격 보너스 가능.",
       "obtain_from": [
@@ -605,22 +605,22 @@
         "ko": "필연",
         "hanja": "筆硯",
         "romanized": "Pilyeon",
-        "en": ""
+        "en": "Brush and Inkstone"
       },
       "rarity": 2,
       "class_restriction": "문관",
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 학식 2를 획득한다.",
-        "en": ""
+        "en": "Gain 2 Scholarship at the start of combat."
       },
       "effect_description": {
         "ko": "전투 시작 시 학식 +2 (문관 전용, 시작 유물)",
-        "en": ""
+        "en": "Scholarship +2 at battle start (Scholar only, starting relic)."
       },
       "flavor_text": {
         "ko": "붓과 벼루를 항상 곁에 두는 관료 — 전장에서도 학문을 게을리하지 않는다.",
-        "en": ""
+        "en": "A bureaucrat who always keeps brush and inkstone at hand — never neglecting scholarship, even on the battlefield."
       },
       "balance_rationale": "문관 시작 유물. 첫 턴부터 학식 2로 시작. 탄핵(학식 1 소비) 즉시 사용 가능. 독서 1장이면 학식 3으로 상소 준비 완료.",
       "obtain_from": [
@@ -636,22 +636,22 @@
         "ko": "약재 꾸러미",
         "hanja": "藥材包",
         "romanized": "Yakmae Kkurumi",
-        "en": ""
+        "en": "Herbal Bundle"
       },
       "rarity": 1,
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 독(毒) 상태이상을 모두 해제한다.",
-        "en": ""
+        "en": "Remove all Poison at the start of each combat."
       },
       "effect_description": {
         "ko": "전투 시작 시 독 해제",
-        "en": ""
+        "en": "Cleanse Poison at battle start."
       },
       "flavor_text": {
         "ko": "해독제를 미리 챙겨두는 것 — 독이 두렵지 않은 이유다.",
-        "en": ""
+        "en": "Always carrying antidotes — that is why poison holds no fear."
       },
       "balance_rationale": "일반 유물. 독 위주 적(E006 악귀, E303 자객, B_ACT2_MID 등)이 많은 런에서 강력. 전투 시작 해제라 이전 전투의 독은 영향 없음. 약한 수동 보호 효과로 일반 등급 적합.",
       "obtain_from": [
@@ -669,22 +669,22 @@
         "ko": "낡은 방패",
         "hanja": "老盾",
         "romanized": "Nalgeun Banpae",
-        "en": ""
+        "en": "Worn Shield"
       },
       "rarity": 1,
       "class_restriction": null,
       "trigger": "turn_start",
       "effect": {
         "ko": "매 턴 시작 시 방어도 2를 획득한다.",
-        "en": ""
+        "en": "Gain 2 Block at the start of each turn."
       },
       "effect_description": {
         "ko": "매 턴 시작 시 방어도 +2 (자동)",
-        "en": ""
+        "en": "Block +2 at the start of each turn (automatic)."
       },
       "flavor_text": {
         "ko": "낡았지만 손에서 놓을 수 없다. 오래된 방패가 오래된 목숨을 지킨다.",
-        "en": ""
+        "en": "Worn but impossible to let go. An old shield protects an old life."
       },
       "balance_rationale": "일반 유물. 매 턴 방어도 2는 1막 총 7~8전투 기준 누적 가치가 높음. 1턴 수호(5) 대비 약하지만 무료이고 매 턴 반복. 방패 아키타입(G019 수비 대형 등)과 시너지.",
       "obtain_from": [
@@ -702,22 +702,22 @@
         "ko": "이름 없는 비수",
         "hanja": "無名匕首",
         "romanized": "Ireum Eopneun Bisu",
-        "en": ""
+        "en": "Nameless Dagger"
       },
       "rarity": 1,
       "class_restriction": null,
       "trigger": "on_kill_enemy",
       "effect": {
         "ko": "적을 처치할 때마다 기(氣) 1을 즉시 회복한다.",
-        "en": ""
+        "en": "Recover 1 Qi immediately whenever you kill an enemy."
       },
       "effect_description": {
         "ko": "적 처치 시 기(氣) +1",
-        "en": ""
+        "en": "Qi +1 on enemy kill."
       },
       "flavor_text": {
         "ko": "이름도 주인도 모르는 칼 — 피를 볼 때마다 힘이 솟는 것 같다.",
-        "en": ""
+        "en": "A blade with no name or owner — strength surges with every drop of blood."
       },
       "balance_rationale": "일반 유물. 다수 적 전투(소환 포함)에서 강력. 적 처치마다 기(氣) 1 추가로 콤보 확장. 단독 전투에선 1회만 발동. 처치 압박 유도로 공격적 플레이 강화.",
       "obtain_from": [
@@ -735,22 +735,22 @@
         "ko": "도끼 부적",
         "hanja": "斧符",
         "romanized": "Dokki Bujeok",
-        "en": ""
+        "en": "Axe Talisman"
       },
       "rarity": 1,
       "class_restriction": null,
       "trigger": "sijo_milestone_2",
       "effect": {
         "ko": "시조 초장(2슬롯)을 완성할 때마다 기(氣) 1을 추가 회복한다. (기존 부분 완성 보상에 누적)",
-        "en": ""
+        "en": "Recover 1 additional Qi whenever the Sijo first verse (2 slots) is completed. (Stacks with existing partial completion rewards)"
       },
       "effect_description": {
         "ko": "초장 완성 시 기(氣) 추가 +1",
-        "en": ""
+        "en": "Qi +1 on first verse completion."
       },
       "flavor_text": {
         "ko": "부적의 도끼 문양이 리듬을 탄다 — 초장을 닫을 때 힘이 더해진다.",
-        "en": ""
+        "en": "The axe symbol on the talisman rides the rhythm — power surges when the first verse closes."
       },
       "balance_rationale": "일반 유물. ZER-101 부분 완성 보상(초장→기 1)에 추가로 기 1을 주므로 초장 완성 시 총 기 2 회복. 시조 완성 빈도가 높을수록 가치 급증. 시조 시너지 유물 도입 첫 예시.",
       "obtain_from": [
@@ -767,22 +767,22 @@
         "ko": "금강석",
         "hanja": "金剛石",
         "romanized": "Geumgangseok",
-        "en": ""
+        "en": "Adamantine"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 방어도 8을 획득한다.",
-        "en": ""
+        "en": "Gain 8 Block at the start of each combat."
       },
       "effect_description": {
         "ko": "각 전투 시작 시 방어도 +8",
-        "en": ""
+        "en": "Block +8 at the start of each combat."
       },
       "flavor_text": {
         "ko": "세상에서 가장 단단한 돌 — 전장에서 그 가치를 증명한다.",
-        "en": ""
+        "en": "The hardest stone in the world — proving its worth on the battlefield."
       },
       "balance_rationale": "고급 유물. R001 편자(방어5)의 상위 호환. 방어도 8은 1막 정예 평균 공격의 절반 흡수. 방패·연타 빌드(무관 G019/G021 등)와 강한 시너지.",
       "obtain_from": [
@@ -800,22 +800,22 @@
         "ko": "용뇨",
         "hanja": "龍尿",
         "romanized": "Yongnyo",
-        "en": ""
+        "en": "Dragon Ambergris"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "on_card_exhaust",
       "effect": {
         "ko": "카드가 소멸(exhaust)될 때마다 기(氣) 1을 회복한다.",
-        "en": ""
+        "en": "Recover 1 Qi whenever a card is Exhausted."
       },
       "effect_description": {
         "ko": "카드 소멸 시 기(氣) +1",
-        "en": ""
+        "en": "Qi +1 on card Exhaust."
       },
       "flavor_text": {
         "ko": "용의 오줌에 기운이 있다 — 소멸하는 것도 에너지가 된다.",
-        "en": ""
+        "en": "There is power in dragon ambergris — even what vanishes becomes energy."
       },
       "balance_rationale": "고급 유물. 소멸 메카닉 카드(도사 축지법 등 일부 카드, 저주 카드)와 시너지. 저주 카드를 일부러 소멸시켜 기(氣) 회복하는 전략적 빌드 지원.",
       "obtain_from": [
@@ -832,22 +832,22 @@
         "ko": "흑요석 인장",
         "hanja": "黑曜石印章",
         "romanized": "Heugyoseok Injang",
-        "en": ""
+        "en": "Obsidian Seal"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "passive",
       "effect": {
         "ko": "상점에서 카드를 제거하는 비용이 25골드 감소한다.",
-        "en": ""
+        "en": "Card removal cost at shops is reduced by 25 Gold."
       },
       "effect_description": {
         "ko": "카드 제거 비용 -25골드",
-        "en": ""
+        "en": "Card removal cost -25 Gold."
       },
       "flavor_text": {
         "ko": "권세 있는 자의 인장이라면 가격도 낮아진다.",
-        "en": ""
+        "en": "When backed by a seal of authority, even prices bow."
       },
       "balance_rationale": "고급 유물. 상점 카드 제거 기본 75g → 50g 감소. 어센션 2+(제거 비용 +25g 패널티)에서 완전 상쇄. 덱 슬리밍 전략 지원.",
       "obtain_from": [
@@ -864,22 +864,22 @@
         "ko": "달빛 거울",
         "hanja": "月光鏡",
         "romanized": "Dalbich Geoul",
-        "en": ""
+        "en": "Moonlight Mirror"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "sijo_complete",
       "effect": {
         "ko": "시조를 완성할 때마다 드로우 카드 수가 1장 추가된다. (기존 드로우 1장 → 2장)",
-        "en": ""
+        "en": "Whenever a Sijo is completed, draw 1 additional card. (Draw 1 becomes Draw 2)"
       },
       "effect_description": {
         "ko": "시조 완성 드로우 +1 (1 → 2)",
-        "en": ""
+        "en": "Sijo completion draw +1 (1 to 2)."
       },
       "flavor_text": {
         "ko": "달빛이 거울에 담기듯 — 시조가 완성되면 패가 더 풍성해진다.",
-        "en": ""
+        "en": "As moonlight fills a mirror — when a Sijo is completed, your hand grows richer."
       },
       "balance_rationale": "고급 시조 시너지 유물. 시조 완성 드로우를 2장으로 증가. 덱 순환과 시조 완성 빈도 모두 향상. 강하지만 시조 완성 전제 조건이 있어 고급 등급 적절.",
       "obtain_from": [
@@ -897,22 +897,22 @@
         "ko": "혈맹 계약서",
         "hanja": "血盟契約書",
         "romanized": "Hyeolmaeng Gyeyakseo",
-        "en": ""
+        "en": "Blood Pact"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "on_elite_victory",
       "effect": {
         "ko": "정예 전투 승리 시 골드를 15 추가로 획득한다.",
-        "en": ""
+        "en": "Gain 15 additional Gold upon winning an elite combat."
       },
       "effect_description": {
         "ko": "정예 처치 시 골드 +15",
-        "en": ""
+        "en": "Gold +15 on elite victory."
       },
       "flavor_text": {
         "ko": "피로 쓴 계약 — 강자를 이기는 자에게 더 큰 보상이 따른다.",
-        "en": ""
+        "en": "A contract written in blood — greater rewards follow those who conquer the strong."
       },
       "balance_rationale": "고급 유물. 정예 전투 골드 보상(기본 25~40g)에 +15g. 정예에 집중 방문하는 플레이스타일 강화. R003(일반 전투 +10g)의 정예 버전.",
       "obtain_from": [
@@ -929,22 +929,22 @@
         "ko": "오행진",
         "hanja": "五行陣",
         "romanized": "Ohaengjin",
-        "en": ""
+        "en": "Five Elements Formation"
       },
       "rarity": 3,
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 힘(strength) 1과 기(氣) 최대치 +1을 이번 전투 동안 획득한다. 전투 종료 후 초기화.",
-        "en": ""
+        "en": "Gain 1 Strength and +1 max Qi for this combat at the start of battle. Resets after combat."
       },
       "effect_description": {
         "ko": "매 전투 시작 시 힘 +1, 기(氣) 최대 +1 (전투 내 지속)",
-        "en": ""
+        "en": "Strength +1, max Qi +1 at battle start (lasts for combat)."
       },
       "flavor_text": {
         "ko": "오행의 진을 펼쳐 기운을 모은다 — 전장마다 다시 태어난다.",
-        "en": ""
+        "en": "Deploy the Five Elements formation to gather energy — reborn on every battlefield."
       },
       "balance_rationale": "희귀 유물. 전투 시작 힘+1은 모든 공격 +1피해(6피해→7피해 +16%). 기 최대+1로 3기→4기 기반 콤보 가능. 두 효과 모두 전투 내 한시적이라 영구 버프보다 약함.",
       "obtain_from": [
@@ -963,22 +963,22 @@
         "ko": "천문도",
         "hanja": "天文圖",
         "romanized": "Cheonmundo",
-        "en": ""
+        "en": "Star Chart"
       },
       "rarity": 3,
       "class_restriction": null,
       "trigger": "sijo_complete",
       "effect": {
         "ko": "시조 완성 시 마지막 카드 효과가 2배 대신 2.5배가 된다.",
-        "en": ""
+        "en": "When a Sijo is completed, the last card's effect becomes 2.5x instead of 2x."
       },
       "effect_description": {
         "ko": "시조 완성 효과 배율 2배 → 2.5배",
-        "en": ""
+        "en": "Sijo completion multiplier 2x to 2.5x."
       },
       "flavor_text": {
         "ko": "별자리를 읽듯 시조를 이해하면 — 하늘의 뜻이 힘이 된다.",
-        "en": ""
+        "en": "Understand Sijo as you read the stars — the will of heaven becomes power."
       },
       "balance_rationale": "희귀 시조 시너지 유물. 2배 → 2.5배 효과 증폭. 태산붕(기본 40피해)이 완성 시 100피해가 됨. 고비용 고피해 카드(D006, G018 등)를 종장에 배치하는 전략 극대화.",
       "obtain_from": [
@@ -996,22 +996,22 @@
         "ko": "왕의 옥새",
         "hanja": "王璽",
         "romanized": "Wangui Oksae",
-        "en": ""
+        "en": "Royal Jade Seal"
       },
       "rarity": 3,
       "class_restriction": null,
       "trigger": "boss_battle_start",
       "effect": {
         "ko": "보스 전투 시작 시 방어도 15를 즉시 획득한다.",
-        "en": ""
+        "en": "Gain 15 Block at the start of boss combat."
       },
       "effect_description": {
         "ko": "보스 전투 시작 시 방어도 +15",
-        "en": ""
+        "en": "Block +15 at boss battle start."
       },
       "flavor_text": {
         "ko": "왕의 권위가 담긴 옥새 — 역적도 이것 앞에서는 주춤한다.",
-        "en": ""
+        "en": "A jade seal bearing royal authority — even traitors hesitate before it."
       },
       "balance_rationale": "희귀 유물. 보스 전투 한정 방어도 15. 보스 첫 공격(평균 10~15) 완전 흡수 가능. 준비 없이 보스에 진입하는 플레이어에게 생존 안전망 역할.",
       "obtain_from": [
@@ -1029,22 +1029,22 @@
         "ko": "불사신 부적",
         "hanja": "不死符",
         "romanized": "Bulsasin Bujeok",
-        "en": ""
+        "en": "Immortality Talisman"
       },
       "rarity": 4,
       "class_restriction": null,
       "trigger": "on_lethal_damage",
       "effect": {
         "ko": "치명적인 피해로 HP가 0이 될 때 HP 1로 생존한다. 런당 1회만 발동.",
-        "en": ""
+        "en": "Survive with 1 HP when lethal damage would reduce HP to 0. Activates once per run."
       },
       "effect_description": {
         "ko": "즉사 방지 1회 (런당 1회)",
-        "en": ""
+        "en": "Prevent death once (1 per run)."
       },
       "flavor_text": {
         "ko": "한 번은 죽음을 속일 수 있다 — 하지만 단 한 번뿐이다.",
-        "en": ""
+        "en": "You can cheat death once — but only once."
       },
       "balance_rationale": "전설 유물. 런당 1회 즉사 방지. StS의 Lizard Tail 참조 설계. 극단적 실수 상황에서 런 살리기 가능. 전설 등급 드롭(보스 전용)으로 획득 확률 제한.",
       "obtain_from": [
@@ -1061,22 +1061,22 @@
         "ko": "병서",
         "hanja": "兵書",
         "romanized": "Byeongseo",
-        "en": ""
+        "en": "Art of War"
       },
       "rarity": 2,
       "class_restriction": "무관",
       "trigger": "on_formation_card_play",
       "effect": {
         "ko": "진형(陣形) 카드를 사용할 때마다 기력(氣力)을 1 추가 획득한다.",
-        "en": ""
+        "en": "Gain 1 additional Stamina whenever you play a Formation card."
       },
       "effect_description": {
         "ko": "진형 카드 사용 시 기력(氣力) +1 추가 (무관 전용)",
-        "en": ""
+        "en": "Stamina +1 on Formation card play (Warrior only)."
       },
       "flavor_text": {
         "ko": "손자의 병법을 이어받아 — 진형을 치를 때마다 기운이 더 솟는다.",
-        "en": ""
+        "en": "Inheriting Sun Tzu's strategies — energy surges with every formation deployed."
       },
       "balance_rationale": "무관 전용 고급 유물. G001 진형 전환(기력+2)→진형 전환+1=기력+3으로 강화. 진형·토큰 아키타입 핵심 가속. 기력 폭딜 아키타입과도 시너지.",
       "obtain_from": [
@@ -1094,22 +1094,22 @@
         "ko": "어진",
         "hanja": "御眞",
         "romanized": "Eojin",
-        "en": ""
+        "en": "Royal Portrait"
       },
       "rarity": 2,
       "class_restriction": "문관",
       "trigger": "on_scholarship_exhaust",
       "effect": {
         "ko": "학식(學識)을 전소할 때마다 HP 최대치의 5%를 회복한다. (문관 전용)",
-        "en": ""
+        "en": "Restore 5% of max HP whenever Scholarship is fully spent. (Scholar only)"
       },
       "effect_description": {
         "ko": "학식 전소 시 HP 최대치 5% 회복 (문관 전용)",
-        "en": ""
+        "en": "Restore 5% max HP on Scholarship exhaust (Scholar only)."
       },
       "flavor_text": {
         "ko": "왕의 초상을 곁에 두고 충성을 다한다 — 지식을 쏟아낼 때 몸이 회복된다.",
-        "en": ""
+        "en": "Keeping the royal portrait close, serving with loyalty — when knowledge pours forth, the body recovers."
       },
       "balance_rationale": "문관 전용 고급 유물. 문관 HP 65 기준 학식 전소(상소/왕의 윤허) 시 HP 3 회복. 학식 폭발 빌드에서 매 번 학식을 전소하면 전투마다 3~5회 회복 가능.",
       "obtain_from": [
@@ -1127,22 +1127,22 @@
         "ko": "선단",
         "hanja": "仙丹",
         "romanized": "Seondan",
-        "en": ""
+        "en": "Elixir Pill"
       },
       "rarity": 2,
       "class_restriction": "도사",
       "trigger": "on_spell_card_play",
       "effect": {
         "ko": "주문(spell) 카드를 사용할 때마다 기(氣) 1을 추가로 획득한다. (도사 전용)",
-        "en": ""
+        "en": "Gain 1 additional Qi whenever you play a Spell card. (Taoist only)"
       },
       "effect_description": {
         "ko": "주문 카드 사용 시 기(氣) +1 (도사 전용)",
-        "en": ""
+        "en": "Qi +1 on Spell card play (Taoist only)."
       },
       "flavor_text": {
         "ko": "선인들이 만든 영약 — 도술을 쓸수록 기운이 넘친다.",
-        "en": ""
+        "en": "An elixir crafted by immortals — the more spells you cast, the more energy overflows."
       },
       "balance_rationale": "도사 전용 고급 유물. D001 기공(0코스트, 기+1)이 사용 시 기+2가 됨. D008 대기(1코스트, 기+2)는 기+3. 기공·기 폭발 아키타입 핵심 가속 유물.",
       "obtain_from": [
@@ -1160,22 +1160,22 @@
         "ko": "음양패",
         "hanja": "陰陽牌",
         "romanized": "Eumyang-pae",
-        "en": ""
+        "en": "Yin-Yang Tablet"
       },
       "rarity": 2,
       "class_restriction": "도사",
       "trigger": "on_summon_token_death",
       "effect": {
         "ko": "소환한 토큰이 소멸할 때마다 카드 1장을 드로우한다. (도사 전용)",
-        "en": ""
+        "en": "Draw 1 card whenever a summoned token is destroyed. (Taoist only)"
       },
       "effect_description": {
         "ko": "소환 토큰 소멸 시 드로우 +1 (도사 전용)",
-        "en": ""
+        "en": "Draw +1 on summon token death (Taoist only)."
       },
       "flavor_text": {
         "ko": "음이 사라지면 양이 생기고 — 소환이 끊어지는 순간 새로운 패가 들어온다.",
-        "en": ""
+        "en": "When yin fades, yang rises — the moment a summon perishes, new cards arrive."
       },
       "balance_rationale": "도사 전용 고급 유물. D024 허수아비(소환: 소멸 시 드로우1→드로우2), D020 구미호(매 턴 5피해→소멸 시 드로우1). 소환·도술 아키타입 핵심 드로우 엔진.",
       "obtain_from": [
@@ -1193,22 +1193,22 @@
         "ko": "시조집",
         "hanja": "時調集",
         "romanized": "Sijojip",
-        "en": ""
+        "en": "Sijo Anthology"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "sijo_complete",
       "effect": {
         "ko": "시조를 완성한 턴 이후, 다음 턴에 기(氣) 1을 이월 허용한다. (최대 이월 1기, 기존 이월 없음 규칙에 예외)",
-        "en": ""
+        "en": "After completing a Sijo, carry over 1 Qi to the next turn. (Max 1 Qi carryover, exception to the no-carryover rule)"
       },
       "effect_description": {
         "ko": "시조 완성 다음 턴 기(氣) 1 이월",
-        "en": ""
+        "en": "Carry over 1 Qi after Sijo completion."
       },
       "flavor_text": {
         "ko": "시조를 완성한 자의 호흡은 끊기지 않는다 — 그 기운이 다음 줄로 이어진다.",
-        "en": ""
+        "en": "The breath of one who completes a Sijo never breaks — that energy carries into the next verse."
       },
       "balance_rationale": "고급 시조 시너지 유물. 시조 완성 턴의 남은 기(氣) 최대 1기를 다음 턴으로 이월. 기본 기 이월 없음 규칙의 유일한 예외. 시조 완성을 더 계획적으로 만드는 전략 심화 유물.",
       "obtain_from": [
@@ -1226,22 +1226,22 @@
         "ko": "장단 북",
         "hanja": "長短鼓",
         "romanized": "Jangdan Buk",
-        "en": ""
+        "en": "Rhythm Drum"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "on_wildcard_play",
       "effect": {
         "ko": "와일드카드(beat 0, M011/M012)를 사용할 때마다 기(氣) 1을 즉시 회복한다.",
-        "en": ""
+        "en": "Recover 1 Qi immediately whenever you play a Wildcard (beat 0, M011/M012)."
       },
       "effect_description": {
         "ko": "와일드카드 사용 시 기(氣) +1",
-        "en": ""
+        "en": "Qi +1 on Wildcard play."
       },
       "flavor_text": {
         "ko": "장단이 맞으면 흥이 난다 — 어떤 박자에도 맞는 북소리가 힘을 더한다.",
-        "en": ""
+        "en": "When the rhythm aligns, excitement rises — a drum that matches any beat adds strength."
       },
       "balance_rationale": "ZER-101 와일드카드(M011/M012) 시너지 유물. 와일드카드의 약한 직접 효과(드로우1/방어2)를 기(氣) 1 회복으로 보완. 와일드카드 2장 덱 빌드 시 기(氣) 2 추가로 콤보 확장.",
       "obtain_from": [
@@ -1259,22 +1259,22 @@
         "ko": "이무령의 인장",
         "hanja": "李茂令印章",
         "romanized": "Yi Muryeong Injang",
-        "en": ""
+        "en": "Yi Mu-ryeong's Seal"
       },
       "rarity": 4,
       "class_restriction": null,
       "trigger": "passive",
       "effect": {
         "ko": "상점에서 카드를 제거하는 비용이 0골드가 된다.",
-        "en": ""
+        "en": "Card removal at shops costs 0 Gold."
       },
       "effect_description": {
         "ko": "카드 제거 비용 0골드",
-        "en": ""
+        "en": "Card removal cost 0 Gold."
       },
       "flavor_text": {
         "ko": "판서의 인장이 찍힌 문서 — 이 도장 하나면 모든 것이 무료다.",
-        "en": ""
+        "en": "A document stamped with the minister's seal — with this stamp, everything is free."
       },
       "balance_rationale": "전설 유물. 1막 보스 보상. 카드 제거 비용 완전 무료화. 덱 슬리밍 무한 가능 → 주요 시너지 카드만 남기는 최적화 빌드 허용. 획득 경로(보스 전용)로 강도 제어.",
       "obtain_from": [
@@ -1290,22 +1290,22 @@
         "ko": "쌍두호 가죽",
         "hanja": "兩頭虎皮",
         "romanized": "Ssangduho Gajuk",
-        "en": ""
+        "en": "Twin-Headed Tiger Hide"
       },
       "rarity": 4,
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 힘(strength) 3을 획득한다. 전투 종료 후 초기화.",
-        "en": ""
+        "en": "Gain 3 Strength at the start of each combat. Resets after combat."
       },
       "effect_description": {
         "ko": "매 전투 시작 시 힘 +3",
-        "en": ""
+        "en": "Strength +3 at battle start."
       },
       "flavor_text": {
         "ko": "전설의 쌍두 호랑이 가죽을 걸치면 — 그 분노가 내 것이 된다.",
-        "en": ""
+        "en": "Don the hide of the legendary twin-headed tiger — its fury becomes your own."
       },
       "balance_rationale": "전설 유물. 2막 보스 보상. 매 전투 힘+3은 6피해 카드→9피해(+50%). 공격형 빌드 전체에 적용. 획득 경로(보스 전용)와 전투 한정으로 영구 힘 유물보다 약하게 설계.",
       "obtain_from": [
@@ -1321,22 +1321,22 @@
         "ko": "역적 대감의 관인",
         "hanja": "逆賊大監官印",
         "romanized": "Yeokjeok Daegam Gwanin",
-        "en": ""
+        "en": "Rebel Lord's Official Seal"
       },
       "rarity": 4,
       "class_restriction": null,
       "trigger": "sijo_complete",
       "effect": {
         "ko": "시조를 완성할 때 마지막 카드 효과 배율이 2배 대신 3배가 된다. (R026 천문도와 중복 적용 불가, 최대 3배)",
-        "en": ""
+        "en": "When a Sijo is completed, the last card's effect multiplier becomes 3x instead of 2x. (Does not stack with R026 Star Chart, max 3x)"
       },
       "effect_description": {
         "ko": "시조 완성 효과 배율 2배 → 3배 (최대, R026와 중복 불가)",
-        "en": ""
+        "en": "Sijo completion multiplier 2x to 3x (max, does not stack with R026)."
       },
       "flavor_text": {
         "ko": "역적이 훔친 왕의 권위 — 시조가 완성될 때 그 모든 것이 폭발한다.",
-        "en": ""
+        "en": "The royal authority stolen by a traitor — when a Sijo is completed, everything erupts."
       },
       "balance_rationale": "전설 유물. 3막 보스 보상. 시조 완성 배율 3배. 태산붕(40피해)→120피해. 가장 강력한 시조 유물이나 획득 조건(3막 보스)으로 후반부 보상. R026과 중복 방지 규칙으로 과도한 증폭 차단.",
       "obtain_from": [
@@ -1355,22 +1355,22 @@
         "ko": "왕명패",
         "hanja": "王命牌",
         "romanized": "Wangmyeong Pae",
-        "en": ""
+        "en": "Royal Command Badge"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "passive",
       "effect": {
         "ko": "귀족/관리 타입 NPC 이벤트에서 추가 선택지가 해금된다.",
-        "en": ""
+        "en": "Unlock additional choices in noble/official type NPC events."
       },
       "effect_description": {
         "ko": "왕의 명으로 받은 신표. 관리들 앞에서 권위를 드러낼 수 있다.",
-        "en": ""
+        "en": "A token received by royal command. It reveals authority before officials."
       },
       "flavor_text": {
         "ko": "\"이 패를 보여라. 감히 누가 막겠느냐.\"",
-        "en": ""
+        "en": "\"Show this badge. Who would dare stand in the way?\""
       },
       "balance_rationale": "사도세자 이벤트 전용 보상. 현 단계에서는 텍스트 전용 패시브. 향후 NPC 이벤트 확장 시 조건부 선택지 해금에 활용.",
       "obtain_from": [
@@ -1384,22 +1384,22 @@
         "ko": "옥피리",
         "hanja": "玉笛",
         "romanized": "Okpiri",
-        "en": ""
+        "en": "Jade Flute"
       },
       "rarity": 3,
       "class_restriction": null,
       "trigger": "sijo_complete",
       "effect": {
         "ko": "시조 완성 시 직업 자원 3 이상이면 적 전체에 피해 5.",
-        "en": ""
+        "en": "On Sijo completion, if class resource is 3 or more, deal 5 damage to all enemies."
       },
       "effect_description": {
         "ko": "시조 완성 + 자원 3+ → 적 전체 5피해",
-        "en": ""
+        "en": "Sijo completion + resource 3+ = 5 AoE damage."
       },
       "flavor_text": {
         "ko": "옥으로 깎은 피리. 시조가 완성되면 그 멜로디에 적이 흔들린다.",
-        "en": ""
+        "en": "A flute carved from jade. When a Sijo is completed, its melody shakes the enemy."
       },
       "balance_rationale": "시조 완성 + 자원 관리 이중 조건. 직업 자원 활용 유도. 희귀 등급 적합.",
       "obtain_from": [
@@ -1418,22 +1418,22 @@
         "ko": "호패",
         "hanja": "號牌",
         "romanized": "Hopae",
-        "en": ""
+        "en": "Identity Tag"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "sijo_complete",
       "effect": {
         "ko": "시조 완성 후 초장 2슬롯이 자동으로 채워진 상태로 재시작된다.",
-        "en": ""
+        "en": "After Sijo completion, the first verse 2 slots are automatically filled on restart."
       },
       "effect_description": {
         "ko": "시조 완성 후 초장 자동 채움",
-        "en": ""
+        "en": "Auto-fill first verse after Sijo completion."
       },
       "flavor_text": {
         "ko": "신분증명의 나무 패. 이미 지은 시의 운율이 이어진다.",
-        "en": ""
+        "en": "A wooden identity tag. The rhythm of a poem already composed carries on."
       },
       "balance_rationale": "시조 완성 사이클 가속. 6슬롯 → 실질 4슬롯만 채우면 됨. 고급 등급 적합.",
       "obtain_from": [
@@ -1450,22 +1450,22 @@
         "ko": "연적",
         "hanja": "硯滴",
         "romanized": "Yeonjeok",
-        "en": ""
+        "en": "Water Dropper"
       },
       "rarity": 2,
       "class_restriction": "mungwan",
       "trigger": "on_resource_spend",
       "effect": {
         "ko": "학식을 소비할 때 시조 슬롯을 추가로 1칸 채운다. (문관 전용)",
-        "en": ""
+        "en": "Fill 1 additional Sijo slot when spending Scholarship. (Scholar only)"
       },
       "effect_description": {
         "ko": "학식 소비 시 시조 슬롯 +1 (문관 전용)",
-        "en": ""
+        "en": "Sijo slot +1 on Scholarship spend (Scholar only)."
       },
       "flavor_text": {
         "ko": "먹물을 담는 작은 그릇. 학식이 흐르면 시조도 따라 흐른다.",
-        "en": ""
+        "en": "A small vessel for ink. When scholarship flows, so does the Sijo."
       },
       "balance_rationale": "문관 전용 시너지. 학식 소비 카드를 쓰면 시조 진행도 가속. 고급 등급 적합.",
       "obtain_from": [
@@ -1483,22 +1483,22 @@
         "ko": "청사 붓",
         "hanja": "靑紗筆",
         "romanized": "Cheongsa But",
-        "en": ""
+        "en": "Azure Silk Brush"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "sijo_chapter_complete",
       "effect": {
         "ko": "시조 초장 완성 시 카드 1장을 추가로 드로우한다.",
-        "en": ""
+        "en": "Draw 1 additional card when the Sijo first verse is completed."
       },
       "effect_description": {
         "ko": "초장 완성 시 카드 드로우 +1",
-        "en": ""
+        "en": "Draw +1 on first verse completion."
       },
       "flavor_text": {
         "ko": "청사 비단을 감은 명필의 붓. 첫 구절이 완성되면 영감이 밀려온다.",
-        "en": ""
+        "en": "A master calligrapher's brush wrapped in azure silk. When the first verse is complete, inspiration floods in."
       },
       "balance_rationale": "초장만 완성해도 보상. 시조 시작 유인. 고급 등급 적합.",
       "obtain_from": [
@@ -1516,22 +1516,22 @@
         "ko": "무관의 갑주",
         "hanja": "武官甲冑",
         "romanized": "Mugwan Gapju",
-        "en": ""
+        "en": "Warrior's Armor"
       },
       "rarity": 2,
       "class_restriction": "mugwan",
       "trigger": "sijo_slot_fill",
       "effect": {
         "ko": "시조 슬롯을 채울 때마다 방어도 3을 획득한다. (무관 전용)",
-        "en": ""
+        "en": "Gain 3 Block each time a Sijo slot is filled. (Warrior only)"
       },
       "effect_description": {
         "ko": "시조 슬롯 채움 시 방어도 +3 (무관 전용)",
-        "en": ""
+        "en": "Block +3 on Sijo slot fill (Warrior only)."
       },
       "flavor_text": {
         "ko": "시를 읊조리며 갑옷을 고쳐 입는다. 무인의 시는 곧 방어다.",
-        "en": ""
+        "en": "Reciting poetry while adjusting armor. A warrior's poem is defense itself."
       },
       "balance_rationale": "시조 6슬롯 × 방어도 3 = 최대 18 방어도. 무관 전용 시조 시너지. 고급 등급 적합.",
       "obtain_from": [
@@ -1548,22 +1548,22 @@
         "ko": "오얏나무 가지",
         "hanja": "李木枝",
         "romanized": "Oyat Namu Gaji",
-        "en": ""
+        "en": "Plum Tree Branch"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "sijo_chapter_complete",
       "effect": {
         "ko": "시조 중장 완성 시 다음에 사용하는 공격 카드의 피해가 3 증가한다.",
-        "en": ""
+        "en": "When the Sijo second verse is completed, the next attack card deals 3 additional damage."
       },
       "effect_description": {
         "ko": "중장 완성 시 다음 공격 피해 +3",
-        "en": ""
+        "en": "Attack damage +3 on second verse completion."
       },
       "flavor_text": {
         "ko": "이 씨 왕가의 나무. 중장의 전환이 힘을 불러온다.",
-        "en": ""
+        "en": "The tree of the Yi royal family. The turning of the second verse summons strength."
       },
       "balance_rationale": "중장 완성 조건부 피해 보너스. 고급 등급 적합.",
       "obtain_from": [
@@ -1580,22 +1580,22 @@
         "ko": "해시계 조각",
         "hanja": "日晷片",
         "romanized": "Haesigye Jogak",
-        "en": ""
+        "en": "Sundial Fragment"
       },
       "rarity": 2,
       "class_restriction": null,
       "trigger": "sijo_chapter_complete",
       "effect": {
         "ko": "시조 종장 완성 시 기 2를 회복한다.",
-        "en": ""
+        "en": "Recover 2 Qi when the Sijo final verse is completed."
       },
       "effect_description": {
         "ko": "종장 완성 시 기 +2",
-        "en": ""
+        "en": "Qi +2 on final verse completion."
       },
       "flavor_text": {
         "ko": "깨진 해시계의 조각. 마지막 구절에 시간이 멈추는 듯하다.",
-        "en": ""
+        "en": "A fragment of a broken sundial. Time seems to stop at the final verse."
       },
       "balance_rationale": "종장 완성 = 전체 완성 직전. 기 회복으로 마무리 카드 사용 지원. 고급 등급 적합.",
       "obtain_from": [
@@ -1613,22 +1613,22 @@
         "ko": "사군자 족자",
         "hanja": "四君子簇子",
         "romanized": "Sagunja Jokja",
-        "en": ""
+        "en": "Four Gentlemen Scroll"
       },
       "rarity": 3,
       "class_restriction": null,
       "trigger": "sijo_complete",
       "effect": {
         "ko": "시조 완성 시 랜덤 적 1체에 약화 2를 적용한다.",
-        "en": ""
+        "en": "On Sijo completion, apply 2 Weaken to a random enemy."
       },
       "effect_description": {
         "ko": "시조 완성 시 적 1체 약화 2",
-        "en": ""
+        "en": "Weaken 2 to 1 enemy on Sijo completion."
       },
       "flavor_text": {
         "ko": "매화·난초·국화·대나무가 그려진 족자. 군자의 시조는 적의 기세를 꺾는다.",
-        "en": ""
+        "en": "A scroll depicting plum blossom, orchid, chrysanthemum, and bamboo. A gentleman's Sijo breaks the enemy's spirit."
       },
       "balance_rationale": "시조 완성 보너스 디버프. 희귀 등급 적합.",
       "obtain_from": [
@@ -1646,22 +1646,22 @@
         "ko": "도사의 부적",
         "hanja": "道士符籍",
         "romanized": "Dosa Bujeok",
-        "en": ""
+        "en": "Taoist's Talisman"
       },
       "rarity": 2,
       "class_restriction": "dosa",
       "trigger": "sijo_complete",
       "effect": {
         "ko": "시조 완성 시 적 전체에 독 2를 적용한다. (도사 전용)",
-        "en": ""
+        "en": "On Sijo completion, apply 2 Poison to all enemies. (Taoist only)"
       },
       "effect_description": {
         "ko": "시조 완성 시 적 전체 독 2 (도사 전용)",
-        "en": ""
+        "en": "Poison 2 to all enemies on Sijo completion (Taoist only)."
       },
       "flavor_text": {
         "ko": "도사가 직접 써넣은 부적. 시조의 힘이 주문을 증폭시킨다.",
-        "en": ""
+        "en": "A talisman inscribed by the Taoist himself. The power of Sijo amplifies the spell."
       },
       "balance_rationale": "도사 전용 시조 시너지. 독 빌드와 시너지. 고급 등급 적합.",
       "obtain_from": [
@@ -1692,9 +1692,13 @@
         "name": {
           "ko": "무기력",
           "hanja": "無氣力",
-          "romanized": "Mugiryeok"
+          "romanized": "Mugiryeok",
+          "en": "Lethargy"
         },
-        "effect": "사용 불가. 핸드에 있는 동안 기력(AP) 회복량이 1 감소한다.",
+        "effect": {
+          "ko": "사용 불가. 핸드에 있는 동안 기력(AP) 회복량이 1 감소한다.",
+          "en": "Unplayable. While in hand, Qi recovery is reduced by 1."
+        },
         "type": "curse"
       },
       {
@@ -1702,9 +1706,13 @@
         "name": {
           "ko": "오물",
           "hanja": "汚物",
-          "romanized": "Omul"
+          "romanized": "Omul",
+          "en": "Filth"
         },
-        "effect": "사용 불가. 뽑혔을 때 카드 1장 드로우가 막힌다(이번 뽑기 무효).",
+        "effect": {
+          "ko": "사용 불가. 뽑혔을 때 카드 1장 드로우가 막힌다(이번 뽑기 무효).",
+          "en": "Unplayable. When drawn, prevents 1 card draw (this draw is nullified)."
+        },
         "type": "curse"
       }
     ]
