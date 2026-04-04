@@ -10,7 +10,8 @@ extends Control
 @onready var rest_button: Button = $VBoxContainer/ActionContainer/RestButton
 @onready var upgrade_button: Button = $VBoxContainer/ActionContainer/UpgradeButton
 @onready var action_container: VBoxContainer = $VBoxContainer/ActionContainer
-@onready var card_list_container: VBoxContainer = $VBoxContainer/CardListContainer
+@onready var card_list_scroll: ScrollContainer = $VBoxContainer/CardListScroll
+@onready var card_list_container: VBoxContainer = $VBoxContainer/CardListScroll/CardListContainer
 @onready var back_button: Button = $VBoxContainer/BackButton
 @onready var result_label: Label = $VBoxContainer/ResultLabel
 @onready var continue_button: Button = $VBoxContainer/ContinueButton
@@ -25,7 +26,7 @@ func _ready() -> void:
 	continue_button.pressed.connect(_return_to_map)
 
 	# 초기 상태
-	card_list_container.visible = false
+	card_list_scroll.visible = false
 	back_button.visible = false
 	result_label.visible = false
 	continue_button.visible = false
@@ -97,7 +98,7 @@ func _on_show_upgrade_list() -> void:
 
 	# 메인 액션 버튼 숨기고 카드 목록 표시
 	action_container.visible = false
-	card_list_container.visible = true
+	card_list_scroll.visible = true
 	back_button.visible = true
 	description_label.text = "강화할 카드를 선택하세요."
 
@@ -116,12 +117,14 @@ func _on_show_upgrade_list() -> void:
 			eff_up = card.effect_upgraded_en
 		elif card.effect_upgraded != "":
 			eff_up = card.effect_upgraded
-		btn.text = "%s — %s → %s" % [
+		# 여러 줄로 표시하여 화면 넘침 방지
+		btn.text = "%s\n%s → %s" % [
 			card.get_display_name(),
 			eff,
 			eff_up if eff_up != "" else "(강화 효과 없음)"
 		]
-		btn.add_theme_font_size_override("font_size", 18)
+		btn.add_theme_font_size_override("font_size", 22)
+		btn.custom_minimum_size.y = 80
 		btn.pressed.connect(_on_upgrade_card.bind(entry))
 		card_list_container.add_child(btn)
 
@@ -152,7 +155,7 @@ func _on_upgrade_card(entry: Dictionary) -> void:
 
 
 func _on_back_to_actions() -> void:
-	card_list_container.visible = false
+	card_list_scroll.visible = false
 	back_button.visible = false
 	action_container.visible = true
 	description_label.text = "모닥불 앞에서 잠시 쉬어간다."
@@ -163,7 +166,7 @@ func _on_back_to_actions() -> void:
 
 func _show_result(text: String) -> void:
 	action_container.visible = false
-	card_list_container.visible = false
+	card_list_scroll.visible = false
 	back_button.visible = false
 
 	result_label.text = text
