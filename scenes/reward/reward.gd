@@ -76,17 +76,35 @@ func _display_relic_offer() -> void:
 	relic_section.name = "RelicSection"
 
 	var relic_label := Label.new()
-	relic_label.text = "유물 획득!"
+	relic_label.text = tr("REWARD_RELIC")
 	relic_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	relic_label.add_theme_font_size_override("font_size", 28)
 	relic_label.add_theme_color_override("font_color", RelicManager.get_relic_rarity_color(relic_offer_id))
 	relic_section.add_child(relic_label)
 
 	var relic_btn := Button.new()
-	relic_btn.custom_minimum_size = Vector2(300, 80)
+	relic_btn.custom_minimum_size = Vector2(400, 100)
 	var relic_name := RelicManager.get_relic_display_name(relic_offer_id)
 	var relic_desc := RelicManager.get_relic_description(relic_offer_id)
-	relic_btn.text = "%s\n%s" % [relic_name, relic_desc]
+	relic_btn.text = "✦ %s\n%s" % [relic_name, relic_desc]
+	relic_btn.add_theme_font_size_override("font_size", 20)
+	relic_btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
+	# 유물 버튼 스타일
+	var relic_color := RelicManager.get_relic_rarity_color(relic_offer_id)
+	var relic_style := StyleBoxFlat.new()
+	relic_style.bg_color = Color(0.18, 0.15, 0.22, 1.0)
+	relic_style.border_color = relic_color
+	relic_style.set_border_width_all(2)
+	relic_style.set_corner_radius_all(8)
+	relic_style.set_content_margin_all(12)
+	relic_btn.add_theme_stylebox_override("normal", relic_style)
+
+	var relic_hover := relic_style.duplicate()
+	relic_hover.bg_color = Color(0.23, 0.2, 0.28, 1.0)
+	relic_hover.set_border_width_all(3)
+	relic_btn.add_theme_stylebox_override("hover", relic_hover)
+
 	relic_btn.pressed.connect(_on_relic_claimed)
 	relic_section.add_child(relic_btn)
 
@@ -121,7 +139,7 @@ func _apply_gold() -> void:
 		GameManager.run_data.gold += reward_gold
 		if reward_gold > 0:
 			AudioManager.play_sfx_by_key("coin")
-	gold_label.text = "금화 +%d (보유: %d)" % [reward_gold, GameManager.run_data.gold if GameManager.run_data else 0]
+	gold_label.text = "💰 금화 +%d   (보유: %d)" % [reward_gold, GameManager.run_data.gold if GameManager.run_data else 0]
 
 
 func _generate_card_offers() -> void:
@@ -177,36 +195,116 @@ func _display_card_offers() -> void:
 		btn.custom_minimum_size = Vector2(card_width, 320)
 		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		btn.text = _format_card_text(card)
-		btn.add_theme_font_size_override("font_size", 22)
+		btn.add_theme_font_size_override("font_size", 20)
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.pressed.connect(_on_card_chosen.bind(i))
+
+		# 희귀도에 따른 테두리 색상
+		var rarity_color := _get_rarity_color(card.rarity)
+		var stylebox := StyleBoxFlat.new()
+		stylebox.bg_color = Color(0.15, 0.17, 0.25, 1.0)
+		stylebox.border_color = rarity_color
+		stylebox.set_border_width_all(2)
+		stylebox.set_corner_radius_all(8)
+		stylebox.set_content_margin_all(12)
+		btn.add_theme_stylebox_override("normal", stylebox)
+
+		# 호버 스타일
+		var hover_style := stylebox.duplicate()
+		hover_style.bg_color = Color(0.2, 0.22, 0.32, 1.0)
+		hover_style.set_border_width_all(3)
+		btn.add_theme_stylebox_override("hover", hover_style)
+
+		# 눌림 스타일
+		var pressed_style := stylebox.duplicate()
+		pressed_style.bg_color = Color(0.25, 0.27, 0.37, 1.0)
+		btn.add_theme_stylebox_override("pressed", pressed_style)
+
 		card_container.add_child(btn)
 
 
 func _format_card_text(card: CardData) -> String:
 	var lines: Array[String] = []
+
+	# 카드 이름
 	lines.append(card.get_display_name())
-	lines.append("비용: %d 기" % card.cost)
-	lines.append("음보: %d" % card.beat)
+
+	# 타입 + 희귀도 태그
+	var type_str := _get_card_type_label(card.type)
+	var rarity_str := _get_card_rarity_label(card.rarity)
+	lines.append("[%s · %s]" % [rarity_str, type_str])
+
+	# 기본 수치
+	lines.append("비용: %d기 · 음보: [%d]" % [card.cost, card.beat])
 
 	if card.damage > 0:
-		var dmg_text := "피해: %d" % card.damage
+		var dmg_text := "⚔ 피해 %d" % card.damage
 		if card.is_aoe:
 			dmg_text += " (전체)"
 		lines.append(dmg_text)
 	if card.block_value > 0:
-		lines.append("방어: %d" % card.block_value)
+		lines.append("🛡 방어 %d" % card.block_value)
 	if card.draw_count > 0:
-		lines.append("드로우: +%d" % card.draw_count)
+		lines.append("드로우 +%d" % card.draw_count)
 	if card.qi_gain > 0:
-		lines.append("기 회복: +%d" % card.qi_gain)
+		lines.append("기 +%d" % card.qi_gain)
+	if card.tokens > 0:
+		lines.append("토큰 +%d" % card.tokens)
 
+	# 상태이상 부여
+	if card.burn_stacks > 0:
+		lines.append("화상 %d" % card.burn_stacks)
+	if card.poison_stacks > 0:
+		lines.append("독 %d" % card.poison_stacks)
+	if card.weaken_stacks > 0:
+		lines.append("약화 %d" % card.weaken_stacks)
+	if card.vulnerable_stacks > 0:
+		lines.append("취약 %d" % card.vulnerable_stacks)
+
+	# 자원 소비/획득
+	if card.stamina_cost > 0:
+		lines.append("자원 소비: %d" % card.stamina_cost)
+	if card.stamina_gain > 0:
+		lines.append("자원 획득: +%d" % card.stamina_gain)
+
+	# 효과 텍스트
 	var eff := card.get_current_effect()
 	if eff != "":
 		lines.append("")
 		lines.append(eff)
 
 	return "\n".join(lines)
+
+
+func _get_card_type_label(card_type: String) -> String:
+	match card_type:
+		"attack":
+			return tr("CARD_TYPE_ATTACK")
+		"defense":
+			return tr("CARD_TYPE_DEFENSE")
+		"skill":
+			return tr("CARD_TYPE_SKILL")
+	return card_type
+
+
+func _get_card_rarity_label(rarity_level: int) -> String:
+	match rarity_level:
+		1:
+			return tr("CARD_RARITY_COMMON")
+		2:
+			return tr("CARD_RARITY_UNCOMMON")
+		3:
+			return tr("CARD_RARITY_RARE")
+	return tr("CARD_RARITY_COMMON")
+
+
+func _get_rarity_color(rarity_level: int) -> Color:
+	match rarity_level:
+		2:
+			return Color(0.3, 0.7, 1.0)  # 고급: 파랑
+		3:
+			return Color(1.0, 0.85, 0.2)  # 희귀: 금색
+	return Color(0.75, 0.75, 0.75)  # 일반: 회색
 
 
 func _on_card_chosen(index: int) -> void:
