@@ -13,9 +13,19 @@ var _keyword_tooltip: KeywordTooltip = null  # 키워드 툴팁
 @onready var card_hand: CardHand = $HandArea/CardHand
 @onready var enemy_container: HBoxContainer = $EnemyArea/EnemyContainer
 @onready var sijo_container: HBoxContainer = $SijoArea/SijoContainer
-@onready var end_turn_button: Button = $BattleHUD/EndTurnButton
+@onready var _hud_end_turn_button: Button = $BattleHUD/EndTurnButton  # 숨김 처리, 실제는 플로팅
 @onready var draw_pile_label: Label = $BattleHUD/DeckInfo/DrawPileLabel
 @onready var discard_pile_label: Label = $BattleHUD/DeckInfo/DiscardPileLabel
+
+# 플로팅 턴 종료 버튼 (HUD 외부, 화면 우측 하단)
+var end_turn_button: Button = null
+
+# 턴 표시 오버레이 (HUD 외부, 화면 상단)
+var _turn_overlay_label: Label = null
+
+# 덱 정보 오버레이 (HandArea 양쪽 하단)
+var _draw_pile_overlay: Label = null
+var _discard_pile_overlay: Label = null
 
 var battle_manager: BattleManager
 var sijo_system: SijoSystem
@@ -64,6 +74,9 @@ func _ready() -> void:
 	battle_manager.sijo_system = sijo_system
 	add_child(battle_manager)
 	add_child(sijo_system)
+
+	# 플로팅 UI 요소 생성
+	_create_floating_ui()
 
 	# 시그널 연결
 	battle_manager.hand_changed.connect(_on_hand_changed)
@@ -227,20 +240,85 @@ func _start_battle() -> void:
 		_init_active_skill_button()
 
 
+func _create_floating_ui() -> void:
+	## 플로팅 UI 요소 생성: 턴 종료 버튼, 턴 표시, 덱 정보
+	# 턴 종료 버튼 — 화면 우측, HandArea 상단에 플로팅
+	end_turn_button = Button.new()
+	end_turn_button.text = tr("BATTLE_END_TURN")
+	end_turn_button.custom_minimum_size = Vector2(140, 52)
+	end_turn_button.add_theme_font_size_override("font_size", 22)
+	var btn_style := StyleBoxFlat.new()
+	btn_style.bg_color = Color(0.55, 0.18, 0.18, 0.9)
+	btn_style.set_border_width_all(2)
+	btn_style.border_color = Color(0.85, 0.6, 0.3, 0.9)
+	btn_style.set_corner_radius_all(8)
+	btn_style.set_content_margin_all(8)
+	end_turn_button.add_theme_stylebox_override("normal", btn_style)
+	var btn_hover := btn_style.duplicate()
+	btn_hover.bg_color = Color(0.65, 0.22, 0.22, 0.95)
+	end_turn_button.add_theme_stylebox_override("hover", btn_hover)
+	var btn_pressed := btn_style.duplicate()
+	btn_pressed.bg_color = Color(0.4, 0.12, 0.12, 0.9)
+	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
+	end_turn_button.add_theme_color_override("font_color", Color(1.0, 0.9, 0.7))
+	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.95, 0.8))
+	# 앵커: 우측 하단 HandArea 바로 위
+	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
+	end_turn_button.anchor_left = 0.72
+	end_turn_button.anchor_right = 0.97
+	end_turn_button.anchor_top = 0.355
+	end_turn_button.anchor_bottom = 0.39
+	end_turn_button.z_index = 10
+	add_child(end_turn_button)
+
+	# 턴 표시 오버레이 — 적 영역 좌측 상단 구석
+	_turn_overlay_label = Label.new()
+	_turn_overlay_label.add_theme_font_size_override("font_size", 14)
+	_turn_overlay_label.add_theme_color_override("font_color", Color(0.6, 0.55, 0.5, 0.8))
+	_turn_overlay_label.anchor_left = 0.02
+	_turn_overlay_label.anchor_top = 0.01
+	_turn_overlay_label.anchor_right = 0.15
+	_turn_overlay_label.anchor_bottom = 0.04
+	_turn_overlay_label.z_index = 5
+	add_child(_turn_overlay_label)
+
+	# 드로우/버림 더미 — HandArea 양쪽 하단 오버레이
+	_draw_pile_overlay = Label.new()
+	_draw_pile_overlay.add_theme_font_size_override("font_size", 16)
+	_draw_pile_overlay.add_theme_color_override("font_color", Color(0.7, 0.65, 0.55))
+	_draw_pile_overlay.anchor_left = 0.02
+	_draw_pile_overlay.anchor_top = 0.95
+	_draw_pile_overlay.anchor_right = 0.15
+	_draw_pile_overlay.anchor_bottom = 0.99
+	_draw_pile_overlay.z_index = 5
+	add_child(_draw_pile_overlay)
+
+	_discard_pile_overlay = Label.new()
+	_discard_pile_overlay.add_theme_font_size_override("font_size", 16)
+	_discard_pile_overlay.add_theme_color_override("font_color", Color(0.7, 0.55, 0.55))
+	_discard_pile_overlay.anchor_left = 0.85
+	_discard_pile_overlay.anchor_top = 0.95
+	_discard_pile_overlay.anchor_right = 0.98
+	_discard_pile_overlay.anchor_bottom = 0.99
+	_discard_pile_overlay.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_discard_pile_overlay.z_index = 5
+	add_child(_discard_pile_overlay)
+
+
 func _init_sijo_toggle() -> void:
 	## 시조 슬롯 토글 버튼 + 요약 라벨 초기화
 	var sijo_area := $SijoArea
 	_sijo_toggle_button = Button.new()
 	_sijo_toggle_button.text = "▼"
-	_sijo_toggle_button.custom_minimum_size = Vector2(56, 56)
-	_sijo_toggle_button.add_theme_font_size_override("font_size", 24)
+	_sijo_toggle_button.custom_minimum_size = Vector2(40, 40)
+	_sijo_toggle_button.add_theme_font_size_override("font_size", 18)
 	_sijo_toggle_button.pressed.connect(_on_sijo_toggle_pressed)
 	sijo_area.add_child(_sijo_toggle_button)
 	sijo_area.move_child(_sijo_toggle_button, 0)
 
 	_sijo_summary_label = Label.new()
 	_sijo_summary_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_sijo_summary_label.add_theme_font_size_override("font_size", 22)
+	_sijo_summary_label.add_theme_font_size_override("font_size", 18)
 	_sijo_summary_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
 	_sijo_summary_label.visible = false
 	sijo_area.add_child(_sijo_summary_label)
@@ -270,21 +348,34 @@ func _init_sijo_slots() -> void:
 		child.queue_free()
 
 	var jang_names: Array[String] = ["초장", "중장", "종장"]
+	var jang_symbols: Array[String] = ["壹", "貳", "參"]
 	for i in sijo_system.pattern.size():
 		var slot_panel := PanelContainer.new()
 		var slot_style := StyleBoxFlat.new()
-		slot_style.bg_color = Color(0.12, 0.08, 0.18, 0.9)
-		slot_style.border_width_left = 2
-		slot_style.border_width_top = 2
-		slot_style.border_width_right = 2
+		slot_style.bg_color = Color(0.08, 0.06, 0.14, 0.85)
+		slot_style.border_width_left = 1
+		slot_style.border_width_top = 1
+		slot_style.border_width_right = 1
 		slot_style.border_width_bottom = 2
-		slot_style.border_color = Color(0.4, 0.3, 0.55, 0.8)
-		slot_style.corner_radius_top_left = 8
-		slot_style.corner_radius_top_right = 8
-		slot_style.corner_radius_bottom_right = 8
-		slot_style.corner_radius_bottom_left = 8
+		slot_style.border_color = Color(0.35, 0.25, 0.5, 0.6)
+		slot_style.set_corner_radius_all(6)
+		slot_style.content_margin_left = 6
+		slot_style.content_margin_right = 6
+		slot_style.content_margin_top = 4
+		slot_style.content_margin_bottom = 4
 		slot_panel.add_theme_stylebox_override("panel", slot_style)
-		slot_panel.custom_minimum_size = Vector2(180, 80)
+		slot_panel.custom_minimum_size = Vector2(160, 60)
+
+		var hbox := HBoxContainer.new()
+		hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		hbox.add_theme_constant_override("separation", 8)
+
+		# 한자 심볼
+		var symbol_label := Label.new()
+		symbol_label.text = jang_symbols[i] if i < jang_symbols.size() else ""
+		symbol_label.add_theme_font_size_override("font_size", 28)
+		symbol_label.add_theme_color_override("font_color", Color(0.4, 0.3, 0.55, 0.5))
+		hbox.add_child(symbol_label)
 
 		var vbox := VBoxContainer.new()
 		vbox.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -293,19 +384,20 @@ func _init_sijo_slots() -> void:
 		var jang_label := Label.new()
 		jang_label.text = jang_names[i] if i < jang_names.size() else ""
 		jang_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		jang_label.add_theme_font_size_override("font_size", 16)
-		jang_label.add_theme_color_override("font_color", Color(0.6, 0.5, 0.7))
+		jang_label.add_theme_font_size_override("font_size", 13)
+		jang_label.add_theme_color_override("font_color", Color(0.55, 0.45, 0.65))
 		vbox.add_child(jang_label)
 
 		# beat 번호
 		var label := Label.new()
 		label.text = "♪ %d" % sijo_system.pattern[i]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.add_theme_font_size_override("font_size", 28)
+		label.add_theme_font_size_override("font_size", 22)
 		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 		vbox.add_child(label)
 
-		slot_panel.add_child(vbox)
+		hbox.add_child(vbox)
+		slot_panel.add_child(hbox)
 		sijo_container.add_child(slot_panel)
 		sijo_slot_labels.append(label)
 
@@ -332,6 +424,11 @@ func _deferred_refresh_hand_ui() -> void:
 	# 덱 정보 갱신
 	draw_pile_label.text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
 	discard_pile_label.text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
+	# 플로팅 덱 오버레이 갱신
+	if _draw_pile_overlay:
+		_draw_pile_overlay.text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
+	if _discard_pile_overlay:
+		_discard_pile_overlay.text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
 
 	# 시조 완성 가능 여부 체크
 	_check_sijo_completable()
@@ -432,7 +529,9 @@ func _update_enemy_ui() -> void:
 			# 기존 캐시 업데이트
 			var cache: Dictionary = _enemy_ui_cache[i]
 			cache["panel"].visible = true
-			cache["hp_label"].text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
+			cache["hp_label"].text = "%d/%d" % [enemy["current_hp"], enemy["max_hp"]]
+			if cache.has("hp_bar") and is_instance_valid(cache["hp_bar"]):
+				cache["hp_bar"].value = enemy["current_hp"]
 			var block_val: int = enemy.get("block", 0)
 			cache["block_label"].text = tr("BATTLE_ENEMY_BLOCK_FMT") % block_val
 			cache["block_label"].visible = block_val > 0
@@ -447,35 +546,78 @@ func _update_enemy_ui() -> void:
 				enemy_name = tr("BATTLE_ENEMY_FALLBACK")
 
 			var panel := PanelContainer.new()
-			var vbox := VBoxContainer.new()
+			# 적 패널 스타일 — 어두운 배경 + 미묘한 테두리
+			var panel_style := StyleBoxFlat.new()
+			panel_style.bg_color = Color(0.08, 0.05, 0.12, 0.7)
+			panel_style.set_border_width_all(1)
+			panel_style.border_color = Color(0.5, 0.3, 0.3, 0.5)
+			panel_style.set_corner_radius_all(10)
+			panel_style.set_content_margin_all(8)
+			panel.add_theme_stylebox_override("panel", panel_style)
 
-			# 적 실루엣 심볼 — 이미지 없이 텍스트로 시각적 존재감 확보
+			var vbox := VBoxContainer.new()
+			vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+			vbox.add_theme_constant_override("separation", 2)
+
+			# 적 실루엣 심볼 — 큰 사이즈로 존재감 강화
 			var silhouette := Label.new()
 			silhouette.text = _get_enemy_silhouette(enemy)
 			silhouette.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			silhouette.add_theme_font_size_override("font_size", 56)
-			silhouette.add_theme_color_override("font_color", Color(0.8, 0.5, 0.5, 0.9))
+			silhouette.add_theme_font_size_override("font_size", 64)
+			var combat_type: String = enemy.get("combat_type", "")
+			if combat_type == "boss":
+				silhouette.add_theme_color_override("font_color", Color(1.0, 0.3, 0.2, 0.95))
+			elif combat_type == "elite":
+				silhouette.add_theme_color_override("font_color", Color(0.9, 0.7, 0.2, 0.95))
+			else:
+				silhouette.add_theme_color_override("font_color", Color(0.7, 0.45, 0.45, 0.9))
 
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			name_label.add_theme_font_size_override("font_size", 24)
-			var hp_lbl := Label.new()
-			hp_lbl.text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
-			hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			hp_lbl.add_theme_font_size_override("font_size", 22)
+			name_label.add_theme_font_size_override("font_size", 20)
+			name_label.add_theme_color_override("font_color", Color(0.9, 0.85, 0.75))
 
+			# HP 바 (ProgressBar + 오버레이 텍스트)
+			var hp_container := Control.new()
+			hp_container.custom_minimum_size = Vector2(180, 22)
+			var hp_bar := ProgressBar.new()
+			hp_bar.min_value = 0
+			hp_bar.max_value = enemy["max_hp"]
+			hp_bar.value = enemy["current_hp"]
+			hp_bar.show_percentage = false
+			hp_bar.set_anchors_preset(Control.PRESET_FULL_RECT)
+			hp_bar.add_theme_stylebox_override("background", _make_hp_bar_bg())
+			hp_bar.add_theme_stylebox_override("fill", _make_hp_bar_fill(combat_type))
+			hp_container.add_child(hp_bar)
+			var hp_lbl := Label.new()
+			hp_lbl.text = "%d/%d" % [enemy["current_hp"], enemy["max_hp"]]
+			hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			hp_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+			hp_lbl.set_anchors_preset(Control.PRESET_FULL_RECT)
+			hp_lbl.add_theme_font_size_override("font_size", 14)
+			hp_lbl.add_theme_color_override("font_color", Color(1, 1, 1, 0.95))
+			hp_container.add_child(hp_lbl)
+
+			# 인텐트 — 배경색 있는 라벨
+			var intent_panel := PanelContainer.new()
+			var intent_style := StyleBoxFlat.new()
+			intent_style.bg_color = Color(0.1, 0.08, 0.15, 0.6)
+			intent_style.set_corner_radius_all(4)
+			intent_style.set_content_margin_all(3)
+			intent_panel.add_theme_stylebox_override("panel", intent_style)
 			var intent_label := Label.new()
 			intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			intent_label.add_theme_font_size_override("font_size", 22)
+			intent_label.add_theme_font_size_override("font_size", 18)
 			var intent := battle_manager._get_enemy_intent(i)
 			intent_label.text = _format_intent(intent)
 			intent_label.add_theme_color_override("font_color", _get_intent_color(intent))
+			intent_panel.add_child(intent_label)
 
 			var block_val: int = enemy.get("block", 0)
 			var enemy_block_label := Label.new()
 			enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			enemy_block_label.add_theme_font_size_override("font_size", 22)
+			enemy_block_label.add_theme_font_size_override("font_size", 18)
 			enemy_block_label.text = tr("BATTLE_ENEMY_BLOCK_FMT") % block_val
 			enemy_block_label.visible = block_val > 0
 
@@ -485,22 +627,42 @@ func _update_enemy_ui() -> void:
 
 			vbox.add_child(silhouette)
 			vbox.add_child(name_label)
-			vbox.add_child(hp_lbl)
+			vbox.add_child(hp_container)
 			vbox.add_child(enemy_block_label)
 			vbox.add_child(status_hbox)
-			vbox.add_child(intent_label)
+			vbox.add_child(intent_panel)
 			panel.add_child(vbox)
-			panel.custom_minimum_size = Vector2(220, 240)
+			panel.custom_minimum_size = Vector2(240, 0)
 			enemy_container.add_child(panel)
 
 			_enemy_ui_cache[i] = {
 				"panel": panel,
 				"name_label": name_label,
 				"hp_label": hp_lbl,
+				"hp_bar": hp_bar,
 				"block_label": enemy_block_label,
 				"intent_label": intent_label,
 				"status_hbox": status_hbox,
 			}
+
+
+func _make_hp_bar_bg() -> StyleBoxFlat:
+	var s := StyleBoxFlat.new()
+	s.bg_color = Color(0.15, 0.1, 0.1, 0.8)
+	s.set_corner_radius_all(4)
+	return s
+
+
+func _make_hp_bar_fill(combat_type: String) -> StyleBoxFlat:
+	var s := StyleBoxFlat.new()
+	if combat_type == "boss":
+		s.bg_color = Color(0.8, 0.2, 0.15)
+	elif combat_type == "elite":
+		s.bg_color = Color(0.75, 0.55, 0.15)
+	else:
+		s.bg_color = Color(0.6, 0.2, 0.2)
+	s.set_corner_radius_all(4)
+	return s
 
 
 func _get_enemy_silhouette(enemy: Dictionary) -> String:
@@ -617,6 +779,8 @@ func _on_block_changed(new_block: int) -> void:
 
 func _on_turn_started(turn: int) -> void:
 	turn_label.text = tr("BATTLE_TURN_FMT") % turn
+	if _turn_overlay_label:
+		_turn_overlay_label.text = tr("BATTLE_TURN_FMT") % turn
 	# 턴 전환 배너 VFX
 	if vfx and turn > 1:
 		vfx.turn_transition(self, tr("BATTLE_TURN_FMT") % turn)
@@ -953,7 +1117,14 @@ func _on_class_resource_changed(current: int, max_val: int) -> void:
 func _init_relic_bar() -> void:
 	var relic_bar := RelicBar.new()
 	relic_bar.name = "RelicBar"
-	$BattleHUD.add_child(relic_bar)
+	# 유물 바: 화면 상단 우측 플로팅 오버레이
+	relic_bar.anchor_left = 0.5
+	relic_bar.anchor_right = 0.99
+	relic_bar.anchor_top = 0.005
+	relic_bar.anchor_bottom = 0.035
+	relic_bar.z_index = 5
+	relic_bar.alignment = BoxContainer.ALIGNMENT_END
+	add_child(relic_bar)
 
 
 func _on_relic_triggered(relic_id: String, description: String) -> void:
@@ -977,7 +1148,7 @@ func _init_class_resource_ui() -> void:
 	_class_resource_label = Label.new()
 	var res_name := battle_manager.get_class_resource_name()
 	_class_resource_label.text = "%s: 0/%d" % [res_name, battle_manager.max_class_resource]
-	_class_resource_label.add_theme_font_size_override("font_size", 28)
+	_class_resource_label.add_theme_font_size_override("font_size", 20)
 	_class_resource_label.add_theme_color_override("font_color", battle_manager.get_class_resource_color())
 	$BattleHUD/PlayerInfo.add_child(_class_resource_label)
 
@@ -988,9 +1159,23 @@ func _init_active_skill_button() -> void:
 	_active_skill_button.text = skill_name
 	_active_skill_button.tooltip_text = battle_manager.get_active_skill_description()
 	_active_skill_button.pressed.connect(_on_active_skill_pressed)
-	_active_skill_button.custom_minimum_size = Vector2(160, 56)
-	_active_skill_button.add_theme_font_size_override("font_size", 24)
-	$BattleHUD.add_child(_active_skill_button)
+	_active_skill_button.custom_minimum_size = Vector2(140, 44)
+	_active_skill_button.add_theme_font_size_override("font_size", 18)
+	# 플로팅: 턴 종료 버튼 위에 배치
+	var skill_style := StyleBoxFlat.new()
+	skill_style.bg_color = Color(0.15, 0.25, 0.45, 0.85)
+	skill_style.set_border_width_all(1)
+	skill_style.border_color = Color(0.4, 0.6, 0.9, 0.7)
+	skill_style.set_corner_radius_all(6)
+	skill_style.set_content_margin_all(6)
+	_active_skill_button.add_theme_stylebox_override("normal", skill_style)
+	_active_skill_button.add_theme_color_override("font_color", Color(0.8, 0.9, 1.0))
+	_active_skill_button.anchor_left = 0.72
+	_active_skill_button.anchor_right = 0.97
+	_active_skill_button.anchor_top = 0.315
+	_active_skill_button.anchor_bottom = 0.35
+	_active_skill_button.z_index = 10
+	add_child(_active_skill_button)
 
 
 func _on_active_skill_pressed() -> void:
