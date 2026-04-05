@@ -17,11 +17,11 @@ const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 # 뷰포트 기준 비율 (1080x1920 기본 해상도 기준)
 const BASE_WIDTH := 1080.0
 # 카드 간격: 카드 너비의 배수로 설정.
-const MAX_CARD_SPACING := 190.0    # 넉넉할 때 카드 간 간격
-const MIN_CARD_SPACING := 130.0    # 카드 너비의 약 57% — 겹침 허용
+const MAX_CARD_SPACING := 220.0    # 넉넉할 때 카드 간 간격
+const MIN_CARD_SPACING := 160.0    # 카드 너비의 약 60% — 겹침 최소화
 # 손패 카드 수에 따른 카드 크기 스케일 (가독성 확보)
-const HAND_SCALE_THRESHOLD := 5    # 이 수 이상이면 카드 축소 시작
-const MIN_HAND_SCALE := 0.8        # 카드 최소 축소 비율
+const HAND_SCALE_THRESHOLD := 6    # 이 수 이상이면 카드 축소 시작
+const MIN_HAND_SCALE := 0.85       # 카드 최소 축소 비율
 
 var card_widgets: Array[CardUI] = []
 var _widget_pool: Array[CardUI] = []  # 재사용 가능한 CardUI 풀

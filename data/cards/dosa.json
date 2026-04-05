@@ -1110,7 +1110,7 @@
         "romanized": "Gwimun Dohae",
         "en": "Gates of the Spirit Realm"
       },
-      "beat": 5,
+      "beat": 4,
       "cost": 0,
       "type": "energy",
       "subtypes": [
@@ -1132,7 +1132,7 @@
         "en": "The spirit gate is always open — drawing Qi requires no effort."
       },
       "balance_rationale": "0코스트로 기 3+드로우 2. D001(0코+기1+드1)의 3배 효율. 전설 등급. D026(기×8딜)과 콤보 시: 귀문도해 0코+기3+드2 → D026으로 24+ 피해. STS의 0코 패시브 엔진(Shiv 등)과 유사한 역할.",
-      "sijo_position": "종장 첫 슬롯 [3] — 0코스트 기 가속기",
+      "sijo_position": "중장·종장 둘째 슬롯 [4] — 0코스트 기 가속기",
       "class_synergy": [
         "D026",
         "D001",
