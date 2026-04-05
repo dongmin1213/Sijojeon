@@ -262,23 +262,23 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(1.0, 0.9, 0.7))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.95, 0.8))
-	# 앵커: 우측 하단 HandArea 바로 위
+	# 앵커: 우측, 카드 영역 바로 위
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
 	end_turn_button.anchor_left = 0.72
 	end_turn_button.anchor_right = 0.97
-	end_turn_button.anchor_top = 0.355
-	end_turn_button.anchor_bottom = 0.39
+	end_turn_button.anchor_top = 0.295
+	end_turn_button.anchor_bottom = 0.325
 	end_turn_button.z_index = 10
 	add_child(end_turn_button)
 
 	# 턴 표시 오버레이 — 적 영역 좌측 상단 구석
 	_turn_overlay_label = Label.new()
-	_turn_overlay_label.add_theme_font_size_override("font_size", 14)
-	_turn_overlay_label.add_theme_color_override("font_color", Color(0.6, 0.55, 0.5, 0.8))
+	_turn_overlay_label.add_theme_font_size_override("font_size", 13)
+	_turn_overlay_label.add_theme_color_override("font_color", Color(0.6, 0.55, 0.5, 0.7))
 	_turn_overlay_label.anchor_left = 0.02
-	_turn_overlay_label.anchor_top = 0.01
+	_turn_overlay_label.anchor_top = 0.005
 	_turn_overlay_label.anchor_right = 0.15
-	_turn_overlay_label.anchor_bottom = 0.04
+	_turn_overlay_label.anchor_bottom = 0.025
 	_turn_overlay_label.z_index = 5
 	add_child(_turn_overlay_label)
 
@@ -352,52 +352,49 @@ func _init_sijo_slots() -> void:
 	for i in sijo_system.pattern.size():
 		var slot_panel := PanelContainer.new()
 		var slot_style := StyleBoxFlat.new()
-		slot_style.bg_color = Color(0.08, 0.06, 0.14, 0.85)
-		slot_style.border_width_left = 1
-		slot_style.border_width_top = 1
-		slot_style.border_width_right = 1
-		slot_style.border_width_bottom = 2
-		slot_style.border_color = Color(0.35, 0.25, 0.5, 0.6)
-		slot_style.set_corner_radius_all(6)
-		slot_style.content_margin_left = 6
-		slot_style.content_margin_right = 6
-		slot_style.content_margin_top = 4
-		slot_style.content_margin_bottom = 4
+		slot_style.bg_color = Color(0.06, 0.04, 0.12, 0.9)
+		slot_style.set_border_width_all(2)
+		slot_style.border_color = Color(0.45, 0.3, 0.6, 0.7)
+		slot_style.set_corner_radius_all(10)
+		slot_style.content_margin_left = 12
+		slot_style.content_margin_right = 12
+		slot_style.content_margin_top = 8
+		slot_style.content_margin_bottom = 8
+		# 현재 활성 슬롯 강조
+		if i == sijo_system.current_slot_index:
+			slot_style.border_color = Color(0.6, 0.5, 0.9, 0.9)
+			slot_style.shadow_color = Color(0.4, 0.3, 0.7, 0.3)
+			slot_style.shadow_size = 4
 		slot_panel.add_theme_stylebox_override("panel", slot_style)
-		slot_panel.custom_minimum_size = Vector2(160, 60)
-
-		var hbox := HBoxContainer.new()
-		hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-		hbox.add_theme_constant_override("separation", 8)
-
-		# 한자 심볼
-		var symbol_label := Label.new()
-		symbol_label.text = jang_symbols[i] if i < jang_symbols.size() else ""
-		symbol_label.add_theme_font_size_override("font_size", 28)
-		symbol_label.add_theme_color_override("font_color", Color(0.4, 0.3, 0.55, 0.5))
-		hbox.add_child(symbol_label)
+		slot_panel.custom_minimum_size = Vector2(180, 80)
+		slot_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		var vbox := VBoxContainer.new()
 		vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		vbox.add_theme_constant_override("separation", 2)
 
-		# 장 이름 (초장/중장/종장)
-		var jang_label := Label.new()
-		jang_label.text = jang_names[i] if i < jang_names.size() else ""
-		jang_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		jang_label.add_theme_font_size_override("font_size", 13)
-		jang_label.add_theme_color_override("font_color", Color(0.55, 0.45, 0.65))
-		vbox.add_child(jang_label)
+		# 장 이름 + 한자 심볼 (한 줄)
+		var header := Label.new()
+		header.text = "%s %s" % [jang_symbols[i] if i < jang_symbols.size() else "", jang_names[i] if i < jang_names.size() else ""]
+		header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		header.add_theme_font_size_override("font_size", 16)
+		if i == sijo_system.current_slot_index:
+			header.add_theme_color_override("font_color", Color(0.75, 0.65, 0.9))
+		else:
+			header.add_theme_color_override("font_color", Color(0.5, 0.4, 0.6, 0.7))
+		vbox.add_child(header)
 
-		# beat 번호
+		# beat 번호 (크게)
 		var label := Label.new()
 		label.text = "♪ %d" % sijo_system.pattern[i]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.add_theme_font_size_override("font_size", 22)
-		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+		label.add_theme_font_size_override("font_size", 28)
+		if i == sijo_system.current_slot_index:
+			label.add_theme_color_override("font_color", Color(0.8, 0.75, 0.95))
+		else:
+			label.add_theme_color_override("font_color", Color(0.45, 0.4, 0.5))
 		vbox.add_child(label)
-
-		hbox.add_child(vbox)
-		slot_panel.add_child(hbox)
+		slot_panel.add_child(vbox)
 		sijo_container.add_child(slot_panel)
 		sijo_slot_labels.append(label)
 
@@ -481,7 +478,7 @@ func _show_sijo_alert() -> void:
 		_sijo_alert_label.add_theme_font_size_override("font_size", 22)
 		_sijo_alert_label.add_theme_color_override("font_color", Color(0.3, 1.0, 0.5))
 		_sijo_alert_label.anchors_preset = Control.PRESET_CENTER_TOP
-		_sijo_alert_label.position.y = 150
+		_sijo_alert_label.position.y = 100
 		add_child(_sijo_alert_label)
 
 		# 펄스 애니메이션
@@ -552,18 +549,22 @@ func _update_enemy_ui() -> void:
 			panel_style.set_border_width_all(1)
 			panel_style.border_color = Color(0.5, 0.3, 0.3, 0.5)
 			panel_style.set_corner_radius_all(10)
-			panel_style.set_content_margin_all(8)
+			panel_style.set_content_margin_all(6)
 			panel.add_theme_stylebox_override("panel", panel_style)
 
 			var vbox := VBoxContainer.new()
 			vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-			vbox.add_theme_constant_override("separation", 2)
+			vbox.add_theme_constant_override("separation", 1)
 
-			# 적 실루엣 심볼 — 큰 사이즈로 존재감 강화
+			# 적 이름 + 실루엣을 한 줄로 합쳐 공간 절약
+			var header_hbox := HBoxContainer.new()
+			header_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+			header_hbox.add_theme_constant_override("separation", 6)
+
 			var silhouette := Label.new()
 			silhouette.text = _get_enemy_silhouette(enemy)
 			silhouette.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			silhouette.add_theme_font_size_override("font_size", 64)
+			silhouette.add_theme_font_size_override("font_size", 28)
 			var combat_type: String = enemy.get("combat_type", "")
 			if combat_type == "boss":
 				silhouette.add_theme_color_override("font_color", Color(1.0, 0.3, 0.2, 0.95))
@@ -575,8 +576,11 @@ func _update_enemy_ui() -> void:
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			name_label.add_theme_font_size_override("font_size", 20)
+			name_label.add_theme_font_size_override("font_size", 18)
 			name_label.add_theme_color_override("font_color", Color(0.9, 0.85, 0.75))
+
+			header_hbox.add_child(silhouette)
+			header_hbox.add_child(name_label)
 
 			# HP 바 (ProgressBar + 오버레이 텍스트)
 			var hp_container := Control.new()
@@ -625,14 +629,13 @@ func _update_enemy_ui() -> void:
 			status_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 			_build_status_icons(status_hbox, "enemy_%d" % i)
 
-			vbox.add_child(silhouette)
-			vbox.add_child(name_label)
+			vbox.add_child(header_hbox)
 			vbox.add_child(hp_container)
 			vbox.add_child(enemy_block_label)
 			vbox.add_child(status_hbox)
 			vbox.add_child(intent_panel)
 			panel.add_child(vbox)
-			panel.custom_minimum_size = Vector2(240, 0)
+			panel.custom_minimum_size = Vector2(200, 0)
 			enemy_container.add_child(panel)
 
 			_enemy_ui_cache[i] = {
@@ -1172,8 +1175,8 @@ func _init_active_skill_button() -> void:
 	_active_skill_button.add_theme_color_override("font_color", Color(0.8, 0.9, 1.0))
 	_active_skill_button.anchor_left = 0.72
 	_active_skill_button.anchor_right = 0.97
-	_active_skill_button.anchor_top = 0.315
-	_active_skill_button.anchor_bottom = 0.35
+	_active_skill_button.anchor_top = 0.26
+	_active_skill_button.anchor_bottom = 0.29
 	_active_skill_button.z_index = 10
 	add_child(_active_skill_button)
 
