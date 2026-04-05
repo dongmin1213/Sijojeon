@@ -36,6 +36,7 @@ TranslationManager="*res://scripts/autoload/translation_manager.gd"
 
 [gui]
 
+theme/custom="res://resources/joseon_theme.tres"
 common/default_scroll_deadzone=24
 
 [display]

@@ -119,12 +119,10 @@ theme_override_constants/separation = 40
 [node name="DrawPileLabel" type="Label" parent="BattleHUD/DeckInfo"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 28
 
 [node name="DiscardPileLabel" type="Label" parent="BattleHUD/DeckInfo"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 28
 
 [node name="EndTurnButton" type="Button" parent="BattleHUD"]
 layout_mode = 2

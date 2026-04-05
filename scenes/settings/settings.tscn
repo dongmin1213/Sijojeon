@@ -45,7 +45,6 @@ theme_override_constants/separation = 20
 [node name="BGMLabel" type="Label" parent="VBoxContainer/BGMContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 28
 text = "SETTINGS_BGM"
 vertical_alignment = 1
 
@@ -65,7 +64,6 @@ theme_override_constants/separation = 20
 [node name="SFXLabel" type="Label" parent="VBoxContainer/SFXContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 28
 text = "SETTINGS_SFX"
 vertical_alignment = 1
 
@@ -85,7 +83,6 @@ theme_override_constants/separation = 20
 [node name="VibrationLabel" type="Label" parent="VBoxContainer/VibrationContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 28
 text = "SETTINGS_VIBRATION"
 vertical_alignment = 1
 
@@ -109,14 +106,12 @@ theme_override_constants/separation = 20
 [node name="LanguageLabel" type="Label" parent="VBoxContainer/LanguageContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 28
 text = "SETTINGS_LANGUAGE"
 vertical_alignment = 1
 
 [node name="LanguageOption" type="OptionButton" parent="VBoxContainer/LanguageContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 24
 custom_minimum_size = Vector2(0, 50)
 
 [node name="AccessibilitySeparator" type="HSeparator" parent="VBoxContainer"]
@@ -135,7 +130,6 @@ theme_override_constants/separation = 20
 [node name="ScreenShakeLabel" type="Label" parent="VBoxContainer/ScreenShakeContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
-theme_override_font_sizes/font_size = 28
 text = "SETTINGS_SCREEN_SHAKE"
 vertical_alignment = 1
 
