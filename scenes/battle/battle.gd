@@ -269,14 +269,44 @@ func _init_sijo_slots() -> void:
 	for child in sijo_container.get_children():
 		child.queue_free()
 
+	var jang_names: Array[String] = ["초장", "중장", "종장"]
 	for i in sijo_system.pattern.size():
+		var slot_panel := PanelContainer.new()
+		var slot_style := StyleBoxFlat.new()
+		slot_style.bg_color = Color(0.12, 0.08, 0.18, 0.9)
+		slot_style.border_width_left = 2
+		slot_style.border_width_top = 2
+		slot_style.border_width_right = 2
+		slot_style.border_width_bottom = 2
+		slot_style.border_color = Color(0.4, 0.3, 0.55, 0.8)
+		slot_style.corner_radius_top_left = 8
+		slot_style.corner_radius_top_right = 8
+		slot_style.corner_radius_bottom_right = 8
+		slot_style.corner_radius_bottom_left = 8
+		slot_panel.add_theme_stylebox_override("panel", slot_style)
+		slot_panel.custom_minimum_size = Vector2(180, 80)
+
+		var vbox := VBoxContainer.new()
+		vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+
+		# 장 이름 (초장/중장/종장)
+		var jang_label := Label.new()
+		jang_label.text = jang_names[i] if i < jang_names.size() else ""
+		jang_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		jang_label.add_theme_font_size_override("font_size", 16)
+		jang_label.add_theme_color_override("font_color", Color(0.6, 0.5, 0.7))
+		vbox.add_child(jang_label)
+
+		# beat 번호
 		var label := Label.new()
-		label.text = "[%d]" % sijo_system.pattern[i]
+		label.text = "♪ %d" % sijo_system.pattern[i]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.custom_minimum_size = Vector2(140, 70)
-		label.add_theme_font_size_override("font_size", 24)
+		label.add_theme_font_size_override("font_size", 28)
 		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
-		sijo_container.add_child(label)
+		vbox.add_child(label)
+
+		slot_panel.add_child(vbox)
+		sijo_container.add_child(slot_panel)
 		sijo_slot_labels.append(label)
 
 	if _sijo_collapsed:
@@ -423,7 +453,7 @@ func _update_enemy_ui() -> void:
 			var silhouette := Label.new()
 			silhouette.text = _get_enemy_silhouette(enemy)
 			silhouette.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			silhouette.add_theme_font_size_override("font_size", 48)
+			silhouette.add_theme_font_size_override("font_size", 56)
 			silhouette.add_theme_color_override("font_color", Color(0.8, 0.5, 0.5, 0.9))
 
 			var name_label := Label.new()
@@ -460,7 +490,7 @@ func _update_enemy_ui() -> void:
 			vbox.add_child(status_hbox)
 			vbox.add_child(intent_label)
 			panel.add_child(vbox)
-			panel.custom_minimum_size = Vector2(200, 200)
+			panel.custom_minimum_size = Vector2(220, 240)
 			enemy_container.add_child(panel)
 
 			_enemy_ui_cache[i] = {
@@ -679,11 +709,22 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String, beat_
 			sijo_slot_labels[index].text = card.get_display_name()
 		else:
 			sijo_slot_labels[index].text = card_id
-		# beat 일치: 금색, 불일치: 회색
+		# beat 일치: 금색 + 패널 테두리 강조, 불일치: 회색
 		if beat_matched:
 			sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
 		else:
 			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+		# 슬롯 패널 테두리 색상 업데이트
+		var slot_panel: PanelContainer = sijo_slot_labels[index].get_parent().get_parent()
+		if slot_panel is PanelContainer:
+			var style: StyleBoxFlat = slot_panel.get_theme_stylebox("panel").duplicate()
+			if beat_matched:
+				style.border_color = Color(1.0, 0.85, 0.3, 0.9)
+				style.bg_color = Color(0.18, 0.15, 0.08, 0.9)
+			else:
+				style.border_color = Color(0.5, 0.5, 0.5, 0.7)
+				style.bg_color = Color(0.1, 0.1, 0.12, 0.9)
+			slot_panel.add_theme_stylebox_override("panel", style)
 	if _sijo_collapsed:
 		_update_sijo_summary()
 

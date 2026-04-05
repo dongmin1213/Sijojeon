@@ -47,95 +47,95 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_battle_panel")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
-anchor_top = 0.02
+anchor_top = 0.01
 anchor_right = 0.99
-anchor_bottom = 0.2
+anchor_bottom = 0.30
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="EnemyContainer" type="HBoxContainer" parent="EnemyArea"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 
 [node name="SijoArea" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_battle_panel")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
-anchor_top = 0.21
+anchor_top = 0.31
 anchor_right = 0.99
-anchor_bottom = 0.28
+anchor_bottom = 0.41
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SijoContainer" type="HBoxContainer" parent="SijoArea"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 10
+theme_override_constants/separation = 16
 
 [node name="BattleHUD" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
-anchor_top = 0.29
+anchor_top = 0.42
 anchor_right = 0.99
-anchor_bottom = 0.46
+anchor_bottom = 0.50
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PlayerInfo" type="HBoxContainer" parent="BattleHUD"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 20
+theme_override_constants/separation = 12
 
 [node name="HPLabel" type="Label" parent="BattleHUD/PlayerInfo"]
 layout_mode = 2
 text = "HP: 70/70"
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 22
 
 [node name="QiLabel" type="Label" parent="BattleHUD/PlayerInfo"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 22
 
 [node name="BlockLabel" type="Label" parent="BattleHUD/PlayerInfo"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 22
 visible = false
 
 [node name="TurnLabel" type="Label" parent="BattleHUD"]
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 18
 
 [node name="DeckInfo" type="HBoxContainer" parent="BattleHUD"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 20
+theme_override_constants/separation = 12
 
 [node name="DrawPileLabel" type="Label" parent="BattleHUD/DeckInfo"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 
 [node name="DiscardPileLabel" type="Label" parent="BattleHUD/DeckInfo"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 
 [node name="EndTurnButton" type="Button" parent="BattleHUD"]
 layout_mode = 2
 text = "BATTLE_END_TURN"
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 26
 
 [node name="HandArea" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
-anchor_top = 0.47
+anchor_top = 0.51
 anchor_right = 0.99
 anchor_bottom = 0.99
 grow_horizontal = 2
