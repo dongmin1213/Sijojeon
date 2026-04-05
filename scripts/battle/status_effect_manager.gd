@@ -111,22 +111,24 @@ func process_turn_start(target: String) -> Dictionary:
 	var result := {"damage": 0, "armor": 0}
 	var effects := get_all_effects(target)
 
-	# 독: 매 턴 n피해 후 n 1 감소, 0이면 소멸
+	# 독: 매 턴 스택×(스택/2+1) 피해 후 스택 1 감소, 0이면 소멸
 	if effects.has("독"):
 		var poison_stacks: int = effects["독"]
-		result["damage"] += poison_stacks
-		effect_triggered.emit(target, "독", poison_stacks)
+		var poison_damage: int = poison_stacks * (poison_stacks / 2 + 1)
+		result["damage"] += poison_damage
+		effect_triggered.emit(target, "독", poison_damage)
 		var remaining := poison_stacks - 1
 		if remaining <= 0:
 			remove_effect(target, "독")
 		else:
 			_effects[target]["독"] = remaining
 
-	# 화상: 매 턴 n피해 (스택 = 남은 턴 수), 1턴씩 감소
+	# 화상: 매 턴 스택×(스택/2+1) 피해 (스택 = 남은 턴 수), 1턴씩 감소
 	if effects.has("화상"):
 		var burn_stacks: int = effects["화상"]
-		result["damage"] += burn_stacks
-		effect_triggered.emit(target, "화상", burn_stacks)
+		var burn_damage: int = burn_stacks * (burn_stacks / 2 + 1)
+		result["damage"] += burn_damage
+		effect_triggered.emit(target, "화상", burn_damage)
 		var remaining := burn_stacks - 1
 		if remaining <= 0:
 			remove_effect(target, "화상")

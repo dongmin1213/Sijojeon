@@ -182,8 +182,8 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "적에게 5 피해를 입힌다. 대상에게 화상(火傷) 3을 부여한다. (화상: 턴 종료 시 화상 수치만큼 피해, 1 감소)",
-        "en": "Deal 5 damage to an enemy. Apply 3 Burn to the target. (Burn: at end of turn, take damage equal to Burn stacks, then reduce by 1)"
+        "ko": "적에게 5 피해를 입힌다. 대상에게 화상(火傷) 4를 부여한다. (화상: 턴 종료 시 화상 수치만큼 피해, 1 감소)",
+        "en": "Deal 5 damage to an enemy. Apply 4 Burn to the target. (Burn: at end of turn, take damage equal to Burn stacks, then reduce by 1)"
       },
       "effect_upgraded": {
         "ko": "7 피해. 화상 4를 부여한다.",
@@ -201,7 +201,7 @@
       "upgrade_cost": 100,
       "values": {
         "damage": 5,
-        "burn": 3
+        "burn": 4
       }
     },
     {

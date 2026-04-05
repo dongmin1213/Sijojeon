@@ -672,12 +672,12 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "기력을 전부 소비한다. 소비한 기력 1당 적에게 3 피해를 입힌다 (최소 0).",
-        "en": "Consume all Stamina. Deal 3 damage per Stamina consumed (minimum 0)."
+        "ko": "기력을 전부 소비한다. 소비한 기력 1당 적에게 2 피해를 입힌다 (최소 0).",
+        "en": "Consume all Stamina. Deal 2 damage per Stamina consumed (minimum 0)."
       },
       "effect_upgraded": {
-        "ko": "기력을 전부 소비한다. 소비한 기력 1당 4 피해를 입힌다.",
-        "en": "Consume all Stamina. Deal 4 damage per Stamina consumed."
+        "ko": "기력을 전부 소비한다. 소비한 기력 1당 3 피해를 입힌다.",
+        "en": "Consume all Stamina. Deal 3 damage per Stamina consumed."
       },
       "flavor_text": {
         "ko": "남은 모든 기력을 한 방에 쏟아붓는다 — 이기거나 지거나, 후회는 없다.",
@@ -691,7 +691,7 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "damage_per_stamina": 3,
+        "damage_per_stamina": 2,
         "consume_all_stamina": true
       }
     },
@@ -753,12 +753,12 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "적에게 20 피해를 입힌다. 기력 1당 피해를 4 추가로 입힌다 (기력 전부 소비).",
-        "en": "Deal 20 damage to an enemy. Deal 4 additional damage per Stamina (consumes all Stamina)."
+        "ko": "적에게 20 피해를 입힌다. 기력 1당 피해를 3 추가로 입힌다 (기력 전부 소비).",
+        "en": "Deal 20 damage to an enemy. Deal 3 additional damage per Stamina (consumes all Stamina)."
       },
       "effect_upgraded": {
-        "ko": "25 피해. 기력 1당 +5 추가 피해.",
-        "en": "Deal 25 damage. +5 additional damage per Stamina."
+        "ko": "25 피해. 기력 1당 +4 추가 피해.",
+        "en": "Deal 25 damage. +4 additional damage per Stamina."
       },
       "flavor_text": {
         "ko": "세상에 둘도 없는 일격 — 기력을 남기지 말고 쏟아부어라.",
@@ -774,7 +774,7 @@
       "upgrade_cost": 150,
       "values": {
         "damage": 20,
-        "bonus_damage_per_stamina": 4,
+        "bonus_damage_per_stamina": 3,
         "consume_all_stamina": true
       }
     },

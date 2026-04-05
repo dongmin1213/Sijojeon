@@ -157,7 +157,7 @@
       },
       "class_resource": {
         "id": "기력",
-        "max": 10
+        "max": 8
       },
       "tactical_loop": {
         "name": "무관 기동 루프 (진형 사이클)",
@@ -230,7 +230,7 @@
       },
       "class_resource": {
         "id": "학식",
-        "max": 6
+        "max": 8
       },
       "tactical_loop": {
         "name": "문관 기동 루프 (학식 적립-소비 사이클)",
