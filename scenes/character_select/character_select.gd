@@ -15,7 +15,7 @@ var _unlock_data: Array[Dictionary] = []
 @onready var start_button: Button = $VBoxContainer/ButtonRow/StartButton
 @onready var back_button: Button = $VBoxContainer/ButtonRow/BackButton
 
-
+var _detail_panel: PanelContainer = null
 var _achievement_panel: PanelContainer = null
 var _achievement_visible := false
 
@@ -211,14 +211,13 @@ func _build_character_cards() -> void:
 	var separation := int(card_container.get_theme_constant("separation"))
 	var available_w := vp_size.x - 80.0  # VBoxContainer offset 40*2
 	var panel_min_w := minf(300.0 * scale_x, (available_w - separation * (card_count - 1)) / card_count)
-	var panel_min_h := 420.0 * ui_scale
+	var panel_min_h := 260.0 * ui_scale  # 카드 높이 축소 (핵심 정보만 표시)
 
 	# 스케일된 폰트 크기 계산 (모바일 가독성 확보)
 	var fs_name := maxi(int(34 * ui_scale), 30)
 	var fs_stat := maxi(int(28 * ui_scale), 26)
-	var fs_skill_header := maxi(int(26 * ui_scale), 24)
-	var fs_skill_desc := maxi(int(22 * ui_scale), 22)
 	var fs_lock := maxi(int(36 * ui_scale), 30)
+	var fs_skill_desc := maxi(int(22 * ui_scale), 22)
 	var margin_h := int(16 * ui_scale)
 	var margin_v := int(12 * ui_scale)
 
@@ -229,7 +228,6 @@ func _build_character_cards() -> void:
 	# CardContainer에 최소 높이 보장 및 오버플로 방지
 	card_container.custom_minimum_size = Vector2(0, panel_min_h)
 	card_container.clip_contents = true
-	print("[CharacterSelect] 카드 생성 시작: %d개, vp=%s, ui_scale=%.2f" % [_character_list.size(), str(vp_size), ui_scale])
 
 	for i in _character_list.size():
 		var character: Dictionary = _character_list[i]
@@ -240,7 +238,7 @@ func _build_character_cards() -> void:
 		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		panel.clip_contents = true
 
-		# 카드 패널에 명확한 테두리·배경 스타일 적용 (어두운 배경과 구별)
+		# 카드 패널에 명확한 테두리·배경 스타일 적용
 		var card_style := StyleBoxFlat.new()
 		card_style.bg_color = Color(0.12, 0.12, 0.18, 0.95)
 		card_style.border_color = Color(0.5, 0.4, 0.25)
@@ -293,61 +291,21 @@ func _build_character_cards() -> void:
 			resource_label.add_theme_color_override("font_color", Color(0.4, 0.8, 1.0))
 			vbox.add_child(resource_label)
 
-		vbox.add_child(HSeparator.new())
-
 		if unlocked:
-			# 패시브 스킬
+			# 패시브 스킬 이름만 한 줄로 표시 (상세는 선택 시 하단 패널)
 			if character["passive_name"] != "":
-				var passive_header := Label.new()
-				passive_header.text = tr("CHARSEL_PASSIVE_PREFIX") + character["passive_name"]
-				passive_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				passive_header.add_theme_font_size_override("font_size", fs_skill_header)
-				passive_header.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
-				vbox.add_child(passive_header)
+				var passive_hint := Label.new()
+				passive_hint.text = tr("CHARSEL_PASSIVE_PREFIX") + character["passive_name"]
+				passive_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				passive_hint.add_theme_font_size_override("font_size", fs_skill_desc)
+				passive_hint.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
+				vbox.add_child(passive_hint)
 
-				var passive_desc := Label.new()
-				passive_desc.text = character["passive_desc"]
-				passive_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				passive_desc.add_theme_font_size_override("font_size", fs_skill_desc)
-				vbox.add_child(passive_desc)
-
-			# 액티브 스킬
-			if character["active_name"] != "":
-				var active_header := Label.new()
-				active_header.text = tr("CHARSEL_ACTIVE_PREFIX") + character["active_name"]
-				active_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				active_header.add_theme_font_size_override("font_size", fs_skill_header)
-				active_header.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
-				vbox.add_child(active_header)
-
-				var active_desc := Label.new()
-				active_desc.text = character["active_desc"]
-				active_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				active_desc.add_theme_font_size_override("font_size", fs_skill_desc)
-				vbox.add_child(active_desc)
-
-			vbox.add_child(HSeparator.new())
-
-			# 시작 유물
-			if character["starting_relic_name"] != "":
-				var relic_label := Label.new()
-				relic_label.text = tr("CHARSEL_STARTING_RELIC") + character["starting_relic_name"]
-				relic_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				relic_label.add_theme_font_size_override("font_size", fs_skill_header)
-				relic_label.add_theme_color_override("font_color", Color(1.0, 0.75, 0.3))
-				vbox.add_child(relic_label)
-
-				var relic_effect := Label.new()
-				relic_effect.text = character["starting_relic_effect"]
-				relic_effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				relic_effect.add_theme_font_size_override("font_size", fs_skill_desc)
-				vbox.add_child(relic_effect)
-
-			# 선택 안내 레이블 (카드 전체가 터치 가능하므로 버튼 대신 안내 표시)
+			# 선택 안내 레이블
 			var select_hint := Label.new()
 			select_hint.text = tr("CHARSEL_TAP_TO_SELECT")
 			select_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			select_hint.add_theme_font_size_override("font_size", fs_stat)
+			select_hint.add_theme_font_size_override("font_size", fs_skill_desc)
 			select_hint.add_theme_color_override("font_color", Color(0.7, 0.7, 0.5))
 			select_hint.size_flags_vertical = Control.SIZE_SHRINK_END
 			vbox.add_child(select_hint)
@@ -373,7 +331,6 @@ func _build_character_cards() -> void:
 		panel.add_child(margin)
 
 		# 카드 전체를 탭 가능하게 설정 (모바일 터치 대응)
-		# 내부 레이블/컨테이너가 터치를 소비하지 않도록 IGNORE 설정
 		_set_mouse_filter_recursive(margin, Control.MOUSE_FILTER_IGNORE)
 		var card_index := i
 		if unlocked:
@@ -391,7 +348,6 @@ func _build_character_cards() -> void:
 			panel.modulate = Color(0.5, 0.5, 0.5)
 
 		card_container.add_child(panel)
-		print("[CharacterSelect] 카드 추가: %s (unlocked=%s, size=%s)" % [character["name"], str(unlocked), str(panel.custom_minimum_size)])
 
 func _set_mouse_filter_recursive(node: Control, filter: Control.MouseFilter) -> void:
 	## 노드와 모든 자식 Control의 mouse_filter를 재귀적으로 설정한다.
@@ -417,6 +373,107 @@ func _select_character(index: int) -> void:
 			panel.modulate = Color(1.0, 1.0, 0.7)
 		else:
 			panel.modulate = Color(1.0, 1.0, 1.0)
+
+	# 선택한 캐릭터의 상세 정보 패널 표시
+	_show_detail_panel(_character_list[index])
+
+
+func _show_detail_panel(character: Dictionary) -> void:
+	## 카드 아래에 선택된 캐릭터의 스킬/유물 상세를 표시한다.
+	if _detail_panel and is_instance_valid(_detail_panel):
+		_detail_panel.queue_free()
+
+	var vp_size := get_viewport().get_visible_rect().size
+	var ui_scale := minf(vp_size.x / 1080.0, vp_size.y / 1920.0)
+	var fs_header := maxi(int(26 * ui_scale), 24)
+	var fs_desc := maxi(int(22 * ui_scale), 20)
+
+	_detail_panel = PanelContainer.new()
+	_detail_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.08, 0.08, 0.14, 0.95)
+	style.border_color = Color(0.5, 0.4, 0.25, 0.7)
+	style.border_width_top = 1
+	style.border_width_bottom = 1
+	style.border_width_left = 1
+	style.border_width_right = 1
+	style.corner_radius_top_left = 6
+	style.corner_radius_top_right = 6
+	style.corner_radius_bottom_left = 6
+	style.corner_radius_bottom_right = 6
+	_detail_panel.add_theme_stylebox_override("panel", style)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", int(20 * ui_scale))
+	margin.add_theme_constant_override("margin_right", int(20 * ui_scale))
+	margin.add_theme_constant_override("margin_top", int(10 * ui_scale))
+	margin.add_theme_constant_override("margin_bottom", int(10 * ui_scale))
+
+	var hbox := HBoxContainer.new()
+	hbox.add_theme_constant_override("separation", int(24 * ui_scale))
+
+	# 패시브 스킬 영역
+	if character["passive_name"] != "":
+		var passive_vbox := VBoxContainer.new()
+		passive_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		passive_vbox.add_theme_constant_override("separation", 4)
+		var p_header := Label.new()
+		p_header.text = tr("CHARSEL_PASSIVE_PREFIX") + character["passive_name"]
+		p_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		p_header.add_theme_font_size_override("font_size", fs_header)
+		p_header.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
+		passive_vbox.add_child(p_header)
+		var p_desc := Label.new()
+		p_desc.text = character["passive_desc"]
+		p_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		p_desc.add_theme_font_size_override("font_size", fs_desc)
+		passive_vbox.add_child(p_desc)
+		hbox.add_child(passive_vbox)
+
+	# 액티브 스킬 영역
+	if character["active_name"] != "":
+		var active_vbox := VBoxContainer.new()
+		active_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		active_vbox.add_theme_constant_override("separation", 4)
+		var a_header := Label.new()
+		a_header.text = tr("CHARSEL_ACTIVE_PREFIX") + character["active_name"]
+		a_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		a_header.add_theme_font_size_override("font_size", fs_header)
+		a_header.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
+		active_vbox.add_child(a_header)
+		var a_desc := Label.new()
+		a_desc.text = character["active_desc"]
+		a_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		a_desc.add_theme_font_size_override("font_size", fs_desc)
+		active_vbox.add_child(a_desc)
+		hbox.add_child(active_vbox)
+
+	# 시작 유물 영역
+	if character["starting_relic_name"] != "":
+		var relic_vbox := VBoxContainer.new()
+		relic_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		relic_vbox.add_theme_constant_override("separation", 4)
+		var r_header := Label.new()
+		r_header.text = tr("CHARSEL_STARTING_RELIC") + character["starting_relic_name"]
+		r_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		r_header.add_theme_font_size_override("font_size", fs_header)
+		r_header.add_theme_color_override("font_color", Color(1.0, 0.75, 0.3))
+		relic_vbox.add_child(r_header)
+		var r_desc := Label.new()
+		r_desc.text = character["starting_relic_effect"]
+		r_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		r_desc.add_theme_font_size_override("font_size", fs_desc)
+		relic_vbox.add_child(r_desc)
+		hbox.add_child(relic_vbox)
+
+	margin.add_child(hbox)
+	_detail_panel.add_child(margin)
+
+	# CardContainer 바로 아래에 삽입
+	var card_idx := card_container.get_index()
+	$VBoxContainer.add_child(_detail_panel)
+	$VBoxContainer.move_child(_detail_panel, card_idx + 1)
 
 
 func _on_start_pressed() -> void:

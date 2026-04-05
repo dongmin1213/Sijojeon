@@ -56,7 +56,7 @@ const ACT_BG_COLORS := {
 @onready var gold_label: Label = $HUD/HBoxContainer/GoldLabel
 @onready var act_label: Label = $HUD/TopRow/ActLabel
 @onready var jibun_label: Label = $HUD/SubHBox/JibunLabel
-@onready var faction_label: Label = $HUD/SubHBox/FactionLabel
+@onready var faction_label: Label = $HUD/FactionRow/FactionLabel
 @onready var minshim_label: Label = $HUD/SubHBox/MinshimLabel
 
 var _node_buttons: Dictionary = {}  # node_id → Button
@@ -201,6 +201,7 @@ func _build_map() -> void:
 			btn.custom_minimum_size = node_size
 			btn.size = node_size
 			btn.position = Vector2(x, y)
+			btn.focus_mode = Control.FOCUS_NONE  # 모바일 원탭 진입 (포커스 단계 제거)
 
 			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
 			var label_key: String = NODE_LABELS.get(map_node.type, "")
