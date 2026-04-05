@@ -113,6 +113,11 @@ func setup(data: CardData, index: int, playable: bool, matches_sijo: bool) -> vo
 	_update_display()
 	_update_style()
 
+	# setup 완료 후 카드 크기를 강제 고정 (PanelContainer 자동 확장 방지)
+	var parent_hand := get_parent() as CardHand
+	if parent_hand:
+		parent_hand._mark_layout_dirty()
+
 
 func _create_styleboxes() -> void:
 	_normal_stylebox = StyleBoxFlat.new()
@@ -147,20 +152,22 @@ func _create_styleboxes() -> void:
 
 	# 시조 비트 매칭 카드 — 초록 글로우 테두리
 	_sijo_match_stylebox = StyleBoxFlat.new()
-	_sijo_match_stylebox.bg_color = Color(0.16, 0.2, 0.18)
+	_sijo_match_stylebox.bg_color = Color(0.12, 0.22, 0.15)  # 약간 녹색 틴트
 	_sijo_match_stylebox.border_color = Color(0.3, 1.0, 0.5)
-	_sijo_match_stylebox.set_border_width_all(3)
+	_sijo_match_stylebox.set_border_width_all(5)  # 두꺼운 보더로 눈에 띄게
 	_sijo_match_stylebox.set_corner_radius_all(8)
+	_sijo_match_stylebox.shadow_color = Color(0.2, 0.9, 0.4, 0.4)
+	_sijo_match_stylebox.shadow_size = 6  # 외부 글로우 효과
 
 
 func _apply_font_scaling(scale: float) -> void:
 	## 뷰포트 비율에 맞게 카드 내부 폰트 크기와 요소 높이를 조정한다.
-	# 최소 폰트 크기를 보장하여 가독성 확보
-	var name_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 16))
-	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(18 * scale), 14))
-	var type_size := AccessibilityManager.scaled_font_size(maxi(int(18 * scale), 14))
-	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(16 * scale), 13))
-	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(20 * scale), 16))
+	# 최소 폰트 크기를 보장하여 가독성 확보 (모바일 기준 상향)
+	var name_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 18))
+	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(20 * scale), 16))
+	var type_size := AccessibilityManager.scaled_font_size(maxi(int(20 * scale), 16))
+	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(18 * scale), 15))
+	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 18))
 
 	card_name_label.add_theme_font_size_override("font_size", name_size)
 	beat_cost_label.add_theme_font_size_override("font_size", cost_size)
@@ -255,8 +262,8 @@ func _start_sijo_glow() -> void:
 	if not is_inside_tree():
 		return
 	_sijo_glow_tween = create_tween().set_loops()
-	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 0.5, 1.0, 0.6)
-	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 1.0, 0.5, 0.6)
+	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 0.3, 1.0, 0.5)
+	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 1.0, 0.3, 0.5)
 
 
 func _set_sijo_border_alpha(alpha: float) -> void:

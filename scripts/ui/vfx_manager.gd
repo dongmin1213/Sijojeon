@@ -178,19 +178,22 @@ func combo_vfx(parent: Control, combo_text: String, color: Color) -> void:
 	# 화면 흔들림
 	screen_shake(12.0, 3.0)
 
-	# 중앙 텍스트 팝업
+	# 중앙 텍스트 팝업 — 앵커 기반 센터링으로 레이아웃 전에도 정확한 위치 보장
 	var label := _acquire_label()
 	label.text = combo_text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.anchors_preset = Control.PRESET_CENTER
 	label.add_theme_font_size_override("font_size", 48)
 	label.add_theme_color_override("font_color", color)
 	label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0))
 	label.add_theme_constant_override("outline_size", 6)
-	label.pivot_offset = label.size / 2.0
 	label.z_index = 92
 	parent.add_child(label)
+	# 앵커 + 오프셋으로 중앙 배치 (size가 0이어도 정상 동작)
+	label.set_anchors_preset(Control.PRESET_CENTER)
+	label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	label.grow_vertical = Control.GROW_DIRECTION_BOTH
+	label.pivot_offset = label.size / 2.0
 
 	var tween := parent.create_tween()
 	label.scale = Vector2(0.3, 0.3)
@@ -230,14 +233,16 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 		label.text = tr("VFX_SIJO_COMPLETE")
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		label.anchors_preset = Control.PRESET_CENTER
 		label.add_theme_font_size_override("font_size", 56)
 		label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
 		label.add_theme_color_override("font_outline_color", Color(0.6, 0.3, 0.0))
 		label.add_theme_constant_override("outline_size", 4)
-		label.pivot_offset = label.size / 2.0
 		label.z_index = 90
 		parent.add_child(label)
+		label.set_anchors_preset(Control.PRESET_CENTER)
+		label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+		label.grow_vertical = Control.GROW_DIRECTION_BOTH
+		label.pivot_offset = label.size / 2.0
 		var tween := parent.create_tween()
 		label.scale = Vector2(0.3, 0.3)
 		tween.tween_property(label, "scale", Vector2(1.3, 1.3), 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)

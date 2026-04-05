@@ -959,12 +959,24 @@ func _on_active_skill_pressed() -> void:
 
 
 func _on_passive_triggered(skill_name: String, description: String) -> void:
-	# 패시브 발동 시 배너 형태로 표시 (중앙 상단)
+	# 패시브 발동 시 배너 형태로 표시 (중앙 상단, 여러 개 발동 시 세로 스택)
+	var banner_height := 36.0
+	var banner_gap := 4.0
+
+	# 기존 패시브 배너 수를 세서 Y 오프셋 결정
+	var existing_banners := 0
+	for child in get_children():
+		if child is ColorRect and child.has_meta("passive_banner"):
+			existing_banners += 1
+
+	var y_offset := banner_gap + existing_banners * (banner_height + banner_gap)
+
 	var banner := ColorRect.new()
+	banner.set_meta("passive_banner", true)
 	banner.color = Color(0.1, 0.2, 0.1, 0.85)
 	banner.set_anchors_preset(Control.PRESET_TOP_WIDE)
-	banner.offset_top = 4
-	banner.offset_bottom = 36
+	banner.offset_top = y_offset
+	banner.offset_bottom = y_offset + banner_height
 	banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	banner.z_index = 50
 	add_child(banner)
@@ -974,8 +986,9 @@ func _on_passive_triggered(skill_name: String, description: String) -> void:
 	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	popup.set_anchors_preset(Control.PRESET_FULL_RECT)
-	popup.add_theme_font_size_override("font_size", 26)
+	popup.add_theme_font_size_override("font_size", 22)
 	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.6))
+	popup.clip_text = true
 	banner.add_child(popup)
 
 	var tween := create_tween()

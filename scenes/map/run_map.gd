@@ -308,10 +308,12 @@ func _update_node_states() -> void:
 			continue
 
 		if nid in visited:
-			# 방문한 노드: 어두운 색 + 비활성화
+			# 방문한 노드: 타입 색상 유지하되 어둡게 + 비활성화
 			btn.disabled = true
-			btn.modulate = Color(0.5, 0.5, 0.5, 0.6)
-			btn.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+			btn.modulate = Color(0.7, 0.7, 0.7, 0.7)
+			var style := _make_node_style(node_color.darkened(0.4), Color(0.4, 0.4, 0.4, 0.5), 1)
+			btn.add_theme_stylebox_override("disabled", style)
+			btn.add_theme_color_override("font_disabled_color", Color(0.5, 0.5, 0.5))
 		elif nid in _locked_node_costs:
 			# 갈림길 잠금 노드: 금화로 해제 가능
 			var cost: int = _locked_node_costs[nid]
@@ -322,35 +324,15 @@ func _update_node_states() -> void:
 			btn.disabled = false
 			btn.modulate = Color(0.7, 0.6, 0.3, 0.9)
 			btn.tooltip_text = tr("MAP_FORK_UNLOCK_TOOLTIP") % cost
-			var style := StyleBoxFlat.new()
-			style.bg_color = Color(0.3, 0.25, 0.1)
-			style.corner_radius_top_left = 8
-			style.corner_radius_top_right = 8
-			style.corner_radius_bottom_left = 8
-			style.corner_radius_bottom_right = 8
-			style.border_width_left = 2
-			style.border_width_top = 2
-			style.border_width_right = 2
-			style.border_width_bottom = 2
-			style.border_color = Color(0.8, 0.7, 0.2, 0.8)
+			var style := _make_node_style(Color(0.3, 0.25, 0.1), Color(0.8, 0.7, 0.2, 0.8), 2)
 			btn.add_theme_stylebox_override("normal", style)
 			btn.add_theme_stylebox_override("hover", style)
 			btn.add_theme_color_override("font_color", Color(0.9, 0.8, 0.3))
 		elif nid in _available_node_ids:
-			# 선택 가능한 노드: 밝은 색 + 펄스 효과
+			# 선택 가능한 노드: 밝은 타입 색상 + 굵은 흰색 보더 + 펄스
 			btn.disabled = false
 			btn.modulate = Color.WHITE
-			var style := StyleBoxFlat.new()
-			style.bg_color = node_color
-			style.corner_radius_top_left = 8
-			style.corner_radius_top_right = 8
-			style.corner_radius_bottom_left = 8
-			style.corner_radius_bottom_right = 8
-			style.border_width_left = 2
-			style.border_width_top = 2
-			style.border_width_right = 2
-			style.border_width_bottom = 2
-			style.border_color = Color(1, 1, 1, 0.8)
+			var style := _make_node_style(node_color, Color(1, 1, 1, 0.9), 3)
 			btn.add_theme_stylebox_override("normal", style)
 			btn.add_theme_stylebox_override("hover", style)
 
@@ -359,25 +341,32 @@ func _update_node_states() -> void:
 			btn.add_theme_stylebox_override("pressed", pressed_style)
 
 			btn.add_theme_color_override("font_color", Color.WHITE)
+			# 펄스 애니메이션
+			_start_node_pulse(btn)
 		else:
-			# 잠긴 노드: 어둡게
+			# 미래 노드: 타입 색상 유지하되 약간 어둡게 (구분 가능하도록)
 			btn.disabled = true
-			var style := StyleBoxFlat.new()
-			style.bg_color = node_color.darkened(0.6)
-			style.corner_radius_top_left = 8
-			style.corner_radius_top_right = 8
-			style.corner_radius_bottom_left = 8
-			style.corner_radius_bottom_right = 8
+			var style := _make_node_style(node_color.darkened(0.35), node_color.darkened(0.1), 1)
 			btn.add_theme_stylebox_override("disabled", style)
-			btn.modulate = Color(0.6, 0.6, 0.6, 0.5)
-			btn.add_theme_color_override("font_disabled_color", Color(0.5, 0.5, 0.5))
+			btn.modulate = Color(0.8, 0.8, 0.8, 0.7)
+			btn.add_theme_color_override("font_disabled_color", Color(0.7, 0.7, 0.7))
 
-	# 현재 위치 마커: 마지막 방문 노드에 표시
+	# 현재 위치 마커: 마지막 방문 노드에 밝은 금색 보더 + ▶ 표시
 	if not visited.is_empty():
 		var last_id: int = visited[-1]
 		if _node_buttons.has(last_id):
 			var btn: Button = _node_buttons[last_id]
-			btn.modulate = Color(1, 0.9, 0.4, 0.9)
+			var map_node_cur: MapData.MapNode = run_map.nodes[last_id]
+			var cur_color: Color = NODE_COLORS.get(map_node_cur.type, Color.WHITE)
+			btn.modulate = Color(1.0, 1.0, 1.0, 1.0)
+			var style := _make_node_style(cur_color.darkened(0.2), Color(1.0, 0.85, 0.2, 1.0), 3)
+			btn.add_theme_stylebox_override("disabled", style)
+			btn.add_theme_color_override("font_disabled_color", Color(1.0, 0.9, 0.4))
+			# 텍스트에 ▶ 마커 추가
+			var icon_text: String = NODE_ICONS.get(map_node_cur.type, "?")
+			var label_key: String = NODE_LABELS.get(map_node_cur.type, "")
+			var label_text: String = tr(label_key) if label_key != "" else "???"
+			btn.text = "▶ %s\n%s" % [icon_text, label_text]
 
 	# 연결선 다시 그리기
 	_draw_connections()
@@ -403,6 +392,30 @@ func _scroll_to_current() -> void:
 
 	target_y = clampf(target_y, 0, map_container.custom_minimum_size.y - scroll_container.size.y)
 	scroll_container.scroll_vertical = int(target_y)
+
+
+## 노드용 StyleBoxFlat 공통 생성 헬퍼
+func _make_node_style(bg: Color, border_color: Color, border_width: int) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = bg
+	style.corner_radius_top_left = 8
+	style.corner_radius_top_right = 8
+	style.corner_radius_bottom_left = 8
+	style.corner_radius_bottom_right = 8
+	style.border_width_left = border_width
+	style.border_width_top = border_width
+	style.border_width_right = border_width
+	style.border_width_bottom = border_width
+	style.border_color = border_color
+	return style
+
+
+## 선택 가능한 노드에 펄스 애니메이션 적용
+func _start_node_pulse(btn: Button) -> void:
+	var tween := create_tween()
+	tween.set_loops()
+	tween.tween_property(btn, "modulate:a", 0.7, 0.6).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(btn, "modulate:a", 1.0, 0.6).set_trans(Tween.TRANS_SINE)
 
 
 ## 갈림길 잠금 노드를 계산한다. 3개 이상 선택지 중 1개를 잠금.

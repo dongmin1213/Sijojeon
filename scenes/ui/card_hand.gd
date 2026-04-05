@@ -146,7 +146,7 @@ func _arrange_cards() -> void:
 		var excess := float(count - HAND_SCALE_THRESHOLD) / float(10 - HAND_SCALE_THRESHOLD)
 		hand_scale = lerpf(1.0, MIN_HAND_SCALE, clampf(excess, 0.0, 1.0))
 
-	# 카드 크기 조정 적용
+	# 카드 크기 조정 적용 — 최소/최대 크기 모두 고정하여 PanelContainer 자동 확장 방지
 	var base_card_w := CardUI.BASE_CARD_WIDTH * scale_factor
 	var base_card_h := CardUI.BASE_CARD_HEIGHT * scale_factor
 	var scaled_card_w := base_card_w * hand_scale
@@ -154,6 +154,8 @@ func _arrange_cards() -> void:
 	for widget in card_widgets:
 		widget.custom_minimum_size = Vector2(scaled_card_w, scaled_card_h)
 		widget.size = Vector2(scaled_card_w, scaled_card_h)
+		# PanelContainer 내용물이 더 크더라도 카드 크기를 넘지 않도록 강제
+		widget.set_deferred("size", Vector2(scaled_card_w, scaled_card_h))
 
 	var card_w := scaled_card_w
 	# 사용 가능 영역의 95%를 카드 배치에 활용 (좌우 여백 2.5%씩)

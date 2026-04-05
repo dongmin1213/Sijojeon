@@ -241,8 +241,28 @@ func _display_card_offers() -> void:
 	var vp_width := get_viewport().get_visible_rect().size.x
 	var available_width := vp_width * 0.8  # VBoxContainer 앵커 0.1~0.9
 	var card_count := card_offers.size()
-	var card_spacing := 20
-	var card_width := (available_width - card_spacing * (card_count - 1)) / card_count
+	var card_spacing := 12
+	# 최소 카드 너비를 200으로 보장 — 가독성 확보
+	var min_card_width := 200.0
+	var card_width := maxf((available_width - card_spacing * (card_count - 1)) / card_count, min_card_width)
+	var card_height := card_width * 1.4  # 카드 비율 유지
+
+	# 카드가 화면에 안 들어가면 스크롤 컨테이너로 감싸기
+	var total_needed := card_count * card_width + (card_count - 1) * card_spacing
+	if total_needed > available_width:
+		var scroll := card_container.get_parent().get_node_or_null("CardScroll")
+		if scroll == null:
+			scroll = ScrollContainer.new()
+			scroll.name = "CardScroll"
+			scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+			scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+			scroll.custom_minimum_size.y = card_height + 20
+			var parent := card_container.get_parent()
+			var idx := card_container.get_index()
+			parent.remove_child(card_container)
+			scroll.add_child(card_container)
+			parent.add_child(scroll)
+			parent.move_child(scroll, idx)
 
 	for i in card_offers.size():
 		var card_id: String = card_offers[i]
@@ -251,10 +271,10 @@ func _display_card_offers() -> void:
 			continue
 
 		var btn := Button.new()
-		btn.custom_minimum_size = Vector2(card_width, 320)
+		btn.custom_minimum_size = Vector2(card_width, card_height)
 		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		btn.text = _format_card_text(card)
-		btn.add_theme_font_size_override("font_size", 20)
+		btn.add_theme_font_size_override("font_size", 18)
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.pressed.connect(_on_card_chosen.bind(i))
 
