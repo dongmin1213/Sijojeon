@@ -8,20 +8,20 @@ signal card_zoom_requested(card_data: CardData)
 
 const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 
-# 부채꼴 배치 파라미터
-@export var fan_spread_degrees: float = 5.0   # 카드 간 회전 각도
-@export var fan_y_curve: float = 20.0         # 부채꼴 높이 커브
-@export var hover_lift: float = 30.0          # 호버 시 위로 올라가는 높이
-@export var select_lift: float = 50.0         # 선택 시 위로 올라가는 높이
+# 부채꼴 배치 파라미터 — v4: 더 넉넉한 공간, 부드러운 커브
+@export var fan_spread_degrees: float = 4.0   # 카드 간 회전 각도 (약간 줄여서 깔끔하게)
+@export var fan_y_curve: float = 15.0         # 부채꼴 높이 커브 (완만하게)
+@export var hover_lift: float = 40.0          # 호버 시 위로 올라가는 높이 (더 눈에 띄게)
+@export var select_lift: float = 60.0         # 선택 시 위로 올라가는 높이
 
 # 뷰포트 기준 비율 (1080x1920 기본 해상도 기준)
 const BASE_WIDTH := 1080.0
-# 카드 간격: 카드 너비의 배수로 설정.
-const MAX_CARD_SPACING := 260.0    # 넉넉할 때 카드 간 간격
-const MIN_CARD_SPACING := 120.0    # 겹침 허용 (카드 크기 대비 합리적 겹침)
+# v4: 카드 간격 — 큰 카드에 맞게 조정
+const MAX_CARD_SPACING := 280.0    # 넉넉할 때 카드 간 간격
+const MIN_CARD_SPACING := 140.0    # 겹침 허용 (카드 크기 대비)
 # 손패 카드 수에 따른 카드 크기 스케일 (가독성 확보)
-const HAND_SCALE_THRESHOLD := 5    # 이 수 이상이면 카드 축소 시작
-const MIN_HAND_SCALE := 0.75       # 카드 최소 축소 비율
+const HAND_SCALE_THRESHOLD := 4    # v4: 4장 초과 시 축소 시작 (더 일찍)
+const MIN_HAND_SCALE := 0.70       # 카드 최소 축소 비율
 
 var card_widgets: Array[CardUI] = []
 var _widget_pool: Array[CardUI] = []  # 재사용 가능한 CardUI 풀

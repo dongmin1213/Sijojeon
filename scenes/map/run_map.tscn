@@ -25,16 +25,17 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
+; v4: HUD — 깔끔한 상단 바, 색상으로 정보 구분
 [node name="HUD" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.15
+anchor_bottom = 0.14
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 2
+theme_override_constants/separation = 4
 
 [node name="TopRow" type="HBoxContainer" parent="HUD"]
 layout_mode = 2
@@ -45,25 +46,25 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = ""
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 34
-theme_override_colors/font_color = Color(0.9, 0.85, 0.6, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 60
+theme_override_constants/separation = 40
 
 [node name="HPLabel" type="Label" parent="HUD/HBoxContainer"]
 layout_mode = 2
 text = "HP: 70/70"
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.9, 0.35, 0.35, 1)
+theme_override_colors/font_color = Color(0.78, 0.29, 0.19, 1.0)
 
 [node name="GoldLabel" type="Label" parent="HUD/HBoxContainer"]
 layout_mode = 2
 text = ""
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
 [node name="SubHBox" type="HBoxContainer" parent="HUD"]
 layout_mode = 2
@@ -74,13 +75,13 @@ theme_override_constants/separation = 40
 layout_mode = 2
 text = ""
 theme_override_font_sizes/font_size = 24
-theme_override_colors/font_color = Color(0.7, 0.85, 1.0, 1)
+theme_override_colors/font_color = Color(0.45, 0.60, 0.80, 1.0)
 
 [node name="MinshimLabel" type="Label" parent="HUD/SubHBox"]
 layout_mode = 2
 text = ""
 theme_override_font_sizes/font_size = 24
-theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+theme_override_colors/font_color = Color(0.24, 0.67, 0.43, 1.0)
 
 [node name="FactionRow" type="HBoxContainer" parent="HUD"]
 layout_mode = 2
@@ -90,13 +91,14 @@ alignment = 1
 layout_mode = 2
 text = ""
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.85, 0.75, 0.3, 1)
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 0.9)
 
+; ─── 맵 스크롤 영역 ───────────────────────────────────────────────────────
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.15
+anchor_top = 0.14
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

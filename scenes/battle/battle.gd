@@ -243,38 +243,44 @@ func _start_battle() -> void:
 func _create_floating_ui() -> void:
 	## 플로팅 UI 요소 생성: 턴 종료 버튼, 턴 표시, 덱 정보
 	# 턴 종료 버튼 — 화면 우측, HandArea 상단에 플로팅
+	# v4: 턴 종료 버튼 — 금색 강조, 큰 터치 영역, 라운드 스타일
 	end_turn_button = Button.new()
 	end_turn_button.text = tr("BATTLE_END_TURN")
-	end_turn_button.custom_minimum_size = Vector2(140, 52)
-	end_turn_button.add_theme_font_size_override("font_size", 22)
+	end_turn_button.custom_minimum_size = Vector2(160, 60)
+	end_turn_button.add_theme_font_size_override("font_size", 24)
 	var btn_style := StyleBoxFlat.new()
-	btn_style.bg_color = Color(0.55, 0.18, 0.18, 0.9)
-	btn_style.set_border_width_all(2)
-	btn_style.border_color = Color(0.85, 0.6, 0.3, 0.9)
-	btn_style.set_corner_radius_all(8)
-	btn_style.set_content_margin_all(8)
+	btn_style.bg_color = Color(0.78, 0.29, 0.19, 0.9)
+	btn_style.set_border_width_all(1)
+	btn_style.border_color = Color(0.83, 0.66, 0.26, 0.8)
+	btn_style.set_corner_radius_all(14)
+	btn_style.set_content_margin_all(10)
+	btn_style.shadow_color = Color(0, 0, 0, 0.3)
+	btn_style.shadow_size = 6
+	btn_style.shadow_offset = Vector2(0, 3)
 	end_turn_button.add_theme_stylebox_override("normal", btn_style)
 	var btn_hover := btn_style.duplicate()
-	btn_hover.bg_color = Color(0.65, 0.22, 0.22, 0.95)
+	btn_hover.bg_color = Color(0.85, 0.35, 0.22, 0.95)
+	btn_hover.shadow_color = Color(0.83, 0.66, 0.26, 0.2)
+	btn_hover.shadow_size = 8
 	end_turn_button.add_theme_stylebox_override("hover", btn_hover)
 	var btn_pressed := btn_style.duplicate()
-	btn_pressed.bg_color = Color(0.4, 0.12, 0.12, 0.9)
+	btn_pressed.bg_color = Color(0.60, 0.20, 0.12, 0.95)
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
-	end_turn_button.add_theme_color_override("font_color", Color(1.0, 0.9, 0.7))
-	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.95, 0.8))
+	end_turn_button.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
+	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.96, 0.84))
 	# 앵커: 우측, 카드 영역 바로 위
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
-	end_turn_button.anchor_left = 0.72
+	end_turn_button.anchor_left = 0.70
 	end_turn_button.anchor_right = 0.97
-	end_turn_button.anchor_top = 0.255
-	end_turn_button.anchor_bottom = 0.29
+	end_turn_button.anchor_top = 0.275
+	end_turn_button.anchor_bottom = 0.315
 	end_turn_button.z_index = 10
 	add_child(end_turn_button)
 
 	# 턴 표시 오버레이 — 적 영역 좌측 상단 (시인성 강화)
 	_turn_overlay_label = Label.new()
 	_turn_overlay_label.add_theme_font_size_override("font_size", 18)
-	_turn_overlay_label.add_theme_color_override("font_color", Color(0.8, 0.7, 0.55, 0.9))
+	_turn_overlay_label.add_theme_color_override("font_color", Color(0.70, 0.64, 0.50, 0.85))
 	_turn_overlay_label.anchor_left = 0.02
 	_turn_overlay_label.anchor_top = 0.005
 	_turn_overlay_label.anchor_right = 0.18
@@ -285,7 +291,7 @@ func _create_floating_ui() -> void:
 	# 드로우/버림 더미 — HandArea 양쪽 하단 오버레이 (시인성 강화)
 	_draw_pile_overlay = Label.new()
 	_draw_pile_overlay.add_theme_font_size_override("font_size", 20)
-	_draw_pile_overlay.add_theme_color_override("font_color", Color(0.55, 0.75, 0.9))
+	_draw_pile_overlay.add_theme_color_override("font_color", Color(0.45, 0.60, 0.80))
 	_draw_pile_overlay.anchor_left = 0.02
 	_draw_pile_overlay.anchor_top = 0.94
 	_draw_pile_overlay.anchor_right = 0.18
@@ -295,7 +301,7 @@ func _create_floating_ui() -> void:
 
 	_discard_pile_overlay = Label.new()
 	_discard_pile_overlay.add_theme_font_size_override("font_size", 20)
-	_discard_pile_overlay.add_theme_color_override("font_color", Color(0.9, 0.55, 0.45))
+	_discard_pile_overlay.add_theme_color_override("font_color", Color(0.78, 0.45, 0.35))
 	_discard_pile_overlay.anchor_left = 0.82
 	_discard_pile_overlay.anchor_top = 0.94
 	_discard_pile_overlay.anchor_right = 0.98
@@ -352,19 +358,19 @@ func _init_sijo_slots() -> void:
 	for i in sijo_system.pattern.size():
 		var slot_panel := PanelContainer.new()
 		var slot_style := StyleBoxFlat.new()
-		slot_style.bg_color = Color(0.06, 0.04, 0.12, 0.9)
-		slot_style.set_border_width_all(2)
-		slot_style.border_color = Color(0.45, 0.3, 0.6, 0.7)
-		slot_style.set_corner_radius_all(10)
+		slot_style.bg_color = Color(0.05, 0.04, 0.08, 0.9)
+		slot_style.set_border_width_all(1)
+		slot_style.border_color = Color(0.30, 0.25, 0.40, 0.6)
+		slot_style.set_corner_radius_all(12)
 		slot_style.content_margin_left = 12
 		slot_style.content_margin_right = 12
 		slot_style.content_margin_top = 8
 		slot_style.content_margin_bottom = 8
-		# 현재 활성 슬롯 강조
+		# 현재 활성 슬롯 강조 — v4: 금색 테두리
 		if i == sijo_system.current_slot_index:
-			slot_style.border_color = Color(0.6, 0.5, 0.9, 0.9)
-			slot_style.shadow_color = Color(0.4, 0.3, 0.7, 0.3)
-			slot_style.shadow_size = 4
+			slot_style.border_color = Color(0.83, 0.66, 0.26, 0.9)
+			slot_style.shadow_color = Color(0.83, 0.66, 0.26, 0.2)
+			slot_style.shadow_size = 6
 		slot_panel.add_theme_stylebox_override("panel", slot_style)
 		slot_panel.custom_minimum_size = Vector2(180, 80)
 		slot_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -379,9 +385,9 @@ func _init_sijo_slots() -> void:
 		header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		header.add_theme_font_size_override("font_size", 16)
 		if i == sijo_system.current_slot_index:
-			header.add_theme_color_override("font_color", Color(0.75, 0.65, 0.9))
+			header.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		else:
-			header.add_theme_color_override("font_color", Color(0.5, 0.4, 0.6, 0.7))
+			header.add_theme_color_override("font_color", Color(0.55, 0.50, 0.42, 0.7))
 		vbox.add_child(header)
 
 		# beat 번호 (크게)
@@ -390,9 +396,9 @@ func _init_sijo_slots() -> void:
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.add_theme_font_size_override("font_size", 28)
 		if i == sijo_system.current_slot_index:
-			label.add_theme_color_override("font_color", Color(0.8, 0.75, 0.95))
+			label.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
 		else:
-			label.add_theme_color_override("font_color", Color(0.45, 0.4, 0.5))
+			label.add_theme_color_override("font_color", Color(0.50, 0.46, 0.40))
 		vbox.add_child(label)
 		slot_panel.add_child(vbox)
 		sijo_container.add_child(slot_panel)
@@ -476,7 +482,7 @@ func _show_sijo_alert() -> void:
 		_sijo_alert_label.text = tr("SIJO_ALERT")
 		_sijo_alert_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_sijo_alert_label.add_theme_font_size_override("font_size", 22)
-		_sijo_alert_label.add_theme_color_override("font_color", Color(0.3, 1.0, 0.5))
+		_sijo_alert_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		_sijo_alert_label.anchors_preset = Control.PRESET_CENTER_TOP
 		_sijo_alert_label.position.y = 100
 		add_child(_sijo_alert_label)
@@ -543,13 +549,13 @@ func _update_enemy_ui() -> void:
 				enemy_name = tr("BATTLE_ENEMY_FALLBACK")
 
 			var panel := PanelContainer.new()
-			# 적 패널 스타일 — 어두운 배경 + 미묘한 테두리
+			# v4: 적 패널 스타일 — 먹색 배경, 미니멀 테두리
 			var panel_style := StyleBoxFlat.new()
-			panel_style.bg_color = Color(0.08, 0.05, 0.12, 0.7)
+			panel_style.bg_color = Color(0.06, 0.04, 0.10, 0.75)
 			panel_style.set_border_width_all(1)
-			panel_style.border_color = Color(0.5, 0.3, 0.3, 0.5)
-			panel_style.set_corner_radius_all(10)
-			panel_style.set_content_margin_all(6)
+			panel_style.border_color = Color(0.78, 0.29, 0.19, 0.4)
+			panel_style.set_corner_radius_all(12)
+			panel_style.set_content_margin_all(8)
 			panel.add_theme_stylebox_override("panel", panel_style)
 
 			var vbox := VBoxContainer.new()
@@ -567,17 +573,17 @@ func _update_enemy_ui() -> void:
 			silhouette.add_theme_font_size_override("font_size", 28)
 			var combat_type: String = enemy.get("combat_type", "")
 			if combat_type == "boss":
-				silhouette.add_theme_color_override("font_color", Color(1.0, 0.3, 0.2, 0.95))
+				silhouette.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.95))
 			elif combat_type == "elite":
-				silhouette.add_theme_color_override("font_color", Color(0.9, 0.7, 0.2, 0.95))
+				silhouette.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26, 0.95))
 			else:
-				silhouette.add_theme_color_override("font_color", Color(0.7, 0.45, 0.45, 0.9))
+				silhouette.add_theme_color_override("font_color", Color(0.62, 0.40, 0.38, 0.9))
 
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			name_label.add_theme_font_size_override("font_size", 22)
-			name_label.add_theme_color_override("font_color", Color(0.95, 0.88, 0.75))
+			name_label.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
 
 			header_hbox.add_child(silhouette)
 			header_hbox.add_child(name_label)
@@ -709,27 +715,28 @@ func _format_intent(intent: Dictionary) -> String:
 func _get_intent_color(intent: Dictionary) -> Color:
 	## 인텐트 타입과 위협도에 따른 색상 반환
 	var intent_type: String = intent.get("intent", intent.get("type", ""))
+	# v4: 단청 팔레트 기반 인텐트 색상
 	match intent_type:
 		"attack", "attack_debuff":
 			var dmg: int = intent.get("damage", 0)
 			var times: int = intent.get("times", 1)
 			var total := dmg * times
 			if total >= 20:
-				return Color(1.0, 0.15, 0.15)  # 고위협: 밝은 빨강
+				return Color(0.90, 0.20, 0.15)  # 고위협: 진한 주홍
 			elif total >= 10:
-				return Color(1.0, 0.4, 0.3)    # 중위협: 주황빨강
+				return Color(0.78, 0.29, 0.19)  # 중위협: 주홍
 			else:
-				return Color(1.0, 0.6, 0.5)    # 저위협: 연한 빨강
+				return Color(0.85, 0.50, 0.40)  # 저위협: 연한 주홍
 		"defend", "defend_buff", "buff_defend":
-			return Color(0.4, 0.7, 1.0)        # 방어: 파랑
+			return Color(0.30, 0.55, 0.85)     # 방어: 남색
 		"buff":
-			return Color(1.0, 0.85, 0.3)       # 강화: 노랑
+			return Color(0.83, 0.66, 0.26)     # 강화: 금색
 		"debuff":
-			return Color(0.8, 0.4, 1.0)        # 디버프: 보라
+			return Color(0.42, 0.25, 0.63)     # 디버프: 자주
 		"special":
-			return Color(1.0, 0.7, 0.2)        # 특수: 주황
+			return Color(0.83, 0.55, 0.20)     # 특수: 주황금
 		_:
-			return Color(0.7, 0.7, 0.7)        # 알 수 없음: 회색
+			return Color(0.55, 0.50, 0.42)     # 알 수 없음: 흐린 먹
 
 
 # --- 시그널 핸들러 ---
@@ -927,7 +934,7 @@ func _show_sijo_reward_popup(text: String) -> void:
 	popup.anchors_preset = Control.PRESET_CENTER_TOP
 	popup.position.y = 120
 	popup.add_theme_font_size_override("font_size", 24)
-	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.5))
+	popup.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	add_child(popup)
 	var tween := create_tween()
 	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
@@ -958,7 +965,7 @@ func _check_sijo_combo() -> void:
 		else:
 			_apply_siseon_reward(job)
 			if vfx:
-				vfx.combo_vfx(self, tr("COMBO_SISEON"), Color(0.3, 0.8, 1.0))
+				vfx.combo_vfx(self, tr("COMBO_SISEON"), Color(0.83, 0.66, 0.26))
 			AudioManager.play_sfx_by_key("card_play")
 		return
 
@@ -982,7 +989,7 @@ func _check_sijo_combo() -> void:
 		# 시선 보상
 		_apply_siseon_reward(job)
 		if vfx:
-			vfx.combo_vfx(self, tr("COMBO_SISEON"), Color(0.3, 0.8, 1.0))
+			vfx.combo_vfx(self, tr("COMBO_SISEON"), Color(0.83, 0.66, 0.26))
 		AudioManager.play_sfx_by_key("card_play")
 
 

@@ -46,26 +46,27 @@ var _long_press_timer: Timer = null
 var _long_press_triggered: bool = false
 
 # 뷰포트 기준 카드 크기 비율 (1080x1920 기본 해상도 기준)
-const BASE_CARD_WIDTH := 300.0
-const BASE_CARD_HEIGHT := 480.0
+# v4: 카드 크기 대폭 확대 — 가독성과 터치 타겟 우선
+const BASE_CARD_WIDTH := 380.0
+const BASE_CARD_HEIGHT := 580.0
 const BASE_VIEWPORT_WIDTH := 1080.0
 
-# 카드 타입별 색상
+# 카드 타입별 색상 — v4: 단청 색채 기반, 높은 대비
 const TYPE_COLORS := {
-	"attack": Color(0.85, 0.25, 0.2),
-	"defense": Color(0.2, 0.55, 0.85),
-	"spell": Color(0.6, 0.3, 0.85),
-	"movement": Color(0.2, 0.75, 0.45),
-	"formation": Color(0.85, 0.65, 0.15),
+	"attack": Color(0.78, 0.29, 0.19),    # 주홍 (단청 빨강)
+	"defense": Color(0.17, 0.30, 0.50),   # 남색 (조선 남색)
+	"spell": Color(0.42, 0.25, 0.63),     # 자주 (도사 보라)
+	"movement": Color(0.23, 0.49, 0.27),  # 송록 (소나무 녹색)
+	"formation": Color(0.77, 0.61, 0.22), # 금색 (금박)
 }
 
-# 희귀도별 색상
+# 희귀도별 색상 — v4: 재질감 연상
 const RARITY_COLORS := {
-	1: Color(0.5, 0.5, 0.5),     # 회색
-	2: Color(0.3, 0.7, 0.3),     # 초록
-	3: Color(0.3, 0.5, 0.9),     # 파랑
-	4: Color(0.7, 0.3, 0.9),     # 보라
-	5: Color(0.9, 0.7, 0.1),     # 금색
+	1: Color(0.45, 0.42, 0.38),  # 나무 (일반)
+	2: Color(0.55, 0.45, 0.30),  # 청동 (고급)
+	3: Color(0.65, 0.68, 0.72),  # 은 (희귀)
+	4: Color(0.50, 0.28, 0.70),  # 자수정 (영웅)
+	5: Color(0.83, 0.66, 0.26),  # 금박 (전설)
 }
 
 # 기본 스타일 (코드로 생성)
@@ -120,57 +121,67 @@ func setup(data: CardData, index: int, playable: bool, matches_sijo: bool) -> vo
 
 
 func _create_styleboxes() -> void:
+	# v4: 모던 미니멀 스타일 — 얇은 테두리, 넉넉한 라운딩, 부드러운 그림자
 	_normal_stylebox = StyleBoxFlat.new()
-	_normal_stylebox.bg_color = Color(0.14, 0.12, 0.18)
-	_normal_stylebox.border_color = Color(0.45, 0.38, 0.55)
-	_normal_stylebox.set_border_width_all(3)
-	_normal_stylebox.set_corner_radius_all(10)
-	_normal_stylebox.shadow_color = Color(0, 0, 0, 0.5)
-	_normal_stylebox.shadow_size = 4
-	_normal_stylebox.shadow_offset = Vector2(0, 2)
+	_normal_stylebox.bg_color = Color(0.10, 0.08, 0.14)
+	_normal_stylebox.border_color = Color(0.30, 0.25, 0.40)
+	_normal_stylebox.set_border_width_all(2)
+	_normal_stylebox.set_corner_radius_all(14)
+	_normal_stylebox.shadow_color = Color(0, 0, 0, 0.4)
+	_normal_stylebox.shadow_size = 8
+	_normal_stylebox.shadow_offset = Vector2(0, 4)
 
 	_hover_stylebox = StyleBoxFlat.new()
-	_hover_stylebox.bg_color = Color(0.22, 0.20, 0.28)
-	_hover_stylebox.border_color = Color(0.7, 0.6, 0.9)
-	_hover_stylebox.set_border_width_all(3)
-	_hover_stylebox.set_corner_radius_all(8)
+	_hover_stylebox.bg_color = Color(0.16, 0.14, 0.22)
+	_hover_stylebox.border_color = Color(0.83, 0.66, 0.26, 0.9)
+	_hover_stylebox.set_border_width_all(2)
+	_hover_stylebox.set_corner_radius_all(14)
+	_hover_stylebox.shadow_color = Color(0.83, 0.66, 0.26, 0.2)
+	_hover_stylebox.shadow_size = 10
+	_hover_stylebox.shadow_offset = Vector2(0, 2)
 
 	_selected_stylebox = StyleBoxFlat.new()
-	_selected_stylebox.bg_color = Color(0.25, 0.22, 0.35)
-	_selected_stylebox.border_color = Color(1.0, 0.85, 0.3)
+	_selected_stylebox.bg_color = Color(0.18, 0.16, 0.26)
+	_selected_stylebox.border_color = Color(0.83, 0.66, 0.26, 1.0)
 	_selected_stylebox.set_border_width_all(3)
-	_selected_stylebox.set_corner_radius_all(8)
+	_selected_stylebox.set_corner_radius_all(14)
+	_selected_stylebox.shadow_color = Color(0.83, 0.66, 0.26, 0.3)
+	_selected_stylebox.shadow_size = 12
+	_selected_stylebox.shadow_offset = Vector2(0, 2)
 
 	_disabled_stylebox = StyleBoxFlat.new()
-	_disabled_stylebox.bg_color = Color(0.12, 0.11, 0.14)
-	_disabled_stylebox.border_color = Color(0.25, 0.22, 0.3)
-	_disabled_stylebox.set_border_width_all(2)
-	_disabled_stylebox.set_corner_radius_all(8)
+	_disabled_stylebox.bg_color = Color(0.08, 0.07, 0.10)
+	_disabled_stylebox.border_color = Color(0.18, 0.16, 0.22, 0.5)
+	_disabled_stylebox.set_border_width_all(1)
+	_disabled_stylebox.set_corner_radius_all(14)
 
 	_drag_stylebox = StyleBoxFlat.new()
-	_drag_stylebox.bg_color = Color(0.28, 0.24, 0.38)
-	_drag_stylebox.border_color = Color(1.0, 0.9, 0.4)
+	_drag_stylebox.bg_color = Color(0.20, 0.18, 0.28)
+	_drag_stylebox.border_color = Color(0.83, 0.66, 0.26, 1.0)
 	_drag_stylebox.set_border_width_all(3)
-	_drag_stylebox.set_corner_radius_all(8)
+	_drag_stylebox.set_corner_radius_all(14)
+	_drag_stylebox.shadow_color = Color(0.83, 0.66, 0.26, 0.25)
+	_drag_stylebox.shadow_size = 14
+	_drag_stylebox.shadow_offset = Vector2(0, 4)
 
-	# 시조 비트 매칭 카드 — 초록 글로우 테두리
+	# 시조 비트 매칭 카드 — 금색 글로우 (초록보다 테마에 맞음)
 	_sijo_match_stylebox = StyleBoxFlat.new()
-	_sijo_match_stylebox.bg_color = Color(0.12, 0.22, 0.15)  # 약간 녹색 틴트
-	_sijo_match_stylebox.border_color = Color(0.3, 1.0, 0.5)
-	_sijo_match_stylebox.set_border_width_all(5)  # 두꺼운 보더로 눈에 띄게
-	_sijo_match_stylebox.set_corner_radius_all(8)
-	_sijo_match_stylebox.shadow_color = Color(0.2, 0.9, 0.4, 0.4)
-	_sijo_match_stylebox.shadow_size = 6  # 외부 글로우 효과
+	_sijo_match_stylebox.bg_color = Color(0.14, 0.12, 0.08)
+	_sijo_match_stylebox.border_color = Color(0.83, 0.66, 0.26, 1.0)
+	_sijo_match_stylebox.set_border_width_all(4)
+	_sijo_match_stylebox.set_corner_radius_all(14)
+	_sijo_match_stylebox.shadow_color = Color(0.83, 0.66, 0.26, 0.35)
+	_sijo_match_stylebox.shadow_size = 10
 
 
 func _apply_font_scaling(scale: float) -> void:
 	## 뷰포트 비율에 맞게 카드 내부 폰트 크기와 요소 높이를 조정한다.
-	# 최소 폰트 크기를 보장하여 가독성 확보 (모바일 기준 대폭 상향)
-	var name_size := AccessibilityManager.scaled_font_size(maxi(int(28 * scale), 24))
-	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 20))
-	var type_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 20))
-	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 19))
-	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(26 * scale), 22))
+	# v4: 최소 폰트 크기 대폭 상향, 모바일 가독성 최우선
+	var name_size := AccessibilityManager.scaled_font_size(maxi(int(32 * scale), 28))
+	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(26 * scale), 22))
+	var type_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 22))
+	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 21))
+	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(28 * scale), 24))
 
 	card_name_label.add_theme_font_size_override("font_size", name_size)
 	beat_cost_label.add_theme_font_size_override("font_size", cost_size)
@@ -179,9 +190,9 @@ func _apply_font_scaling(scale: float) -> void:
 	sijo_indicator.add_theme_font_size_override("font_size", sijo_size)
 
 	# 카드 내부 요소 최소 높이도 비율에 맞게 조정
-	card_name_label.custom_minimum_size.y = 48 * scale
-	card_art.custom_minimum_size.y = 110 * scale
-	effect_label.custom_minimum_size.y = 120 * scale
+	card_name_label.custom_minimum_size.y = 52 * scale
+	card_art.custom_minimum_size.y = 130 * scale
+	effect_label.custom_minimum_size.y = 130 * scale
 
 
 func _update_display() -> void:
@@ -227,7 +238,7 @@ func _update_display() -> void:
 	# 시조 비트 일치 표시
 	if sijo_match:
 		sijo_indicator.text = "♪"
-		sijo_indicator.add_theme_color_override("font_color", Color(0.3, 1.0, 0.5))
+		sijo_indicator.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		sijo_indicator.visible = true
 	else:
 		sijo_indicator.visible = false
@@ -277,29 +288,29 @@ func _start_sijo_glow() -> void:
 
 func _set_sijo_border_alpha(alpha: float) -> void:
 	if _sijo_match_stylebox:
-		_sijo_match_stylebox.border_color = Color(0.3, 1.0, 0.5, alpha)
+		_sijo_match_stylebox.border_color = Color(0.83, 0.66, 0.26, alpha)
 
 
 func _get_type_bg_color(type: String) -> Color:
-	## 카드 타입별 배경색 — 어둡지만 구별 가능한 색조
+	## 카드 타입별 배경색 — v4: 단청 색채, 어둡지만 확실히 구별
 	match type:
-		"attack": return Color(0.22, 0.10, 0.10)   # 진한 적색 틴트
-		"defense": return Color(0.10, 0.15, 0.22)   # 진한 청색 틴트
-		"spell": return Color(0.16, 0.10, 0.22)     # 진한 보라색 틴트
-		"movement": return Color(0.10, 0.18, 0.12)  # 진한 녹색 틴트
-		"formation": return Color(0.20, 0.16, 0.08) # 진한 황색 틴트
-		_: return Color(0.14, 0.12, 0.18)
+		"attack": return Color(0.18, 0.08, 0.06)    # 먹+주홍
+		"defense": return Color(0.06, 0.10, 0.18)   # 먹+남색
+		"spell": return Color(0.14, 0.08, 0.20)     # 먹+자주
+		"movement": return Color(0.06, 0.14, 0.08)  # 먹+송록
+		"formation": return Color(0.16, 0.13, 0.06) # 먹+금색
+		_: return Color(0.10, 0.08, 0.14)
 
 
 func _get_type_border_color(type: String) -> Color:
-	## 카드 타입별 테두리색 — 배경보다 밝은 동계열
+	## 카드 타입별 테두리색 — v4: 선명한 단청 강조색
 	match type:
-		"attack": return Color(0.7, 0.3, 0.25)
-		"defense": return Color(0.25, 0.45, 0.7)
-		"spell": return Color(0.5, 0.3, 0.7)
-		"movement": return Color(0.25, 0.6, 0.35)
-		"formation": return Color(0.7, 0.55, 0.2)
-		_: return Color(0.45, 0.38, 0.55)
+		"attack": return Color(0.78, 0.29, 0.19)
+		"defense": return Color(0.17, 0.30, 0.50)
+		"spell": return Color(0.42, 0.25, 0.63)
+		"movement": return Color(0.23, 0.49, 0.27)
+		"formation": return Color(0.77, 0.61, 0.22)
+		_: return Color(0.30, 0.25, 0.40)
 
 
 func set_selected(selected: bool) -> void:

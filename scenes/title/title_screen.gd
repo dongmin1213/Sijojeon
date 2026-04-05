@@ -7,7 +7,7 @@ extends Control
 @onready var chronicle_button: Button = $TitlePanel/VBoxContainer/ChronicleButton
 @onready var settings_button: Button = $TitlePanel/VBoxContainer/SettingsButton
 @onready var quit_button: Button = $TitlePanel/VBoxContainer/QuitButton
-@onready var title_label: Label = $TitlePanel/VBoxContainer/TitleLabel
+@onready var title_label: Label = $TitleArea/TitleLabel
 @onready var version_label: Label = $VersionLabel
 
 

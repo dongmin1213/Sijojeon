@@ -1,62 +1,68 @@
 [gd_resource type="Theme" format=3 uid="uid://joseon_theme"]
 
-; ─── Button 스타일 (일반) ───────────────────────────────────────────────────
+; ═══════════════════════════════════════════════════════════════════════════
+; 시조전 디자인 시스템 v4 — 전면 재설계
+; 색상: 먹색 배경 + 한지 크림 텍스트 + 단청 강조색
+; 스타일: 모던 미니멀, 얇은 테두리, 넉넉한 패딩, 부드러운 그림자
+; ═══════════════════════════════════════════════════════════════════════════
+
+; ─── Button 스타일 ─────────────────────────────────────────────────────────
 [sub_resource type="StyleBoxFlat" id="btn_normal"]
-bg_color = Color(0.12, 0.10, 0.19, 0.92)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.42, 0.29, 0.55, 1.0)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.4)
-shadow_size = 4
-shadow_offset = Vector2(0, 2)
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+bg_color = Color(0.10, 0.08, 0.15, 0.90)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.28, 0.45, 0.6)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxFlat" id="btn_hover"]
-bg_color = Color(0.18, 0.14, 0.28, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.62, 0.42, 0.82, 1.0)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0.4, 0.2, 0.6, 0.3)
-shadow_size = 6
+bg_color = Color(0.16, 0.12, 0.24, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.83, 0.66, 0.26, 0.8)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.83, 0.66, 0.26, 0.15)
+shadow_size = 8
 shadow_offset = Vector2(0, 2)
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxFlat" id="btn_pressed"]
-bg_color = Color(0.08, 0.06, 0.12, 0.98)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.52, 0.35, 0.68, 1.0)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.2)
+bg_color = Color(0.06, 0.04, 0.10, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.83, 0.66, 0.26, 0.5)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.15)
 shadow_size = 2
 shadow_offset = Vector2(0, 1)
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxFlat" id="btn_focus"]
 bg_color = Color(0, 0, 0, 0)
@@ -64,100 +70,133 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.80, 0.70, 0.30, 0.8)
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
+border_color = Color(0.83, 0.66, 0.26, 0.7)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="btn_disabled"]
-bg_color = Color(0.08, 0.07, 0.12, 0.5)
+bg_color = Color(0.06, 0.05, 0.08, 0.4)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.28, 0.22, 0.35, 0.5)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+border_color = Color(0.20, 0.18, 0.25, 0.3)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
 
 ; ─── Panel 스타일 ───────────────────────────────────────────────────────────
 [sub_resource type="StyleBoxFlat" id="panel_normal"]
-bg_color = Color(0.10, 0.08, 0.16, 0.88)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.36, 0.24, 0.48, 0.85)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(0, 0, 0, 0.35)
-shadow_size = 5
-shadow_offset = Vector2(0, 3)
-
-; ─── PanelContainer 스타일 ─────────────────────────────────────────────────
-[sub_resource type="StyleBoxFlat" id="panelcontainer_normal"]
-bg_color = Color(0.10, 0.08, 0.16, 0.88)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.36, 0.24, 0.48, 0.85)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(0, 0, 0, 0.35)
-shadow_size = 5
-shadow_offset = Vector2(0, 3)
-content_margin_left = 8.0
-content_margin_top = 6.0
-content_margin_right = 8.0
-content_margin_bottom = 6.0
-
-; ─── ProgressBar (HP/기력 바) ──────────────────────────────────────────────
-[sub_resource type="StyleBoxFlat" id="progressbar_bg"]
-bg_color = Color(0.08, 0.06, 0.12, 0.9)
+bg_color = Color(0.05, 0.04, 0.08, 0.92)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.3, 0.2, 0.4, 0.8)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+border_color = Color(0.25, 0.20, 0.35, 0.5)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
 
-[sub_resource type="StyleBoxFlat" id="progressbar_fill"]
-bg_color = Color(0.7, 0.15, 0.15, 0.9)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-; ─── LineEdit ──────────────────────────────────────────────────────────────
-[sub_resource type="StyleBoxFlat" id="lineedit_normal"]
-bg_color = Color(0.08, 0.06, 0.14, 0.95)
+; ─── PanelContainer 스타일 ─────────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="panelcontainer_normal"]
+bg_color = Color(0.05, 0.04, 0.08, 0.92)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
-border_width_bottom = 2
-border_color = Color(0.36, 0.24, 0.48, 0.8)
+border_width_bottom = 1
+border_color = Color(0.25, 0.20, 0.35, 0.5)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+; ─── ProgressBar (HP/기력 바) ──────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="progressbar_bg"]
+bg_color = Color(0.05, 0.04, 0.08, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.20, 0.16, 0.28, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="progressbar_fill"]
+bg_color = Color(0.78, 0.29, 0.19, 0.95)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+; ─── LineEdit ──────────────────────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="lineedit_normal"]
+bg_color = Color(0.05, 0.04, 0.10, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.20, 0.35, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+
 ; ─── ScrollContainer (맵 스크롤) ───────────────────────────────────────────
 [sub_resource type="StyleBoxFlat" id="scroll_bg"]
 bg_color = Color(0, 0, 0, 0)
+
+; ─── HSlider 스타일 ────────────────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="slider_bg"]
+bg_color = Color(0.12, 0.10, 0.18, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="slider_fill"]
+bg_color = Color(0.83, 0.66, 0.26, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+; ─── HSeparator ────────────────────────────────────────────────────────────
+[sub_resource type="StyleBoxFlat" id="separator_style"]
+bg_color = Color(0.25, 0.20, 0.35, 0.3)
+content_margin_top = 1.0
+content_margin_bottom = 1.0
 
 ; ─── 테마 리소스 정의 ──────────────────────────────────────────────────────
 [resource]
@@ -167,11 +206,11 @@ Button/styles/hover    = SubResource("btn_hover")
 Button/styles/pressed  = SubResource("btn_pressed")
 Button/styles/focus    = SubResource("btn_focus")
 Button/styles/disabled = SubResource("btn_disabled")
-Button/colors/font_color          = Color(0.92, 0.88, 0.78, 1.0)
-Button/colors/font_hover_color    = Color(1.0, 0.96, 0.86, 1.0)
-Button/colors/font_pressed_color  = Color(0.80, 0.76, 0.68, 1.0)
-Button/colors/font_disabled_color = Color(0.45, 0.42, 0.50, 0.6)
-Button/colors/font_focus_color    = Color(1.0, 0.95, 0.70, 1.0)
+Button/colors/font_color          = Color(0.92, 0.88, 0.80, 1.0)
+Button/colors/font_hover_color    = Color(1.0, 0.96, 0.84, 1.0)
+Button/colors/font_pressed_color  = Color(0.75, 0.72, 0.65, 1.0)
+Button/colors/font_disabled_color = Color(0.40, 0.38, 0.35, 0.5)
+Button/colors/font_focus_color    = Color(0.83, 0.66, 0.26, 1.0)
 Button/font_sizes/font_size = 32
 
 ; Panel
@@ -180,9 +219,9 @@ Panel/styles/panel = SubResource("panel_normal")
 ; PanelContainer
 PanelContainer/styles/panel = SubResource("panelcontainer_normal")
 
-; Label
-Label/colors/font_color         = Color(0.92, 0.88, 0.78, 1.0)
-Label/colors/font_shadow_color  = Color(0, 0, 0, 0.5)
+; Label — 한지 크림색 텍스트 + 깔끔한 그림자
+Label/colors/font_color         = Color(0.92, 0.88, 0.80, 1.0)
+Label/colors/font_shadow_color  = Color(0, 0, 0, 0.35)
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/font_sizes/font_size = 28
@@ -193,16 +232,16 @@ OptionButton/styles/hover    = SubResource("btn_hover")
 OptionButton/styles/pressed  = SubResource("btn_pressed")
 OptionButton/styles/focus    = SubResource("btn_focus")
 OptionButton/styles/disabled = SubResource("btn_disabled")
-OptionButton/colors/font_color          = Color(0.92, 0.88, 0.78, 1.0)
-OptionButton/colors/font_hover_color    = Color(1.0, 0.96, 0.86, 1.0)
-OptionButton/colors/font_pressed_color  = Color(0.80, 0.76, 0.68, 1.0)
-OptionButton/colors/font_disabled_color = Color(0.45, 0.42, 0.50, 0.6)
-OptionButton/colors/font_focus_color    = Color(1.0, 0.95, 0.70, 1.0)
+OptionButton/colors/font_color          = Color(0.92, 0.88, 0.80, 1.0)
+OptionButton/colors/font_hover_color    = Color(1.0, 0.96, 0.84, 1.0)
+OptionButton/colors/font_pressed_color  = Color(0.75, 0.72, 0.65, 1.0)
+OptionButton/colors/font_disabled_color = Color(0.40, 0.38, 0.35, 0.5)
+OptionButton/colors/font_focus_color    = Color(0.83, 0.66, 0.26, 1.0)
 OptionButton/font_sizes/font_size = 28
 
 ; CheckButton
-CheckButton/colors/font_color          = Color(0.92, 0.88, 0.78, 1.0)
-CheckButton/colors/font_hover_color    = Color(1.0, 0.96, 0.86, 1.0)
+CheckButton/colors/font_color          = Color(0.92, 0.88, 0.80, 1.0)
+CheckButton/colors/font_hover_color    = Color(1.0, 0.96, 0.84, 1.0)
 CheckButton/font_sizes/font_size = 28
 
 ; ProgressBar
@@ -211,14 +250,21 @@ ProgressBar/styles/fill       = SubResource("progressbar_fill")
 
 ; LineEdit
 LineEdit/styles/normal = SubResource("lineedit_normal")
-LineEdit/colors/font_color         = Color(0.92, 0.88, 0.78, 1.0)
-LineEdit/colors/font_placeholder_color = Color(0.55, 0.52, 0.48, 0.6)
-LineEdit/colors/caret_color        = Color(0.80, 0.70, 0.30, 1.0)
+LineEdit/colors/font_color             = Color(0.92, 0.88, 0.80, 1.0)
+LineEdit/colors/font_placeholder_color = Color(0.50, 0.46, 0.40, 0.5)
+LineEdit/colors/caret_color            = Color(0.83, 0.66, 0.26, 1.0)
 LineEdit/font_sizes/font_size = 28
 
 ; RichTextLabel
-RichTextLabel/colors/default_color = Color(0.92, 0.88, 0.78, 1.0)
+RichTextLabel/colors/default_color = Color(0.92, 0.88, 0.80, 1.0)
 RichTextLabel/font_sizes/normal_font_size = 28
 
 ; ScrollContainer
 ScrollContainer/styles/panel = SubResource("scroll_bg")
+
+; HSlider
+HSlider/styles/slider     = SubResource("slider_bg")
+HSlider/styles/grabber_area = SubResource("slider_fill")
+
+; HSeparator
+HSeparator/styles/separator = SubResource("separator_style")

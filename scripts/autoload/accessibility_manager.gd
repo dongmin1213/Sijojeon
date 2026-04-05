@@ -114,12 +114,13 @@ func get_type_color(card_type: String) -> Color:
 
 
 func _default_colors() -> Dictionary:
+	# v4: 단청 팔레트 — card_ui.gd TYPE_COLORS와 동기화
 	return {
-		"attack": Color(0.85, 0.25, 0.2),
-		"defense": Color(0.2, 0.55, 0.85),
-		"spell": Color(0.6, 0.3, 0.85),
-		"movement": Color(0.2, 0.75, 0.45),
-		"formation": Color(0.85, 0.65, 0.15),
+		"attack": Color(0.78, 0.29, 0.19),    # 주홍
+		"defense": Color(0.17, 0.30, 0.50),   # 남색
+		"spell": Color(0.42, 0.25, 0.63),     # 자주
+		"movement": Color(0.23, 0.49, 0.27),  # 송록
+		"formation": Color(0.77, 0.61, 0.22), # 금색
 	}
 
 

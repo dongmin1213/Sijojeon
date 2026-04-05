@@ -13,14 +13,14 @@ var CHARACTER_NAMES := {
 # 캐릭터 ID 순서
 const CHARACTER_ORDER := ["mugwan", "mungwan", "dosa"]
 
-# 색상 상수
-const COLOR_GOLD := Color(1.0, 0.85, 0.3)
-const COLOR_CREAM := Color(1.0, 0.95, 0.8)
-const COLOR_DIM := Color(0.6, 0.55, 0.45)
-const COLOR_GREEN := Color(0.5, 0.9, 0.5)
-const COLOR_RED := Color(0.9, 0.3, 0.3)
-const COLOR_LABEL := Color(0.7, 0.65, 0.55)
-const COLOR_BG := Color(0.05, 0.05, 0.1, 0.95)
+# 색상 상수 — v4: 단청 팔레트
+const COLOR_GOLD := Color(0.83, 0.66, 0.26)
+const COLOR_CREAM := Color(0.92, 0.88, 0.80)
+const COLOR_DIM := Color(0.55, 0.50, 0.42)
+const COLOR_GREEN := Color(0.24, 0.67, 0.43)
+const COLOR_RED := Color(0.78, 0.29, 0.19)
+const COLOR_LABEL := Color(0.62, 0.56, 0.46)
+const COLOR_BG := Color(0.05, 0.04, 0.08, 0.95)
 
 # 모바일 폰트 크기 스케일
 const FONT_TITLE := 56
@@ -43,7 +43,7 @@ func _ready() -> void:
 func _build_ui() -> void:
 	# 배경
 	var bg := ColorRect.new()
-	bg.color = Color(0.06, 0.04, 0.1)
+	bg.color = Color(0.05, 0.04, 0.08)
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(bg)

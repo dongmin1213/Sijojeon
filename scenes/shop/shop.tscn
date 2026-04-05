@@ -25,54 +25,62 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
+; v4: 상점 레이아웃 — 넉넉한 여백, 깔끔한 섹션 구분
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.03
-anchor_right = 0.95
-anchor_bottom = 0.97
+anchor_left = 0.04
+anchor_top = 0.02
+anchor_right = 0.96
+anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 14
 alignment = 0
 
+; ─── 상점 제목 ─────────────────────────────────────────────────────────────
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "SHOP_TITLE"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
+; ─── 소지금 표시 ───────────────────────────────────────────────────────────
 [node name="GoldLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 28
-theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
+; ─── 카드 섹션 ─────────────────────────────────────────────────────────────
 [node name="CardSection" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 10
 
 [node name="CardSectionLabel" type="Label" parent="VBoxContainer/CardSection"]
 layout_mode = 2
 text = "SHOP_CARDS_FOR_SALE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.70, 0.65, 0.55, 0.9)
 
 [node name="CardContainer" type="HBoxContainer" parent="VBoxContainer/CardSection"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 
 [node name="RefreshButton" type="Button" parent="VBoxContainer/CardSection"]
 layout_mode = 2
 size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_REFRESH"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
+; ─── 카드 제거 섹션 ────────────────────────────────────────────────────────
 [node name="RemoveSection" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
@@ -80,6 +88,7 @@ theme_override_constants/separation = 8
 [node name="RemoveButton" type="Button" parent="VBoxContainer/RemoveSection"]
 layout_mode = 2
 size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 60)
 text = "SHOP_REMOVE_CARD"
 
 [node name="RemoveInfo" type="Label" parent="VBoxContainer/RemoveSection"]
@@ -87,7 +96,7 @@ layout_mode = 2
 text = "SHOP_REMOVE_CARD_INFO"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 22
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_colors/font_color = Color(0.60, 0.56, 0.48, 0.7)
 
 [node name="DeckScrollContainer" type="ScrollContainer" parent="VBoxContainer/RemoveSection"]
 layout_mode = 2
@@ -97,13 +106,14 @@ visible = false
 [node name="DeckContainer" type="GridContainer" parent="VBoxContainer/RemoveSection/DeckScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-columns = 4
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
+columns = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
+; ─── 추가 서비스 섹션 ──────────────────────────────────────────────────────
 [node name="ExtraSection" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
@@ -111,6 +121,7 @@ theme_override_constants/separation = 8
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 60)
 text = "SHOP_UPGRADE_CARD"
 
 [node name="UpgradeInfo" type="Label" parent="VBoxContainer/ExtraSection"]
@@ -118,7 +129,7 @@ layout_mode = 2
 text = "SHOP_UPGRADE_CARD_INFO"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 22
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_colors/font_color = Color(0.60, 0.56, 0.48, 0.7)
 
 [node name="UpgradeScrollContainer" type="ScrollContainer" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
@@ -128,49 +139,58 @@ visible = false
 [node name="UpgradeDeckContainer" type="GridContainer" parent="VBoxContainer/ExtraSection/UpgradeScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-columns = 4
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
+columns = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
 
 [node name="MinshimButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_BUY_MINSHIM"
 
 [node name="MarketOpenButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_MARKET_OPEN"
 
 [node name="BribeButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_BRIBE"
 
 [node name="RationsButton" type="Button" parent="VBoxContainer/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_RATIONS"
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
+; ─── 유물 섹션 ─────────────────────────────────────────────────────────────
 [node name="RelicSection" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 10
 
 [node name="RelicSectionLabel" type="Label" parent="VBoxContainer/RelicSection"]
 layout_mode = 2
 text = "SHOP_RELICS"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.70, 0.65, 0.55, 0.9)
 
 [node name="RelicContainer" type="HBoxContainer" parent="VBoxContainer/RelicSection"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 16
+theme_override_constants/separation = 20
 
+; ─── 나가기 버튼 ───────────────────────────────────────────────────────────
 [node name="LeaveButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+custom_minimum_size = Vector2(0, 68)
 text = "SHOP_LEAVE"
+theme_override_font_sizes/font_size = 30

@@ -25,45 +25,51 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
+; v4: 전체 레이아웃 — 넉넉한 패딩, 캐릭터 카드가 주인공
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 30.0
-offset_right = -40.0
-offset_bottom = -30.0
+offset_left = 32.0
+offset_top = 40.0
+offset_right = -32.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-theme_override_constants/separation = 30
+theme_override_constants/separation = 24
 
+; ─── 화면 제목 ─────────────────────────────────────────────────────────────
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "UI_CHARACTER_SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 44
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
+; ─── 캐릭터 카드 컨테이너 (넉넉한 간격) ──────────────────────────────────
 [node name="CardContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
+size_flags_vertical = 3
+theme_override_constants/separation = 24
 alignment = 1
 
+; ─── 버튼 행 ───────────────────────────────────────────────────────────────
 [node name="ButtonRow" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 20
+theme_override_constants/separation = 24
 
 [node name="BackButton" type="Button" parent="VBoxContainer/ButtonRow"]
-custom_minimum_size = Vector2(160, 70)
+custom_minimum_size = Vector2(180, 76)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "UI_BACK"
 
 [node name="StartButton" type="Button" parent="VBoxContainer/ButtonRow"]
-custom_minimum_size = Vector2(240, 70)
+custom_minimum_size = Vector2(260, 76)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "UI_START"
