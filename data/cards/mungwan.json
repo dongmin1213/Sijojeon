@@ -192,12 +192,12 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "방어도 5를 획득한다. 학식 1을 획득한다.",
-        "en": "Gain 5 Block. Gain 1 Erudition."
+        "ko": "방어도 6을 획득한다. 학식 1을 획득한다.",
+        "en": "Gain 6 Block. Gain 1 Erudition."
       },
       "effect_upgraded": {
-        "ko": "방어도 7을 획득한다. 학식 2를 획득한다.",
-        "en": "Gain 7 Block. Gain 2 Erudition."
+        "ko": "방어도 8을 획득한다. 학식 2를 획득한다.",
+        "en": "Gain 8 Block. Gain 2 Erudition."
       },
       "flavor_text": {
         "ko": "경연청에서 학문을 강론하니 — 몸과 마음이 모두 단단해진다.",
@@ -207,7 +207,7 @@
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
       "values": {
-        "block": 5,
+        "block": 6,
         "hakshik_gain": 1
       }
     },
@@ -265,12 +265,12 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "학식 1을 획득한다. 카드 1장을 드로우한다.",
-        "en": "Gain 1 Erudition. Draw 1 card."
-      },
-      "effect_upgraded": {
         "ko": "학식 2를 획득한다. 카드 1장을 드로우한다.",
         "en": "Gain 2 Erudition. Draw 1 card."
+      },
+      "effect_upgraded": {
+        "ko": "학식 3을 획득한다. 카드 1장을 드로우한다.",
+        "en": "Gain 3 Erudition. Draw 1 card."
       },
       "flavor_text": {
         "ko": "잠시 책을 펼쳐 마음을 고르니 — 다음 수가 자연히 보인다.",
@@ -280,7 +280,7 @@
       "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 리듬 스타터",
       "upgrade_cost": 50,
       "values": {
-        "hakshik_gain": 1,
+        "hakshik_gain": 2,
         "draw": 1
       }
     },

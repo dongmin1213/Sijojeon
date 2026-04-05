@@ -549,18 +549,18 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기력 4를 획득한다.",
-        "en": "Gain 4 Stamina."
+        "ko": "기력 3을 획득한다.",
+        "en": "Gain 3 Stamina."
       },
       "effect_upgraded": {
-        "ko": "기력 5를 획득한다.",
-        "en": "Gain 5 Stamina."
+        "ko": "기력 4를 획득한다.",
+        "en": "Gain 4 Stamina."
       },
       "flavor_text": {
         "ko": "단전에서 솟구치는 기합 한 소리 — 전신에 기력이 솟아난다.",
         "en": "A battle cry from the core — stamina surges through every limb."
       },
-      "balance_rationale": "0코스트 기력 충전. 기공(D001)의 무관 기력 버전. 기력 4는 기력 소비형 카드(G010 기력3, G016 기력전소)의 연료. 0코스트로 시조 슬롯을 차지하지만 기 소비 없음. 기력 폭딜 아키타입의 필수 0코스트 충전 카드.",
+      "balance_rationale": "0코스트 기력 충전. 기공(D001)의 무관 기력 버전. 기력 3은 기력 소비형 카드(G010 기력3, G016 기력전소)의 연료. 0코스트로 시조 슬롯을 차지하지만 기 소비 없음. 기력 폭딜 아키타입의 필수 0코스트 충전 카드.",
       "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 기력 충전",
       "class_synergy": [
         "G010",
@@ -570,7 +570,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "stamina_gain": 4
+        "stamina_gain": 3
       }
     },
     {

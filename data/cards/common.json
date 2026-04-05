@@ -383,22 +383,23 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
-        "en": "Draw 1 card. This card can be placed in any Sijo slot."
+        "ko": "기(氣) 2를 획득한다. 카드 2장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "en": "Gain 2 Qi. Draw 2 cards. This card can be placed in any Sijo slot."
       },
       "effect_upgraded": {
-        "ko": "카드 2장을 드로우한다. 이 카드는 어느 슬롯에나 배치 가능.",
-        "en": "Draw 2 cards. This card can be placed in any slot."
+        "ko": "기(氣) 2를 획득한다. 카드 3장을 드로우한다. 이 카드는 어느 슬롯에나 배치 가능.",
+        "en": "Gain 2 Qi. Draw 3 cards. This card can be placed in any slot."
       },
       "flavor_text": {
         "ko": "흥이 나면 장단이 맞고 — 리듬이 흐르는 곳에 자연스레 스며든다.",
         "en": "When the spirit rises, the rhythm falls into place — flowing naturally wherever it fits."
       },
-      "balance_rationale": "1코스트 드로우 1. 직접 효과는 weak하나 와일드 슬롯 유연성이 핵심 가치. 시조 슬롯 완성에 막히는 상황(beat 불일치)을 해소하는 전략적 보험 카드. 덱당 1~2장 권장. 업그레이드 시 드로우 2로 비용 효율 크게 향상.",
+      "balance_rationale": "1코스트 기 2 + 드로우 2. 와일드 슬롯 유연성이 핵심 가치. 시조 슬롯 완성에 막히는 상황(beat 불일치)을 해소하는 전략적 보험 카드. 덱당 1~2장 권장. 업그레이드 시 드로우 3으로 비용 효율 크게 향상.",
       "sijo_position": "어느 슬롯이든 가능 — 완성 직전 마지막 슬롯 채우기용 추천",
       "upgrade_cost": 75,
       "values": {
-        "draw": 1
+        "qi_gain": 2,
+        "draw": 2
       }
     },
     {
@@ -420,22 +421,22 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "방어도 2를 획득한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
-        "en": "Gain 2 Block. This card can be placed in any Sijo slot."
+        "ko": "방어도 4를 획득한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "en": "Gain 4 Block. This card can be placed in any Sijo slot."
       },
       "effect_upgraded": {
-        "ko": "방어도 4를 획득한다. 어느 슬롯에나 배치 가능.",
-        "en": "Gain 4 Block. Can be placed in any slot."
+        "ko": "방어도 6을 획득한다. 어느 슬롯에나 배치 가능.",
+        "en": "Gain 6 Block. Can be placed in any slot."
       },
       "flavor_text": {
         "ko": "빈 공간도 시의 일부다 — 여백을 채울 줄 아는 자가 시조를 완성한다.",
         "en": "Empty space is part of the poem — one who knows how to fill the gaps completes the Sijo."
       },
-      "balance_rationale": "0코스트 방어 2 + 와일드 슬롯. 0코스트 카드는 시조 슬롯을 소비하므로 패 효율이 낮지만, 와일드 속성으로 beat 불일치 상황을 0비용으로 해소. 시조 완성을 중시하는 빌드에서 콤보 연결 카드. 덱당 최대 1장 권장.",
+      "balance_rationale": "0코스트 방어 4 + 와일드 슬롯. 0코스트 카드는 시조 슬롯을 소비하므로 패 효율이 낮지만, 와일드 속성으로 beat 불일치 상황을 0비용으로 해소. 시조 완성을 중시하는 빌드에서 콤보 연결 카드. 덱당 최대 1장 권장.",
       "sijo_position": "어느 슬롯이든 가능 — 초장/중장/종장 첫 슬롯 [3] 미스 시 대타",
       "upgrade_cost": 50,
       "values": {
-        "block": 2
+        "block": 4
       }
     },
     {

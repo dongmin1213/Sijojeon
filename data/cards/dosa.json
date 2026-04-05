@@ -63,18 +63,18 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기(氣) 1을 획득하고 카드 1장을 드로우한다.",
-        "en": "Gain 1 Qi and draw 1 card."
+        "ko": "기(氣) 2를 획득하고 카드 2장을 드로우한다.",
+        "en": "Gain 2 Qi and draw 2 cards."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 1을 획득하고 카드 2장을 드로우한다.",
-        "en": "Gain 1 Qi and draw 2 cards."
+        "ko": "기(氣) 2를 획득하고 카드 3장을 드로우한다.",
+        "en": "Gain 2 Qi and draw 3 cards."
       },
       "flavor_text": {
         "ko": "호흡을 가다듬어 기를 모은다 — 고요함 속에 힘이 충전된다.",
         "en": "Steady your breathing and gather Qi — in stillness, power is charged."
       },
-      "balance_rationale": "0코스트 기 회복 + 드로우. 후퇴(0코스트 2방어+약화)와 대등한 0코스트 가치. 기 1 회복은 실질 1코스트 카드 1장 사용 가능 = 간접 행동력. 덱 가속 역할. 진언(D003) 기 획득 조건 트리거.",
+      "balance_rationale": "0코스트 기 회복 + 드로우 2장. 후퇴(0코스트 2방어+약화)와 대등한 0코스트 가치. 기 2 회복 + 드로우 2장으로 덱 가속 역할 강화. 진언(D003) 기 획득 조건 트리거.",
       "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 리듬 스타터",
       "class_synergy": [
         "D003",
@@ -82,8 +82,8 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "qi_gain": 1,
-        "draw": 1
+        "qi_gain": 2,
+        "draw": 2
       }
     },
     {
@@ -377,12 +377,12 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "이번 턴에 획득한 기(氣) 1당 4 피해를 입힌다 (최소 8).",
-        "en": "Deal 4 damage per Qi gained this turn (minimum 8)."
+        "ko": "이번 턴에 획득한 기(氣) 1당 5 피해를 입힌다 (최소 8).",
+        "en": "Deal 5 damage per Qi gained this turn (minimum 8)."
       },
       "effect_upgraded": {
-        "ko": "이번 턴에 획득한 기(氣) 1당 5 피해를 입힌다 (최소 10).",
-        "en": "Deal 5 damage per Qi gained this turn (minimum 10)."
+        "ko": "이번 턴에 획득한 기(氣) 1당 6 피해를 입힌다 (최소 10).",
+        "en": "Deal 6 damage per Qi gained this turn (minimum 10)."
       },
       "flavor_text": {
         "ko": "쌓인 기를 한순간에 터뜨리면 — 폭발적인 에너지가 적을 날려버린다.",
@@ -397,7 +397,7 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "damage_per_qi_gained_this_turn": 4,
+        "damage_per_qi_gained_this_turn": 5,
         "min_damage": 8
       }
     },
