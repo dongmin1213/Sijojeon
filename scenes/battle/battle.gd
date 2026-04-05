@@ -75,7 +75,6 @@ func _ready() -> void:
 	battle_manager.enemy_intent_shown.connect(_on_enemy_intent_shown)
 	battle_manager.battle_ended.connect(_on_battle_ended)
 	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
-	sijo_system.sijo_chapter_completed.connect(_on_sijo_chapter_completed)
 	sijo_system.sijo_completed.connect(_on_sijo_completed)
 	battle_manager.sijo_beat_matched.connect(_on_sijo_beat_matched)
 	battle_manager.card_combo_triggered.connect(_on_card_combo_triggered)
@@ -693,16 +692,6 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String, beat_
 	# 유물 트리거: 시조 슬롯 채움 (RS105 무관의 갑주 등)
 	RelicManager.trigger_on_sijo_slot_fill(battle_manager)
 
-	# 부분 완성 보상
-	match index:
-		2:  # 3/6 슬롯 완성 (초장 완성): 기 +1
-			battle_manager.current_qi = mini(battle_manager.current_qi + 1, battle_manager.max_qi)
-			battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-			_show_sijo_reward_popup(tr("BATTLE_CHOJANG_REWARD"))
-		3:  # 4/6 슬롯 완성 (중장 완성): 카드 1장 드로우
-			battle_manager.draw_cards(1)
-			_show_sijo_reward_popup(tr("BATTLE_JUNGJANG_REWARD"))
-
 
 func _on_card_combo_triggered(combo_count: int, bonus_percent: int) -> void:
 	## 카드 콤보 보너스 피드백
@@ -849,78 +838,12 @@ func _apply_jeolchang_reward(job: String) -> void:
 	battle_manager.passive_triggered.emit(tr("PASSIVE_JEOLCHANG"), reward_text)
 
 
-## 시조 장 완성 시 직업별 자원 보너스 지급.
-func _on_sijo_chapter_completed(chapter: String) -> void:
-	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
-		return
-	var job := battle_manager.character_id
-	var reward_text := ""
-
-	match chapter:
-		"초장":
-			match job:
-				"mugwan":
-					# 무관: 기력 +1
-					battle_manager.current_class_resource = mini(
-						battle_manager.current_class_resource + 1,
-						battle_manager.max_class_resource)
-					battle_manager.class_resource_changed.emit(
-						battle_manager.current_class_resource,
-						battle_manager.max_class_resource)
-					reward_text = tr("BATTLE_CHOJANG_COMPLETE_STAMINA")
-				"mungwan":
-					# 문관: 학식 +1
-					battle_manager.current_class_resource = mini(
-						battle_manager.current_class_resource + 1,
-						battle_manager.max_class_resource)
-					battle_manager.class_resource_changed.emit(
-						battle_manager.current_class_resource,
-						battle_manager.max_class_resource)
-					reward_text = tr("BATTLE_CHOJANG_COMPLETE_SCHOLAR")
-				_:
-					reward_text = tr("BATTLE_CHOJANG_COMPLETE")
-
-		"중장":
-			# 공통: 기 +1 + 다음 카드 피해/방어 +30%
-			battle_manager.current_qi = mini(
-				battle_manager.current_qi + 1,
-				battle_manager.max_qi)
-			battle_manager.qi_changed.emit(
-				battle_manager.current_qi,
-				battle_manager.max_qi)
-			battle_manager._next_card_power_bonus += 0.3
-			reward_text = tr("BATTLE_JUNGJANG_COMPLETE_POWER")
-
-		"종장":
-			# 공통: 기 +2 + 카드 1장 드로우 + 적 전체 취약 1턴
-			battle_manager.current_qi = mini(
-				battle_manager.current_qi + 2,
-				battle_manager.max_qi)
-			battle_manager.qi_changed.emit(
-				battle_manager.current_qi,
-				battle_manager.max_qi)
-			battle_manager.draw_cards(1)
-			# 적 전체에 취약 1턴 부여
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					battle_manager.status_effects.apply_effect(
-						"enemy_%d" % i, "취약", 1)
-			reward_text = tr("BATTLE_JONGJANG_COMPLETE_POWER")
-
-	# 유물 트리거: 장 완성 (RS104 청사 붓, RS106 오얏나무 가지, RS107 해시계 조각)
-	RelicManager.trigger_on_sijo_chapter_complete(battle_manager, chapter)
-
-	if reward_text != "":
-		_show_sijo_reward_popup(reward_text)
-		battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_CHAPTER") % chapter, reward_text)
-
-
-func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void:
+func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array, match_count: int) -> void:
 	# 전투가 이미 종료된 상태면 추가 효과 적용하지 않음
 	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
 		return
 	AudioManager.play_sfx_by_key("sijo_complete")
-	# 시조 완성 VFX — 완성에 사용된 6장 카드명으로 한시 구절 연출
+	# 시조 완성 VFX — 완성에 사용된 3장 카드명으로 한시 구절 연출
 	if vfx:
 		var slot_names: Array[String] = []
 		for slot_id in all_slot_card_ids:
@@ -930,26 +853,37 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void
 			else:
 				slot_names.append("…")
 		vfx.sijo_complete_vfx(self, slot_names)
-	# 시조 완성 보상: 마지막 카드 효과 2배 + 기 1 회복 + 카드 1장 드로우
-	var card: CardData = battle_manager._get_battle_card(final_card_id)
-	if card:
-		# 마지막 카드 효과를 한 번 더 적용 (정상 플레이 + 보너스 = 2배)
-		var target_index := 0
-		for i in battle_manager.enemies.size():
-			if battle_manager.enemies[i]["current_hp"] > 0:
-				target_index = i
-				break
-		battle_manager._resolve_card_effect(card, target_index)
-	# 시조 완성 보상 강화 (ZER-259): 기 +2, 드로우 +2
-	battle_manager.current_qi += 2
-	battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
-	battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-	# 기본 드로우 2 + 유물 추가 드로우 (R023 등)
-	var extra_draw := RelicManager.trigger_on_sijo_complete(battle_manager)
-	battle_manager.draw_cards(2 + extra_draw)
 
-	# 시선/절창 콤보 판정 (시조 완성 + 직업 자원 소비)
+	# beat 일치도 기반 보상 (ZER-266)
+	if match_count >= 3:
+		# 완벽 (3/3): 전체 카드 효과 ×1.5 + qi +2 + draw +1
+		battle_manager._next_card_power_bonus += 0.5
+		battle_manager.current_qi += 2
+		battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
+		battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+		var extra_draw := RelicManager.trigger_on_sijo_complete(battle_manager)
+		battle_manager.draw_cards(1 + extra_draw)
+		_show_sijo_reward_popup(tr("BATTLE_SIJO_PERFECT"))
+		battle_manager.passive_triggered.emit("시조 완벽", "beat 3/3 → 효과 ×1.5 + 기 +2 + 드로우 +1")
+	elif match_count == 2:
+		# 양호 (2/3): 효과 ×1.3 + qi +1
+		battle_manager._next_card_power_bonus += 0.3
+		battle_manager.current_qi += 1
+		battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
+		battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
+		RelicManager.trigger_on_sijo_complete(battle_manager)
+		_show_sijo_reward_popup(tr("BATTLE_SIJO_GOOD"))
+		battle_manager.passive_triggered.emit("시조 양호", "beat 2/3 → 효과 ×1.3 + 기 +1")
+	else:
+		# 미달 (1/3 또는 0/3): 보너스 없음
+		RelicManager.trigger_on_sijo_complete(battle_manager)
+		_show_sijo_reward_popup(tr("BATTLE_SIJO_MISS"))
+
+	# 시선/절창 콤보 판정
 	_check_sijo_combo()
+
+	# 유물 트리거: 시조 완성 (3슬롯이므로 종장 완성으로 처리)
+	RelicManager.trigger_on_sijo_chapter_complete(battle_manager, "종장")
 
 	sijo_system.reset()
 	_init_sijo_slots()
@@ -957,20 +891,15 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void
 	# RS102 호패: 시조 완성 후 초장 자동 채움
 	if battle_manager.has_meta("sijo_auto_fill_chojang"):
 		battle_manager.remove_meta("sijo_auto_fill_chojang")
-		# 손패에서 beat 3, 4인 카드를 찾아 자동 채움
-		var filled_chojang := false
+		# 손패에서 beat가 맞는 카드를 찾아 초장 자동 채움
 		for card_id in battle_manager.hand:
 			var auto_card: CardData = DataLoader.get_card(card_id)
-			if auto_card and auto_card.beat == 3 and sijo_system.current_slot_index == 0:
-				sijo_system.try_fill_slot(3, card_id)
-			elif auto_card and auto_card.beat == 4 and sijo_system.current_slot_index == 1:
-				sijo_system.try_fill_slot(4, card_id)
-				filled_chojang = true
+			if auto_card and auto_card.beat == sijo_system.pattern[0] and sijo_system.current_slot_index == 0:
+				sijo_system.try_fill_slot(auto_card.beat, card_id)
 				break
-		if not filled_chojang and sijo_system.current_slot_index < 2:
+		if sijo_system.current_slot_index == 0:
 			# 손패에 적합한 카드가 없으면 가상 카드로 채움
-			sijo_system.try_fill_slot(3, "AUTO_FILL")
-			sijo_system.try_fill_slot(4, "AUTO_FILL")
+			sijo_system.try_fill_slot(sijo_system.pattern[0], "AUTO_FILL")
 
 
 func _on_class_resource_changed(current: int, max_val: int) -> void:

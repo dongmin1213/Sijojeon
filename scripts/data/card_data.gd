@@ -138,7 +138,7 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.min_resource_damage = values.get("min_damage", 0)
 		card.cost_reduce_next = values.get("cost_reduce_next", 0)
 		card.conditional_resource_gain = values.get("hakshik_gain_conditional", 0)
-		card.conditional_resource_threshold = values.get("conditional_threshold", 3)
+		card.conditional_resource_threshold = values.get("conditional_threshold", 2)
 		card.optional_resource_cost = values.get("optional_resource_cost", 0)
 		card.apply_debuff_on_resource = values.get("apply_debuff_on_resource", "")
 		card.debuff_duration = values.get("debuff_duration", 0)

@@ -38,14 +38,16 @@
       "note": "기 상한선 없음. 기공(0코스트 기 회복)이나 유물로 최대 5~6기까지 가능."
     },
     "sijo_slot": {
-      "description": "시조 슬롯 — 이번 게임의 핵심 메카닉",
-      "structure": "초장(3→4) + 중장(3→4) + 종장(3→4) = 6슬롯",
-      "completion_bonus": {
-        "effect": "마지막 카드 효과 2배 + 기(氣) 1 회복 + 카드 1장 드로우",
-        "rationale": "시조 완성은 매우 강력하나, 6카드 + 충분한 기(氣) 확보가 필요. 전투당 1~2회 완성이 목표."
+      "description": "시조 슬롯 — 이번 게임의 핵심 메카닉 (ZER-266 3슬롯 재설계)",
+      "structure": "초장 + 중장 + 종장 = 3슬롯 (매 턴 1턴 완성 사이클)",
+      "beat_reward": {
+        "perfect_3of3": "전체 카드 효과 ×1.5 + 기 +2 + 드로우 +1",
+        "good_2of3": "효과 ×1.3 + 기 +1",
+        "miss_1or0": "보너스 없음 (카드 자체 효과만)",
+        "rationale": "매 턴 3카드를 쓰면 시조가 완성되므로 beat 일치도가 곧 보상 수준. '최강 카드 3장' vs 'beat 맞는 카드 3장(×1.5)' 긴장감."
       },
-      "slot_fill_rule": "슬롯 순서 엄수. 초장-1 슬롯에는 [3] 음보 카드만, 초장-2 슬롯에는 [4] 음보 카드만 허용.",
-      "reset_rule": "전투 종료 시 슬롯 초기화. 턴 사이 슬롯 유지."
+      "slot_fill_rule": "모든 카드가 순서대로 슬롯을 채운다. beat 일치 여부만 체크.",
+      "reset_rule": "매 턴 시조 완성 후 자동 리셋. 전투 종료 시 슬롯 초기화."
     }
   },
   "character_special_skills": [
@@ -56,12 +58,12 @@
       "passive_name": {
         "ko": "천지기(天地氣)",
         "description": {
-          "ko": "턴 종료 시 시조 슬롯이 3칸 이상 채워져 있으면 기(氣) 1을 회복한다.",
-          "en": "At end of turn, if 3 or more Sijo slots are filled, recover 1 Qi."
+          "ko": "턴 종료 시 시조 슬롯이 2칸 이상 채워져 있으면 기(氣) 1을 회복한다.",
+          "en": "At end of turn, if 2 or more Sijo slots are filled, recover 1 Qi."
         },
         "en": "Heavenly Qi"
       },
-      "passive_rationale": "시조 리듬 진행 자체를 보상. 완성 못 해도 반쯤 채웠다면 약간의 자원 회복 — 리듬 유지 동기 부여.",
+      "passive_rationale": "3슬롯 중 2칸 이상 채우면 기 회복. 매 턴 완성 사이클이므로 카드 2장 이상 사용 시 보상.",
       "active_skill": {
         "name": {
           "ko": "방술 개방(方術開放)",

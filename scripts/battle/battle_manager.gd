@@ -225,12 +225,11 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 		else:
 			GameManager.run_data.narrative_state["pending_effects"] = remaining
 
-	# 도사 액티브: 방술 개방 — 전투 시작 시 시조 첫 2칸 자동 채움
+	# 도사 액티브: 방술 개방 — 전투 시작 시 시조 초장 자동 채움
 	if character_id == "dosa" and sijo_system:
 		sijo_system.try_fill_slot(3, "D001")  # 기공 [3]
-		sijo_system.try_fill_slot(4, "D002")  # 결인 [4]
 		active_skill_used = true
-		passive_triggered.emit("방술 개방", "시조 초장 자동 채움: 기공→결인")
+		passive_triggered.emit("방술 개방", "시조 초장 자동 채움: 기공")
 
 	begin_player_turn()
 
@@ -460,12 +459,12 @@ func end_player_turn() -> void:
 		sijo_draw_penalty = 0
 		sijo_qi_penalty = 0
 
-	# 도사 패시브: 천지기 — 시조 슬롯 3칸 이상이면 기 1 회복
+	# 도사 패시브: 천지기 — 시조 슬롯 2칸 이상이면 기 1 회복
 	if character_id == "dosa" and sijo_system:
-		if sijo_system.get_filled_count() >= 3:
+		if sijo_system.get_filled_count() >= 2:
 			current_qi += 1
 			qi_changed.emit(current_qi, max_qi)
-			passive_triggered.emit("천지기", "시조 슬롯 3칸 이상 → 기 +1")
+			passive_triggered.emit("천지기", "시조 슬롯 2칸 이상 → 기 +1")
 
 	# 문관 패시브: 학식충전 — 카드 3장 이상 사용 시 학식 1 획득
 	if character_id == "mungwan" and cards_played_this_turn >= 3:
