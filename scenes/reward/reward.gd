@@ -131,6 +131,9 @@ func _on_relic_claimed() -> void:
 
 func _apply_gold() -> void:
 	if GameManager.run_data:
+		# Act 1 기본 전투 골드 +25% (초반 경제 보강)
+		if GameManager.run_data.current_act == 1 and GameManager.run_data.current_node_type == MapData.NodeType.BATTLE:
+			reward_gold = int(reward_gold * 1.25)
 		# 천민 신분: 전투 보상 금화 +50%
 		var gold_mult: float = JibunSystem.get_gold_reward_multiplier(GameManager.run_data)
 		# 판서/정승(5등급): 모든 전투 보상 +30%

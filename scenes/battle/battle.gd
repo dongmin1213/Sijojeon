@@ -78,6 +78,7 @@ func _ready() -> void:
 	sijo_system.sijo_chapter_completed.connect(_on_sijo_chapter_completed)
 	sijo_system.sijo_completed.connect(_on_sijo_completed)
 	battle_manager.sijo_beat_matched.connect(_on_sijo_beat_matched)
+	battle_manager.card_combo_triggered.connect(_on_card_combo_triggered)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 
 	# CardHand 시그널 연결
@@ -701,6 +702,12 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String, beat_
 		3:  # 4/6 슬롯 완성 (중장 완성): 카드 1장 드로우
 			battle_manager.draw_cards(1)
 			_show_sijo_reward_popup(tr("BATTLE_JUNGJANG_REWARD"))
+
+
+func _on_card_combo_triggered(combo_count: int, bonus_percent: int) -> void:
+	## 카드 콤보 보너스 피드백
+	var text := tr("BATTLE_COMBO_FMT") % [combo_count, bonus_percent]
+	_show_sijo_reward_popup(text)
 
 
 func _on_sijo_beat_matched(_card_id: String) -> void:

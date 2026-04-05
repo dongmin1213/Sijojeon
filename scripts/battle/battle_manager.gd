@@ -43,6 +43,12 @@ var resources_consumed_this_turn: int = 0  # 이번 턴 소비한 직업 자원�
 var cards_played_this_turn: int = 0  # 이번 턴 사용한 카드 수 (문관 패시브용)
 var active_skill_used: bool = false  # 액티브 스킬 사용 여부 (전투당 1회)
 
+# 콤보 시스템 — 같은 타입 카드 연속 사용 시 보너스
+var _combo_count: int = 0           # 현재 연속 같은 타입 수
+var _combo_last_type: String = ""   # 마지막 사용 카드 타입
+var _last_card_had_damage: bool = false  # 이전 카드가 공격이었는지 (시너지용)
+var _last_card_had_block: bool = false   # 이전 카드가 방어였는지 (시너지용)
+
 # 카드 더미
 var draw_pile: Array[String] = []   # 드로우 파일 (card IDs)
 var hand: Array[String] = []         # 손패
@@ -73,6 +79,7 @@ signal enemy_hp_changed(enemy_index: int, current: int, max_val: int)
 signal battle_ended(victory: bool)
 signal status_effect_changed(target: String, effect_id: String, stacks: int)
 signal dot_damage_dealt(target: String, effect_id: String, amount: int)
+signal card_combo_triggered(combo_count: int, bonus_percent: int)
 signal class_resource_changed(current: int, max_val: int)
 signal passive_triggered(skill_name: String, description: String)
 signal active_skill_available_changed(available: bool)
@@ -236,6 +243,10 @@ func begin_player_turn() -> void:
 	qi_gained_this_turn = 0  # 턴 시작 시 기 획득량 초기화
 	cards_played_this_turn = 0  # 턴 시작 시 카드 사용 수 초기화
 	resources_consumed_this_turn = 0  # 턴 시작 시 자원 소비량 초기화
+	_combo_count = 0             # 턴 시작 시 콤보 초기화
+	_combo_last_type = ""
+	_last_card_had_damage = false
+	_last_card_had_block = false
 
 	# 무관 패시브: 지휘통솔 — 병사 토큰 보유 시 방어도 2
 	if character_id == "mugwan":
@@ -366,8 +377,36 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 			qi_changed.emit(current_qi, max_qi)
 			sijo_beat_matched.emit(card_id)
 
+	# 콤보 시스템: 같은 타입 카드 연속 사용 체크
+	var card_type := card.type if card.type != "" else "attack"
+	if card_type == _combo_last_type and _combo_last_type != "":
+		_combo_count += 1
+	else:
+		_combo_count = 1
+		_combo_last_type = card_type
+
+	# 콤보 보너스 적용 (2연속: +10%, 3+연속: +20%)
+	if _combo_count >= 3:
+		_next_card_power_bonus += 0.2
+		card_combo_triggered.emit(_combo_count, 20)
+	elif _combo_count >= 2:
+		_next_card_power_bonus += 0.1
+		card_combo_triggered.emit(_combo_count, 10)
+
+	# 카드 시너지: 방어→공격 = 반격 보너스 +15%
+	if card.damage > 0 and _last_card_had_block:
+		_next_card_power_bonus += 0.15
+	# 카드 시너지: 공격→디버프 = 추가 보너스 +10%
+	var has_debuff := card.burn_stacks > 0 or card.poison_stacks > 0 or card.apply_debuff_on_resource != ""
+	if has_debuff and _last_card_had_damage:
+		_next_card_power_bonus += 0.1
+
 	# 카드 효과 적용
 	_resolve_card_effect(card, target_enemy_index)
+
+	# 시너지 추적 업데이트
+	_last_card_had_damage = card.damage > 0
+	_last_card_had_block = card.block_value > 0
 
 	# 유물 트리거: 턴당 첫 번째 카드 사용 (R007 사서)
 	if cards_played_this_turn == 0:
