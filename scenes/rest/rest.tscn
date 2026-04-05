@@ -41,7 +41,7 @@ alignment = 0
 layout_mode = 2
 text = "REST_TITLE"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 40
 theme_override_colors/font_color = Color(0.9, 0.6, 0.3, 1)
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
@@ -49,7 +49,7 @@ layout_mode = 2
 text = "REST_DESCRIPTION"
 horizontal_alignment = 1
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 theme_override_colors/font_color = Color(0.7, 0.7, 0.5, 1)
 
 [node name="ActionContainer" type="VBoxContainer" parent="VBoxContainer"]
@@ -111,11 +111,11 @@ theme_override_constants/separation = 40
 [node name="HPLabel" type="Label" parent="VBoxContainer/StatusBar"]
 layout_mode = 2
 text = "HP: --/--"
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.9, 0.3, 0.3, 1)
 
 [node name="GoldLabel" type="Label" parent="VBoxContainer/StatusBar"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(1.0, 0.85, 0.3, 1)

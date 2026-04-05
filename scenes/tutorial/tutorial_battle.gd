@@ -213,13 +213,16 @@ func _update_enemy_ui() -> void:
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			name_label.add_theme_font_size_override("font_size", 22)
 			var hp_lbl := Label.new()
 			hp_lbl.text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
 			hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			hp_lbl.add_theme_font_size_override("font_size", 18)
 
 			var intent_label := Label.new()
 			intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			intent_label.add_theme_color_override("font_color", Color(1, 0.4, 0.4))
+			intent_label.add_theme_font_size_override("font_size", 18)
 			var intent := battle_manager._get_enemy_intent(i)
 			intent_label.text = _format_intent(intent)
 

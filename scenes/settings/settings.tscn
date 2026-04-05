@@ -47,6 +47,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 text = "SETTINGS_BGM"
 vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
 
 [node name="BGMSlider" type="HSlider" parent="VBoxContainer/BGMContainer"]
 layout_mode = 2
@@ -66,6 +67,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 text = "SETTINGS_SFX"
 vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
 
 [node name="SFXSlider" type="HSlider" parent="VBoxContainer/SFXContainer"]
 layout_mode = 2
@@ -85,6 +87,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 text = "SETTINGS_VIBRATION"
 vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
 
 [node name="VibrationCheck" type="CheckButton" parent="VBoxContainer/VibrationContainer"]
 layout_mode = 2
@@ -108,6 +111,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 text = "SETTINGS_LANGUAGE"
 vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
 
 [node name="LanguageOption" type="OptionButton" parent="VBoxContainer/LanguageContainer"]
 layout_mode = 2
@@ -132,6 +136,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 text = "SETTINGS_SCREEN_SHAKE"
 vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
 
 [node name="ScreenShakeCheck" type="CheckButton" parent="VBoxContainer/ScreenShakeContainer"]
 layout_mode = 2

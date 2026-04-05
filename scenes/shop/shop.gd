@@ -211,7 +211,7 @@ func _display_shop_cards() -> void:
 
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(200, 280)
-		btn.add_theme_font_size_override("font_size", 20)
+		btn.add_theme_font_size_override("font_size", 22)
 
 		if entry["sold"]:
 			btn.text = tr("SHOP_SALE_COMPLETE")
@@ -830,7 +830,7 @@ func _update_discount_badges() -> void:
 	var badge := Label.new()
 	badge.name = "DiscountBadge"
 	badge.text = info["reasons"]
-	badge.add_theme_font_size_override("font_size", 22)
+	badge.add_theme_font_size_override("font_size", 24)
 	badge.add_theme_color_override("font_color", Color(0.3, 0.9, 0.3))
 	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_label.get_parent().add_child(badge)

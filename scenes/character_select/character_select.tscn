@@ -44,6 +44,7 @@ layout_mode = 2
 text = "UI_CHARACTER_SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
+theme_override_font_sizes/font_size = 42
 
 [node name="CardContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

@@ -41,13 +41,13 @@ alignment = 0
 layout_mode = 2
 text = "SHOP_TITLE"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 40
 
 [node name="GoldLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 28
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
 
 [node name="CardSection" type="VBoxContainer" parent="VBoxContainer"]
@@ -58,7 +58,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 text = "SHOP_CARDS_FOR_SALE"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 
 [node name="CardContainer" type="HBoxContainer" parent="VBoxContainer/CardSection"]
 layout_mode = 2
@@ -86,7 +86,7 @@ text = "SHOP_REMOVE_CARD"
 layout_mode = 2
 text = "SHOP_REMOVE_CARD_INFO"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 
 [node name="DeckScrollContainer" type="ScrollContainer" parent="VBoxContainer/RemoveSection"]
@@ -117,7 +117,7 @@ text = "SHOP_UPGRADE_CARD"
 layout_mode = 2
 text = "SHOP_UPGRADE_CARD_INFO"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 
 [node name="UpgradeScrollContainer" type="ScrollContainer" parent="VBoxContainer/ExtraSection"]
@@ -163,7 +163,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 text = "SHOP_RELICS"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 
 [node name="RelicContainer" type="HBoxContainer" parent="VBoxContainer/RelicSection"]
 layout_mode = 2

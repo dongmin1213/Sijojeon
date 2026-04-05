@@ -101,14 +101,14 @@ func _add_stat_row(label_text: String, value_text: String) -> void:
 	label.text = label_text
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	label.add_theme_color_override("font_color", Color(0.7, 0.65, 0.55))
-	label.add_theme_font_size_override("font_size", 20)
+	label.add_theme_font_size_override("font_size", 24)
 
 	var value := Label.new()
 	value.text = value_text
 	value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	value.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	value.add_theme_color_override("font_color", Color(1.0, 0.95, 0.8))
-	value.add_theme_font_size_override("font_size", 20)
+	value.add_theme_font_size_override("font_size", 24)
 
 	row.add_child(label)
 	row.add_child(value)

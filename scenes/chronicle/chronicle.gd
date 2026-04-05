@@ -124,7 +124,8 @@ func _build_ui() -> void:
 	# 뒤로 가기 버튼
 	var back_button := Button.new()
 	back_button.text = tr("UI_BACK")
-	back_button.custom_minimum_size = Vector2(200, 50)
+	back_button.custom_minimum_size = Vector2(200, 70)
+	back_button.add_theme_font_size_override("font_size", 28)
 	back_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	back_button.pressed.connect(_on_back_pressed)
 	content.add_child(back_button)

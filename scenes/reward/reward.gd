@@ -87,7 +87,7 @@ func _display_relic_offer() -> void:
 	var relic_name := RelicManager.get_relic_display_name(relic_offer_id)
 	var relic_desc := RelicManager.get_relic_description(relic_offer_id)
 	relic_btn.text = "✦ %s\n%s" % [relic_name, relic_desc]
-	relic_btn.add_theme_font_size_override("font_size", 20)
+	relic_btn.add_theme_font_size_override("font_size", 22)
 	relic_btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
 	# 유물 버튼 스타일
@@ -274,7 +274,7 @@ func _display_card_offers() -> void:
 		btn.custom_minimum_size = Vector2(card_width, card_height)
 		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		btn.text = _format_card_text(card)
-		btn.add_theme_font_size_override("font_size", 18)
+		btn.add_theme_font_size_override("font_size", 22)
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.pressed.connect(_on_card_chosen.bind(i))
 
@@ -449,7 +449,7 @@ func _check_rank_up_reward() -> void:
 	var desc_label := Label.new()
 	desc_label.text = desc
 	desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	desc_label.add_theme_font_size_override("font_size", 20)
+	desc_label.add_theme_font_size_override("font_size", 22)
 	rank_section.add_child(desc_label)
 
 	match reward_type:
@@ -487,7 +487,7 @@ func _build_rank_card_select(parent: VBoxContainer) -> void:
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(200, 120)
 		btn.text = "%s\n%s" % [card.get_display_name(), tr("REWARD_CARD_COST_FMT") % card.cost]
-		btn.add_theme_font_size_override("font_size", 18)
+		btn.add_theme_font_size_override("font_size", 22)
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.pressed.connect(_on_rank_card_chosen.bind(card_id, container))
 		container.add_child(btn)
@@ -522,7 +522,7 @@ func _build_rank_card_remove(parent: VBoxContainer) -> void:
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(180, 100)
 		btn.text = tr("REWARD_REMOVE_FMT") % card.get_display_name()
-		btn.add_theme_font_size_override("font_size", 16)
+		btn.add_theme_font_size_override("font_size", 20)
 		btn.pressed.connect(_on_rank_card_removed.bind(card_id, container))
 		container.add_child(btn)
 	parent.add_child(container)
@@ -550,7 +550,7 @@ func _build_rank_relic_select(parent: VBoxContainer) -> void:
 	var relic_name := RelicManager.get_relic_display_name(relic_id)
 	var relic_desc := RelicManager.get_relic_description(relic_id)
 	btn.text = "%s\n%s" % [relic_name, relic_desc]
-	btn.add_theme_font_size_override("font_size", 18)
+	btn.add_theme_font_size_override("font_size", 22)
 	btn.pressed.connect(func():
 		RelicManager.acquire_relic(relic_id)
 		btn.disabled = true
@@ -582,7 +582,7 @@ func _build_rank_card_upgrade(parent: VBoxContainer) -> void:
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(180, 100)
 		btn.text = tr("REWARD_UPGRADE_FMT") % card.get_display_name()
-		btn.add_theme_font_size_override("font_size", 16)
+		btn.add_theme_font_size_override("font_size", 20)
 		btn.pressed.connect(_on_rank_card_upgraded.bind(card_id, container))
 		container.add_child(btn)
 	parent.add_child(container)
