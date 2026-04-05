@@ -51,6 +51,21 @@ func _acquire_label() -> Label:
 		label.modulate = Color.WHITE
 		label.scale = Vector2.ONE
 		label.visible = true
+		# 이전 사용의 레이아웃 상태 초기화 — 랜덤 위치 방지
+		label.position = Vector2.ZERO
+		label.size = Vector2.ZERO
+		label.offset_left = 0
+		label.offset_top = 0
+		label.offset_right = 0
+		label.offset_bottom = 0
+		label.anchor_left = 0
+		label.anchor_top = 0
+		label.anchor_right = 0
+		label.anchor_bottom = 0
+		label.grow_horizontal = Control.GROW_DIRECTION_END
+		label.grow_vertical = Control.GROW_DIRECTION_END
+		label.pivot_offset = Vector2.ZERO
+		label.rotation = 0
 		return label
 	return Label.new()
 
@@ -75,6 +90,22 @@ func _acquire_color_rect() -> ColorRect:
 		rect.modulate = Color.WHITE
 		rect.scale = Vector2.ONE
 		rect.visible = true
+		# 이전 사용의 레이아웃 상태 초기화 — 랜덤 위치 방지
+		rect.position = Vector2.ZERO
+		rect.size = Vector2.ZERO
+		rect.offset_left = 0
+		rect.offset_top = 0
+		rect.offset_right = 0
+		rect.offset_bottom = 0
+		rect.anchor_left = 0
+		rect.anchor_top = 0
+		rect.anchor_right = 0
+		rect.anchor_bottom = 0
+		rect.grow_horizontal = Control.GROW_DIRECTION_END
+		rect.grow_vertical = Control.GROW_DIRECTION_END
+		rect.pivot_offset = Vector2.ZERO
+		rect.rotation = 0
+		rect.custom_minimum_size = Vector2.ZERO
 		return rect
 	return ColorRect.new()
 
@@ -188,11 +219,12 @@ func combo_vfx(parent: Control, combo_text: String, color: Color) -> void:
 	label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0))
 	label.add_theme_constant_override("outline_size", 6)
 	label.z_index = 92
-	parent.add_child(label)
-	# 앵커 + 오프셋으로 중앙 배치 (size가 0이어도 정상 동작)
+	# 앵커 기반 센터링 — add_child 전에 설정하여 레이아웃 안정화
 	label.set_anchors_preset(Control.PRESET_CENTER)
 	label.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	label.grow_vertical = Control.GROW_DIRECTION_BOTH
+	parent.add_child(label)
+	# size가 확정된 후 pivot 설정 (스케일 애니메이션 기준점)
 	label.pivot_offset = label.size / 2.0
 
 	var tween := parent.create_tween()
@@ -238,10 +270,11 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 		label.add_theme_color_override("font_outline_color", Color(0.6, 0.3, 0.0))
 		label.add_theme_constant_override("outline_size", 4)
 		label.z_index = 90
-		parent.add_child(label)
+		# 앵커 기반 센터링 — add_child 전에 설정
 		label.set_anchors_preset(Control.PRESET_CENTER)
 		label.grow_horizontal = Control.GROW_DIRECTION_BOTH
 		label.grow_vertical = Control.GROW_DIRECTION_BOTH
+		parent.add_child(label)
 		label.pivot_offset = label.size / 2.0
 		var tween := parent.create_tween()
 		label.scale = Vector2(0.3, 0.3)
@@ -311,7 +344,7 @@ func _spawn_hanshi_overlay(parent: Control, names: Array[String]) -> void:
 
 func _spawn_particles(parent: Control, count: int, color: Color) -> void:
 	## 간단한 코드 기반 파티클 — 작은 ColorRect 조각들이 퍼져나감
-	var center := parent.size / 2.0
+	var center := parent.get_viewport().get_visible_rect().size / 2.0
 	for i in count:
 		var particle := _acquire_color_rect()
 		particle.size = Vector2(6, 6)
@@ -347,7 +380,7 @@ func _apply_slow_motion(time_scale: float = 0.05, duration: float = 0.3) -> void
 
 func _spawn_ring_particles(parent: Control, count: int, color: Color) -> void:
 	## 2차 외곽 링 파티클 — 더 크고 느리게 퍼지며 회전하는 효과
-	var center := parent.size / 2.0
+	var center := parent.get_viewport().get_visible_rect().size / 2.0
 	for i in count:
 		var particle := _acquire_color_rect()
 		particle.size = Vector2(10, 10)

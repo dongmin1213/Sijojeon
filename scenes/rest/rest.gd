@@ -33,6 +33,8 @@ func _ready() -> void:
 
 	_update_status_bar()
 	_update_action_states()
+	# 휴식 버튼 텍스트에 회복 비율 치환
+	rest_button.text = tr("REST_HEAL").replace("{n}", str(int(HEAL_PERCENT * 100)))
 
 
 ## 액션 버튼 활성화 상태를 갱신한다.
@@ -117,14 +119,15 @@ func _on_show_upgrade_list() -> void:
 			eff_up = card.effect_upgraded_en
 		elif card.effect_upgraded != "":
 			eff_up = card.effect_upgraded
-		# 여러 줄로 표시하여 화면 넘침 방지
-		btn.text = "%s\n%s → %s" % [
+		# 카드명 + 현재/강화 효과를 별도 줄로 표시하여 화면 넘침 방지
+		var up_text := eff_up if eff_up != "" else tr("REST_NO_UPGRADE")
+		btn.text = "%s\n%s\n→ %s" % [
 			card.get_display_name(),
 			eff,
-			eff_up if eff_up != "" else tr("REST_NO_UPGRADE")
+			up_text
 		]
-		btn.add_theme_font_size_override("font_size", 22)
-		btn.custom_minimum_size.y = 80
+		btn.add_theme_font_size_override("font_size", 20)
+		btn.custom_minimum_size.y = 100
 		btn.pressed.connect(_on_upgrade_card.bind(entry))
 		card_list_container.add_child(btn)
 

@@ -290,7 +290,7 @@ func _update_node_states() -> void:
 
 	# 갈림길 잠금 해제: 선택 가능한 노드가 3개 이상이면 일부를 잠금
 	_locked_node_costs.clear()
-	_unlocked_nodes = GameManager.run_data.narrative_state.get("unlocked_fork_nodes", [])
+	_unlocked_nodes.assign(GameManager.run_data.narrative_state.get("unlocked_fork_nodes", []))
 	if _available_node_ids.size() >= 3:
 		_calculate_locked_forks(run_map)
 
