@@ -22,6 +22,19 @@ const COLOR_RED := Color(0.9, 0.3, 0.3)
 const COLOR_LABEL := Color(0.7, 0.65, 0.55)
 const COLOR_BG := Color(0.05, 0.05, 0.1, 0.95)
 
+# 모바일 폰트 크기 스케일
+const FONT_TITLE := 56
+const FONT_SUBTITLE := 28
+const FONT_SECTION := 38
+const FONT_STAT_LABEL := 28
+const FONT_STAT_VALUE := 30
+const FONT_CHAR_NAME := 32
+const FONT_CHAR_STAT := 24
+const FONT_ACH_ICON := 32
+const FONT_ACH_NAME := 28
+const FONT_ACH_DESC := 22
+const FONT_ACH_PROGRESS := 24
+
 
 func _ready() -> void:
 	_build_ui()
@@ -32,6 +45,7 @@ func _build_ui() -> void:
 	var bg := ColorRect.new()
 	bg.color = Color(0.06, 0.04, 0.1)
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(bg)
 
 	# 스크롤 컨테이너
@@ -40,10 +54,11 @@ func _build_ui() -> void:
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	add_child(scroll)
 
-	# 메인 컨테이너
+	# 메인 컨테이너 (마우스 이벤트 무시 → 스크롤 성능 개선)
 	var main := VBoxContainer.new()
 	main.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	main.add_theme_constant_override("separation", 24)
+	main.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	scroll.add_child(main)
 
 	# 상단/하단 여백
@@ -53,26 +68,30 @@ func _build_ui() -> void:
 	margin.add_theme_constant_override("margin_left", 40)
 	margin.add_theme_constant_override("margin_right", 40)
 	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	main.add_child(margin)
 
 	var content := VBoxContainer.new()
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation", 24)
+	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	margin.add_child(content)
 
 	# 제목
 	var title := Label.new()
 	title.text = tr("CHRONICLE_TITLE")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 42)
+	title.add_theme_font_size_override("font_size", FONT_TITLE)
 	title.add_theme_color_override("font_color", COLOR_GOLD)
+	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	content.add_child(title)
 
 	var subtitle := Label.new()
 	subtitle.text = "Chronicle"
 	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	subtitle.add_theme_font_size_override("font_size", 18)
+	subtitle.add_theme_font_size_override("font_size", FONT_SUBTITLE)
 	subtitle.add_theme_color_override("font_color", COLOR_DIM)
+	subtitle.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	content.add_child(subtitle)
 
 	content.add_child(HSeparator.new())
@@ -115,8 +134,9 @@ func _add_section_header(parent: Control, text: String) -> void:
 	var label := Label.new()
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", 26)
+	label.add_theme_font_size_override("font_size", FONT_SECTION)
 	label.add_theme_color_override("font_color", COLOR_CREAM)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(label)
 
 
@@ -132,6 +152,7 @@ func _build_overall_stats(parent: Control, stats: Dictionary) -> void:
 	grid.add_theme_constant_override("h_separation", 20)
 	grid.add_theme_constant_override("v_separation", 12)
 	grid.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(grid)
 
 	_add_stat_row(grid, tr("CHRONICLE_TOTAL_RUNS"), str(total_runs))
@@ -148,17 +169,19 @@ func _build_overall_stats(parent: Control, stats: Dictionary) -> void:
 func _add_stat_row(grid: GridContainer, label_text: String, value_text: String, value_color := COLOR_CREAM) -> void:
 	var label := Label.new()
 	label.text = label_text
-	label.add_theme_font_size_override("font_size", 18)
+	label.add_theme_font_size_override("font_size", FONT_STAT_LABEL)
 	label.add_theme_color_override("font_color", COLOR_LABEL)
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	grid.add_child(label)
 
 	var value := Label.new()
 	value.text = value_text
-	value.add_theme_font_size_override("font_size", 20)
+	value.add_theme_font_size_override("font_size", FONT_STAT_VALUE)
 	value.add_theme_color_override("font_color", value_color)
 	value.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	value.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	grid.add_child(value)
 
 
@@ -196,44 +219,51 @@ func _build_character_stats(parent: Control, char_stats: Dictionary) -> void:
 		var style: StyleBoxFlat = style_template.duplicate()
 		style.border_color = COLOR_DIM if victories == 0 else COLOR_GOLD
 		panel.add_theme_stylebox_override("panel", style)
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		parent.add_child(panel)
 
 		var vbox := VBoxContainer.new()
 		vbox.add_theme_constant_override("separation", 6)
+		vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.add_child(vbox)
 
 		# 캐릭터 이름
 		var name_label := Label.new()
 		name_label.text = char_name
-		name_label.add_theme_font_size_override("font_size", 22)
+		name_label.add_theme_font_size_override("font_size", FONT_CHAR_NAME)
 		name_label.add_theme_color_override("font_color", COLOR_GOLD if victories > 0 else COLOR_LABEL)
+		name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		vbox.add_child(name_label)
 
 		# 통계 행
 		var stats_row := HBoxContainer.new()
 		stats_row.add_theme_constant_override("separation", 20)
+		stats_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		vbox.add_child(stats_row)
 
 		var runs_label := Label.new()
 		runs_label.text = tr("CHRONICLE_RUNS_FMT") % runs
-		runs_label.add_theme_font_size_override("font_size", 16)
+		runs_label.add_theme_font_size_override("font_size", FONT_CHAR_STAT)
 		runs_label.add_theme_color_override("font_color", COLOR_CREAM)
+		runs_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		stats_row.add_child(runs_label)
 
 		var wins_label := Label.new()
 		wins_label.text = tr("CHRONICLE_WINS_FMT") % victories
-		wins_label.add_theme_font_size_override("font_size", 16)
+		wins_label.add_theme_font_size_override("font_size", FONT_CHAR_STAT)
 		wins_label.add_theme_color_override("font_color", COLOR_GREEN if victories > 0 else COLOR_DIM)
+		wins_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		stats_row.add_child(wins_label)
 
 		# 클리어 여부 표시
 		if victories > 0:
 			var clear_label := Label.new()
 			clear_label.text = tr("CHRONICLE_CLEARED")
-			clear_label.add_theme_font_size_override("font_size", 16)
+			clear_label.add_theme_font_size_override("font_size", FONT_CHAR_STAT)
 			clear_label.add_theme_color_override("font_color", COLOR_GOLD)
 			clear_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			clear_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+			clear_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			stats_row.add_child(clear_label)
 
 
@@ -289,45 +319,52 @@ func _build_achievements(parent: Control, achievements: Array[Dictionary], unloc
 		var panel := PanelContainer.new()
 		var style: StyleBoxFlat = style_templates[0].duplicate() if is_unlocked else style_templates[1].duplicate()
 		panel.add_theme_stylebox_override("panel", style)
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		parent.add_child(panel)
 
 		var hbox := HBoxContainer.new()
 		hbox.add_theme_constant_override("separation", 12)
+		hbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.add_child(hbox)
 
 		# 달성 아이콘
 		var icon_label := Label.new()
 		icon_label.text = "★" if is_unlocked else "☆"
-		icon_label.add_theme_font_size_override("font_size", 22)
+		icon_label.add_theme_font_size_override("font_size", FONT_ACH_ICON)
 		icon_label.add_theme_color_override("font_color", COLOR_GOLD if is_unlocked else COLOR_DIM)
-		icon_label.custom_minimum_size = Vector2(30, 0)
+		icon_label.custom_minimum_size = Vector2(40, 0)
+		icon_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		hbox.add_child(icon_label)
 
 		# 업적 정보
 		var info_vbox := VBoxContainer.new()
 		info_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		info_vbox.add_theme_constant_override("separation", 2)
+		info_vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		hbox.add_child(info_vbox)
 
 		var name_label := Label.new()
 		name_label.text = TranslationManager.trd(ach, "name", "")
-		name_label.add_theme_font_size_override("font_size", 18)
+		name_label.add_theme_font_size_override("font_size", FONT_ACH_NAME)
 		name_label.add_theme_color_override("font_color", COLOR_CREAM if is_unlocked else COLOR_DIM)
+		name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		info_vbox.add_child(name_label)
 
 		var desc_label := Label.new()
 		desc_label.text = TranslationManager.trd(ach, "description", "")
-		desc_label.add_theme_font_size_override("font_size", 14)
+		desc_label.add_theme_font_size_override("font_size", FONT_ACH_DESC)
 		desc_label.add_theme_color_override("font_color", COLOR_LABEL if is_unlocked else Color(0.45, 0.4, 0.35))
+		desc_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		info_vbox.add_child(desc_label)
 
 		# 진행도 표시
 		var progress_label := Label.new()
 		progress_label.text = "%d/%d" % [progress.get("current", 0), progress.get("target", 1)]
-		progress_label.add_theme_font_size_override("font_size", 16)
+		progress_label.add_theme_font_size_override("font_size", FONT_ACH_PROGRESS)
 		progress_label.add_theme_color_override("font_color", COLOR_GREEN if is_unlocked else COLOR_DIM)
 		progress_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		progress_label.custom_minimum_size = Vector2(60, 0)
+		progress_label.custom_minimum_size = Vector2(80, 0)
+		progress_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		hbox.add_child(progress_label)
 
 
