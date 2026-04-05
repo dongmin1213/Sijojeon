@@ -393,8 +393,8 @@ func _show_detail_panel(character: Dictionary) -> void:
 
 	var vp_size := get_viewport().get_visible_rect().size
 	var ui_scale := minf(vp_size.x / 1080.0, vp_size.y / 1920.0)
-	var fs_header := maxi(int(26 * ui_scale), 24)
-	var fs_desc := maxi(int(22 * ui_scale), 20)
+	var fs_header := maxi(int(28 * ui_scale), 26)
+	var fs_desc := maxi(int(24 * ui_scale), 22)
 
 	_detail_panel = PanelContainer.new()
 	_detail_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -418,64 +418,53 @@ func _show_detail_panel(character: Dictionary) -> void:
 	margin.add_theme_constant_override("margin_top", int(10 * ui_scale))
 	margin.add_theme_constant_override("margin_bottom", int(10 * ui_scale))
 
-	var hbox := HBoxContainer.new()
-	hbox.add_theme_constant_override("separation", int(24 * ui_scale))
+	# 세로 배치로 변경 — 좁은 화면에서 가독성 확보
+	var detail_vbox := VBoxContainer.new()
+	detail_vbox.add_theme_constant_override("separation", int(12 * ui_scale))
 
 	# 패시브 스킬 영역
 	if character["passive_name"] != "":
-		var passive_vbox := VBoxContainer.new()
-		passive_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		passive_vbox.add_theme_constant_override("separation", 4)
 		var p_header := Label.new()
 		p_header.text = tr("CHARSEL_PASSIVE_PREFIX") + character["passive_name"]
 		p_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		p_header.add_theme_font_size_override("font_size", fs_header)
 		p_header.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
-		passive_vbox.add_child(p_header)
+		detail_vbox.add_child(p_header)
 		var p_desc := Label.new()
 		p_desc.text = character["passive_desc"]
 		p_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		p_desc.add_theme_font_size_override("font_size", fs_desc)
-		passive_vbox.add_child(p_desc)
-		hbox.add_child(passive_vbox)
+		detail_vbox.add_child(p_desc)
 
 	# 액티브 스킬 영역
 	if character["active_name"] != "":
-		var active_vbox := VBoxContainer.new()
-		active_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		active_vbox.add_theme_constant_override("separation", 4)
 		var a_header := Label.new()
 		a_header.text = tr("CHARSEL_ACTIVE_PREFIX") + character["active_name"]
 		a_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		a_header.add_theme_font_size_override("font_size", fs_header)
 		a_header.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
-		active_vbox.add_child(a_header)
+		detail_vbox.add_child(a_header)
 		var a_desc := Label.new()
 		a_desc.text = character["active_desc"]
 		a_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		a_desc.add_theme_font_size_override("font_size", fs_desc)
-		active_vbox.add_child(a_desc)
-		hbox.add_child(active_vbox)
+		detail_vbox.add_child(a_desc)
 
 	# 시작 유물 영역
 	if character["starting_relic_name"] != "":
-		var relic_vbox := VBoxContainer.new()
-		relic_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		relic_vbox.add_theme_constant_override("separation", 4)
 		var r_header := Label.new()
 		r_header.text = tr("CHARSEL_STARTING_RELIC") + character["starting_relic_name"]
 		r_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		r_header.add_theme_font_size_override("font_size", fs_header)
 		r_header.add_theme_color_override("font_color", Color(1.0, 0.75, 0.3))
-		relic_vbox.add_child(r_header)
+		detail_vbox.add_child(r_header)
 		var r_desc := Label.new()
 		r_desc.text = character["starting_relic_effect"]
 		r_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		r_desc.add_theme_font_size_override("font_size", fs_desc)
-		relic_vbox.add_child(r_desc)
-		hbox.add_child(relic_vbox)
+		detail_vbox.add_child(r_desc)
 
-	margin.add_child(hbox)
+	margin.add_child(detail_vbox)
 	_detail_panel.add_child(margin)
 
 	# CardContainer 바로 아래에 삽입

@@ -1,6 +1,6 @@
 keys,ko,en
 UI_TITLE,시조전,Sijojeon
-UI_SUBTITLE,Sijojeon,Sijojeon
+UI_SUBTITLE,詩操戰,Sijojeon
 UI_NEW_GAME,새 게임,New Game
 UI_CONTINUE,이어하기,Continue
 UI_SETTINGS,설정,Settings
@@ -214,8 +214,8 @@ Learn combat basics in the interactive tutorial.
 CHARSEL_TUTORIAL_START,튜토리얼 시작,Start Tutorial
 CHARSEL_SKIP,건너뛰기,Skip
 BATTLE_SIJO_SUMMARY_FMT,시조 %d/%d,Sijo %d/%d
-BATTLE_DRAW_PILE_FMT,드로우: %d,Draw: %d
-BATTLE_DISCARD_PILE_FMT,버림: %d,Discard: %d
+BATTLE_DRAW_PILE_FMT,뽑을 패 %d,Draw %d
+BATTLE_DISCARD_PILE_FMT,버린 패 %d,Discard %d
 BATTLE_ENEMY_BLOCK_FMT,방어: %d,Block: %d
 BATTLE_QI_FMT,기(氣): %d/%d,Qi: %d/%d
 BATTLE_BLOCK_FMT,방어: %d,Block: %d

@@ -46,8 +46,8 @@ var _long_press_timer: Timer = null
 var _long_press_triggered: bool = false
 
 # 뷰포트 기준 카드 크기 비율 (1080x1920 기본 해상도 기준)
-const BASE_CARD_WIDTH := 260.0
-const BASE_CARD_HEIGHT := 320.0
+const BASE_CARD_WIDTH := 280.0
+const BASE_CARD_HEIGHT := 400.0
 const BASE_VIEWPORT_WIDTH := 1080.0
 
 # 카드 타입별 색상
@@ -163,11 +163,11 @@ func _create_styleboxes() -> void:
 func _apply_font_scaling(scale: float) -> void:
 	## 뷰포트 비율에 맞게 카드 내부 폰트 크기와 요소 높이를 조정한다.
 	# 최소 폰트 크기를 보장하여 가독성 확보 (모바일 기준 상향)
-	var name_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 18))
-	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(20 * scale), 16))
-	var type_size := AccessibilityManager.scaled_font_size(maxi(int(20 * scale), 16))
-	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(18 * scale), 15))
-	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 18))
+	var name_size := AccessibilityManager.scaled_font_size(maxi(int(26 * scale), 22))
+	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 18))
+	var type_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 18))
+	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(20 * scale), 17))
+	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 20))
 
 	card_name_label.add_theme_font_size_override("font_size", name_size)
 	beat_cost_label.add_theme_font_size_override("font_size", cost_size)
@@ -176,9 +176,9 @@ func _apply_font_scaling(scale: float) -> void:
 	sijo_indicator.add_theme_font_size_override("font_size", sijo_size)
 
 	# 카드 내부 요소 최소 높이도 비율에 맞게 조정
-	card_name_label.custom_minimum_size.y = 40 * scale
-	card_art.custom_minimum_size.y = 90 * scale
-	effect_label.custom_minimum_size.y = 70 * scale
+	card_name_label.custom_minimum_size.y = 44 * scale
+	card_art.custom_minimum_size.y = 100 * scale
+	effect_label.custom_minimum_size.y = 90 * scale
 
 
 func _update_display() -> void:

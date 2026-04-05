@@ -266,42 +266,42 @@ func _create_floating_ui() -> void:
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
 	end_turn_button.anchor_left = 0.72
 	end_turn_button.anchor_right = 0.97
-	end_turn_button.anchor_top = 0.295
-	end_turn_button.anchor_bottom = 0.325
+	end_turn_button.anchor_top = 0.255
+	end_turn_button.anchor_bottom = 0.29
 	end_turn_button.z_index = 10
 	add_child(end_turn_button)
 
-	# 턴 표시 오버레이 — 적 영역 좌측 상단 구석
+	# 턴 표시 오버레이 — 적 영역 좌측 상단 (시인성 강화)
 	_turn_overlay_label = Label.new()
-	_turn_overlay_label.add_theme_font_size_override("font_size", 13)
-	_turn_overlay_label.add_theme_color_override("font_color", Color(0.6, 0.55, 0.5, 0.7))
+	_turn_overlay_label.add_theme_font_size_override("font_size", 18)
+	_turn_overlay_label.add_theme_color_override("font_color", Color(0.8, 0.7, 0.55, 0.9))
 	_turn_overlay_label.anchor_left = 0.02
 	_turn_overlay_label.anchor_top = 0.005
-	_turn_overlay_label.anchor_right = 0.15
-	_turn_overlay_label.anchor_bottom = 0.025
+	_turn_overlay_label.anchor_right = 0.18
+	_turn_overlay_label.anchor_bottom = 0.03
 	_turn_overlay_label.z_index = 5
 	add_child(_turn_overlay_label)
 
-	# 드로우/버림 더미 — HandArea 양쪽 하단 오버레이
+	# 드로우/버림 더미 — HandArea 양쪽 하단 오버레이 (시인성 강화)
 	_draw_pile_overlay = Label.new()
-	_draw_pile_overlay.add_theme_font_size_override("font_size", 16)
-	_draw_pile_overlay.add_theme_color_override("font_color", Color(0.7, 0.65, 0.55))
+	_draw_pile_overlay.add_theme_font_size_override("font_size", 20)
+	_draw_pile_overlay.add_theme_color_override("font_color", Color(0.55, 0.75, 0.9))
 	_draw_pile_overlay.anchor_left = 0.02
-	_draw_pile_overlay.anchor_top = 0.95
-	_draw_pile_overlay.anchor_right = 0.15
+	_draw_pile_overlay.anchor_top = 0.94
+	_draw_pile_overlay.anchor_right = 0.18
 	_draw_pile_overlay.anchor_bottom = 0.99
-	_draw_pile_overlay.z_index = 5
+	_draw_pile_overlay.z_index = 10
 	add_child(_draw_pile_overlay)
 
 	_discard_pile_overlay = Label.new()
-	_discard_pile_overlay.add_theme_font_size_override("font_size", 16)
-	_discard_pile_overlay.add_theme_color_override("font_color", Color(0.7, 0.55, 0.55))
-	_discard_pile_overlay.anchor_left = 0.85
-	_discard_pile_overlay.anchor_top = 0.95
+	_discard_pile_overlay.add_theme_font_size_override("font_size", 20)
+	_discard_pile_overlay.add_theme_color_override("font_color", Color(0.9, 0.55, 0.45))
+	_discard_pile_overlay.anchor_left = 0.82
+	_discard_pile_overlay.anchor_top = 0.94
 	_discard_pile_overlay.anchor_right = 0.98
 	_discard_pile_overlay.anchor_bottom = 0.99
 	_discard_pile_overlay.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_discard_pile_overlay.z_index = 5
+	_discard_pile_overlay.z_index = 10
 	add_child(_discard_pile_overlay)
 
 

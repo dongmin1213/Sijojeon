@@ -211,6 +211,7 @@ func _display_shop_cards() -> void:
 
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(200, 280)
+		btn.add_theme_font_size_override("font_size", 20)
 
 		if entry["sold"]:
 			btn.text = tr("SHOP_SALE_COMPLETE")
@@ -220,7 +221,7 @@ func _display_shop_cards() -> void:
 			btn.text = _format_card_text(card, entry["price"])
 			var can_afford: bool = GameManager.run_data != null and GameManager.run_data.gold >= entry["price"]
 			if not can_afford:
-				btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+				btn.add_theme_color_override("font_color", Color(0.7, 0.4, 0.35))
 			btn.pressed.connect(_on_buy_card.bind(i))
 
 		card_container.add_child(btn)
