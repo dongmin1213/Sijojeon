@@ -23,20 +23,20 @@ var NODE_LABELS := {
 	MapData.NodeType.GWAGEO: "NODE_GWAGEO",
 }
 
-## 이모지 대신 텍스트 심볼 사용 — Android에서 이모지 폰트 미포함 시 렌더링 실패 방지
+## v6: 노드 아이콘 — 직관적 심볼 (Android 호환 유니코드)
 const NODE_ICONS := {
-	MapData.NodeType.BATTLE: "X",
-	MapData.NodeType.ELITE: "*",
-	MapData.NodeType.EVENT: "?",
-	MapData.NodeType.SHOP: "$",
-	MapData.NodeType.REST: "+",
-	MapData.NodeType.BOSS: "!",
-	MapData.NodeType.GWAGEO: "#",
+	MapData.NodeType.BATTLE: "⚔",
+	MapData.NodeType.ELITE: "★",
+	MapData.NodeType.EVENT: "？",
+	MapData.NodeType.SHOP: "￥",
+	MapData.NodeType.REST: "♨",
+	MapData.NodeType.BOSS: "☠",
+	MapData.NodeType.GWAGEO: "筆",
 }
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
 const BASE_VIEWPORT_WIDTH := 1080.0
-const BASE_NODE_SIZE := Vector2(200, 100)
+const BASE_NODE_SIZE := Vector2(110, 110)  # v6: 정사각형 노드 (원형 스타일)
 const BASE_ROW_SPACING := 160.0
 const BASE_MAP_PADDING_X := 80.0
 const BASE_MAP_PADDING_TOP := 40.0
@@ -402,13 +402,15 @@ func _scroll_to_current() -> void:
 
 ## v5: 단청 스타일 노드 공통 헬퍼 — 둥근 모서리, 그림자 포함
 func _make_node_style(bg: Color, border_color: Color, border_width: int) -> StyleBoxFlat:
+	# v6: 원형 노드 스타일 — corner_radius를 크게 설정하여 원형 효과
 	var style := StyleBoxFlat.new()
 	style.bg_color = bg
-	style.set_corner_radius_all(12)
+	style.set_corner_radius_all(55)  # BASE_NODE_SIZE / 2 = 원형
 	style.set_border_width_all(border_width)
 	style.border_color = border_color
-	style.shadow_color = Color(0.0, 0.0, 0.0, 0.25)
-	style.shadow_size = 3
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.35)
+	style.shadow_size = 5
+	style.shadow_offset = Vector2(0, 2)
 	return style
 
 

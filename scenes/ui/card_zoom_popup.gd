@@ -36,16 +36,31 @@ func _build_ui() -> void:
 		(vp_size.y - 540) / 2.0
 	)
 
-	# v5: 단청 스타일 카드 상세 팝업 — 금박 테두리, 깊은 배경
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.06, 0.05, 0.12, 0.97)
-	style.border_color = Color(0.83, 0.66, 0.26, 0.9)
-	style.set_border_width_all(3)
-	style.set_corner_radius_all(16)
-	style.set_content_margin_all(22)
-	style.shadow_color = Color(0.0, 0.0, 0.0, 0.5)
-	style.shadow_size = 10
-	_panel.add_theme_stylebox_override("panel", style)
+	# v6: 카드 프레임 SVG 텍스처 기반 팝업
+	var frame_path := _get_frame_path(_card_data.rarity)
+	var frame_tex = load(frame_path) as Texture2D if ResourceLoader.exists(frame_path) else null
+	if frame_tex:
+		var tex_sb := StyleBoxTexture.new()
+		tex_sb.texture = frame_tex
+		tex_sb.texture_margin_left = 12
+		tex_sb.texture_margin_right = 12
+		tex_sb.texture_margin_top = 42
+		tex_sb.texture_margin_bottom = 12
+		tex_sb.content_margin_left = 20
+		tex_sb.content_margin_right = 20
+		tex_sb.content_margin_top = 14
+		tex_sb.content_margin_bottom = 14
+		_panel.add_theme_stylebox_override("panel", tex_sb)
+	else:
+		var style := StyleBoxFlat.new()
+		style.bg_color = Color(0.06, 0.05, 0.12, 0.97)
+		style.border_color = Color(0.83, 0.66, 0.26, 0.9)
+		style.set_border_width_all(3)
+		style.set_corner_radius_all(16)
+		style.set_content_margin_all(22)
+		style.shadow_color = Color(0.0, 0.0, 0.0, 0.5)
+		style.shadow_size = 10
+		_panel.add_theme_stylebox_override("panel", style)
 	_bg.add_child(_panel)
 
 	var vbox := VBoxContainer.new()
@@ -222,6 +237,16 @@ func _on_bg_input(event: InputEvent) -> void:
 		_close()
 	elif event is InputEventScreenTouch and event.pressed:
 		_close()
+
+
+func _get_frame_path(rarity_level: int) -> String:
+	## v6: 희귀도별 카드 프레임 SVG 경로
+	match rarity_level:
+		2: return "res://art/ui/card_frame_uncommon.svg"
+		3: return "res://art/ui/card_frame_rare.svg"
+		4: return "res://art/ui/card_frame_rare.svg"
+		5: return "res://art/ui/card_frame_legendary.svg"
+	return "res://art/ui/card_frame_common.svg"
 
 
 func _close() -> void:

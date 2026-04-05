@@ -6,6 +6,13 @@ extends Control
 # 캐릭터 정의 순서 (표시 순서)
 const CHARACTER_IDS := ["mugwan", "mungwan", "dosa"]
 
+# 캐릭터 ID → SVG 아트 파일명 매핑
+const CHARACTER_ART_MAP := {
+	"mugwan": "res://art/characters/warrior.svg",
+	"mungwan": "res://art/characters/scholar.svg",
+	"dosa": "res://art/characters/assassin.svg",
+}
+
 var _selected_index: int = -1
 var _character_list: Array[Dictionary] = []
 var _unlock_data: Array[Dictionary] = []
@@ -219,7 +226,7 @@ func _build_character_cards() -> void:
 	var separation := int(card_container.get_theme_constant("separation"))
 	var available_w := vp_size.x - 80.0  # VBoxContainer offset 40*2
 	var panel_min_w := minf(300.0 * scale_x, (available_w - separation * (card_count - 1)) / card_count)
-	var panel_min_h := 260.0 * ui_scale  # 카드 높이 축소 (핵심 정보만 표시)
+	var panel_min_h := 480.0 * ui_scale  # v6: 캐릭터 일러스트 포함 카드 높이
 
 	# 스케일된 폰트 크기 계산 (모바일 가독성 확보)
 	var fs_name := maxi(int(34 * ui_scale), 30)
@@ -278,11 +285,34 @@ func _build_character_cards() -> void:
 			name_label.text = "??? (" + character["name"].split("(")[1] if "(" in character["name"] else "???"
 		vbox.add_child(name_label)
 
-		# v5: 구분선
+		# v6: 캐릭터 일러스트 — SVG 에셋 로드
+		var char_art := TextureRect.new()
+		char_art.custom_minimum_size = Vector2(0, 180 * ui_scale)
+		char_art.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		char_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		char_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		if unlocked:
+			var art_path: String = CHARACTER_ART_MAP.get(character["id"], "")
+			if art_path != "" and ResourceLoader.exists(art_path):
+				char_art.texture = load(art_path)
+			else:
+				char_art.texture = TextureManager.get_card_texture(character["id"], "")
+		else:
+			# 잠김 캐릭터: 실루엣 (어두운 placeholder)
+			var art_path: String = CHARACTER_ART_MAP.get(character["id"], "")
+			if art_path != "" and ResourceLoader.exists(art_path):
+				char_art.texture = load(art_path)
+				char_art.modulate = Color(0.15, 0.15, 0.20, 0.8)
+			else:
+				char_art.texture = TextureManager.get_card_texture(character["id"], "")
+				char_art.modulate = Color(0.15, 0.15, 0.20, 0.8)
+		vbox.add_child(char_art)
+
+		# v6: 구분선
 		var sep := HSeparator.new()
 		vbox.add_child(sep)
 
-		# v5: HP / 기 정보 — 색상 구분
+		# v6: HP / 기 정보 — 색상 구분
 		var stat_hbox := HBoxContainer.new()
 		stat_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 		stat_hbox.add_theme_constant_override("separation", int(12 * ui_scale))

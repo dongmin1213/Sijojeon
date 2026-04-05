@@ -69,6 +69,15 @@ const RARITY_COLORS := {
 	5: Color(0.83, 0.66, 0.26),  # 금박 (전설)
 }
 
+# v6: 카드 프레임 SVG 텍스처 경로 (희귀도별)
+const FRAME_PATHS := {
+	1: "res://art/ui/card_frame_common.svg",
+	2: "res://art/ui/card_frame_uncommon.svg",
+	3: "res://art/ui/card_frame_rare.svg",
+	4: "res://art/ui/card_frame_rare.svg",
+	5: "res://art/ui/card_frame_legendary.svg",
+}
+
 # 기본 스타일 (코드로 생성)
 var _normal_stylebox: StyleBoxFlat
 var _hover_stylebox: StyleBoxFlat
@@ -76,6 +85,9 @@ var _selected_stylebox: StyleBoxFlat
 var _disabled_stylebox: StyleBoxFlat
 var _drag_stylebox: StyleBoxFlat
 var _sijo_match_stylebox: StyleBoxFlat
+
+# v6: 프레임 텍스처 캐시
+var _frame_stylebox_cache: Dictionary = {}  # rarity → StyleBoxTexture
 
 # 시조 매칭 글로우 애니메이션
 var _sijo_glow_tween: Tween = null
@@ -199,11 +211,12 @@ func _update_display() -> void:
 	if card_data == null:
 		return
 
-	# 카드 이름 (강화 시 + 표시)
+	# v6: 카드 이름 — 금색 강조, 강화 시 + 표시
 	var display_name := card_data.get_display_name()
 	if card_data.upgraded:
 		display_name += "+"
 	card_name_label.text = display_name
+	card_name_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 
 	# 카드 일러스트 (TextureManager에서 로드, 없으면 placeholder)
 	card_art.texture = TextureManager.get_card_texture(card_data.id, card_data.type)
@@ -267,13 +280,22 @@ func _update_style() -> void:
 		modulate = Color(1, 1, 1, 1)
 		_start_sijo_glow()
 	else:
-		# 타입별 배경색 적용 — 카드 타입이 색으로 즉시 구별되게
-		var typed_style := _normal_stylebox.duplicate()
+		# v6: 카드 프레임 텍스처 우선 사용, 없으면 StyleBoxFlat fallback
+		var frame_sb: StyleBoxTexture = null
 		if card_data:
-			var type_bg := _get_type_bg_color(card_data.type)
-			typed_style.bg_color = type_bg
-			typed_style.border_color = _get_type_border_color(card_data.type)
-		add_theme_stylebox_override("panel", typed_style)
+			var type_tint := _get_type_border_color(card_data.type)
+			# 프레임 색조: 타입 색상을 밝게 섞어서 프레임에 적용
+			var tint := type_tint.lightened(0.3)
+			frame_sb = _make_frame_stylebox(card_data.rarity, tint)
+		if frame_sb:
+			add_theme_stylebox_override("panel", frame_sb)
+		else:
+			var typed_style := _normal_stylebox.duplicate()
+			if card_data:
+				var type_bg := _get_type_bg_color(card_data.type)
+				typed_style.bg_color = type_bg
+				typed_style.border_color = _get_type_border_color(card_data.type)
+			add_theme_stylebox_override("panel", typed_style)
 		modulate = Color(1, 1, 1, 1)
 
 
@@ -289,6 +311,33 @@ func _start_sijo_glow() -> void:
 func _set_sijo_border_alpha(alpha: float) -> void:
 	if _sijo_match_stylebox:
 		_sijo_match_stylebox.border_color = Color(0.83, 0.66, 0.26, alpha)
+
+
+func _make_frame_stylebox(rarity: int, tint: Color = Color.WHITE) -> StyleBoxTexture:
+	## v6: 카드 프레임 SVG를 StyleBoxTexture로 변환. nine-patch 마진 설정.
+	var cache_key := rarity * 1000 + tint.to_rgba32()
+	if _frame_stylebox_cache.has(cache_key):
+		return _frame_stylebox_cache[cache_key].duplicate()
+	var path: String = FRAME_PATHS.get(rarity, FRAME_PATHS[1])
+	if not ResourceLoader.exists(path):
+		return null
+	var tex = load(path) as Texture2D
+	if not tex:
+		return null
+	var sb := StyleBoxTexture.new()
+	sb.texture = tex
+	# SVG는 160x220 — nine-patch 마진 설정
+	sb.texture_margin_left = 12
+	sb.texture_margin_right = 12
+	sb.texture_margin_top = 42
+	sb.texture_margin_bottom = 12
+	sb.content_margin_left = 14
+	sb.content_margin_right = 14
+	sb.content_margin_top = 8
+	sb.content_margin_bottom = 8
+	sb.modulate_color = tint
+	_frame_stylebox_cache[cache_key] = sb
+	return sb.duplicate()
 
 
 func _get_type_bg_color(type: String) -> Color:

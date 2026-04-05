@@ -213,6 +213,22 @@ func _display_shop_cards() -> void:
 		btn.custom_minimum_size = Vector2(200, 280)
 		btn.add_theme_font_size_override("font_size", 22)
 
+		# v6: 카드 프레임 SVG 적용
+		var frame_path := _get_card_frame_path(card.rarity)
+		var frame_tex = load(frame_path) as Texture2D if ResourceLoader.exists(frame_path) else null
+		if frame_tex and not entry["sold"]:
+			var tex_sb := StyleBoxTexture.new()
+			tex_sb.texture = frame_tex
+			tex_sb.texture_margin_left = 12
+			tex_sb.texture_margin_right = 12
+			tex_sb.texture_margin_top = 42
+			tex_sb.texture_margin_bottom = 12
+			tex_sb.content_margin_left = 14
+			tex_sb.content_margin_right = 14
+			tex_sb.content_margin_top = 10
+			tex_sb.content_margin_bottom = 10
+			btn.add_theme_stylebox_override("normal", tex_sb)
+
 		if entry["sold"]:
 			btn.text = tr("SHOP_SALE_COMPLETE")
 			btn.disabled = true
@@ -225,6 +241,16 @@ func _display_shop_cards() -> void:
 			btn.pressed.connect(_on_buy_card.bind(i))
 
 		card_container.add_child(btn)
+
+
+func _get_card_frame_path(rarity_level: int) -> String:
+	## v6: 희귀도별 카드 프레임 SVG 경로
+	match rarity_level:
+		2: return "res://art/ui/card_frame_uncommon.svg"
+		3: return "res://art/ui/card_frame_rare.svg"
+		4: return "res://art/ui/card_frame_rare.svg"
+		5: return "res://art/ui/card_frame_legendary.svg"
+	return "res://art/ui/card_frame_common.svg"
 
 
 func _format_card_text(card: CardData, price: int) -> String:

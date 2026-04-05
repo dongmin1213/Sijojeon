@@ -281,29 +281,52 @@ func _display_card_offers() -> void:
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.pressed.connect(_on_card_chosen.bind(i))
 
-		# v5: 단청 스타일 카드 보상 버튼 — 희귀도별 테두리 + 깊은 배경
+		# v6: 카드 프레임 SVG 텍스처 기반 스타일
 		var rarity_color := _get_rarity_color(card.rarity)
-		var stylebox := StyleBoxFlat.new()
-		stylebox.bg_color = Color(0.08, 0.06, 0.14, 0.95)
-		stylebox.border_color = rarity_color
-		stylebox.set_border_width_all(2)
-		stylebox.set_corner_radius_all(14)
-		stylebox.set_content_margin_all(14)
-		stylebox.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
-		stylebox.shadow_size = 4
+		var frame_path := _get_frame_path(card.rarity)
+		var frame_tex = load(frame_path) as Texture2D if ResourceLoader.exists(frame_path) else null
+
+		var stylebox: StyleBox
+		if frame_tex:
+			var tex_sb := StyleBoxTexture.new()
+			tex_sb.texture = frame_tex
+			tex_sb.texture_margin_left = 12
+			tex_sb.texture_margin_right = 12
+			tex_sb.texture_margin_top = 42
+			tex_sb.texture_margin_bottom = 12
+			tex_sb.content_margin_left = 14
+			tex_sb.content_margin_right = 14
+			tex_sb.content_margin_top = 10
+			tex_sb.content_margin_bottom = 10
+			stylebox = tex_sb
+		else:
+			var flat_sb := StyleBoxFlat.new()
+			flat_sb.bg_color = Color(0.08, 0.06, 0.14, 0.95)
+			flat_sb.border_color = rarity_color
+			flat_sb.set_border_width_all(2)
+			flat_sb.set_corner_radius_all(14)
+			flat_sb.set_content_margin_all(14)
+			flat_sb.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
+			flat_sb.shadow_size = 4
+			stylebox = flat_sb
 		btn.add_theme_stylebox_override("normal", stylebox)
 
-		# v5: 호버 — 밝아지면서 테두리 강화
-		var hover_style := stylebox.duplicate()
-		hover_style.bg_color = Color(0.12, 0.10, 0.20, 0.95)
-		hover_style.set_border_width_all(3)
-		hover_style.shadow_size = 6
-		btn.add_theme_stylebox_override("hover", hover_style)
-
-		# v5: 눌림 — 살짝 더 밝게
-		var pressed_style := stylebox.duplicate()
-		pressed_style.bg_color = Color(0.15, 0.12, 0.24, 0.95)
-		btn.add_theme_stylebox_override("pressed", pressed_style)
+		# 호버/눌림 — 밝기 변화로 피드백
+		if stylebox is StyleBoxTexture:
+			var hover_st := stylebox.duplicate()
+			hover_st.modulate_color = Color(1.2, 1.2, 1.2)
+			btn.add_theme_stylebox_override("hover", hover_st)
+			var press_st := stylebox.duplicate()
+			press_st.modulate_color = Color(0.9, 0.9, 0.9)
+			btn.add_theme_stylebox_override("pressed", press_st)
+		else:
+			var hover_style := (stylebox as StyleBoxFlat).duplicate()
+			hover_style.bg_color = Color(0.12, 0.10, 0.20, 0.95)
+			hover_style.set_border_width_all(3)
+			btn.add_theme_stylebox_override("hover", hover_style)
+			var pressed_style := (stylebox as StyleBoxFlat).duplicate()
+			pressed_style.bg_color = Color(0.15, 0.12, 0.24, 0.95)
+			btn.add_theme_stylebox_override("pressed", pressed_style)
 
 		card_container.add_child(btn)
 
@@ -381,6 +404,16 @@ func _get_card_rarity_label(rarity_level: int) -> String:
 		3:
 			return tr("CARD_RARITY_RARE")
 	return tr("CARD_RARITY_COMMON")
+
+
+func _get_frame_path(rarity_level: int) -> String:
+	## v6: 희귀도별 카드 프레임 SVG 경로
+	match rarity_level:
+		2: return "res://art/ui/card_frame_uncommon.svg"
+		3: return "res://art/ui/card_frame_rare.svg"
+		4: return "res://art/ui/card_frame_rare.svg"
+		5: return "res://art/ui/card_frame_legendary.svg"
+	return "res://art/ui/card_frame_common.svg"
 
 
 func _get_rarity_color(rarity_level: int) -> Color:

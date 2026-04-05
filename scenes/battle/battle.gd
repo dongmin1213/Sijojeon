@@ -562,31 +562,33 @@ func _update_enemy_ui() -> void:
 			vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 			vbox.add_theme_constant_override("separation", 1)
 
-			# 적 이름 + 실루엣을 한 줄로 합쳐 공간 절약
-			var header_hbox := HBoxContainer.new()
-			header_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-			header_hbox.add_theme_constant_override("separation", 6)
-
-			var silhouette := Label.new()
-			silhouette.text = _get_enemy_silhouette(enemy)
-			silhouette.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			silhouette.add_theme_font_size_override("font_size", 28)
 			var combat_type: String = enemy.get("combat_type", "")
-			if combat_type == "boss":
-				silhouette.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.95))
-			elif combat_type == "elite":
-				silhouette.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26, 0.95))
-			else:
-				silhouette.add_theme_color_override("font_color", Color(0.62, 0.40, 0.38, 0.9))
 
+			# v6: 적 일러스트 — TextureManager에서 SVG/placeholder 로드
+			var enemy_id: String = enemy.get("id", "")
+			var enemy_art := TextureRect.new()
+			enemy_art.custom_minimum_size = Vector2(120, 100)
+			enemy_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			enemy_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			enemy_art.texture = TextureManager.get_enemy_texture(enemy_id)
+			# 보스/엘리트는 더 크게
+			if combat_type == "boss":
+				enemy_art.custom_minimum_size = Vector2(160, 130)
+			elif combat_type == "elite":
+				enemy_art.custom_minimum_size = Vector2(140, 110)
+
+			# 적 이름
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			name_label.add_theme_font_size_override("font_size", 22)
-			name_label.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
-
-			header_hbox.add_child(silhouette)
-			header_hbox.add_child(name_label)
+			# v6: 보스/엘리트 이름 색상 구분
+			if combat_type == "boss":
+				name_label.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.95))
+			elif combat_type == "elite":
+				name_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26, 0.95))
+			else:
+				name_label.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
 
 			# HP 바 (ProgressBar + 오버레이 텍스트)
 			var hp_container := Control.new()
@@ -635,7 +637,8 @@ func _update_enemy_ui() -> void:
 			status_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 			_build_status_icons(status_hbox, "enemy_%d" % i)
 
-			vbox.add_child(header_hbox)
+			vbox.add_child(enemy_art)
+			vbox.add_child(name_label)
 			vbox.add_child(hp_container)
 			vbox.add_child(enemy_block_label)
 			vbox.add_child(status_hbox)
