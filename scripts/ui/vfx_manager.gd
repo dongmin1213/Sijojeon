@@ -266,7 +266,7 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		label.add_theme_font_size_override("font_size", 56)
-		label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+		label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		label.add_theme_color_override("font_outline_color", Color(0.6, 0.3, 0.0))
 		label.add_theme_constant_override("outline_size", 4)
 		label.z_index = 90
@@ -284,7 +284,7 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 		tween.tween_callback(_release_label.bind(label))
 
 	# 1차 파티클: 빠르게 퍼지는 코어 (24개)
-	_spawn_particles(parent, 24, Color(1.0, 0.85, 0.3))
+	_spawn_particles(parent, 24, Color(0.83, 0.66, 0.26))
 	# 2차 파티클: 느리게 퍼지는 외곽 링 (12개, 더 크고 밝음)
 	_spawn_ring_particles(parent, 12, Color(1.0, 0.95, 0.6))
 

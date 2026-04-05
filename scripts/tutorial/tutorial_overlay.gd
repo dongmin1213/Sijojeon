@@ -7,9 +7,9 @@ extends CanvasLayer
 signal step_acknowledged  # 플레이어가 "다음" 또는 지정된 액션을 수행
 
 const OVERLAY_COLOR := Color(0.0, 0.0, 0.0, 0.45)
-const HIGHLIGHT_COLOR := Color(1.0, 0.85, 0.3, 0.4)
-const HIGHLIGHT_BORDER_COLOR := Color(1.0, 0.85, 0.3, 0.9)
-const ARROW_COLOR := Color(1.0, 0.85, 0.3)
+const HIGHLIGHT_COLOR := Color(0.83, 0.66, 0.26, 0.4)
+const HIGHLIGHT_BORDER_COLOR := Color(0.83, 0.66, 0.26, 0.9)
+const ARROW_COLOR := Color(0.83, 0.66, 0.26)
 const TEXT_BG_COLOR := Color(0.1, 0.08, 0.15, 0.95)
 
 var _overlay_bg: ColorRect = null
@@ -60,7 +60,7 @@ func _build_ui() -> void:
 	var stylebox := StyleBoxFlat.new()
 	stylebox.bg_color = TEXT_BG_COLOR
 	stylebox.set_border_width_all(2)
-	stylebox.border_color = Color(1.0, 0.85, 0.3, 0.8)
+	stylebox.border_color = Color(0.83, 0.66, 0.26, 0.8)
 	stylebox.set_corner_radius_all(8)
 	var content_margin := int(24 * ui_scale)
 	stylebox.set_content_margin_all(content_margin)

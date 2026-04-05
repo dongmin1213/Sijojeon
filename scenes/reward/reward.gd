@@ -90,19 +90,22 @@ func _display_relic_offer() -> void:
 	relic_btn.add_theme_font_size_override("font_size", 22)
 	relic_btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
-	# 유물 버튼 스타일
+	# v5: 단청 스타일 유물 버튼
 	var relic_color := RelicManager.get_relic_rarity_color(relic_offer_id)
 	var relic_style := StyleBoxFlat.new()
-	relic_style.bg_color = Color(0.18, 0.15, 0.22, 1.0)
+	relic_style.bg_color = Color(0.08, 0.06, 0.14, 0.95)
 	relic_style.border_color = relic_color
 	relic_style.set_border_width_all(2)
-	relic_style.set_corner_radius_all(8)
-	relic_style.set_content_margin_all(12)
+	relic_style.set_corner_radius_all(14)
+	relic_style.set_content_margin_all(14)
+	relic_style.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
+	relic_style.shadow_size = 4
 	relic_btn.add_theme_stylebox_override("normal", relic_style)
 
 	var relic_hover := relic_style.duplicate()
-	relic_hover.bg_color = Color(0.23, 0.2, 0.28, 1.0)
+	relic_hover.bg_color = Color(0.12, 0.10, 0.20, 0.95)
 	relic_hover.set_border_width_all(3)
+	relic_hover.shadow_size = 6
 	relic_btn.add_theme_stylebox_override("hover", relic_hover)
 
 	relic_btn.pressed.connect(_on_relic_claimed)
@@ -126,7 +129,7 @@ func _on_relic_claimed() -> void:
 		for child in relic_section.get_children():
 			if child is Button:
 				child.disabled = true
-				child.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+				child.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 
 
 func _apply_gold() -> void:
@@ -278,25 +281,28 @@ func _display_card_offers() -> void:
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.pressed.connect(_on_card_chosen.bind(i))
 
-		# 희귀도에 따른 테두리 색상
+		# v5: 단청 스타일 카드 보상 버튼 — 희귀도별 테두리 + 깊은 배경
 		var rarity_color := _get_rarity_color(card.rarity)
 		var stylebox := StyleBoxFlat.new()
-		stylebox.bg_color = Color(0.15, 0.17, 0.25, 1.0)
+		stylebox.bg_color = Color(0.08, 0.06, 0.14, 0.95)
 		stylebox.border_color = rarity_color
 		stylebox.set_border_width_all(2)
-		stylebox.set_corner_radius_all(8)
-		stylebox.set_content_margin_all(12)
+		stylebox.set_corner_radius_all(14)
+		stylebox.set_content_margin_all(14)
+		stylebox.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
+		stylebox.shadow_size = 4
 		btn.add_theme_stylebox_override("normal", stylebox)
 
-		# 호버 스타일
+		# v5: 호버 — 밝아지면서 테두리 강화
 		var hover_style := stylebox.duplicate()
-		hover_style.bg_color = Color(0.2, 0.22, 0.32, 1.0)
+		hover_style.bg_color = Color(0.12, 0.10, 0.20, 0.95)
 		hover_style.set_border_width_all(3)
+		hover_style.shadow_size = 6
 		btn.add_theme_stylebox_override("hover", hover_style)
 
-		# 눌림 스타일
+		# v5: 눌림 — 살짝 더 밝게
 		var pressed_style := stylebox.duplicate()
-		pressed_style.bg_color = Color(0.25, 0.27, 0.37, 1.0)
+		pressed_style.bg_color = Color(0.15, 0.12, 0.24, 0.95)
 		btn.add_theme_stylebox_override("pressed", pressed_style)
 
 		card_container.add_child(btn)
@@ -378,12 +384,13 @@ func _get_card_rarity_label(rarity_level: int) -> String:
 
 
 func _get_rarity_color(rarity_level: int) -> Color:
+	# v5: 단청 팔레트 희귀도
 	match rarity_level:
 		2:
-			return Color(0.3, 0.7, 1.0)  # 고급: 파랑
+			return Color(0.17, 0.30, 0.50)  # 고급: 남색
 		3:
-			return Color(1.0, 0.85, 0.2)  # 희귀: 금색
-	return Color(0.75, 0.75, 0.75)  # 일반: 회색
+			return Color(0.83, 0.66, 0.26)  # 희귀: 금색
+	return Color(0.60, 0.55, 0.50)  # 일반: 따뜻한 회색
 
 
 func _on_card_chosen(index: int) -> void:
@@ -401,7 +408,7 @@ func _on_card_chosen(index: int) -> void:
 		var buttons := card_container.get_children()
 		for i in buttons.size():
 			if i == index:
-				buttons[i].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+				buttons[i].add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 				buttons[i].disabled = true
 			else:
 				buttons[i].modulate = Color(0.4, 0.4, 0.4)
@@ -443,7 +450,7 @@ func _check_rank_up_reward() -> void:
 	rank_label.text = tr("REWARD_RANK_UP_FMT") % rank_name
 	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	rank_label.add_theme_font_size_override("font_size", 30)
-	rank_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	rank_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	rank_section.add_child(rank_label)
 
 	var desc_label := Label.new()
@@ -554,7 +561,7 @@ func _build_rank_relic_select(parent: VBoxContainer) -> void:
 	btn.pressed.connect(func():
 		RelicManager.acquire_relic(relic_id)
 		btn.disabled = true
-		btn.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+		btn.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	)
 	parent.add_child(btn)
 

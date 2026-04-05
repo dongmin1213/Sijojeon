@@ -58,7 +58,7 @@ func _display(ach: Dictionary) -> void:
 	var icon_label := Label.new()
 	icon_label.text = "★"
 	icon_label.add_theme_font_size_override("font_size", int(28.0 * sf))
-	icon_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	icon_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	hbox.add_child(icon_label)
 
 	var vbox := VBoxContainer.new()
@@ -67,7 +67,7 @@ func _display(ach: Dictionary) -> void:
 	var header := Label.new()
 	header.text = tr("ACHIEVEMENT_UNLOCKED")
 	header.add_theme_font_size_override("font_size", int(14.0 * sf))
-	header.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	header.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	vbox.add_child(header)
 
 	var name_label := Label.new()

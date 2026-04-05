@@ -31,16 +31,17 @@ func _ready() -> void:
 
 
 func _setup_display() -> void:
+	# v5: 단청 팔레트 결과 화면
 	if _is_victory:
 		title_label.text = tr("RESULT_VICTORY")
-		title_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+		title_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		subtitle_label.text = tr("RESULT_VICTORY_SUBTITLE")
-		overlay.color = Color(0.02, 0.05, 0.08, 0.9)
+		overlay.color = Color(0.04, 0.04, 0.08, 0.92)
 	else:
 		title_label.text = tr("RESULT_DEFEAT")
-		title_label.add_theme_color_override("font_color", Color(0.8, 0.2, 0.2))
+		title_label.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19))
 		subtitle_label.text = tr("RESULT_DEFEAT_SUBTITLE_ALT")
-		overlay.color = Color(0.08, 0.02, 0.02, 0.9)
+		overlay.color = Color(0.08, 0.04, 0.04, 0.92)
 
 
 func _populate_stats() -> void:
@@ -100,14 +101,14 @@ func _add_stat_row(label_text: String, value_text: String) -> void:
 	var label := Label.new()
 	label.text = label_text
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	label.add_theme_color_override("font_color", Color(0.7, 0.65, 0.55))
+	label.add_theme_color_override("font_color", Color(0.65, 0.58, 0.48))
 	label.add_theme_font_size_override("font_size", 24)
 
 	var value := Label.new()
 	value.text = value_text
 	value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	value.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	value.add_theme_color_override("font_color", Color(1.0, 0.95, 0.8))
+	value.add_theme_color_override("font_color", Color(0.90, 0.85, 0.72))
 	value.add_theme_font_size_override("font_size", 24)
 
 	row.add_child(label)

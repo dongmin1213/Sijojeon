@@ -24,11 +24,14 @@ func _ready() -> void:
 func _build_ui() -> void:
 	_panel = PanelContainer.new()
 	var stylebox := StyleBoxFlat.new()
-	stylebox.bg_color = Color(0.08, 0.06, 0.12, 0.95)
+	# v5: 단청 스타일 키워드 툴팁
+	stylebox.bg_color = Color(0.06, 0.05, 0.10, 0.97)
 	stylebox.set_border_width_all(2)
-	stylebox.border_color = Color(0.7, 0.6, 0.4, 0.9)
-	stylebox.set_corner_radius_all(6)
+	stylebox.border_color = Color(0.83, 0.66, 0.26, 0.8)
+	stylebox.set_corner_radius_all(10)
 	stylebox.set_content_margin_all(14)
+	stylebox.shadow_color = Color(0.0, 0.0, 0.0, 0.4)
+	stylebox.shadow_size = 4
 	_panel.add_theme_stylebox_override("panel", stylebox)
 
 	var vbox := VBoxContainer.new()
@@ -36,7 +39,7 @@ func _build_ui() -> void:
 
 	_name_label = Label.new()
 	_name_label.add_theme_font_size_override("font_size", 18)
-	_name_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	_name_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	vbox.add_child(_name_label)
 
 	_desc_label = Label.new()

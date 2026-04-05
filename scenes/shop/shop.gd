@@ -221,7 +221,7 @@ func _display_shop_cards() -> void:
 			btn.text = _format_card_text(card, entry["price"])
 			var can_afford: bool = GameManager.run_data != null and GameManager.run_data.gold >= entry["price"]
 			if not can_afford:
-				btn.add_theme_color_override("font_color", Color(0.7, 0.4, 0.35))
+				btn.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 			btn.pressed.connect(_on_buy_card.bind(i))
 
 		card_container.add_child(btn)
@@ -337,7 +337,7 @@ func _display_deck_for_removal() -> void:
 		btn.text = tr("SHOP_DECK_CARD_INFO") % [card.get_display_name(), card.cost]
 
 		if not can_afford:
-			btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+			btn.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 		else:
 			btn.pressed.connect(_on_remove_card.bind(i))
 
@@ -383,7 +383,7 @@ func _update_gold_display() -> void:
 	# 새로고침 버튼 갱신
 	refresh_button.text = tr("SHOP_REFRESH_FMT") % REFRESH_COST
 	if gold < REFRESH_COST:
-		refresh_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+		refresh_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 	else:
 		refresh_button.remove_theme_color_override("font_color")
 
@@ -398,7 +398,7 @@ func _update_remove_section() -> void:
 	remove_info.text = tr("SHOP_REMOVE_CARD_INFO")
 
 	if GameManager.run_data and GameManager.run_data.gold < cost:
-		remove_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+		remove_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 	else:
 		remove_button.remove_theme_color_override("font_color")
 
@@ -450,7 +450,7 @@ func _display_deck_for_upgrade() -> void:
 		btn.text = tr("SHOP_DECK_CARD_INFO") % [card.get_display_name(), card.cost]
 
 		if not can_afford:
-			btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+			btn.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 		else:
 			btn.pressed.connect(_on_upgrade_card.bind(i))
 
@@ -495,7 +495,7 @@ func _update_upgrade_section() -> void:
 	upgrade_info.text = tr("SHOP_UPGRADE_CARD_INFO")
 
 	if GameManager.run_data and GameManager.run_data.gold < cost:
-		upgrade_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+		upgrade_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 	else:
 		upgrade_button.remove_theme_color_override("font_color")
 
@@ -528,7 +528,7 @@ func _update_minshim_button() -> void:
 		minshim_button.disabled = true
 		minshim_button.text = tr("SHOP_MINSHIM_MAX")
 	elif GameManager.run_data and GameManager.run_data.gold < MINSHIM_BUY_COST:
-		minshim_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+		minshim_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 	else:
 		minshim_button.remove_theme_color_override("font_color")
 
@@ -561,7 +561,7 @@ func _update_market_open_button() -> void:
 		market_open_button.disabled = true
 		market_open_button.text = tr("SHOP_MINSHIM_MAX")
 	elif GameManager.run_data and GameManager.run_data.gold < MARKET_OPEN_COST:
-		market_open_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+		market_open_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 	else:
 		market_open_button.remove_theme_color_override("font_color")
 
@@ -595,7 +595,7 @@ func _update_bribe_button() -> void:
 	bribe_button.text = tr("SHOP_BRIBE_FMT") % [BRIBE_COST, BRIBE_JIBUN_AMOUNT, rank_name, jibun_score]
 
 	if GameManager.run_data and GameManager.run_data.gold < BRIBE_COST:
-		bribe_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+		bribe_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 	else:
 		bribe_button.remove_theme_color_override("font_color")
 
@@ -627,7 +627,7 @@ func _update_rations_button() -> void:
 	rations_button.text = tr("SHOP_RATIONS_FMT") % [RATIONS_COST, RATIONS_BLOCK]
 
 	if GameManager.run_data and GameManager.run_data.gold < RATIONS_COST:
-		rations_button.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+		rations_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 	else:
 		rations_button.remove_theme_color_override("font_color")
 
@@ -692,7 +692,7 @@ func _display_shop_relics() -> void:
 				btn.text = tr("SHOP_RELIC_PRICE_FMT") % [relic_name, effect_desc, entry["price"]]
 			var can_afford: bool = GameManager.run_data != null and GameManager.run_data.gold >= entry["price"]
 			if not can_afford:
-				btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
+				btn.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
 			btn.pressed.connect(_on_buy_relic.bind(i))
 
 		relic_container.add_child(btn)
@@ -831,7 +831,7 @@ func _update_discount_badges() -> void:
 	badge.name = "DiscountBadge"
 	badge.text = info["reasons"]
 	badge.add_theme_font_size_override("font_size", 24)
-	badge.add_theme_color_override("font_color", Color(0.3, 0.9, 0.3))
+	badge.add_theme_color_override("font_color", Color(0.23, 0.49, 0.27))
 	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_label.get_parent().add_child(badge)
 	title_label.get_parent().move_child(badge, 1)  # 타이틀 바로 아래
@@ -843,7 +843,7 @@ func _show_rankup_popup(new_rank: int) -> void:
 
 	# 골드 플래시 오버레이
 	var flash := ColorRect.new()
-	flash.color = Color(1.0, 0.85, 0.3, 0.4)
+	flash.color = Color(0.83, 0.66, 0.26, 0.35)
 	flash.anchors_preset = Control.PRESET_FULL_RECT
 	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(flash)
@@ -852,7 +852,7 @@ func _show_rankup_popup(new_rank: int) -> void:
 	var popup_label := Label.new()
 	popup_label.text = tr("JIBUN_RANKUP_POPUP_FMT") % rank_name
 	popup_label.add_theme_font_size_override("font_size", 40)
-	popup_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.2))
+	popup_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	popup_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	popup_label.anchors_preset = Control.PRESET_CENTER

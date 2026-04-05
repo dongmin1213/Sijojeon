@@ -2,14 +2,15 @@ extends Control
 
 ## 런 맵 화면. 세로 스크롤 가능한 노드 맵을 표시하고 노드 탭으로 이동.
 
+# v5: 단청 팔레트 노드 색상 — 타입별 명확한 시각 구분
 const NODE_COLORS := {
-	MapData.NodeType.BATTLE: Color(0.85, 0.3, 0.3),    # 빨강
-	MapData.NodeType.ELITE: Color(0.9, 0.6, 0.1),      # 주황
-	MapData.NodeType.EVENT: Color(0.3, 0.75, 0.4),     # 초록
-	MapData.NodeType.SHOP: Color(0.3, 0.6, 0.9),       # 파랑
-	MapData.NodeType.REST: Color(0.6, 0.85, 0.6),      # 연두
-	MapData.NodeType.BOSS: Color(0.95, 0.2, 0.2),      # 진빨
-	MapData.NodeType.GWAGEO: Color(0.85, 0.75, 0.3),  # 황금 (과거시험)
+	MapData.NodeType.BATTLE: Color(0.78, 0.29, 0.19),    # 주홍 (공격)
+	MapData.NodeType.ELITE: Color(0.42, 0.25, 0.63),     # 자주 (엘리트)
+	MapData.NodeType.EVENT: Color(0.23, 0.49, 0.27),     # 송록 (이벤트)
+	MapData.NodeType.SHOP: Color(0.17, 0.30, 0.50),      # 남색 (상점)
+	MapData.NodeType.REST: Color(0.24, 0.67, 0.43),      # 녹색 (휴식)
+	MapData.NodeType.BOSS: Color(0.70, 0.15, 0.15),      # 진홍 (보스)
+	MapData.NodeType.GWAGEO: Color(0.83, 0.66, 0.26),   # 금색 (과거시험)
 }
 
 var NODE_LABELS := {
@@ -246,16 +247,16 @@ func _draw_connections() -> void:
 			var color: Color
 			var width: float
 			if is_visited_path:
-				# 이미 지나간 경로: 밝은 금색
-				color = Color(0.9, 0.85, 0.5, 0.9)
+				# v5: 이미 지나간 경로 — 단청 금색
+				color = Color(0.83, 0.66, 0.26, 0.85)
 				width = 4.0
 			elif nid in visited and conn_id in _available_node_ids:
-				# 선택 가능한 경로: 밝은 흰색 강조
-				color = Color(1.0, 1.0, 0.9, 0.8)
+				# v5: 선택 가능한 경로 — 밝은 금색
+				color = Color(0.83, 0.66, 0.26, 0.6)
 				width = 3.5
 			else:
-				# 미래 경로: 회색 (기존보다 두껍고 밝게)
-				color = Color(0.5, 0.5, 0.5, 0.5)
+				# v5: 미래 경로 — 은은한 회색
+				color = Color(0.45, 0.40, 0.35, 0.4)
 				width = 2.5
 
 			var line := Line2D.new()
@@ -305,17 +306,17 @@ func _update_node_states() -> void:
 		if nid in disabled_shop_ids and nid not in visited:
 			btn.disabled = true
 			btn.text = "X\n" + tr("MAP_CLOSED")
-			btn.modulate = Color(0.4, 0.3, 0.3, 0.6)
+			btn.modulate = Color(0.35, 0.28, 0.25, 0.6)
 			btn.tooltip_text = tr("MAP_CLOSED_TOOLTIP")
 			continue
 
 		if nid in visited:
-			# 방문한 노드: 타입 색상 유지하되 어둡게 + 비활성화
+			# v5: 방문 노드 — 어두운 톤 + 얇은 테두리
 			btn.disabled = true
-			btn.modulate = Color(0.7, 0.7, 0.7, 0.7)
-			var style := _make_node_style(node_color.darkened(0.4), Color(0.4, 0.4, 0.4, 0.5), 1)
+			btn.modulate = Color(0.6, 0.6, 0.6, 0.7)
+			var style := _make_node_style(node_color.darkened(0.5), Color(0.4, 0.35, 0.30, 0.4), 1)
 			btn.add_theme_stylebox_override("disabled", style)
-			btn.add_theme_color_override("font_disabled_color", Color(0.5, 0.5, 0.5))
+			btn.add_theme_color_override("font_disabled_color", Color(0.45, 0.42, 0.40))
 		elif nid in _locked_node_costs:
 			# 갈림길 잠금 노드: 금화로 해제 가능
 			var cost: int = _locked_node_costs[nid]
@@ -324,17 +325,17 @@ func _update_node_states() -> void:
 			var label_text: String = tr(label_key) if label_key != "" else "???"
 			btn.text = "%s\n%s\n%s" % [icon_text, label_text, tr("MAP_FORK_COST_FMT") % cost]
 			btn.disabled = false
-			btn.modulate = Color(0.7, 0.6, 0.3, 0.9)
+			btn.modulate = Color(0.83, 0.66, 0.26, 0.85)
 			btn.tooltip_text = tr("MAP_FORK_UNLOCK_TOOLTIP") % cost
-			var style := _make_node_style(Color(0.3, 0.25, 0.1), Color(0.8, 0.7, 0.2, 0.8), 2)
+			var style := _make_node_style(Color(0.15, 0.12, 0.08), Color(0.83, 0.66, 0.26, 0.7), 2)
 			btn.add_theme_stylebox_override("normal", style)
 			btn.add_theme_stylebox_override("hover", style)
-			btn.add_theme_color_override("font_color", Color(0.9, 0.8, 0.3))
+			btn.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		elif nid in _available_node_ids:
-			# 선택 가능한 노드: 밝은 타입 색상 + 굵은 흰색 보더 + 펄스
+			# v5: 선택 가능한 노드 — 타입 색상 + 금박 보더 + 펄스
 			btn.disabled = false
 			btn.modulate = Color.WHITE
-			var style := _make_node_style(node_color, Color(1, 1, 1, 0.9), 3)
+			var style := _make_node_style(node_color.darkened(0.15), Color(0.83, 0.66, 0.26, 0.9), 3)
 			btn.add_theme_stylebox_override("normal", style)
 			btn.add_theme_stylebox_override("hover", style)
 
@@ -346,12 +347,12 @@ func _update_node_states() -> void:
 			# 펄스 애니메이션
 			_start_node_pulse(btn)
 		else:
-			# 미래 노드: 타입 색상 유지하되 약간 어둡게 (구분 가능하도록)
+			# v5: 미래 노드 — 어두운 타입 색상, 얇은 테두리
 			btn.disabled = true
-			var style := _make_node_style(node_color.darkened(0.35), node_color.darkened(0.1), 1)
+			var style := _make_node_style(node_color.darkened(0.45), node_color.darkened(0.15), 1)
 			btn.add_theme_stylebox_override("disabled", style)
-			btn.modulate = Color(0.8, 0.8, 0.8, 0.7)
-			btn.add_theme_color_override("font_disabled_color", Color(0.7, 0.7, 0.7))
+			btn.modulate = Color(0.75, 0.70, 0.65, 0.65)
+			btn.add_theme_color_override("font_disabled_color", Color(0.60, 0.55, 0.50))
 
 	# 현재 위치 마커: 마지막 방문 노드에 밝은 금색 보더 + ▶ 표시
 	if not visited.is_empty():
@@ -361,9 +362,12 @@ func _update_node_states() -> void:
 			var map_node_cur: MapData.MapNode = run_map.nodes[last_id]
 			var cur_color: Color = NODE_COLORS.get(map_node_cur.type, Color.WHITE)
 			btn.modulate = Color(1.0, 1.0, 1.0, 1.0)
-			var style := _make_node_style(cur_color.darkened(0.2), Color(1.0, 0.85, 0.2, 1.0), 3)
+			# v5: 현재 위치 — 금박 강조 보더
+			var style := _make_node_style(cur_color.darkened(0.2), Color(0.83, 0.66, 0.26, 1.0), 4)
+			style.shadow_color = Color(0.83, 0.66, 0.26, 0.3)
+			style.shadow_size = 6
 			btn.add_theme_stylebox_override("disabled", style)
-			btn.add_theme_color_override("font_disabled_color", Color(1.0, 0.9, 0.4))
+			btn.add_theme_color_override("font_disabled_color", Color(0.83, 0.66, 0.26))
 			# 텍스트에 ▶ 마커 추가
 			var icon_text: String = NODE_ICONS.get(map_node_cur.type, "?")
 			var label_key: String = NODE_LABELS.get(map_node_cur.type, "")
@@ -396,19 +400,15 @@ func _scroll_to_current() -> void:
 	scroll_container.scroll_vertical = int(target_y)
 
 
-## 노드용 StyleBoxFlat 공통 생성 헬퍼
+## v5: 단청 스타일 노드 공통 헬퍼 — 둥근 모서리, 그림자 포함
 func _make_node_style(bg: Color, border_color: Color, border_width: int) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = bg
-	style.corner_radius_top_left = 8
-	style.corner_radius_top_right = 8
-	style.corner_radius_bottom_left = 8
-	style.corner_radius_bottom_right = 8
-	style.border_width_left = border_width
-	style.border_width_top = border_width
-	style.border_width_right = border_width
-	style.border_width_bottom = border_width
+	style.set_corner_radius_all(12)
+	style.set_border_width_all(border_width)
 	style.border_color = border_color
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.25)
+	style.shadow_size = 3
 	return style
 
 
@@ -549,14 +549,15 @@ func _on_node_pressed(node_id: int) -> void:
 
 ## 민심 구간 상태명과 색상을 반환한다.
 func _get_minshim_tier(value: int) -> Dictionary:
+	# v5: 단청 팔레트 민심 색상
 	if value >= 80:
-		return {"name": tr("MINSHIM_TIER_HIGH"), "color": Color(0.3, 0.9, 0.3)}
+		return {"name": tr("MINSHIM_TIER_HIGH"), "color": Color(0.23, 0.49, 0.27)}
 	elif value >= 50:
-		return {"name": tr("MINSHIM_TIER_NORMAL"), "color": Color(0.9, 0.9, 0.9)}
+		return {"name": tr("MINSHIM_TIER_NORMAL"), "color": Color(0.75, 0.70, 0.65)}
 	elif value >= 30:
-		return {"name": tr("MINSHIM_TIER_UNREST"), "color": Color(1.0, 0.85, 0.3)}
+		return {"name": tr("MINSHIM_TIER_UNREST"), "color": Color(0.83, 0.66, 0.26)}
 	else:
-		return {"name": tr("MINSHIM_TIER_CRISIS"), "color": Color(1.0, 0.2, 0.2)}
+		return {"name": tr("MINSHIM_TIER_CRISIS"), "color": Color(0.78, 0.29, 0.19)}
 
 
 ## 민심 라벨 업데이트: 수치 + 구간명 + 색상.

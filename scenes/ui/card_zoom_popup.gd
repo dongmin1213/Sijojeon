@@ -36,12 +36,15 @@ func _build_ui() -> void:
 		(vp_size.y - 540) / 2.0
 	)
 
+	# v5: 단청 스타일 카드 상세 팝업 — 금박 테두리, 깊은 배경
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.15, 0.13, 0.2)
-	style.border_color = Color(0.6, 0.5, 0.8)
+	style.bg_color = Color(0.06, 0.05, 0.12, 0.97)
+	style.border_color = Color(0.83, 0.66, 0.26, 0.9)
 	style.set_border_width_all(3)
-	style.set_corner_radius_all(12)
-	style.set_content_margin_all(20)
+	style.set_corner_radius_all(16)
+	style.set_content_margin_all(22)
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.5)
+	style.shadow_size = 10
 	_panel.add_theme_stylebox_override("panel", style)
 	_bg.add_child(_panel)
 
@@ -67,7 +70,7 @@ func _build_ui() -> void:
 	name_label.text = display_name
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.add_theme_font_size_override("font_size", 28)
-	name_label.add_theme_color_override("font_color", Color(1, 0.9, 0.6))
+	name_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	vbox.add_child(name_label)
 
 	# 카드 일러스트
@@ -123,7 +126,7 @@ func _build_ui() -> void:
 		kw_title.text = tr("CARD_ZOOM_KEYWORD_TITLE")
 		kw_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		kw_title.add_theme_font_size_override("font_size", 16)
-		kw_title.add_theme_color_override("font_color", Color(0.8, 0.7, 0.5))
+		kw_title.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26, 0.8))
 		vbox.add_child(kw_title)
 
 		for kw in keywords:

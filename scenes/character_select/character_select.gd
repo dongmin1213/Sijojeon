@@ -246,18 +246,15 @@ func _build_character_cards() -> void:
 		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		panel.clip_contents = true
 
-		# 카드 패널에 명확한 테두리·배경 스타일 적용
+		# v5: 단청 스타일 캐릭터 카드 — 금박 테두리, 깊은 배경
 		var card_style := StyleBoxFlat.new()
-		card_style.bg_color = Color(0.12, 0.12, 0.18, 0.95)
-		card_style.border_color = Color(0.5, 0.4, 0.25)
-		card_style.border_width_top = 2
-		card_style.border_width_bottom = 2
-		card_style.border_width_left = 2
-		card_style.border_width_right = 2
-		card_style.corner_radius_top_left = 8
-		card_style.corner_radius_top_right = 8
-		card_style.corner_radius_bottom_left = 8
-		card_style.corner_radius_bottom_right = 8
+		card_style.bg_color = Color(0.08, 0.06, 0.14, 0.95)
+		card_style.border_color = Color(0.83, 0.66, 0.26, 0.85)
+		card_style.set_border_width_all(3)
+		card_style.set_corner_radius_all(14)
+		card_style.shadow_color = Color(0.0, 0.0, 0.0, 0.4)
+		card_style.shadow_size = 6
+		card_style.set_content_margin_all(4)
 		panel.add_theme_stylebox_override("panel", card_style)
 
 		var margin := MarginContainer.new()
@@ -269,60 +266,79 @@ func _build_character_cards() -> void:
 		var vbox := VBoxContainer.new()
 		vbox.add_theme_constant_override("separation", int(8 * ui_scale))
 
-		# 캐릭터 이름
+		# v5: 캐릭터 이름 — 금색 강조
 		var name_label := Label.new()
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		name_label.add_theme_font_size_override("font_size", fs_name)
+		name_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		if unlocked:
 			name_label.text = character["name"]
 		else:
 			name_label.text = "??? (" + character["name"].split("(")[1] if "(" in character["name"] else "???"
 		vbox.add_child(name_label)
 
-		# HP / 기 정보
-		var stat_label := Label.new()
-		stat_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		stat_label.add_theme_font_size_override("font_size", fs_stat)
-		if unlocked:
-			stat_label.text = tr("CHARSEL_STAT_FMT") % [character["hp"], character["qi"]]
-		else:
-			stat_label.text = tr("CHARSEL_STAT_UNKNOWN")
-		vbox.add_child(stat_label)
+		# v5: 구분선
+		var sep := HSeparator.new()
+		vbox.add_child(sep)
 
-		# 전용 자원 표시
+		# v5: HP / 기 정보 — 색상 구분
+		var stat_hbox := HBoxContainer.new()
+		stat_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		stat_hbox.add_theme_constant_override("separation", int(12 * ui_scale))
+		if unlocked:
+			var hp_label := Label.new()
+			hp_label.text = "HP %d" % character["hp"]
+			hp_label.add_theme_font_size_override("font_size", fs_stat)
+			hp_label.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19))
+			stat_hbox.add_child(hp_label)
+			var qi_label := Label.new()
+			qi_label.text = "氣 %d" % character["qi"]
+			qi_label.add_theme_font_size_override("font_size", fs_stat)
+			qi_label.add_theme_color_override("font_color", Color(0.45, 0.60, 0.80))
+			stat_hbox.add_child(qi_label)
+		else:
+			var unknown_label := Label.new()
+			unknown_label.text = tr("CHARSEL_STAT_UNKNOWN")
+			unknown_label.add_theme_font_size_override("font_size", fs_stat)
+			unknown_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+			stat_hbox.add_child(unknown_label)
+		vbox.add_child(stat_hbox)
+
+		# v5: 전용 자원 표시 — 시안 강조
 		if character["class_resource_name"] != "" and unlocked:
 			var resource_label := Label.new()
 			resource_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			resource_label.text = tr("CHARSEL_CLASS_RESOURCE_FMT") % [character["class_resource_name"], character["class_resource_max"]]
 			resource_label.add_theme_font_size_override("font_size", fs_stat)
-			resource_label.add_theme_color_override("font_color", Color(0.4, 0.8, 1.0))
+			resource_label.add_theme_color_override("font_color", Color(0.3, 0.75, 0.85))
 			vbox.add_child(resource_label)
 
 		if unlocked:
-			# 패시브 스킬 이름만 한 줄로 표시 (상세는 선택 시 하단 패널)
+			# v5: 패시브 스킬 — 금빛 텍스트
 			if character["passive_name"] != "":
 				var passive_hint := Label.new()
-				passive_hint.text = tr("CHARSEL_PASSIVE_PREFIX") + character["passive_name"]
+				passive_hint.text = "◆ " + character["passive_name"]
 				passive_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				passive_hint.add_theme_font_size_override("font_size", fs_skill_desc)
-				passive_hint.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
+				passive_hint.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26, 0.9))
 				vbox.add_child(passive_hint)
 
-			# 선택 안내 레이블
+			# v5: 선택 안내 — 은은한 금색
 			var select_hint := Label.new()
 			select_hint.text = tr("CHARSEL_TAP_TO_SELECT")
 			select_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			select_hint.add_theme_font_size_override("font_size", fs_skill_desc)
-			select_hint.add_theme_color_override("font_color", Color(0.7, 0.7, 0.5))
+			select_hint.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26, 0.5))
 			select_hint.size_flags_vertical = Control.SIZE_SHRINK_END
 			vbox.add_child(select_hint)
 		else:
-			# 잠금 상태 표시
+			# v5: 잠금 상태 — 자물쇠 아이콘
 			var lock_label := Label.new()
-			lock_label.text = tr("CHARSEL_LOCKED")
+			lock_label.text = "🔒 " + tr("CHARSEL_LOCKED")
 			lock_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			lock_label.add_theme_font_size_override("font_size", fs_lock)
+			lock_label.add_theme_color_override("font_color", Color(0.6, 0.5, 0.4))
 			lock_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 			lock_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			vbox.add_child(lock_label)
@@ -332,7 +348,7 @@ func _build_character_cards() -> void:
 			cond_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			cond_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			cond_label.add_theme_font_size_override("font_size", fs_skill_desc)
-			cond_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+			cond_label.add_theme_color_override("font_color", Color(0.55, 0.50, 0.45))
 			vbox.add_child(cond_label)
 
 		margin.add_child(vbox)
@@ -372,15 +388,31 @@ func _select_character(index: int) -> void:
 	start_button.disabled = false
 	start_button.text = tr("CHARSEL_START_FMT") % _character_list[index]["name"]
 
-	# 선택 하이라이트
+	# v5: 선택 하이라이트 — 금박 테두리 강화 + 비선택 카드 어둡게
 	for i in card_container.get_child_count():
 		var panel: PanelContainer = card_container.get_child(i)
 		if not _character_list[i]["unlocked"]:
-			panel.modulate = Color(0.5, 0.5, 0.5)
+			panel.modulate = Color(0.4, 0.4, 0.4)
 		elif i == index:
-			panel.modulate = Color(1.0, 1.0, 0.7)
-		else:
 			panel.modulate = Color(1.0, 1.0, 1.0)
+			# 선택된 카드: 금박 테두리 두껍게
+			var sel_style := StyleBoxFlat.new()
+			sel_style.bg_color = Color(0.10, 0.08, 0.16, 0.95)
+			sel_style.border_color = Color(0.83, 0.66, 0.26, 1.0)
+			sel_style.set_border_width_all(4)
+			sel_style.set_corner_radius_all(14)
+			sel_style.shadow_color = Color(0.83, 0.66, 0.26, 0.3)
+			sel_style.shadow_size = 10
+			panel.add_theme_stylebox_override("panel", sel_style)
+		else:
+			panel.modulate = Color(0.65, 0.65, 0.65)
+			# 비선택 카드: 기본 스타일 복원
+			var dim_style := StyleBoxFlat.new()
+			dim_style.bg_color = Color(0.08, 0.06, 0.14, 0.95)
+			dim_style.border_color = Color(0.83, 0.66, 0.26, 0.4)
+			dim_style.set_border_width_all(2)
+			dim_style.set_corner_radius_all(14)
+			panel.add_theme_stylebox_override("panel", dim_style)
 
 	# 선택한 캐릭터의 상세 정보 패널 표시
 	_show_detail_panel(_character_list[index])
@@ -399,17 +431,14 @@ func _show_detail_panel(character: Dictionary) -> void:
 	_detail_panel = PanelContainer.new()
 	_detail_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
+	# v5: 단청 스타일 상세 패널 — 금박 테두리, 그림자
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.08, 0.08, 0.14, 0.95)
-	style.border_color = Color(0.5, 0.4, 0.25, 0.7)
-	style.border_width_top = 1
-	style.border_width_bottom = 1
-	style.border_width_left = 1
-	style.border_width_right = 1
-	style.corner_radius_top_left = 6
-	style.corner_radius_top_right = 6
-	style.corner_radius_bottom_left = 6
-	style.corner_radius_bottom_right = 6
+	style.bg_color = Color(0.06, 0.05, 0.12, 0.95)
+	style.border_color = Color(0.83, 0.66, 0.26, 0.7)
+	style.set_border_width_all(2)
+	style.set_corner_radius_all(12)
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
+	style.shadow_size = 4
 	_detail_panel.add_theme_stylebox_override("panel", style)
 
 	var margin := MarginContainer.new()
@@ -428,7 +457,7 @@ func _show_detail_panel(character: Dictionary) -> void:
 		p_header.text = tr("CHARSEL_PASSIVE_PREFIX") + character["passive_name"]
 		p_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		p_header.add_theme_font_size_override("font_size", fs_header)
-		p_header.add_theme_color_override("font_color", Color(0.9, 0.85, 0.5))
+		p_header.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		detail_vbox.add_child(p_header)
 		var p_desc := Label.new()
 		p_desc.text = character["passive_desc"]
@@ -442,7 +471,7 @@ func _show_detail_panel(character: Dictionary) -> void:
 		a_header.text = tr("CHARSEL_ACTIVE_PREFIX") + character["active_name"]
 		a_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		a_header.add_theme_font_size_override("font_size", fs_header)
-		a_header.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
+		a_header.add_theme_color_override("font_color", Color(0.23, 0.49, 0.27))
 		detail_vbox.add_child(a_header)
 		var a_desc := Label.new()
 		a_desc.text = character["active_desc"]
@@ -456,7 +485,7 @@ func _show_detail_panel(character: Dictionary) -> void:
 		r_header.text = tr("CHARSEL_STARTING_RELIC") + character["starting_relic_name"]
 		r_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		r_header.add_theme_font_size_override("font_size", fs_header)
-		r_header.add_theme_color_override("font_color", Color(1.0, 0.75, 0.3))
+		r_header.add_theme_color_override("font_color", Color(0.77, 0.61, 0.22))
 		detail_vbox.add_child(r_header)
 		var r_desc := Label.new()
 		r_desc.text = character["starting_relic_effect"]
@@ -519,19 +548,15 @@ func _create_achievement_panel() -> PanelContainer:
 	panel.anchor_top = 0.1
 	panel.anchor_bottom = 0.9
 
-	# 반투명 배경용 스타일
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.05, 0.05, 0.1, 0.95)
-	style.corner_radius_top_left = 12
-	style.corner_radius_top_right = 12
-	style.corner_radius_bottom_left = 12
-	style.corner_radius_bottom_right = 12
-	style.border_color = Color(0.6, 0.5, 0.3)
-	style.border_width_top = 2
-	style.border_width_bottom = 2
-	style.border_width_left = 2
-	style.border_width_right = 2
-	panel.add_theme_stylebox_override("panel", style)
+	# v5: 단청 스타일 업적 패널 — 금박 테두리, 깊은 배경
+	var ach_style := StyleBoxFlat.new()
+	ach_style.bg_color = Color(0.05, 0.04, 0.10, 0.97)
+	ach_style.set_corner_radius_all(14)
+	ach_style.border_color = Color(0.83, 0.66, 0.26, 0.8)
+	ach_style.set_border_width_all(3)
+	ach_style.shadow_color = Color(0.0, 0.0, 0.0, 0.5)
+	ach_style.shadow_size = 8
+	panel.add_theme_stylebox_override("panel", ach_style)
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 24)
@@ -547,7 +572,7 @@ func _create_achievement_panel() -> PanelContainer:
 	var title := Label.new()
 	title.text = tr("CHARSEL_ACHIEVEMENT_LIST")
 	title.add_theme_font_size_override("font_size", int(30 * ach_ui_scale))
-	title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	title.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title_row.add_child(title)
 
@@ -584,7 +609,7 @@ func _create_achievement_panel() -> PanelContainer:
 		var status_label := Label.new()
 		if is_unlocked:
 			status_label.text = "★"
-			status_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+			status_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 		else:
 			status_label.text = "☆"
 			status_label.add_theme_color_override("font_color", Color(0.4, 0.4, 0.4))
@@ -618,7 +643,7 @@ func _create_achievement_panel() -> PanelContainer:
 		progress_label.text = "%d / %d" % [progress["current"], progress["target"]]
 		progress_label.add_theme_font_size_override("font_size", int(20 * ach_ui_scale))
 		if is_unlocked:
-			progress_label.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
+			progress_label.add_theme_color_override("font_color", Color(0.23, 0.49, 0.27))
 		else:
 			progress_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 		row.add_child(progress_label)
@@ -677,7 +702,7 @@ func _show_first_play_guide() -> void:
 	guide_title.text = tr("CHARSEL_WELCOME")
 	guide_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	guide_title.add_theme_font_size_override("font_size", int(40 * ui_scale))
-	guide_title.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	guide_title.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	guide_title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	vbox.add_child(guide_title)
 
