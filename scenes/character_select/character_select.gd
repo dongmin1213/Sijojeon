@@ -95,10 +95,24 @@ func _is_character_unlocked(character_id: String) -> bool:
 	return true
 
 
+## 리소스 ID(한국어) → 번역키 매핑
+const RESOURCE_KEY_MAP := {
+	"기력": "RESOURCE_STAMINA",
+	"학식": "RESOURCE_SCHOLARSHIP",
+	"기": "RESOURCE_QI",
+}
+
+func _translate_resource_name(res_id: String) -> String:
+	var key: String = RESOURCE_KEY_MAP.get(res_id, "")
+	if key != "":
+		return tr(key)
+	return res_id
+
+
 func _get_unlock_description(character_id: String) -> String:
 	for cond in _unlock_data:
 		if cond.get("id", "") == character_id:
-			return cond.get("unlock_description", "")
+			return TranslationManager.trd(cond, "unlock_description", "")
 	return ""
 
 
@@ -128,7 +142,8 @@ func _build_character_list() -> void:
 		var class_resource_name := ""
 		var class_resource_max := 0
 		if char_entry.has("class_resource"):
-			class_resource_name = char_entry["class_resource"].get("id", "")
+			var res_id: String = char_entry["class_resource"].get("id", "")
+			class_resource_name = _translate_resource_name(res_id)
 			class_resource_max = char_entry["class_resource"].get("max", 0)
 
 		var starting_relic_name := ""
@@ -154,7 +169,7 @@ func _build_character_list() -> void:
 
 		_character_list.append({
 			"id": char_id,
-			"name": class_ko + " (" + class_hanja + ")",
+			"name": tr("CHAR_NAME_" + char_id.to_upper()),
 			"hp": skills.get("base_hp", 70),
 			"qi": skills.get("base_qi", 3),
 			"unlocked": unlocked,

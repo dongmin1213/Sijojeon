@@ -44,8 +44,13 @@ const ACT_PHASE_WEIGHTS := {
 var _rng: RandomNumberGenerator
 
 
-## 막 이름을 반환한다.
+## 막 이름을 반환한다 (번역키 사용).
 static func get_act_name(act: int) -> String:
+	var key := "ACT_NAME_%d" % act
+	var translated := TranslationServer.translate(key)
+	if translated != key:
+		return translated
+	# 번역키가 없으면 ACT_CONFIG의 name 사용 (폴백)
 	var config: Dictionary = ACT_CONFIG.get(act, ACT_CONFIG[1])
 	return config.get("name", "%d막" % act)
 

@@ -8,7 +8,7 @@
       "name_ko": "무관",
       "name_hanja": "武官",
       "unlock_type": "default",
-      "unlock_description": "기본 해금"
+      "unlock_description": {"ko": "기본 해금", "en": "Unlocked by default"}
     },
     {
       "id": "mungwan",
@@ -19,7 +19,7 @@
         "character_id": "mugwan",
         "min_act": 1
       },
-      "unlock_description": "무관으로 1막 보스 처치"
+      "unlock_description": {"ko": "무관으로 1막 보스 처치", "en": "Defeat Act 1 boss with Warrior"}
     },
     {
       "id": "dosa",
@@ -29,7 +29,7 @@
       "unlock_params": {
         "min_runs": 3
       },
-      "unlock_description": "총 3회 런 완료"
+      "unlock_description": {"ko": "총 3회 런 완료", "en": "Complete 3 total runs"}
     }
   ]
 }

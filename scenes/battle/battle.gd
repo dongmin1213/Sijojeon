@@ -905,10 +905,10 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void
 		# 손패에서 beat 3, 4인 카드를 찾아 자동 채움
 		var filled_chojang := false
 		for card_id in battle_manager.hand:
-			var card: CardData = DataLoader.get_card(card_id)
-			if card and card.beat == 3 and sijo_system.current_slot_index == 0:
+			var auto_card: CardData = DataLoader.get_card(card_id)
+			if auto_card and auto_card.beat == 3 and sijo_system.current_slot_index == 0:
 				sijo_system.try_fill_slot(3, card_id)
-			elif card and card.beat == 4 and sijo_system.current_slot_index == 1:
+			elif auto_card and auto_card.beat == 4 and sijo_system.current_slot_index == 1:
 				sijo_system.try_fill_slot(4, card_id)
 				filled_chojang = true
 				break

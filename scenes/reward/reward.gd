@@ -353,7 +353,8 @@ func _check_rank_up_reward() -> void:
 		return
 
 	var rank_name: String = JibunSystem.get_rank_name(new_rank)
-	var desc: String = JibunSystem.RANK_UP_REWARD_DESC.get(new_rank, "")
+	var desc_key: String = JibunSystem.RANK_UP_REWARD_KEYS.get(new_rank, "")
+	var desc: String = tr(desc_key) if desc_key != "" else ""
 
 	# 승급 보상 섹션 UI 생성
 	var rank_section := VBoxContainer.new()

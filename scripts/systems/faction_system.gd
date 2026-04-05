@@ -4,14 +4,14 @@ extends RefCounted
 ## 당파 시스템 (Phase 3-B).
 ## 런의 당파 대립 쌍과 미터를 관리한다.
 
-## 당파 ID → 한글 이름
-const FACTION_NAMES := {
-	"noron": "노론(老論)",
-	"soron": "소론(少論)",
-	"namin": "남인(南人)",
-	"seoin": "서인(西人)",
-	"dongin": "동인(東人)",
-	"bugin": "북인(北人)",
+## 당파 ID → 번역 키
+const FACTION_KEYS := {
+	"noron": "FACTION_NORON",
+	"soron": "FACTION_SORON",
+	"namin": "FACTION_NAMIN",
+	"seoin": "FACTION_SEOIN",
+	"dongin": "FACTION_DONGIN",
+	"bugin": "FACTION_BUGIN",
 }
 
 ## 미터 효과 임계값
@@ -37,13 +37,16 @@ static func change_meter(rd: RunData, faction_id: String, delta: int) -> String:
 static func get_faction_names(rd: RunData) -> Array[String]:
 	var names: Array[String] = []
 	for fid in rd.faction_pair:
-		names.append(FACTION_NAMES.get(fid, fid))
+		names.append(get_faction_name(fid))
 	return names
 
 
-## 특정 당파 이름 반환.
+## 특정 당파 이름 반환 (번역키 사용).
 static func get_faction_name(faction_id: String) -> String:
-	return FACTION_NAMES.get(faction_id, faction_id)
+	var key: String = FACTION_KEYS.get(faction_id, "")
+	if key != "":
+		return TranslationServer.translate(key)
+	return faction_id
 
 
 ## 당파 미터 효과가 활성화되었는지 확인한다.

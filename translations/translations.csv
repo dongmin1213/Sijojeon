@@ -404,3 +404,25 @@ REWARD_CARD_DMG_AOE, (전체), (All)
 REWARD_CARD_BLOCK_FMT,🛡 방어 %d,🛡 Block %d
 GWAGEO_EXAMINER_DEFAULT,학자,Scholar
 UI_CLOSE_DIALOG,닫기,Close
+JIBUN_RANK_0,천민(賤民),Cheonmin (賤民)
+JIBUN_RANK_1,상민(常民),Sangmin (常民)
+JIBUN_RANK_2,중인(中人),Jungin (中人)
+JIBUN_RANK_3,양반(兩班),Yangban (兩班)
+JIBUN_RANK_4,당상관(堂上官),Dangsanggwan (堂上官)
+JIBUN_RANK_5,판서/정승,Panseo/Jeongseung
+JIBUN_RANKUP_2,중인 승급 보상: 카드 1장을 추가로 선택할 수 있습니다!,Jungin promotion reward: Choose 1 additional card!
+JIBUN_RANKUP_3,양반 승급 보상: 카드 제거 1회를 무료로 제공합니다!,Yangban promotion reward: 1 free card removal!
+JIBUN_RANKUP_4,당상관 승급 보상: 유물 선택 기회 1회를 추가로 받습니다!,Dangsanggwan promotion reward: 1 additional relic selection!
+JIBUN_RANKUP_5,판서/정승 승급 보상: 덱에서 카드 1장을 강화할 수 있습니다!,Panseo/Jeongseung promotion reward: Upgrade 1 card in your deck!
+ACT_NAME_1,한양,Hanyang
+ACT_NAME_2,지리산,Jirisan
+ACT_NAME_3,경복궁,Gyeongbokgung
+FACTION_NORON,노론(老論),Noron (Old Doctrine)
+FACTION_SORON,소론(少論),Soron (Young Doctrine)
+FACTION_NAMIN,남인(南人),Namin (Southerners)
+FACTION_SEOIN,서인(西人),Seoin (Westerners)
+FACTION_DONGIN,동인(東人),Dongin (Easterners)
+FACTION_BUGIN,북인(北人),Bugin (Northerners)
+UNLOCK_DEFAULT,기본 해금,Unlocked by default
+UNLOCK_MUGWAN_ACT1,무관으로 1막 보스 처치,Defeat Act 1 boss with Warrior
+UNLOCK_TOTAL_RUNS_3,총 3회 런 완료,Complete 3 total runs

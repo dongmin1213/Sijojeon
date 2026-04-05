@@ -577,9 +577,8 @@ func _update_bribe_button() -> void:
 	var jibun_score: int = 0
 	if GameManager.run_data:
 		jibun_score = GameManager.run_data.jibun_score
-	var rank_name: String = JibunSystem.RANK_NAMES.get(
-		GameManager.run_data.jibun_rank if GameManager.run_data else 1, "상민"
-	)
+	var rank: int = GameManager.run_data.jibun_rank if GameManager.run_data else 1
+	var rank_name: String = JibunSystem.get_rank_name(rank)
 	bribe_button.text = tr("SHOP_BRIBE_FMT") % [BRIBE_COST, BRIBE_JIBUN_AMOUNT, rank_name, jibun_score]
 
 	if GameManager.run_data and GameManager.run_data.gold < BRIBE_COST:

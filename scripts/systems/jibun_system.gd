@@ -14,14 +14,14 @@ const RANK_THRESHOLDS := {
 	5: 800,   # 판서/정승
 }
 
-## 단계별 명칭
-const RANK_NAMES := {
-	0: "천민(賤民)",
-	1: "상민(常民)",
-	2: "중인(中人)",
-	3: "양반(兩班)",
-	4: "당상관(堂上官)",
-	5: "판서/정승",
+## 단계별 번역 키
+const RANK_KEYS := {
+	0: "JIBUN_RANK_0",
+	1: "JIBUN_RANK_1",
+	2: "JIBUN_RANK_2",
+	3: "JIBUN_RANK_3",
+	4: "JIBUN_RANK_4",
+	5: "JIBUN_RANK_5",
 }
 
 ## 신분 단계 상승 시 엘리트 등장 가중치 증가 (단계당 10%)
@@ -52,7 +52,8 @@ static func _calculate_rank(score: int) -> int:
 
 ## 현재 단계 이름 반환.
 static func get_rank_name(rank: int) -> String:
-	return RANK_NAMES.get(rank, "평민(平民)")
+	var key: String = RANK_KEYS.get(rank, "JIBUN_RANK_1")
+	return TranslationServer.translate(key)
 
 
 ## 전투 승리 시 호출 — 노드 타입에 따라 점수 부여.
@@ -142,12 +143,12 @@ const RANK_UP_REWARDS := {
 	5: "card_upgrade",     # 판서/정승 승급: 덱 카드 1장 강화
 }
 
-## 승급 보상 설명 텍스트
-const RANK_UP_REWARD_DESC := {
-	2: "중인 승급 보상: 카드 1장을 추가로 선택할 수 있습니다!",
-	3: "양반 승급 보상: 카드 제거 1회를 무료로 제공합니다!",
-	4: "당상관 승급 보상: 유물 선택 기회 1회를 추가로 받습니다!",
-	5: "판서/정승 승급 보상: 덱에서 카드 1장을 강화할 수 있습니다!",
+## 승급 보상 설명 번역 키
+const RANK_UP_REWARD_KEYS := {
+	2: "JIBUN_RANKUP_2",
+	3: "JIBUN_RANKUP_3",
+	4: "JIBUN_RANKUP_4",
+	5: "JIBUN_RANKUP_5",
 }
 
 
