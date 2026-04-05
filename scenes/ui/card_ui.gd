@@ -46,8 +46,8 @@ var _long_press_timer: Timer = null
 var _long_press_triggered: bool = false
 
 # 뷰포트 기준 카드 크기 비율 (1080x1920 기본 해상도 기준)
-const BASE_CARD_WIDTH := 280.0
-const BASE_CARD_HEIGHT := 400.0
+const BASE_CARD_WIDTH := 300.0
+const BASE_CARD_HEIGHT := 480.0
 const BASE_VIEWPORT_WIDTH := 1080.0
 
 # 카드 타입별 색상
@@ -121,10 +121,13 @@ func setup(data: CardData, index: int, playable: bool, matches_sijo: bool) -> vo
 
 func _create_styleboxes() -> void:
 	_normal_stylebox = StyleBoxFlat.new()
-	_normal_stylebox.bg_color = Color(0.18, 0.16, 0.22)
-	_normal_stylebox.border_color = Color(0.4, 0.35, 0.5)
-	_normal_stylebox.set_border_width_all(2)
-	_normal_stylebox.set_corner_radius_all(8)
+	_normal_stylebox.bg_color = Color(0.14, 0.12, 0.18)
+	_normal_stylebox.border_color = Color(0.45, 0.38, 0.55)
+	_normal_stylebox.set_border_width_all(3)
+	_normal_stylebox.set_corner_radius_all(10)
+	_normal_stylebox.shadow_color = Color(0, 0, 0, 0.5)
+	_normal_stylebox.shadow_size = 4
+	_normal_stylebox.shadow_offset = Vector2(0, 2)
 
 	_hover_stylebox = StyleBoxFlat.new()
 	_hover_stylebox.bg_color = Color(0.22, 0.20, 0.28)
@@ -162,12 +165,12 @@ func _create_styleboxes() -> void:
 
 func _apply_font_scaling(scale: float) -> void:
 	## 뷰포트 비율에 맞게 카드 내부 폰트 크기와 요소 높이를 조정한다.
-	# 최소 폰트 크기를 보장하여 가독성 확보 (모바일 기준 상향)
-	var name_size := AccessibilityManager.scaled_font_size(maxi(int(26 * scale), 22))
-	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 18))
-	var type_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 18))
-	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(20 * scale), 17))
-	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 20))
+	# 최소 폰트 크기를 보장하여 가독성 확보 (모바일 기준 대폭 상향)
+	var name_size := AccessibilityManager.scaled_font_size(maxi(int(28 * scale), 24))
+	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 20))
+	var type_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 20))
+	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(22 * scale), 19))
+	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(26 * scale), 22))
 
 	card_name_label.add_theme_font_size_override("font_size", name_size)
 	beat_cost_label.add_theme_font_size_override("font_size", cost_size)
@@ -176,9 +179,9 @@ func _apply_font_scaling(scale: float) -> void:
 	sijo_indicator.add_theme_font_size_override("font_size", sijo_size)
 
 	# 카드 내부 요소 최소 높이도 비율에 맞게 조정
-	card_name_label.custom_minimum_size.y = 44 * scale
-	card_art.custom_minimum_size.y = 100 * scale
-	effect_label.custom_minimum_size.y = 90 * scale
+	card_name_label.custom_minimum_size.y = 48 * scale
+	card_art.custom_minimum_size.y = 110 * scale
+	effect_label.custom_minimum_size.y = 120 * scale
 
 
 func _update_display() -> void:
@@ -253,7 +256,13 @@ func _update_style() -> void:
 		modulate = Color(1, 1, 1, 1)
 		_start_sijo_glow()
 	else:
-		add_theme_stylebox_override("panel", _normal_stylebox)
+		# 타입별 배경색 적용 — 카드 타입이 색으로 즉시 구별되게
+		var typed_style := _normal_stylebox.duplicate()
+		if card_data:
+			var type_bg := _get_type_bg_color(card_data.type)
+			typed_style.bg_color = type_bg
+			typed_style.border_color = _get_type_border_color(card_data.type)
+		add_theme_stylebox_override("panel", typed_style)
 		modulate = Color(1, 1, 1, 1)
 
 
@@ -269,6 +278,28 @@ func _start_sijo_glow() -> void:
 func _set_sijo_border_alpha(alpha: float) -> void:
 	if _sijo_match_stylebox:
 		_sijo_match_stylebox.border_color = Color(0.3, 1.0, 0.5, alpha)
+
+
+func _get_type_bg_color(type: String) -> Color:
+	## 카드 타입별 배경색 — 어둡지만 구별 가능한 색조
+	match type:
+		"attack": return Color(0.22, 0.10, 0.10)   # 진한 적색 틴트
+		"defense": return Color(0.10, 0.15, 0.22)   # 진한 청색 틴트
+		"spell": return Color(0.16, 0.10, 0.22)     # 진한 보라색 틴트
+		"movement": return Color(0.10, 0.18, 0.12)  # 진한 녹색 틴트
+		"formation": return Color(0.20, 0.16, 0.08) # 진한 황색 틴트
+		_: return Color(0.14, 0.12, 0.18)
+
+
+func _get_type_border_color(type: String) -> Color:
+	## 카드 타입별 테두리색 — 배경보다 밝은 동계열
+	match type:
+		"attack": return Color(0.7, 0.3, 0.25)
+		"defense": return Color(0.25, 0.45, 0.7)
+		"spell": return Color(0.5, 0.3, 0.7)
+		"movement": return Color(0.25, 0.6, 0.35)
+		"formation": return Color(0.7, 0.55, 0.2)
+		_: return Color(0.45, 0.38, 0.55)
 
 
 func set_selected(selected: bool) -> void:

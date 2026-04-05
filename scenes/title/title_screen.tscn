@@ -64,19 +64,19 @@ theme_override_constants/separation = 18
 ; ─── 타이틀 텍스트 ─────────────────────────────────────────────────────────
 [node name="TitleLabel" type="Label" parent="TitlePanel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
-theme_override_colors/font_color = Color(0.97, 0.92, 0.70, 1.0)
-theme_override_colors/font_shadow_color = Color(0.4, 0.1, 0.6, 0.6)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 96
+theme_override_colors/font_color = Color(0.98, 0.93, 0.65, 1.0)
+theme_override_colors/font_shadow_color = Color(0.35, 0.08, 0.55, 0.8)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
 text = "UI_TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="TitlePanel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.72, 0.65, 0.50, 1.0)
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.75, 0.6, 0.4, 0.9)
 text = "UI_SUBTITLE"
 horizontal_alignment = 1
 vertical_alignment = 1

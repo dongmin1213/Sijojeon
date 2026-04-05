@@ -576,8 +576,8 @@ func _update_enemy_ui() -> void:
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			name_label.add_theme_font_size_override("font_size", 18)
-			name_label.add_theme_color_override("font_color", Color(0.9, 0.85, 0.75))
+			name_label.add_theme_font_size_override("font_size", 22)
+			name_label.add_theme_color_override("font_color", Color(0.95, 0.88, 0.75))
 
 			header_hbox.add_child(silhouette)
 			header_hbox.add_child(name_label)
@@ -599,7 +599,7 @@ func _update_enemy_ui() -> void:
 			hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			hp_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			hp_lbl.set_anchors_preset(Control.PRESET_FULL_RECT)
-			hp_lbl.add_theme_font_size_override("font_size", 14)
+			hp_lbl.add_theme_font_size_override("font_size", 16)
 			hp_lbl.add_theme_color_override("font_color", Color(1, 1, 1, 0.95))
 			hp_container.add_child(hp_lbl)
 
@@ -739,7 +739,14 @@ func _on_hand_changed(_new_hand: Array[String]) -> void:
 
 
 func _on_qi_changed(current: int, max_val: int) -> void:
-	qi_label.text = tr("BATTLE_QI_FMT") % [current, max_val]
+	# 기(氣)를 보석 아이콘으로 시각화 — 사용 가능한 기는 밝게, 소진된 기는 어둡게
+	var qi_text := ""
+	for i in max_val:
+		if i < current:
+			qi_text += "◆"
+		else:
+			qi_text += "◇"
+	qi_label.text = qi_text + " %d/%d" % [current, max_val]
 	_refresh_hand_ui()
 
 
