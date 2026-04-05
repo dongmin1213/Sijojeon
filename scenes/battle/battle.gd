@@ -713,22 +713,40 @@ func _show_sijo_reward_popup(text: String) -> void:
 	tween.tween_callback(popup.queue_free)
 
 
-## 시선/절창 콤보 판정. 시조 완성 시점에 직업 자원 소비량을 확인한다.
-## 시선 (Tier 1): 자원 2 이상 소비 → 다음 카드 코스트 -1 + 직업별 보너스
-## 절창 (Tier 2): 자원 5 이상 소비 → 시선 보상 +100% + 직업별 강력한 보너스
+## 시선/절창 콤보 판정. 시조 완성 시점에 직업 자원 소비량 또는 기 획득량을 확인한다.
+## 시선 (Tier 1): 자원 2+ 소비 (도사: 기 2+ 획득) → 다음 카드 코스트 -1 + 직업별 보너스
+## 절창 (Tier 2): 자원 3+ 소비 (도사: 기 3+ 획득) → 시선 보상 +100% + 직업별 강력한 보너스 (ZER-259)
 func _check_sijo_combo() -> void:
 	var consumed := battle_manager.resources_consumed_this_turn
 	var job := battle_manager.character_id
 
-	# 도사는 직업 자원이 없으므로 콤보 대상 아님
+	# 도사: 기(qi) 획득량으로 시선/절창 판정 (ZER-259)
 	if not battle_manager.has_class_resource:
+		var qi_gained := battle_manager.qi_gained_this_turn
+		if qi_gained < 2:
+			return
+		var tier := 1  # 시선
+		if qi_gained >= 3:
+			tier = 2  # 절창
+		battle_manager.combo_triggered.emit(tier, job)
+		if tier == 2:
+			_apply_jeolchang_reward(job)
+			if vfx:
+				vfx.combo_vfx(self, tr("COMBO_JEOLCHANG"), Color(1.0, 0.3, 0.1))
+			AudioManager.play_sfx_by_key("sijo_complete")
+		else:
+			_apply_siseon_reward(job)
+			if vfx:
+				vfx.combo_vfx(self, tr("COMBO_SISEON"), Color(0.3, 0.8, 1.0))
+			AudioManager.play_sfx_by_key("card_play")
 		return
+
 	if consumed < 2:
 		return
 
 	var tier := 1  # 시선
-	if consumed >= 5:
-		tier = 2  # 절창
+	if consumed >= 3:
+		tier = 2  # 절창 (ZER-259: 5→3으로 완화)
 
 	# 콤보 시그널 발행
 	battle_manager.combo_triggered.emit(tier, job)
@@ -767,6 +785,14 @@ func _apply_siseon_reward(job: String) -> void:
 			# 문관: 카드 1장 드로우
 			battle_manager.draw_cards(1)
 			reward_text += ", " + tr("BATTLE_SISEON_CARD") % 1
+		"dosa":
+			# 도사: 기 +1 (ZER-259)
+			battle_manager.current_qi = mini(
+				battle_manager.current_qi + 1,
+				battle_manager.max_qi)
+			battle_manager.qi_changed.emit(
+				battle_manager.current_qi, battle_manager.max_qi)
+			reward_text += ", " + tr("BATTLE_SISEON_QI")
 
 	_show_sijo_reward_popup(reward_text)
 	battle_manager.passive_triggered.emit(tr("PASSIVE_SISEON"), reward_text)
@@ -790,6 +816,17 @@ func _apply_jeolchang_reward(job: String) -> void:
 			# 문관: 카드 2장 드로우 + 무료
 			battle_manager.draw_cards(2)
 			reward_text += " " + tr("BATTLE_JEOLCHANG_CARD_FREE") % 2
+		"dosa":
+			# 도사 절창: 모든 적에 독3+화상3 + 기 최대치 회복 (ZER-259)
+			for i in battle_manager.enemies.size():
+				if battle_manager.enemies[i]["current_hp"] > 0:
+					var target_id := "enemy_%d" % i
+					battle_manager.status_effects.apply_effect(target_id, "독", 3)
+					battle_manager.status_effects.apply_effect(target_id, "화상", 3)
+			battle_manager.current_qi = battle_manager.max_qi
+			battle_manager.qi_changed.emit(
+				battle_manager.current_qi, battle_manager.max_qi)
+			reward_text += " " + tr("BATTLE_JEOLCHANG_DOSA")
 
 	_show_sijo_reward_popup(reward_text)
 	battle_manager.passive_triggered.emit(tr("PASSIVE_JEOLCHANG"), reward_text)
@@ -886,12 +923,13 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array) -> void
 				target_index = i
 				break
 		battle_manager._resolve_card_effect(card, target_index)
-	battle_manager.current_qi += 1
+	# 시조 완성 보상 강화 (ZER-259): 기 +2, 드로우 +2
+	battle_manager.current_qi += 2
 	battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
 	battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-	# 기본 드로우 1 + 유물 추가 드로우 (R023 등)
+	# 기본 드로우 2 + 유물 추가 드로우 (R023 등)
 	var extra_draw := RelicManager.trigger_on_sijo_complete(battle_manager)
-	battle_manager.draw_cards(1 + extra_draw)
+	battle_manager.draw_cards(2 + extra_draw)
 
 	# 시선/절창 콤보 판정 (시조 완성 + 직업 자원 소비)
 	_check_sijo_combo()

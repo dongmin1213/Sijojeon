@@ -398,19 +398,15 @@ func end_player_turn() -> void:
 
 	_change_state(BattleState.PLAYER_TURN_END)
 
-	# 시조 실패 패널티 판정 (다음 턴에 적용)
+	# 시조 패널티 판정 — 부분완성 패널티 제거됨 (ZER-259)
 	if sijo_system:
 		var filled := sijo_system.get_filled_count()
 		if filled == 0:
 			# 시조 슬롯이 아예 비어있음 → 다음 턴 기 회복 -1
 			sijo_qi_penalty = -1
 			sijo_draw_penalty = 0
-		elif not sijo_system.is_complete():
-			# 종장 미완성 (일부만 채움) → 다음 턴 드로우 -1
-			sijo_draw_penalty = -1
-			sijo_qi_penalty = 0
 		else:
-			# 시조 완성 → 패널티 없음
+			# 부분완성 또는 완성 → 패널티 없음
 			sijo_draw_penalty = 0
 			sijo_qi_penalty = 0
 	else:

@@ -347,6 +347,8 @@ BATTLE_SISEON_CARD,카드 +%d,Card +%d
 BATTLE_JEOLCHANG_TEXT,절창!,Jeolchang!
 BATTLE_JEOLCHANG_STUN,적 전체 기절!,All enemies stunned!
 BATTLE_JEOLCHANG_CARD_FREE,카드 +%d 다음 카드 무료!,Card +%d next card free!
+BATTLE_SISEON_QI,기 +1,Qi +1
+BATTLE_JEOLCHANG_DOSA,모든 적 독3+화상3 기 최대 회복!,All enemies Poison 3+Burn 3 Qi fully restored!
 BATTLE_CHOJANG_COMPLETE_STAMINA,초장 완성! 기력 +1,First Verse! Stamina +1
 BATTLE_CHOJANG_COMPLETE_SCHOLAR,초장 완성! 학식 +1,First Verse! Scholarship +1
 BATTLE_CHOJANG_COMPLETE,초장 완성!,First Verse!
