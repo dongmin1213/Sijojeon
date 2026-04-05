@@ -1,6 +1,6 @@
 # 시조전 — 시스템 API 레퍼런스
 
-> 버전: 0.1 | 최종 업데이트: 2026-04-01 | Sprint 1-2 기준
+> 버전: 0.2 | 최종 업데이트: 2026-04-05 | Sprint 1-2 기준
 > 아키텍처 개요 및 씬 목록은 `code_structure.md` 참조.
 
 ---
@@ -104,24 +104,32 @@
 
 **파일:** `scripts/battle/sijo_system.gd` (class_name Node)
 
-슬롯 구조: `[초장3, 초장4, 중장3, 중장4, 종장3, 종장4]`
+슬롯 구조: 3슬롯 `[초장, 중장, 종장]` — 매 턴 3카드 = 1턴 완성 사이클 (ZER-266 재설계).
+매 전투마다 beat 패턴이 `PATTERN_VARIANTS`에서 랜덤 선택됨 (예: `[3,4,3]`, `[4,3,4]` 등 6종).
+
+**beat 보상:**
+- 3/3 완벽: 전체 카드 ×1.5 + 기 +2 + 드로우 +1
+- 2/3: 마지막 일치 카드 ×1.3 + 기 +1
+- 1/3 또는 0/3: 보너스 없음
 
 ### 시그널
 
 | 시그널 | 설명 |
 |--------|------|
-| `slot_filled(index, card_id, jang_name)` | 슬롯 채워질 때마다 발생 |
-| `sijo_completed(final_card_id)` | 6슬롯 모두 채워질 때 발생 |
+| `slot_filled(index, card_id, jang_name, beat_matched)` | 슬롯 채워질 때마다 발생 |
+| `sijo_completed(final_card_id, all_slot_card_ids, match_count)` | 3슬롯 모두 채워질 때 발생 |
 
 ### 주요 메서드
 
 | 메서드 | 설명 |
 |--------|------|
-| `try_fill_slot(card_beat, card_id)` | 현재 슬롯 요구 beat와 일치하면 채움. 반환: bool |
+| `try_fill_slot(card_beat, card_id)` | 슬롯에 카드를 채운다. beat 일치 시 true 반환 |
 | `get_next_required_beat()` | 다음 슬롯 필요 beat. 완성됐으면 -1 |
 | `get_filled_count()` | 현재 채워진 슬롯 수 |
-| `is_complete()` | 6슬롯 모두 채워졌는지 |
-| `reset()` | 전투 종료 시 호출. 슬롯 초기화 |
+| `get_match_count()` | beat 일치 슬롯 수 반환 |
+| `is_complete()` | 3슬롯 모두 채워졌는지 |
+| `reset()` | 슬롯 초기화 + 새 패턴 랜덤 선택 |
+| `reset_random_slot()` | 마지막 슬롯 1개 초기화 (보스 특수 능력) |
 
 ---
 
@@ -279,7 +287,7 @@ JSON에서 파싱된 카드 한 장의 데이터. DataLoader가 `from_dict()`로
 | 필드 | 타입 | 설명 |
 |------|------|------|
 | `character_id` | String | 직업 ID |
-| `current_hp` / `max_hp` | int | 기본 70 (도사), 80 (무관) |
+| `current_hp` / `max_hp` | int | 기본 75 (도사), 80 (무관), 70 (문관) |
 | `gold` | int | 시작 골드 99 |
 | `qi_per_turn` | int | 턴당 기. 기본 3 |
 | `current_act` / `current_floor` | int | 현재 막/층 |

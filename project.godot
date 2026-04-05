@@ -34,19 +34,18 @@ AccessibilityManager="*res://scripts/autoload/accessibility_manager.gd"
 SafeAreaManager="*res://scripts/autoload/safe_area_manager.gd"
 TranslationManager="*res://scripts/autoload/translation_manager.gd"
 
-[gui]
-
-theme/custom="res://resources/joseon_theme.tres"
-common/default_scroll_deadzone=24
-
 [display]
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
-window/dpi/allow_hidpi=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
+
+[gui]
+
+common/default_scroll_deadzone=24
+theme/custom="res://resources/joseon_theme.tres"
 
 [input]
 
