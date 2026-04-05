@@ -20,7 +20,7 @@ const CARD_PRICE_VARIANCE := {
 }
 
 # 카드 제거 비용
-const REMOVAL_BASE_COST := 75
+const REMOVAL_BASE_COST := 50
 const REMOVAL_COST_INCREASE := 25
 const REMOVAL_MAX_COST := 200
 
@@ -631,14 +631,14 @@ func _update_rations_button() -> void:
 		rations_button.remove_theme_color_override("font_color")
 
 
-## 상점 유물 생성 (등급 가중치 기반 2개)
+## 상점 유물 생성 (등급 가중치 기반 3개)
 func _generate_shop_relics() -> void:
 	shop_relics.clear()
 	if GameManager.run_data == null:
 		return
 
 	var character_id: String = GameManager.run_data.character_id
-	for _i in 2:
+	for _i in 3:
 		var relic_id := RelicManager.roll_relic_reward("shop")
 		if relic_id == "":
 			continue

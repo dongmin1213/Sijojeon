@@ -85,7 +85,15 @@ func _is_character_unlocked(character_id: String) -> bool:
 				var params: Dictionary = cond.get("unlock_params", {})
 				var req_char: String = params.get("character_id", "")
 				var min_act: int = params.get("min_act", 1)
-				# 해당 캐릭터로 승리한 적이 있거나, best_act가 min_act 이상이면 해금
+				# 캐릭터 제한 없음 (빈 문자열): 아무 캐릭터로든 해당 막 보스 처치 시 해금
+				if req_char == "":
+					if stats.get("best_act", 0) > min_act:
+						return true
+					for cid in char_stats:
+						if char_stats[cid].get("victories", 0) > 0:
+							return true
+					return false
+				# 특정 캐릭터로 승리한 적이 있거나, best_act가 min_act 이상이면 해금
 				var req_char_stats: Dictionary = char_stats.get(req_char, {})
 				if req_char_stats.get("victories", 0) > 0:
 					return true

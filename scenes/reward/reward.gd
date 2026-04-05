@@ -2,7 +2,7 @@ extends Control
 
 ## 전투 보상 씬. 골드 획득 + 카드 3택 1 선택.
 
-const CARD_OFFER_COUNT := 3
+const CARD_OFFER_COUNT := 5
 
 var reward_gold: int = 0
 var card_offers: Array[String] = []  # 제시된 카드 ID 목록
@@ -159,13 +159,69 @@ func _generate_card_offers() -> void:
 	# 상민 신분: 카드 보상 선택지 +1
 	var offer_count: int = CARD_OFFER_COUNT + JibunSystem.get_card_offer_bonus(GameManager.run_data)
 
-	# 스타터 덱에 이미 있는 카드 제외하지 않음 (중복 허용 — StS 스타일)
-	# 셔플 후 선택
+	# 아키타입 가중치: 덱 내 카드 아키타입과 일치하는 카드를 50% 확률로 1장 이상 포함
+	var archetype_card := _pick_archetype_weighted_card(pool_cards)
+	if archetype_card != "" and randf() < 0.5:
+		card_offers.append(archetype_card)
+
+	# 나머지 슬롯 — 셔플 후 선택
 	var shuffled: Array[CardData] = pool_cards.duplicate()
 	shuffled.shuffle()
 
-	for i in mini(offer_count, shuffled.size()):
-		card_offers.append(shuffled[i].id)
+	for i in shuffled.size():
+		if card_offers.size() >= offer_count:
+			break
+		if shuffled[i].id not in card_offers:
+			card_offers.append(shuffled[i].id)
+
+
+## 덱 내 카드 아키타입을 분석하여 해당 아키타입의 카드를 1장 반환한다.
+func _pick_archetype_weighted_card(pool: Array[CardData]) -> String:
+	if GameManager.run_data == null:
+		return ""
+	var character_id: String = GameManager.run_data.character_id
+	var archetypes: Array = DataLoader.get_archetypes(character_id)
+	if archetypes.is_empty():
+		return ""
+
+	# 덱 카드 ID 수집
+	var deck_ids: Array = GameManager.run_data.deck.duplicate()
+
+	# 아키타입별 덱 내 존재 카드 수 집계
+	var archetype_scores: Dictionary = {}
+	for arch in archetypes:
+		var arch_id: String = arch.get("id", "")
+		var key_cards: Array = arch.get("key_cards", [])
+		var count := 0
+		for kid in key_cards:
+			for did in deck_ids:
+				if did == kid or did == kid + "+":
+					count += 1
+		if count > 0:
+			archetype_scores[arch_id] = count
+
+	if archetype_scores.is_empty():
+		return ""
+
+	# 가장 많은 아키타입 선택
+	var best_arch := ""
+	var best_count := 0
+	for arch_id in archetype_scores:
+		if archetype_scores[arch_id] > best_count:
+			best_count = archetype_scores[arch_id]
+			best_arch = arch_id
+
+	# 해당 아키타입의 key_cards에서 덱에 없는 카드를 반환
+	for arch in archetypes:
+		if arch.get("id", "") == best_arch:
+			var candidates: Array[String] = []
+			for kid in arch.get("key_cards", []):
+				if kid not in deck_ids and (kid + "+") not in deck_ids:
+					candidates.append(kid)
+			if not candidates.is_empty():
+				candidates.shuffle()
+				return candidates[0]
+	return ""
 
 
 func _display_card_offers() -> void:

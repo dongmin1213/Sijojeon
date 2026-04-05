@@ -12,6 +12,8 @@ var _relics: Dictionary = {}
 var _relic_rarity_table: Dictionary = {}
 # 캐릭터 스킬 데이터
 var _skills_data: Dictionary = {}
+# 카드 풀별 아키타입 데이터 (class → Array[Dictionary])
+var _archetypes: Dictionary = {}
 # 어센션 시스템 데이터
 var _ascension_data: Dictionary = {}
 
@@ -85,6 +87,12 @@ func _load_card_file(path: String) -> void:
 		return
 
 	var pool: String = data.get("class", "common")
+
+	# 아키타입 데이터 저장
+	var archetypes = data.get("archetypes", [])
+	if archetypes is Array and not archetypes.is_empty():
+		_archetypes[pool] = archetypes
+
 	var cards_array = data.get("cards", [])
 	if not cards_array is Array:
 		return
@@ -210,6 +218,11 @@ func get_cards_by_pool(pool: String) -> Array[CardData]:
 		if card.pool == pool:
 			result.append(card)
 	return result
+
+
+## 캐릭터 카드 풀의 아키타입 배열을 반환한다.
+func get_archetypes(character_id: String) -> Array:
+	return _archetypes.get(character_id, [])
 
 
 func get_starter_deck(character_id: String) -> Array[String]:

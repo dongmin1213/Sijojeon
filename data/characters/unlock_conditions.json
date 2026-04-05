@@ -25,11 +25,11 @@
       "unlock_type": "act_clear",
       "unlock_condition": {
         "type": "act_clear",
-        "character": "mugwan",
+        "character": null,
         "act": 1,
         "required_count": 1
       },
-      "unlock_description": "무관으로 1막(Act 1) 보스를 처치한다.",
+      "unlock_description": "임의 캐릭터로 1막(Act 1) 보스를 처치한다.",
       "order": 2,
       "resource": "학식(學識)",
       "playstyle_summary": "학식 축적 → 취약 디버프 → 상소 AoE 폭발. 전략적 준비-실행 패턴.",
@@ -109,7 +109,7 @@
   "unlock_flow": {
     "description": "추천 해금 흐름 — 플레이어의 자연스러운 성장 경로.",
     "steps": [
-      "1. 무관(기본) → 무관으로 1막 클리어 → 문관 해금",
+      "1. 무관(기본) → 임의 캐릭터로 1막 클리어 → 문관 해금",
       "2. 무관 or 문관 보스 클리어 1회 → 궁수 해금",
       "3. 누적 5회 완주 → 의원 해금",
       "4. 의원 보스 클리어 1회 → 무당 해금",

@@ -16,10 +16,10 @@
       "name_hanja": "文官",
       "unlock_type": "character_act_clear",
       "unlock_params": {
-        "character_id": "mugwan",
+        "character_id": "",
         "min_act": 1
       },
-      "unlock_description": {"ko": "무관으로 1막 보스 처치", "en": "Defeat Act 1 boss with Warrior"}
+      "unlock_description": {"ko": "임의 캐릭터로 1막 보스 처치", "en": "Defeat Act 1 boss with any character"}
     },
     {
       "id": "dosa",
