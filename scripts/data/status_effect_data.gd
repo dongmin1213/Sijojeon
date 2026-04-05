@@ -116,3 +116,15 @@ static func _init_registry() -> void:
 		"기절", "기절", "💫", Color(1.0, 0.9, 0.3), EffectType.DEBUFF,
 		"행동 불가. 턴 종료 시 해제", true, false
 	)
+	_registry["허점_노출"] = StatusEffectData.new(
+		"허점_노출", "허점 노출", "🎯", Color(1.0, 0.2, 0.4), EffectType.DEBUFF,
+		"다음 턴 받는 피해 ×1.5. 미방어 시 부여", true, false
+	)
+	_registry["폭발_카운트다운"] = StatusEffectData.new(
+		"폭발_카운트다운", "폭발 예고", "💣", Color(1.0, 0.5, 0.0), EffectType.DEBUFF,
+		"N턴 후 30~40 폭발 피해", true, false
+	)
+	_registry["반격"] = StatusEffectData.new(
+		"반격", "반격", "🔄", Color(0.8, 0.4, 0.1), EffectType.BUFF,
+		"피격 시 받은 피해의 30%를 공격자에게 반사", false, true
+	)

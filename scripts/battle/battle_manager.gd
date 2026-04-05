@@ -201,6 +201,13 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 				continue
 			_apply_battle_start_effect(i, eff)
 
+	# 특수 패턴 적 초기화: 반격형 적에게 반격 버프 부여
+	for i in enemies.size():
+		var enemy := enemies[i]
+		if enemy.get("special_pattern", "") == "counter":
+			var et := "enemy_%d" % i
+			status_effects.apply_effect(et, "반격", 1)
+
 	# 민심 70+ → 백성 지원병 등장
 	_check_minshim_ally_support()
 
@@ -586,6 +593,15 @@ func take_damage(amount: int) -> void:
 		player_hp = maxi(player_hp, 0)
 		hp_changed.emit(player_hp, player_max_hp)
 		AudioManager.play_sfx_by_key("damage")
+
+		# HP 영구 감소: 미방어 대피해(25+)를 받으면 최대 HP -2
+		if remaining >= 25 and _is_elite_or_boss_fight():
+			player_max_hp -= 2
+			player_max_hp = maxi(player_max_hp, 1)
+			player_hp = mini(player_hp, player_max_hp)
+			hp_changed.emit(player_hp, player_max_hp)
+			passive_triggered.emit("영구 손상", "미방어 대피해로 최대 HP -2!")
+
 		# 유물 트리거: 즉사 방지 (R028 불사신 부적)
 		if player_hp <= 0:
 			if not RelicManager.trigger_on_lethal_damage(self):
@@ -640,6 +656,14 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 		enemy["current_hp"] = maxi(enemy["current_hp"], 0)
 
 	enemy_hp_changed.emit(enemy_index, enemy["current_hp"], enemy["max_hp"])
+
+	# 반격형: 적이 받은 피해의 30%를 플레이어에게 반사
+	var counter_dmg := status_effects.get_counter_damage(enemy_target, remaining)
+	if counter_dmg > 0 and remaining > 0:
+		player_hp -= counter_dmg
+		player_hp = maxi(player_hp, 0)
+		hp_changed.emit(player_hp, player_max_hp)
+		passive_triggered.emit("반격", "적이 받은 피해의 30%(%d)를 반사!" % counter_dmg)
 
 	# 보스 페이즈 전환 체크
 	if enemy["current_hp"] > 0:
@@ -965,6 +989,11 @@ func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
 	# 적 공격력 수정 (strength, 약화)
 	var final_damage := status_effects.calculate_outgoing_damage(enemy_target, base_damage)
 
+	# 디버프형 적 패턴: 미방어 시 허점 노출 부여를 위해 HP 추적
+	var enemy := enemies[enemy_index]
+	var is_debuff_pattern: bool = enemy.get("special_pattern", "") == "debuff"
+	var hp_before_attack := player_hp
+
 	AudioManager.play_sfx_by_key("enemy_attack")
 	for t in times:
 		take_damage(final_damage)
@@ -978,6 +1007,11 @@ func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
 
 		if player_hp <= 0:
 			break
+
+	# 디버프형: 방어도를 관통해 HP 피해를 입었으면 '허점 노출' 부여
+	if is_debuff_pattern and player_hp < hp_before_attack and player_hp > 0:
+		status_effects.apply_effect("player", "허점_노출", 1)
+		passive_triggered.emit("허점 노출", "미방어 피해 → 다음 턴 받는 피해 ×1.5!")
 
 
 func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
@@ -1335,6 +1369,18 @@ func _all_enemies_dead() -> bool:
 		if enemy["current_hp"] > 0:
 			return false
 	return true
+
+
+func _is_elite_or_boss_fight() -> bool:
+	## 현재 전투가 엘리트/보스 전투인지 확인 (HP 영구 감소 조건)
+	for enemy in enemies:
+		var etype: String = enemy.get("type", "")
+		if etype == "elite" or etype == "boss":
+			return true
+		# 보스 페이즈가 있으면 보스 전투
+		if enemy.has("phases"):
+			return true
+	return false
 
 
 # --- 상태이상 시그널 핸들러 ---

@@ -168,6 +168,18 @@ func process_turn_start(target: String) -> Dictionary:
 		else:
 			_effects[target]["death_countdown"] = remaining
 
+	# 폭발 카운트다운: 매 턴 1씩 감소, 0이 되면 30~40 폭발 피해
+	if effects.has("폭발_카운트다운"):
+		var stacks: int = effects["폭발_카운트다운"]
+		var remaining := stacks - 1
+		if remaining <= 0:
+			remove_effect(target, "폭발_카운트다운")
+			var explosion_damage := randi_range(30, 40)
+			result["damage"] += explosion_damage
+			effect_triggered.emit(target, "폭발_카운트다운", explosion_damage)
+		else:
+			_effects[target]["폭발_카운트다운"] = remaining
+
 	# 주박: DoT 피해 1.5배
 	if effects.has("주박") and result["damage"] > 0:
 		result["damage"] = int(result["damage"] * 1.5)
@@ -195,6 +207,10 @@ func process_turn_end(target: String) -> void:
 	if has_effect(target, "냉기"):
 		remove_effect(target, "냉기")
 
+	# 허점 노출: 턴 종료 시 1 감소 (미발동 시 자연 해제)
+	if has_effect(target, "허점_노출"):
+		consume_stacks(target, "허점_노출", 1)
+
 
 ## 공격 피해 수정자 계산
 func calculate_outgoing_damage(attacker: String, base_damage: int) -> int:
@@ -221,6 +237,11 @@ func calculate_incoming_damage(defender: String, damage: int) -> int:
 	if has_effect(defender, "취약"):
 		final_damage = int(final_damage * 1.5)
 
+	# 허점 노출: 받는 피해 ×1.5, 1회 발동 후 소멸
+	if has_effect(defender, "허점_노출"):
+		final_damage = int(final_damage * 1.5)
+		consume_stacks(defender, "허점_노출", 1)
+
 	return final_damage
 
 
@@ -239,6 +260,13 @@ func calculate_bleed_on_block(target: String, block_amount: int) -> int:
 ## 가시(thorns) 반사 피해 계산
 func get_thorns_damage(defender: String) -> int:
 	return get_stacks(defender, "thorns")
+
+
+## 반격 반사 피해 계산 (피해의 30% 반환)
+func get_counter_damage(target: String, damage_dealt: int) -> int:
+	if has_effect(target, "반격"):
+		return int(damage_dealt * 0.3)
+	return 0
 
 
 ## 드로우 수 수정자 (냉기 등)

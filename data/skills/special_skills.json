@@ -27,6 +27,13 @@
         "inter_combat": "전투 간 HP 자연 회복 없음. 아이템(부적)/특수 노드에서만 회복.",
         "post_boss": "보스 처치 후 HP 최대치의 20% 회복.",
         "rationale": "HP 관리 압박이 로그라이크 핵심 장력. 지나친 회복은 위험 회피 인센티브 약화."
+      },
+      "permanent_hp_loss": {
+        "description": "엘리트/보스전에서 미방어 대피해(25+) 수신 시 최대 HP -2 영구 감소",
+        "trigger_threshold": 25,
+        "hp_loss": 2,
+        "applies_to": ["elite", "boss"],
+        "rationale": "런 후반으로 갈수록 방어의 전략적 가치를 높인다. 방어 카드를 선택하지 않으면 최대 HP가 점진적으로 줄어들어 생존 압박 증가."
       }
     },
     "energy": {

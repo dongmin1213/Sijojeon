@@ -44,7 +44,7 @@
             "en": "Blade Combo"
           },
           "intent": "attack",
-          "damage": 6,
+          "damage": 7,
           "times": 2,
           "description": {
             "ko": "5피해 × 2회 = 10 총피해.",
@@ -58,7 +58,7 @@
             "en": "Ambush"
           },
           "intent": "attack",
-          "damage": 16,
+          "damage": 19,
           "times": 1,
           "description": {
             "ko": "강력한 단발 기습. 2막 기준 단일 최대 피해.",
@@ -92,7 +92,7 @@
             "en": "Quick Slash"
           },
           "intent": "attack",
-          "damage": 10,
+          "damage": 12,
           "times": 1,
           "description": {
             "ko": "단순한 단발 공격.",
@@ -171,7 +171,7 @@
             "en": "Spectral Grasp"
           },
           "intent": "attack_debuff",
-          "damage": 11,
+          "damage": 13,
           "times": 1,
           "effects": [
             {
@@ -215,7 +215,7 @@
             "en": "Ghost Assault"
           },
           "intent": "attack",
-          "damage": 13,
+          "damage": 16,
           "times": 1,
           "description": {
             "ko": "원한이 담긴 강습 공격.",
@@ -243,7 +243,8 @@
         "card_chance": 0.25,
         "relic_chance": 0.08
       },
-      "balance_note": "약화+취약+출혈+냉기 조합으로 플레이어 시조 완성 방해가 핵심. 귀신 강습(11) + 출혈(+2) = 실질 13피해. HP 낮지만 디버프 누적 전에 처치 어려움. 상태이상 제거 카드나 방어 우선 권장."
+      "balance_note": "약화+취약+출혈+냉기 조합으로 플레이어 시조 완성 방해가 핵심. 귀신 강습(11) + 출혈(+2) = 실질 13피해. HP 낮지만 디버프 누적 전에 처치 어려움. 상태이상 제거 카드나 방어 우선 권장.",
+      "special_pattern": "debuff"
     },
     {
       "id": "E203",
@@ -282,7 +283,7 @@
             "en": "Staff Strike"
           },
           "intent": "attack",
-          "damage": 12,
+          "damage": 14,
           "times": 1,
           "description": {
             "ko": "묵직한 석장 공격.",
@@ -296,7 +297,7 @@
             "en": "Counterflow"
           },
           "intent": "attack_buff",
-          "damage": 8,
+          "damage": 10,
           "times": 1,
           "effects": [
             {
@@ -340,7 +341,7 @@
             "en": "Sweeping Staff"
           },
           "intent": "attack",
-          "damage": 17,
+          "damage": 20,
           "times": 1,
           "description": {
             "ko": "힘 쌓인 후 사용하는 강력한 일격.",
@@ -395,7 +396,7 @@
             "en": "Venom Bite"
           },
           "intent": "attack_debuff",
-          "damage": 6,
+          "damage": 7,
           "times": 1,
           "effects": [
             {
@@ -417,7 +418,7 @@
             "en": "Rapid Bite"
           },
           "intent": "attack",
-          "damage": 5,
+          "damage": 6,
           "times": 3,
           "description": {
             "ko": "4피해 × 3회 = 12 총피해. 방어도 분산.",
@@ -531,7 +532,7 @@
             "en": "Qi Drain"
           },
           "intent": "attack_debuff",
-          "damage": 10,
+          "damage": 12,
           "times": 1,
           "effects": [
             {
@@ -560,7 +561,7 @@
             "en": "Mountain Tremor"
           },
           "intent": "attack",
-          "damage": 13,
+          "damage": 16,
           "times": 1,
           "description": {
             "ko": "산의 힘을 담은 충격파 공격.",
@@ -636,7 +637,7 @@
             "en": "Fire Spell"
           },
           "intent": "attack_debuff",
-          "damage": 8,
+          "damage": 10,
           "times": 1,
           "effects": [
             {
@@ -678,7 +679,7 @@
             "en": "Arcane Bolt"
           },
           "intent": "attack",
-          "damage": 12,
+          "damage": 14,
           "times": 2,
           "description": {
             "ko": "10피해 × 2회 = 20 총피해. 도술 에너지 집중 방출.",
@@ -746,7 +747,7 @@
             "en": "Fierce Bite"
           },
           "intent": "attack",
-          "damage": 14,
+          "damage": 17,
           "times": 1,
           "description": {
             "ko": "야수의 강렬한 물기 공격.",
@@ -760,7 +761,7 @@
             "en": "Charge"
           },
           "intent": "attack",
-          "damage": 10,
+          "damage": 12,
           "times": 2,
           "effects": [
             {
@@ -808,7 +809,7 @@
             "en": "Killing Pounce"
           },
           "intent": "attack",
-          "damage": 19,
+          "damage": 23,
           "times": 1,
           "description": {
             "ko": "힘 3 쌓인 후 사용. 16+3=19피해.",
@@ -863,7 +864,7 @@
             "en": "Inspection"
           },
           "intent": "attack_debuff",
-          "damage": 8,
+          "damage": 10,
           "times": 1,
           "effects": [
             {
@@ -907,7 +908,7 @@
             "en": "Authority Abuse"
           },
           "intent": "attack",
-          "damage": 12,
+          "damage": 14,
           "times": 1,
           "description": {
             "ko": "강력한 단일 타격.",
@@ -960,7 +961,7 @@
             "en": "Twin Blades"
           },
           "intent": "attack",
-          "damage": 6,
+          "damage": 7,
           "times": 2,
           "description": {
             "ko": "6 피해를 2회. 총 12피해.",
@@ -974,7 +975,7 @@
             "en": "Pursuit"
           },
           "intent": "attack",
-          "damage": 10,
+          "damage": 12,
           "times": 1,
           "description": {
             "ko": "도주를 허락하지 않는 강타.",
@@ -1009,7 +1010,7 @@
             "en": "Binding Rope"
           },
           "intent": "attack_debuff",
-          "damage": 5,
+          "damage": 6,
           "times": 1,
           "effects": [
             {
@@ -1097,7 +1098,7 @@
             "en": "Assassinate"
           },
           "intent": "attack",
-          "damage": 14,
+          "damage": 17,
           "times": 1,
           "description": {
             "ko": "은신 후 강력한 일격.",
@@ -1132,7 +1133,7 @@
             "en": "Backstab"
           },
           "intent": "attack",
-          "damage": 7,
+          "damage": 8,
           "times": 2,
           "description": {
             "ko": "뒤에서 2회 기습. 총 14피해.",
@@ -1232,7 +1233,7 @@
             "en": "Trade Strike"
           },
           "intent": "attack",
-          "damage": 9,
+          "damage": 11,
           "times": 1,
           "description": {
             "ko": "정보력으로 급소를 노리는 공격.",
@@ -1246,7 +1247,7 @@
             "en": "Espionage"
           },
           "intent": "attack_debuff",
-          "damage": 4,
+          "damage": 5,
           "times": 1,
           "effects": [
             {
@@ -1307,7 +1308,7 @@
             "en": "Plunder"
           },
           "intent": "attack_debuff",
-          "damage": 7,
+          "damage": 8,
           "times": 1,
           "effects": [
             {
@@ -1366,7 +1367,7 @@
             "en": "Flogging"
           },
           "intent": "attack",
-          "damage": 11,
+          "damage": 13,
           "times": 1,
           "description": {
             "ko": "무거운 곤장 공격.",
@@ -1394,6 +1395,123 @@
         "relic_chance": 0.05
       },
       "balance_note": "민심 압박형. 수탈과 위조 교지로 민심 지속 하락. 빠르게 처치하지 않으면 민심 대폭 감소."
+    },
+    {
+      "id": "E213",
+      "name": {
+        "ko": "화약술사",
+        "hanja": "火藥術士",
+        "romanized": "Hwayak Sulsa",
+        "en": "Explosives Scholar"
+      },
+      "description": {
+        "ko": "위험한 화약을 다루는 도술사. 폭발 카운트다운을 설치한 뒤 은신한다. 카운트다운 종료 전에 반드시 방어가 필요하다.",
+        "en": "A sorcerer who handles dangerous explosives. Sets explosion countdowns then hides. Defense is mandatory before the countdown ends."
+      },
+      "hp": {
+        "min": 32,
+        "max": 44
+      },
+      "special_pattern": "explosive",
+      "moves": [
+        {
+          "id": "set_bomb",
+          "name": {
+            "ko": "폭약 설치",
+            "en": "Set Explosives"
+          },
+          "intent": "debuff",
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "폭발_카운트다운",
+              "stacks": 3,
+              "target": "player"
+            }
+          ],
+          "description": {
+            "ko": "3턴 후 30~40 폭발 피해. 반드시 방어 필요!",
+            "en": "30-40 explosion damage after 3 turns. Defense required!"
+          }
+        },
+        {
+          "id": "fire_splash",
+          "name": {
+            "ko": "화염 튀김",
+            "en": "Fire Splash"
+          },
+          "intent": "attack",
+          "damage": 10,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "화상",
+              "stacks": 2,
+              "target": "player"
+            }
+          ],
+          "description": {
+            "ko": "10피해 + 화상 2. 폭발 대기 중 추가 압박.",
+            "en": "10 damage + 2 Burn. Extra pressure during explosion countdown."
+          }
+        },
+        {
+          "id": "smoke_screen",
+          "name": {
+            "ko": "연막",
+            "en": "Smoke Screen"
+          },
+          "intent": "defend_buff",
+          "block": 10,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": {
+            "ko": "방어도 10 + 약화 1 부여.",
+            "en": "10 Block + applies 1 Weaken."
+          }
+        },
+        {
+          "id": "spark",
+          "name": {
+            "ko": "불꽃 튀기기",
+            "en": "Spark"
+          },
+          "intent": "attack",
+          "damage": 7,
+          "times": 2,
+          "description": {
+            "ko": "7피해 × 2회. 방어도 분산용 다타 공격.",
+            "en": "7 damage x2. Multi-hit to split block."
+          }
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "set_bomb",
+          "fire_splash",
+          "smoke_screen",
+          "spark",
+          "fire_splash",
+          "set_bomb"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 22,
+          "max": 35
+        },
+        "card_chance": 0.25,
+        "relic_chance": 0.0
+      },
+      "balance_note": "폭발 카운트다운(3턴 후 30~40피해)이 핵심 위협. 방어도 30+ 준비 또는 빠른 처치 필요. fire_splash+화상으로 추가 압박."
     }
   ],
   "elite_enemies": [
@@ -1422,7 +1540,7 @@
             "en": "Leaping Assault"
           },
           "intent": "attack",
-          "damage": 12,
+          "damage": 15,
           "times": 1,
           "description": {
             "ko": "빠른 도약으로 내리치는 공격.",
@@ -1436,7 +1554,7 @@
             "en": "Claw Flurry"
           },
           "intent": "attack",
-          "damage": 5,
+          "damage": 6,
           "times": 3,
           "description": {
             "ko": "5피해 × 3회 = 15 총피해. 방어도 분산.",
@@ -1476,7 +1594,7 @@
             "en": "Savage Pounce"
           },
           "intent": "attack",
-          "damage": 18,
+          "damage": 23,
           "times": 1,
           "description": {
             "ko": "HP 60% 미만 시만 사용. 분노한 호랑이의 전력 공격.",
@@ -1529,7 +1647,9 @@
         "card_chance": 0.65,
         "relic_chance": 0.3
       },
-      "balance_note": "territorial_growl 후 claw_flurry(5+3=8×3=24총피해). roar 취약(+50% 피해) 시 방어도로 커버 필수. HP 60% 이하 savage_pounce(18+strength)가 즉사급 — 버프 박탈 카드 또는 방어도 18+ 확보 권장."
+      "balance_note": "territorial_growl 후 claw_flurry(5+3=8×3=24총피해). roar 취약(+50% 피해) 시 방어도로 커버 필수. HP 60% 이하 savage_pounce(18+strength)가 즉사급 — 버프 박탈 카드 또는 방어도 18+ 확보 권장.",
+      "special_pattern": "counter",
+      "type": "elite"
     },
     {
       "id": "EL202",
@@ -1556,7 +1676,7 @@
             "en": "Chief's Strike"
           },
           "intent": "attack",
-          "damage": 14,
+          "damage": 18,
           "times": 1,
           "description": {
             "ko": "도적 두목의 강력한 단발 공격.",
@@ -1609,7 +1729,7 @@
             "en": "Savage Combo"
           },
           "intent": "attack",
-          "damage": 8,
+          "damage": 10,
           "times": 2,
           "effects": [
             {
@@ -1668,7 +1788,8 @@
         "relic_chance": 0.3
       },
       "ai_pattern": "첫 턴 산적 2명 소환으로 전선을 넓힌 뒤 battle_roar로 힘을 쌓고 맹타 연격으로 압박한다. 소환된 산적이 살아있는 동안 두목에게 집중이 어려운 딜레마 유발.",
-      "balance_note": "소환 산적(HP15×2)은 즉시 칼 연타(5×2=10)를 사용. 두목 battle_roar(힘+3) 후 leader_slash(14+3=17), savage_combo(8+3=11×2=22+출혈). 소환 산적 선처치 후 두목 집중 권장. 방어도 14+ 유지 필수."
+      "balance_note": "소환 산적(HP15×2)은 즉시 칼 연타(5×2=10)를 사용. 두목 battle_roar(힘+3) 후 leader_slash(14+3=17), savage_combo(8+3=11×2=22+출혈). 소환 산적 선처치 후 두목 집중 권장. 방어도 14+ 유지 필수.",
+      "type": "elite"
     },
     {
       "id": "EL203",
@@ -1722,7 +1843,7 @@
             "en": "Fox Fire"
           },
           "intent": "attack_debuff",
-          "damage": 9,
+          "damage": 11,
           "times": 1,
           "effects": [
             {
@@ -1750,7 +1871,7 @@
             "en": "Nine-Tail Lash"
           },
           "intent": "attack",
-          "damage": 6,
+          "damage": 8,
           "times": 3,
           "description": {
             "ko": "6피해 × 3회 = 18 총피해. 아홉 꼬리로 휘두르는 다타 공격.",
@@ -1786,7 +1907,7 @@
             "en": "Soul Drain"
           },
           "intent": "attack_debuff",
-          "damage": 13,
+          "damage": 16,
           "times": 1,
           "effects": [
             {
@@ -1831,7 +1952,9 @@
         "relic_chance": 0.3
       },
       "ai_pattern": "매혹으로 플레이어 공격력을 약화시키며 화상·독 복합 DoT로 장기 피해를 누적한다. illusion_step의 회피로 핵심 공격 한 번을 무효화하므로 소모형 약한 공격으로 회피를 소진시키는 것이 효과적.",
-      "balance_note": "매혹 2+약화 1 동시 부여 시 플레이어 공격력 최대 50% 이상 감소. fox_fire(화상3+독2) 누적 DoT = 매 턴 5+ 피해. illusion_step 회피 소진 전략 필요. soul_drain(13+힘2+매혹1)으로 점점 강해지므로 빠른 처치 권장."
+      "balance_note": "매혹 2+약화 1 동시 부여 시 플레이어 공격력 최대 50% 이상 감소. fox_fire(화상3+독2) 누적 DoT = 매 턴 5+ 피해. illusion_step 회피 소진 전략 필요. soul_drain(13+힘2+매혹1)으로 점점 강해지므로 빠른 처치 권장.",
+      "special_pattern": "debuff",
+      "type": "elite"
     }
   ],
   "status_conditions_referenced": [
