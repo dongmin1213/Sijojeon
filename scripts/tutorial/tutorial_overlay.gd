@@ -71,7 +71,7 @@ func _build_ui() -> void:
 
 	_text_label = Label.new()
 	_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_text_label.add_theme_font_size_override("font_size", maxi(int(26 * ui_scale), 22))
+	_text_label.add_theme_font_size_override("font_size", maxi(int(34 * ui_scale), 28))
 	_text_label.add_theme_color_override("font_color", Color(0.95, 0.92, 0.85))
 	# 뷰포트 너비에 비례한 최소 크기 (양쪽 마진 80px 확보)
 	_text_label.custom_minimum_size = Vector2(vp_size.x - 120 * ui_scale, 0)
@@ -83,14 +83,14 @@ func _build_ui() -> void:
 
 	_next_button = Button.new()
 	_next_button.text = tr("TUTORIAL_NEXT")
-	_next_button.add_theme_font_size_override("font_size", maxi(int(26 * ui_scale), 22))
+	_next_button.add_theme_font_size_override("font_size", maxi(int(34 * ui_scale), 28))
 	_next_button.custom_minimum_size = Vector2(160 * ui_scale, 56 * ui_scale)
 	_next_button.pressed.connect(_on_next_pressed)
 	btn_container.add_child(_next_button)
 
 	_skip_button = Button.new()
 	_skip_button.text = tr("TUTORIAL_SKIP")
-	_skip_button.add_theme_font_size_override("font_size", maxi(int(22 * ui_scale), 18))
+	_skip_button.add_theme_font_size_override("font_size", maxi(int(28 * ui_scale), 24))
 	_skip_button.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	_skip_button.custom_minimum_size = Vector2(200 * ui_scale, 50 * ui_scale)
 	btn_container.add_child(_skip_button)
@@ -206,6 +206,7 @@ func hide_overlay() -> void:
 	_text_panel.visible = false
 	_highlight_rect.visible = false
 	_arrow_node.visible = false
+	_overlay_bg.visible = false
 	_overlay_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 

@@ -134,14 +134,14 @@ func _init_sijo_toggle() -> void:
 	_sijo_toggle_button = Button.new()
 	_sijo_toggle_button.text = "▼"
 	_sijo_toggle_button.custom_minimum_size = Vector2(40, 40)
-	_sijo_toggle_button.add_theme_font_size_override("font_size", 16)
+	_sijo_toggle_button.add_theme_font_size_override("font_size", 24)
 	_sijo_toggle_button.pressed.connect(_on_sijo_toggle_pressed)
 	sijo_area.add_child(_sijo_toggle_button)
 	sijo_area.move_child(_sijo_toggle_button, 0)
 
 	_sijo_summary_label = Label.new()
 	_sijo_summary_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_sijo_summary_label.add_theme_font_size_override("font_size", 14)
+	_sijo_summary_label.add_theme_font_size_override("font_size", 22)
 	_sijo_summary_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
 	_sijo_summary_label.visible = false
 	sijo_area.add_child(_sijo_summary_label)
@@ -273,7 +273,7 @@ func _show_sijo_reward_popup(text: String) -> void:
 	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup.anchors_preset = Control.PRESET_CENTER_TOP
 	popup.position.y = 120
-	popup.add_theme_font_size_override("font_size", 16)
+	popup.add_theme_font_size_override("font_size", 24)
 	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.5))
 	add_child(popup)
 	var tween := create_tween()
@@ -391,7 +391,8 @@ func _on_battle_ended(victory: bool) -> void:
 	label.text = tr("TUTORIAL_VICTORY_TEXT") if victory else tr("TUTORIAL_DEFEAT_TEXT")
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.layout_mode = 1
 	label.anchors_preset = Control.PRESET_FULL_RECT
-	label.add_theme_font_size_override("font_size", 48)
+	label.add_theme_font_size_override("font_size", 64)
 	label.add_theme_color_override("font_color", Color(1, 0.85, 0.3) if victory else Color(1, 0.3, 0.3))
 	overlay.add_child(label)

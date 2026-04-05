@@ -654,7 +654,7 @@ func _show_card_zoom_hint() -> void:
 	var hint_label := Label.new()
 	hint_label.text = tr("BATTLE_CARD_ZOOM_HINT")
 	hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	hint_label.add_theme_font_size_override("font_size", 20)
+	hint_label.add_theme_font_size_override("font_size", 26)
 	hint_label.add_theme_color_override("font_color", Color(1, 0.9, 0.6))
 	hint_label.anchors_preset = Control.PRESET_CENTER_BOTTOM
 	hint_label.position.y -= 160
@@ -974,7 +974,7 @@ func _on_passive_triggered(skill_name: String, description: String) -> void:
 	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	popup.set_anchors_preset(Control.PRESET_FULL_RECT)
-	popup.add_theme_font_size_override("font_size", 20)
+	popup.add_theme_font_size_override("font_size", 26)
 	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.6))
 	banner.add_child(popup)
 
@@ -1077,7 +1077,7 @@ func _build_status_icons(container: HBoxContainer, target: String) -> void:
 
 			var label := Label.new()
 			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			label.add_theme_font_size_override("font_size", 18)
+			label.add_theme_font_size_override("font_size", 26)
 
 			if def:
 				label.add_theme_color_override("font_color", def.color)
