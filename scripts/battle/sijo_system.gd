@@ -2,8 +2,8 @@ class_name SijoSystem
 extends Node
 
 ## 시조 리듬 시스템. 6슬롯 (초장3, 초장4, 중장3, 중장4, 종장3, 종장4).
-## 카드의 음보(beat)가 슬롯 패턴과 일치하면 채워진다.
-## 6슬롯 모두 채우면 시조 완성: 마지막 카드 효과 ×2 + 기 1 회복 + 카드 1장 드로우.
+## 모든 카드가 순서대로 슬롯을 채운다. beat가 패턴과 일치하면 보너스 발동.
+## 6슬롯 모두 채우면 시조 완성: 마지막 카드 효과 ×2 + 기 +2 + 카드 2장 드로우.
 
 ## 시조 비트 패턴 변형 — 매 전투마다 랜덤 선택하여 다양성 확보
 const PATTERN_VARIANTS: Array = [
@@ -20,7 +20,7 @@ var pattern: Array[int] = [3, 4, 3, 4, 3, 4]  # 현재 전투 패턴
 var slots: Array[String] = []  # 채워진 카드 ID
 var current_slot_index: int = 0
 
-signal slot_filled(index: int, card_id: String, jang_name: String)
+signal slot_filled(index: int, card_id: String, jang_name: String, beat_matched: bool)
 ## 장 완성 시그널: 초장/중장/종장 각각 완성 시 발행
 signal sijo_chapter_completed(chapter: String)
 ## sijo_completed: 마지막 카드 ID + 완성에 사용된 6장 카드 ID 배열 전달
@@ -32,14 +32,14 @@ func _ready() -> void:
 
 
 func try_fill_slot(card_beat: int, card_id: String) -> bool:
+	## 모든 카드가 슬롯을 채운다. beat가 패턴과 일치하면 true 반환 (보너스 적용용).
 	if current_slot_index >= pattern.size():
 		return false
-	if card_beat != pattern[current_slot_index]:
-		return false
+	var beat_matched := card_beat == pattern[current_slot_index]
 
 	slots.append(card_id)
 	var jang := JANG_NAMES[current_slot_index]
-	slot_filled.emit(current_slot_index, card_id, jang)
+	slot_filled.emit(current_slot_index, card_id, jang, beat_matched)
 	current_slot_index += 1
 
 	# 장 완성 감지: 초장(index 1 완료), 중장(index 3 완료), 종장(index 5 완료)
@@ -52,7 +52,7 @@ func try_fill_slot(card_beat: int, card_id: String) -> bool:
 
 	if current_slot_index >= pattern.size():
 		sijo_completed.emit(card_id, slots.duplicate())
-	return true
+	return beat_matched
 
 
 func get_next_required_beat() -> int:

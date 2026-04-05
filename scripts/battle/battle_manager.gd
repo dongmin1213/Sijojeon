@@ -77,6 +77,7 @@ signal class_resource_changed(current: int, max_val: int)
 signal passive_triggered(skill_name: String, description: String)
 signal active_skill_available_changed(available: bool)
 signal combo_triggered(tier: int, job: String)  # 시선(1)/절창(2) 콤보 발동
+signal sijo_beat_matched(card_id: String)  # beat 일치 보너스 발동
 
 
 func _ready() -> void:
@@ -354,9 +355,16 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	hand.remove_at(hand_index)
 	discard_pile.append(card_id)
 
-	# 시조 슬롯 시도
+	# 시조 슬롯 시도 — 모든 카드가 채워지며, beat 일치 시 강화 보너스
+	var beat_matched := false
 	if sijo_system:
-		sijo_system.try_fill_slot(card.beat, card_id)
+		beat_matched = sijo_system.try_fill_slot(card.beat, card_id)
+		if beat_matched:
+			# beat 일치 보너스: 공격/방어 +30%, 기 +1
+			_next_card_power_bonus += 0.3
+			current_qi += 1
+			qi_changed.emit(current_qi, max_qi)
+			sijo_beat_matched.emit(card_id)
 
 	# 카드 효과 적용
 	_resolve_card_effect(card, target_enemy_index)

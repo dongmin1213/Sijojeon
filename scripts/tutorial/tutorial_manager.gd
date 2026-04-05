@@ -282,7 +282,7 @@ func _on_turn_started(turn: int) -> void:
 		_show_current_step()
 
 
-func _on_sijo_slot_filled(_index: int, _card_id: String, _jang_name: String) -> void:
+func _on_sijo_slot_filled(_index: int, _card_id: String, _jang_name: String, _beat_matched: bool) -> void:
 	# 시조 슬롯이 채워지면 진행
 	if current_step == TutorialStep.PLAY_SIJO_CARD:
 		overlay.acknowledge_action()

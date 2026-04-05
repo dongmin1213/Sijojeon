@@ -77,6 +77,7 @@ func _ready() -> void:
 	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
 	sijo_system.sijo_chapter_completed.connect(_on_sijo_chapter_completed)
 	sijo_system.sijo_completed.connect(_on_sijo_completed)
+	battle_manager.sijo_beat_matched.connect(_on_sijo_beat_matched)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 
 	# CardHand 시그널 연결
@@ -670,7 +671,7 @@ func _on_end_turn_pressed() -> void:
 	battle_manager.end_player_turn()
 
 
-func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> void:
+func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String, beat_matched: bool) -> void:
 	AudioManager.play_sfx_by_key("sijo_slot")
 	if index < sijo_slot_labels.size():
 		var card: CardData = DataLoader.get_card(card_id)
@@ -678,7 +679,11 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 			sijo_slot_labels[index].text = card.get_display_name()
 		else:
 			sijo_slot_labels[index].text = card_id
-		sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+		# beat 일치: 금색, 불일치: 회색
+		if beat_matched:
+			sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+		else:
+			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	if _sijo_collapsed:
 		_update_sijo_summary()
 
@@ -696,6 +701,11 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 		3:  # 4/6 슬롯 완성 (중장 완성): 카드 1장 드로우
 			battle_manager.draw_cards(1)
 			_show_sijo_reward_popup(tr("BATTLE_JUNGJANG_REWARD"))
+
+
+func _on_sijo_beat_matched(_card_id: String) -> void:
+	## beat 일치 보너스 피드백: 공격/방어 +30%, 기 +1
+	_show_sijo_reward_popup(tr("BATTLE_BEAT_MATCH_BONUS"))
 
 
 ## 시조 부분 완성 보상 팝업 텍스트를 표시한다.

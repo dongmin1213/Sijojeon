@@ -328,7 +328,7 @@ func _on_end_turn_pressed() -> void:
 	battle_manager.end_player_turn()
 
 
-func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> void:
+func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String, beat_matched: bool) -> void:
 	AudioManager.play_sfx_by_key("sijo_slot")
 	if index < sijo_slot_labels.size():
 		var card: CardData = DataLoader.get_card(card_id)
@@ -336,7 +336,10 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String) -> vo
 			sijo_slot_labels[index].text = card.get_display_name()
 		else:
 			sijo_slot_labels[index].text = card_id
-		sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+		if beat_matched:
+			sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+		else:
+			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	if _sijo_collapsed:
 		_update_sijo_summary()
 
