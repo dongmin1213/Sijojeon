@@ -123,6 +123,7 @@ func _ready() -> void:
 	_update_upgrade_section()
 	_update_minshim_button()
 	_update_market_open_button()
+	_update_discount_badges()
 
 
 func _generate_shop_cards() -> void:
@@ -229,7 +230,14 @@ func _format_card_text(card: CardData, price: int) -> String:
 	var lines: Array[String] = []
 	lines.append(card.get_display_name())
 	lines.append("")
-	lines.append(tr("SHOP_CARD_PRICE") % price)
+	# 할인 명세 표시: 할인 적용 시 원가 + 최종가 + 사유
+	var base: int = CARD_BASE_PRICES.get(card.rarity, 75)
+	var discount_info := _get_discount_breakdown()
+	if discount_info["has_discount"] and base != price:
+		lines.append("%s  ->  %d" % [tr("SHOP_ORIGINAL_PRICE_FMT") % base, price])
+		lines.append(tr("SHOP_DISCOUNT_REASON_FMT") % discount_info["reasons"])
+	else:
+		lines.append(tr("SHOP_CARD_PRICE") % price)
 	lines.append("")
 	lines.append(tr("SHOP_CARD_COST") % card.cost)
 	lines.append(tr("SHOP_CARD_BEAT") % card.beat)
@@ -568,9 +576,13 @@ func _on_bribe_pressed() -> void:
 
 	AudioManager.play_sfx_by_key("coin")
 	GameManager.run_data.gold -= BRIBE_COST
-	JibunSystem.add_score(GameManager.run_data, BRIBE_JIBUN_AMOUNT)
+	var rank_change = JibunSystem.add_score(GameManager.run_data, BRIBE_JIBUN_AMOUNT)
 
 	_update_gold_display()
+
+	# 승급 시 연출 표시
+	if rank_change != null:
+		_show_rankup_popup(rank_change[1])
 
 
 func _update_bribe_button() -> void:
@@ -669,7 +681,14 @@ func _display_shop_relics() -> void:
 		else:
 			var relic_name: String = TranslationManager.trd_name(relic_data)
 			var effect_desc: String = TranslationManager.trd(relic_data, "effect_description", "")
-			btn.text = tr("SHOP_RELIC_PRICE_FMT") % [relic_name, effect_desc, entry["price"]]
+			var rarity: int = relic_data.get("rarity", 1)
+			var base_relic_price: int = RELIC_PRICES.get(rarity, 150)
+			var discount_info := _get_discount_breakdown()
+			if discount_info["has_discount"] and base_relic_price != entry["price"]:
+				var price_line := "%s  ->  %d\n%s" % [tr("SHOP_ORIGINAL_PRICE_FMT") % base_relic_price, entry["price"], tr("SHOP_DISCOUNT_REASON_FMT") % discount_info["reasons"]]
+				btn.text = "%s\n%s\n%s" % [relic_name, effect_desc, price_line]
+			else:
+				btn.text = tr("SHOP_RELIC_PRICE_FMT") % [relic_name, effect_desc, entry["price"]]
 			var can_afford: bool = GameManager.run_data != null and GameManager.run_data.gold >= entry["price"]
 			if not can_afford:
 				btn.add_theme_color_override("font_color", Color(0.6, 0.3, 0.3))
@@ -758,3 +777,94 @@ func _get_minshim_price_modifier() -> float:
 	# 양반 이상 신분 할인 적용 (-15%)
 	modifier *= JibunSystem.get_shop_price_modifier(GameManager.run_data)
 	return modifier
+
+
+## 현재 활성 할인/할증 사유를 분석하여 반환한다.
+func _get_discount_breakdown() -> Dictionary:
+	var reasons: Array[String] = []
+	var has_discount := false
+
+	if not GameManager.run_data:
+		return {"has_discount": false, "reasons": ""}
+
+	# 신분 할인
+	var jibun_mod := JibunSystem.get_shop_price_modifier(GameManager.run_data)
+	if jibun_mod < 1.0:
+		var rank_name := JibunSystem.get_rank_name(GameManager.run_data.jibun_rank)
+		reasons.append("%s %s" % [rank_name, tr("SHOP_DISCOUNT_JIBUN")])
+		has_discount = true
+
+	# 민심 할인/할증
+	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
+	if minshim >= 70:
+		reasons.append("%s %s" % [tr("MINSHIM_TOOLTIP_TITLE"), tr("SHOP_DISCOUNT_MINSHIM_HIGH")])
+		has_discount = true
+	elif minshim <= 29:
+		reasons.append("%s %s" % [tr("MINSHIM_TOOLTIP_TITLE"), tr("SHOP_DISCOUNT_MINSHIM_CRISIS")])
+		has_discount = true
+	elif minshim <= 49:
+		reasons.append("%s %s" % [tr("MINSHIM_TOOLTIP_TITLE"), tr("SHOP_DISCOUNT_MINSHIM_LOW")])
+		has_discount = true
+
+	# 당파 할인
+	var faction_mod := FactionSystem.get_shop_discount(GameManager.run_data)
+	if faction_mod < 1.0:
+		reasons.append("%s %s" % [tr("MAP_FACTION_NONE").split(":")[0], tr("SHOP_DISCOUNT_FACTION")])
+		has_discount = true
+
+	return {"has_discount": has_discount, "reasons": ", ".join(reasons)}
+
+
+## 상점 상단에 할인 배지를 표시한다.
+func _update_discount_badges() -> void:
+	# 기존 배지 제거
+	var existing := title_label.get_parent().get_node_or_null("DiscountBadge")
+	if existing:
+		existing.queue_free()
+
+	var info := _get_discount_breakdown()
+	if not info["has_discount"]:
+		return
+
+	var badge := Label.new()
+	badge.name = "DiscountBadge"
+	badge.text = info["reasons"]
+	badge.add_theme_font_size_override("font_size", 22)
+	badge.add_theme_color_override("font_color", Color(0.3, 0.9, 0.3))
+	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title_label.get_parent().add_child(badge)
+	title_label.get_parent().move_child(badge, 1)  # 타이틀 바로 아래
+
+
+## 승급 팝업 연출: 골드 플래시 + 텍스트 (2초).
+func _show_rankup_popup(new_rank: int) -> void:
+	var rank_name := JibunSystem.get_rank_name(new_rank)
+
+	# 골드 플래시 오버레이
+	var flash := ColorRect.new()
+	flash.color = Color(1.0, 0.85, 0.3, 0.4)
+	flash.anchors_preset = Control.PRESET_FULL_RECT
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(flash)
+
+	# 승급 텍스트
+	var popup_label := Label.new()
+	popup_label.text = tr("JIBUN_RANKUP_POPUP_FMT") % rank_name
+	popup_label.add_theme_font_size_override("font_size", 40)
+	popup_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.2))
+	popup_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	popup_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	popup_label.anchors_preset = Control.PRESET_CENTER
+	popup_label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	popup_label.grow_vertical = Control.GROW_DIRECTION_BOTH
+	popup_label.custom_minimum_size = Vector2(400, 60)
+	popup_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(popup_label)
+
+	# 2초 후 페이드아웃
+	var tween := create_tween()
+	tween.tween_interval(1.5)
+	tween.tween_property(flash, "color:a", 0.0, 0.5)
+	tween.parallel().tween_property(popup_label, "modulate:a", 0.0, 0.5)
+	tween.tween_callback(flash.queue_free)
+	tween.tween_callback(popup_label.queue_free)

@@ -263,6 +263,9 @@ MAP_JIBUN_FMT,신분: %s,Status: %s
 MAP_FACTION_FMT,%s:%d vs %s:%d,%s:%d vs %s:%d
 MAP_FACTION_NONE,당파: --,Faction: --
 MAP_MINSHIM_FMT,민심: %d,Sentiment: %d
+MAP_MINSHIM_TIER_FMT,민심: %d [%s],Sentiment: %d [%s]
+MAP_JIBUN_PROGRESS_FMT,신분: %s %d/%d %s,Status: %s %d/%d %s
+MAP_JIBUN_MAX_FMT,신분: %s (%d),Status: %s (%d)
 MAP_CLOSED,폐업,Closed
 MAP_CLOSED_TOOLTIP,민심 부족으로 상점이 문을 닫았습니다,Shop closed due to low public sentiment
 MAP_FORK_COST_FMT,[%d금화],[%d Gold]
@@ -429,3 +432,38 @@ FACTION_BUGIN,북인(北人),Bugin (Northerners)
 UNLOCK_DEFAULT,기본 해금,Unlocked by default
 UNLOCK_MUGWAN_ACT1,무관으로 1막 보스 처치,Defeat Act 1 boss with Warrior
 UNLOCK_TOTAL_RUNS_3,총 3회 런 완료,Complete 3 total runs
+MINSHIM_TIER_HIGH,민심 높음,High Sentiment
+MINSHIM_TIER_NORMAL,보통,Normal
+MINSHIM_TIER_UNREST,불안,Unrest
+MINSHIM_TIER_CRISIS,민란 위기,Uprising Risk
+MINSHIM_TOOLTIP_TITLE,민심,Sentiment
+MINSHIM_EFFECT_80,전투 시작 시 백성이 적 1명에게 5 피해,Citizens deal 5 damage to 1 enemy at battle start
+MINSHIM_EFFECT_70,상점 가격 -20%,Shop prices -20%
+MINSHIM_EFFECT_30,상점 +15%/ 적 근력 +1,Shop +15%/ Enemy strength +1
+MINSHIM_EFFECT_0,상점 +30%/ 적 근력 +2/ 방어도 +5,Shop +30%/ Enemy strength +2/ Block +5
+JIBUN_TOOLTIP_TITLE,신분 정보,Status Info
+JIBUN_TOOLTIP_CURRENT,현재,Current
+JIBUN_TOOLTIP_POINTS,점,pts
+JIBUN_TOOLTIP_EFFECTS,현재 효과,Current Effects
+JIBUN_TOOLTIP_NEXT,다음 단계,Next Rank
+JIBUN_TOOLTIP_RANKUP,승급 보상,Rank-Up Reward
+JIBUN_EFFECT_0_GOLD,전투 보상 금화 +50%,Battle gold rewards +50%
+JIBUN_EFFECT_0_HIDDEN,이벤트 히든 선택지 해금,Hidden event choices unlocked
+JIBUN_EFFECT_1_CARD,카드 보상 선택지 +1,+1 card reward choice
+JIBUN_EFFECT_2_UPGRADE,카드 업그레이드 비용 -25%,Card upgrade cost -25%
+JIBUN_EFFECT_2_ELITE,엘리트 등장률 +5%,Elite spawn rate +5%
+JIBUN_EFFECT_3_SHOP,상점 카드 가격 -15%,Shop card prices -15%
+JIBUN_EFFECT_3_MINSHIM,민심 획득량 +10%,Sentiment gain +10%
+JIBUN_EFFECT_3_GWAGEO,과거시험 접근 가능,Civil exam access
+JIBUN_EFFECT_3_ELITE_HP,엘리트 HP +10%,Elite HP +10%
+JIBUN_EFFECT_4_BOSS_HP,보스 HP +10%,Boss HP +10%
+JIBUN_EFFECT_5_REWARD,모든 전투 보상 +30%,All battle rewards +30%
+JIBUN_RANKUP_POPUP_FMT,%s(으)로 승급!,Promoted to %s!
+SHOP_DISCOUNT_BADGE_FMT,[%s %s],[ %s %s]
+SHOP_DISCOUNT_JIBUN,-15%,-15%
+SHOP_DISCOUNT_MINSHIM_HIGH,-20%,-20%
+SHOP_DISCOUNT_MINSHIM_LOW,+15%,+15%
+SHOP_DISCOUNT_MINSHIM_CRISIS,+30%,+30%
+SHOP_DISCOUNT_FACTION,-10%,-10%
+SHOP_ORIGINAL_PRICE_FMT,원가: %d,Was: %d
+SHOP_DISCOUNT_REASON_FMT,(%s),(%s)

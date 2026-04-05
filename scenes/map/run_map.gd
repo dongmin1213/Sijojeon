@@ -114,7 +114,7 @@ func _update_hud() -> void:
 	act_label.text = tr("MAP_ACT_FMT") % [rd.current_act, act_name]
 
 	# 신분/당파/민심 HUD 업데이트
-	jibun_label.text = tr("MAP_JIBUN_FMT") % JibunSystem.get_rank_name(rd.jibun_rank)
+	_update_jibun_display(rd)
 	if rd.faction_pair.size() == 2:
 		var fa := FactionSystem.get_faction_name(rd.faction_pair[0])
 		var fb := FactionSystem.get_faction_name(rd.faction_pair[1])
@@ -123,7 +123,7 @@ func _update_hud() -> void:
 		faction_label.text = tr("MAP_FACTION_FMT") % [fa, ma, fb, mb]
 	else:
 		faction_label.text = tr("MAP_FACTION_NONE")
-	minshim_label.text = tr("MAP_MINSHIM_FMT") % rd.narrative_state.get("minshim", 50)
+	_update_minshim_display(rd)
 
 	# 막별 배경색 적용
 	var bg_color: Color = ACT_BG_COLORS.get(rd.current_act, ACT_BG_COLORS[1])
@@ -530,3 +530,159 @@ func _on_node_pressed(node_id: int) -> void:
 			GameManager.change_state(GameManager.GameState.GWAGEO)
 
 
+# ── 민심 표시 개선 ──────────────────────────────
+
+## 민심 구간 상태명과 색상을 반환한다.
+func _get_minshim_tier(value: int) -> Dictionary:
+	if value >= 80:
+		return {"name": tr("MINSHIM_TIER_HIGH"), "color": Color(0.3, 0.9, 0.3)}
+	elif value >= 50:
+		return {"name": tr("MINSHIM_TIER_NORMAL"), "color": Color(0.9, 0.9, 0.9)}
+	elif value >= 30:
+		return {"name": tr("MINSHIM_TIER_UNREST"), "color": Color(1.0, 0.85, 0.3)}
+	else:
+		return {"name": tr("MINSHIM_TIER_CRISIS"), "color": Color(1.0, 0.2, 0.2)}
+
+
+## 민심 라벨 업데이트: 수치 + 구간명 + 색상.
+func _update_minshim_display(rd: RunData) -> void:
+	var minshim: int = rd.narrative_state.get("minshim", 50)
+	var tier := _get_minshim_tier(minshim)
+	minshim_label.text = tr("MAP_MINSHIM_TIER_FMT") % [minshim, tier["name"]]
+	minshim_label.add_theme_color_override("font_color", tier["color"])
+	# 툴팁: 탭/클릭 시 팝업으로 민심 효과 목록 표시
+	if not minshim_label.gui_input.is_connected(_on_minshim_tapped):
+		minshim_label.mouse_filter = Control.MOUSE_FILTER_STOP
+		minshim_label.gui_input.connect(_on_minshim_tapped)
+
+
+## 민심 라벨 탭 시 효과 목록 팝업.
+func _on_minshim_tapped(event: InputEvent) -> void:
+	if not (event is InputEventMouseButton and event.pressed):
+		return
+	var rd := GameManager.run_data
+	if rd == null:
+		return
+	var minshim: int = rd.narrative_state.get("minshim", 50)
+	var tier := _get_minshim_tier(minshim)
+
+	var text := "%s %d [%s]\n" % [tr("MINSHIM_TOOLTIP_TITLE"), minshim, tier["name"]]
+	text += "─────────────────\n"
+	text += "■ 80+: %s\n" % tr("MINSHIM_EFFECT_80")
+	text += "■ 70+: %s\n" % tr("MINSHIM_EFFECT_70")
+	text += "■ 30~49: %s\n" % tr("MINSHIM_EFFECT_30")
+	text += "■ <30: %s" % tr("MINSHIM_EFFECT_0")
+
+	var dialog := AcceptDialog.new()
+	dialog.title = tr("MINSHIM_TOOLTIP_TITLE")
+	dialog.dialog_text = text
+	add_child(dialog)
+	dialog.popup_centered()
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
+
+
+# ── 신분 표시 개선 ──────────────────────────────
+
+## 신분 라벨 업데이트: 단계명 + 점수 + 프로그레스바.
+func _update_jibun_display(rd: RunData) -> void:
+	var rank := rd.jibun_rank
+	var score := rd.jibun_score
+	var rank_name := JibunSystem.get_rank_name(rank)
+	var next_threshold := _get_next_rank_threshold(rank)
+
+	if next_threshold > 0:
+		var progress := _make_progress_bar(score, _get_current_rank_threshold(rank), next_threshold)
+		jibun_label.text = tr("MAP_JIBUN_PROGRESS_FMT") % [rank_name, score, next_threshold, progress]
+	else:
+		# 최고 등급
+		jibun_label.text = tr("MAP_JIBUN_MAX_FMT") % [rank_name, score]
+
+	# 툴팁: 탭/클릭 시 팝업으로 신분 효과 표시
+	if not jibun_label.gui_input.is_connected(_on_jibun_tapped):
+		jibun_label.mouse_filter = Control.MOUSE_FILTER_STOP
+		jibun_label.gui_input.connect(_on_jibun_tapped)
+
+
+## 현재 등급의 진입 점수.
+func _get_current_rank_threshold(rank: int) -> int:
+	return JibunSystem.RANK_THRESHOLDS.get(rank, 0)
+
+
+## 다음 등급 진입 점수 (최고 등급이면 -1).
+func _get_next_rank_threshold(rank: int) -> int:
+	if rank >= 5:
+		return -1
+	return JibunSystem.RANK_THRESHOLDS.get(rank + 1, -1)
+
+
+## 텍스트 프로그레스바 생성 (총 6칸).
+func _make_progress_bar(score: int, current_min: int, next_threshold: int) -> String:
+	var range_size := next_threshold - current_min
+	if range_size <= 0:
+		return "██████"
+	var filled := clampi(int(6.0 * (score - current_min) / range_size), 0, 6)
+	var empty := 6 - filled
+	return "█".repeat(filled) + "░".repeat(empty)
+
+
+## 신분 라벨 탭 시 효과 팝업.
+func _on_jibun_tapped(event: InputEvent) -> void:
+	if not (event is InputEventMouseButton and event.pressed):
+		return
+	var rd := GameManager.run_data
+	if rd == null:
+		return
+	var rank := rd.jibun_rank
+	var score := rd.jibun_score
+	var rank_name := JibunSystem.get_rank_name(rank)
+
+	var text := "%s: %s (%d%s)\n" % [tr("JIBUN_TOOLTIP_CURRENT"), rank_name, score, tr("JIBUN_TOOLTIP_POINTS")]
+	text += "─────────────────\n"
+	text += "%s:\n" % tr("JIBUN_TOOLTIP_EFFECTS")
+
+	# 현재 등급의 활성 효과 표시
+	match rank:
+		0:
+			text += "■ %s\n" % tr("JIBUN_EFFECT_0_GOLD")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_0_HIDDEN")
+		1:
+			text += "■ %s\n" % tr("JIBUN_EFFECT_1_CARD")
+		2:
+			text += "■ %s\n" % tr("JIBUN_EFFECT_2_UPGRADE")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_2_ELITE")
+		3:
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_SHOP")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_MINSHIM")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_GWAGEO")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_ELITE_HP")
+		4:
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_SHOP")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_MINSHIM")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_GWAGEO")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_ELITE_HP")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_4_BOSS_HP")
+		5:
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_SHOP")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_MINSHIM")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_GWAGEO")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_3_ELITE_HP")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_4_BOSS_HP")
+			text += "■ %s\n" % tr("JIBUN_EFFECT_5_REWARD")
+
+	# 다음 등급 정보
+	var next_threshold := _get_next_rank_threshold(rank)
+	if next_threshold > 0:
+		var next_name := JibunSystem.get_rank_name(rank + 1)
+		text += "\n%s (%s, %d%s):\n" % [tr("JIBUN_TOOLTIP_NEXT"), next_name, next_threshold, tr("JIBUN_TOOLTIP_POINTS")]
+		var reward_key: String = JibunSystem.RANK_UP_REWARD_KEYS.get(rank + 1, "")
+		if reward_key != "":
+			text += "■ %s: %s" % [tr("JIBUN_TOOLTIP_RANKUP"), tr(reward_key)]
+
+	var dialog := AcceptDialog.new()
+	dialog.title = tr("JIBUN_TOOLTIP_TITLE")
+	dialog.dialog_text = text
+	add_child(dialog)
+	dialog.popup_centered()
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
