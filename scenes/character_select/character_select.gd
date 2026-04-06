@@ -6,11 +6,11 @@ extends Control
 # 캐릭터 정의 순서 (표시 순서)
 const CHARACTER_IDS := ["mugwan", "mungwan", "dosa"]
 
-# 캐릭터 ID → SVG 아트 파일명 매핑
+# 캐릭터 ID → 아트 파일명 매핑
 const CHARACTER_ART_MAP := {
-	"mugwan": "res://art/characters/warrior.svg",
-	"mungwan": "res://art/characters/scholar.svg",
-	"dosa": "res://art/characters/assassin.svg",
+	"mugwan": "res://art/characters/mugwan.png",
+	"mungwan": "res://art/characters/mungwan.png",
+	"dosa": "res://art/characters/dosa.png",
 }
 
 var _selected_index: int = -1
@@ -228,7 +228,7 @@ func _build_character_cards() -> void:
 	var separation := int(card_container.get_theme_constant("separation"))
 	var showcase_w := vp_size.x * 0.92  # CardContainer는 화면 92% 사용
 	var panel_min_w := minf(320.0 * scale_x, (showcase_w - separation * (card_count - 1)) / card_count)
-	var panel_min_h := vp_size.y * 0.68  # 쇼케이스 영역의 대부분을 카드가 차지
+	var panel_min_h := vp_size.y * 0.46  # 쇼케이스 영역의 대부분을 카드가 차지
 
 	# 스케일된 폰트 크기 계산 (모바일 가독성 확보)
 	var fs_name := maxi(int(34 * ui_scale), 30)
