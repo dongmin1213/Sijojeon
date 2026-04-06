@@ -12,6 +12,11 @@ extends Control
 
 
 func _ready() -> void:
+	# v8: 타이틀 레이블에 나눔명조 ExtraBold 적용
+	var title_font := load("res://fonts/NanumMyeongjo-ExtraBold.ttf") as Font
+	if title_font:
+		title_label.add_theme_font_override("font", title_font)
+
 	# 이어하기 버튼: 세이브 있을 때만 표시
 	continue_button.visible = SaveManager.has_run_save()
 
