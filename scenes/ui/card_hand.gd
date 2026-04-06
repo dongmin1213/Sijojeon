@@ -144,6 +144,9 @@ func _arrange_cards() -> void:
 	# 뷰포트 너비에 비례하여 카드 간격 계산
 	var scale_factor := size.x / BASE_WIDTH
 	var height_scale := size.y / 1920.0
+	# 호버/선택 리프트는 뷰포트 높이 기준으로 계산 (HandZone이 화면 일부만 차지하므로)
+	var vp_height := get_viewport_rect().size.y
+	var lift_scale := vp_height / 1920.0
 
 	# 손패 수에 따른 카드 크기 동적 조정
 	var hand_scale := 1.0
@@ -193,12 +196,12 @@ func _arrange_cards() -> void:
 		var x := start_x + i * card_spacing - widget.size.x / 2.0
 		var y := base_y + scaled_y_curve * (centered_t * centered_t * 4.0)
 
-		# v9: 호버/선택 시 카드가 위로 올라와서 전체가 보이도록
+		# v9: 호버/선택 시 카드가 위로 올라와서 전체가 보이도록 (뷰포트 기준 리프트)
 		var target_y := y
 		if i == selected_index:
-			target_y = base_y - select_lift * height_scale
+			target_y = base_y - select_lift * lift_scale
 		elif i == hovered_index:
-			target_y = base_y - hover_lift * height_scale
+			target_y = base_y - hover_lift * lift_scale
 
 		# 회전 계산 (부채꼴) — 호버/선택 시 회전 제거
 		var rotation_deg := centered_t * fan_spread_degrees * (count - 1)
