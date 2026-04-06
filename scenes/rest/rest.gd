@@ -126,8 +126,8 @@ func _on_show_upgrade_list() -> void:
 			eff,
 			up_text
 		]
-		btn.add_theme_font_size_override("font_size", 20)
-		btn.custom_minimum_size.y = 100
+		btn.add_theme_font_size_override("font_size", 24)
+		btn.custom_minimum_size.y = 120
 		btn.pressed.connect(_on_upgrade_card.bind(entry))
 		card_list_container.add_child(btn)
 

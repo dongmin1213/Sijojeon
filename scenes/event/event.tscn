@@ -43,9 +43,9 @@ color = Color(0.04, 0.08, 0.05, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.08
-anchor_top = 0.08
+anchor_top = 0.12
 anchor_right = 0.92
-anchor_bottom = 0.14
+anchor_bottom = 0.18
 grow_horizontal = 2
 grow_vertical = 2
 text = "MAP_EVENT"
@@ -58,7 +58,7 @@ theme_override_colors/font_color = Color(0.3, 0.85, 0.4, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.04
-anchor_top = 0.52
+anchor_top = 0.45
 anchor_right = 0.96
 anchor_bottom = 0.98
 grow_horizontal = 2
@@ -79,16 +79,16 @@ layout_mode = 2
 text = ""
 horizontal_alignment = 0
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 24
-theme_override_colors/font_color = Color(0.85, 0.82, 0.70, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.92, 0.88, 0.75, 1)
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = ""
 horizontal_alignment = 0
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 22
-theme_override_colors/font_color = Color(0.7, 0.68, 0.58, 0.9)
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.82, 0.78, 0.65, 1)
 
 [node name="ChoiceContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -117,9 +117,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_status_pill")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
-anchor_top = 0.015
+anchor_top = 0.05
 anchor_right = 0.85
-anchor_bottom = 0.06
+anchor_bottom = 0.095
 
 [node name="StatusBar" type="HBoxContainer" parent="StatusOverlay"]
 layout_mode = 2

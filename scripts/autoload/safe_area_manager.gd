@@ -73,9 +73,9 @@ func _calculate_margins() -> void:
 	if is_full_screen or is_full_screen_alt:
 		if _is_mobile():
 			print("[SafeAreaManager] safe area == 전체 화면 (OS 미보고 가능성) — fallback 마진 적용")
-			# 노치 미보고 시 fallback 최소 상단 마진 (약 3% 뷰포트)
+			# 노치 미보고 시 fallback 최소 상단 마진 (약 5% 뷰포트)
 			var viewport_size := get_viewport().get_visible_rect().size
-			margin_top = maxf(margin_top, viewport_size.y * 0.03)
+			margin_top = maxf(margin_top, viewport_size.y * 0.05)
 		return
 
 	# 뷰포트 크기 (stretch mode 적용 후)
