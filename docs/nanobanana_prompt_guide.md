@@ -1,7 +1,8 @@
 # 시조전 — NanoBanana 프롬프트 가이드
 
-> 버전: 0.1 | 최종 업데이트: 2026-04-06
+> 버전: 0.2 | 최종 업데이트: 2026-04-06
 > Google NanoBanana 2 (Gemini Plus) 기반 에셋 생성 프롬프트 모음
+> **아트 스타일: 고품질 픽셀아트 (High-Quality Pixel Art)**
 
 ---
 
@@ -9,9 +10,10 @@
 
 1. **주제(Subject)를 먼저** — 가장 중요한 요소를 앞에 배치
 2. **스타일 일관성** — 모든 프롬프트에 동일한 스타일 접두사 사용
-3. **구체적 묘사** — "멋진" 대신 "어두운 조명, 금박 하이라이트, 수묵 질감"
+3. **구체적 묘사** — "멋진" 대신 "어두운 조명, 금박 하이라이트, 픽셀 디더링"
 4. **모순 금지** — "미니멀"과 "복잡한 디테일"을 동시에 쓰지 않기
 5. **기술 스펙 명시** — 해상도, 배경 투명도, 비율 등
+6. **픽셀아트 특성** — anti-aliasing 최소화, 제한된 팔레트, 명확한 실루엣
 
 ---
 
@@ -21,19 +23,20 @@
 
 ```
 [스타일 프리픽스 — 카드/캐릭터/적용]
-Korean traditional ink wash painting meets modern digital illustration.
-Joseon dynasty (1392-1910) era aesthetic.
-Dancheong (단청) color palette: vermillion red, indigo blue, pine green, gold leaf, violet purple.
-Dark and majestic atmosphere with subtle mystery.
-Clean lines, semi-realistic style, suitable for mobile card game.
+High-quality pixel art in the style of classic 16-bit SNES/GBA RPGs.
+Joseon dynasty (1392-1910) Korean historical aesthetic.
+Limited color palette inspired by dancheong (단청): vermillion red, indigo blue, pine green, gold, violet purple.
+Dark and atmospheric with dramatic pixel shading and dithering.
+Clean pixel edges, no anti-aliasing, detailed sprite work.
+Suitable for a mobile roguelike card game.
 ```
 
 ```
 [스타일 프리픽스 — 아이콘용]
-Flat icon style with Korean traditional color palette.
-Dancheong (단청) colors: vermillion, indigo, gold, pine green.
-Clean edges, no gradients, transparent background.
-64x64 pixel art suitable for mobile UI.
+Crisp pixel art icon style, 16-bit RPG aesthetic.
+Korean traditional dancheong (단청) color palette: vermillion, indigo, gold, pine green.
+Clean pixel edges, minimal dithering, transparent background.
+Sharp silhouette readable at small sizes.
 ```
 
 ---
@@ -44,13 +47,14 @@ Clean edges, no gradients, transparent background.
 
 ```
 [스타일 프리픽스] 
-A Joseon dynasty military officer (무관/武官) standing in a powerful stance.
-Wearing dark iron-gray armor (갑옷) over a navy blue inner robe.
-A Korean traditional sword (환도/環刀) at his waist, one hand resting on the pommel.
-Strong jawline, determined eyes, short topknot (상투) under a warrior's headband.
-Muscular build, battle scars on forearms.
-Dark moody background with faint smoke and ember particles.
-Portrait orientation, waist-up composition.
+High-quality pixel art portrait of a Joseon dynasty military officer (무관/武官).
+Powerful standing stance, waist-up composition.
+Dark iron-gray pixel armor (갑옷) over a navy blue inner robe, detailed pixel shading on metal plates.
+Korean traditional sword (환도/環刀) at his waist, one hand on the pommel.
+Strong jawline, determined eyes, topknot (상투) under a warrior's headband.
+Muscular build with visible battle scars rendered in pixel detail.
+Dark background with pixel smoke and ember particle effects.
+16-bit RPG character portrait style. No anti-aliasing.
 Resolution: 1024x1536, transparent background.
 ```
 
@@ -58,13 +62,14 @@ Resolution: 1024x1536, transparent background.
 
 ```
 [스타일 프리픽스]
-A Joseon dynasty Taoist mystic (도사/道士) in a meditative yet powerful pose.
-Wearing flowing white and pale blue Taoist robes (도포) with yin-yang embroidery.
-Holding a glowing paper talisman (부적) in one hand, mystical qi energy swirling around the other.
-Long white beard, serene but piercing eyes, hair tied in a topknot with a jade pin.
+High-quality pixel art portrait of a Joseon dynasty Taoist mystic (도사/道士).
+Meditative yet powerful pose, waist-up composition.
+Flowing white and pale blue Taoist robes (도포) with pixel yin-yang embroidery detail.
+Holding a glowing paper talisman (부적) in one hand, pixel qi energy swirling around the other.
+Long white beard, serene but piercing eyes, topknot with a jade pin.
 Thin, wiry build suggesting inner strength.
-Ethereal teal and purple energy wisps surrounding the figure.
-Portrait orientation, waist-up composition.
+Ethereal teal and purple pixel energy wisps surrounding the figure.
+16-bit RPG character portrait style. Dithered glow effects.
 Resolution: 1024x1536, transparent background.
 ```
 
@@ -72,13 +77,14 @@ Resolution: 1024x1536, transparent background.
 
 ```
 [스타일 프리픽스]
-A Joseon dynasty civil scholar-official (문관/文官) with an air of intellectual authority.
-Wearing a formal scholar's hat (사모/紗帽) and crimson official court robe (관복) with a rank badge (흉배).
+High-quality pixel art portrait of a Joseon dynasty civil scholar-official (문관/文官).
+Intellectual authority, waist-up composition.
+Formal scholar's hat (사모/紗帽) and crimson court robe (관복) with pixel rank badge (흉배).
 Holding a calligraphy brush in one hand and an ancient text scroll in the other.
-Sharp, intelligent eyes behind a calm expression. Neatly trimmed beard.
-Slim, elegant build. Standing with refined posture.
-Faint golden calligraphy characters floating in the background.
-Portrait orientation, waist-up composition.
+Sharp, intelligent eyes, calm expression. Neatly trimmed beard.
+Slim, elegant build with refined posture.
+Faint golden pixel calligraphy characters floating in background.
+16-bit RPG character portrait style. No anti-aliasing.
 Resolution: 1024x1536, transparent background.
 ```
 
@@ -90,12 +96,12 @@ Resolution: 1024x1536, transparent background.
 
 ```
 [스타일 프리픽스]
-A Joseon-era street thug (불량배) from the back alleys of Hanyang.
-Rough, unkempt appearance. Torn and dirty hemp clothing.
-Wielding a crude short knife, aggressive stance leaning forward.
-Scar across the cheek, missing a tooth, wild eyes.
-Muscular but lean build. Bare feet or straw sandals.
-Full body, facing slightly left, dark alley atmosphere.
+Pixel art sprite of a Joseon-era street thug (불량배) from Hanyang back alleys.
+Rough, unkempt pixel character. Torn and dirty hemp clothing with visible pixel wear.
+Wielding a crude short knife, aggressive forward-leaning stance.
+Scar across cheek, missing tooth, wild eyes. Lean muscular build.
+Bare feet or straw sandals. Full body sprite, facing slightly left.
+16-bit RPG enemy sprite style. Clean pixel edges, no anti-aliasing.
 Resolution: 512x512, transparent background.
 ```
 
@@ -103,11 +109,11 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A corrupt low-ranking Joseon constable (포졸) from the local magistrate's office.
-Wearing a red military vest over dark clothes with a black hat.
-Carrying a wooden cudgel (곤장) over one shoulder, smirking expression.
-Pudgy build suggesting laziness, but menacing presence.
-Full body pose, standing with authority.
+Pixel art sprite of a corrupt low-ranking Joseon constable (포졸).
+Red military vest over dark clothes, black hat. Pixel fabric detail.
+Carrying a wooden cudgel (곤장) over one shoulder, smirking.
+Pudgy build, menacing presence. Full body sprite.
+16-bit RPG enemy sprite style. Clean pixel edges.
 Resolution: 512x512, transparent background.
 ```
 
@@ -115,11 +121,11 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A sly Joseon-era pawnshop owner (전당포 주인) counting money.
-Wearing merchant's clothing — a dark gray durumagi with a money pouch at the belt.
-Holding a wooden abacus (주판) in one hand, cunning smile.
-Thin face, narrow eyes, hunched posture suggesting greed.
-Full body, slightly hunched forward.
+Pixel art sprite of a sly Joseon-era pawnshop owner (전당포 주인).
+Dark gray durumagi with money pouch at belt. Holding wooden abacus (주판).
+Thin face, narrow eyes, hunched greedy posture. Cunning pixel expression.
+Full body sprite, slightly hunched forward.
+16-bit RPG enemy sprite style. Clean pixel edges.
 Resolution: 512x512, transparent background.
 ```
 
@@ -127,11 +133,12 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A wandering Joseon bandit (도적) from the mountain roads.
-Ragged, patched clothing. A tattered cloak over the shoulders.
-Wielding a short dagger, crouching in an ambush-ready stance.
-Gaunt face with wild hair, desperate eyes.
-Full body, dynamic crouching pose.
+Pixel art sprite of a wandering Joseon bandit (도적) from mountain roads.
+Ragged, patched clothing with pixel tattered cloak.
+Wielding a short dagger, crouching ambush-ready stance.
+Gaunt face, wild hair, desperate eyes. Dynamic pixel pose.
+Full body sprite.
+16-bit RPG enemy sprite style. Clean pixel edges.
 Resolution: 512x512, transparent background.
 ```
 
@@ -139,12 +146,13 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A Korean vengeful ghost (원혼/怨魂) — a spirit of someone who died unjustly.
-Semi-transparent form with pale blue-white ethereal glow.
-Wearing a tattered white Joseon mourning dress (소복).
-Long black hair covering part of the face, hollow glowing eyes visible.
-Floating slightly above the ground, wispy trails at the feet.
-Full body, ghostly atmosphere with cold blue mist.
+Pixel art sprite of a Korean vengeful ghost (원혼/怨魂).
+Semi-transparent pixel form with pale blue-white dithered glow effect.
+Tattered white Joseon mourning dress (소복).
+Long black pixel hair covering part of face, glowing hollow eyes.
+Floating above ground with pixel wispy trails at feet.
+Full body sprite. Pixel dithering for transparency effect.
+16-bit RPG ghost enemy style. 
 Resolution: 512x512, transparent background.
 ```
 
@@ -152,11 +160,12 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A Korean spirit fire (도깨비불) — a floating supernatural flame.
-An orb of swirling blue-green and orange fire, approximately head-sized.
-Faint face-like features visible within the flames — mischievous expression.
-Trailing wisps of ghostly fire, floating in darkness.
-Centered composition, ethereal glow illuminating surroundings.
+Pixel art sprite of a Korean spirit fire (도깨비불).
+Swirling blue-green and orange pixel flame orb, head-sized.
+Faint face-like features within the flames — mischievous pixel expression.
+Trailing pixel fire wisps, floating in darkness.
+Centered composition with pixel glow effect using dithering.
+16-bit RPG magical enemy sprite style.
 Resolution: 512x512, transparent background.
 ```
 
@@ -164,12 +173,12 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A Joseon government slave (관노/官奴) forced to fight.
-Wearing rough hemp clothes with visible iron shackles on wrists.
-Wielding a makeshift weapon — an iron pitchfork (쇠스랑).
-Muscular build from forced labor, scarred back visible.
-Desperate, haunted expression. Barefoot.
-Full body, aggressive but reluctant stance.
+Pixel art sprite of a Joseon government slave (관노/官奴) forced to fight.
+Rough hemp clothes with pixel iron shackles on wrists.
+Wielding makeshift iron pitchfork (쇠스랑). Muscular build from forced labor.
+Desperate, haunted pixel expression. Barefoot.
+Full body sprite, aggressive but reluctant stance.
+16-bit RPG enemy sprite style. Clean pixel edges.
 Resolution: 512x512, transparent background.
 ```
 
@@ -177,12 +186,12 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A drunken Joseon-era patron (청객) from a gisaeng house.
-Wearing disheveled noble clothing — untied sash, tilted hat.
-Holding a folding fan (부채) as an improvised weapon, swaying stance.
-Flushed red face from alcohol, bleary but aggressive eyes.
-Portly build. Half-open robe revealing inner garments.
-Full body, unsteady stance.
+Pixel art sprite of a drunken Joseon-era gisaeng house patron (청객).
+Disheveled noble clothing — untied sash, tilted hat. Pixel fabric detail.
+Holding folding fan (부채) as weapon, swaying unsteady stance.
+Flushed red pixel face, bleary aggressive eyes. Portly build.
+Full body sprite.
+16-bit RPG enemy sprite style. Clean pixel edges.
 Resolution: 512x512, transparent background.
 ```
 
@@ -190,11 +199,12 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A Joseon night watchman (야경꾼) patrolling the city streets.
-Wearing dark blue-black patrol clothing with a round hat.
-Carrying a lantern on a pole in one hand and a short spear in the other.
+Pixel art sprite of a Joseon night watchman (야경꾼).
+Dark blue-black patrol clothing, round hat. Pixel uniform detail.
+Carrying pixel lantern on pole in one hand, short spear in other.
 Alert, stern expression. Lean, vigilant build.
-Full body, walking patrol stance.
+Full body sprite, walking patrol stance.
+16-bit RPG enemy sprite style. Pixel lantern glow effect.
 Resolution: 512x512, transparent background.
 ```
 
@@ -202,12 +212,12 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A corrupt Joseon market merchant (시전 상인) from the commercial district.
-Wearing fine merchant clothing — silk durumagi with fur-lined collar.
-Holding a weighted scale (저울) that's clearly rigged.
-Calculating expression, thin mustache, well-fed build.
-Gold and coin pouches visible at the belt.
-Full body, standing behind implied counter.
+Pixel art sprite of a corrupt Joseon market merchant (시전 상인).
+Fine silk durumagi with fur-lined collar, pixel fabric sheen.
+Holding rigged weighted scale (저울). Calculating expression, thin mustache.
+Well-fed build. Gold and coin pouches at belt with pixel gleam.
+Full body sprite.
+16-bit RPG enemy sprite style. Clean pixel edges.
 Resolution: 512x512, transparent background.
 ```
 
@@ -215,12 +225,12 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A Joseon government herald/trumpeter (나팔수) from the magistrate's office.
-Wearing official minor clerk clothing — dark blue with red sash.
-Holding a traditional Korean trumpet (나팔) ready to blow.
-Young face, nervous but dutiful expression.
-Slim build. Standing at attention.
-Full body, formal stance.
+Pixel art sprite of a Joseon government herald/trumpeter (나팔수).
+Dark blue official clothing with red sash. Pixel uniform detail.
+Holding traditional Korean trumpet (나팔) ready to blow.
+Young face, nervous but dutiful pixel expression. Slim build.
+Full body sprite, formal attention stance.
+16-bit RPG enemy sprite style. Clean pixel edges.
 Resolution: 512x512, transparent background.
 ```
 
@@ -232,12 +242,13 @@ Resolution: 512x512, transparent background.
 
 ```
 [스타일 프리픽스]
-A tyrannical Joseon aristocrat (양반/兩班) of high social standing.
-Wearing luxurious silk robes in dark purple with gold embroidery.
+Large pixel art sprite of a tyrannical Joseon aristocrat (양반/兩班).
+Luxurious silk robes in dark purple with pixel gold embroidery detail.
 Holding a long smoking pipe (장죽/長竹) like a scepter.
-Arrogant expression, looking down with contempt. Neatly groomed beard.
-Tall, imposing presence. Servants implied in shadow behind.
-Full body, authoritative standing pose. Larger than regular enemies.
+Arrogant pixel expression, looking down with contempt. Groomed beard.
+Tall, imposing presence. Larger sprite than regular enemies.
+Full body, authoritative stance. Detailed pixel shading.
+16-bit RPG elite enemy sprite. Rich color palette.
 Resolution: 768x768, transparent background.
 ```
 
@@ -245,13 +256,13 @@ Resolution: 768x768, transparent background.
 
 ```
 [스타일 프리픽스]
-A Joseon-era poison assassin (독사/毒蛇) — master of poisons.
-Wearing all-black tight-fitting clothes with a dark face mask (복면).
-Multiple hidden vials of green and purple poison strapped across the chest.
-Only the eyes visible — cold, calculating, serpent-like.
-Lean, agile build. Crouching in a strike-ready pose.
-Faint green toxic mist around the hands.
-Full body, dynamic assassin pose. Larger than regular enemies.
+Large pixel art sprite of a Joseon-era poison assassin (독사/毒蛇).
+All-black tight clothing with dark face mask (복면). Pixel stealth aesthetic.
+Multiple green and purple poison vials strapped across chest, pixel glow.
+Only eyes visible — cold, calculating, serpent-like pixel detail.
+Lean, agile crouching strike-ready pose. Pixel toxic mist around hands.
+Full body, dynamic pose. Larger sprite than regular enemies.
+16-bit RPG elite enemy sprite. Dithered poison effect.
 Resolution: 768x768, transparent background.
 ```
 
@@ -259,12 +270,13 @@ Resolution: 768x768, transparent background.
 
 ```
 [스타일 프리픽스]
-A Joseon-era elite hunter (포수/砲手) armed with bow and matchlock rifle.
-Wearing practical hunting clothes — leather and fur, mountain style.
-A Korean traditional bow (활) on the back, holding a matchlock musket (화승총).
+Large pixel art sprite of a Joseon-era elite hunter (포수/砲手).
+Practical leather and fur hunting clothes, mountain style pixel detail.
+Korean bow (활) on back, holding matchlock musket (화승총). Pixel weapon detail.
 Weathered face, sharp hawk-like eyes, stubble beard.
-Sturdy, hardened build from mountain life.
-Full body, aiming stance. Larger than regular enemies.
+Sturdy, hardened build. Larger sprite than regular enemies.
+Full body, aiming stance. Detailed pixel shading.
+16-bit RPG elite enemy sprite.
 Resolution: 768x768, transparent background.
 ```
 
@@ -276,13 +288,14 @@ Resolution: 768x768, transparent background.
 
 ```
 [스타일 프리픽스]
-A powerful corrupt Joseon Minister of Personnel (이조판서/吏曹判書) named Yi Mu-ryeong.
-Wearing the highest rank court robes — crimson and gold, with a crane rank badge (흉배).
-Sitting on an ornate chair as if it were a throne, one hand holding a red official seal (관인).
-Cold, merciless eyes beneath a stiff official's hat (사모). White beard neatly trimmed.
-Imposing presence radiating corrupt authority. Dark shadows and red/gold lighting.
-The seal glows ominously — it represents his absolute power over life and death.
-Full body, seated on throne-like chair. Boss-scale: much larger composition.
+Boss-scale pixel art of a corrupt Joseon Minister of Personnel (이조판서/吏曹判書) Yi Mu-ryeong.
+Highest rank court robes — crimson and gold pixels, crane rank badge (흉배) with pixel detail.
+Seated on ornate throne-like chair, one hand holding a glowing red seal (관인).
+Cold, merciless pixel eyes beneath stiff official's hat (사모). White trimmed beard.
+Imposing presence, dark pixel shadows with red/gold pixel lighting.
+The seal glows with pixel dithering effect — absolute power.
+Full body, seated. Boss-scale: much larger and more detailed than regular sprites.
+16-bit RPG final boss sprite. Rich pixel shading and dithering.
 Resolution: 1024x1024, transparent background.
 ```
 
@@ -290,14 +303,15 @@ Resolution: 1024x1024, transparent background.
 
 ```
 [스타일 프리픽스]
-A monstrous twin-headed tiger (쌍두 호랑이/兩頭虎) — mountain god's wrathful avatar.
-A massive Korean tiger (호랑이) with TWO heads, each bearing different expressions:
-Left head (좌두): calculating, strategic, cold blue eyes.
-Right head (우두): ferocious, roaring, fiery orange eyes.
-Enormous muscular body with mystical markings glowing on the fur.
-Standing on a rocky mountain ridge with swirling storm clouds behind.
-Traditional Korean tiger stripes with supernatural golden glow.
-Full body, facing forward. Boss-scale composition.
+Boss-scale pixel art of a monstrous twin-headed tiger (쌍두 호랑이/兩頭虎).
+Massive Korean tiger with TWO pixel heads:
+Left head (좌두): calculating, cold blue pixel eyes.
+Right head (우두): ferocious roaring, fiery orange pixel eyes.
+Enormous muscular pixel body with glowing mystical markings on fur.
+Standing on rocky mountain ridge, pixel storm clouds behind.
+Korean tiger stripes with supernatural golden pixel glow effect.
+Full body, facing forward. Boss-scale sprite.
+16-bit RPG boss monster. Detailed pixel art with dithered glow.
 Resolution: 1024x1024, transparent background.
 ```
 
@@ -305,14 +319,14 @@ Resolution: 1024x1024, transparent background.
 
 ```
 [스타일 프리픽스]
-A treasonous Joseon lord (역적 대감/逆賊大監) who schemes to seize the throne.
-Wearing court robes that are deliberately more regal than his station — dragon motifs instead of crane.
-Face half-hidden in shadow, one eye gleaming with ambition. A sinister smile.
-Holding a secret royal decree (밀서) in one hand, a hidden blade in the other.
-Standing before a war map table with strategy pieces.
-Dark crimson and black color scheme with flashes of imperial gold.
-Aura of treachery — loyal-looking facade cracking to reveal the tyrant beneath.
-Full body, standing pose with dramatic lighting. Boss-scale composition.
+Boss-scale pixel art of a treasonous Joseon lord (역적 대감/逆賊大監).
+Court robes with dragon motifs instead of crane — pixel embroidery detail.
+Face half in pixel shadow, one eye gleaming with ambition. Sinister smile.
+Holding secret royal decree (밀서) in one hand, hidden blade in other.
+Standing before war map table with pixel strategy pieces.
+Dark crimson and black pixel palette with flashes of imperial gold.
+Full body, dramatic pixel lighting. Boss-scale sprite.
+16-bit RPG final boss. Rich pixel shading, atmospheric dithering.
 Resolution: 1024x1024, transparent background.
 ```
 
@@ -323,10 +337,11 @@ Resolution: 1024x1024, transparent background.
 모든 카드 프롬프트 공통 설정:
 ```
 [카드 공통]
-Square composition suitable for a card game illustration panel.
-Korean traditional ink painting style with vivid dancheong colors.
-Dynamic action scene, dramatic lighting.
-No text, no border, no frame — illustration only.
+High-quality pixel art card illustration.
+Square composition suitable for a card game panel.
+Dancheong color palette, dynamic action scene, dramatic pixel lighting.
+No text, no border, no frame — pixel illustration only.
+16-bit RPG spell/ability card art style. Detailed pixel work.
 Resolution: 512x768, transparent background.
 ```
 
@@ -334,50 +349,50 @@ Resolution: 512x768, transparent background.
 
 ```
 [카드 공통]
-A Joseon warrior gracefully sidestepping a sword strike.
-The blade passes inches from the body. Flowing robes trail behind the dodge.
-Emphasis on fluid, circular evasion movement.
-Cool blue and silver tones suggesting defensive skill.
+Pixel art of a Joseon warrior gracefully sidestepping a sword strike.
+Blade passes inches from the body. Pixel robes trail behind the dodge.
+Fluid, circular evasion movement. Pixel motion blur effect.
+Cool blue and silver pixel tones. Defensive skill.
 ```
 
 ### M002 — 도약 (跳躍)
 
 ```
 [카드 공통]
-A figure leaping powerfully upward, pushing off the ground with one foot.
-Korean traditional robes billowing from the upward momentum.
-Below, the enemy's attack passes through empty air.
-Warm gold and green tones, sense of ascending energy.
+Pixel art of a figure leaping powerfully upward, pushing off with one foot.
+Pixel robes billowing from upward momentum.
+Below, enemy's attack passes through empty air.
+Warm gold and green pixel tones, ascending energy effect.
 ```
 
 ### M003 — 베기
 
 ```
 [카드 공통]
-A decisive downward slash with a Korean sword (환도).
-The blade catches light in a dramatic arc of motion.
-Sparks and energy trail following the slash line.
-Strong vermillion red and steel gray tones. Raw power.
+Pixel art of a decisive downward slash with a Korean sword (환도).
+Blade catches pixel light in dramatic arc of motion.
+Pixel sparks and energy trail following the slash line.
+Strong vermillion red and steel gray. Raw pixel power.
 ```
 
 ### M004 — 수호
 
 ```
 [카드 공통]
-A defensive stance — arms crossed before the body, emanating a shield of qi energy.
-Translucent indigo-blue barrier forming in front of the defender.
-Solid, rooted posture. Calm, focused expression.
-Cool indigo and white tones suggesting protection.
+Pixel art of a defensive stance — arms crossed, emanating pixel qi shield.
+Translucent indigo-blue pixel barrier forming in front.
+Solid, rooted posture. Calm pixel expression.
+Cool indigo and white tones. Dithered shield glow.
 ```
 
 ### M005 — 집중
 
 ```
 [카드 공통]
-A figure kneeling in meditation, eyes closed, hands in a mudra-like position.
-Visible qi (기) energy gathering as golden wisps spiraling inward.
-Calm, serene atmosphere. Faint glow around the body.
-Gold and soft violet tones.
+Pixel art of a figure kneeling in meditation, eyes closed, mudra hands.
+Visible pixel qi energy gathering as golden wisps spiraling inward.
+Calm, serene. Dithered glow around the body.
+Gold and soft violet pixel tones.
 ```
 
 ---
@@ -388,20 +403,20 @@ Gold and soft violet tones.
 
 ```
 [카드 공통]
-A Joseon military officer commanding soldiers into a new battle formation.
-From above, soldiers shift positions like chess pieces on a battlefield.
-The officer's hand gesture directs the movement. Military flags waving.
-Gold and dark navy tones. Tactical, strategic atmosphere.
+Pixel art of a Joseon military officer commanding formation change.
+From above, pixel soldiers shift like chess pieces on battlefield.
+Officer's hand gesture directs movement. Pixel military flags waving.
+Gold and dark navy pixel tones. Tactical, strategic atmosphere.
 ```
 
 ### G002 — 돌격 진형
 
 ```
 [카드 공통]
-A V-shaped charging formation of Joseon soldiers.
-The lead warrior charges forward with sword raised, soldiers flanking.
-Dust and motion blur conveying speed and impact.
-Fierce vermillion and iron gray tones.
+Pixel art of a V-shaped charging formation of Joseon soldiers.
+Lead warrior charges forward with sword raised, pixel soldiers flanking.
+Pixel dust and motion blur conveying speed and impact.
+Fierce vermillion and iron gray pixel tones.
 ```
 
 ---
@@ -412,10 +427,10 @@ Fierce vermillion and iron gray tones.
 
 ```
 [카드 공통]
-A Taoist mystic throwing a burning paper talisman (부적) at an unseen enemy.
-The talisman is mid-flight, trailing golden fire and mystical symbols.
-The caster's robes billow with released energy.
-Teal and gold tones with supernatural fire.
+Pixel art of a Taoist mystic throwing a burning paper talisman (부적).
+Talisman mid-flight, trailing pixel golden fire and mystical symbols.
+Caster's pixel robes billow with released energy.
+Teal and gold pixel tones with supernatural pixel fire effect.
 ```
 
 ---
@@ -426,10 +441,10 @@ Teal and gold tones with supernatural fire.
 
 ```
 [카드 공통]
-A scholar-official delivering a passionate lecture from an ancient text.
-The words from the book materialize as glowing Korean characters in the air.
-Other scholars listen intently. Candle-lit study atmosphere.
-Warm gold and deep brown tones. Scholarly, intellectual energy.
+Pixel art of a scholar-official delivering a lecture from ancient text.
+Words from the book materialize as glowing pixel Korean characters in air.
+Other pixel scholars listen. Pixel candle-lit study atmosphere.
+Warm gold and deep brown pixel tones. Scholarly energy.
 ```
 
 ---
@@ -440,12 +455,12 @@ Warm gold and deep brown tones. Scholarly, intellectual energy.
 
 ```
 [스타일 프리픽스]
-A panoramic view of Joseon-era Hanyang (Seoul) at dramatic sunset.
-Traditional Korean palace rooftops in the foreground, mountains behind.
-The sky painted in vermillion, gold, and deep indigo — dancheong colors.
-A lone figure silhouetted on a rooftop, looking toward the palace.
-Ink wash painting style with vivid sunset colors. Majestic and mysterious.
-Empty space in the upper third for game title placement.
+Detailed pixel art panoramic view of Joseon-era Hanyang (Seoul) at sunset.
+Pixel palace rooftops in foreground, pixel mountains behind.
+Sky in vermillion, gold, deep indigo pixel gradients — dancheong palette.
+Lone pixel figure silhouetted on a rooftop, looking toward the palace.
+16-bit RPG title screen pixel art. Majestic, atmospheric pixel dithering.
+Empty space in upper third for game title.
 Resolution: 1080x1920, portrait orientation.
 ```
 
@@ -453,11 +468,11 @@ Resolution: 1080x1920, portrait orientation.
 
 ```
 [스타일 프리픽스]
-A dark Joseon-era street at night, lit by scattered paper lanterns.
-Wooden buildings with tiled roofs line both sides. Cobblestone path.
-Fog rolling low across the ground. Moon visible through clouds.
-Atmospheric, tense. Ready for a confrontation.
-Muted colors — indigo night sky, warm orange lantern glow.
+Detailed pixel art of a dark Joseon-era street at night.
+Scattered pixel paper lanterns casting warm glow.
+Pixel wooden buildings with tiled roofs on both sides. Cobblestone pixel path.
+Pixel fog rolling low. Moon visible through pixel clouds.
+16-bit RPG battle background. Atmospheric pixel dithering.
 Resolution: 1080x1920, portrait orientation. Space for UI in top and bottom thirds.
 ```
 
@@ -465,22 +480,23 @@ Resolution: 1080x1920, portrait orientation. Space for UI in top and bottom thir
 
 ```
 [스타일 프리픽스]
-A Korean traditional landscape painting (산수화/山水畫) style map background.
-Misty mountains, winding paths through pine forests, a river.
-Small traditional buildings scattered across the landscape.
-Ink wash painting style — black ink with subtle color washes.
-Top-down perspective suggesting a journey through the land.
-Resolution: 1080x1920, portrait orientation. Muted background for node overlay.
+Pixel art landscape map in Korean traditional style (산수화/山水畫).
+Pixel misty mountains, winding paths through pine forests, a river.
+Small pixel traditional buildings scattered across the landscape.
+16-bit RPG overworld map style. Muted pixel palette with subtle color.
+Top-down perspective, journey through the land.
+Resolution: 1080x1920, portrait orientation. Muted for node overlay.
 ```
 
 ### bg_shop — 상점 배경
 
 ```
 [스타일 프리픽스]
-Interior of a bustling Joseon-era marketplace shop (시전/市廛).
-Wooden shelves lined with goods — medicines, weapons, scrolls, talismans.
-A merchant's counter in the center with an abacus and coin pile.
-Warm, inviting lantern light. Rich wood tones and gold accents.
+Detailed pixel art interior of a Joseon-era marketplace shop (시전/市廛).
+Pixel wooden shelves with goods — medicines, weapons, scrolls, talismans.
+Merchant's counter with pixel abacus and coin pile.
+Warm pixel lantern light. Rich wood tones and gold accents.
+16-bit RPG shop interior. Detailed pixel item sprites on shelves.
 Resolution: 1080x1920, portrait orientation. Space for shop UI overlay.
 ```
 
@@ -488,11 +504,12 @@ Resolution: 1080x1920, portrait orientation. Space for shop UI overlay.
 
 ```
 [스타일 프리픽스]
-A peaceful Joseon-era roadside inn (주막/酒幕) at twilight.
-A small thatched-roof building with a wooden bench under an old tree.
-A pot of rice wine (막걸리) on the table. Fireflies in the warm air.
-Serene, healing atmosphere. Warm amber and soft green tones.
-Resolution: 1080x1920, portrait orientation. Space for rest options UI.
+Detailed pixel art of a peaceful Joseon-era roadside inn (주막/酒幕) at twilight.
+Pixel thatched-roof building, wooden bench under old pixel tree.
+Rice wine pot (막걸리) on table. Pixel fireflies in warm air.
+Serene, healing. Warm amber and soft green pixel tones.
+16-bit RPG rest area. Cozy pixel atmosphere with dithered twilight.
+Resolution: 1080x1920, portrait orientation. Space for rest UI.
 ```
 
 ---
@@ -503,50 +520,45 @@ Resolution: 1080x1920, portrait orientation. Space for rest options UI.
 
 ```
 [아이콘 프리픽스]
-A worn leather horse whip (편자) coiled in a circle.
-Dark brown leather with a brass handle tip.
-Faint golden glow suggesting protective energy.
-Simple, clean icon composition. 128x128.
+Pixel art icon of a worn leather horse whip (편자) coiled in a circle.
+Dark brown pixel leather with brass handle tip.
+Faint golden pixel glow. Clean pixel icon. 128x128.
 ```
 
 ### R002 — 평안 부적
 
 ```
 [아이콘 프리픽스]
-A yellow paper talisman (부적) with red ink Korean characters.
-Traditional rectangular shape with mystical symbols.
-Soft golden aura around the edges.
-Simple, clean icon composition. 128x128.
+Pixel art icon of a yellow paper talisman (부적) with red ink characters.
+Traditional rectangular shape with pixel mystical symbols.
+Soft golden pixel aura. Clean pixel icon. 128x128.
 ```
 
 ### R003 — 행운의 엽전
 
 ```
 [아이콘 프리픽스]
-A single Korean traditional coin (엽전) — round with a square hole.
-Greenish bronze patina with golden highlights.
-Faint luck sparkles around it.
-Simple, clean icon composition. 128x128.
+Pixel art icon of a Korean traditional coin (엽전) — round with square hole.
+Greenish bronze pixel patina with golden highlights.
+Faint pixel sparkles. Clean pixel icon. 128x128.
 ```
 
 ### R004 — 봉황 깃털
 
 ```
 [아이콘 프리픽스]
-A single phoenix feather (봉황 깃털) — iridescent rainbow colors.
-Long, elegant feather with a golden quill.
-Faint fire wisps at the tip. Warm glow.
-Simple, clean icon composition. 128x128.
+Pixel art icon of a phoenix feather (봉황 깃털) — iridescent pixel rainbow.
+Long, elegant pixel feather with golden quill.
+Pixel fire wisps at tip. Clean pixel icon. 128x128.
 ```
 
 ### R005 — 홍삼 뿌리
 
 ```
 [아이콘 프리픽스]
-A Korean red ginseng root (홍삼) — dark reddish-brown, humanoid shape.
-Earthy, organic form with small rootlets.
-Faint warm red healing aura.
-Simple, clean icon composition. 128x128.
+Pixel art icon of Korean red ginseng root (홍삼) — dark reddish-brown.
+Earthy pixel form with small rootlets.
+Faint warm red pixel healing aura. Clean pixel icon. 128x128.
 ```
 
 ---
@@ -554,18 +566,18 @@ Simple, clean icon composition. 128x128.
 ## 11. UI 상태이상 아이콘 프롬프트
 
 ```
-[아이콘 프리픽스] — 각각 64x64
+[아이콘 프리픽스] — 각각 64x64 pixel art icons
 
-독 (Poison): Green bubbling vial, skull vapor rising.
-화상 (Burn): Orange-red flame icon, sharp edges.
-출혈 (Bleed): Dark red blood drops, three drops in a triangle.
-사망각인 (Death Mark): Black skull with red X mark.
-약화 (Weakness): Broken sword icon, gray and dull.
-취약 (Vulnerable): Cracked shield icon, red cracks.
-냉기 (Chill): Blue snowflake/ice crystal.
-힘 (Strength): Red flexing arm/fist, power aura.
-가시 (Thorns): Green thorny vine circle.
-갑옷 (Armor): Iron chestplate icon, metallic gray.
+독 (Poison): Pixel green bubbling vial, skull vapor rising. Clean pixel edges.
+화상 (Burn): Pixel orange-red flame icon, sharp pixel edges.
+출혈 (Bleed): Pixel dark red blood drops, three drops in triangle.
+사망각인 (Death Mark): Pixel black skull with red X mark.
+약화 (Weakness): Pixel broken sword icon, gray and dull.
+취약 (Vulnerable): Pixel cracked shield icon, red pixel cracks.
+냉기 (Chill): Pixel blue snowflake/ice crystal.
+힘 (Strength): Pixel red flexing arm/fist, power aura.
+가시 (Thorns): Pixel green thorny vine circle.
+갑옷 (Armor): Pixel iron chestplate icon, metallic gray.
 ```
 
 ---
@@ -577,13 +589,15 @@ Simple, clean icon composition. 128x128.
 3. `[스타일 프리픽스]` + 개별 프롬프트를 결합하여 입력
 4. 생성된 이미지 다운로드 → 배경 제거 (필요시) → `art/` 폴더의 해당 경로에 PNG로 저장
 5. 스타일이 일관되지 않으면 첫 번째 결과물을 참조 이미지로 업로드하여 후속 생성에 활용
+6. **픽셀아트 품질 확인**: 생성된 이미지에 anti-aliasing이 섞여있으면 "no anti-aliasing, clean pixel edges" 강조하여 재생성
 
 ---
 
 ## 배치 생성 팁
 
-- **캐릭터 일관성**: 첫 캐릭터 생성 후 결과물을 참조 이미지로 업로드하여 후속 캐릭터에 스타일 적용
-- **카드 일러스트**: 같은 클래스 카드는 연속으로 생성하여 스타일 일관성 유지
-- **아이콘**: 상태이상 아이콘은 한 세트로 프롬프트를 구성해서 통일감 확보
-- **배경 제거**: 캐릭터/적 이미지는 remove.bg 등으로 배경 제거 후 게임 적용
-- **해상도**: NanoBanana 2는 최대 4K 지원 — 큰 이미지 생성 후 축소하면 품질 향상
+- **픽셀아트 일관성**: 첫 캐릭터 생성 후 결과물을 참조 이미지로 업로드 — 픽셀 크기와 팔레트가 동일하게 유지됨
+- **카드 일러스트**: 같은 클래스 카드는 연속으로 생성하여 픽셀 스타일 일관성 유지
+- **아이콘**: 상태이상 아이콘은 한 세트로 프롬프트를 구성해서 통일된 픽셀 그리드 확보
+- **배경 제거**: 투명 배경 지정했더라도 실제 결과물 확인 필요 — remove.bg 등으로 후처리
+- **해상도 주의**: 픽셀아트는 정수배 스케일링 필수 (2x, 3x, 4x) — 비정수배 축소 시 픽셀이 깨짐
+- **팔레트 제한**: NanoBanana에 "limited color palette, maximum 32 colors" 추가하면 더 클래식한 픽셀아트 느낌
