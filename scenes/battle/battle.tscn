@@ -3,7 +3,7 @@
 [ext_resource type="Script"    path="res://scenes/battle/battle.gd"          id="1"]
 [ext_resource type="PackedScene" uid="uid://card_hand_scene" path="res://scenes/ui/card_hand.tscn" id="2"]
 [ext_resource type="Theme"     path="res://resources/joseon_theme.tres"       id="3"]
-[ext_resource type="Texture2D" path="res://art/backgrounds/battle_bg.svg"     id="4"]
+[ext_resource type="Texture2D" path="res://art/backgrounds/battle_bg.png"     id="4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hand"]
 
