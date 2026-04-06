@@ -1,6 +1,6 @@
 # 시조전 — NanoBanana 프롬프트 가이드
 
-> 버전: 1.2 | 최종 업데이트: 2026-04-06
+> 버전: 2.0 | 최종 업데이트: 2026-04-06
 > Google NanoBanana 2 (Gemini Plus) 기반 에셋 생성 프롬프트 모음
 > **아트 스타일: SD(슈퍼디폼) 하이브리드 도트 일러스트**
 > 참조: 가디언테일즈, 메이플스토리, 월드플리퍼
@@ -22,6 +22,25 @@
 
 ---
 
+## 한국 vs 중국 구분 핵심 (필독)
+
+AI 도구는 "Joseon"만으로는 중국풍을 생성하는 경향이 있다. 반드시 아래 한국 고유 키워드를 사용할 것:
+
+| 한국 (사용) | 중국 (금지) |
+|---|---|
+| Korean hanbok (저고리+바지/치마) | Chinese hanfu, long flowing robes |
+| Gat (갓, 검은 말총 모자), sangtu topknot | Chinese guanmao, queue hairstyle |
+| Dopo (도포), durumagi (두루마기) | Changshan, tangzhuang |
+| Korean curved roof (완만한 곡선, 처마) | Chinese dramatic upturned roof corners |
+| Obangsaek 5-color (백/흑/적/청/황) | Chinese red-gold dominant |
+| Dancheong wooden bracket painting | Chinese dougong bracket system |
+| Korean jangot/norigae accessories | Chinese jade pendants/tassels |
+| Stone walls with low gates | Chinese red lacquered pillars/gates |
+
+프롬프트에 **반드시** "Korean (NOT Chinese)" 또는 "distinctly Korean, not Chinese style"을 포함할 것.
+
+---
+
 ## 공통 스타일 프리픽스
 
 모든 캐릭터/적 프롬프트 앞에 붙이는 스타일 지정 문구:
@@ -30,16 +49,17 @@
 A chibi game character sprite in the style of Guardian Tales and MapleStory.
 Super-deformed proportions — the head is about 40% of the total character height, with a large expressive face, stubby limbs, and a compact body approximately 2.5 heads tall.
 High-resolution pixel art illustration with smooth shading and vibrant colors.
-Joseon dynasty Korean historical costume design with dancheong color palette (vermillion, indigo, pine green, gold).
+Korean Joseon dynasty costume — NOT Chinese. Specifically Korean hanbok-based clothing: jeogori (저고리) short jacket, baji (바지) trousers or chima (치마) skirt, dopo (도포) overcoat. Korean gat (갓) horsehair hat or sangtu (상투) topknot hairstyle. Obangsaek color palette (white, black, vermillion red, indigo blue, golden yellow) with dancheong accents.
 Full body character on a plain white background with no shadows, no ground, and no other elements.
-No text, no watermark, no border, no frame.
+No text, no watermark, no border, no frame. Not Chinese style.
 ```
 
 아이콘 프리픽스:
 
 ```
 A crisp game icon in pixel art illustration style.
-Korean traditional dancheong color palette: vermillion, indigo, gold, pine green.
+Korean traditional obangsaek and dancheong color palette: vermillion, indigo, gold, pine green, white.
+Korean Joseon dynasty aesthetic — NOT Chinese.
 Clean edges, sharp silhouette readable at small sizes.
 Plain white background with no shadows.
 No text, no border, no frame.
@@ -53,21 +73,21 @@ No text, no border, no frame.
 
 ```
 [스타일 프리픽스]
-Draw a fierce chibi Joseon military officer (무관) ready for battle. He wears dark iron-gray armor over a navy blue inner robe, with a Korean sword (환도) drawn and held at the ready. He has a fierce determined expression with sharp eyes, a topknot under a warrior's headband, and a compact sturdy body in an aggressive battle-ready stance facing slightly right. The armor plates have detailed smooth shading with metallic highlights and battle damage marks.
+Draw a fierce chibi Korean Joseon military officer (무관) ready for battle. He wears Korean-style lamellar armor (두정갑) over a dark navy blue jeogori jacket and baji trousers. He carries a Korean hwando (환도) single-edged curved sword drawn and ready. He has a fierce determined expression with sharp eyes, a Korean sangtu topknot under a Korean warrior's headband (전립 or 벙거지 military hat). Compact sturdy body in an aggressive battle-ready stance facing slightly right. Korean armor differs from Chinese — it uses riveted plates over fabric, not scales or lacquer. NOT Chinese style.
 ```
 
 ### char_dosa — 도사 (道士)
 
 ```
 [스타일 프리픽스]
-Draw a powerful chibi Joseon Taoist mystic (도사) channeling supernatural energy. He wears flowing white and pale blue robes with yin-yang embroidery that billow with mystical energy. He holds a glowing paper talisman in one hand with vivid qi energy swirling around the other. He has a long white beard, intense piercing eyes, and a topknot with a jade pin. He faces slightly right. Ethereal teal glow effect surrounds the figure.
+Draw a powerful chibi Korean Joseon Taoist mystic (도사) channeling supernatural energy. He wears a white Korean dopo (도포) overcoat with wide sleeves over a blue jeogori, tied with a Korean cloth belt (대대). He holds a glowing Korean paper talisman (부적) with red ink characters in one hand. He has a long white beard, intense piercing eyes, a Korean sangtu topknot with a jade binyeo pin, and wears a Korean jeongjagwan (정자관) horsehair hat. He faces slightly right. Ethereal teal glow. NOT Chinese robes.
 ```
 
 ### char_mungwan — 문관 (文官)
 
 ```
 [스타일 프리픽스]
-Draw a commanding chibi Joseon civil scholar-official (문관) with an aura of authority. He wears a formal scholar's hat (사모) and crimson court robe with a detailed rank badge. He holds a calligraphy brush in one hand with glowing ink characters floating around the other. He has sharp intelligent eyes, a stern confident expression, a neatly trimmed beard, and a dignified stance facing slightly right. Faint golden scholarly aura radiates from him.
+Draw a commanding chibi Korean Joseon civil scholar-official (문관) with an aura of authority. He wears a Korean samo (사모) black winged hat and a crimson dallyeong (달령) court robe with a Korean rank badge (흉배) on the chest — a square embroidered panel showing a crane. He holds a calligraphy brush with glowing hanja characters floating around. He has sharp intelligent eyes, a neatly trimmed beard, and a dignified stance facing slightly right. Korean samo hat has horizontal "wings" on the sides — NOT a Chinese guanmao. NOT Chinese official robes.
 ```
 
 ---
@@ -78,77 +98,77 @@ Draw a commanding chibi Joseon civil scholar-official (문관) with an aura of a
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon street thug (불량배). He has torn and dirty hemp clothing with visible patches, and wields a crude short knife in an aggressive forward-leaning stance. He has a scar across his cheek, a missing tooth, and wild menacing eyes. He is barefoot with straw sandals, in a dynamic threatening pose facing slightly left.
+Draw a cute chibi Korean Joseon street thug (불량배). He wears torn and dirty Korean hemp jeogori and baji with visible patches, straw sandals (짚신). He wields a crude short knife in an aggressive forward-leaning stance. Scar across cheek, missing tooth, wild menacing eyes. NOT Chinese clothing.
 ```
 
 ### E002 — 하급 포졸
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi corrupt Joseon constable (포졸) facing slightly left. He wears a red military vest over dark clothes with a black hat. He carries a wooden cudgel over one shoulder with a smirking expression. He has a pudgy compact build with a menacing presence.
+Draw a cute chibi corrupt Korean Joseon constable (포졸) facing slightly left. He wears a Korean red jeonbok (전복) military vest over dark jeogori and baji, with a Korean jeonrip (전립) round military hat with a tassel. He carries a wooden cudgel (곤장) over one shoulder with a smirking expression. Pudgy compact build. Korean military uniform — NOT Chinese.
 ```
 
 ### E003 — 전당포 주인
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi sly Joseon pawnshop owner (전당포 주인) facing slightly left. He wears a dark gray durumagi with a money pouch at his belt and holds a wooden abacus with gleaming beads. He has a thin face, narrow cunning eyes, and a calculating hunched-forward posture.
+Draw a cute chibi sly Korean Joseon pawnshop owner (전당포 주인) facing slightly left. He wears a dark gray Korean durumagi (두루마기) overcoat with a Korean cloth belt, a Korean gat (갓) horsehair hat. He holds a Korean wooden abacus (주판). Thin face, narrow cunning eyes, calculating hunched posture. NOT Chinese merchant.
 ```
 
 ### E004 — 떠돌이 도적
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon mountain bandit (도적) facing slightly left. He wears ragged patched clothing with a tattered cloak that billows behind him. He wields a short dagger in a crouching ambush-ready stance with wild desperate hair and eyes.
+Draw a cute chibi Korean Joseon mountain bandit (도적) facing slightly left. He wears ragged patched Korean hemp clothing with a tattered cloak. Hair in a messy undone sangtu topknot. Wields a short dagger in a crouching ambush-ready stance with wild desperate eyes. Korean peasant clothing style. NOT Chinese.
 ```
 
 ### E005 — 원혼
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Korean vengeful ghost (원혼) facing slightly left. She has a semi-transparent pale blue-white glowing form wearing a tattered white mourning dress (소복). Long black hair covers part of her face, with glowing hollow eyes. She floats above the ground with wispy spirit trails at her feet.
+Draw a cute chibi Korean vengeful ghost (원혼) facing slightly left. She wears a tattered Korean white sobok (소복) mourning hanbok — jeogori and chima. Long straight black hair covers part of her face, glowing hollow eyes. Semi-transparent pale blue-white form floating above ground with wispy spirit trails. Korean ghost (귀신) aesthetic — NOT Chinese jiangshi.
 ```
 
 ### E006 — 도깨비불
 
 ```
 [스타일 프리픽스]
-Draw a Korean spirit fire (도깨비불) as a swirling blue-green and orange flame orb about the size of a head. It has faint mischievous face-like features within the flames, with trailing fire wisps and a vivid glow effect. Dynamic flickering motion feeling.
+Draw a Korean spirit fire (도깨비불) — a distinctly Korean folklore spirit, NOT Chinese. Swirling blue-green and orange flame orb about the size of a head. Faint mischievous face-like features within the flames, trailing fire wisps and vivid glow. Dynamic flickering motion. Korean folk art (민화) style influence.
 ```
 
 ### E007 — 관노
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon government slave (관노) facing slightly left, forced to fight. He wears rough hemp clothes with iron shackles on his wrists and wields a makeshift iron pitchfork. He has a compact sturdy build, a desperate haunted expression, and is barefoot in an aggressive but reluctant stance.
+Draw a cute chibi Korean Joseon government slave (관노) facing slightly left, forced to fight. He wears rough Korean hemp jeogori and baji with iron shackles on wrists. Wields a makeshift iron pitchfork. Compact sturdy build, desperate haunted expression, barefoot. Korean commoner (상민) clothing. NOT Chinese.
 ```
 
 ### E008 — 기방 청객
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi drunken Joseon gisaeng house patron (청객) facing slightly left. He has disheveled noble clothing with an untied sash and a tilted hat. He holds a folding fan as a weapon in a swaying unsteady stance. He has a flushed red face and bleary aggressive eyes with a portly build.
+Draw a cute chibi drunken Korean Joseon gisaeng house patron (청객) facing slightly left. He wears disheveled Korean dopo (도포) nobleman's overcoat with untied cloth belt, a tilted Korean gat (갓) hat askew. He holds a Korean folding fan (합죽선) as weapon. Flushed red face, bleary aggressive eyes, portly build. Korean nobleman clothing. NOT Chinese.
 ```
 
 ### E009 — 야경꾼
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon night watchman (야경꾼) facing slightly left. He wears dark blue-black patrol clothing with a round hat. He carries a lantern on a pole in one hand with a warm glow effect and a short spear in the other. He has an alert stern expression with a lean vigilant build.
+Draw a cute chibi Korean Joseon night watchman (야경꾼) facing slightly left. He wears dark blue-black Korean patrol jeogori and baji with a Korean jeonrip (전립) round hat. He carries a Korean paper lantern (등롱) on a pole with warm glow and a short spear (창). Alert stern expression, lean vigilant build. NOT Chinese guard.
 ```
 
 ### E010 — 시전 상인
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi corrupt Joseon market merchant (시전 상인) facing slightly left. He wears a fine silk durumagi with a fur-lined collar. He holds a rigged weighted scale with a calculating expression and a thin mustache. He has gold and coin pouches at his belt with a gleam effect.
+Draw a cute chibi corrupt Korean Joseon market merchant (시전 상인) facing slightly left. He wears a fine silk Korean durumagi (두루마기) with a Korean gat (갓) hat. He holds a rigged weighted scale, calculating expression, thin mustache. Korean yeop-jeon (엽전) square-holed coins in pouches at belt. NOT Chinese merchant.
 ```
 
 ### E011 — 나팔수
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon government herald (나팔수) facing slightly left. He wears dark blue official clothing with a red sash. He holds a traditional Korean trumpet ready to blow. He has a young face with a nervous but dutiful expression and a slim build.
+Draw a cute chibi Korean Joseon government herald (나팔수) facing slightly left. He wears dark blue Korean official jeogori and baji with a red sash and a Korean jeonrip hat. He holds a Korean traditional trumpet (나팔) ready to blow. Young face, nervous dutiful expression, slim build. NOT Chinese.
 ```
 
 ---
@@ -159,21 +179,21 @@ Draw a cute chibi Joseon government herald (나팔수) facing slightly left. He 
 
 ```
 [스타일 프리픽스]
-Draw a larger cute chibi tyrannical Joseon aristocrat (양반) facing slightly left. He wears luxurious silk robes in dark purple with gold embroidery. He holds a long smoking pipe like a scepter with an arrogant expression, looking down with contempt. He has a groomed beard and an aura of authority. Make this sprite visibly larger and more detailed than regular enemy sprites.
+Draw a larger cute chibi tyrannical Korean Joseon aristocrat (양반) facing slightly left. He wears a luxurious silk Korean dopo (도포) in dark purple with gold embroidery over a white jeogori. He wears a tall Korean gat (갓) horsehair hat — the wide-brimmed black hat distinctive to Korean yangban class. He holds a long Korean bamboo smoking pipe (곰방대) like a scepter with arrogant expression. Groomed beard, aura of authority. Korean nobleman, NOT Chinese mandarin. Larger and more detailed than regular sprites.
 ```
 
 ### EL002 — 독사
 
 ```
 [스타일 프리픽스]
-Draw a larger cute chibi Joseon poison assassin (독사) facing slightly left. He wears all-black tight clothing with a dark face mask — only cold calculating serpent-like eyes visible. Multiple green and purple poison vials are strapped across his chest with a glow effect. He crouches in a strike-ready pose with toxic mist around his hands. Make this sprite visibly larger and more detailed than regular enemy sprites.
+Draw a larger cute chibi Korean Joseon poison assassin (독사) facing slightly left. He wears all-black Korean-style tight clothing (자객복) with a dark face mask — only cold calculating serpent-like eyes visible. Multiple green and purple poison vials strapped across chest with glow effect. Korean-style stealthy assassin with a short Korean dagger (비수). Crouches in strike-ready pose with toxic mist around hands. NOT Chinese wuxia assassin. Larger and more detailed.
 ```
 
 ### EL003 — 포수
 
 ```
 [스타일 프리픽스]
-Draw a larger cute chibi Joseon elite hunter (포수) facing slightly left. He wears practical leather and fur hunting clothes. He has a Korean bow on his back and holds a matchlock musket with smoke wisps. He has a weathered face with sharp hawk-like eyes and stubble beard. Make this sprite visibly larger and more detailed than regular enemy sprites.
+Draw a larger cute chibi Korean Joseon elite hunter (포수) facing slightly left. He wears practical Korean hunting clothes — a short jeogori with leather chest guard, Korean-style leggings. He carries a Korean gakgung (각궁) composite bow on his back and holds a Korean matchlock musket (조총) with smoke wisps. Weathered face, sharp hawk-like eyes, stubble beard. Korean hunter, NOT Chinese. Larger and more detailed.
 ```
 
 ---
@@ -184,21 +204,21 @@ Draw a larger cute chibi Joseon elite hunter (포수) facing slightly left. He w
 
 ```
 [스타일 프리픽스]
-Draw a boss-scale cute chibi corrupt Joseon Minister (이조판서) facing slightly left. He sits on an ornate throne-like chair wearing the highest rank crimson and gold court robes with a crane rank badge. He holds a glowing red seal of power in one hand. He has cold merciless eyes beneath a stiff official's hat and a white trimmed beard. The seal radiates intense red energy. Make this sprite much larger and more imposing than regular sprites.
+Draw a boss-scale cute chibi corrupt Korean Joseon Minister (이조판서) facing slightly left. He sits on a Korean-style official's chair (교의) wearing the highest rank Korean dallyeong (달령) crimson court robe with a Korean crane hyungbae (흉배) rank badge — a square embroidered panel on the chest. He wears a Korean samo (사모) hat with wide horizontal wings. He holds a glowing red royal seal (어인) in one hand. Cold merciless eyes, white trimmed beard. Korean government official aesthetic — NOT Chinese imperial. Much larger and more imposing.
 ```
 
 ### B_ACT2_FINAL — 쌍두 호랑이
 
 ```
 [스타일 프리픽스]
-Draw a boss-scale chibi monstrous twin-headed Korean tiger (쌍두 호랑이). It has two distinct heads: the left head is calculating with cold blue eyes, and the right head is ferocious and roaring with fiery orange eyes. It has an enormous muscular body with glowing mystical markings on its fur and supernatural golden glow effects on its tiger stripes. Make this sprite much larger than regular sprites.
+Draw a boss-scale chibi monstrous twin-headed Korean tiger (쌍두 호랑이) — the tiger is a sacred animal in Korean folklore (호랑이). Two distinct heads: left is calculating with cold blue eyes, right is ferocious and roaring with fiery orange eyes. Enormous muscular body with Korean minhwa (민화 folk painting) style markings on fur, supernatural golden glow on tiger stripes. Korean folk art tiger aesthetic with playful-yet-fierce quality. NOT Chinese dragon. Much larger than regular sprites.
 ```
 
 ### B_ACT3_FINAL — 역적 대감
 
 ```
 [스타일 프리픽스]
-Draw a boss-scale cute chibi treasonous Joseon lord (역적 대감) facing slightly left. He wears court robes with dragon motifs and detailed embroidery. His face is half in shadow with one eye gleaming with ambition and a sinister smile. He holds a secret royal decree in one hand and a hidden blade in the other. He has a dark crimson and black aura with flashes of imperial gold. Make this sprite much larger and more imposing than regular sprites.
+Draw a boss-scale cute chibi treasonous Korean Joseon lord (역적 대감) facing slightly left. He wears a Korean dallyeong court robe with forbidden dragon embroidery (only the king may wear dragons) and a Korean samo hat. Face half in shadow, one eye gleaming with ambition, sinister smile. He holds a forged royal decree (교서) in one hand and a hidden Korean dagger (비수) in the other. Dark crimson and black aura. Korean power aesthetics — NOT Chinese emperor robes. Much larger and more imposing.
 ```
 
 ---
@@ -208,7 +228,8 @@ Draw a boss-scale cute chibi treasonous Joseon lord (역적 대감) facing sligh
 카드 공통 프리픽스:
 ```
 A dynamic action scene illustration for a card game panel in high-resolution pixel art illustration style.
-Dancheong color palette with dramatic lighting and smooth shading.
+Korean Joseon dynasty setting — characters wear Korean hanbok clothing, NOT Chinese.
+Obangsaek and dancheong color palette with dramatic lighting and smooth shading.
 No text, no border, no frame — illustration only.
 Plain white background with no shadows and no other elements.
 ```
@@ -217,63 +238,63 @@ Plain white background with no shadows and no other elements.
 
 ```
 [카드 공통]
-A Joseon warrior gracefully sidestepping a sword strike. The blade passes inches from the body as robes trail behind the dodge with motion blur. Fluid circular evasion movement in cool blue and silver tones.
+A Korean Joseon warrior in hanbok gracefully sidestepping a sword strike. Korean dopo robes trail behind the dodge with motion blur. Fluid circular evasion movement. Cool blue and silver tones.
 ```
 
 ### M002 — 도약 (跳躍)
 
 ```
 [카드 공통]
-A figure leaping powerfully upward, pushing off with one foot. Robes billowing from upward momentum. Below, the enemy's attack passes through empty air. Warm gold and green tones with ascending energy trails.
+A Korean warrior in hanbok leaping powerfully upward, pushing off with one foot. Korean dopo robes billowing from upward momentum. Below, enemy attack passes through empty air. Warm gold and green tones with ascending energy trails.
 ```
 
 ### M003 — 베기
 
 ```
 [카드 공통]
-A decisive downward slash with a Korean sword (환도). The blade catches light in a dramatic arc with an energy trail. Sparks and slash effects follow the blade line. Strong vermillion red and steel gray tones.
+A decisive downward slash with a Korean hwando (환도) single-edged curved sword. The blade catches light in a dramatic arc with energy trail. Korean warrior in jeogori and baji. Strong vermillion red and steel gray tones.
 ```
 
 ### M004 — 수호
 
 ```
 [카드 공통]
-A warrior in a defensive stance with arms crossed, emanating a qi shield. A translucent indigo-blue barrier forms in front with ripple effects. Solid rooted posture with a calm determined expression. Cool indigo and white tones.
+A Korean warrior in hanbok in defensive stance with arms crossed, emanating a qi shield. Translucent indigo-blue barrier forms in front with ripple effects. Solid rooted posture, calm determined expression. Cool indigo and white tones.
 ```
 
 ### M005 — 집중
 
 ```
 [카드 공통]
-A figure kneeling in meditation with eyes closed and mudra hands. Golden qi energy wisps spiral inward toward the body. Calm serene atmosphere with a soft glowing aura. Gold and soft violet tones.
+A Korean figure in white dopo kneeling in meditation with eyes closed. Golden qi energy wisps spiral inward toward the body. Calm serene atmosphere with soft glowing aura. Korean Joseon scholar meditation pose. Gold and soft violet tones.
 ```
 
 ### G001 — 진형 전환 (陣形轉換)
 
 ```
 [카드 공통]
-A Joseon military officer commanding a formation change. Seen from above, soldiers shift like chess pieces on a battlefield with motion trails. The officer's hand gesture directs movement with military flags waving. Gold and dark navy tones.
+A Korean Joseon military officer in jeonbok vest and jeonrip hat commanding a formation change. Korean soldiers in hanbok uniforms shift like chess pieces with motion trails. Korean military flags (독기) waving with Korean characters. Gold and dark navy tones. Korean military aesthetic.
 ```
 
 ### G002 — 돌격 진형
 
 ```
 [카드 공통]
-A V-shaped charging formation of Joseon soldiers. The lead warrior charges forward with sword raised and soldiers flanking behind. Dust clouds and motion blur convey speed and impact. Fierce vermillion and iron gray tones.
+A V-shaped charging formation of Korean Joseon soldiers in jeonbok military vests and jeonrip hats. Lead warrior charges with Korean hwando sword raised, soldiers flanking behind with Korean spears. Dust clouds and motion blur. Fierce vermillion and iron gray tones.
 ```
 
 ### D001 — 부적 투척
 
 ```
 [카드 공통]
-A Taoist mystic throwing a burning paper talisman. The talisman is mid-flight trailing golden fire and glowing mystical symbols. The caster's robes billow with released supernatural energy. Teal and gold tones.
+A Korean Joseon Taoist mystic in white dopo overcoat throwing a burning Korean paper talisman (부적) with red ink characters. Talisman mid-flight trailing golden fire and Korean mystical symbols. Korean dopo robes billow with supernatural energy. Teal and gold tones. NOT Chinese Taoist.
 ```
 
 ### W001 — 경연 (經筵)
 
 ```
 [카드 공통]
-A scholar-official delivering a lecture from an ancient text. Words from the book materialize as glowing Korean characters floating in the air. Other scholars listen intently in a candle-lit study atmosphere. Warm gold and deep brown tones.
+A Korean Joseon scholar-official in dallyeong court robe and samo hat delivering a lecture from an ancient text. Korean hanja characters from the book materialize as glowing text floating in air. Other Korean scholars in dopo overcoats listen in a Korean study room (서재) with hanji paper walls. Warm gold and deep brown tones.
 ```
 
 ---
@@ -283,7 +304,9 @@ A scholar-official delivering a lecture from an ancient text. Words from the boo
 배경 프리픽스:
 ```
 A detailed high-resolution pixel art illustration scene for a mobile RPG game.
-Joseon dynasty Korean historical setting with dancheong color palette.
+Korean Joseon dynasty historical setting — distinctly Korean architecture, NOT Chinese.
+Korean features: giwa (기와) gray clay roof tiles with gentle curves (NOT dramatic Chinese upturned corners), dancheong painted wooden eaves, stone foundations, ondol underfloor heating chimneys, jangdokdae (장독대) clay pot platforms in courtyards.
+Obangsaek and dancheong color palette.
 No text, no watermark.
 ```
 
@@ -291,35 +314,35 @@ No text, no watermark.
 
 ```
 [배경 프리픽스]
-A majestic panoramic view of Joseon-era Hanyang (Seoul) at sunset. Palace rooftops in the foreground with mountains behind and atmospheric depth. The sky transitions through vermillion, gold, and deep indigo. A lone figure is silhouetted on a rooftop looking toward the palace. Leave empty space in the upper third for a game title. Portrait orientation 1080x1920.
+A majestic panoramic view of Korean Joseon-era Hanyang (Seoul) at sunset. Korean palace (경복궁 Gyeongbokgung style) rooftops with distinctive Korean giwa tiles and dancheong painted eaves in the foreground. Bukhansan mountains behind with atmospheric depth. Korean stone walls and gates visible. The sky transitions through vermillion, gold, and deep indigo. A lone figure wearing a Korean gat hat is silhouetted on a rooftop. Leave empty space in the upper third for a game title. Korean cityscape — NOT Chinese. Portrait orientation 1080x1920.
 ```
 
 ### bg_battle — 전투 배경
 
 ```
 [배경 프리픽스]
-A dark Joseon-era street at night with scattered paper lanterns casting warm volumetric glow. Wooden buildings with tiled roofs line both sides of a cobblestone path. Low fog rolls through the scene with the moon visible through clouds. Leave space for UI in the top and bottom thirds. Portrait orientation 1080x1920.
+A dark Korean Joseon-era street at night with Korean paper lanterns (등롱) casting warm volumetric glow. Korean wooden buildings with gray giwa clay tile roofs (gentle curves, NOT dramatic Chinese upturns) and dancheong painted eaves line both sides of a stone-paved path. Low fog, moon visible through clouds. Korean architectural details: wooden lattice windows (살창), stone walls, simple wooden doors. NOT Chinese red-lacquered buildings. Leave space for UI. Portrait 1080x1920.
 ```
 
 ### bg_map — 맵 배경
 
 ```
 [배경 프리픽스]
-A landscape map in Korean traditional painting style (산수화). Misty mountains, winding paths through pine forests, and a river with reflections. Small traditional buildings are scattered across the landscape. Muted palette with subtle color and atmospheric depth. Top-down perspective. Portrait orientation 1080x1920.
+A landscape map in Korean traditional painting style (산수화 sansuhua). Misty Korean mountains, winding paths through Korean pine forests (소나무), and a river with reflections. Small Korean hanok (한옥) buildings with gray tile roofs scattered across the landscape. Korean-style stone bridges. Muted Korean ink wash painting palette with subtle color and atmospheric depth. Korean landscape — NOT Chinese. Portrait 1080x1920.
 ```
 
 ### bg_shop — 상점 배경
 
 ```
 [배경 프리픽스]
-The warm interior of a Joseon-era marketplace shop. Wooden shelves display medicines, weapons, scrolls, and talismans. A merchant's counter has an abacus and coin pile. Warm lantern light fills the space with rich wood tones and gold accents. Leave space for a shop UI overlay. Portrait orientation 1080x1920.
+The warm interior of a Korean Joseon-era marketplace shop (시전). Korean-style wooden shelves display medicines in Korean ceramic jars (약항아리), Korean swords, scrolls, and talismans. Merchant's counter has a Korean abacus (주판) and pile of Korean yeop-jeon (엽전) square-holed brass coins. Warm Korean paper lantern (등잔) light fills the space. Korean wooden lattice windows, hanji paper walls. NOT Chinese shop. Leave space for UI. Portrait 1080x1920.
 ```
 
 ### bg_rest — 휴식처 배경
 
 ```
 [배경 프리픽스]
-A peaceful Joseon-era roadside inn (주막) at twilight. A thatched-roof building with a wooden bench under an old tree. A rice wine pot sits on the table with fireflies glowing in warm air. Serene healing atmosphere in warm amber and soft green tones with a twilight sky. Leave space for a rest UI. Portrait orientation 1080x1920.
+A peaceful Korean Joseon-era roadside inn (주막) at twilight. A Korean thatched-roof (초가집) building with a wooden maru (마루) elevated wooden floor porch under an old pine tree. A Korean rice wine pot (막걸리 항아리) sits on a low wooden table (소반). Jangdokdae clay pots nearby. Fireflies glow in warm air. Serene atmosphere in warm amber and soft green tones. Korean countryside architecture — NOT Chinese. Leave space for UI. Portrait 1080x1920.
 ```
 
 ---
