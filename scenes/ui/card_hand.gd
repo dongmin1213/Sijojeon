@@ -1,27 +1,32 @@
 class_name CardHand
 extends Control
 
-## 카드 핸드 UI. 카드를 부채꼴로 배치하고 선택/드래그/플레이 인터랙션을 관리한다.
+## 카드 핸드 UI. 카드를 하단 숨김 + 호버 팝업 방식으로 표시한다.
+## StS2 스타일: 카드가 화면 하단에 절반 숨겨져 있고, 탭/호버 시 올라온다.
 
 signal card_played(hand_index: int, target_enemy_index: int)
 signal card_zoom_requested(card_data: CardData)
 
 const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 
-# 부채꼴 배치 파라미터 — v4: 더 넉넉한 공간, 부드러운 커브
-@export var fan_spread_degrees: float = 4.0   # 카드 간 회전 각도 (약간 줄여서 깔끔하게)
-@export var fan_y_curve: float = 15.0         # 부채꼴 높이 커브 (완만하게)
-@export var hover_lift: float = 40.0          # 호버 시 위로 올라가는 높이 (더 눈에 띄게)
-@export var select_lift: float = 60.0         # 선택 시 위로 올라가는 높이
+# 하단 숨김 배치 파라미터 — v9: StS2 스타일
+@export var fan_spread_degrees: float = 3.0   # 카드 간 회전 각도 (미니멀)
+@export var fan_y_curve: float = 8.0          # 부채꼴 높이 커브 (완만)
+@export var hover_lift: float = 280.0         # 호버 시 위로 올라가는 높이 (카드 전체가 보이도록)
+@export var select_lift: float = 320.0        # 선택 시 위로 올라가는 높이
+@export var card_peek_ratio: float = 0.30     # 숨김 상태에서 보이는 카드 비율 (30%)
 
 # 뷰포트 기준 비율 (1080x1920 기본 해상도 기준)
 const BASE_WIDTH := 1080.0
-# v4: 카드 간격 — 큰 카드에 맞게 조정
-const MAX_CARD_SPACING := 280.0    # 넉넉할 때 카드 간 간격
-const MIN_CARD_SPACING := 140.0    # 겹침 허용 (카드 크기 대비)
+# v9: 카드 간격 — 하단 배치에 맞게 조정
+const MAX_CARD_SPACING := 200.0    # 넉넉할 때 카드 간 간격
+const MIN_CARD_SPACING := 100.0    # 겹침 허용 (카드 크기 대비)
 # 손패 카드 수에 따른 카드 크기 스케일 (가독성 확보)
-const HAND_SCALE_THRESHOLD := 4    # v4: 4장 초과 시 축소 시작 (더 일찍)
+const HAND_SCALE_THRESHOLD := 4    # 4장 초과 시 축소 시작
 const MIN_HAND_SCALE := 0.70       # 카드 최소 축소 비율
+
+# 호버/선택 트윈 애니메이션 시간
+const TWEEN_DURATION := 0.15
 
 var card_widgets: Array[CardUI] = []
 var _widget_pool: Array[CardUI] = []  # 재사용 가능한 CardUI 풀
@@ -138,15 +143,15 @@ func _arrange_cards() -> void:
 
 	# 뷰포트 너비에 비례하여 카드 간격 계산
 	var scale_factor := size.x / BASE_WIDTH
+	var height_scale := size.y / 1920.0
 
 	# 손패 수에 따른 카드 크기 동적 조정
 	var hand_scale := 1.0
 	if count > HAND_SCALE_THRESHOLD:
-		# 카드 수가 임계값 초과 시 점진적 축소 (최대 10장 기준)
 		var excess := float(count - HAND_SCALE_THRESHOLD) / float(10 - HAND_SCALE_THRESHOLD)
 		hand_scale = lerpf(1.0, MIN_HAND_SCALE, clampf(excess, 0.0, 1.0))
 
-	# 카드 크기 조정 적용 — 최소/최대 크기 모두 고정하여 PanelContainer 자동 확장 방지
+	# 카드 크기 조정 적용
 	var base_card_w := CardUI.BASE_CARD_WIDTH * scale_factor
 	var base_card_h := CardUI.BASE_CARD_HEIGHT * scale_factor
 	var scaled_card_w := base_card_w * hand_scale
@@ -154,30 +159,24 @@ func _arrange_cards() -> void:
 	for widget in card_widgets:
 		widget.custom_minimum_size = Vector2(scaled_card_w, scaled_card_h)
 		widget.size = Vector2(scaled_card_w, scaled_card_h)
-		# PanelContainer 내용물이 더 크더라도 카드 크기를 넘지 않도록 강제
 		widget.set_deferred("size", Vector2(scaled_card_w, scaled_card_h))
 
 	var card_w := scaled_card_w
-	# 사용 가능 영역의 95%를 카드 배치에 활용 (좌우 여백 2.5%씩)
 	var available_width := size.x * 0.95
-	# 이상적 간격: 카드 너비 + 약간의 여백
 	var ideal_spacing := MAX_CARD_SPACING * scale_factor * hand_scale
-	# 필요한 전체 폭 = (count-1) * spacing + card_w
 	var needed_width := (count - 1) * ideal_spacing + card_w
 	var card_spacing := ideal_spacing
 	if count > 1 and needed_width > available_width:
-		# 공간이 부족하면 간격 축소 (최소 간격까지)
 		card_spacing = (available_width - card_w) / float(count - 1)
 		card_spacing = maxf(card_spacing, MIN_CARD_SPACING * scale_factor * hand_scale)
 
 	var center_x := size.x / 2.0
-	# 카드를 핸드 영역 상단에 배치 — 카드가 충분히 크므로 상단부터 채움
-	var base_y := (size.y - scaled_card_h) * 0.08
+	# v9: 카드를 하단에 숨김 — 카드 높이의 peek_ratio만큼만 보이도록 배치
+	# base_y = 영역 하단 - (카드 높이 * peek_ratio)  → 카드 상단 30%만 보임
+	var base_y := size.y - (scaled_card_h * card_peek_ratio)
 	var total_width := (count - 1) * card_spacing
 	var start_x := center_x - total_width / 2.0
 
-	# 부채꼴 커브도 높이에 비례
-	var height_scale := size.y / 1920.0
 	var scaled_y_curve := fan_y_curve * height_scale
 
 	for i in count:
@@ -194,20 +193,48 @@ func _arrange_cards() -> void:
 		var x := start_x + i * card_spacing - widget.size.x / 2.0
 		var y := base_y + scaled_y_curve * (centered_t * centered_t * 4.0)
 
-		# 호버/선택 시 올림 (뷰포트 높이에 비례)
+		# v9: 호버/선택 시 카드가 위로 올라와서 전체가 보이도록
+		var target_y := y
 		if i == selected_index:
-			y -= select_lift * height_scale
+			target_y = base_y - select_lift * height_scale
 		elif i == hovered_index:
-			y -= hover_lift * height_scale
+			target_y = base_y - hover_lift * height_scale
 
-		# 회전 계산 (부채꼴)
+		# 회전 계산 (부채꼴) — 호버/선택 시 회전 제거
 		var rotation_deg := centered_t * fan_spread_degrees * (count - 1)
+		var target_rot := rotation_deg
+		if i == hovered_index or i == selected_index:
+			target_rot = 0.0
 
-		widget.position = Vector2(x, y)
-		widget.rotation_degrees = rotation_deg
+		# v9: 부드러운 트윈 애니메이션으로 카드 이동
+		_tween_card_to(widget, Vector2(x, target_y), target_rot)
+
 		widget.z_index = i
 		if i == hovered_index or i == selected_index:
 			widget.z_index = count + 1
+
+
+func _tween_card_to(widget: CardUI, target_pos: Vector2, target_rot: float) -> void:
+	## 카드를 목표 위치/회전으로 부드럽게 이동시킨다.
+	# 이전 트윈이 있으면 중지
+	if widget.has_meta("_hand_tween"):
+		var old_tween: Tween = widget.get_meta("_hand_tween")
+		if old_tween and old_tween.is_valid():
+			old_tween.kill()
+
+	# 위치 차이가 미미하면 즉시 적용 (불필요한 트윈 방지)
+	if widget.position.distance_squared_to(target_pos) < 4.0 and absf(widget.rotation_degrees - target_rot) < 0.5:
+		widget.position = target_pos
+		widget.rotation_degrees = target_rot
+		return
+
+	var tw := widget.create_tween()
+	tw.set_parallel(true)
+	tw.set_ease(Tween.EASE_OUT)
+	tw.set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(widget, "position", target_pos, TWEEN_DURATION)
+	tw.tween_property(widget, "rotation_degrees", target_rot, TWEEN_DURATION)
+	widget.set_meta("_hand_tween", tw)
 
 
 func _on_card_clicked(hand_index: int) -> void:

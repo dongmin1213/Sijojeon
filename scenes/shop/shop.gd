@@ -67,8 +67,10 @@ const RELIC_PRICES := {
 
 # v7: 고정 헤더/푸터 + 스크롤 콘텐츠 레이아웃
 const _C := "ScrollArea/VBoxContainer/MarginContainer/ContentVBox"
-@onready var title_label: Label = $Header/HBoxContainer/TitleLabel
-@onready var gold_label: Label = $Header/HBoxContainer/GoldLabel
+# v9: 상인 영역에서 참조
+@onready var title_label: Label = $MerchantArea/HBoxContainer/VBox/TitleLabel
+@onready var gold_label: Label = $MerchantArea/HBoxContainer/GoldLabel
+@onready var _merchant_dialogue: Label = $MerchantArea/HBoxContainer/VBox/MerchantDialogue
 @onready var card_container: HBoxContainer = get_node(_C + "/CardSection/CardContainer")
 @onready var card_section_label: Label = get_node(_C + "/CardSection/CardSectionLabel")
 @onready var refresh_button: Button = get_node(_C + "/CardSection/RefreshButton")
@@ -108,6 +110,9 @@ func _ready() -> void:
 		leave_button.visible = true
 		return
 
+	# v9: 상인 인사말 랜덤 설정
+	_set_merchant_greeting()
+
 	# 상점 입장 유물 트리거 (상단 장부)
 	RelicManager.trigger_enter_shop()
 
@@ -126,6 +131,20 @@ func _ready() -> void:
 	_update_minshim_button()
 	_update_market_open_button()
 	_update_discount_badges()
+
+
+func _set_merchant_greeting() -> void:
+	## v9: 상인 인사말을 랜덤으로 설정
+	if not _merchant_dialogue:
+		return
+	var greetings := [
+		"어서 오시게, 좋은 물건이 많다네.",
+		"오, 손님이시군. 천천히 둘러보시게.",
+		"이 좌판의 물건은 다 일류라네.",
+		"어허, 반갑소. 오늘 물건이 좋소.",
+		"자, 구경만 해도 좋으니 편히 보시게.",
+	]
+	_merchant_dialogue.text = greetings[randi() % greetings.size()]
 
 
 func _generate_shop_cards() -> void:

@@ -45,42 +45,69 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
-; ─── 고정 헤더 (0-8%) — 상점 제목 + 소지금 ────────────────────────────────
-[node name="Header" type="PanelContainer" parent="."]
+; ─── 상인 인사말 영역 (0-15%) — v9: 상인 캐릭터 + 대사 ─────────────────────
+[node name="MerchantArea" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_header")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.08
+anchor_bottom = 0.12
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MerchantArea"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 24
+theme_override_constants/separation = 16
 
-[node name="TitleLabel" type="Label" parent="Header/HBoxContainer"]
+[node name="MerchantIcon" type="Label" parent="MerchantArea/HBoxContainer"]
+layout_mode = 2
+text = "🏪"
+theme_override_font_sizes/font_size = 40
+
+[node name="VBox" type="VBoxContainer" parent="MerchantArea/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="TitleLabel" type="Label" parent="MerchantArea/HBoxContainer/VBox"]
 layout_mode = 2
 text = "SHOP_TITLE"
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 30
 theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
-[node name="GoldLabel" type="Label" parent="Header/HBoxContainer"]
+[node name="MerchantDialogue" type="Label" parent="MerchantArea/HBoxContainer/VBox"]
+layout_mode = 2
+text = "SHOP_MERCHANT_GREETING"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.70, 0.65, 0.55, 0.8)
+
+[node name="GoldLabel" type="Label" parent="MerchantArea/HBoxContainer"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 0.9)
 
-; ─── 스크롤 콘텐츠 (8-90%) ────────────────────────────────────────────────
+; ─── 레거시 호환: Header 래퍼 (실제 표시는 MerchantArea에서) ─────────────────
+[node name="Header" type="Control" parent="."]
+visible = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
+
+[node name="TitleLabel" type="Label" parent="Header/HBoxContainer"]
+text = ""
+
+[node name="GoldLabel" type="Label" parent="Header/HBoxContainer"]
+text = ""
+
+; ─── 스크롤 콘텐츠 (12-90%) — v9: 상인 영역 아래로 이동 ────────────────────
 [node name="ScrollArea" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.08
+anchor_top = 0.12
 anchor_right = 1.0
 anchor_bottom = 0.90
 grow_horizontal = 2

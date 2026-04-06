@@ -26,6 +26,13 @@ func _ready() -> void:
 	# v8: "새 게임" 버튼을 주 액션(CTA)으로 강조 — 금색 배경+큰 글씨
 	_apply_primary_button_style(start_button)
 
+	# v9: 모든 버튼에 호버 글로우 효과 적용
+	for btn in [continue_button, chronicle_button, settings_button, quit_button]:
+		_apply_hover_glow(btn)
+
+	# v9: 반딧불 파티클 효과 (타이틀 분위기)
+	_add_firefly_particles()
+
 	# 버튼 연결
 	start_button.pressed.connect(_on_start_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
@@ -87,3 +94,53 @@ func _apply_primary_button_style(btn: Button) -> void:
 	btn.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
 	btn.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
 	btn.add_theme_font_size_override("font_size", 38)
+
+
+func _apply_hover_glow(btn: Button) -> void:
+	## v9: 일반 버튼에 호버 시 금색 글로우 효과 적용
+	var hover_style := StyleBoxFlat.new()
+	hover_style.bg_color = Color(0.83, 0.66, 0.26, 0.08)
+	hover_style.set_border_width_all(1)
+	hover_style.border_color = Color(0.83, 0.66, 0.26, 0.4)
+	hover_style.set_corner_radius_all(12)
+	hover_style.shadow_color = Color(0.83, 0.66, 0.26, 0.1)
+	hover_style.shadow_size = 6
+	btn.add_theme_stylebox_override("hover", hover_style)
+	btn.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
+
+
+func _add_firefly_particles() -> void:
+	## v9: 타이틀 화면에 반딧불 파티클 효과 추가 (GPUParticles2D)
+	var particles := GPUParticles2D.new()
+	particles.amount = 12
+	particles.lifetime = 4.0
+	particles.set_anchors_preset(Control.PRESET_FULL_RECT)
+	particles.z_index = -1  # 배경 위, UI 아래
+
+	var mat := ParticleProcessMaterial.new()
+	mat.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_BOX
+	mat.emission_box_extents = Vector3(540, 960, 0)
+	mat.direction = Vector3(0, -1, 0)
+	mat.spread = 180.0
+	mat.initial_velocity_min = 5.0
+	mat.initial_velocity_max = 15.0
+	mat.gravity = Vector3(0, -2, 0)
+	mat.scale_min = 2.0
+	mat.scale_max = 5.0
+	mat.color = Color(0.83, 0.66, 0.26, 0.4)
+
+	# 페이드인/아웃을 위한 색상 램프
+	var gradient := Gradient.new()
+	gradient.set_offset(0, 0.0)
+	gradient.set_color(0, Color(0.83, 0.66, 0.26, 0.0))
+	gradient.add_point(0.3, Color(0.83, 0.66, 0.26, 0.5))
+	gradient.add_point(0.7, Color(0.83, 0.66, 0.26, 0.4))
+	gradient.set_offset(gradient.get_point_count() - 1, 1.0)
+	gradient.set_color(gradient.get_point_count() - 1, Color(0.83, 0.66, 0.26, 0.0))
+	var color_ramp := GradientTexture1D.new()
+	color_ramp.gradient = gradient
+	mat.color_ramp = color_ramp
+
+	particles.process_material = mat
+	particles.position = Vector2(540, 960)  # 화면 중앙
+	add_child(particles)

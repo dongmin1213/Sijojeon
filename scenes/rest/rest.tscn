@@ -42,49 +42,80 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
-; ─── 메인 콘텐츠 (중앙 집중) ──────────────────────────────────────────────
+; ─── 캠프파이어 제목 (중앙 상단) — v9: 분위기 있는 제목 ───────────────────
+[node name="CampfireTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10
+anchor_top = 0.35
+anchor_right = 0.90
+anchor_bottom = 0.42
+grow_horizontal = 2
+grow_vertical = 2
+text = "REST_TITLE"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 38
+theme_override_colors/font_color = Color(0.9, 0.6, 0.3, 1)
+
+[node name="CampfireDesc" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10
+anchor_top = 0.42
+anchor_right = 0.90
+anchor_bottom = 0.48
+grow_horizontal = 2
+grow_vertical = 2
+text = "REST_DESCRIPTION"
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.7, 0.65, 0.45, 0.8)
+
+; ─── 선택지 영역 (하단 50%) — v9: 캠프파이어 선택지 ─────────────────────────
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.06
-anchor_top = 0.10
-anchor_right = 0.94
-anchor_bottom = 0.95
+anchor_left = 0.08
+anchor_top = 0.50
+anchor_right = 0.92
+anchor_bottom = 0.96
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
-alignment = 1
+theme_override_constants/separation = 14
+alignment = 0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "REST_TITLE"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 38
 theme_override_colors/font_color = Color(0.9, 0.6, 0.3, 1)
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "REST_DESCRIPTION"
 horizontal_alignment = 1
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.7, 0.7, 0.5, 1)
+theme_override_font_sizes/font_size = 22
 
 [node name="ActionContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 12
 
 [node name="RestButton" type="Button" parent="VBoxContainer/ActionContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 76)
+custom_minimum_size = Vector2(0, 72)
 text = "REST_HEAL"
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/ActionContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 76)
+custom_minimum_size = Vector2(0, 72)
 text = "REST_UPGRADE"
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 
 [node name="CardListScroll" type="ScrollContainer" parent="VBoxContainer"]
 visible = false
@@ -101,9 +132,9 @@ theme_override_constants/separation = 10
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(0, 56)
 text = "UI_BACK"
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 
 [node name="ResultLabel" type="Label" parent="VBoxContainer"]
 visible = false
@@ -111,15 +142,15 @@ layout_mode = 2
 text = ""
 horizontal_alignment = 1
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 theme_override_colors/font_color = Color(1.0, 0.9, 0.6, 1)
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
-custom_minimum_size = Vector2(0, 76)
+custom_minimum_size = Vector2(0, 68)
 text = "UI_CONTINUE_BUTTON"
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 28
 
 ; ─── 플로팅 상태바 (상단 오버레이) ─────────────────────────────────────────
 [node name="StatusOverlay" type="PanelContainer" parent="."]

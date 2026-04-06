@@ -5,7 +5,8 @@ extends Control
 ## 효과를 적용한 뒤 결과 텍스트를 보여준다.
 ## 특수 역사 사건 이벤트(special_events.json)를 우선 체크한다.
 
-@onready var title_label: Label = $VBoxContainer/TitleLabel
+# v9: 제목은 상단 오버레이에 표시 (VN 스타일)
+@onready var title_label: Label = $TitleOverlay
 @onready var flavor_label: Label = $VBoxContainer/FlavorLabel
 @onready var description_label: Label = $VBoxContainer/DescriptionLabel
 @onready var choice_container: VBoxContainer = $VBoxContainer/ChoiceContainer

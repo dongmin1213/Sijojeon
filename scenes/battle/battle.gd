@@ -63,6 +63,13 @@ var _sijo_alert_visible: bool = false
 
 
 func _ready() -> void:
+	# v9: HandZone 클립 비활성화 — 카드가 위로 올라올 수 있도록
+	var hand_zone := $HandZone as PanelContainer
+	if hand_zone:
+		hand_zone.clip_contents = false
+		# CardHand도 클립 비활성화
+		card_hand.clip_contents = false
+
 	# VFX 매니저 초기화
 	vfx = VfxManager.new()
 	add_child(vfx)
@@ -277,12 +284,12 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
-	# v8 앵커: 우측 중앙, 넓은 터치 영역 확보
+	# v9 앵커: 우측 중앙, 전투 필드 영역에 배치
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
-	end_turn_button.anchor_left = 0.66
+	end_turn_button.anchor_left = 0.70
 	end_turn_button.anchor_right = 0.98
-	end_turn_button.anchor_top = 0.33
-	end_turn_button.anchor_bottom = 0.40
+	end_turn_button.anchor_top = 0.68
+	end_turn_button.anchor_bottom = 0.74
 	end_turn_button.z_index = 10
 	add_child(end_turn_button)
 
@@ -754,14 +761,13 @@ func _on_hand_changed(_new_hand: Array[String]) -> void:
 
 
 func _on_qi_changed(current: int, max_val: int) -> void:
-	# 기(氣)를 보석 아이콘으로 시각화 — 사용 가능한 기는 밝게, 소진된 기는 어둡게
-	var qi_text := ""
-	for i in max_val:
-		if i < current:
-			qi_text += "◆"
-		else:
-			qi_text += "◇"
-	qi_label.text = qi_text + " %d/%d" % [current, max_val]
+	# v9: 氣를 간결한 오브 스타일로 표시
+	qi_label.text = "氣 %d/%d" % [current, max_val]
+	# 기력 부족 시 색상 변경
+	if current == 0:
+		qi_label.add_theme_color_override("font_color", Color(0.5, 0.4, 0.2, 0.7))
+	else:
+		qi_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26, 1.0))
 	_refresh_hand_ui()
 
 
