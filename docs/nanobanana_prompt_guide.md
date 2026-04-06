@@ -1,6 +1,6 @@
 # 시조전 — NanoBanana 프롬프트 가이드
 
-> 버전: 1.0 | 최종 업데이트: 2026-04-06
+> 버전: 1.1 | 최종 업데이트: 2026-04-06
 > Google NanoBanana 2 (Gemini Plus) 기반 에셋 생성 프롬프트 모음
 > **아트 스타일: SD(슈퍼디폼) 하이브리드 도트 일러스트**
 > 참조: 가디언테일즈, 메이플스토리, 월드플리퍼
@@ -13,7 +13,7 @@
 2. **6요소 순서** — 주제 → 구도 → 액션 → 세팅 → 스타일 → 기술 스펙
 3. **200단어 이내** — 너무 긴 프롬프트는 뒷부분이 무시됨. 핵심을 앞에 배치
 4. **모순 금지** — "미니멀"과 "복잡한 디테일" 동시 사용 X
-5. **크로마키 그린 배경** — NanoBanana는 투명 배경(alpha) 미지원. #00FF00 단색 배경으로 생성 후 후처리로 제거
+5. **흰 배경 + rembg** — NanoBanana는 투명 배경(alpha) 미지원. `plain white background`로 생성 후 rembg로 AI 배경 제거 (흰 배경이 테두리 잔상 최소)
 6. **참조 이미지 활용** — 첫 결과물을 참조 이미지로 업로드하면 스타일 편차 대폭 감소
 7. **2~4턴 반복 수정** — 첫 결과물을 바로 쓰지 말고, 대화형으로 수정 요청하여 퀄리티 향상
 8. **참조 게임명 명시** — NanoBanana가 실제 게임 스타일 지식을 활용하여 캘리브레이션
@@ -29,8 +29,7 @@ A cute chibi game character sprite in the style of Guardian Tales and MapleStory
 Super-deformed proportions — the head is about 40% of the total character height, with a large round expressive face, stubby limbs, and a compact body approximately 2.5 heads tall.
 High-resolution pixel art illustration with smooth shading and vibrant colors.
 Joseon dynasty Korean historical costume design with dancheong color palette (vermillion, indigo, pine green, gold).
-Full body character on a flat solid bright green (#00FF00) background with no gradients, no shadows, and no lighting on the background.
-The character has a thin 2-pixel white outline for clean edge separation.
+Full body character on a plain white background with no shadows, no ground, and no other elements.
 No text, no watermark, no border, no frame.
 ```
 
@@ -40,7 +39,7 @@ No text, no watermark, no border, no frame.
 A crisp game icon in pixel art illustration style.
 Korean traditional dancheong color palette: vermillion, indigo, gold, pine green.
 Clean edges, sharp silhouette readable at small sizes.
-Flat solid bright green (#00FF00) background.
+Plain white background with no shadows.
 No text, no border, no frame.
 ```
 
@@ -209,7 +208,7 @@ Draw a boss-scale cute chibi treasonous Joseon lord (역적 대감). He wears co
 A dynamic action scene illustration for a card game panel in high-resolution pixel art illustration style.
 Dancheong color palette with dramatic lighting and smooth shading.
 No text, no border, no frame — illustration only.
-Flat solid bright green (#00FF00) background.
+Plain white background with no shadows and no other elements.
 ```
 
 ### M001 — 회피 (回避)
@@ -386,10 +385,49 @@ A Korean red ginseng root (홍삼) in dark reddish-brown. Earthy organic form wi
 1. Gemini Plus (gemini.google.com) 접속
 2. `[스타일 프리픽스]` + 개별 프롬프트를 결합하여 입력
 3. **첫 결과물이 완벽하지 않으면 대화형으로 2~4턴 수정 요청** — "머리를 더 크게", "몸을 더 짧게" 등
-4. 생성된 이미지 다운로드
-5. **배경 제거**: 크로마키 그린(#00FF00) 배경을 remove.bg 또는 Photopea 등으로 제거 → 투명 PNG 변환
-6. `art/` 폴더의 해당 경로에 PNG로 저장
+4. 생성된 이미지 PNG 다운로드
+5. **배경 제거 (rembg)**:
+   ```
+   cd C:\rembg
+   venv\Scripts\python process.py [이미지파일 또는 폴더]
+   ```
+   또는 `run.bat` 위에 이미지/폴더를 드래그 앤 드롭
+6. `_done.png` (투명 배경 + 크롭) → `art/` 폴더의 해당 경로에 저장
 7. **스타일 일관성**: 첫 번째 결과물을 참조 이미지로 업로드하여 후속 생성에 활용
+
+---
+
+## rembg 배경 제거 셋업
+
+### 설치 (1회)
+```
+mkdir C:\rembg
+cd C:\rembg
+python -m venv venv
+venv\Scripts\pip install "rembg[cpu]"
+```
+> 첫 실행 시 u2net 모델 자동 다운로드 (~176MB). CPU 기준 1장당 2~3초.
+
+### 스크립트
+`C:\rembg\process.py` — 배경 제거 + 투명 영역 크롭 자동화 스크립트.
+`C:\rembg\run.bat` — 드래그 앤 드롭용 배치 파일.
+
+### 사용법
+```bash
+# 단일 파일
+venv\Scripts\python process.py C:\path\to\image.png
+
+# 폴더 일괄 처리
+venv\Scripts\python process.py C:\path\to\input_folder
+
+# 출력 폴더 지정
+venv\Scripts\python process.py C:\path\to\input_folder C:\path\to\output_folder
+```
+
+### 왜 흰 배경 + rembg인가?
+- **흰 배경**: 테두리 잔상 최소화 — 크로마키 그린/블루는 가장자리에 색상 번짐 발생
+- **rembg (AI 기반)**: 색상이 아닌 피사체 인식으로 분리하므로 배경 색상 무관하게 정확
+- **자동 크롭**: 투명 영역을 자동으로 잘라서 스프라이트 사이즈 최적화
 
 ---
 
@@ -397,7 +435,7 @@ A Korean red ginseng root (홍삼) in dark reddish-brown. Earthy organic form wi
 
 - **참조 이미지가 핵심**: 첫 캐릭터 생성 후 해당 결과물을 모든 후속 프롬프트에 참조 이미지로 첨부 (최대 14장)
 - **같은 세션에서 연속 생성**: 동일 대화에서 연속으로 만들면 스타일 일관성 유지
-- **크로마키 그린 후처리**: OpenCV/Pillow 스크립트 또는 remove.bg로 일괄 처리 가능
+- **rembg 일괄 처리**: 폴더에 모아서 한번에 처리 가능
 - **해상도**: NanoBanana의 "512x512" 등 해상도 지정은 구도에만 영향. 실제 출력 사이즈는 API 파라미터로 제어
 - **"HD" 키워드**: 해상도가 아닌 디테일 스타일에만 영향
 - **아이콘은 한 세트로**: 상태이상 아이콘은 한 프롬프트에 여러 개 구성하여 통일된 스타일 확보
