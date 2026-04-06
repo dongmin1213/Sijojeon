@@ -13,7 +13,8 @@ var relic_claimed: bool = false
 @onready var title_label: Label = $RewardPanel/VBoxContainer/TitleLabel
 @onready var gold_label: Label = $RewardPanel/VBoxContainer/GoldLabel
 @onready var card_section: VBoxContainer = $RewardPanel/VBoxContainer/CardSection
-@onready var card_container: HBoxContainer = $RewardPanel/VBoxContainer/CardSection/CardContainer
+@onready var card_scroll: ScrollContainer = $RewardPanel/VBoxContainer/CardSection/CardScroll
+@onready var card_container: HBoxContainer = $RewardPanel/VBoxContainer/CardSection/CardScroll/CardContainer
 @onready var skip_button: Button = $RewardPanel/VBoxContainer/SkipButton
 @onready var proceed_button: Button = $RewardPanel/VBoxContainer/ProceedButton
 
@@ -240,32 +241,9 @@ func _display_card_offers() -> void:
 		proceed_button.visible = true
 		return
 
-	# 뷰포트 비례 카드 크기 계산
-	var vp_width := get_viewport().get_visible_rect().size.x
-	var available_width := vp_width * 0.8  # VBoxContainer 앵커 0.1~0.9
-	var card_count := card_offers.size()
-	var card_spacing := 12
-	# 최소 카드 너비를 200으로 보장 — 가독성 확보
-	var min_card_width := 200.0
-	var card_width := maxf((available_width - card_spacing * (card_count - 1)) / card_count, min_card_width)
-	var card_height := card_width * 1.4  # 카드 비율 유지
-
-	# 카드가 화면에 안 들어가면 스크롤 컨테이너로 감싸기
-	var total_needed := card_count * card_width + (card_count - 1) * card_spacing
-	if total_needed > available_width:
-		var scroll := card_container.get_parent().get_node_or_null("CardScroll")
-		if scroll == null:
-			scroll = ScrollContainer.new()
-			scroll.name = "CardScroll"
-			scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
-			scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-			scroll.custom_minimum_size.y = card_height + 20
-			var parent := card_container.get_parent()
-			var idx := card_container.get_index()
-			parent.remove_child(card_container)
-			scroll.add_child(card_container)
-			parent.add_child(scroll)
-			parent.move_child(scroll, idx)
+	# 카드 크기 — 고정 너비로 스크롤 가능하게
+	var card_width := 180.0
+	var card_height := 240.0
 
 	for i in card_offers.size():
 		var card_id: String = card_offers[i]
@@ -275,13 +253,14 @@ func _display_card_offers() -> void:
 
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(card_width, card_height)
-		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		btn.text = _format_card_text(card)
-		btn.add_theme_font_size_override("font_size", 22)
+		btn.add_theme_font_size_override("font_size", 18)
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		btn.alignment = HORIZONTAL_ALIGNMENT_CENTER
+		btn.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		btn.pressed.connect(_on_card_chosen.bind(i))
 
-		# v6: 카드 프레임 SVG 텍스처 기반 스타일
+		# 카드 프레임 스타일
 		var rarity_color := _get_rarity_color(card.rarity)
 		var frame_path := _get_frame_path(card.rarity)
 		var frame_tex = load(frame_path) as Texture2D if ResourceLoader.exists(frame_path) else null
@@ -294,10 +273,10 @@ func _display_card_offers() -> void:
 			tex_sb.texture_margin_right = 12
 			tex_sb.texture_margin_top = 42
 			tex_sb.texture_margin_bottom = 12
-			tex_sb.content_margin_left = 14
-			tex_sb.content_margin_right = 14
-			tex_sb.content_margin_top = 10
-			tex_sb.content_margin_bottom = 10
+			tex_sb.content_margin_left = 10
+			tex_sb.content_margin_right = 10
+			tex_sb.content_margin_top = 8
+			tex_sb.content_margin_bottom = 8
 			stylebox = tex_sb
 		else:
 			var flat_sb := StyleBoxFlat.new()
@@ -305,13 +284,13 @@ func _display_card_offers() -> void:
 			flat_sb.border_color = rarity_color
 			flat_sb.set_border_width_all(2)
 			flat_sb.set_corner_radius_all(14)
-			flat_sb.set_content_margin_all(14)
+			flat_sb.set_content_margin_all(10)
 			flat_sb.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
 			flat_sb.shadow_size = 4
 			stylebox = flat_sb
 		btn.add_theme_stylebox_override("normal", stylebox)
 
-		# 호버/눌림 — 밝기 변화로 피드백
+		# 호버/눌림 피드백
 		if stylebox is StyleBoxTexture:
 			var hover_st := stylebox.duplicate()
 			hover_st.modulate_color = Color(1.2, 1.2, 1.2)
@@ -334,51 +313,49 @@ func _display_card_offers() -> void:
 func _format_card_text(card: CardData) -> String:
 	var lines: Array[String] = []
 
-	# 카드 이름
+	# 카드 이름 (가장 중요)
 	lines.append(card.get_display_name())
 
-	# 타입 + 희귀도 태그
+	# 타입 · 희귀도 한 줄
 	var type_str := _get_card_type_label(card.type)
 	var rarity_str := _get_card_rarity_label(card.rarity)
-	lines.append("[%s · %s]" % [rarity_str, type_str])
+	lines.append("%s · %s" % [rarity_str, type_str])
 
-	# 기본 수치
+	# 코스트/박자
 	lines.append(tr("REWARD_CARD_STAT_FMT") % [card.cost, card.beat])
 
+	# 핵심 수치만 간결하게
+	var stats: Array[String] = []
 	if card.damage > 0:
 		var dmg_text := tr("REWARD_CARD_DMG_FMT") % card.damage
 		if card.is_aoe:
 			dmg_text += tr("REWARD_CARD_DMG_AOE")
-		lines.append(dmg_text)
+		stats.append(dmg_text)
 	if card.block_value > 0:
-		lines.append(tr("REWARD_CARD_BLOCK_FMT") % card.block_value)
+		stats.append(tr("REWARD_CARD_BLOCK_FMT") % card.block_value)
 	if card.draw_count > 0:
-		lines.append(tr("REWARD_CARD_DRAW_FMT") % card.draw_count)
+		stats.append(tr("REWARD_CARD_DRAW_FMT") % card.draw_count)
 	if card.qi_gain > 0:
-		lines.append(tr("REWARD_CARD_QI_FMT") % card.qi_gain)
-	if card.tokens > 0:
-		lines.append(tr("REWARD_CARD_TOKEN_FMT") % card.tokens)
+		stats.append(tr("REWARD_CARD_QI_FMT") % card.qi_gain)
+	if not stats.is_empty():
+		lines.append(" / ".join(stats))
 
-	# 상태이상 부여
+	# 상태이상 — 있을 때만 한 줄로 요약
+	var debuffs: Array[String] = []
 	if card.burn_stacks > 0:
-		lines.append(tr("REWARD_CARD_BURN_FMT") % card.burn_stacks)
+		debuffs.append(tr("REWARD_CARD_BURN_FMT") % card.burn_stacks)
 	if card.poison_stacks > 0:
-		lines.append(tr("REWARD_CARD_POISON_FMT") % card.poison_stacks)
+		debuffs.append(tr("REWARD_CARD_POISON_FMT") % card.poison_stacks)
 	if card.weaken_stacks > 0:
-		lines.append(tr("REWARD_CARD_WEAKEN_FMT") % card.weaken_stacks)
+		debuffs.append(tr("REWARD_CARD_WEAKEN_FMT") % card.weaken_stacks)
 	if card.vulnerable_stacks > 0:
-		lines.append(tr("REWARD_CARD_VULNERABLE_FMT") % card.vulnerable_stacks)
+		debuffs.append(tr("REWARD_CARD_VULNERABLE_FMT") % card.vulnerable_stacks)
+	if not debuffs.is_empty():
+		lines.append(" / ".join(debuffs))
 
-	# 자원 소비/획득
-	if card.stamina_cost > 0:
-		lines.append(tr("REWARD_CARD_RESOURCE_COST_FMT") % card.stamina_cost)
-	if card.stamina_gain > 0:
-		lines.append(tr("REWARD_CARD_RESOURCE_GAIN_FMT") % card.stamina_gain)
-
-	# 효과 텍스트
+	# 효과 텍스트 (있으면)
 	var eff := card.get_current_effect()
 	if eff != "":
-		lines.append("")
 		lines.append(eff)
 
 	return "\n".join(lines)
