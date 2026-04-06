@@ -1,6 +1,6 @@
 # 시조전 데이터 스키마
 
-> 최종 업데이트: Sprint 7 (2026-04-01)
+> 최종 업데이트: Sprint 8 (2026-04-06)
 > 모든 JSON 파일은 `data/` 디렉터리에 위치. 인코딩: UTF-8.
 
 ---
@@ -11,10 +11,10 @@
 
 | 파일 | class | 설명 |
 |------|-------|------|
-| `common.json` | `common` | 공통 카드 12종 (M001-M012) — 이동/지원 10종 + 와일드카드 2종 (ZER-101) |
-| `dosa.json` | `dosa` | 도사(道士) 전용 카드 25종 (D001-D025) |
-| `mugwan.json` | `mugwan` | 무관(武官) 전용 진형 카드 25종 (G001-G025) |
-| `mungwan.json` | `mungwan` | 문관(文官) 전용 학식 카드 25종 (W001-W025) |
+| `common.json` | `common` | 공통 카드 54종 (M001-M054) — 이동/지원 + 와일드카드 |
+| `dosa.json` | `dosa` | 도사(道士) 전용 카드 27종 (D001-D027) |
+| `mugwan.json` | `mugwan` | 무관(武官) 전용 진형 카드 27종 (G001-G027) |
+| `mungwan.json` | `mungwan` | 문관(文官) 전용 학식 카드 27종 (W001-W027) |
 
 ### 1.2 파일 루트 스키마
 
@@ -64,12 +64,22 @@
 
 | 파일 | 내용 |
 |------|------|
-| `act1.json` | 1막 일반+정예 몬스터 |
-| `act1_boss.json` | 1막 보스: 판서 이무령 (3페이즈) |
+| `act1.json` | 1막 일반 11종 (E001-E011) + 정예 3종 (EL001-EL003) |
+| `act1_boss.json` | 1막 메인 보스: 판서 이무령 (3페이즈) |
+| `act1_boss_mid.json` | 1막 중간 보스 |
+| `act1_boss_alt.json` | 1막 대체 보스 |
+| `act1_boss_tamhak.json` | 1막 특수 보스 (탐학) |
 | `act2.json` | 2막 일반+정예 몬스터 |
-| `act2_boss.json` | 2막 보스 |
+| `act2_boss.json` | 2막 메인 보스 |
+| `act2_boss_mid.json` | 2막 중간 보스 |
+| `act2_boss_alt.json` | 2막 대체 보스 |
+| `act2_boss_mid_gungan.json` | 2막 중간 보스 (군관) |
+| `act2_boss_tamgwan.json` | 2막 특수 보스 (탐관) |
+| `act2_minions.json` | 2막 수하 몬스터 |
 | `act3.json` | 3막 일반+정예 몬스터 |
 | `act3_boss.json` | 3막 최종 보스 |
+| `act3_boss_mid.json` | 3막 중간 보스 |
+| `special_elites.json` | 특수 정예 몬스터 |
 
 ### 2.2 Enemy 파일 루트 스키마
 

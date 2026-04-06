@@ -80,21 +80,33 @@ joseon-deckbuilder/
 │
 ├── data/                      # 게임 데이터 JSON
 │   ├── cards/
-│   │   ├── common.json        # 공통 이동 카드 5종 (M001-M005)
-│   │   ├── dosa.json          # 도사 전용 카드
-│   │   ├── mugwan.json        # 무관 전용 진형 카드 (G001-G005)
-│   │   └── mungwan.json       # 문관 전용 학식 카드
+│   │   ├── common.json        # 공통 카드 54종 (M001-M054)
+│   │   ├── dosa.json          # 도사 전용 카드 27종 (D001-D027)
+│   │   ├── mugwan.json        # 무관 전용 카드 27종 (G001-G027)
+│   │   └── mungwan.json       # 문관 전용 카드 27종 (W001-W027)
 │   ├── enemies/
-│   │   ├── act1.json          # Act 1 일반/정예 몬스터 (E001-E004, EL001)
+│   │   ├── act1.json          # Act 1 일반 11종 (E001-E011) + 정예 3종 (EL001-EL003)
 │   │   ├── act1_boss.json     # Act 1 보스: 판서 이무령 (3페이즈, HP 115)
+│   │   ├── act1_boss_mid.json # Act 1 중간 보스
+│   │   ├── act1_boss_alt.json # Act 1 대체 보스
+│   │   ├── act1_boss_tamhak.json  # Act 1 특수 보스 (탐학)
 │   │   ├── act2.json          # Act 2 일반/정예 몬스터
 │   │   ├── act2_boss.json     # Act 2 보스
+│   │   ├── act2_boss_mid.json # Act 2 중간 보스
+│   │   ├── act2_boss_alt.json # Act 2 대체 보스
+│   │   ├── act2_boss_mid_gungan.json  # Act 2 중간 보스 (군관)
+│   │   ├── act2_boss_tamgwan.json     # Act 2 특수 보스 (탐관)
+│   │   ├── act2_minions.json  # Act 2 수하
 │   │   ├── act3.json          # Act 3 일반/정예 몬스터
-│   │   └── act3_boss.json     # Act 3 최종 보스
+│   │   ├── act3_boss.json     # Act 3 최종 보스
+│   │   ├── act3_boss_mid.json # Act 3 중간 보스
+│   │   └── special_elites.json # 특수 정예 몬스터
 │   ├── events/
 │   │   ├── act1_events.json   # Act 1 랜덤 이벤트
 │   │   ├── act2_events.json   # Act 2 랜덤 이벤트
-│   │   └── act3_events.json   # Act 3 랜덤 이벤트
+│   │   ├── act3_events.json   # Act 3 랜덤 이벤트
+│   │   ├── build_variant_events.json  # 빌드 변형 이벤트
+│   │   └── special_events.json # 특수 이벤트
 │   ├── relics/
 │   │   └── relics.json        # 유물 풀 15종 (일반 3·고급 6·희귀 4·전설 2)
 │   ├── achievements/
@@ -103,21 +115,30 @@ joseon-deckbuilder/
 │   │   └── unlock_conditions.json  # 캐릭터 해금 조건
 │   ├── shop/
 │   │   └── economy.json       # 상점 가격표, 골드 보상 공식
-│   └── skills/
-│       └── special_skills.json  # 캐릭터별 패시브/액티브 스킬
+│   ├── characters/
+│   │   └── unlock_conditions.json  # 캐릭터 해금 조건
+│   ├── narrative/
+│   │   └── amhaengosa_journey.json # 암행어사 서사 데이터
+│   ├── skills/
+│   │   └── special_skills.json  # 캐릭터별 패시브/액티브 스킬
+│   └── keywords.json            # 게임 키워드 정의
 │
 ├── docs/                      # 게임 디자인 문서
-│   ├── concept.xml            # 컨셉, 확정 결정사항, 세계관
-│   ├── cards.xml              # 카드 목록 및 밸런스 참조
-│   ├── enemies.xml            # 적 목록 (일반/정예/보스)
-│   ├── systems.xml            # 구현 시스템 문서
-│   ├── classes.xml            # 직업 설계 (도사/무관/문관)
-│   ├── skills.xml             # 스킬/패시브 설계
-│   ├── sijo.xml               # 시조 리듬 시스템 상세
-│   ├── monetization.xml       # 수익화 모델
+│   ├── concept.md             # 컨셉, 확정 결정사항, 세계관
+│   ├── cards.md               # 카드 목록 및 밸런스 참조
+│   ├── enemies.md             # 적 목록 (일반/정예/보스)
+│   ├── systems.md             # 구현 시스템 문서
+│   ├── classes.md             # 직업 설계 (도사/무관/문관)
+│   ├── skills.md              # 스킬/패시브 설계
+│   ├── sijo.md                # 시조 리듬 시스템 상세
+│   ├── monetization.md        # 수익화 모델
 │   ├── code_structure.md      # 코드 구조 가이드
 │   ├── data_schema.md         # JSON 데이터 스키마
-│   └── balance_sheet.md       # 밸런스 수치 시트
+│   ├── balance_sheet.md       # 밸런스 수치 시트
+│   ├── asset_list.md          # 그래픽 에셋 리스트
+│   ├── localization_en.md     # 영문 로컬라이제이션
+│   ├── nanobanana_prompt_guide.md  # NanoBanana 프롬프트 가이드
+│   └── store_listing.md       # 스토어 등록 정보
 │
 └── art/                       # 아트 에셋
 ```
@@ -134,8 +155,8 @@ joseon-deckbuilder/
 | 직업 | HP | 기(氣)/턴 | 고유 메카닉 | 해금 조건 |
 |------|-----|-----------|------------|-----------|
 | 무관(武官) | 80 | 3 | 진형(陣形), 병사 토큰, 기력(氣力) | 기본 해금 |
-| 문관(文官) | 65 | 3 | 학식(學識) 자원, 서책 연계 | 무관으로 1막 보스 처치 |
-| 도사(道士) | 70 | 3 | 천지기(시조 3슬롯↑ 시 기 1 회복) | 총 런 3회 완료 |
+| 문관(文官) | 70 | 3 | 학식(學識) 자원, 서책 연계 | 무관으로 1막 보스 처치 |
+| 도사(道士) | 75 | 3 | 천지기(시조 3슬롯↑ 시 기 1 회복) | 총 런 3회 완료 |
 
 ### 유물 시스템
 15종 유물 (일반 3 / 고급 6 / 희귀 4 / 전설 2). 정예 처치·이벤트·상점에서 획득.
@@ -144,7 +165,7 @@ joseon-deckbuilder/
 
 ### 맵 구조 (3막)
 각 막은 9~12개 노드로 구성. 분기 경로 선택. 막 클리어 후 보상 및 다음 막 전환.
-- **Act 1 (한양):** 일반 몬스터(E001-E004) → 정예(EL001) → 보스: 판서 이무령(3페이즈, HP 115)
+- **Act 1 (한양):** 일반 몬스터 11종(E001-E011) → 정예 3종(EL001-EL003) → 보스: 판서 이무령(3페이즈, HP 115)
 - **Act 2·3:** 난이도 스케일링 적용
 
 ### 상태이상
@@ -169,9 +190,9 @@ joseon-deckbuilder/
 | Sprint 6 | 문관(文官) 캐릭터, 캐릭터 선택 화면 (해금 시스템), 업적 시스템, 연대기 화면 |
 | Sprint 7 | 멀티 해상도 대응 (Galaxy Z Flip 3), 문서 최종 정리 |
 
-자세한 시스템 문서: `docs/systems.xml`
-카드 밸런스: `docs/cards.xml`
+자세한 시스템 문서: `docs/systems.md`
+카드 밸런스: `docs/cards.md`
 코드 구조: `docs/code_structure.md`
 데이터 스키마: `docs/data_schema.md`
 밸런스 수치: `docs/balance_sheet.md`
-게임 컨셉: `docs/concept.xml`
+게임 컨셉: `docs/concept.md`
