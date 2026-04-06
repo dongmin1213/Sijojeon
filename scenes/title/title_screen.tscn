@@ -8,11 +8,11 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gradient_overlay"]
 bg_color = Color(0, 0, 0, 0)
 
-; 바텀 시트 — 하단에서 올라오는 메뉴 패널
+; 바텀 시트 — 하단에서 올라오는 메뉴 패널 (따뜻한 다크 브라운, 배경과 자연스럽게 조화)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottom_sheet"]
-bg_color = Color(0.03, 0.02, 0.06, 0.88)
-border_width_top = 2
-border_color = Color(0.83, 0.66, 0.26, 0.4)
+bg_color = Color(0.06, 0.04, 0.02, 0.72)
+border_width_top = 1
+border_color = Color(0.83, 0.66, 0.26, 0.25)
 corner_radius_top_left = 28
 corner_radius_top_right = 28
 corner_radius_bottom_left = 0
@@ -21,9 +21,9 @@ content_margin_left = 40.0
 content_margin_top = 32.0
 content_margin_right = 40.0
 content_margin_bottom = 40.0
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_size = 16
-shadow_offset = Vector2(0, -4)
+shadow_color = Color(0.02, 0.01, 0.0, 0.3)
+shadow_size = 12
+shadow_offset = Vector2(0, -2)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3

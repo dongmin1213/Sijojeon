@@ -30,6 +30,9 @@ func _ready() -> void:
 	for btn in [continue_button, chronicle_button, settings_button, quit_button]:
 		_apply_hover_glow(btn)
 
+	# v10: 바텀 시트 상단 그라데이션 전환 (배경→패널 자연 블렌딩)
+	_add_panel_gradient_transition()
+
 	# v9: 반딧불 파티클 효과 (타이틀 분위기)
 	_add_firefly_particles()
 
@@ -107,6 +110,36 @@ func _apply_hover_glow(btn: Button) -> void:
 	hover_style.shadow_size = 6
 	btn.add_theme_stylebox_override("hover", hover_style)
 	btn.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
+
+
+func _add_panel_gradient_transition() -> void:
+	## v10: 바텀 시트 위에 그라데이션 오버레이 — 배경에서 패널로 자연스러운 전환
+	var gradient_rect := TextureRect.new()
+	gradient_rect.layout_mode = 1
+	gradient_rect.anchor_left = 0.0
+	gradient_rect.anchor_right = 1.0
+	gradient_rect.anchor_top = 0.40
+	gradient_rect.anchor_bottom = 0.56
+	gradient_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var gradient := Gradient.new()
+	gradient.set_color(0, Color(0.06, 0.04, 0.02, 0.0))
+	gradient.set_color(1, Color(0.06, 0.04, 0.02, 0.72))
+
+	var tex := GradientTexture2D.new()
+	tex.gradient = gradient
+	tex.fill_from = Vector2(0.5, 0.0)
+	tex.fill_to = Vector2(0.5, 1.0)
+	tex.width = 4
+	tex.height = 64
+
+	gradient_rect.texture = tex
+	gradient_rect.expand_mode = 1
+	gradient_rect.stretch_mode = 0
+	# 패널(TitlePanel) 바로 앞에 삽입
+	var panel_idx: int = $TitlePanel.get_index()
+	add_child(gradient_rect)
+	move_child(gradient_rect, panel_idx)
 
 
 func _add_firefly_particles() -> void:
