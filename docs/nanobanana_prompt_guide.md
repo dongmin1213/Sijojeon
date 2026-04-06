@@ -1,6 +1,6 @@
 # 시조전 — NanoBanana 프롬프트 가이드
 
-> 버전: 1.1 | 최종 업데이트: 2026-04-06
+> 버전: 1.2 | 최종 업데이트: 2026-04-06
 > Google NanoBanana 2 (Gemini Plus) 기반 에셋 생성 프롬프트 모음
 > **아트 스타일: SD(슈퍼디폼) 하이브리드 도트 일러스트**
 > 참조: 가디언테일즈, 메이플스토리, 월드플리퍼
@@ -17,6 +17,8 @@
 6. **참조 이미지 활용** — 첫 결과물을 참조 이미지로 업로드하면 스타일 편차 대폭 감소
 7. **2~4턴 반복 수정** — 첫 결과물을 바로 쓰지 말고, 대화형으로 수정 요청하여 퀄리티 향상
 8. **참조 게임명 명시** — NanoBanana가 실제 게임 스타일 지식을 활용하여 캘리브레이션
+9. **방향 규칙** — 플레이어 캐릭터는 **오른쪽(facing right)**, 적/몬스터는 **왼쪽(facing left)** 바라봄. Slay the Spire 구도 (플레이어 좌측, 적 우측)
+10. **플레이어 톤** — 플레이어 캐릭터는 "cute" 대신 "fierce/powerful/commanding" 등 강인한 톤. 적보다 위엄 있게
 
 ---
 
@@ -25,8 +27,8 @@
 모든 캐릭터/적 프롬프트 앞에 붙이는 스타일 지정 문구:
 
 ```
-A cute chibi game character sprite in the style of Guardian Tales and MapleStory.
-Super-deformed proportions — the head is about 40% of the total character height, with a large round expressive face, stubby limbs, and a compact body approximately 2.5 heads tall.
+A chibi game character sprite in the style of Guardian Tales and MapleStory.
+Super-deformed proportions — the head is about 40% of the total character height, with a large expressive face, stubby limbs, and a compact body approximately 2.5 heads tall.
 High-resolution pixel art illustration with smooth shading and vibrant colors.
 Joseon dynasty Korean historical costume design with dancheong color palette (vermillion, indigo, pine green, gold).
 Full body character on a plain white background with no shadows, no ground, and no other elements.
@@ -51,21 +53,21 @@ No text, no border, no frame.
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon military officer (무관). He wears dark iron-gray armor over a navy blue inner robe, with a Korean sword (환도) drawn and held at the ready. He has a strong determined expression, a topknot under a warrior's headband, and a compact sturdy body in a battle-ready stance facing slightly left. The armor plates have detailed smooth shading with metallic highlights.
+Draw a fierce chibi Joseon military officer (무관) ready for battle. He wears dark iron-gray armor over a navy blue inner robe, with a Korean sword (환도) drawn and held at the ready. He has a fierce determined expression with sharp eyes, a topknot under a warrior's headband, and a compact sturdy body in an aggressive battle-ready stance facing slightly right. The armor plates have detailed smooth shading with metallic highlights and battle damage marks.
 ```
 
 ### char_dosa — 도사 (道士)
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon Taoist mystic (도사). He wears flowing white and pale blue robes with yin-yang embroidery that billow with mystical energy. He holds a glowing paper talisman in one hand with vivid qi energy swirling around the other. He has a long white beard, serene piercing eyes, and a topknot with a jade pin. Ethereal teal glow effect surrounds the figure.
+Draw a powerful chibi Joseon Taoist mystic (도사) channeling supernatural energy. He wears flowing white and pale blue robes with yin-yang embroidery that billow with mystical energy. He holds a glowing paper talisman in one hand with vivid qi energy swirling around the other. He has a long white beard, intense piercing eyes, and a topknot with a jade pin. He faces slightly right. Ethereal teal glow effect surrounds the figure.
 ```
 
 ### char_mungwan — 문관 (文官)
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon civil scholar-official (문관). He wears a formal scholar's hat (사모) and crimson court robe with a detailed rank badge. He holds a calligraphy brush in one hand with glowing ink characters floating around the other. He has sharp intelligent eyes, a calm expression, a neatly trimmed beard, and an elegant refined posture with a faint golden scholarly aura.
+Draw a commanding chibi Joseon civil scholar-official (문관) with an aura of authority. He wears a formal scholar's hat (사모) and crimson court robe with a detailed rank badge. He holds a calligraphy brush in one hand with glowing ink characters floating around the other. He has sharp intelligent eyes, a stern confident expression, a neatly trimmed beard, and a dignified stance facing slightly right. Faint golden scholarly aura radiates from him.
 ```
 
 ---
@@ -83,28 +85,28 @@ Draw a cute chibi Joseon street thug (불량배). He has torn and dirty hemp clo
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi corrupt Joseon constable (포졸). He wears a red military vest over dark clothes with a black hat. He carries a wooden cudgel over one shoulder with a smirking expression. He has a pudgy compact build with a menacing presence.
+Draw a cute chibi corrupt Joseon constable (포졸) facing slightly left. He wears a red military vest over dark clothes with a black hat. He carries a wooden cudgel over one shoulder with a smirking expression. He has a pudgy compact build with a menacing presence.
 ```
 
 ### E003 — 전당포 주인
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi sly Joseon pawnshop owner (전당포 주인). He wears a dark gray durumagi with a money pouch at his belt and holds a wooden abacus with gleaming beads. He has a thin face, narrow cunning eyes, and a calculating hunched-forward posture.
+Draw a cute chibi sly Joseon pawnshop owner (전당포 주인) facing slightly left. He wears a dark gray durumagi with a money pouch at his belt and holds a wooden abacus with gleaming beads. He has a thin face, narrow cunning eyes, and a calculating hunched-forward posture.
 ```
 
 ### E004 — 떠돌이 도적
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon mountain bandit (도적). He wears ragged patched clothing with a tattered cloak that billows behind him. He wields a short dagger in a crouching ambush-ready stance with wild desperate hair and eyes.
+Draw a cute chibi Joseon mountain bandit (도적) facing slightly left. He wears ragged patched clothing with a tattered cloak that billows behind him. He wields a short dagger in a crouching ambush-ready stance with wild desperate hair and eyes.
 ```
 
 ### E005 — 원혼
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Korean vengeful ghost (원혼). She has a semi-transparent pale blue-white glowing form wearing a tattered white mourning dress (소복). Long black hair covers part of her face, with glowing hollow eyes. She floats above the ground with wispy spirit trails at her feet.
+Draw a cute chibi Korean vengeful ghost (원혼) facing slightly left. She has a semi-transparent pale blue-white glowing form wearing a tattered white mourning dress (소복). Long black hair covers part of her face, with glowing hollow eyes. She floats above the ground with wispy spirit trails at her feet.
 ```
 
 ### E006 — 도깨비불
@@ -118,35 +120,35 @@ Draw a Korean spirit fire (도깨비불) as a swirling blue-green and orange fla
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon government slave (관노) forced to fight. He wears rough hemp clothes with iron shackles on his wrists and wields a makeshift iron pitchfork. He has a compact sturdy build, a desperate haunted expression, and is barefoot in an aggressive but reluctant stance.
+Draw a cute chibi Joseon government slave (관노) facing slightly left, forced to fight. He wears rough hemp clothes with iron shackles on his wrists and wields a makeshift iron pitchfork. He has a compact sturdy build, a desperate haunted expression, and is barefoot in an aggressive but reluctant stance.
 ```
 
 ### E008 — 기방 청객
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi drunken Joseon gisaeng house patron (청객). He has disheveled noble clothing with an untied sash and a tilted hat. He holds a folding fan as a weapon in a swaying unsteady stance. He has a flushed red face and bleary aggressive eyes with a portly build.
+Draw a cute chibi drunken Joseon gisaeng house patron (청객) facing slightly left. He has disheveled noble clothing with an untied sash and a tilted hat. He holds a folding fan as a weapon in a swaying unsteady stance. He has a flushed red face and bleary aggressive eyes with a portly build.
 ```
 
 ### E009 — 야경꾼
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon night watchman (야경꾼). He wears dark blue-black patrol clothing with a round hat. He carries a lantern on a pole in one hand with a warm glow effect and a short spear in the other. He has an alert stern expression with a lean vigilant build.
+Draw a cute chibi Joseon night watchman (야경꾼) facing slightly left. He wears dark blue-black patrol clothing with a round hat. He carries a lantern on a pole in one hand with a warm glow effect and a short spear in the other. He has an alert stern expression with a lean vigilant build.
 ```
 
 ### E010 — 시전 상인
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi corrupt Joseon market merchant (시전 상인). He wears a fine silk durumagi with a fur-lined collar. He holds a rigged weighted scale with a calculating expression and a thin mustache. He has gold and coin pouches at his belt with a gleam effect.
+Draw a cute chibi corrupt Joseon market merchant (시전 상인) facing slightly left. He wears a fine silk durumagi with a fur-lined collar. He holds a rigged weighted scale with a calculating expression and a thin mustache. He has gold and coin pouches at his belt with a gleam effect.
 ```
 
 ### E011 — 나팔수
 
 ```
 [스타일 프리픽스]
-Draw a cute chibi Joseon government herald (나팔수). He wears dark blue official clothing with a red sash. He holds a traditional Korean trumpet ready to blow. He has a young face with a nervous but dutiful expression and a slim build.
+Draw a cute chibi Joseon government herald (나팔수) facing slightly left. He wears dark blue official clothing with a red sash. He holds a traditional Korean trumpet ready to blow. He has a young face with a nervous but dutiful expression and a slim build.
 ```
 
 ---
@@ -157,21 +159,21 @@ Draw a cute chibi Joseon government herald (나팔수). He wears dark blue offic
 
 ```
 [스타일 프리픽스]
-Draw a larger cute chibi tyrannical Joseon aristocrat (양반). He wears luxurious silk robes in dark purple with gold embroidery. He holds a long smoking pipe like a scepter with an arrogant expression, looking down with contempt. He has a groomed beard and an aura of authority. Make this sprite visibly larger and more detailed than regular enemy sprites.
+Draw a larger cute chibi tyrannical Joseon aristocrat (양반) facing slightly left. He wears luxurious silk robes in dark purple with gold embroidery. He holds a long smoking pipe like a scepter with an arrogant expression, looking down with contempt. He has a groomed beard and an aura of authority. Make this sprite visibly larger and more detailed than regular enemy sprites.
 ```
 
 ### EL002 — 독사
 
 ```
 [스타일 프리픽스]
-Draw a larger cute chibi Joseon poison assassin (독사). He wears all-black tight clothing with a dark face mask — only cold calculating serpent-like eyes visible. Multiple green and purple poison vials are strapped across his chest with a glow effect. He crouches in a strike-ready pose with toxic mist around his hands. Make this sprite visibly larger and more detailed than regular enemy sprites.
+Draw a larger cute chibi Joseon poison assassin (독사) facing slightly left. He wears all-black tight clothing with a dark face mask — only cold calculating serpent-like eyes visible. Multiple green and purple poison vials are strapped across his chest with a glow effect. He crouches in a strike-ready pose with toxic mist around his hands. Make this sprite visibly larger and more detailed than regular enemy sprites.
 ```
 
 ### EL003 — 포수
 
 ```
 [스타일 프리픽스]
-Draw a larger cute chibi Joseon elite hunter (포수). He wears practical leather and fur hunting clothes. He has a Korean bow on his back and holds a matchlock musket with smoke wisps. He has a weathered face with sharp hawk-like eyes and stubble beard. Make this sprite visibly larger and more detailed than regular enemy sprites.
+Draw a larger cute chibi Joseon elite hunter (포수) facing slightly left. He wears practical leather and fur hunting clothes. He has a Korean bow on his back and holds a matchlock musket with smoke wisps. He has a weathered face with sharp hawk-like eyes and stubble beard. Make this sprite visibly larger and more detailed than regular enemy sprites.
 ```
 
 ---
@@ -182,7 +184,7 @@ Draw a larger cute chibi Joseon elite hunter (포수). He wears practical leathe
 
 ```
 [스타일 프리픽스]
-Draw a boss-scale cute chibi corrupt Joseon Minister (이조판서). He sits on an ornate throne-like chair wearing the highest rank crimson and gold court robes with a crane rank badge. He holds a glowing red seal of power in one hand. He has cold merciless eyes beneath a stiff official's hat and a white trimmed beard. The seal radiates intense red energy. Make this sprite much larger and more imposing than regular sprites.
+Draw a boss-scale cute chibi corrupt Joseon Minister (이조판서) facing slightly left. He sits on an ornate throne-like chair wearing the highest rank crimson and gold court robes with a crane rank badge. He holds a glowing red seal of power in one hand. He has cold merciless eyes beneath a stiff official's hat and a white trimmed beard. The seal radiates intense red energy. Make this sprite much larger and more imposing than regular sprites.
 ```
 
 ### B_ACT2_FINAL — 쌍두 호랑이
@@ -196,7 +198,7 @@ Draw a boss-scale chibi monstrous twin-headed Korean tiger (쌍두 호랑이). I
 
 ```
 [스타일 프리픽스]
-Draw a boss-scale cute chibi treasonous Joseon lord (역적 대감). He wears court robes with dragon motifs and detailed embroidery. His face is half in shadow with one eye gleaming with ambition and a sinister smile. He holds a secret royal decree in one hand and a hidden blade in the other. He has a dark crimson and black aura with flashes of imperial gold. Make this sprite much larger and more imposing than regular sprites.
+Draw a boss-scale cute chibi treasonous Joseon lord (역적 대감) facing slightly left. He wears court robes with dragon motifs and detailed embroidery. His face is half in shadow with one eye gleaming with ambition and a sinister smile. He holds a secret royal decree in one hand and a hidden blade in the other. He has a dark crimson and black aura with flashes of imperial gold. Make this sprite much larger and more imposing than regular sprites.
 ```
 
 ---
