@@ -6,13 +6,13 @@ extends RefCounted
 ## 3~4 경로 분기, 막별 난이도 스케일링.
 
 const MIN_NODES_PER_ROW := 2
-const MAX_NODES_PER_ROW := 4
+const MAX_NODES_PER_ROW := 5
 
-## 막별 설정: 행 수, 목표 노드 수, 막 이름
+## 막별 설정: 행 수, 목표 노드 수, 막 이름 (SlS2 스타일 — 더 많은 행과 분기)
 const ACT_CONFIG := {
-	1: { "total_rows": 12, "min_nodes": 25, "max_nodes": 28, "name": "한양" },
-	2: { "total_rows": 15, "min_nodes": 32, "max_nodes": 36, "name": "지리산" },
-	3: { "total_rows": 15, "min_nodes": 32, "max_nodes": 36, "name": "경복궁" },
+	1: { "total_rows": 16, "min_nodes": 40, "max_nodes": 48, "name": "한양" },
+	2: { "total_rows": 17, "min_nodes": 44, "max_nodes": 52, "name": "지리산" },
+	3: { "total_rows": 17, "min_nodes": 44, "max_nodes": 52, "name": "경복궁" },
 }
 
 ## 막별 노드 타입 분포 가중치 (진행도 구간별).
@@ -72,11 +72,17 @@ func generate(seed_value: int, act: int = 1) -> MapData.RunMap:
 
 	var next_id := 0
 
-	# 1. 행별 노드 수 결정
+	# 1. 행별 노드 수 결정 (SlS2 스타일 — 다양한 경로 분기)
 	var row_sizes: Array[int] = []
-	row_sizes.append(_rng.randi_range(3, MAX_NODES_PER_ROW))  # row 0: 시작 3~4
+	row_sizes.append(_rng.randi_range(3, 4))  # row 0: 시작 3~4
 	for r in range(1, boss_row):
-		row_sizes.append(_rng.randi_range(MIN_NODES_PER_ROW, 3))
+		# 중간 행: 2~5개 노드로 다양한 분기 생성
+		var row_min := MIN_NODES_PER_ROW
+		var row_max := MAX_NODES_PER_ROW
+		# 보스 직전 행은 수렴 (2~3개)
+		if r >= boss_row - 2:
+			row_max = 3
+		row_sizes.append(_rng.randi_range(row_min, row_max))
 	row_sizes.append(1)  # boss row
 
 	# 총 노드 수 조정
@@ -114,10 +120,10 @@ func generate(seed_value: int, act: int = 1) -> MapData.RunMap:
 	# 3. 연결 생성 (모든 노드 도달 가능 보장)
 	_generate_connections(run_map)
 
-	# 4. 노드 타입 최소 보장
-	_ensure_node_type(run_map, MapData.NodeType.ELITE, 3)
-	_ensure_node_type(run_map, MapData.NodeType.REST, 2)
-	_ensure_node_type(run_map, MapData.NodeType.EVENT, 4)
+	# 4. 노드 타입 최소 보장 (맵 확대에 맞춰 상향)
+	_ensure_node_type(run_map, MapData.NodeType.ELITE, 4)
+	_ensure_node_type(run_map, MapData.NodeType.REST, 4)
+	_ensure_node_type(run_map, MapData.NodeType.EVENT, 6)
 
 	# 5. 과거시험 노드 1개 배치 (향교/성균관)
 	_ensure_gwageo(run_map)
@@ -185,13 +191,13 @@ func _generate_connections(run_map: MapData.RunMap) -> void:
 				node.connections.append(child_id)
 			connected_children[child_id] = true
 
-			# 추가 연결 (인접 노드로, 40% 확률)
-			if base_child_idx > 0 and _rng.randf() < 0.4:
+			# 추가 연결 (인접 노드로, 55% 확률 — SlS2 스타일 더 많은 분기)
+			if base_child_idx > 0 and _rng.randf() < 0.55:
 				var alt_id: int = next_row[base_child_idx - 1]
 				if alt_id not in node.connections:
 					node.connections.append(alt_id)
 				connected_children[alt_id] = true
-			if base_child_idx < next_count - 1 and _rng.randf() < 0.4:
+			if base_child_idx < next_count - 1 and _rng.randf() < 0.55:
 				var alt_id: int = next_row[base_child_idx + 1]
 				if alt_id not in node.connections:
 					node.connections.append(alt_id)

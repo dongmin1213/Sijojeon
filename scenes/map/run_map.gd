@@ -36,10 +36,10 @@ const NODE_ICONS := {
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
 const BASE_VIEWPORT_WIDTH := 1080.0
-const BASE_NODE_SIZE := Vector2(130, 130)  # v7: 더 큰 원형 노드
-const BASE_ROW_SPACING := 180.0  # v7: 노드 간 여백 확대
-const BASE_MAP_PADDING_X := 60.0
-const BASE_MAP_PADDING_TOP := 140.0  # v7: 플로팅 HUD 아래 시작
+const BASE_NODE_SIZE := Vector2(110, 110)  # v9: 맵 확장으로 노드 크기 축소
+const BASE_ROW_SPACING := 150.0  # v9: 행 간격 축소 (행 수 증가 대응)
+const BASE_MAP_PADDING_X := 20.0  # v9: 좌우 여백 최소화
+const BASE_MAP_PADDING_TOP := 140.0  # v9: 플로팅 HUD 아래 시작
 const BASE_MAP_PADDING_BOTTOM := 100.0
 
 ## 막별 맵 배경 색상 (그라데이션 기반)
@@ -79,6 +79,9 @@ func _ready() -> void:
 		push_warning("RunMap: run_data 또는 run_map이 없음")
 		return
 
+	# 노치/상태바 안전 영역 적용
+	_apply_safe_area_margin()
+
 	# 방 완료 후 맵 복귀: 대기 노드를 방문 완료로 확정
 	_finalize_pending_node()
 
@@ -89,6 +92,24 @@ func _ready() -> void:
 	_init_hud_toggle()
 	# 스크롤을 현재 위치로 이동
 	call_deferred("_scroll_to_current")
+
+
+func _apply_safe_area_margin() -> void:
+	## 카메라 노치/상태바 안전 영역을 HUD와 스크롤 영역에 적용한다.
+	var safe_area := DisplayServer.get_display_safe_area()
+	var screen_size := DisplayServer.screen_get_size()
+	# safe_area.position.y = 노치/상태바 높이 (픽셀)
+	var top_inset_px: float = safe_area.position.y
+	if top_inset_px <= 0:
+		# 안전 영역 정보가 없으면 기본 마진 적용 (40px)
+		top_inset_px = 40.0
+	# 뷰포트 비율로 변환
+	var viewport_height: float = get_viewport_rect().size.y
+	var top_ratio: float = top_inset_px / maxf(float(screen_size.y), viewport_height)
+	# HUD 상단 앵커에 안전 영역 마진 반영
+	var hud := $HUD
+	hud.anchor_top = maxf(top_ratio, 0.02)
+	hud.anchor_bottom = hud.anchor_top + 0.07
 
 
 func _finalize_pending_node() -> void:
@@ -115,12 +136,12 @@ func _on_hud_tapped(event: InputEvent) -> void:
 	_hud_expanded = not _hud_expanded
 	$HUD/VBoxContainer/SubHBox.visible = _hud_expanded
 	$HUD/VBoxContainer/FactionRow.visible = _hud_expanded
-	# HUD 크기 조정
+	# HUD 크기 조정 (safe area 기반)
 	var hud := $HUD
 	if _hud_expanded:
-		hud.anchor_bottom = 0.14
+		hud.anchor_bottom = hud.anchor_top + 0.13
 	else:
-		hud.anchor_bottom = 0.08
+		hud.anchor_bottom = hud.anchor_top + 0.07
 
 
 func _init_relic_bar() -> void:
@@ -429,7 +450,7 @@ func _make_node_style(bg: Color, border_color: Color, border_width: int) -> Styl
 	# v6: 원형 노드 스타일 — corner_radius를 크게 설정하여 원형 효과
 	var style := StyleBoxFlat.new()
 	style.bg_color = bg
-	style.set_corner_radius_all(55)  # BASE_NODE_SIZE / 2 = 원형
+	style.set_corner_radius_all(45)  # BASE_NODE_SIZE / 2 = 원형
 	style.set_border_width_all(border_width)
 	style.border_color = border_color
 	style.shadow_color = Color(0.0, 0.0, 0.0, 0.35)
