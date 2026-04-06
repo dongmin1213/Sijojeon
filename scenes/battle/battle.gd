@@ -304,20 +304,20 @@ func _create_floating_ui() -> void:
 	_turn_overlay_label.z_index = 5
 	add_child(_turn_overlay_label)
 
-	# v8: 드로우/버림 더미 — 배경 필 추가, 폰트 확대, 가시성 강화
+	# v9: 드로우/버림 더미 — 카드 영역 바로 위에 배치 (겹침 방지)
 	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.60, 0.80))
 	_draw_pile_overlay.anchor_left = 0.02
-	_draw_pile_overlay.anchor_top = 0.93
+	_draw_pile_overlay.anchor_top = 0.72
 	_draw_pile_overlay.anchor_right = 0.22
-	_draw_pile_overlay.anchor_bottom = 0.99
+	_draw_pile_overlay.anchor_bottom = 0.76
 	_draw_pile_overlay.z_index = 10
 	add_child(_draw_pile_overlay)
 
 	_discard_pile_overlay = _create_deck_pill_label(Color(0.78, 0.45, 0.35))
-	_discard_pile_overlay.anchor_left = 0.78
-	_discard_pile_overlay.anchor_top = 0.93
-	_discard_pile_overlay.anchor_right = 0.98
-	_discard_pile_overlay.anchor_bottom = 0.99
+	_discard_pile_overlay.anchor_left = 0.30
+	_discard_pile_overlay.anchor_top = 0.72
+	_discard_pile_overlay.anchor_right = 0.50
+	_discard_pile_overlay.anchor_bottom = 0.76
 	_discard_pile_overlay.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_discard_pile_overlay.z_index = 10
 	add_child(_discard_pile_overlay)
@@ -1201,9 +1201,10 @@ func _init_active_skill_button() -> void:
 	skill_style.set_content_margin_all(6)
 	_active_skill_button.add_theme_stylebox_override("normal", skill_style)
 	_active_skill_button.add_theme_color_override("font_color", Color(0.8, 0.9, 1.0))
-	_active_skill_button.anchor_left = 0.72
-	_active_skill_button.anchor_right = 0.97
-	_active_skill_button.anchor_top = 0.26
+	# v9: 시조 바 우측에 배치 (겹침 방지)
+	_active_skill_button.anchor_left = 0.62
+	_active_skill_button.anchor_right = 0.98
+	_active_skill_button.anchor_top = 0.25
 	_active_skill_button.anchor_bottom = 0.29
 	_active_skill_button.z_index = 10
 	add_child(_active_skill_button)

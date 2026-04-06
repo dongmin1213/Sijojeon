@@ -14,13 +14,13 @@ const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 @export var fan_y_curve: float = 8.0          # 부채꼴 높이 커브 (완만)
 @export var hover_lift: float = 280.0         # 호버 시 위로 올라가는 높이 (카드 전체가 보이도록)
 @export var select_lift: float = 320.0        # 선택 시 위로 올라가는 높이
-@export var card_peek_ratio: float = 0.30     # 숨김 상태에서 보이는 카드 비율 (30%)
+@export var card_peek_ratio: float = 0.35     # 숨김 상태에서 보이는 카드 비율 (35% — 이름+코스트 가시성)
 
 # 뷰포트 기준 비율 (1080x1920 기본 해상도 기준)
 const BASE_WIDTH := 1080.0
-# v9: 카드 간격 — 하단 배치에 맞게 조정
-const MAX_CARD_SPACING := 200.0    # 넉넉할 때 카드 간 간격
-const MIN_CARD_SPACING := 100.0    # 겹침 허용 (카드 크기 대비)
+# v9: 카드 간격 — 하단 숨김 상태에서는 이름만 보이므로 넓게
+const MAX_CARD_SPACING := 220.0    # 넉넉할 때 카드 간 간격
+const MIN_CARD_SPACING := 120.0    # 겹침 최소화
 # 손패 카드 수에 따른 카드 크기 스케일 (가독성 확보)
 const HAND_SCALE_THRESHOLD := 4    # 4장 초과 시 축소 시작
 const MIN_HAND_SCALE := 0.70       # 카드 최소 축소 비율
