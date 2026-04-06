@@ -1,6 +1,6 @@
 # 시조전 — NanoBanana 프롬프트 가이드
 
-> 버전: 0.4 | 최종 업데이트: 2026-04-06
+> 버전: 0.5 | 최종 업데이트: 2026-04-06
 > Google NanoBanana 2 (Gemini Plus) 기반 에셋 생성 프롬프트 모음
 > **아트 스타일: 하이브리드 도트 일러스트 (High-Res Pixel Art Illustration)**
 > 참조: 가디언테일즈, 월드플리퍼, Raid 류 한국 모바일 게임 캐릭터 스타일
@@ -26,6 +26,7 @@
 [스타일 프리픽스 — 캐릭터/적 스프라이트용]
 High-resolution pixel art illustration sprite, modern Korean mobile RPG style.
 Inspired by Guardian Tales, World Flipper — detailed pixel-based character with smooth shading and vibrant colors.
+Chibi / super-deformed proportions: 2.5-head-tall character with large expressive head and compact body.
 Joseon dynasty (1392-1910) Korean historical aesthetic.
 Color palette inspired by dancheong (단청): vermillion red, indigo blue, pine green, gold, violet purple.
 Full body character sprite, dynamic pose, detailed outfit and weapon rendering.
@@ -50,11 +51,12 @@ Sharp silhouette readable at small sizes.
 ```
 [스타일 프리픽스] 
 High-resolution pixel art illustration sprite of a Joseon dynasty military officer (무관/武官).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, powerful battle-ready stance, facing slightly left.
 Dark iron-gray armor (갑옷) over a navy blue inner robe, smooth shading on metal plates with highlights.
 Korean traditional sword (환도/環刀) drawn and held at the ready, blade catching light.
 Strong jawline, determined eyes, topknot (상투) under a warrior's headband.
-Muscular build with visible battle scars. Dynamic pose suggesting motion.
+Compact sturdy build. Dynamic pose suggesting motion.
 Modern mobile RPG character sprite. Vibrant colors with smooth pixel shading.
 Resolution: 512x512, transparent background. No background elements.
 ```
@@ -64,11 +66,12 @@ Resolution: 512x512, transparent background. No background elements.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a Joseon dynasty Taoist mystic (도사/道士).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, powerful casting pose with one hand raised, facing slightly left.
 Flowing white and pale blue Taoist robes (도포) with yin-yang embroidery detail, robes billowing with energy.
 Holding a glowing paper talisman (부적) in one hand, vivid qi energy swirling around the other.
 Long white beard, serene but piercing eyes, topknot with a jade pin.
-Thin, wiry build suggesting inner strength. Ethereal glow effect around figure.
+Compact build with flowing robes. Ethereal glow effect around figure.
 Modern mobile RPG character sprite. Vibrant colors with smooth pixel shading.
 Resolution: 512x512, transparent background. No background elements.
 ```
@@ -78,11 +81,12 @@ Resolution: 512x512, transparent background. No background elements.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a Joseon dynasty civil scholar-official (문관/文官).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, intellectual authority stance with one arm extended, facing slightly left.
 Formal scholar's hat (사모/紗帽) and crimson court robe (관복) with detailed rank badge (흉배).
 Holding a calligraphy brush in one hand, glowing ink characters floating around the other.
 Sharp, intelligent eyes, calm expression. Neatly trimmed beard.
-Slim, elegant build with refined posture. Faint golden scholarly aura.
+Compact elegant build with refined posture. Faint golden scholarly aura.
 Modern mobile RPG character sprite. Vibrant colors with smooth pixel shading.
 Resolution: 512x512, transparent background. No background elements.
 ```
@@ -96,10 +100,11 @@ Resolution: 512x512, transparent background. No background elements.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a Joseon-era street thug (불량배) from Hanyang back alleys.
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, aggressive forward-leaning stance, facing slightly left.
 Rough, unkempt character. Torn and dirty hemp clothing with visible wear and patches.
 Wielding a crude short knife, menacing expression.
-Scar across cheek, missing tooth, wild eyes. Lean muscular build.
+Scar across cheek, missing tooth, wild eyes.
 Bare feet or straw sandals. Dynamic threatening pose.
 Modern mobile RPG enemy sprite. Vibrant colors with smooth pixel shading.
 Resolution: 512x512, transparent background.
@@ -110,10 +115,11 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a corrupt low-ranking Joseon constable (포졸).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, intimidating stance.
 Red military vest over dark clothes, black hat with detailed fabric rendering.
 Carrying a wooden cudgel (곤장) over one shoulder, smirking expression.
-Pudgy build, menacing presence. Smooth shading on uniform details.
+Compact pudgy build, menacing presence. Smooth shading on uniform details.
 Modern mobile RPG enemy sprite. Vibrant colors.
 Resolution: 512x512, transparent background.
 ```
@@ -123,6 +129,7 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a sly Joseon-era pawnshop owner (전당포 주인).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, hunched greedy posture.
 Dark gray durumagi with money pouch at belt. Holding wooden abacus (주판) with gleaming beads.
 Thin face, narrow cunning eyes. Calculating expression.
@@ -136,10 +143,11 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a wandering Joseon bandit (도적) from mountain roads.
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, crouching ambush-ready stance.
 Ragged, patched clothing with tattered cloak billowing.
 Wielding a short dagger, desperate wild expression.
-Gaunt face, wild hair, desperate eyes. Dynamic action pose.
+Wild hair, desperate eyes. Dynamic action pose.
 Modern mobile RPG enemy sprite. Vibrant colors with smooth shading.
 Resolution: 512x512, transparent background.
 ```
@@ -149,6 +157,7 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a Korean vengeful ghost (원혼/怨魂).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, floating ethereal pose.
 Semi-transparent form with pale blue-white glow effect.
 Tattered white Joseon mourning dress (소복), flowing unnaturally.
@@ -175,9 +184,10 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a Joseon government slave (관노/官奴) forced to fight.
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, aggressive but reluctant stance.
 Rough hemp clothes with iron shackles on wrists, detailed chain rendering.
-Wielding makeshift iron pitchfork (쇠스랑). Muscular build from forced labor.
+Wielding makeshift iron pitchfork (쇠스랑). Compact sturdy build.
 Desperate, haunted expression. Barefoot.
 Modern mobile RPG enemy sprite. Vibrant colors with smooth shading.
 Resolution: 512x512, transparent background.
@@ -188,6 +198,7 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a drunken Joseon-era gisaeng house patron (청객).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, swaying unsteady stance.
 Disheveled noble clothing — untied sash, tilted hat. Rich fabric detail with smooth shading.
 Holding folding fan (부채) as weapon, flushed red face.
@@ -201,6 +212,7 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a Joseon night watchman (야경꾼).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, alert patrol stance.
 Dark blue-black patrol clothing, round hat. Detailed uniform rendering.
 Carrying lantern on pole in one hand with warm glow effect, short spear in other.
@@ -214,6 +226,7 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a corrupt Joseon market merchant (시전 상인).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, calculating pose.
 Fine silk durumagi with fur-lined collar, smooth fabric sheen rendering.
 Holding rigged weighted scale (저울). Calculating expression, thin mustache.
@@ -227,6 +240,7 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 High-resolution pixel art illustration sprite of a Joseon government herald/trumpeter (나팔수).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, formal attention stance.
 Dark blue official clothing with red sash. Detailed uniform rendering.
 Holding traditional Korean trumpet (나팔) ready to blow.
@@ -244,11 +258,11 @@ Resolution: 512x512, transparent background.
 ```
 [스타일 프리픽스]
 Large high-resolution pixel art illustration sprite of a tyrannical Joseon aristocrat (양반/兩班).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, authoritative stance. Larger and more detailed than regular enemies.
 Luxurious silk robes in dark purple with gold embroidery, rich fabric shading.
 Holding a long smoking pipe (장죽/長竹) like a scepter.
-Arrogant expression, looking down with contempt. Groomed beard.
-Tall, imposing presence. Aura of authority.
+Arrogant expression, looking down with contempt. Groomed beard. Aura of authority.
 Modern mobile RPG elite enemy sprite. Rich color palette with detailed shading.
 Resolution: 768x768, transparent background.
 ```
@@ -258,6 +272,7 @@ Resolution: 768x768, transparent background.
 ```
 [스타일 프리픽스]
 Large high-resolution pixel art illustration sprite of a Joseon-era poison assassin (독사/毒蛇).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, crouching strike-ready pose. Larger and more detailed than regular enemies.
 All-black tight clothing with dark face mask (복면). Sleek stealth aesthetic.
 Multiple green and purple poison vials strapped across chest with glow effect.
@@ -272,6 +287,7 @@ Resolution: 768x768, transparent background.
 ```
 [스타일 프리픽스]
 Large high-resolution pixel art illustration sprite of a Joseon-era elite hunter (포수/砲手).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, aiming stance. Larger and more detailed than regular enemies.
 Practical leather and fur hunting clothes, mountain style with detailed texture.
 Korean bow (활) on back, holding matchlock musket (화승총) with detailed weapon rendering.
@@ -290,6 +306,7 @@ Resolution: 768x768, transparent background.
 ```
 [스타일 프리픽스]
 Boss-scale high-resolution pixel art illustration sprite of a corrupt Joseon Minister of Personnel (이조판서/吏曹判書) Yi Mu-ryeong.
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, seated on ornate throne-like chair.
 Highest rank court robes — crimson and gold with crane rank badge (흉배), rich fabric shading.
 One hand holding a glowing red seal (관인) with power aura effect.
@@ -305,6 +322,7 @@ Resolution: 768x768, transparent background. No background elements.
 ```
 [스타일 프리픽스]
 Boss-scale high-resolution pixel art illustration sprite of a monstrous twin-headed tiger (쌍두 호랑이/兩頭虎).
+Chibi / super-deformed proportions: 2.5-head-tall with large heads and compact body.
 Full body sprite, facing forward. Massive scale.
 Two distinct heads: left head (좌두) calculating with cold blue eyes, right head (우두) ferocious roaring with fiery orange eyes.
 Enormous muscular body with glowing mystical markings on fur.
@@ -319,6 +337,7 @@ Resolution: 768x768, transparent background. No background elements.
 ```
 [스타일 프리픽스]
 Boss-scale high-resolution pixel art illustration sprite of a treasonous Joseon lord (역적 대감/逆賊大監).
+Chibi / super-deformed proportions: 2.5-head-tall with large expressive head and compact body.
 Full body sprite, standing in dramatic power pose.
 Court robes with dragon motifs instead of crane — detailed embroidery rendering.
 Face half in shadow, one eye gleaming with ambition. Sinister smile.
