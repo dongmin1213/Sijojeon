@@ -2,7 +2,7 @@
 
 [ext_resource type="Script"   path="res://scenes/title/title_screen.gd"         id="1"]
 [ext_resource type="Theme"    path="res://resources/joseon_theme.tres"           id="2"]
-[ext_resource type="Texture2D" path="res://art/backgrounds/title_bg.svg"         id="3"]
+[ext_resource type="Texture2D" path="res://art/backgrounds/title_bg.png"         id="3"]
 
 ; 그라데이션 오버레이 — 하단으로 갈수록 어둡게 (배경 위에 깔림)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gradient_overlay"]
