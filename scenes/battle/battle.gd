@@ -24,8 +24,8 @@ var end_turn_button: Button = null
 var _turn_overlay_label: Label = null
 
 # 덱 정보 오버레이 (HandArea 양쪽 하단)
-var _draw_pile_overlay: Label = null
-var _discard_pile_overlay: Label = null
+var _draw_pile_overlay: PanelContainer = null
+var _discard_pile_overlay: PanelContainer = null
 
 var battle_manager: BattleManager
 var sijo_system: SijoSystem
@@ -247,12 +247,26 @@ func _start_battle() -> void:
 		_init_active_skill_button()
 
 
-func _create_deck_pill_label(font_color: Color) -> Label:
-	## v8: 배경 필 달린 덱 정보 라벨 생성 — 가시성 강화
+func _create_deck_pill_label(font_color: Color) -> PanelContainer:
+	## v10: 반투명 배경 pill 컨테이너 + 라벨 — 배경 위에서도 확실한 가시성
+	var pill := PanelContainer.new()
+	var pill_style := StyleBoxFlat.new()
+	pill_style.bg_color = Color(0.03, 0.02, 0.06, 0.85)
+	pill_style.set_border_width_all(1)
+	pill_style.border_color = Color(font_color.r, font_color.g, font_color.b, 0.4)
+	pill_style.set_corner_radius_all(14)
+	pill_style.content_margin_left = 14.0
+	pill_style.content_margin_right = 14.0
+	pill_style.content_margin_top = 4.0
+	pill_style.content_margin_bottom = 4.0
+	pill.add_theme_stylebox_override("panel", pill_style)
+
 	var lbl := Label.new()
-	lbl.add_theme_font_size_override("font_size", 26)
+	lbl.add_theme_font_size_override("font_size", 22)
 	lbl.add_theme_color_override("font_color", font_color)
-	return lbl
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	pill.add_child(lbl)
+	return pill
 
 
 func _create_floating_ui() -> void:
@@ -284,41 +298,40 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
-	# v9 앵커: 우측 중앙, 전투 필드 영역에 배치
+	# v10 앵커: 우측 중앙, 전투 필드 영역에 크게 배치 (StS 스타일)
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
-	end_turn_button.anchor_left = 0.70
+	end_turn_button.anchor_left = 0.68
 	end_turn_button.anchor_right = 0.98
-	end_turn_button.anchor_top = 0.68
-	end_turn_button.anchor_bottom = 0.74
+	end_turn_button.anchor_top = 0.58
+	end_turn_button.anchor_bottom = 0.66
 	end_turn_button.z_index = 10
 	add_child(end_turn_button)
 
-	# 턴 표시 오버레이 — 적 영역 좌측 상단 (시인성 강화)
+	# v10: 턴 표시 오버레이 — 노치 아래, 적 영역 좌측 상단
 	_turn_overlay_label = Label.new()
 	_turn_overlay_label.add_theme_font_size_override("font_size", 18)
 	_turn_overlay_label.add_theme_color_override("font_color", Color(0.70, 0.64, 0.50, 0.85))
 	_turn_overlay_label.anchor_left = 0.02
-	_turn_overlay_label.anchor_top = 0.005
+	_turn_overlay_label.anchor_top = 0.045
 	_turn_overlay_label.anchor_right = 0.18
-	_turn_overlay_label.anchor_bottom = 0.03
+	_turn_overlay_label.anchor_bottom = 0.07
 	_turn_overlay_label.z_index = 5
 	add_child(_turn_overlay_label)
 
-	# v9: 드로우/버림 더미 — 카드 영역 바로 위에 배치 (겹침 방지)
-	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.60, 0.80))
+	# v10: 드로우/버림 더미 — 하단 좌/우 배치 (StS 스타일), pill 배경으로 가시성 확보
+	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.65, 0.90))
 	_draw_pile_overlay.anchor_left = 0.02
-	_draw_pile_overlay.anchor_top = 0.72
+	_draw_pile_overlay.anchor_top = 0.70
 	_draw_pile_overlay.anchor_right = 0.22
-	_draw_pile_overlay.anchor_bottom = 0.76
+	_draw_pile_overlay.anchor_bottom = 0.74
 	_draw_pile_overlay.z_index = 10
 	add_child(_draw_pile_overlay)
 
-	_discard_pile_overlay = _create_deck_pill_label(Color(0.78, 0.45, 0.35))
-	_discard_pile_overlay.anchor_left = 0.30
-	_discard_pile_overlay.anchor_top = 0.72
-	_discard_pile_overlay.anchor_right = 0.50
-	_discard_pile_overlay.anchor_bottom = 0.76
-	_discard_pile_overlay.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_discard_pile_overlay = _create_deck_pill_label(Color(0.90, 0.50, 0.40))
+	_discard_pile_overlay.anchor_left = 0.78
+	_discard_pile_overlay.anchor_top = 0.70
+	_discard_pile_overlay.anchor_right = 0.98
+	_discard_pile_overlay.anchor_bottom = 0.74
 	_discard_pile_overlay.z_index = 10
 	add_child(_discard_pile_overlay)
 
@@ -441,9 +454,9 @@ func _deferred_refresh_hand_ui() -> void:
 	discard_pile_label.text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
 	# 플로팅 덱 오버레이 갱신
 	if _draw_pile_overlay:
-		_draw_pile_overlay.text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
+		_draw_pile_overlay.get_child(0).text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
 	if _discard_pile_overlay:
-		_discard_pile_overlay.text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
+		_discard_pile_overlay.get_child(0).text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
 
 	# 시조 완성 가능 여부 체크
 	_check_sijo_completable()
@@ -1148,11 +1161,11 @@ func _on_class_resource_changed(current: int, max_val: int) -> void:
 func _init_relic_bar() -> void:
 	var relic_bar := RelicBar.new()
 	relic_bar.name = "RelicBar"
-	# 유물 바: 화면 상단 우측 플로팅 오버레이
+	# v10: 유물 바: 노치 아래, 적 영역 우측 상단
 	relic_bar.anchor_left = 0.5
 	relic_bar.anchor_right = 0.99
-	relic_bar.anchor_top = 0.005
-	relic_bar.anchor_bottom = 0.035
+	relic_bar.anchor_top = 0.045
+	relic_bar.anchor_bottom = 0.07
 	relic_bar.z_index = 5
 	relic_bar.alignment = BoxContainer.ALIGNMENT_END
 	add_child(relic_bar)

@@ -61,15 +61,15 @@ texture = ExtResource("4")
 expand_mode = 1
 stretch_mode = 6
 
-; ─── 적 영역 (0-20%) — v9: 적 영역 상단 고정, 전투 필드 공간 확보 ─────────
+; ─── 적 영역 (4-40%) — v10: 적 영역 대폭 확대, 상단 노치 여백 확보 (StS/Balatro 참고)
 [node name="EnemyZone" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_zone")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.0
+anchor_top = 0.04
 anchor_right = 1.0
-anchor_bottom = 0.20
+anchor_bottom = 0.40
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -78,15 +78,15 @@ layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 20
 
-; ─── 플레이어 HUD (좌상단 고정) — v9: 미니멀 오버레이 ──────────────────
+; ─── 플레이어 HUD (40-46%) — v10: 적 영역 아래, 전체 너비 상태 바
 [node name="PlayerHUD" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_status_bar")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.20
-anchor_right = 0.55
-anchor_bottom = 0.25
+anchor_top = 0.40
+anchor_right = 1.0
+anchor_bottom = 0.46
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -114,15 +114,15 @@ theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.23, 0.48, 0.84, 1.0)
 visible = false
 
-; ─── 시조 진행 스트립 (25-29%) — v9: 컴팩트, 좌측 배치 ──────────────────
+; ─── 시조 진행 스트립 (46-51%) — v10: HUD 바로 아래, 컴팩트
 [node name="SijoBar" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_status_bar")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.25
-anchor_right = 0.60
-anchor_bottom = 0.29
+anchor_top = 0.46
+anchor_right = 0.65
+anchor_bottom = 0.51
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -131,12 +131,12 @@ layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 8
 
-; ─── 카드 핸드 영역 (75-100%) — v9: 하단 숨김 방식, 카드가 올라올 공간은 z_index로 확보
+; ─── 카드 핸드 영역 (74-100%) — v10: 하단 카드 영역, 위로 올라올 공간은 z_index로 확보
 [node name="HandZone" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.75
+anchor_top = 0.74
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
