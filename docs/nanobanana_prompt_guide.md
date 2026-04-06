@@ -1,8 +1,8 @@
 # 시조전 — NanoBanana 프롬프트 가이드
 
-> 버전: 0.2 | 최종 업데이트: 2026-04-06
+> 버전: 0.3 | 최종 업데이트: 2026-04-06
 > Google NanoBanana 2 (Gemini Plus) 기반 에셋 생성 프롬프트 모음
-> **아트 스타일: 고품질 픽셀아트 (High-Quality Pixel Art)**
+> **아트 스타일: 투명 배경 픽셀아트 스프라이트 (Pixel Art Sprite, Transparent BG)**
 
 ---
 
@@ -22,12 +22,12 @@
 모든 프롬프트 앞에 붙이는 스타일 지정 문구:
 
 ```
-[스타일 프리픽스 — 카드/캐릭터/적용]
-High-quality pixel art in the style of classic 16-bit SNES/GBA RPGs.
+[스타일 프리픽스 — 캐릭터/적 스프라이트용]
+High-quality pixel art sprite in the style of classic 16-bit SNES/GBA RPGs.
 Joseon dynasty (1392-1910) Korean historical aesthetic.
 Limited color palette inspired by dancheong (단청): vermillion red, indigo blue, pine green, gold, violet purple.
-Dark and atmospheric with dramatic pixel shading and dithering.
 Clean pixel edges, no anti-aliasing, detailed sprite work.
+Transparent background, no background elements — character sprite only.
 Suitable for a mobile roguelike card game.
 ```
 
@@ -47,45 +47,42 @@ Sharp silhouette readable at small sizes.
 
 ```
 [스타일 프리픽스] 
-High-quality pixel art portrait of a Joseon dynasty military officer (무관/武官).
-Powerful standing stance, waist-up composition.
+Pixel art sprite of a Joseon dynasty military officer (무관/武官) for a mobile card game.
+Full body sprite, powerful standing stance, facing slightly left.
 Dark iron-gray pixel armor (갑옷) over a navy blue inner robe, detailed pixel shading on metal plates.
 Korean traditional sword (환도/環刀) at his waist, one hand on the pommel.
 Strong jawline, determined eyes, topknot (상투) under a warrior's headband.
 Muscular build with visible battle scars rendered in pixel detail.
-Dark background with pixel smoke and ember particle effects.
-16-bit RPG character portrait style. No anti-aliasing.
-Resolution: 1024x1536, transparent background.
+16-bit RPG character sprite style. Clean pixel edges, no anti-aliasing.
+Resolution: 512x512, transparent background. No background elements.
 ```
 
 ### char_dosa — 도사 (道士)
 
 ```
 [스타일 프리픽스]
-High-quality pixel art portrait of a Joseon dynasty Taoist mystic (도사/道士).
-Meditative yet powerful pose, waist-up composition.
+Pixel art sprite of a Joseon dynasty Taoist mystic (도사/道士) for a mobile card game.
+Full body sprite, meditative yet powerful standing pose, facing slightly left.
 Flowing white and pale blue Taoist robes (도포) with pixel yin-yang embroidery detail.
 Holding a glowing paper talisman (부적) in one hand, pixel qi energy swirling around the other.
 Long white beard, serene but piercing eyes, topknot with a jade pin.
 Thin, wiry build suggesting inner strength.
-Ethereal teal and purple pixel energy wisps surrounding the figure.
-16-bit RPG character portrait style. Dithered glow effects.
-Resolution: 1024x1536, transparent background.
+16-bit RPG character sprite style. Clean pixel edges, no anti-aliasing.
+Resolution: 512x512, transparent background. No background elements.
 ```
 
 ### char_mungwan — 문관 (文官)
 
 ```
 [스타일 프리픽스]
-High-quality pixel art portrait of a Joseon dynasty civil scholar-official (문관/文官).
-Intellectual authority, waist-up composition.
+Pixel art sprite of a Joseon dynasty civil scholar-official (문관/文官) for a mobile card game.
+Full body sprite, intellectual authority stance, facing slightly left.
 Formal scholar's hat (사모/紗帽) and crimson court robe (관복) with pixel rank badge (흉배).
 Holding a calligraphy brush in one hand and an ancient text scroll in the other.
 Sharp, intelligent eyes, calm expression. Neatly trimmed beard.
 Slim, elegant build with refined posture.
-Faint golden pixel calligraphy characters floating in background.
-16-bit RPG character portrait style. No anti-aliasing.
-Resolution: 1024x1536, transparent background.
+16-bit RPG character sprite style. Clean pixel edges, no anti-aliasing.
+Resolution: 512x512, transparent background. No background elements.
 ```
 
 ---
@@ -288,46 +285,46 @@ Resolution: 768x768, transparent background.
 
 ```
 [스타일 프리픽스]
-Boss-scale pixel art of a corrupt Joseon Minister of Personnel (이조판서/吏曹判書) Yi Mu-ryeong.
+Boss-scale pixel art sprite of a corrupt Joseon Minister of Personnel (이조판서/吏曹判書) Yi Mu-ryeong.
+Full body sprite, seated on ornate throne-like chair.
 Highest rank court robes — crimson and gold pixels, crane rank badge (흉배) with pixel detail.
-Seated on ornate throne-like chair, one hand holding a glowing red seal (관인).
+One hand holding a glowing red seal (관인).
 Cold, merciless pixel eyes beneath stiff official's hat (사모). White trimmed beard.
-Imposing presence, dark pixel shadows with red/gold pixel lighting.
 The seal glows with pixel dithering effect — absolute power.
-Full body, seated. Boss-scale: much larger and more detailed than regular sprites.
-16-bit RPG final boss sprite. Rich pixel shading and dithering.
-Resolution: 1024x1024, transparent background.
+Boss-scale: much larger and more detailed than regular sprites.
+16-bit RPG final boss sprite. Clean pixel edges, no anti-aliasing.
+Resolution: 768x768, transparent background. No background elements.
 ```
 
 ### B_ACT2_FINAL — 쌍두 호랑이
 
 ```
 [스타일 프리픽스]
-Boss-scale pixel art of a monstrous twin-headed tiger (쌍두 호랑이/兩頭虎).
+Boss-scale pixel art sprite of a monstrous twin-headed tiger (쌍두 호랑이/兩頭虎).
+Full body sprite, facing forward.
 Massive Korean tiger with TWO pixel heads:
 Left head (좌두): calculating, cold blue pixel eyes.
 Right head (우두): ferocious roaring, fiery orange pixel eyes.
 Enormous muscular pixel body with glowing mystical markings on fur.
-Standing on rocky mountain ridge, pixel storm clouds behind.
 Korean tiger stripes with supernatural golden pixel glow effect.
-Full body, facing forward. Boss-scale sprite.
-16-bit RPG boss monster. Detailed pixel art with dithered glow.
-Resolution: 1024x1024, transparent background.
+Boss-scale: much larger and more detailed than regular sprites.
+16-bit RPG boss monster sprite. Clean pixel edges, no anti-aliasing.
+Resolution: 768x768, transparent background. No background elements.
 ```
 
 ### B_ACT3_FINAL — 역적 대감
 
 ```
 [스타일 프리픽스]
-Boss-scale pixel art of a treasonous Joseon lord (역적 대감/逆賊大監).
+Boss-scale pixel art sprite of a treasonous Joseon lord (역적 대감/逆賊大監).
+Full body sprite, standing in dramatic pose.
 Court robes with dragon motifs instead of crane — pixel embroidery detail.
 Face half in pixel shadow, one eye gleaming with ambition. Sinister smile.
 Holding secret royal decree (밀서) in one hand, hidden blade in other.
-Standing before war map table with pixel strategy pieces.
 Dark crimson and black pixel palette with flashes of imperial gold.
-Full body, dramatic pixel lighting. Boss-scale sprite.
-16-bit RPG final boss. Rich pixel shading, atmospheric dithering.
-Resolution: 1024x1024, transparent background.
+Boss-scale: much larger and more detailed than regular sprites.
+16-bit RPG final boss sprite. Clean pixel edges, no anti-aliasing.
+Resolution: 768x768, transparent background. No background elements.
 ```
 
 ---
