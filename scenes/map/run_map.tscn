@@ -2,7 +2,7 @@
 
 [ext_resource type="Script"    path="res://scenes/map/run_map.gd"             id="1"]
 [ext_resource type="Theme"     path="res://resources/joseon_theme.tres"        id="2"]
-[ext_resource type="Texture2D" path="res://art/backgrounds/map_bg.svg"         id="3"]
+[ext_resource type="Texture2D" path="res://art/backgrounds/map_bg.png"         id="3"]
 
 ; 플로팅 HUD 배경 — 반투명 필 형태
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_pill"]
