@@ -61,7 +61,7 @@ texture = ExtResource("4")
 expand_mode = 1
 stretch_mode = 6
 
-; ─── 적 영역 (0-27%) — 넓고 위협적인 공간 ─────────────────────────────────
+; ─── 적 영역 (0-25%) — v8: 적 영역 축소, 카드 공간 확보 ─────────────────
 [node name="EnemyZone" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_zone")
 layout_mode = 1
@@ -69,7 +69,7 @@ anchors_preset = -1
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.27
+anchor_bottom = 0.25
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -78,15 +78,15 @@ layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 20
 
-; ─── 플레이어 상태바 (27-34%) — 컴팩트 올인원 HUD ──────────────────────────
+; ─── 플레이어 상태바 (25-31%) — v8: 위치 조정 ──────────────────────────
 [node name="PlayerHUD" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_status_bar")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.27
+anchor_top = 0.25
 anchor_right = 1.0
-anchor_bottom = 0.34
+anchor_bottom = 0.31
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -98,31 +98,31 @@ theme_override_constants/separation = 24
 [node name="HPLabel" type="Label" parent="PlayerHUD/StatusRow"]
 layout_mode = 2
 text = "HP: 70/70"
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 theme_override_colors/font_color = Color(0.78, 0.29, 0.19, 1.0)
 
 [node name="QiLabel" type="Label" parent="PlayerHUD/StatusRow"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
 [node name="BlockLabel" type="Label" parent="PlayerHUD/StatusRow"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 theme_override_colors/font_color = Color(0.23, 0.48, 0.84, 1.0)
 visible = false
 
-; ─── 시조 진행 스트립 (34-39%) — 컴팩트 수평 슬롯 ─────────────────────────
+; ─── 시조 진행 스트립 (31-36%) — v8: 위치 조정 ─────────────────────────
 [node name="SijoBar" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_status_bar")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.34
-anchor_right = 1.0
-anchor_bottom = 0.39
+anchor_top = 0.31
+anchor_right = 0.64
+anchor_bottom = 0.36
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -131,12 +131,12 @@ layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 8
 
-; ─── 카드 핸드 영역 (39-100%) — 화면의 61% 차지 ──────────────────────────
+; ─── 카드 핸드 영역 (36-100%) — v8: 64% 공간 확보 ──────────────────────────
 [node name="HandZone" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.39
+anchor_top = 0.36
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

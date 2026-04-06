@@ -50,6 +50,8 @@ func _ready() -> void:
 	start_button.disabled = true
 	start_button.pressed.connect(_on_start_pressed)
 	back_button.pressed.connect(_on_back_pressed)
+	# v8: 시작 버튼에 주 액션(CTA) 스타일 적용
+	_apply_start_button_style()
 	_load_unlock_conditions()
 	_build_character_list()
 	_build_character_cards()
@@ -685,6 +687,35 @@ func _create_achievement_panel() -> PanelContainer:
 	panel.add_child(margin)
 
 	return panel
+
+
+func _apply_start_button_style() -> void:
+	## v8: 시작 버튼을 금색 CTA로 강조
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.83, 0.66, 0.26, 0.2)
+	style.set_border_width_all(2)
+	style.border_color = Color(0.83, 0.66, 0.26, 0.9)
+	style.set_corner_radius_all(16)
+	style.set_content_margin_all(12)
+	style.shadow_color = Color(0.83, 0.66, 0.26, 0.15)
+	style.shadow_size = 8
+	start_button.add_theme_stylebox_override("normal", style)
+	var hover := style.duplicate()
+	hover.bg_color = Color(0.83, 0.66, 0.26, 0.3)
+	start_button.add_theme_stylebox_override("hover", hover)
+	var pressed := style.duplicate()
+	pressed.bg_color = Color(0.83, 0.66, 0.26, 0.4)
+	start_button.add_theme_stylebox_override("pressed", pressed)
+	start_button.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+	start_button.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
+	start_button.add_theme_font_size_override("font_size", 34)
+	# 비활성 상태 — 회색 톤
+	var disabled := style.duplicate()
+	disabled.bg_color = Color(0.15, 0.12, 0.10, 0.5)
+	disabled.border_color = Color(0.4, 0.35, 0.30, 0.5)
+	disabled.shadow_size = 0
+	start_button.add_theme_stylebox_override("disabled", disabled)
+	start_button.add_theme_color_override("font_disabled_color", Color(0.5, 0.45, 0.40))
 
 
 func _show_first_play_guide() -> void:

@@ -240,40 +240,49 @@ func _start_battle() -> void:
 		_init_active_skill_button()
 
 
+func _create_deck_pill_label(font_color: Color) -> Label:
+	## v8: 배경 필 달린 덱 정보 라벨 생성 — 가시성 강화
+	var lbl := Label.new()
+	lbl.add_theme_font_size_override("font_size", 26)
+	lbl.add_theme_color_override("font_color", font_color)
+	return lbl
+
+
 func _create_floating_ui() -> void:
 	## 플로팅 UI 요소 생성: 턴 종료 버튼, 턴 표시, 덱 정보
 	# 턴 종료 버튼 — 화면 우측, HandArea 상단에 플로팅
-	# v4: 턴 종료 버튼 — 금색 강조, 큰 터치 영역, 라운드 스타일
+	# v8: 턴 종료 버튼 — 크고 눈에 띄는 배치, 넓은 터치 영역
 	end_turn_button = Button.new()
 	end_turn_button.text = tr("BATTLE_END_TURN")
-	end_turn_button.custom_minimum_size = Vector2(160, 60)
-	end_turn_button.add_theme_font_size_override("font_size", 24)
+	end_turn_button.custom_minimum_size = Vector2(200, 80)
+	end_turn_button.add_theme_font_size_override("font_size", 30)
 	var btn_style := StyleBoxFlat.new()
-	btn_style.bg_color = Color(0.78, 0.29, 0.19, 0.9)
-	btn_style.set_border_width_all(1)
-	btn_style.border_color = Color(0.83, 0.66, 0.26, 0.8)
-	btn_style.set_corner_radius_all(14)
-	btn_style.set_content_margin_all(10)
-	btn_style.shadow_color = Color(0, 0, 0, 0.3)
-	btn_style.shadow_size = 6
-	btn_style.shadow_offset = Vector2(0, 3)
+	btn_style.bg_color = Color(0.78, 0.29, 0.19, 0.95)
+	btn_style.set_border_width_all(2)
+	btn_style.border_color = Color(0.83, 0.66, 0.26, 0.9)
+	btn_style.set_corner_radius_all(18)
+	btn_style.set_content_margin_all(12)
+	btn_style.shadow_color = Color(0.78, 0.15, 0.10, 0.4)
+	btn_style.shadow_size = 10
+	btn_style.shadow_offset = Vector2(0, 4)
 	end_turn_button.add_theme_stylebox_override("normal", btn_style)
 	var btn_hover := btn_style.duplicate()
-	btn_hover.bg_color = Color(0.85, 0.35, 0.22, 0.95)
-	btn_hover.shadow_color = Color(0.83, 0.66, 0.26, 0.2)
-	btn_hover.shadow_size = 8
+	btn_hover.bg_color = Color(0.88, 0.38, 0.25, 1.0)
+	btn_hover.shadow_color = Color(0.83, 0.66, 0.26, 0.3)
+	btn_hover.shadow_size = 12
 	end_turn_button.add_theme_stylebox_override("hover", btn_hover)
 	var btn_pressed := btn_style.duplicate()
 	btn_pressed.bg_color = Color(0.60, 0.20, 0.12, 0.95)
+	btn_pressed.shadow_size = 4
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
-	end_turn_button.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
-	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.96, 0.84))
-	# 앵커: 우측, 카드 영역 바로 위 (v7 레이아웃: 핸드 시작점 39%)
+	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
+	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
+	# v8 앵커: 우측 중앙, 넓은 터치 영역 확보
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
-	end_turn_button.anchor_left = 0.72
+	end_turn_button.anchor_left = 0.66
 	end_turn_button.anchor_right = 0.98
-	end_turn_button.anchor_top = 0.355
-	end_turn_button.anchor_bottom = 0.395
+	end_turn_button.anchor_top = 0.33
+	end_turn_button.anchor_bottom = 0.40
 	end_turn_button.z_index = 10
 	add_child(end_turn_button)
 
@@ -288,22 +297,18 @@ func _create_floating_ui() -> void:
 	_turn_overlay_label.z_index = 5
 	add_child(_turn_overlay_label)
 
-	# 드로우/버림 더미 — HandArea 양쪽 하단 오버레이 (시인성 강화)
-	_draw_pile_overlay = Label.new()
-	_draw_pile_overlay.add_theme_font_size_override("font_size", 20)
-	_draw_pile_overlay.add_theme_color_override("font_color", Color(0.45, 0.60, 0.80))
+	# v8: 드로우/버림 더미 — 배경 필 추가, 폰트 확대, 가시성 강화
+	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.60, 0.80))
 	_draw_pile_overlay.anchor_left = 0.02
-	_draw_pile_overlay.anchor_top = 0.94
-	_draw_pile_overlay.anchor_right = 0.18
+	_draw_pile_overlay.anchor_top = 0.93
+	_draw_pile_overlay.anchor_right = 0.22
 	_draw_pile_overlay.anchor_bottom = 0.99
 	_draw_pile_overlay.z_index = 10
 	add_child(_draw_pile_overlay)
 
-	_discard_pile_overlay = Label.new()
-	_discard_pile_overlay.add_theme_font_size_override("font_size", 20)
-	_discard_pile_overlay.add_theme_color_override("font_color", Color(0.78, 0.45, 0.35))
-	_discard_pile_overlay.anchor_left = 0.82
-	_discard_pile_overlay.anchor_top = 0.94
+	_discard_pile_overlay = _create_deck_pill_label(Color(0.78, 0.45, 0.35))
+	_discard_pile_overlay.anchor_left = 0.78
+	_discard_pile_overlay.anchor_top = 0.93
 	_discard_pile_overlay.anchor_right = 0.98
 	_discard_pile_overlay.anchor_bottom = 0.99
 	_discard_pile_overlay.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT

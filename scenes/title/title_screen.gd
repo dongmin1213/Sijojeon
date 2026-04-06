@@ -18,6 +18,9 @@ func _ready() -> void:
 	# 버전 표시
 	version_label.text = "v%s" % ProjectSettings.get_setting("application/config/version", "0.1.0")
 
+	# v8: "새 게임" 버튼을 주 액션(CTA)으로 강조 — 금색 배경+큰 글씨
+	_apply_primary_button_style(start_button)
+
 	# 버튼 연결
 	start_button.pressed.connect(_on_start_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
@@ -54,3 +57,28 @@ func _on_settings_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _apply_primary_button_style(btn: Button) -> void:
+	## v8: 주 액션 버튼에 금색 강조 스타일 적용 (CTA)
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.83, 0.66, 0.26, 0.15)
+	style.set_border_width_all(2)
+	style.border_color = Color(0.83, 0.66, 0.26, 0.9)
+	style.set_corner_radius_all(16)
+	style.set_content_margin_all(12)
+	style.shadow_color = Color(0.83, 0.66, 0.26, 0.15)
+	style.shadow_size = 8
+	style.shadow_offset = Vector2(0, 3)
+	btn.add_theme_stylebox_override("normal", style)
+	var hover := style.duplicate()
+	hover.bg_color = Color(0.83, 0.66, 0.26, 0.25)
+	hover.shadow_size = 10
+	btn.add_theme_stylebox_override("hover", hover)
+	var pressed := style.duplicate()
+	pressed.bg_color = Color(0.83, 0.66, 0.26, 0.35)
+	pressed.shadow_size = 4
+	btn.add_theme_stylebox_override("pressed", pressed)
+	btn.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+	btn.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
+	btn.add_theme_font_size_override("font_size", 38)

@@ -58,7 +58,10 @@ const ACT_BG_COLORS := {
 @onready var act_label: Label = $HUD/VBoxContainer/TopRow/ActLabel
 @onready var jibun_label: Label = $HUD/VBoxContainer/SubHBox/JibunLabel
 @onready var faction_label: Label = $HUD/VBoxContainer/FactionRow/FactionLabel
-@onready var minshim_label: Label = $HUD/VBoxContainer/SubHBox/MinshimLabel
+@onready var minshim_label: Label = $HUD/VBoxContainer/HBoxContainer/MinshimLabel
+
+# v8: HUD 확장/축소 상태
+var _hud_expanded: bool = false
 
 var _node_buttons: Dictionary = {}  # node_id → Button
 var _node_positions: Dictionary = {}  # node_id → Vector2 (center)
@@ -83,6 +86,7 @@ func _ready() -> void:
 	_update_hud()
 	_update_node_states()
 	_init_relic_bar()
+	_init_hud_toggle()
 	# 스크롤을 현재 위치로 이동
 	call_deferred("_scroll_to_current")
 
@@ -97,6 +101,26 @@ func _finalize_pending_node() -> void:
 		rd.current_node_type = -1
 		rd.current_encounter_id = ""
 		GameManager.save_current_run()
+
+
+func _init_hud_toggle() -> void:
+	## v8: HUD 탭 시 신분/당파 정보 확장/축소
+	var hud := $HUD
+	hud.gui_input.connect(_on_hud_tapped)
+
+
+func _on_hud_tapped(event: InputEvent) -> void:
+	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
+		return
+	_hud_expanded = not _hud_expanded
+	$HUD/VBoxContainer/SubHBox.visible = _hud_expanded
+	$HUD/VBoxContainer/FactionRow.visible = _hud_expanded
+	# HUD 크기 조정
+	var hud := $HUD
+	if _hud_expanded:
+		hud.anchor_bottom = 0.14
+	else:
+		hud.anchor_bottom = 0.08
 
 
 func _init_relic_bar() -> void:
