@@ -5,8 +5,8 @@ extends Control
 
 @onready var title_label: Label = $VBoxContainer/TitleLabel
 @onready var description_label: Label = $VBoxContainer/DescriptionLabel
-@onready var hp_label: Label = $VBoxContainer/StatusBar/HPLabel
-@onready var gold_label: Label = $VBoxContainer/StatusBar/GoldLabel
+@onready var hp_label: Label = $StatusOverlay/StatusBar/HPLabel
+@onready var gold_label: Label = $StatusOverlay/StatusBar/GoldLabel
 @onready var rest_button: Button = $VBoxContainer/ActionContainer/RestButton
 @onready var upgrade_button: Button = $VBoxContainer/ActionContainer/UpgradeButton
 @onready var action_container: VBoxContainer = $VBoxContainer/ActionContainer

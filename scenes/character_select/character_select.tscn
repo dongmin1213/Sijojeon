@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://char_select"]
+[gd_scene load_steps=5 format=3 uid="uid://char_select"]
 
 [ext_resource type="Script"    path="res://scenes/character_select/character_select.gd" id="1"]
 [ext_resource type="Theme"     path="res://resources/joseon_theme.tres"                  id="2"]
 [ext_resource type="Texture2D" path="res://art/backgrounds/title_bg.svg"                 id="3"]
+
+; 하단 바 배경 — 반투명 어둠
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottom_bar"]
+bg_color = Color(0.03, 0.02, 0.06, 0.85)
+border_width_top = 1
+border_color = Color(0.83, 0.66, 0.26, 0.3)
+content_margin_left = 24.0
+content_margin_right = 24.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
 
 [node name="CharacterSelect" type="Control"]
 layout_mode = 3
@@ -14,6 +24,7 @@ grow_vertical = 2
 theme = ExtResource("2")
 script = ExtResource("1")
 
+; ─── 배경 ──────────────────────────────────────────────────────────────────
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -25,51 +36,64 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
-; v4: 전체 레이아웃 — 넉넉한 패딩, 캐릭터 카드가 주인공
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+; ─── 타이틀 (상단 오버레이, 5%) ────────────────────────────────────────────
+[node name="TitleLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 40.0
-offset_right = -32.0
-offset_bottom = -40.0
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.02
+anchor_right = 0.95
+anchor_bottom = 0.07
+grow_horizontal = 2
+text = "UI_CHARACTER_SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
+
+; ─── 캐릭터 쇼케이스 영역 (7-80%) — 단일 캐릭터 대형 표시 ────────────────
+[node name="CardContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.07
+anchor_right = 0.96
+anchor_bottom = 0.80
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 theme_override_constants/separation = 24
 
-; ─── 화면 제목 ─────────────────────────────────────────────────────────────
-[node name="TitleLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "UI_CHARACTER_SELECT"
-horizontal_alignment = 1
-vertical_alignment = 1
-theme_override_font_sizes/font_size = 44
-theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
+; ─── 하단 버튼 바 (80-100%) ────────────────────────────────────────────────
+[node name="BottomBar" type="PanelContainer" parent="."]
+theme_override_styles/panel = SubResource("StyleBoxFlat_bottom_bar")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 0.82
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-; ─── 캐릭터 카드 컨테이너 (넉넉한 간격) ──────────────────────────────────
-[node name="CardContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 24
-alignment = 1
-
-; ─── 버튼 행 ───────────────────────────────────────────────────────────────
-[node name="ButtonRow" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomBar"]
 layout_mode = 2
 alignment = 1
+theme_override_constants/separation = 12
+
+[node name="ButtonRow" type="HBoxContainer" parent="BottomBar/VBoxContainer"]
+layout_mode = 2
+alignment = 1
 theme_override_constants/separation = 24
 
-[node name="BackButton" type="Button" parent="VBoxContainer/ButtonRow"]
-custom_minimum_size = Vector2(180, 76)
+[node name="BackButton" type="Button" parent="BottomBar/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(200, 72)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "UI_BACK"
 
-[node name="StartButton" type="Button" parent="VBoxContainer/ButtonRow"]
-custom_minimum_size = Vector2(260, 76)
+[node name="StartButton" type="Button" parent="BottomBar/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(320, 72)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "UI_START"

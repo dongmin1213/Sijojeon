@@ -11,8 +11,8 @@ extends Control
 @onready var choice_container: VBoxContainer = $VBoxContainer/ChoiceContainer
 @onready var result_label: Label = $VBoxContainer/ResultLabel
 @onready var continue_button: Button = $VBoxContainer/ContinueButton
-@onready var hp_label: Label = $VBoxContainer/StatusBar/HPLabel
-@onready var gold_label: Label = $VBoxContainer/StatusBar/GoldLabel
+@onready var hp_label: Label = $StatusOverlay/StatusBar/HPLabel
+@onready var gold_label: Label = $StatusOverlay/StatusBar/GoldLabel
 
 var _event_data: Dictionary = {}
 

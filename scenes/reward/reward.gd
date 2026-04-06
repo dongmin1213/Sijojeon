@@ -10,12 +10,12 @@ var card_selected: bool = false
 var relic_offer_id: String = ""  # 유물 보상 ID (빈 문자열이면 유물 없음)
 var relic_claimed: bool = false
 
-@onready var title_label: Label = $VBoxContainer/TitleLabel
-@onready var gold_label: Label = $VBoxContainer/GoldLabel
-@onready var card_section: VBoxContainer = $VBoxContainer/CardSection
-@onready var card_container: HBoxContainer = $VBoxContainer/CardSection/CardContainer
-@onready var skip_button: Button = $VBoxContainer/SkipButton
-@onready var proceed_button: Button = $VBoxContainer/ProceedButton
+@onready var title_label: Label = $RewardPanel/VBoxContainer/TitleLabel
+@onready var gold_label: Label = $RewardPanel/VBoxContainer/GoldLabel
+@onready var card_section: VBoxContainer = $RewardPanel/VBoxContainer/CardSection
+@onready var card_container: HBoxContainer = $RewardPanel/VBoxContainer/CardSection/CardContainer
+@onready var skip_button: Button = $RewardPanel/VBoxContainer/SkipButton
+@onready var proceed_button: Button = $RewardPanel/VBoxContainer/ProceedButton
 
 
 func _ready() -> void:
@@ -112,8 +112,8 @@ func _display_relic_offer() -> void:
 	relic_section.add_child(relic_btn)
 
 	# 카드 섹션 앞에 삽입
-	$VBoxContainer.add_child(relic_section)
-	$VBoxContainer.move_child(relic_section, $VBoxContainer.get_children().find(card_section))
+	$RewardPanel/VBoxContainer.add_child(relic_section)
+	$RewardPanel/VBoxContainer.move_child(relic_section, $RewardPanel/VBoxContainer.get_children().find(card_section))
 
 
 func _on_relic_claimed() -> void:
@@ -124,7 +124,7 @@ func _on_relic_claimed() -> void:
 	RelicManager.acquire_relic(relic_offer_id)
 
 	# UI 비활성화
-	var relic_section = $VBoxContainer.get_node_or_null("RelicSection")
+	var relic_section = $RewardPanel/VBoxContainer.get_node_or_null("RelicSection")
 	if relic_section:
 		for child in relic_section.get_children():
 			if child is Button:
@@ -503,8 +503,8 @@ func _check_rank_up_reward() -> void:
 			_build_rank_card_upgrade(rank_section)
 
 	# 카드 섹션 앞에 삽입
-	$VBoxContainer.add_child(rank_section)
-	$VBoxContainer.move_child(rank_section, $VBoxContainer.get_children().find(card_section))
+	$RewardPanel/VBoxContainer.add_child(rank_section)
+	$RewardPanel/VBoxContainer.move_child(rank_section, $RewardPanel/VBoxContainer.get_children().find(card_section))
 
 
 func _build_rank_card_select(parent: VBoxContainer) -> void:

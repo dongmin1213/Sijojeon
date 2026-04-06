@@ -65,27 +65,29 @@ const RELIC_PRICES := {
 	3: 275,   # 희귀
 }
 
-@onready var title_label: Label = $VBoxContainer/TitleLabel
-@onready var gold_label: Label = $VBoxContainer/GoldLabel
-@onready var card_container: HBoxContainer = $VBoxContainer/CardSection/CardContainer
-@onready var card_section_label: Label = $VBoxContainer/CardSection/CardSectionLabel
-@onready var refresh_button: Button = $VBoxContainer/CardSection/RefreshButton
-@onready var remove_section: VBoxContainer = $VBoxContainer/RemoveSection
-@onready var remove_button: Button = $VBoxContainer/RemoveSection/RemoveButton
-@onready var remove_info: Label = $VBoxContainer/RemoveSection/RemoveInfo
-@onready var deck_container: GridContainer = $VBoxContainer/RemoveSection/DeckScrollContainer/DeckContainer
-@onready var deck_scroll: ScrollContainer = $VBoxContainer/RemoveSection/DeckScrollContainer
-@onready var extra_section: VBoxContainer = $VBoxContainer/ExtraSection
-@onready var upgrade_button: Button = $VBoxContainer/ExtraSection/UpgradeButton
-@onready var upgrade_info: Label = $VBoxContainer/ExtraSection/UpgradeInfo
-@onready var upgrade_scroll: ScrollContainer = $VBoxContainer/ExtraSection/UpgradeScrollContainer
-@onready var upgrade_deck_container: GridContainer = $VBoxContainer/ExtraSection/UpgradeScrollContainer/UpgradeDeckContainer
-@onready var minshim_button: Button = $VBoxContainer/ExtraSection/MinshimButton
-@onready var market_open_button: Button = $VBoxContainer/ExtraSection/MarketOpenButton
-@onready var bribe_button: Button = $VBoxContainer/ExtraSection/BribeButton
-@onready var rations_button: Button = $VBoxContainer/ExtraSection/RationsButton
-@onready var relic_container: HBoxContainer = $VBoxContainer/RelicSection/RelicContainer
-@onready var leave_button: Button = $VBoxContainer/LeaveButton
+# v7: 고정 헤더/푸터 + 스크롤 콘텐츠 레이아웃
+const _C := "ScrollArea/VBoxContainer/MarginContainer/ContentVBox"
+@onready var title_label: Label = $Header/HBoxContainer/TitleLabel
+@onready var gold_label: Label = $Header/HBoxContainer/GoldLabel
+@onready var card_container: HBoxContainer = get_node(_C + "/CardSection/CardContainer")
+@onready var card_section_label: Label = get_node(_C + "/CardSection/CardSectionLabel")
+@onready var refresh_button: Button = get_node(_C + "/CardSection/RefreshButton")
+@onready var remove_section: VBoxContainer = get_node(_C + "/RemoveSection")
+@onready var remove_button: Button = get_node(_C + "/RemoveSection/RemoveButton")
+@onready var remove_info: Label = get_node(_C + "/RemoveSection/RemoveInfo")
+@onready var deck_container: GridContainer = get_node(_C + "/RemoveSection/DeckScrollContainer/DeckContainer")
+@onready var deck_scroll: ScrollContainer = get_node(_C + "/RemoveSection/DeckScrollContainer")
+@onready var extra_section: VBoxContainer = get_node(_C + "/ExtraSection")
+@onready var upgrade_button: Button = get_node(_C + "/ExtraSection/UpgradeButton")
+@onready var upgrade_info: Label = get_node(_C + "/ExtraSection/UpgradeInfo")
+@onready var upgrade_scroll: ScrollContainer = get_node(_C + "/ExtraSection/UpgradeScrollContainer")
+@onready var upgrade_deck_container: GridContainer = get_node(_C + "/ExtraSection/UpgradeScrollContainer/UpgradeDeckContainer")
+@onready var minshim_button: Button = get_node(_C + "/ExtraSection/MinshimButton")
+@onready var market_open_button: Button = get_node(_C + "/ExtraSection/MarketOpenButton")
+@onready var bribe_button: Button = get_node(_C + "/ExtraSection/BribeButton")
+@onready var rations_button: Button = get_node(_C + "/ExtraSection/RationsButton")
+@onready var relic_container: HBoxContainer = get_node(_C + "/RelicSection/RelicContainer")
+@onready var leave_button: Button = $Footer/LeaveButton
 
 
 func _ready() -> void:

@@ -1,8 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://run_map_scene"]
+[gd_scene load_steps=5 format=3 uid="uid://run_map_scene"]
 
 [ext_resource type="Script"    path="res://scenes/map/run_map.gd"             id="1"]
 [ext_resource type="Theme"     path="res://resources/joseon_theme.tres"        id="2"]
 [ext_resource type="Texture2D" path="res://art/backgrounds/map_bg.svg"         id="3"]
+
+; 플로팅 HUD 배경 — 반투명 필 형태
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_pill"]
+bg_color = Color(0.03, 0.02, 0.06, 0.80)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.83, 0.66, 0.26, 0.3)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 6
 
 [node name="RunMap" type="Control"]
 layout_mode = 3
@@ -14,6 +33,7 @@ grow_vertical = 2
 theme = ExtResource("2")
 script = ExtResource("1")
 
+; ─── 배경 (풀스크린) ──────────────────────────────────────────────────────
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -25,80 +45,10 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
-; v4: HUD — 깔끔한 상단 바, 색상으로 정보 구분
-[node name="HUD" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.14
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 4
-
-[node name="TopRow" type="HBoxContainer" parent="HUD"]
-layout_mode = 2
-alignment = 1
-
-[node name="ActLabel" type="Label" parent="HUD/TopRow"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = ""
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 36
-theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
-layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 40
-
-[node name="HPLabel" type="Label" parent="HUD/HBoxContainer"]
-layout_mode = 2
-text = "HP: 70/70"
-theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.78, 0.29, 0.19, 1.0)
-
-[node name="GoldLabel" type="Label" parent="HUD/HBoxContainer"]
-layout_mode = 2
-text = ""
-theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
-
-[node name="SubHBox" type="HBoxContainer" parent="HUD"]
-layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 40
-
-[node name="JibunLabel" type="Label" parent="HUD/SubHBox"]
-layout_mode = 2
-text = ""
-theme_override_font_sizes/font_size = 24
-theme_override_colors/font_color = Color(0.45, 0.60, 0.80, 1.0)
-
-[node name="MinshimLabel" type="Label" parent="HUD/SubHBox"]
-layout_mode = 2
-text = ""
-theme_override_font_sizes/font_size = 24
-theme_override_colors/font_color = Color(0.24, 0.67, 0.43, 1.0)
-
-[node name="FactionRow" type="HBoxContainer" parent="HUD"]
-layout_mode = 2
-alignment = 1
-
-[node name="FactionLabel" type="Label" parent="HUD/FactionRow"]
-layout_mode = 2
-text = ""
-theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 0.9)
-
-; ─── 맵 스크롤 영역 ───────────────────────────────────────────────────────
+; ─── 맵 스크롤 영역 (풀스크린 — HUD는 오버레이) ──────────────────────────
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0
-anchor_top = 0.14
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -111,7 +61,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_minimum_size = Vector2(1080, 1200)
+custom_minimum_size = Vector2(1080, 1400)
 mouse_filter = 2
 
 [node name="LineLayer" type="Control" parent="ScrollContainer/MapContainer"]
@@ -131,3 +81,77 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+; ─── 플로팅 HUD (오버레이, 맵 위에 떠있음) ────────────────────────────────
+[node name="HUD" type="PanelContainer" parent="."]
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_pill")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.01
+anchor_right = 0.96
+anchor_bottom = 0.12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 2
+
+[node name="TopRow" type="HBoxContainer" parent="HUD/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ActLabel" type="Label" parent="HUD/VBoxContainer/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 32
+
+[node name="HPLabel" type="Label" parent="HUD/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "HP: 70/70"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.78, 0.29, 0.19, 1.0)
+
+[node name="GoldLabel" type="Label" parent="HUD/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = ""
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
+
+[node name="SubHBox" type="HBoxContainer" parent="HUD/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 32
+
+[node name="JibunLabel" type="Label" parent="HUD/VBoxContainer/SubHBox"]
+layout_mode = 2
+text = ""
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.45, 0.60, 0.80, 1.0)
+
+[node name="MinshimLabel" type="Label" parent="HUD/VBoxContainer/SubHBox"]
+layout_mode = 2
+text = ""
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.24, 0.67, 0.43, 1.0)
+
+[node name="FactionRow" type="HBoxContainer" parent="HUD/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FactionLabel" type="Label" parent="HUD/VBoxContainer/FactionRow"]
+layout_mode = 2
+text = ""
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 0.9)

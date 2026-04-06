@@ -17,10 +17,10 @@ var _selected_index: int = -1
 var _character_list: Array[Dictionary] = []
 var _unlock_data: Array[Dictionary] = []
 
-@onready var title_label: Label = $VBoxContainer/TitleLabel
-@onready var card_container: HBoxContainer = $VBoxContainer/CardContainer
-@onready var start_button: Button = $VBoxContainer/ButtonRow/StartButton
-@onready var back_button: Button = $VBoxContainer/ButtonRow/BackButton
+@onready var title_label: Label = $TitleLabel
+@onready var card_container: HBoxContainer = $CardContainer
+@onready var start_button: Button = $BottomBar/VBoxContainer/ButtonRow/StartButton
+@onready var back_button: Button = $BottomBar/VBoxContainer/ButtonRow/BackButton
 
 var _detail_panel: PanelContainer = null
 var _achievement_panel: PanelContainer = null
@@ -221,12 +221,12 @@ func _build_character_cards() -> void:
 	var scale_y := vp_size.y / 1920.0
 	var ui_scale := minf(scale_x, scale_y)
 
-	# 카드 수에 따라 패널 너비 계산 (화면에 맞게)
+	# v7: 쇼케이스 영역 활용 — 카드가 더 크게 표시됨
 	var card_count := _character_list.size()
 	var separation := int(card_container.get_theme_constant("separation"))
-	var available_w := vp_size.x - 80.0  # VBoxContainer offset 40*2
-	var panel_min_w := minf(300.0 * scale_x, (available_w - separation * (card_count - 1)) / card_count)
-	var panel_min_h := 480.0 * ui_scale  # v6: 캐릭터 일러스트 포함 카드 높이
+	var showcase_w := vp_size.x * 0.92  # CardContainer는 화면 92% 사용
+	var panel_min_w := minf(320.0 * scale_x, (showcase_w - separation * (card_count - 1)) / card_count)
+	var panel_min_h := vp_size.y * 0.68  # 쇼케이스 영역의 대부분을 카드가 차지
 
 	# 스케일된 폰트 크기 계산 (모바일 가독성 확보)
 	var fs_name := maxi(int(34 * ui_scale), 30)
@@ -285,9 +285,9 @@ func _build_character_cards() -> void:
 			name_label.text = "??? (" + character["name"].split("(")[1] if "(" in character["name"] else "???"
 		vbox.add_child(name_label)
 
-		# v6: 캐릭터 일러스트 — SVG 에셋 로드
+		# v7: 캐릭터 일러스트 — 쇼케이스 크기, SVG 에셋 로드
 		var char_art := TextureRect.new()
-		char_art.custom_minimum_size = Vector2(0, 180 * ui_scale)
+		char_art.custom_minimum_size = Vector2(0, 320 * ui_scale)
 		char_art.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		char_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		char_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -526,10 +526,9 @@ func _show_detail_panel(character: Dictionary) -> void:
 	margin.add_child(detail_vbox)
 	_detail_panel.add_child(margin)
 
-	# CardContainer 바로 아래에 삽입
-	var card_idx := card_container.get_index()
-	$VBoxContainer.add_child(_detail_panel)
-	$VBoxContainer.move_child(_detail_panel, card_idx + 1)
+	# BottomBar 내에 삽입 (캐릭터 카드 아래)
+	$BottomBar/VBoxContainer.add_child(_detail_panel)
+	$BottomBar/VBoxContainer.move_child(_detail_panel, 0)
 
 
 func _on_start_pressed() -> void:
@@ -552,7 +551,7 @@ func _build_achievement_button() -> void:
 	ach_button.text = tr("CHARSEL_ACHIEVEMENT_FMT") % [unlocked_ids.size(), total]
 	ach_button.add_theme_font_size_override("font_size", 32)
 	ach_button.pressed.connect(_toggle_achievement_panel)
-	$VBoxContainer/ButtonRow.add_child(ach_button)
+	$BottomBar/VBoxContainer/ButtonRow.add_child(ach_button)
 
 
 func _toggle_achievement_panel() -> void:

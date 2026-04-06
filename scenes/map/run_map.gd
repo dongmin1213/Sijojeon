@@ -36,11 +36,11 @@ const NODE_ICONS := {
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
 const BASE_VIEWPORT_WIDTH := 1080.0
-const BASE_NODE_SIZE := Vector2(110, 110)  # v6: 정사각형 노드 (원형 스타일)
-const BASE_ROW_SPACING := 160.0
-const BASE_MAP_PADDING_X := 80.0
-const BASE_MAP_PADDING_TOP := 40.0
-const BASE_MAP_PADDING_BOTTOM := 160.0
+const BASE_NODE_SIZE := Vector2(130, 130)  # v7: 더 큰 원형 노드
+const BASE_ROW_SPACING := 180.0  # v7: 노드 간 여백 확대
+const BASE_MAP_PADDING_X := 60.0
+const BASE_MAP_PADDING_TOP := 140.0  # v7: 플로팅 HUD 아래 시작
+const BASE_MAP_PADDING_BOTTOM := 100.0
 
 ## 막별 맵 배경 색상 (그라데이션 기반)
 const ACT_BG_COLORS := {
@@ -53,12 +53,12 @@ const ACT_BG_COLORS := {
 @onready var map_container: Control = $ScrollContainer/MapContainer
 @onready var node_layer: Control = $ScrollContainer/MapContainer/NodeLayer
 @onready var line_layer: Control = $ScrollContainer/MapContainer/LineLayer
-@onready var hp_label: Label = $HUD/HBoxContainer/HPLabel
-@onready var gold_label: Label = $HUD/HBoxContainer/GoldLabel
-@onready var act_label: Label = $HUD/TopRow/ActLabel
-@onready var jibun_label: Label = $HUD/SubHBox/JibunLabel
-@onready var faction_label: Label = $HUD/FactionRow/FactionLabel
-@onready var minshim_label: Label = $HUD/SubHBox/MinshimLabel
+@onready var hp_label: Label = $HUD/VBoxContainer/HBoxContainer/HPLabel
+@onready var gold_label: Label = $HUD/VBoxContainer/HBoxContainer/GoldLabel
+@onready var act_label: Label = $HUD/VBoxContainer/TopRow/ActLabel
+@onready var jibun_label: Label = $HUD/VBoxContainer/SubHBox/JibunLabel
+@onready var faction_label: Label = $HUD/VBoxContainer/FactionRow/FactionLabel
+@onready var minshim_label: Label = $HUD/VBoxContainer/SubHBox/MinshimLabel
 
 var _node_buttons: Dictionary = {}  # node_id → Button
 var _node_positions: Dictionary = {}  # node_id → Vector2 (center)

@@ -6,16 +6,16 @@ var vfx: VfxManager = null
 var _prev_player_hp: int = 0  # HP 변화 감지용
 var _keyword_tooltip: KeywordTooltip = null  # 키워드 툴팁
 
-@onready var hp_label: Label = $BattleHUD/PlayerInfo/HPLabel
-@onready var qi_label: Label = $BattleHUD/PlayerInfo/QiLabel
-@onready var block_label: Label = $BattleHUD/PlayerInfo/BlockLabel
-@onready var turn_label: Label = $BattleHUD/TurnLabel
-@onready var card_hand: CardHand = $HandArea/CardHand
-@onready var enemy_container: HBoxContainer = $EnemyArea/EnemyContainer
-@onready var sijo_container: HBoxContainer = $SijoArea/SijoContainer
-@onready var _hud_end_turn_button: Button = $BattleHUD/EndTurnButton  # 숨김 처리, 실제는 플로팅
-@onready var draw_pile_label: Label = $BattleHUD/DeckInfo/DrawPileLabel
-@onready var discard_pile_label: Label = $BattleHUD/DeckInfo/DiscardPileLabel
+@onready var hp_label: Label = $PlayerHUD/StatusRow/HPLabel
+@onready var qi_label: Label = $PlayerHUD/StatusRow/QiLabel
+@onready var block_label: Label = $PlayerHUD/StatusRow/BlockLabel
+@onready var turn_label: Label = $HiddenRefs/TurnLabel
+@onready var card_hand: CardHand = $HandZone/CardHand
+@onready var enemy_container: HBoxContainer = $EnemyZone/EnemyContainer
+@onready var sijo_container: HBoxContainer = $SijoBar/SijoContainer
+@onready var _hud_end_turn_button: Button = $HiddenRefs/EndTurnButton  # 숨김 처리, 실제는 플로팅
+@onready var draw_pile_label: Label = $HiddenRefs/DrawPileLabel
+@onready var discard_pile_label: Label = $HiddenRefs/DiscardPileLabel
 
 # 플로팅 턴 종료 버튼 (HUD 외부, 화면 우측 하단)
 var end_turn_button: Button = null
@@ -268,12 +268,12 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.96, 0.84))
-	# 앵커: 우측, 카드 영역 바로 위
+	# 앵커: 우측, 카드 영역 바로 위 (v7 레이아웃: 핸드 시작점 39%)
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
-	end_turn_button.anchor_left = 0.70
-	end_turn_button.anchor_right = 0.97
-	end_turn_button.anchor_top = 0.275
-	end_turn_button.anchor_bottom = 0.315
+	end_turn_button.anchor_left = 0.72
+	end_turn_button.anchor_right = 0.98
+	end_turn_button.anchor_top = 0.355
+	end_turn_button.anchor_bottom = 0.395
 	end_turn_button.z_index = 10
 	add_child(end_turn_button)
 
@@ -313,7 +313,7 @@ func _create_floating_ui() -> void:
 
 func _init_sijo_toggle() -> void:
 	## 시조 슬롯 토글 버튼 + 요약 라벨 초기화
-	var sijo_area := $SijoArea
+	var sijo_area := $SijoBar
 	_sijo_toggle_button = Button.new()
 	_sijo_toggle_button.text = "▼"
 	_sijo_toggle_button.custom_minimum_size = Vector2(40, 40)
@@ -372,7 +372,7 @@ func _init_sijo_slots() -> void:
 			slot_style.shadow_color = Color(0.83, 0.66, 0.26, 0.2)
 			slot_style.shadow_size = 6
 		slot_panel.add_theme_stylebox_override("panel", slot_style)
-		slot_panel.custom_minimum_size = Vector2(180, 80)
+		slot_panel.custom_minimum_size = Vector2(140, 60)
 		slot_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		var vbox := VBoxContainer.new()
@@ -1170,7 +1170,7 @@ func _init_class_resource_ui() -> void:
 	_class_resource_label.text = "%s: 0/%d" % [res_name, battle_manager.max_class_resource]
 	_class_resource_label.add_theme_font_size_override("font_size", 20)
 	_class_resource_label.add_theme_color_override("font_color", battle_manager.get_class_resource_color())
-	$BattleHUD/PlayerInfo.add_child(_class_resource_label)
+	$PlayerHUD/StatusRow.add_child(_class_resource_label)
 
 
 func _init_active_skill_button() -> void:
@@ -1282,7 +1282,7 @@ func _update_player_status_ui() -> void:
 	if not is_instance_valid(_player_status_container):
 		_player_status_container = HBoxContainer.new()
 		_player_status_container.alignment = BoxContainer.ALIGNMENT_CENTER
-		$BattleHUD/PlayerInfo.add_child(_player_status_container)
+		$PlayerHUD/StatusRow.add_child(_player_status_container)
 	_build_status_icons(_player_status_container, "player")
 
 
@@ -1389,7 +1389,7 @@ func _format_status_effects(target: String) -> String:
 func _on_battle_ended(victory: bool) -> void:
 	end_turn_button.disabled = true
 	card_hand.visible = false
-	$HandArea.visible = false
+	$HandZone.visible = false
 
 	# 민심 보스전 회복 메타 정리
 	if GameManager.run_data and GameManager.run_data.has_meta("minshim_boss_heal"):
