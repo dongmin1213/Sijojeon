@@ -228,7 +228,7 @@ func _build_character_cards() -> void:
 	var separation := int(card_container.get_theme_constant("separation"))
 	var showcase_w := vp_size.x * 0.92  # CardContainer는 화면 92% 사용
 	var panel_min_w := minf(320.0 * scale_x, (showcase_w - separation * (card_count - 1)) / card_count)
-	var panel_min_h := vp_size.y * 0.46  # 쇼케이스 영역의 대부분을 카드가 차지
+	var panel_min_h := vp_size.y * 0.36  # 쇼케이스 영역 축소 반영
 
 	# 스케일된 폰트 크기 계산 (모바일 가독성 확보)
 	var fs_name := maxi(int(34 * ui_scale), 30)

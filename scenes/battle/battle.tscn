@@ -7,20 +7,18 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hand"]
 
-; 적 영역 — 어둡고 위협적인 느낌, 하단에 붉은 그라데이션 경계
+; 전투 필드 — v11: 투명 배경, 배경 이미지가 보이게
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enemy_zone"]
-bg_color = Color(0.02, 0.01, 0.04, 0.55)
+bg_color = Color(0.0, 0.0, 0.0, 0.0)
 border_width_left = 0
 border_width_top = 0
 border_width_right = 0
-border_width_bottom = 2
-border_color = Color(0.78, 0.29, 0.19, 0.3)
+border_width_bottom = 0
+border_color = Color(0.0, 0.0, 0.0, 0.0)
 corner_radius_top_left = 0
 corner_radius_top_right = 0
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0.78, 0.15, 0.10, 0.15)
-shadow_size = 8
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
 
 ; 플레이어 상태바 — 중앙 밴드, 금색 상하 경계
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_status_bar"]
@@ -61,34 +59,18 @@ texture = ExtResource("4")
 expand_mode = 1
 stretch_mode = 6
 
-; ─── 적 영역 (4-40%) — v10: 적 영역 대폭 확대, 상단 노치 여백 확보 (StS/Balatro 참고)
-[node name="EnemyZone" type="PanelContainer" parent="."]
-theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_zone")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0
-anchor_top = 0.04
-anchor_right = 1.0
-anchor_bottom = 0.40
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="EnemyContainer" type="HBoxContainer" parent="EnemyZone"]
-layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 20
-
-; ─── 플레이어 HUD (40-46%) — v10: 적 영역 아래, 전체 너비 상태 바
+; ─── 플레이어 HUD (0-8%) — v11: StS 스타일, 화면 상단 배치
 [node name="PlayerHUD" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_status_bar")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.40
+anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.46
+anchor_bottom = 0.07
 grow_horizontal = 2
 grow_vertical = 2
+z_index = 5
 
 [node name="StatusRow" type="HBoxContainer" parent="PlayerHUD"]
 layout_mode = 2
@@ -114,29 +96,52 @@ theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.23, 0.48, 0.84, 1.0)
 visible = false
 
-; ─── 시조 진행 스트립 (46-51%) — v10: HUD 바로 아래, 컴팩트
+; ─── 전투 필드 (7-60%) — v11: 배경 위에 플레이어+적 배치, StS 스타일
+[node name="EnemyZone" type="PanelContainer" parent="."]
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_zone")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 0.07
+anchor_right = 1.0
+anchor_bottom = 0.60
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyContainer" type="HBoxContainer" parent="EnemyZone"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+theme_override_constants/separation = 20
+
+; ─── 시조 진행 스트립 (60-66%) — v11: 손패 바로 위, 컴팩트
 [node name="SijoBar" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_status_bar")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.46
-anchor_right = 0.65
-anchor_bottom = 0.51
+anchor_top = 0.60
+anchor_right = 0.60
+anchor_bottom = 0.66
 grow_horizontal = 2
 grow_vertical = 2
+z_index = 5
 
 [node name="SijoContainer" type="HBoxContainer" parent="SijoBar"]
 layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 8
 
-; ─── 카드 핸드 영역 (74-100%) — v10: 하단 카드 영역, 위로 올라올 공간은 z_index로 확보
+; ─── 카드 핸드 영역 (65-100%) — v11: 위로 올려서 카드가 더 잘 보이게
 [node name="HandZone" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.74
+anchor_top = 0.65
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

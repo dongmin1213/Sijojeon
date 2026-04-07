@@ -45,6 +45,9 @@ var _class_resource_label: Label = null
 # 액티브 스킬 버튼
 var _active_skill_button: Button = null
 
+# v11: 플레이어 캐릭터 스프라이트 (전투필드 좌측)
+var _player_sprite: TextureRect = null
+
 # 적 UI 캐시 (index → {panel, name_label, hp_label, block_label, intent_label, status_hbox})
 var _enemy_ui_cache: Dictionary = {}
 
@@ -215,6 +218,9 @@ func _start_battle() -> void:
 	_prev_player_hp = rd.current_hp
 	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
 
+	# v11: 플레이어 캐릭터 스프라이트를 전투필드 좌측에 배치
+	_setup_player_sprite(rd.character_id)
+
 	# 전투 시작 유물 트리거 (편자, 호신검, 어사마패 등)
 	RelicManager.trigger_battle_start(battle_manager)
 
@@ -269,6 +275,31 @@ func _create_deck_pill_label(font_color: Color) -> PanelContainer:
 	return pill
 
 
+func _setup_player_sprite(character_id: String) -> void:
+	## v11: 플레이어 캐릭터를 전투필드 좌측에 배치 (StS 스타일)
+	if _player_sprite:
+		_player_sprite.queue_free()
+	_player_sprite = TextureRect.new()
+	_player_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_player_sprite.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_player_sprite.custom_minimum_size = Vector2(180, 220)
+	# 캐릭터 텍스처 로드 (res://art/characters/{id}.png)
+	var tex_path := "res://art/characters/%s.png" % character_id
+	if ResourceLoader.exists(tex_path):
+		_player_sprite.texture = load(tex_path)
+	else:
+		# placeholder: TextureManager 방식으로 대체
+		_player_sprite.texture = TextureManager.get_enemy_texture(character_id)
+	# 전투필드 좌측 하단에 앵커 배치
+	_player_sprite.anchor_left = 0.05
+	_player_sprite.anchor_top = 0.25
+	_player_sprite.anchor_right = 0.30
+	_player_sprite.anchor_bottom = 0.58
+	_player_sprite.z_index = 3
+	_player_sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_player_sprite)
+
+
 func _create_floating_ui() -> void:
 	## 플로팅 UI 요소 생성: 턴 종료 버튼, 턴 표시, 덱 정보
 	# 턴 종료 버튼 — 화면 우측, HandArea 상단에 플로팅
@@ -298,40 +329,41 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
-	# v10 앵커: 우측 중앙, 전투 필드 영역에 크게 배치 (StS 스타일)
+	# v11 앵커: 시조바 우측, 손패 바로 위 (StS 턴종료 버튼 위치)
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
-	end_turn_button.anchor_left = 0.68
+	end_turn_button.anchor_left = 0.62
 	end_turn_button.anchor_right = 0.98
-	end_turn_button.anchor_top = 0.58
+	end_turn_button.anchor_top = 0.60
 	end_turn_button.anchor_bottom = 0.66
 	end_turn_button.z_index = 10
 	add_child(end_turn_button)
 
-	# v10: 턴 표시 오버레이 — 노치 아래, 적 영역 좌측 상단
+	# v11: 턴 표시 오버레이 — HUD 바 우측 상단
 	_turn_overlay_label = Label.new()
 	_turn_overlay_label.add_theme_font_size_override("font_size", 18)
 	_turn_overlay_label.add_theme_color_override("font_color", Color(0.70, 0.64, 0.50, 0.85))
-	_turn_overlay_label.anchor_left = 0.02
-	_turn_overlay_label.anchor_top = 0.045
-	_turn_overlay_label.anchor_right = 0.18
-	_turn_overlay_label.anchor_bottom = 0.07
-	_turn_overlay_label.z_index = 5
+	_turn_overlay_label.anchor_left = 0.82
+	_turn_overlay_label.anchor_top = 0.01
+	_turn_overlay_label.anchor_right = 0.98
+	_turn_overlay_label.anchor_bottom = 0.06
+	_turn_overlay_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_turn_overlay_label.z_index = 10
 	add_child(_turn_overlay_label)
 
-	# v10: 드로우/버림 더미 — 하단 좌/우 배치 (StS 스타일), pill 배경으로 가시성 확보
+	# v11: 드로우/버림 더미 — 손패 영역 좌/우 하단 (StS 스타일)
 	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.65, 0.90))
 	_draw_pile_overlay.anchor_left = 0.02
-	_draw_pile_overlay.anchor_top = 0.70
+	_draw_pile_overlay.anchor_top = 0.62
 	_draw_pile_overlay.anchor_right = 0.22
-	_draw_pile_overlay.anchor_bottom = 0.74
+	_draw_pile_overlay.anchor_bottom = 0.65
 	_draw_pile_overlay.z_index = 10
 	add_child(_draw_pile_overlay)
 
 	_discard_pile_overlay = _create_deck_pill_label(Color(0.90, 0.50, 0.40))
 	_discard_pile_overlay.anchor_left = 0.78
-	_discard_pile_overlay.anchor_top = 0.70
+	_discard_pile_overlay.anchor_top = 0.62
 	_discard_pile_overlay.anchor_right = 0.98
-	_discard_pile_overlay.anchor_bottom = 0.74
+	_discard_pile_overlay.anchor_bottom = 0.65
 	_discard_pile_overlay.z_index = 10
 	add_child(_discard_pile_overlay)
 
@@ -1161,11 +1193,11 @@ func _on_class_resource_changed(current: int, max_val: int) -> void:
 func _init_relic_bar() -> void:
 	var relic_bar := RelicBar.new()
 	relic_bar.name = "RelicBar"
-	# v10: 유물 바: 노치 아래, 적 영역 우측 상단
+	# v11: 유물 바: HUD 바로 아래, 우측 배치
 	relic_bar.anchor_left = 0.5
 	relic_bar.anchor_right = 0.99
-	relic_bar.anchor_top = 0.045
-	relic_bar.anchor_bottom = 0.07
+	relic_bar.anchor_top = 0.07
+	relic_bar.anchor_bottom = 0.10
 	relic_bar.z_index = 5
 	relic_bar.alignment = BoxContainer.ALIGNMENT_END
 	add_child(relic_bar)
