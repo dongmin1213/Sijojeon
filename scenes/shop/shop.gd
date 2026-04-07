@@ -105,6 +105,9 @@ func _ready() -> void:
 	deck_scroll.visible = false
 	upgrade_scroll.visible = false
 
+	# 카메라 노치/하단바 safe area 보정
+	_apply_safe_area()
+
 	if GameManager.run_data == null:
 		push_warning("Shop: run_data가 null — 맵으로 복귀")
 		leave_button.visible = true
@@ -131,6 +134,40 @@ func _ready() -> void:
 	_update_minshim_button()
 	_update_market_open_button()
 	_update_discount_badges()
+
+
+func _apply_safe_area() -> void:
+	## ScrollArea의 safe area 보정.
+	## SafeAreaManager가 MerchantArea(anchor_top < 0.12)와 Footer(anchor_bottom > 0.88)는
+	## 자동 조정하지만, ScrollArea(anchor_top=0.14)는 임계값을 넘어 건너뛴다.
+	## MerchantArea가 노치만큼 내려오면 ScrollArea도 같이 내려야 겹침이 없다.
+	var top_margin: float = SafeAreaManager.margin_top
+	var bottom_margin: float = SafeAreaManager.margin_bottom
+
+	# SafeAreaManager 초기화 전이면 직접 계산
+	if top_margin == 0.0 and bottom_margin == 0.0 and OS.get_name() in ["Android", "iOS"]:
+		var safe_rect := DisplayServer.get_display_safe_area()
+		var screen_size := DisplayServer.screen_get_size()
+		var window_size := DisplayServer.window_get_size()
+		var viewport_size := get_viewport().get_visible_rect().size
+
+		var ref_size := screen_size
+		if window_size.x > 0 and window_size.y > 0:
+			if safe_rect.end.x <= window_size.x and safe_rect.end.y <= window_size.y:
+				ref_size = window_size
+
+		if ref_size.y > 0:
+			top_margin = maxf(float(safe_rect.position.y) / float(ref_size.y) * viewport_size.y, 0.0)
+			bottom_margin = maxf(float(ref_size.y - safe_rect.end.y) / float(ref_size.y) * viewport_size.y, 0.0)
+
+		# fallback: OS가 safe area를 보고하지 않으면 최소 5% 상단 마진
+		if top_margin == 0.0:
+			top_margin = get_viewport().get_visible_rect().size.y * 0.05
+
+	if top_margin > 0.0:
+		$ScrollArea.offset_top += top_margin
+	if bottom_margin > 0.0:
+		$ScrollArea.offset_bottom -= bottom_margin
 
 
 func _set_merchant_greeting() -> void:

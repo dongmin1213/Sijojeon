@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://shop_scene"]
+[gd_scene load_steps=10 format=3 uid="uid://shop_scene"]
 
 [ext_resource type="Script"    path="res://scenes/shop/shop.gd"               id="1"]
 [ext_resource type="Theme"     path="res://resources/joseon_theme.tres"        id="2"]
@@ -23,6 +23,80 @@ content_margin_left = 20.0
 content_margin_right = 20.0
 content_margin_top = 10.0
 content_margin_bottom = 10.0
+
+; ─── 상점 버튼 스타일 (진한 남색 + 금색 테두리) ──────────────────────────────
+[sub_resource type="StyleBoxFlat" id="shop_btn_normal"]
+bg_color = Color(0.08, 0.06, 0.16, 0.88)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.72, 0.55, 0.22, 0.5)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+content_margin_left = 20.0
+content_margin_top = 14.0
+content_margin_right = 20.0
+content_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxFlat" id="shop_btn_hover"]
+bg_color = Color(0.14, 0.10, 0.24, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.90, 0.70, 0.28, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.83, 0.66, 0.26, 0.12)
+shadow_size = 8
+shadow_offset = Vector2(0, 2)
+content_margin_left = 20.0
+content_margin_top = 14.0
+content_margin_right = 20.0
+content_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxFlat" id="shop_btn_pressed"]
+bg_color = Color(0.05, 0.04, 0.10, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.72, 0.55, 0.22, 0.4)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.15)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+content_margin_left = 20.0
+content_margin_top = 14.0
+content_margin_right = 20.0
+content_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxFlat" id="shop_btn_disabled"]
+bg_color = Color(0.06, 0.05, 0.10, 0.45)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.30, 0.25, 0.18, 0.25)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 20.0
+content_margin_top = 14.0
+content_margin_right = 20.0
+content_margin_bottom = 14.0
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -77,18 +151,33 @@ layout_mode = 2
 text = "SHOP_TITLE"
 theme_override_font_sizes/font_size = 30
 theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
 
 [node name="MerchantDialogue" type="Label" parent="MerchantArea/HBoxContainer/VBox"]
 layout_mode = 2
 text = "SHOP_MERCHANT_GREETING"
 theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(0.70, 0.65, 0.55, 0.8)
+theme_override_colors/font_color = Color(0.85, 0.75, 0.55, 0.9)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 3
 
 [node name="GoldLabel" type="Label" parent="MerchantArea/HBoxContainer"]
 layout_mode = 2
 text = ""
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 0.9)
+theme_override_colors/font_color = Color(1.0, 0.85, 0.3, 1.0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.85)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 3
 
 ; ─── 레거시 호환: Header 래퍼 (실제 표시는 MerchantArea에서) ─────────────────
 [node name="Header" type="Control" parent="."]
@@ -142,7 +231,12 @@ layout_mode = 2
 text = "SHOP_CARDS_FOR_SALE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.70, 0.65, 0.55, 0.9)
+theme_override_colors/font_color = Color(0.85, 0.75, 0.55, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 3
 
 [node name="CardContainer" type="HBoxContainer" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/CardSection"]
 layout_mode = 2
@@ -152,8 +246,18 @@ theme_override_constants/separation = 16
 [node name="RefreshButton" type="Button" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/CardSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_REFRESH"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.96, 0.82, 1.0)
+theme_override_colors/font_disabled_color = Color(0.45, 0.38, 0.30, 0.5)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.7)
+theme_override_constants/outline_size = 2
+theme_override_styles/normal = SubResource("shop_btn_normal")
+theme_override_styles/hover = SubResource("shop_btn_hover")
+theme_override_styles/pressed = SubResource("shop_btn_pressed")
+theme_override_styles/disabled = SubResource("shop_btn_disabled")
 
 [node name="HSeparator" type="HSeparator" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox"]
 layout_mode = 2
@@ -166,15 +270,28 @@ theme_override_constants/separation = 8
 [node name="RemoveButton" type="Button" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/RemoveSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 60)
 text = "SHOP_REMOVE_CARD"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.96, 0.82, 1.0)
+theme_override_colors/font_disabled_color = Color(0.45, 0.38, 0.30, 0.5)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.7)
+theme_override_constants/outline_size = 2
+theme_override_styles/normal = SubResource("shop_btn_normal")
+theme_override_styles/hover = SubResource("shop_btn_hover")
+theme_override_styles/pressed = SubResource("shop_btn_pressed")
+theme_override_styles/disabled = SubResource("shop_btn_disabled")
 
 [node name="RemoveInfo" type="Label" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/RemoveSection"]
 layout_mode = 2
 text = "SHOP_REMOVE_CARD_INFO"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(0.60, 0.56, 0.48, 0.7)
+theme_override_colors/font_color = Color(0.75, 0.68, 0.55, 0.8)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 
 [node name="DeckScrollContainer" type="ScrollContainer" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/RemoveSection"]
 layout_mode = 2
@@ -199,15 +316,28 @@ theme_override_constants/separation = 8
 [node name="UpgradeButton" type="Button" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 60)
 text = "SHOP_UPGRADE_CARD"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.96, 0.82, 1.0)
+theme_override_colors/font_disabled_color = Color(0.45, 0.38, 0.30, 0.5)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.7)
+theme_override_constants/outline_size = 2
+theme_override_styles/normal = SubResource("shop_btn_normal")
+theme_override_styles/hover = SubResource("shop_btn_hover")
+theme_override_styles/pressed = SubResource("shop_btn_pressed")
+theme_override_styles/disabled = SubResource("shop_btn_disabled")
 
 [node name="UpgradeInfo" type="Label" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/ExtraSection"]
 layout_mode = 2
 text = "SHOP_UPGRADE_CARD_INFO"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(0.60, 0.56, 0.48, 0.7)
+theme_override_colors/font_color = Color(0.75, 0.68, 0.55, 0.8)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 
 [node name="UpgradeScrollContainer" type="ScrollContainer" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/ExtraSection"]
 layout_mode = 2
@@ -224,26 +354,66 @@ theme_override_constants/v_separation = 12
 [node name="MinshimButton" type="Button" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_BUY_MINSHIM"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.96, 0.82, 1.0)
+theme_override_colors/font_disabled_color = Color(0.45, 0.38, 0.30, 0.5)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.7)
+theme_override_constants/outline_size = 2
+theme_override_styles/normal = SubResource("shop_btn_normal")
+theme_override_styles/hover = SubResource("shop_btn_hover")
+theme_override_styles/pressed = SubResource("shop_btn_pressed")
+theme_override_styles/disabled = SubResource("shop_btn_disabled")
 
 [node name="MarketOpenButton" type="Button" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_MARKET_OPEN"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.96, 0.82, 1.0)
+theme_override_colors/font_disabled_color = Color(0.45, 0.38, 0.30, 0.5)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.7)
+theme_override_constants/outline_size = 2
+theme_override_styles/normal = SubResource("shop_btn_normal")
+theme_override_styles/hover = SubResource("shop_btn_hover")
+theme_override_styles/pressed = SubResource("shop_btn_pressed")
+theme_override_styles/disabled = SubResource("shop_btn_disabled")
 
 [node name="BribeButton" type="Button" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_BRIBE"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.96, 0.82, 1.0)
+theme_override_colors/font_disabled_color = Color(0.45, 0.38, 0.30, 0.5)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.7)
+theme_override_constants/outline_size = 2
+theme_override_styles/normal = SubResource("shop_btn_normal")
+theme_override_styles/hover = SubResource("shop_btn_hover")
+theme_override_styles/pressed = SubResource("shop_btn_pressed")
+theme_override_styles/disabled = SubResource("shop_btn_disabled")
 
 [node name="RationsButton" type="Button" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/ExtraSection"]
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 56)
 text = "SHOP_RATIONS"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.96, 0.82, 1.0)
+theme_override_colors/font_disabled_color = Color(0.45, 0.38, 0.30, 0.5)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.7)
+theme_override_constants/outline_size = 2
+theme_override_styles/normal = SubResource("shop_btn_normal")
+theme_override_styles/hover = SubResource("shop_btn_hover")
+theme_override_styles/pressed = SubResource("shop_btn_pressed")
+theme_override_styles/disabled = SubResource("shop_btn_disabled")
 
 [node name="HSeparator3" type="HSeparator" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox"]
 layout_mode = 2
@@ -258,7 +428,12 @@ layout_mode = 2
 text = "SHOP_RELICS"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.70, 0.65, 0.55, 0.9)
+theme_override_colors/font_color = Color(0.85, 0.75, 0.55, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 3
 
 [node name="RelicContainer" type="HBoxContainer" parent="ScrollArea/VBoxContainer/MarginContainer/ContentVBox/RelicSection"]
 layout_mode = 2
@@ -282,3 +457,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 64)
 text = "SHOP_LEAVE"
 theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.96, 0.82, 1.0)
+theme_override_colors/font_outline_color = Color(0.02, 0.01, 0.03, 0.8)
+theme_override_constants/outline_size = 3
+theme_override_styles/normal = SubResource("shop_btn_normal")
+theme_override_styles/hover = SubResource("shop_btn_hover")
+theme_override_styles/pressed = SubResource("shop_btn_pressed")
