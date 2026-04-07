@@ -7,35 +7,42 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hand"]
 
-; 전투 필드 — v11: 투명 배경, 배경 이미지가 보이게
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enemy_zone"]
-bg_color = Color(0.0, 0.0, 0.0, 0.0)
+; 전투 필드 — v12: 완전 투명, 배경 이미지만 보이게
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_battlefield"]
+
+; 상단 HUD — 반투명 어두운 배경, 노치 세이프
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_status_bar"]
+bg_color = Color(0.03, 0.02, 0.06, 0.85)
 border_width_left = 0
 border_width_top = 0
 border_width_right = 0
-border_width_bottom = 0
-border_color = Color(0.0, 0.0, 0.0, 0.0)
+border_width_bottom = 1
+border_color = Color(0.83, 0.66, 0.26, 0.25)
 corner_radius_top_left = 0
 corner_radius_top_right = 0
 corner_radius_bottom_right = 0
 corner_radius_bottom_left = 0
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 
-; 플레이어 상태바 — 중앙 밴드, 금색 상하 경계
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_status_bar"]
-bg_color = Color(0.04, 0.03, 0.07, 0.80)
+; 액션 바 — 시조+턴종료 영역, 반투명
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_action_bar"]
+bg_color = Color(0.03, 0.02, 0.06, 0.75)
 border_width_left = 0
 border_width_top = 1
 border_width_right = 0
-border_width_bottom = 1
-border_color = Color(0.83, 0.66, 0.26, 0.35)
+border_width_bottom = 0
+border_color = Color(0.83, 0.66, 0.26, 0.2)
 corner_radius_top_left = 0
 corner_radius_top_right = 0
 corner_radius_bottom_right = 0
 corner_radius_bottom_left = 0
-content_margin_left = 16.0
-content_margin_right = 16.0
-content_margin_top = 6.0
-content_margin_bottom = 6.0
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -47,7 +54,7 @@ grow_vertical = 2
 theme = ExtResource("3")
 script = ExtResource("1")
 
-; ─── 배경 ──────────────────────────────────────────────────────────────────
+; ─── 배경 (전체 화면) ─────────────────────────────────────────────────────
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -59,95 +66,97 @@ texture = ExtResource("4")
 expand_mode = 1
 stretch_mode = 6
 
-; ─── 플레이어 HUD (0-8%) — v11: StS 스타일, 화면 상단 배치
+; ─── 상단 HUD (4-9%) — v12: 노치 세이프, 기/방어/턴 정보만 ─────────────
 [node name="PlayerHUD" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_status_bar")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.0
+anchor_top = 0.035
 anchor_right = 1.0
-anchor_bottom = 0.07
+anchor_bottom = 0.08
 grow_horizontal = 2
 grow_vertical = 2
-z_index = 5
+z_index = 10
 
 [node name="StatusRow" type="HBoxContainer" parent="PlayerHUD"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 16
+theme_override_constants/separation = 20
 
 [node name="HPLabel" type="Label" parent="PlayerHUD/StatusRow"]
 layout_mode = 2
 text = "HP: 70/70"
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(0.78, 0.29, 0.19, 1.0)
 
 [node name="QiLabel" type="Label" parent="PlayerHUD/StatusRow"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
 [node name="BlockLabel" type="Label" parent="PlayerHUD/StatusRow"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(0.23, 0.48, 0.84, 1.0)
 visible = false
 
-; ─── 전투 필드 (7-60%) — v11: 배경 위에 플레이어+적 배치, StS 스타일
+; ─── 전투 필드 (8-62%) — v12: 완전 투명 오버레이, 적만 우측에 배치 ─────
 [node name="EnemyZone" type="PanelContainer" parent="."]
-theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_zone")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_battlefield")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.07
+anchor_top = 0.08
 anchor_right = 1.0
-anchor_bottom = 0.60
+anchor_bottom = 0.62
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="EnemyContainer" type="HBoxContainer" parent="EnemyZone"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.45
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.40
+anchor_top = 0.05
+anchor_right = 0.98
+anchor_bottom = 0.95
 alignment = 1
-theme_override_constants/separation = 20
+theme_override_constants/separation = 12
 
-; ─── 시조 진행 스트립 (60-66%) — v11: 손패 바로 위, 컴팩트
+; ─── 액션 바 (62-68%) — v12: 시조 슬롯 (좌측), 턴종료 버튼은 플로팅
 [node name="SijoBar" type="PanelContainer" parent="."]
-theme_override_styles/panel = SubResource("StyleBoxFlat_status_bar")
+theme_override_styles/panel = SubResource("StyleBoxFlat_action_bar")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.60
-anchor_right = 0.60
-anchor_bottom = 0.66
+anchor_top = 0.62
+anchor_right = 0.58
+anchor_bottom = 0.68
 grow_horizontal = 2
 grow_vertical = 2
-z_index = 5
+z_index = 8
 
 [node name="SijoContainer" type="HBoxContainer" parent="SijoBar"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
-; ─── 카드 핸드 영역 (65-100%) — v11: 위로 올려서 카드가 더 잘 보이게
+; ─── 카드 핸드 영역 (68-100%) — v12: 넉넉한 공간, 카드 잘 보이게 ──────
 [node name="HandZone" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.65
+anchor_top = 0.68
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hand")
 mouse_filter = 1
+z_index = 5
 
 [node name="CardHand" parent="HandZone" instance=ExtResource("2")]
 layout_mode = 2

@@ -228,7 +228,7 @@ func _build_character_cards() -> void:
 	var separation := int(card_container.get_theme_constant("separation"))
 	var showcase_w := vp_size.x * 0.92  # CardContainer는 화면 92% 사용
 	var panel_min_w := minf(320.0 * scale_x, (showcase_w - separation * (card_count - 1)) / card_count)
-	var panel_min_h := vp_size.y * 0.36  # 쇼케이스 영역 축소 반영
+	var panel_min_h := vp_size.y * 0.20  # 컴팩트 카드 영역 (25-48%)
 
 	# 스케일된 폰트 크기 계산 (모바일 가독성 확보)
 	var fs_name := maxi(int(34 * ui_scale), 30)
@@ -289,7 +289,7 @@ func _build_character_cards() -> void:
 
 		# v7: 캐릭터 일러스트 — 쇼케이스 크기, SVG 에셋 로드
 		var char_art := TextureRect.new()
-		char_art.custom_minimum_size = Vector2(0, 320 * ui_scale)
+		char_art.custom_minimum_size = Vector2(0, 180 * ui_scale)
 		char_art.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		char_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		char_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED

@@ -276,27 +276,26 @@ func _create_deck_pill_label(font_color: Color) -> PanelContainer:
 
 
 func _setup_player_sprite(character_id: String) -> void:
-	## v11: 플레이어 캐릭터를 전투필드 좌측에 배치 (StS 스타일)
+	## v12: 플레이어 캐릭터를 전투필드 좌하단에 배치 (StS 스타일)
+	## 플레이어가 배경 위에 서 있는 느낌 — 좌측, 지면 가까이
 	if _player_sprite:
 		_player_sprite.queue_free()
 	_player_sprite = TextureRect.new()
 	_player_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_player_sprite.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_player_sprite.custom_minimum_size = Vector2(180, 220)
-	# 캐릭터 텍스처 로드 (res://art/characters/{id}.png)
+	# 전투필드 좌하단: 배경 지면 위에 서 있는 위치
+	_player_sprite.anchor_left = 0.02
+	_player_sprite.anchor_top = 0.32
+	_player_sprite.anchor_right = 0.38
+	_player_sprite.anchor_bottom = 0.60
+	_player_sprite.z_index = 3
+	_player_sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# 캐릭터 텍스처 로드
 	var tex_path := "res://art/characters/%s.png" % character_id
 	if ResourceLoader.exists(tex_path):
 		_player_sprite.texture = load(tex_path)
 	else:
-		# placeholder: TextureManager 방식으로 대체
 		_player_sprite.texture = TextureManager.get_enemy_texture(character_id)
-	# 전투필드 좌측 하단에 앵커 배치
-	_player_sprite.anchor_left = 0.05
-	_player_sprite.anchor_top = 0.25
-	_player_sprite.anchor_right = 0.30
-	_player_sprite.anchor_bottom = 0.58
-	_player_sprite.z_index = 3
-	_player_sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_player_sprite)
 
 
@@ -329,42 +328,41 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
-	# v11 앵커: 시조바 우측, 손패 바로 위 (StS 턴종료 버튼 위치)
+	# v12 앵커: 액션바 우측, 시조바와 같은 높이 (62-68%)
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
-	end_turn_button.anchor_left = 0.62
+	end_turn_button.anchor_left = 0.60
 	end_turn_button.anchor_right = 0.98
-	end_turn_button.anchor_top = 0.60
-	end_turn_button.anchor_bottom = 0.66
-	end_turn_button.z_index = 10
+	end_turn_button.anchor_top = 0.62
+	end_turn_button.anchor_bottom = 0.68
+	end_turn_button.z_index = 12
 	add_child(end_turn_button)
 
-	# v11: 턴 표시 오버레이 — HUD 바 우측 상단
+	# v12: 턴 표시 오버레이 — HUD 좌측 (노치 아래)
 	_turn_overlay_label = Label.new()
-	_turn_overlay_label.add_theme_font_size_override("font_size", 18)
+	_turn_overlay_label.add_theme_font_size_override("font_size", 16)
 	_turn_overlay_label.add_theme_color_override("font_color", Color(0.70, 0.64, 0.50, 0.85))
-	_turn_overlay_label.anchor_left = 0.82
-	_turn_overlay_label.anchor_top = 0.01
-	_turn_overlay_label.anchor_right = 0.98
+	_turn_overlay_label.anchor_left = 0.02
+	_turn_overlay_label.anchor_top = 0.035
+	_turn_overlay_label.anchor_right = 0.15
 	_turn_overlay_label.anchor_bottom = 0.06
-	_turn_overlay_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_turn_overlay_label.z_index = 10
+	_turn_overlay_label.z_index = 15
 	add_child(_turn_overlay_label)
 
-	# v11: 드로우/버림 더미 — 손패 영역 좌/우 하단 (StS 스타일)
+	# v12: 드로우/버림 더미 — 핸드존 좌/우 상단 (68% 라인)
 	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.65, 0.90))
 	_draw_pile_overlay.anchor_left = 0.02
-	_draw_pile_overlay.anchor_top = 0.62
-	_draw_pile_overlay.anchor_right = 0.22
-	_draw_pile_overlay.anchor_bottom = 0.65
-	_draw_pile_overlay.z_index = 10
+	_draw_pile_overlay.anchor_top = 0.68
+	_draw_pile_overlay.anchor_right = 0.18
+	_draw_pile_overlay.anchor_bottom = 0.72
+	_draw_pile_overlay.z_index = 12
 	add_child(_draw_pile_overlay)
 
 	_discard_pile_overlay = _create_deck_pill_label(Color(0.90, 0.50, 0.40))
-	_discard_pile_overlay.anchor_left = 0.78
-	_discard_pile_overlay.anchor_top = 0.62
+	_discard_pile_overlay.anchor_left = 0.82
+	_discard_pile_overlay.anchor_top = 0.68
 	_discard_pile_overlay.anchor_right = 0.98
-	_discard_pile_overlay.anchor_bottom = 0.65
-	_discard_pile_overlay.z_index = 10
+	_discard_pile_overlay.anchor_bottom = 0.72
+	_discard_pile_overlay.z_index = 12
 	add_child(_discard_pile_overlay)
 
 
@@ -606,13 +604,8 @@ func _update_enemy_ui() -> void:
 				enemy_name = tr("BATTLE_ENEMY_FALLBACK")
 
 			var panel := PanelContainer.new()
-			# v4: 적 패널 스타일 — 먹색 배경, 미니멀 테두리
-			var panel_style := StyleBoxFlat.new()
-			panel_style.bg_color = Color(0.06, 0.04, 0.10, 0.75)
-			panel_style.set_border_width_all(1)
-			panel_style.border_color = Color(0.78, 0.29, 0.19, 0.4)
-			panel_style.set_corner_radius_all(12)
-			panel_style.set_content_margin_all(8)
+			# v12: 적 패널 — 투명 배경, 배경 이미지가 보이게
+			var panel_style := StyleBoxEmpty.new()
 			panel.add_theme_stylebox_override("panel", panel_style)
 
 			var vbox := VBoxContainer.new()
@@ -1193,11 +1186,11 @@ func _on_class_resource_changed(current: int, max_val: int) -> void:
 func _init_relic_bar() -> void:
 	var relic_bar := RelicBar.new()
 	relic_bar.name = "RelicBar"
-	# v11: 유물 바: HUD 바로 아래, 우측 배치
-	relic_bar.anchor_left = 0.5
-	relic_bar.anchor_right = 0.99
-	relic_bar.anchor_top = 0.07
-	relic_bar.anchor_bottom = 0.10
+	# v12: 유물 바: HUD 우측 내부에 자연스럽게 배치
+	relic_bar.anchor_left = 0.55
+	relic_bar.anchor_right = 0.98
+	relic_bar.anchor_top = 0.035
+	relic_bar.anchor_bottom = 0.075
 	relic_bar.z_index = 5
 	relic_bar.alignment = BoxContainer.ALIGNMENT_END
 	add_child(relic_bar)
@@ -1246,11 +1239,11 @@ func _init_active_skill_button() -> void:
 	skill_style.set_content_margin_all(6)
 	_active_skill_button.add_theme_stylebox_override("normal", skill_style)
 	_active_skill_button.add_theme_color_override("font_color", Color(0.8, 0.9, 1.0))
-	# v9: 시조 바 우측에 배치 (겹침 방지)
-	_active_skill_button.anchor_left = 0.62
-	_active_skill_button.anchor_right = 0.98
-	_active_skill_button.anchor_top = 0.25
-	_active_skill_button.anchor_bottom = 0.29
+	# v12: 플레이어 캐릭터 우측, 전투필드 좌측에 배치
+	_active_skill_button.anchor_left = 0.02
+	_active_skill_button.anchor_right = 0.38
+	_active_skill_button.anchor_top = 0.58
+	_active_skill_button.anchor_bottom = 0.62
 	_active_skill_button.z_index = 10
 	add_child(_active_skill_button)
 
