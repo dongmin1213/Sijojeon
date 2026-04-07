@@ -108,7 +108,7 @@ func _on_show_upgrade_list() -> void:
 	for child in card_list_container.get_children():
 		child.queue_free()
 
-	# 카드 목록 버튼 생성
+	# 카드 목록 버튼 생성 — 따뜻한 캠프파이어 스타일 적용
 	for entry in cards:
 		var card: CardData = entry["card_data"]
 		var btn := Button.new()
@@ -119,15 +119,23 @@ func _on_show_upgrade_list() -> void:
 			eff_up = card.effect_upgraded_en
 		elif card.effect_upgraded != "":
 			eff_up = card.effect_upgraded
-		# 카드명 + 현재/강화 효과를 별도 줄로 표시하여 화면 넘침 방지
+		# 카드명 + 강화 효과만 표시 (간결하게)
 		var up_text := eff_up if eff_up != "" else tr("REST_NO_UPGRADE")
-		btn.text = "%s\n%s\n→ %s" % [
+		btn.text = "%s\n→ %s" % [
 			card.get_display_name(),
-			eff,
 			up_text
 		]
-		btn.add_theme_font_size_override("font_size", 24)
-		btn.custom_minimum_size.y = 120
+		btn.add_theme_font_size_override("font_size", 22)
+		btn.custom_minimum_size.y = 90
+		btn.clip_text = false
+		# 캠프파이어 따뜻한 색상 스타일 적용
+		btn.add_theme_color_override("font_color", Color(1.0, 0.92, 0.75, 1.0))
+		btn.add_theme_color_override("font_hover_color", Color(1.0, 0.96, 0.82, 1.0))
+		btn.add_theme_color_override("font_outline_color", Color(0.02, 0.01, 0.03, 0.8))
+		btn.add_theme_constant_override("outline_size", 3)
+		btn.add_theme_stylebox_override("normal", rest_button.get_theme_stylebox("normal"))
+		btn.add_theme_stylebox_override("hover", rest_button.get_theme_stylebox("hover"))
+		btn.add_theme_stylebox_override("pressed", rest_button.get_theme_stylebox("pressed"))
 		btn.pressed.connect(_on_upgrade_card.bind(entry))
 		card_list_container.add_child(btn)
 

@@ -89,8 +89,7 @@ func generate(seed_value: int, act: int = 1) -> MapData.RunMap:
 				node.row = r
 				node.column = col
 				node.type = _pick_node_type(r, boss_row, act)
-				if node.type == MapData.NodeType.BOSS:
-					node.encounter_id = _get_boss_encounter_id(act)
+				node.encounter_id = _pick_encounter_id(node.type, act)
 				run_map.nodes[next_id] = node
 				grid[key] = next_id
 				row_ids.append(next_id)
@@ -301,6 +300,25 @@ func _ensure_pre_boss_rest(run_map: MapData.RunMap) -> void:
 			if run_map.nodes[nid].type == MapData.NodeType.BATTLE:
 				run_map.nodes[nid].type = MapData.NodeType.REST
 				break
+
+
+## 노드 타입과 act에 따라 적절한 encounter_id를 랜덤 선택한다.
+func _pick_encounter_id(node_type: MapData.NodeType, act: int) -> String:
+	match node_type:
+		MapData.NodeType.BATTLE:
+			var pool := DataLoader.get_regular_enemy_ids_for_act(act)
+			if not pool.is_empty():
+				return pool[_rng.randi() % pool.size()]
+			return ""
+		MapData.NodeType.ELITE:
+			var pool := DataLoader.get_elite_enemy_ids_for_act(act)
+			if not pool.is_empty():
+				return pool[_rng.randi() % pool.size()]
+			return ""
+		MapData.NodeType.BOSS:
+			return _get_boss_encounter_id(act)
+		_:
+			return ""
 
 
 func _get_boss_encounter_id(act: int) -> String:

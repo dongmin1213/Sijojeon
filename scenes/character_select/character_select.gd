@@ -459,18 +459,17 @@ func _show_detail_panel(character: Dictionary) -> void:
 	var ui_scale := minf(vp_size.x / 1080.0, vp_size.y / 1920.0)
 	var fs_header := maxi(int(28 * ui_scale), 26)
 	var fs_desc := maxi(int(24 * ui_scale), 22)
+	var outline_sz := maxi(int(4 * ui_scale), 3)
+	var outline_color := Color(0.0, 0.0, 0.0, 0.9)
 
 	_detail_panel = PanelContainer.new()
 	_detail_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
-	# v5: 단청 스타일 상세 패널 — 금박 테두리, 그림자
+	# 반투명 다크 배경으로 가독성 확보
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.06, 0.05, 0.12, 0.95)
-	style.border_color = Color(0.83, 0.66, 0.26, 0.7)
-	style.set_border_width_all(2)
-	style.set_corner_radius_all(12)
-	style.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
-	style.shadow_size = 4
+	style.bg_color = Color(0.0, 0.0, 0.0, 0.0)
+	style.content_margin_left = 8.0
+	style.content_margin_right = 8.0
 	_detail_panel.add_theme_stylebox_override("panel", style)
 
 	var margin := MarginContainer.new()
@@ -490,11 +489,15 @@ func _show_detail_panel(character: Dictionary) -> void:
 		p_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		p_header.add_theme_font_size_override("font_size", fs_header)
 		p_header.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+		p_header.add_theme_constant_override("outline_size", outline_sz)
+		p_header.add_theme_color_override("font_outline_color", outline_color)
 		detail_vbox.add_child(p_header)
 		var p_desc := Label.new()
 		p_desc.text = character["passive_desc"]
 		p_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		p_desc.add_theme_font_size_override("font_size", fs_desc)
+		p_desc.add_theme_constant_override("outline_size", outline_sz)
+		p_desc.add_theme_color_override("font_outline_color", outline_color)
 		detail_vbox.add_child(p_desc)
 
 	# 액티브 스킬 영역
@@ -504,11 +507,15 @@ func _show_detail_panel(character: Dictionary) -> void:
 		a_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		a_header.add_theme_font_size_override("font_size", fs_header)
 		a_header.add_theme_color_override("font_color", Color(0.23, 0.49, 0.27))
+		a_header.add_theme_constant_override("outline_size", outline_sz)
+		a_header.add_theme_color_override("font_outline_color", outline_color)
 		detail_vbox.add_child(a_header)
 		var a_desc := Label.new()
 		a_desc.text = character["active_desc"]
 		a_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		a_desc.add_theme_font_size_override("font_size", fs_desc)
+		a_desc.add_theme_constant_override("outline_size", outline_sz)
+		a_desc.add_theme_color_override("font_outline_color", outline_color)
 		detail_vbox.add_child(a_desc)
 
 	# 시작 유물 영역
@@ -518,11 +525,15 @@ func _show_detail_panel(character: Dictionary) -> void:
 		r_header.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		r_header.add_theme_font_size_override("font_size", fs_header)
 		r_header.add_theme_color_override("font_color", Color(0.77, 0.61, 0.22))
+		r_header.add_theme_constant_override("outline_size", outline_sz)
+		r_header.add_theme_color_override("font_outline_color", outline_color)
 		detail_vbox.add_child(r_header)
 		var r_desc := Label.new()
 		r_desc.text = character["starting_relic_effect"]
 		r_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		r_desc.add_theme_font_size_override("font_size", fs_desc)
+		r_desc.add_theme_constant_override("outline_size", outline_sz)
+		r_desc.add_theme_color_override("font_outline_color", outline_color)
 		detail_vbox.add_child(r_desc)
 
 	margin.add_child(detail_vbox)

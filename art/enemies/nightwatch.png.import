@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://e5yry5l48yh4"
-path="res://.godot/imported/nightwatch.png-0a8f3459cbe1cd8b907fef7439704a7d.ctex"
+path.s3tc="res://.godot/imported/nightwatch.png-0a8f3459cbe1cd8b907fef7439704a7d.s3tc.ctex"
+path.etc2="res://.godot/imported/nightwatch.png-0a8f3459cbe1cd8b907fef7439704a7d.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/enemies/nightwatch.png"
-dest_files=["res://.godot/imported/nightwatch.png-0a8f3459cbe1cd8b907fef7439704a7d.ctex"]
+dest_files=["res://.godot/imported/nightwatch.png-0a8f3459cbe1cd8b907fef7439704a7d.s3tc.ctex", "res://.godot/imported/nightwatch.png-0a8f3459cbe1cd8b907fef7439704a7d.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

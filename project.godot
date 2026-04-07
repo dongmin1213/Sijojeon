@@ -20,6 +20,9 @@ config/version="0.1.0"
 run/main_scene="res://scenes/title/title_screen.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+run/max_fps=60
+run/low_processor_mode=true
+run/low_processor_mode_sleep_usec=8000
 
 [autoload]
 
@@ -41,6 +44,7 @@ window/size/viewport_height=1920
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
+window/vsync/vsync_mode=1
 
 [gui]
 
@@ -63,6 +67,10 @@ pointing/emulate_touch_from_mouse=true
 locale/translations=PackedStringArray("res://translations/translations.ko.translation", "res://translations/translations.en.translation")
 locale/locale_filter_mode=1
 locale/locale_filter=PackedStringArray("en", "ko")
+
+[physics]
+
+common/physics_ticks_per_second=30
 
 [rendering]
 

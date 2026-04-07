@@ -303,6 +303,8 @@ func _start_sijo_glow() -> void:
 	## 시조 매칭 카드에 부드러운 테두리 펄스 애니메이션
 	if not is_inside_tree():
 		return
+	if _sijo_glow_tween and _sijo_glow_tween.is_valid():
+		_sijo_glow_tween.kill()
 	_sijo_glow_tween = create_tween().set_loops()
 	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 0.3, 1.0, 0.5)
 	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 1.0, 0.3, 0.5)

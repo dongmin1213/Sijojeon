@@ -163,11 +163,24 @@ func _start_battle() -> void:
 		if not enemy.is_empty():
 			enemy_data.append(enemy)
 
-	# encounter_id가 비어있거나 로드 실패 시 랜덤 적 선택
+	# encounter_id가 비어있거나 로드 실패 시 현재 act 기반 랜덤 적 선택
 	if enemy_data.is_empty():
-		var fallback := DataLoader.get_enemy("E001")
-		if not fallback.is_empty():
-			enemy_data.append(fallback)
+		var is_elite := (rd.current_node_type == MapData.NodeType.ELITE)
+		var act: int = rd.current_act
+		var pool: Array[String]
+		if is_elite:
+			pool = DataLoader.get_elite_enemy_ids_for_act(act)
+		else:
+			pool = DataLoader.get_regular_enemy_ids_for_act(act)
+		if not pool.is_empty():
+			var fallback := DataLoader.get_enemy(pool[randi() % pool.size()])
+			if not fallback.is_empty():
+				enemy_data.append(fallback)
+		# 최종 fallback: 풀이 비어있는 경우
+		if enemy_data.is_empty():
+			var last_resort := DataLoader.get_enemy("E001")
+			if not last_resort.is_empty():
+				enemy_data.append(last_resort)
 
 	# 보스 전투 진입 시 유물 트리거 (만파식적 등)
 	var is_boss := false

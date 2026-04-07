@@ -2,24 +2,22 @@
 
 [ext_resource type="Script" path="res://scenes/reward/reward.gd" id="1"]
 
-; 보상 패널 — 중앙 모달, 금색 테두리
+; 보상 패널 — 전체화면 모달, 금색 테두리
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reward_panel"]
-bg_color = Color(0.06, 0.05, 0.10, 0.95)
+bg_color = Color(0.06, 0.05, 0.10, 0.97)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.83, 0.66, 0.26, 0.5)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-content_margin_left = 28.0
-content_margin_top = 24.0
-content_margin_right = 28.0
-content_margin_bottom = 24.0
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_size = 16
+border_color = Color(0.83, 0.66, 0.26, 0.7)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
 
 [node name="Reward" type="Control"]
 layout_mode = 3
@@ -30,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
 
-; ─── 어두운 배경 오버레이 ──────────────────────────────────────────────────
+; ─── 어두운 배경 ──────────────────────────────────────────────────────────
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -38,37 +36,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.04, 0.03, 0.08, 0.92)
+color = Color(0.04, 0.03, 0.08, 0.95)
 
-; ─── 중앙 보상 패널 (높이 축소 + 수직 가운데 정렬) ────────────────────────
+; ─── 보상 패널 (전체화면) ─────────────────────────────────────────────────
 [node name="RewardPanel" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_reward_panel")
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.04
-anchor_top = 0.15
-anchor_right = 0.96
-anchor_bottom = 0.85
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RewardPanel"]
 layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
+theme_override_constants/separation = 12
 
 [node name="TitleLabel" type="Label" parent="RewardPanel/VBoxContainer"]
 layout_mode = 2
 text = "REWARD_TITLE"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 30
 theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
 
 [node name="GoldLabel" type="Label" parent="RewardPanel/VBoxContainer"]
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
 
 [node name="CardSection" type="VBoxContainer" parent="RewardPanel/VBoxContainer"]
@@ -80,7 +75,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 text = "REWARD_CARD"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 
 [node name="CardScroll" type="ScrollContainer" parent="RewardPanel/VBoxContainer/CardSection"]
 layout_mode = 2
@@ -90,19 +85,19 @@ vertical_scroll_mode = 0
 
 [node name="CardContainer" type="HBoxContainer" parent="RewardPanel/VBoxContainer/CardSection/CardScroll"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 alignment = 1
-theme_override_constants/separation = 14
+theme_override_constants/separation = 10
 
 [node name="SkipButton" type="Button" parent="RewardPanel/VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 48)
 text = "REWARD_SKIP"
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 
 [node name="ProceedButton" type="Button" parent="RewardPanel/VBoxContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 48)
 text = "UI_CONTINUE_BUTTON"
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 visible = false

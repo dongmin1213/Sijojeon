@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chvcj8jesg548"
-path="res://.godot/imported/rest_bg.png-94285907bb6745a554e4687ccb8061ea.ctex"
+path.s3tc="res://.godot/imported/rest_bg.png-94285907bb6745a554e4687ccb8061ea.s3tc.ctex"
+path.etc2="res://.godot/imported/rest_bg.png-94285907bb6745a554e4687ccb8061ea.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/backgrounds/rest_bg.png"
-dest_files=["res://.godot/imported/rest_bg.png-94285907bb6745a554e4687ccb8061ea.ctex"]
+dest_files=["res://.godot/imported/rest_bg.png-94285907bb6745a554e4687ccb8061ea.s3tc.ctex", "res://.godot/imported/rest_bg.png-94285907bb6745a554e4687ccb8061ea.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

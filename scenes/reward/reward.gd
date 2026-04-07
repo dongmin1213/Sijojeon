@@ -241,9 +241,12 @@ func _display_card_offers() -> void:
 		proceed_button.visible = true
 		return
 
-	# 카드 크기 — 고정 너비로 스크롤 가능하게
-	var card_width := 180.0
-	var card_height := 240.0
+	# 카드 크기 — 화면 너비 기반 자동 계산 (여백 고려)
+	var available_width: float = get_viewport_rect().size.x - 80  # 좌우 패딩
+	var gap := 10.0
+	var count := card_offers.size()
+	var card_width := minf(160.0, (available_width - gap * (count - 1)) / count)
+	var card_height := card_width * 1.5  # 2:3 비율
 
 	for i in card_offers.size():
 		var card_id: String = card_offers[i]
@@ -253,11 +256,13 @@ func _display_card_offers() -> void:
 
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(card_width, card_height)
+		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		btn.text = _format_card_text(card)
-		btn.add_theme_font_size_override("font_size", 18)
+		btn.add_theme_font_size_override("font_size", 15)
+		btn.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
 		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		btn.alignment = HORIZONTAL_ALIGNMENT_CENTER
-		btn.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		btn.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 		btn.pressed.connect(_on_card_chosen.bind(i))
 
 		# 카드 프레임 스타일
@@ -273,19 +278,22 @@ func _display_card_offers() -> void:
 			tex_sb.texture_margin_right = 12
 			tex_sb.texture_margin_top = 42
 			tex_sb.texture_margin_bottom = 12
-			tex_sb.content_margin_left = 10
-			tex_sb.content_margin_right = 10
-			tex_sb.content_margin_top = 8
-			tex_sb.content_margin_bottom = 8
+			tex_sb.content_margin_left = 8
+			tex_sb.content_margin_right = 8
+			tex_sb.content_margin_top = 6
+			tex_sb.content_margin_bottom = 6
 			stylebox = tex_sb
 		else:
 			var flat_sb := StyleBoxFlat.new()
-			flat_sb.bg_color = Color(0.08, 0.06, 0.14, 0.95)
+			flat_sb.bg_color = Color(0.10, 0.08, 0.18, 0.95)
 			flat_sb.border_color = rarity_color
 			flat_sb.set_border_width_all(2)
-			flat_sb.set_corner_radius_all(14)
-			flat_sb.set_content_margin_all(10)
-			flat_sb.shadow_color = Color(0.0, 0.0, 0.0, 0.3)
+			flat_sb.set_corner_radius_all(10)
+			flat_sb.content_margin_left = 8
+			flat_sb.content_margin_right = 8
+			flat_sb.content_margin_top = 6
+			flat_sb.content_margin_bottom = 6
+			flat_sb.shadow_color = Color(0.0, 0.0, 0.0, 0.4)
 			flat_sb.shadow_size = 4
 			stylebox = flat_sb
 		btn.add_theme_stylebox_override("normal", stylebox)
@@ -300,11 +308,11 @@ func _display_card_offers() -> void:
 			btn.add_theme_stylebox_override("pressed", press_st)
 		else:
 			var hover_style := (stylebox as StyleBoxFlat).duplicate()
-			hover_style.bg_color = Color(0.12, 0.10, 0.20, 0.95)
+			hover_style.bg_color = Color(0.14, 0.12, 0.24, 0.95)
 			hover_style.set_border_width_all(3)
 			btn.add_theme_stylebox_override("hover", hover_style)
 			var pressed_style := (stylebox as StyleBoxFlat).duplicate()
-			pressed_style.bg_color = Color(0.15, 0.12, 0.24, 0.95)
+			pressed_style.bg_color = Color(0.18, 0.14, 0.28, 0.95)
 			btn.add_theme_stylebox_override("pressed", pressed_style)
 
 		card_container.add_child(btn)

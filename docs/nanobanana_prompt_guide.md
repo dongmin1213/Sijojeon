@@ -345,6 +345,27 @@ The warm interior of a Korean Joseon-era marketplace shop (시전). Korean-style
 A peaceful Korean Joseon-era roadside inn (주막) at twilight. A Korean thatched-roof (초가집) building with a wooden maru (마루) elevated wooden floor porch under an old pine tree. A Korean rice wine pot (막걸리 항아리) sits on a low wooden table (소반). Jangdokdae clay pots nearby. Fireflies glow in warm air. Serene atmosphere in warm amber and soft green tones. Korean countryside architecture — NOT Chinese. Leave space for UI. Portrait 1080x1920.
 ```
 
+### bg_event — 이벤트 배경
+
+```
+[배경 프리픽스]
+A mysterious Korean Joseon-era forest path at night for a random encounter scene. A narrow dirt road winding through dense Korean pine trees (소나무) and bamboo. A Korean jangseung (장승) wooden guardian totem stands at the roadside with a carved fierce face. A Korean stone lantern (석등) emits faint warm light nearby. Low fog and mist drift across the path. Fireflies float in the air. Distant mountains barely visible through haze. Eerie yet beautiful atmosphere in deep teal, dark green, and pale moonlight tones. Korean folk road — NOT Chinese. Leave upper portion for event text UI. Portrait 1080x1920.
+```
+
+### bg_reward — 보상 배경
+
+```
+[배경 프리픽스]
+A Korean Joseon-era treasure room or reward alcove. An open Korean wooden chest (궤) overflowing with scrolls, Korean brass coins (엽전), talismans (부적), and a glowing sword. Warm golden light emanates from within. Korean hanji paper sliding doors frame the scene. Korean dancheong painted wooden beams overhead. Rich warm gold, amber, and deep brown tones with volumetric light rays. Korean traditional interior — NOT Chinese. Leave space for card selection UI. Portrait 1080x1920.
+```
+
+### bg_gwageo — 과거시험 배경
+
+```
+[배경 프리픽스]
+A Korean Joseon-era civil service examination hall (과거 시험장). Rows of low wooden desks with ink, brushes, and hanji paper under a large open-air Korean pavilion with gray giwa tile roof and dancheong painted eaves. Korean examiners in samo hats observe from an elevated platform. Korean paper lanterns hang overhead for evening lighting. Tension and formality in the atmosphere. Cool indigo, warm gold, and stone gray tones. Korean examination aesthetic — NOT Chinese imperial exam. Leave center space for minigame UI. Portrait 1080x1920.
+```
+
 ---
 
 ## 7. 유물 아이콘

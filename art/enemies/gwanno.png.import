@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3sj3c44pxktl"
-path="res://.godot/imported/gwanno.png-4a52f299ce26911a3b6eb8d60bfe46fb.ctex"
+path.s3tc="res://.godot/imported/gwanno.png-4a52f299ce26911a3b6eb8d60bfe46fb.s3tc.ctex"
+path.etc2="res://.godot/imported/gwanno.png-4a52f299ce26911a3b6eb8d60bfe46fb.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/enemies/gwanno.png"
-dest_files=["res://.godot/imported/gwanno.png-4a52f299ce26911a3b6eb8d60bfe46fb.ctex"]
+dest_files=["res://.godot/imported/gwanno.png-4a52f299ce26911a3b6eb8d60bfe46fb.s3tc.ctex", "res://.godot/imported/gwanno.png-4a52f299ce26911a3b6eb8d60bfe46fb.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

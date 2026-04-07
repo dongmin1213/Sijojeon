@@ -241,6 +241,36 @@ func get_enemy(enemy_id: String) -> Dictionary:
 	return _enemies.get(enemy_id, {})
 
 
+## 해당 act의 일반 적 ID 목록을 반환한다.
+func get_regular_enemy_ids_for_act(act: int) -> Array[String]:
+	var prefix: String
+	match act:
+		1: prefix = "E0"
+		2: prefix = "E2"
+		3: prefix = "E3"
+		_: prefix = "E0"
+	var result: Array[String] = []
+	for id in _enemies:
+		if id.begins_with(prefix) and not id.begins_with("EL"):
+			result.append(id)
+	return result
+
+
+## 해당 act의 엘리트 적 ID 목록을 반환한다.
+func get_elite_enemy_ids_for_act(act: int) -> Array[String]:
+	var prefix: String
+	match act:
+		1: prefix = "EL0"
+		2: prefix = "EL2"
+		3: prefix = "EL3"
+		_: prefix = "EL0"
+	var result: Array[String] = []
+	for id in _enemies:
+		if id.begins_with(prefix):
+			result.append(id)
+	return result
+
+
 func get_relic(relic_id: String) -> Dictionary:
 	return _relics.get(relic_id, {})
 
