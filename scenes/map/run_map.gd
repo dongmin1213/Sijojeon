@@ -69,6 +69,8 @@ var _available_node_ids: Array[int] = []
 var _node_selected: bool = false  # 노드 선택 후 중복 입력 차단
 var _locked_node_costs: Dictionary = {}  # node_id → gold cost (갈림길 잠금 해제)
 var _unlocked_nodes: Array[int] = []  # 이번 런에서 금화로 해제한 노드
+var _safe_area_top_px: float = 40.0  # 노치/상태바 높이 (px)
+var _hud_bottom_ratio: float = 0.09  # HUD 하단 앵커 비율
 
 ## 갈림길 잠금 해제 비용
 const FORK_UNLOCK_COST := 40
@@ -110,6 +112,15 @@ func _apply_safe_area_margin() -> void:
 	var hud := $HUD
 	hud.anchor_top = maxf(top_ratio, 0.02)
 	hud.anchor_bottom = hud.anchor_top + 0.07
+	# SafeAreaManager 이중 적용 방지 — 이미 직접 처리했으므로 빈 기록 설정
+	var no_margin := {"top": 0.0, "bottom": 0.0, "left": 0.0, "right": 0.0}
+	hud.set_meta("_safe_area_applied", no_margin)
+	# ScrollContainer: HUD 하단 아래부터 시작하여 맵이 가려지지 않도록
+	scroll_container.anchor_top = hud.anchor_bottom
+	scroll_container.set_meta("_safe_area_applied", no_margin)
+	# 맵 패딩 계산용 저장
+	_safe_area_top_px = top_inset_px
+	_hud_bottom_ratio = hud.anchor_bottom
 
 
 func _finalize_pending_node() -> void:
@@ -142,6 +153,8 @@ func _on_hud_tapped(event: InputEvent) -> void:
 		hud.anchor_bottom = hud.anchor_top + 0.13
 	else:
 		hud.anchor_bottom = hud.anchor_top + 0.07
+	# ScrollContainer도 HUD 하단에 맞춤
+	scroll_container.anchor_top = hud.anchor_bottom
 
 
 func _init_relic_bar() -> void:
@@ -201,7 +214,8 @@ func _build_map() -> void:
 	# 스케일링된 상수
 	var node_size := BASE_NODE_SIZE * scale_factor
 	var padding_x := BASE_MAP_PADDING_X * scale_factor
-	var padding_top := BASE_MAP_PADDING_TOP * scale_factor
+	# 맵 상단 패딩: ScrollContainer가 HUD 아래부터 시작하므로 여유 공간만 필요
+	var padding_top := 24.0 * scale_factor
 	var padding_bottom := BASE_MAP_PADDING_BOTTOM * scale_factor
 	var font_size := maxi(int(32.0 * scale_factor), 28)  # v10: 아이콘 전용 — 폰트 크기 증가
 
@@ -625,7 +639,12 @@ func _on_node_pressed(node_id: int) -> void:
 			GameManager.run_data.set_meta("minran_forced_original_type", map_node.type)
 			GameManager.run_data.set_meta("minran_forced_original_encounter", map_node.encounter_id)
 			GameManager.run_data.current_node_type = MapData.NodeType.BATTLE
-			GameManager.run_data.current_encounter_id = "E001"  # 민란군 기본 적
+			# 현재 act의 일반 적 중 랜덤 선택
+			var minran_pool := DataLoader.get_regular_enemy_ids_for_act(GameManager.run_data.current_act)
+			if not minran_pool.is_empty():
+				GameManager.run_data.current_encounter_id = minran_pool[randi() % minran_pool.size()]
+			else:
+				GameManager.run_data.current_encounter_id = "E001"
 			GameManager.save_current_run()
 			GameManager.change_state(GameManager.GameState.BATTLE)
 			return
