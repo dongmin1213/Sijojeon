@@ -27,7 +27,7 @@ var sijo_draw_penalty: int = 0  # 종장 미완성 → 드로우 -1
 var sijo_qi_penalty: int = 0    # 시조 슬롯 비어있음 → 기 회복 -1
 
 # 클래스 고유 자원 — 턴 간 유지, 전투 시작 시 0
-# 무관: 기력(氣力), 문관: 학식(學識)
+# 무관: 기력, 문관: 학식
 var current_class_resource: int = 0
 var max_class_resource: int = DEFAULT_MAX_CLASS_RESOURCE
 var has_class_resource: bool = false  # 고유 자원 보유 여부
@@ -107,7 +107,7 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 		if not fallback.is_empty():
 			enemy_data.append(fallback)
 		else:
-			enemy_data.append({"id": "E001", "name": {"ko": "허수아비"}, "hp": 20, "intents": []})
+			enemy_data.append({"id": "E001", "name": {"ko": tr("BATTLE_DUMMY_NAME"), "en": tr("BATTLE_DUMMY_NAME")}, "hp": 20, "intents": []})
 	if max_hp <= 0:
 		push_error("BattleManager.start_battle: max_hp가 0 이하 — %d" % max_hp)
 		max_hp = 1
@@ -236,7 +236,7 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	if character_id == "dosa" and sijo_system:
 		sijo_system.try_fill_slot(3, "D001")  # 기공 [3]
 		active_skill_used = true
-		passive_triggered.emit("방술 개방", "시조 초장 자동 채움: 기공")
+		passive_triggered.emit(tr("PASSIVE_BANGSUL"), tr("PASSIVE_BANGSUL_DESC"))
 
 	begin_player_turn()
 
@@ -260,7 +260,7 @@ func begin_player_turn() -> void:
 		var token_stacks: int = effects.get("병사_토큰", 0)
 		if token_stacks > 0:
 			gain_block(2)
-			passive_triggered.emit("지휘통솔", "병사 토큰 보유 → 방어도 +2")
+			passive_triggered.emit(tr("PASSIVE_COMMAND"), tr("PASSIVE_COMMAND_DESC"))
 
 	# 갑주(영구 방어막) 처리: 갑주가 있으면 block을 갑주 값으로 유지, 없으면 리셋
 	var dot_result := status_effects.process_turn_start("player")
@@ -277,7 +277,7 @@ func begin_player_turn() -> void:
 	effective_max_qi = maxi(effective_max_qi, 1)  # 최소 1은 회복
 	current_qi = effective_max_qi
 	if sijo_qi_penalty < 0:
-		passive_triggered.emit("시조 공백", "시조 슬롯 비어있음 → 기 회복 %d" % sijo_qi_penalty)
+		passive_triggered.emit(tr("PASSIVE_SIJO_EMPTY"), tr("PASSIVE_SIJO_EMPTY_DESC_FMT") % sijo_qi_penalty)
 	qi_changed.emit(current_qi, max_qi)
 	turn_started.emit(turn_number)
 
@@ -299,7 +299,7 @@ func begin_player_turn() -> void:
 	# 카드 드로우 (냉기 등 드로우 수정자 적용 + 시조 실패 패널티)
 	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player") + sijo_draw_penalty
 	if sijo_draw_penalty < 0:
-		passive_triggered.emit("시조 미완", "종장 미완성 → 드로우 %d" % sijo_draw_penalty)
+		passive_triggered.emit(tr("PASSIVE_SIJO_INCOMPLETE"), tr("PASSIVE_SIJO_INCOMPLETE_DESC_FMT") % sijo_draw_penalty)
 	draw_count = maxi(draw_count, 1)  # 최소 1장은 드로우
 	draw_cards(draw_count)
 
@@ -341,7 +341,7 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	# 모든 카드 사용에 최소 1기 소비 (0코스트 카드도 기를 소비해야 함)
 	effective_cost = maxi(effective_cost, 1)
 
-	# 기(氣) 확인
+	# 기 확인
 	if effective_cost > current_qi:
 		return false
 
@@ -471,14 +471,14 @@ func end_player_turn() -> void:
 		if sijo_system.get_filled_count() >= 2:
 			current_qi += 1
 			qi_changed.emit(current_qi, max_qi)
-			passive_triggered.emit("천지기", "시조 슬롯 2칸 이상 → 기 +1")
+			passive_triggered.emit(tr("PASSIVE_CHEONJI"), tr("PASSIVE_CHEONJI_DESC"))
 
 	# 문관 패시브: 학식충전 — 카드 3장 이상 사용 시 학식 1 획득
 	if character_id == "mungwan" and cards_played_this_turn >= 3:
 		current_class_resource += 1
 		current_class_resource = mini(current_class_resource, max_class_resource)
 		class_resource_changed.emit(current_class_resource, max_class_resource)
-		passive_triggered.emit("학식충전", "카드 3장 이상 사용 → 학식 +1")
+		passive_triggered.emit(tr("PASSIVE_STUDY"), tr("PASSIVE_STUDY_DESC"))
 
 	# 플레이어 턴 종료 시 디버프 기간 감소
 	status_effects.process_turn_end("player")
@@ -527,7 +527,7 @@ func execute_enemy_turn() -> void:
 		# 기절 상태면 행동 스킵
 		if status_effects.get_stacks(enemy_target, "기절") > 0:
 			status_effects.consume_stacks(enemy_target, "기절", 1)
-			passive_triggered.emit("기절", "적 %s 기절 — 행동 불가!" % TranslationManager.trd_name(enemy, false))
+			passive_triggered.emit(tr("STATUS_STUN"), tr("PASSIVE_STUN_ENEMY_FMT") % TranslationManager.trd_name(enemy, false))
 		else:
 			# 적 행동 실행 (디버프 감소 전에 행동해야 취약 등이 적용됨)
 			var intent := _get_enemy_intent(i)
@@ -600,7 +600,7 @@ func take_damage(amount: int) -> void:
 			player_max_hp = maxi(player_max_hp, 1)
 			player_hp = mini(player_hp, player_max_hp)
 			hp_changed.emit(player_hp, player_max_hp)
-			passive_triggered.emit("영구 손상", "미방어 대피해로 최대 HP -2!")
+			passive_triggered.emit(tr("PASSIVE_PERM_DAMAGE"), tr("PASSIVE_PERM_DAMAGE_DESC"))
 
 		# 유물 트리거: 즉사 방지 (R028 불사신 부적)
 		if player_hp <= 0:
@@ -663,7 +663,7 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 		player_hp -= counter_dmg
 		player_hp = maxi(player_hp, 0)
 		hp_changed.emit(player_hp, player_max_hp)
-		passive_triggered.emit("반격", "적이 받은 피해의 30%(%d)를 반사!" % counter_dmg)
+		passive_triggered.emit(tr("PASSIVE_COUNTER"), tr("PASSIVE_COUNTER_FMT") % counter_dmg)
 
 	# 보스 페이즈 전환 체크
 	if enemy["current_hp"] > 0:
@@ -709,7 +709,7 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 			boosted_block = int(ceil(card.block_value * (1.0 + power_bonus)))
 		gain_block(boosted_block)
 
-	# 기(氣) 획득
+	# 기 획득
 	if card.qi_gain > 0:
 		current_qi += card.qi_gain
 		qi_gained_this_turn += card.qi_gain
@@ -972,7 +972,7 @@ func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
 			_cost_reduce_all_this_turn -= stacks  # 비용 증가 = 음수 감소
 			var msg: String = intent.get("name", "")
 			if msg != "":
-				passive_triggered.emit(msg, "모든 카드 비용 +%d" % stacks)
+				passive_triggered.emit(msg, tr("PASSIVE_CARD_COST_FMT") % stacks)
 		"taunt":
 			# 조롱 — 플레이어에게 취약 부여 + 적 방어도 획득
 			var block: int = intent.get("block", 0)
@@ -1011,7 +1011,7 @@ func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
 	# 디버프형: 방어도를 관통해 HP 피해를 입었으면 '허점 노출' 부여
 	if is_debuff_pattern and player_hp < hp_before_attack and player_hp > 0:
 		status_effects.apply_effect("player", "허점_노출", 1)
-		passive_triggered.emit("허점 노출", "미방어 피해 → 다음 턴 받는 피해 ×1.5!")
+		passive_triggered.emit(tr("PASSIVE_WEAKNESS_EXPOSED"), tr("PASSIVE_WEAKNESS_DESC"))
 
 
 func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
@@ -1055,7 +1055,7 @@ func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
 					var count: int = effect.get("count", 1)
 					for _i in count:
 						sijo_system.reset_random_slot()
-					passive_triggered.emit("리듬 끊기", "시조 슬롯 %d개 초기화" % count)
+					passive_triggered.emit(tr("PASSIVE_RHYTHM_BREAK"), tr("PASSIVE_RHYTHM_BREAK_FMT") % count)
 
 
 func _execute_gold_drain(enemy_index: int, intent: Dictionary) -> void:
@@ -1163,9 +1163,9 @@ func can_play_card(card: CardData) -> bool:
 func get_class_resource_name() -> String:
 	match character_id:
 		"mugwan":
-			return "기력(氣力)"
+			return "기력"
 		"mungwan":
-			return "학식(學識)"
+			return "학식"
 		_:
 			return ""
 
@@ -1248,7 +1248,7 @@ func _check_phase_transition(enemy_index: int) -> void:
 				# 대사 표시 (시그널로 전달)
 				var text: String = effect.get("text", "")
 				if text != "":
-					passive_triggered.emit("보스", text)
+					passive_triggered.emit(tr("PASSIVE_BOSS"), text)
 
 
 func _get_current_passive(enemy: Dictionary) -> Dictionary:
@@ -1328,7 +1328,7 @@ func _apply_low_minshim_enemy_buff() -> void:
 			var enemy_target := "enemy_%d" % i
 			status_effects.apply_effect(enemy_target, "strength", 2)
 			enemies[i]["block"] += 5
-		passive_triggered.emit("민란의 기운", "민심이 매우 낮아 적이 대폭 강화되었다! 근력 +2, 방어도 +5")
+		passive_triggered.emit(tr("PASSIVE_MINRAN_SPIRIT"), tr("PASSIVE_MINRAN_SPIRIT_DESC"))
 	elif minshim < 50:
 		# 불안한 민심 — 적군 소폭 강화
 		for i in enemies.size():
@@ -1336,7 +1336,7 @@ func _apply_low_minshim_enemy_buff() -> void:
 				continue
 			var enemy_target := "enemy_%d" % i
 			status_effects.apply_effect(enemy_target, "strength", 1)
-		passive_triggered.emit("민심 불안", "민심이 낮아 적이 강화되었다! 근력 +1")
+		passive_triggered.emit(tr("PASSIVE_MINSHIM_UNREST"), tr("PASSIVE_MINSHIM_UNREST_DESC"))
 
 
 func _check_minshim_ally_support() -> void:
@@ -1361,7 +1361,7 @@ func _check_minshim_ally_support() -> void:
 			enemies[target_idx]["current_hp"] -= support_dmg
 			enemies[target_idx]["current_hp"] = maxi(enemies[target_idx]["current_hp"], 0)
 			enemy_hp_changed.emit(target_idx, enemies[target_idx]["current_hp"], enemies[target_idx]["max_hp"])
-			passive_triggered.emit("백성 지원", "민심이 높아 백성이 돕는다! 적에게 %d 피해." % support_dmg)
+			passive_triggered.emit(tr("PASSIVE_PEOPLE_SUPPORT"), tr("PASSIVE_PEOPLE_SUPPORT_FMT") % support_dmg)
 
 
 func _all_enemies_dead() -> bool:
@@ -1481,13 +1481,13 @@ func use_active_skill() -> bool:
 			var qi_recovered := mini(tokens, 3)
 			current_qi += qi_recovered
 			qi_changed.emit(current_qi, max_qi)
-			passive_triggered.emit("군령 하달", "토큰 %d개 → 기 +%d" % [tokens, qi_recovered])
+			passive_triggered.emit(tr("PASSIVE_MILITARY_ORDER"), tr("PASSIVE_MILITARY_ORDER_FMT") % [tokens, qi_recovered])
 		"mungwan":
 			# 경연개설: 학식 3 즉시 획득
 			current_class_resource += 3
 			current_class_resource = mini(current_class_resource, max_class_resource)
 			class_resource_changed.emit(current_class_resource, max_class_resource)
-			passive_triggered.emit("경연개설", "학식 +3")
+			passive_triggered.emit(tr("PASSIVE_LECTURE"), tr("PASSIVE_LECTURE_DESC"))
 
 	return true
 
@@ -1509,7 +1509,7 @@ func get_active_skill_name() -> String:
 func get_active_skill_description() -> String:
 	match character_id:
 		"mugwan":
-			return "보유 병사 토큰 수만큼 기(氣)를 회복합니다. (최대 3, 전투당 1회)"
+			return "보유 병사 토큰 수만큼 기를 회복합니다. (최대 3, 전투당 1회)"
 		"mungwan":
 			return "학식을 3 즉시 획득합니다. (전투당 1회)"
 		_:

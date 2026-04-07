@@ -1,6 +1,6 @@
 keys,ko,en
 UI_TITLE,시조전,Sijojeon
-UI_SUBTITLE,詩操戰,Sijojeon
+UI_SUBTITLE,,Sijojeon
 UI_NEW_GAME,새 게임,New Game
 UI_CONTINUE,이어하기,Continue
 UI_SETTINGS,설정,Settings
@@ -98,7 +98,7 @@ STATUS_STRENGTH,힘,Strength
 STATUS_REGEN,재생,Regen
 MINSHIM_TITLE,민심,Public Sentiment
 JIBUN_TITLE,신분,Social Status
-GWAGEO_TITLE,과거시험(科擧),Civil Exam (科擧)
+GWAGEO_TITLE,과거시험,Civil Exam
 UI_CHARACTER_SELECT,캐릭터 선택,Character Select
 UI_START,시작,Start
 UI_CHRONICLE,연대기,Chronicle
@@ -151,9 +151,9 @@ SHOP_RATIONS_FMT,군량미 비축 (%d 금화 → 다음 전투 방어도 +%d),St
 SHOP_RELIC_PRICE_FMT,%s\n%s\n\n%d 금화,%s\n%s\n\n%d Gold
 GWAGEO_BACK,돌아가기,Go Back
 GWAGEO_EXAMINER_FMT,시험관: %s,Examiner: %s
-GWAGEO_PHASE_CHOJANG,초장(初章) — 아래에서 카드 %d장을 눌러 선택하세요,First Verse (初章) — Select %d cards below
-GWAGEO_PHASE_JUNGJANG,중장(中章) — 카드 %d장을 눌러 선택하세요,Middle Verse (中章) — Select %d cards
-GWAGEO_PHASE_JONGJANG,종장(終章) — 카드 %d장을 눌러 선택하세요,Final Verse (終章) — Select %d cards
+GWAGEO_PHASE_CHOJANG,초장 — 아래에서 카드 %d장을 눌러 선택하세요,First Verse — Select %d cards below
+GWAGEO_PHASE_JUNGJANG,중장 — 카드 %d장을 눌러 선택하세요,Middle Verse — Select %d cards
+GWAGEO_PHASE_JONGJANG,종장 — 카드 %d장을 눌러 선택하세요,Final Verse — Select %d cards
 GWAGEO_HINT_CHOJANG,▶ 공격·방어·기술을 골고루 넣으면 높은 점수!,▶ Mix Attack/Defense/Skill for high score!
 GWAGEO_HINT_JUNGJANG,▶ 초장 카드와 키워드가 겹칠수록 높은 점수!,▶ Overlap keywords with First Verse for high score!
 GWAGEO_HINT_JONGJANG,▶ 피해량이 높은 카드를 골라 마무리!,▶ Pick high damage cards to finish!
@@ -201,8 +201,8 @@ CHARSEL_GUIDE_TEXT,"조선 시대를 배경으로 한 덱빌딩 로그라이크�
 처음 플레이하시나요?
 인터랙티브 튜토리얼에서 전투의 기본을 배울 수 있습니다.
 
-• 카드 사용법과 기(氣) 관리
-• 시조(時調) 리듬 시스템
+• 카드 사용법과 기 관리
+• 시조 리듬 시스템
 • 방어와 전투 전략","A deckbuilding roguelike set in the Joseon Dynasty.
 
 First time playing?
@@ -217,7 +217,7 @@ BATTLE_SIJO_SUMMARY_FMT,시조 %d/%d,Sijo %d/%d
 BATTLE_DRAW_PILE_FMT,뽑을 패 %d,Draw %d
 BATTLE_DISCARD_PILE_FMT,버린 패 %d,Discard %d
 BATTLE_ENEMY_BLOCK_FMT,방어: %d,Block: %d
-BATTLE_QI_FMT,기(氣): %d/%d,Qi: %d/%d
+BATTLE_QI_FMT,기: %d/%d,Qi: %d/%d
 BATTLE_BLOCK_FMT,방어: %d,Block: %d
 BATTLE_CARD_ZOOM_HINT,💡 카드를 꾹 누르면 상세 정보를 볼 수 있습니다,💡 Long press a card to see details
 BATTLE_TURN_FMT,%d턴,Turn %d
@@ -308,7 +308,7 @@ CARD_ZOOM_TYPE_DEFENSE,방어,Defense
 CARD_ZOOM_TYPE_SPELL,주술,Sorcery
 CARD_ZOOM_TYPE_MOVEMENT,이동,Movement
 CARD_ZOOM_TYPE_FORMATION,진형,Formation
-CARD_ZOOM_STAT_QI_BEAT,기(氣): %d  |  음보(拍): %d,Qi: %d  |  Beat: %d
+CARD_ZOOM_STAT_QI_BEAT,기: %d | 음보: %d,Qi: %d  |  Beat: %d
 CARD_ZOOM_DAMAGE,피해: %d,Damage: %d
 CARD_ZOOM_BLOCK,방어: %d,Block: %d
 CARD_ZOOM_DRAW,드로우: +%d,Draw: +%d
@@ -369,23 +369,23 @@ BATTLE_BEAT_MATCH_BONUS,♪ 박자 일치! 위력 +30% 기 +1,♪ Beat Match! Po
 BATTLE_SIJO_PERFECT,♪♪♪ 시조 완벽! 효과 ×1.5 기 +2 드로우 +1,♪♪♪ Perfect Sijo! Effect ×1.5 Qi +2 Draw +1
 BATTLE_SIJO_GOOD,♪♪ 시조 양호! 효과 ×1.3 기 +1,♪♪ Good Sijo! Effect ×1.3 Qi +1
 BATTLE_SIJO_MISS,시조 완성,Sijo Complete
-TOOLTIP_HP,"체력 — 0이 되면 패배합니다","HP — You lose when it reaches 0"
-TOOLTIP_QI,"기(氣) — 카드를 사용하는 데 필요한 자원입니다. 매 턴 회복됩니다","Qi — Resource needed to play cards. Recovers each turn"
-TOOLTIP_BLOCK,"방어도 — 적의 공격 피해를 대신 받습니다. 턴이 끝나면 사라집니다","Block — Absorbs enemy attack damage. Disappears at end of turn"
+TOOLTIP_HP,체력 — 0이 되면 패배합니다,HP — You lose when it reaches 0
+TOOLTIP_QI,기 — 카드를 사용하는 데 필요한 자원입니다. 매 턴 회복됩니다,Qi — Resource needed to play cards. Recovers each turn
+TOOLTIP_BLOCK,방어도 — 적의 공격 피해를 대신 받습니다. 턴이 끝나면 사라집니다,Block — Absorbs enemy attack damage. Disappears at end of turn
 TOOLTIP_END_TURN,턴을 종료하고 적이 행동합니다,End your turn and let enemies act
-TOOLTIP_DRAW_PILE,"뽑을 카드 더미 — 여기서 카드를 뽑습니다","Draw pile — Cards are drawn from here"
-TOOLTIP_DISCARD_PILE,"버린 카드 더미 — 뽑을 카드가 없으면 섞여서 다시 뽑기 더미가 됩니다","Discard pile — When draw pile is empty, these are shuffled back"
+TOOLTIP_DRAW_PILE,뽑을 카드 더미 — 여기서 카드를 뽑습니다,Draw pile — Cards are drawn from here
+TOOLTIP_DISCARD_PILE,버린 카드 더미 — 뽑을 카드가 없으면 섞여서 다시 뽑기 더미가 됩니다,"Discard pile — When draw pile is empty, these are shuffled back"
 PASSIVE_MINSHIM_TITLE,백성의 축복,Blessing of the People
 PASSIVE_MINSHIM_DESC,높은 민심으로 매 턴 HP +1 회복,High public trust restores HP +1 each turn
 PASSIVE_SISEON,시선,Siseon
 PASSIVE_JEOLCHANG,절창,Jeolchang
 PASSIVE_SIJO_CHAPTER,시조 %s,Sijo %s
 ACT_DESC_1,"왕조의 수도, 한양.\n거리에는 불온한 기운이 감돌고 있다.","The royal capital, Hanyang.\nAn ominous atmosphere pervades the streets."
-ACT_DESC_2,"험준한 산세의 지리산.\n산적과 요괴가 도사리는 위험한 길.","The rugged peaks of Jirisan.\nA perilous path haunted by bandits and spirits."
-ACT_DESC_3,"왕좌를 노리는 역모의 심장부.\n경복궁의 내전에 최후의 결전이 기다린다.","The heart of the conspiracy against the throne.\nThe final battle awaits in Gyeongbokgung Palace."
-CHAR_NAME_MUGWAN,무관 (武官),Warrior (武官)
-CHAR_NAME_MUNGWAN,문관 (文官),Scholar (文官)
-CHAR_NAME_DOSA,도사 (道士),Mystic (道士)
+ACT_DESC_2,험준한 산세의 지리산.\n산적과 요괴가 도사리는 위험한 길.,The rugged peaks of Jirisan.\nA perilous path haunted by bandits and spirits.
+ACT_DESC_3,왕좌를 노리는 역모의 심장부.\n경복궁의 내전에 최후의 결전이 기다린다.,The heart of the conspiracy against the throne.\nThe final battle awaits in Gyeongbokgung Palace.
+CHAR_NAME_MUGWAN,무관,Warrior
+CHAR_NAME_MUNGWAN,문관,Scholar
+CHAR_NAME_DOSA,도사,Mystic
 NODE_BATTLE,전투,Battle
 NODE_ELITE,정예,Elite
 NODE_EVENT,이벤트,Event
@@ -399,12 +399,12 @@ PASSIVE_TRIGGER_FMT,[패시브] %s: %s,[Passive] %s: %s
 CHARSEL_STAT_FMT,HP: %d | 기: %d,HP: %d | Qi: %d
 CHARSEL_STAT_UNKNOWN,HP: ?? | 기: ??,HP: ?? | Qi: ??
 TOOLTIP_GOLD_INSUFFICIENT,엽전이 부족합니다,Not enough gold
-MINSHIM_UNREST_FMT,[민심 불안] 불만을 품은 백성이 돌을 던졌다! HP -%d,"[Unrest] Disgruntled people threw stones! HP -%d"
+MINSHIM_UNREST_FMT,[민심 불안] 불만을 품은 백성이 돌을 던졌다! HP -%d,[Unrest] Disgruntled people threw stones! HP -%d
 EVENT_CONSCIOUSNESS,\n...의식이 아득해진다.,\n...Consciousness fades.
 EVENT_DEFAULT_TITLE,사건,Event
-CARD_BEAT_COST_FMT,[%d] %d기(氣),[%d] %d Qi
-CARD_STAMINA_COST_FMT, %d력(力), %d Stamina
-CARD_STAMINA_GAIN_FMT, +%d력(力), +%d Stamina
+CARD_BEAT_COST_FMT,[%d] %d기,[%d] %d Qi
+CARD_STAMINA_COST_FMT, %d력, %d Stamina
+CARD_STAMINA_GAIN_FMT, +%d력, +%d Stamina
 CARD_TYPE_SPELL_ALT,주술,Sorcery
 CARD_TYPE_MOVEMENT,이동,Movement
 CARD_TYPE_FORMATION,진형,Formation
@@ -413,11 +413,11 @@ REWARD_CARD_DMG_AOE, (전체), (All)
 REWARD_CARD_BLOCK_FMT,🛡 방어 %d,🛡 Block %d
 GWAGEO_EXAMINER_DEFAULT,학자,Scholar
 UI_CLOSE_DIALOG,닫기,Close
-JIBUN_RANK_0,천민(賤民),Cheonmin (賤民)
-JIBUN_RANK_1,상민(常民),Sangmin (常民)
-JIBUN_RANK_2,중인(中人),Jungin (中人)
-JIBUN_RANK_3,양반(兩班),Yangban (兩班)
-JIBUN_RANK_4,당상관(堂上官),Dangsanggwan (堂上官)
+JIBUN_RANK_0,천민,Cheonmin
+JIBUN_RANK_1,상민,Sangmin
+JIBUN_RANK_2,중인,Jungin
+JIBUN_RANK_3,양반,Yangban
+JIBUN_RANK_4,당상관,Dangsanggwan
 JIBUN_RANK_5,판서/정승,Panseo/Jeongseung
 JIBUN_RANKUP_2,중인 승급 보상: 카드 1장을 추가로 선택할 수 있습니다!,Jungin promotion reward: Choose 1 additional card!
 JIBUN_RANKUP_3,양반 승급 보상: 카드 제거 1회를 무료로 제공합니다!,Yangban promotion reward: 1 free card removal!
@@ -426,12 +426,12 @@ JIBUN_RANKUP_5,판서/정승 승급 보상: 덱에서 카드 1장을 강화할 �
 ACT_NAME_1,한양,Hanyang
 ACT_NAME_2,지리산,Jirisan
 ACT_NAME_3,경복궁,Gyeongbokgung
-FACTION_NORON,노론(老論),Noron (Old Doctrine)
-FACTION_SORON,소론(少論),Soron (Young Doctrine)
-FACTION_NAMIN,남인(南人),Namin (Southerners)
-FACTION_SEOIN,서인(西人),Seoin (Westerners)
-FACTION_DONGIN,동인(東人),Dongin (Easterners)
-FACTION_BUGIN,북인(北人),Bugin (Northerners)
+FACTION_NORON,노론,Noron (Old Doctrine)
+FACTION_SORON,소론,Soron (Young Doctrine)
+FACTION_NAMIN,남인,Namin (Southerners)
+FACTION_SEOIN,서인,Seoin (Westerners)
+FACTION_DONGIN,동인,Dongin (Easterners)
+FACTION_BUGIN,북인,Bugin (Northerners)
 UNLOCK_DEFAULT,기본 해금,Unlocked by default
 UNLOCK_MUGWAN_ACT1,무관으로 1막 보스 처치,Defeat Act 1 boss with Warrior
 UNLOCK_TOTAL_RUNS_3,총 3회 런 완료,Complete 3 total runs
@@ -471,3 +471,171 @@ SHOP_DISCOUNT_FACTION,-10%,-10%
 SHOP_ORIGINAL_PRICE_FMT,원가: %d,Was: %d
 SHOP_DISCOUNT_REASON_FMT,(%s),(%s)
 BATTLE_COMBO_FMT,%d연속! +%d%%,%dx Combo! +%d%%
+TUTORIAL_MSG_INTRO,"시조전에 오신 것을 환영합니다!\n\n이 튜토리얼에서 전투의 기본을 배우게 됩니다.\n카드를 사용하여 적을 물리치는 방법을 알아보겠습니다.","Welcome to Sijojeon!\n\nIn this tutorial, you'll learn the basics of combat.\nLet's learn how to defeat enemies using cards."
+TUTORIAL_MSG_ENEMY,"앞에 적이 나타났습니다!\n\n적의 HP와 다음 행동(의도)이 표시됩니다.\n적의 의도를 파악하고 대응하세요.","An enemy has appeared!\n\nTheir HP and next action (intent) are displayed.\nRead their intent and respond accordingly."
+TUTORIAL_MSG_ENEMY_SHORT,적이 나타났습니다! 적의 HP와 의도를 확인하세요.,An enemy appeared! Check their HP and intent.
+TUTORIAL_MSG_HP_QI,"HP와 기가 표시됩니다.\n\n• HP: 체력이 0이 되면 패배합니다\n• 기: 카드를 사용할 때 소비됩니다 (매 턴 회복)\n• 방어: 받는 피해를 줄여줍니다 (매 턴 초기화)","Your HP and Qi are displayed.\n\n• HP: You lose when it reaches 0\n• Qi: Spent when playing cards (recovers each turn)\n• Block: Reduces incoming damage (resets each turn)"
+TUTORIAL_MSG_HP_QI_SHORT,"HP: 체력이 0이면 패배\n기: 카드 사용 비용 (매 턴 회복)\n방어: 피해 감소 (매 턴 초기화)","HP: Lose at 0\nQi: Card cost (recovers each turn)\nBlock: Reduces damage (resets each turn)"
+TUTORIAL_MSG_HAND,"이것이 당신의 손패입니다.\n\n카드를 클릭하거나 위로 드래그하여 사용할 수 있습니다.\n각 카드에는 비용(기)과 음보가 표시됩니다.","This is your hand.\n\nClick or drag up to play cards.\nEach card shows its cost (Qi) and beat."
+TUTORIAL_MSG_HAND_SHORT,손패의 카드를 클릭하거나 드래그하여 사용합니다.,Click or drag cards from your hand to play them.
+TUTORIAL_MSG_PLAY_FIRST,"이제 카드를 한 장 사용해보세요!\n\n카드를 클릭한 후 적을 클릭하거나,\n카드를 위로 드래그하면 됩니다.","Try playing a card!\n\nClick a card then click the enemy,\nor drag the card upward."
+TUTORIAL_MSG_SIJO,"시조 리듬 시스템입니다!\n\n6개의 슬롯이 있으며, [3,4,3,4,3,4] 패턴입니다.\n카드의 음보가 다음 슬롯의 숫자와 일치하면 슬롯이 채워집니다.","The Sijo Rhythm System!\n\n6 slots with a [3,4,3,4,3,4] pattern.\nWhen a card's beat matches the next slot, it fills in."
+TUTORIAL_MSG_SIJO_SHORT,시조 시스템: 6슬롯 [3,4,3,4,3,4] 패턴. 카드 음보가 일치하면 채워집니다.,Sijo system: 6 slots [3,4,3,4,3,4]. Slots fill when card beats match.
+TUTORIAL_MSG_SIJO_BEAT,"시조 보상:\n\n• 초장 완성 (3/6): 기 +1 회복\n• 중장 완성 (4/6): 카드 1장 추가 드로우\n• 시조 완성 (6/6): 마지막 카드 효과 2배 + 기 +1 + 카드 드로우!\n\n손패에서 음보가 일치하는 카드는 밝게 표시됩니다.","Sijo Rewards:\n\n• First verse (3/6): Qi +1\n• Middle verse (4/6): Draw 1 card\n• Sijo complete (6/6): Last card effect x2 + Qi +1 + Draw!\n\nCards with matching beats are highlighted in your hand."
+TUTORIAL_MSG_PLAY_SIJO_FMT,"다음 시조 슬롯에 필요한 음보는 [%d]입니다.\n\n음보가 일치하는 카드를 사용해보세요!\n(일치하는 카드는 밝게 표시됩니다)","The next sijo slot needs beat [%d].\n\nTry playing a card with a matching beat!\n(Matching cards are highlighted)"
+TUTORIAL_MSG_DEFENSE,"방어 카드를 사용하면 방어도를 얻습니다.\n\n방어도는 적의 공격 피해를 흡수합니다.\n단, 방어도는 매 턴 초기화되므로 적의 공격 전에 사용하세요!","Defense cards grant Block.\n\nBlock absorbs enemy attack damage.\nBlock resets each turn, so use it before enemy attacks!"
+TUTORIAL_MSG_END_TURN,"카드를 다 사용했으면 '턴 종료' 버튼을 눌러주세요.\n\n남은 기가 있어도 턴을 종료할 수 있습니다.\n전략적으로 기를 아끼는 것도 중요합니다!","Press 'End Turn' when you're done playing cards.\n\nYou can end your turn even with remaining Qi.\nSaving Qi strategically can be important!"
+TUTORIAL_MSG_END_TURN_SHORT,턴 종료 버튼을 눌러 적에게 턴을 넘기세요.,Press End Turn to pass the turn to enemies.
+TUTORIAL_MSG_ENEMY_TURN,"적의 턴입니다!\n\n적은 표시된 의도대로 행동합니다.\n공격을 받으면 방어도부터 소모되고, 남은 피해가 HP를 깎습니다.","Enemy turn!\n\nEnemies act according to their displayed intent.\nBlock absorbs damage first, then remaining damage hits HP."
+TUTORIAL_MSG_TURN2,"잘하셨습니다! 2턴이 시작되었습니다.\n\n이제부터 자유롭게 전투를 진행하세요.\n시조 슬롯을 채우며 적을 물리쳐보세요!","Well done! Turn 2 has begun.\n\nFight freely from here.\nFill sijo slots while defeating enemies!"
+TUTORIAL_MSG_REWARD,"축하합니다! 첫 전투에서 승리했습니다!\n\n전투 후에는 보상으로 금화와 새 카드를 획득할 수 있습니다.\n강력한 카드를 선택하여 덱을 강화하세요.","Congratulations! You won your first battle!\n\nAfter combat, you earn gold and new cards as rewards.\nChoose powerful cards to strengthen your deck."
+TUTORIAL_MSG_DECKBUILDING,"덱빌딩 팁:\n\n• 카드를 많이 넣으면 핵심 카드를 뽑기 어려워집니다\n• 상점에서 불필요한 카드를 제거할 수 있습니다\n• 시조 패턴에 맞는 음보(3,4) 비율을 고려하세요\n\n이제 본격적인 모험을 시작하세요!","Deckbuilding Tips:\n\n• Too many cards makes it hard to draw key cards\n• Remove unwanted cards at the shop\n• Consider the beat (3,4) ratio for sijo patterns\n\nNow begin your adventure!"
+EVENT_COND_RANK_GE_3,신분이 양반(3등급) 이상이어야 합니다,Requires Yangban (Rank 3) or higher
+EVENT_COND_RANK_GE_4,신분이 당상관(4등급) 이상이어야 합니다,Requires Dangsanggwan (Rank 4) or higher
+EVENT_COND_MINSHIM_GE_70,민심이 70 이상이어야 합니다,Requires Sentiment 70 or higher
+EVENT_COND_MINSHIM_GE_50,민심이 50 이상이어야 합니다,Requires Sentiment 50 or higher
+EVENT_COND_DEFAULT,조건 미충족,Condition not met
+EVENT_FALLBACK_NOTHING,아무 일도 일어나지 않았다.,Nothing happened.
+EVENT_FALLBACK_HP_GAIN_FMT,HP %d 회복.,HP restored by %d.
+EVENT_FALLBACK_HP_LOSS_FMT,HP %d 손실.,HP lost by %d.
+EVENT_FALLBACK_HP_FULL,HP 완전 회복!,HP fully restored!
+EVENT_FALLBACK_DEBUFF,다음 전투에 버프가 적용된다.,A buff will apply in the next battle.
+EVENT_FALLBACK_FACTION,당파 호감도가 변했다.,Faction affinity changed.
+EVENT_FALLBACK_SHOP_DISCOUNT,상점 가격이 변동된다.,Shop prices have changed.
+EVENT_FALLBACK_SHOP_PENALTY,상점 가격이 올랐다.,Shop prices increased.
+EVENT_FALLBACK_BOSS_WEAKEN,다음 보스가 약해진다.,The next boss is weakened.
+EVENT_FALLBACK_STATUS,신분이 변했다.,Social status changed.
+EVENT_FALLBACK_CARD_VANISH,카드가 사라졌다.,A card disappeared.
+EVENT_FALLBACK_MINSHIM,민심이 변했다.,Public sentiment changed.
+EVENT_FALLBACK_CARD_GAIN,카드를 획득했다.,Card acquired.
+EVENT_FALLBACK_CARD_REMOVE,카드 1장을 제거했다.,Removed 1 card.
+EVENT_FALLBACK_CARD_UPGRADE,카드 1장을 강화했다.,Upgraded 1 card.
+EVENT_FALLBACK_MAP_REVEAL,앞의 길이 보인다.,The path ahead is revealed.
+EVENT_FALLBACK_RESULT,결과가 나왔다.,A result appeared.
+EVENT_FALLBACK_CARD_ADD,카드를 덱에 추가했습니다.,Card added to deck.
+EVENT_UNKNOWN,알 수 없는 사건,Unknown Event
+SHOP_GREETING_1,어서 오시게. 좋은 물건이 많다네.,Welcome. Fine goods abound.
+SHOP_GREETING_2,오. 손님이시군. 천천히 둘러보시게.,"Oh, a customer. Browse at your leisure."
+SHOP_GREETING_3,이 좌판의 물건은 다 일류라네.,Everything here is top quality.
+SHOP_GREETING_4,어허. 반갑소. 오늘 물건이 좋소.,Greetings. Today's wares are exceptional.
+SHOP_GREETING_5,자. 구경만 해도 좋으니 편히 보시게.,"Feel free to browse, no obligation."
+SE_NAME_BLEED,출혈,Bleed
+SE_NAME_DEATH_MARK,사망표식,Death Mark
+SE_NAME_CHILL,냉기,Chill
+SE_NAME_DEATH_COUNTDOWN,사망선고,Death Sentence
+SE_NAME_THORNS,가시,Thorns
+SE_NAME_ARMOR,갑주,Armor
+SE_NAME_SOLDIER_TOKEN,병사,Soldier
+SE_NAME_DETENTION,구금,Detention
+SE_NAME_SHACKLE,주박,Shackle
+SE_NAME_WEAKNESS_EXPOSED,허점 노출,Weakness Exposed
+SE_NAME_EXPLOSION,폭발 예고,Explosion Warning
+SE_NAME_COUNTER,반격,Counter
+SE_DESC_POISON,턴 시작 시 N 피해. 매 턴 1씩 감소,N damage at turn start. Decreases by 1 each turn
+SE_DESC_BURN,턴 시작 시 N 피해. 매 턴 1씩 감소,N damage at turn start. Decreases by 1 each turn
+SE_DESC_BLEED,"턴 시작 시 N 피해. 매 턴 1씩 감소. 방어도 획득 시 피해 2배","N damage at turn start. Decreases by 1. Double damage on gaining Block"
+SE_DESC_DEATH_MARK,매 턴 5 피해. 1씩 감소,5 damage per turn. Decreases by 1
+SE_DESC_WEAKEN,다음 공격 피해 25% 감소,Next attack damage reduced by 25%
+SE_DESC_VULNERABLE,받는 피해 25% 증가,Damage taken increased by 25%
+SE_DESC_CHILL,드로우 1장 감소,Draw reduced by 1
+SE_DESC_DEATH_COUNTDOWN,N턴 후 HP 50% 감소,HP reduced by 50% after N turns
+SE_DESC_STRENGTH,공격 피해 +N,Attack damage +N
+SE_DESC_THORNS,피격 시 공격자에게 3 피해 반사,Reflects 3 damage to attacker when hit
+SE_DESC_ARMOR,턴 시작 시 사라지지 않는 방어막,Persistent block that doesn't expire at turn start
+SE_DESC_SOLDIER_TOKEN,무관 진형 토큰. 스택 수만큼 패시브/액티브 효과 적용,Warrior formation token. Effects scale with stack count
+SE_DESC_DETENTION,카드 사용 비용 +1. 지정 턴 수 후 해제,Card cost +1. Removed after set turns
+SE_DESC_SHACKLE,받는 DoT 피해 1.5배,DoT damage taken x1.5
+SE_DESC_STUN,행동 불가. 턴 종료 시 해제,Cannot act. Removed at end of turn
+SE_DESC_WEAKNESS_EXPOSED,다음 턴 받는 피해 ×1.5. 미방어 시 부여,Damage taken x1.5 next turn. Applied when unblocked
+SE_DESC_EXPLOSION,N턴 후 30~40 폭발 피해,30-40 explosion damage after N turns
+SE_DESC_COUNTER,피격 시 받은 피해의 30%를 공격자에게 반사,Reflects 30% of damage taken back to attacker
+PASSIVE_BANGSUL,방술 개방,Sorcery Unlock
+PASSIVE_BANGSUL_DESC,시조 초장 자동 채움: 기공,Auto-fill sijo first verse: Qigong
+PASSIVE_COMMAND,지휘통솔,Command
+PASSIVE_COMMAND_DESC,병사 토큰 보유 → 방어도 +2,Soldier tokens → Block +2
+PASSIVE_SIJO_EMPTY,시조 공백,Sijo Empty
+PASSIVE_SIJO_EMPTY_DESC_FMT,시조 슬롯 비어있음 → 기 회복 %d,Empty sijo slots → Qi recovery %d
+PASSIVE_SIJO_INCOMPLETE,시조 미완,Sijo Incomplete
+PASSIVE_SIJO_INCOMPLETE_DESC_FMT,종장 미완성 → 드로우 %d,Final verse incomplete → Draw %d
+PASSIVE_CHEONJI,천지기,Heaven-Earth Qi
+PASSIVE_CHEONJI_DESC,시조 슬롯 2칸 이상 → 기 +1,2+ sijo slots → Qi +1
+PASSIVE_STUDY,학식충전,Study Charge
+PASSIVE_STUDY_DESC,카드 3장 이상 사용 → 학식 +1,3+ cards played → Scholarship +1
+PASSIVE_STUN_ENEMY_FMT,적 %s 기절 — 행동 불가!,Enemy %s stunned — cannot act!
+PASSIVE_PERM_DAMAGE,영구 손상,Permanent Damage
+PASSIVE_PERM_DAMAGE_DESC,미방어 대피해로 최대 HP -2!,Unblocked heavy damage: Max HP -2!
+PASSIVE_COUNTER,반격,Counter
+PASSIVE_COUNTER_FMT,적이 받은 피해의 30%%(%d)를 반사!,Reflects 30%% of damage taken (%d)!
+PASSIVE_CARD_COST_FMT,모든 카드 비용 +%d,All card costs +%d
+PASSIVE_WEAKNESS_EXPOSED,허점 노출,Weakness Exposed
+PASSIVE_WEAKNESS_DESC,미방어 피해 → 다음 턴 받는 피해 ×1.5!,Unblocked damage → Next turn damage taken x1.5!
+PASSIVE_RHYTHM_BREAK,리듬 끊기,Rhythm Break
+PASSIVE_RHYTHM_BREAK_FMT,시조 슬롯 %d개 초기화,%d sijo slots reset
+PASSIVE_SIJO_PERFECT_TITLE,시조 완벽,Perfect Sijo
+PASSIVE_SIJO_PERFECT_DESC,beat 3/3 → 효과 ×1.5 + 기 +2 + 드로우 +1,beat 3/3 → Effect x1.5 + Qi +2 + Draw +1
+PASSIVE_SIJO_GOOD_TITLE,시조 양호,Good Sijo
+PASSIVE_SIJO_GOOD_DESC,beat 2/3 → 효과 ×1.3 + 기 +1,beat 2/3 → Effect x1.3 + Qi +1
+RELIC_POISON_SELF_FMT,전투 시작 독 %d 자해,Battle start: Self-poison %d
+RELIC_BLOCK_FMT,방어도 +%d,Block +%d
+RELIC_SPIRIT_POWER_FMT,영력 +%d,Spirit Power +%d
+RELIC_SCHOLARSHIP_FMT,학식 +%d,Scholarship +%d
+RELIC_VULN_ENEMY_FMT,적에게 취약 %d 부여,Apply Vulnerable %d to enemy
+RELIC_CURE_POISON,독 제거,Poison removed
+RELIC_STRENGTH_FMT,힘 +%d,Strength +%d
+RELIC_SOLDIER_TOKEN_FMT,병사 토큰 +%d,Soldier Token +%d
+RELIC_ARROWS_FMT,화살 +%d,Arrows +%d
+RELIC_TURN_AP_FMT,턴 시작 AP +%d,Turn start AP +%d
+RELIC_TURN_BLOCK_FMT,턴 시작 방어도 +%d,Turn start Block +%d
+RELIC_GOLD_FMT,골드 +%d,Gold +%d
+RELIC_HEAL_FMT,체력 +%d 회복,HP +%d recovered
+RELIC_HEAL_PERCENT_FMT,체력 %d%% 회복 (+%d),HP %d%% recovered (+%d)
+RELIC_GOLD_PER_ACT_FMT,골드 +%d (%d/%d회),Gold +%d (%d/%d)
+RELIC_SHUFFLE_DRAW_FMT,셔플 드로우 +%d,Shuffle draw +%d
+RELIC_FIRST_CARD_DRAW_FMT,첫 카드 드로우 +%d,First card draw +%d
+RELIC_POISON_STACK_FMT,독 스택 +%d,Poison stack +%d
+RELIC_BOSS_BLOCK_FMT,보스 전투 방어도 +%d,Boss battle Block +%d
+RELIC_DEATH_PREVENT_FMT,즉사 방지! HP 1로 생존 (%d/%d회),Death prevented! Survive at HP 1 (%d/%d)
+RELIC_FORMATION_STAMINA_FMT,진형 카드 기력 +%d,Formation card Stamina +%d
+RELIC_STUDY_BURN_HEAL_FMT,학식 전소 HP +%d (%d%%),Scholarship consumed: HP +%d (%d%%)
+RELIC_SPELL_QI_FMT,주문 카드 기 +%d,Spell card Qi +%d
+RELIC_SUMMON_DEATH_DRAW_FMT,소환 소멸 드로우 +%d,Summon death draw +%d
+RELIC_WILDCARD_QI_FMT,와일드카드 기 +%d,Wildcard Qi +%d
+RELIC_QI_FMT,기 +%d,Qi +%d
+RELIC_CHOJANG_QI_FMT,초장 완성 기 +%d,First verse Qi +%d
+RELIC_SIJO_DRAW_FMT,시조 완성 드로우 +%d,Sijo complete draw +%d
+RELIC_OKPIRI_FMT,옥피리 — 적 전체 %d 피해,Jade Flute — %d damage to all enemies
+RELIC_HOPAE,호패 — 다음 시조 초장 자동 채움,Hopae — Auto-fill next sijo first verse
+RELIC_SCROLL_WEAKEN_FMT,사군자 족자 — 적 약화 %d,Four Gentlemen Scroll — Enemy weakened %d
+RELIC_TALISMAN_POISON_FMT,도사의 부적 — 적 전체 독 %d,Daoist Talisman — All enemies poison %d
+RELIC_BRUSH_DRAW_FMT,청사 붓 — 초장 완성 드로우 +%d,Blue Brush — First verse draw +%d
+RELIC_PLUM_DAMAGE_FMT,오얏나무 가지 — 피해 +%d,Plum Branch — Damage +%d
+RELIC_SUNDIAL_QI_FMT,해시계 조각 — 기 +%d,Sundial Fragment — Qi +%d
+RELIC_WARRIOR_ARMOR_FMT,무관의 갑주 — 방어도 +%d,Warrior's Armor — Block +%d
+RELIC_GOLD_ELITE_FMT,엘리트 골드 +%d,Elite Gold +%d
+PHASE_RESIST_LABEL,25% → 0% (저항군),25% → 0% (Resistance)
+PHASE_RESIST_DESC,저항군이 전장에 합류한다!,Resistance fighters join the battle!
+PHASE_RESIST_DIALOGUE,저항군이 나타났다! 혼란이 가중된다!,Resistance appeared! Chaos intensifies!
+PHASE_RESIST_CHARGE,저항군 습격,Resistance Charge
+PHASE_RESIST_RALLY,결집,Rally
+PHASE_MINRAN_LABEL,15% → 0% (민란),15% → 0% (Uprising)
+PHASE_MINRAN_DESC,분노한 백성들이 전장에 난입한다!,Enraged citizens storm the battlefield!
+PHASE_MINRAN_DIALOGUE,백성들의 분노가 폭발한다! 민란이다!,The people's rage erupts! Uprising!
+PHASE_MINRAN_CHARGE,민란 돌격,Uprising Charge
+PHASE_MINRAN_FURY,민중의 분노,People's Fury
+PHASE_MINRAN_BARRICADE,바리케이드,Barricade
+BATTLE_DUMMY_NAME,허수아비,Scarecrow
+CHARSEL_QI_FMT,기 %d,Qi %d
+JANG_SYMBOL_1,일,I
+JANG_SYMBOL_2,이,II
+JANG_SYMBOL_3,삼,III
+PASSIVE_BOSS,보스,Boss
+PASSIVE_MINRAN_SPIRIT,민란의 기운,Uprising Spirit
+PASSIVE_MINRAN_SPIRIT_DESC,"민심이 매우 낮아 적이 대폭 강화되었다! 근력 +2, 방어도 +5","Very low sentiment — enemies greatly empowered! Strength +2, Block +5"
+PASSIVE_MINSHIM_UNREST,민심 불안,Sentiment Unrest
+PASSIVE_MINSHIM_UNREST_DESC,민심이 낮아 적이 강화되었다! 근력 +1,Low sentiment — enemies empowered! Strength +1
+PASSIVE_PEOPLE_SUPPORT,백성 지원,People's Support
+PASSIVE_PEOPLE_SUPPORT_FMT,민심이 높아 백성이 돕는다! 적에게 %d 피해.,High sentiment — people help! %d damage to enemy.
+PASSIVE_MILITARY_ORDER,군령 하달,Military Order
+PASSIVE_MILITARY_ORDER_FMT,토큰 %d개 → 기 +%d,Tokens %d → Qi +%d
+PASSIVE_LECTURE,경연개설,Royal Lecture
+PASSIVE_LECTURE_DESC,학식 +3,Scholarship +3

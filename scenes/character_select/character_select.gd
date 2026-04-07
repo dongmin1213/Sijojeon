@@ -134,11 +134,13 @@ func _get_unlock_description(character_id: String) -> String:
 
 
 # 캐릭터 ID → 표시용 기본 이름 (스킬 데이터 로드 실패 시 fallback)
-const CHARACTER_FALLBACK := {
-	"mugwan": {"class_ko": "무관", "class_hanja": "武官"},
-	"mungwan": {"class_ko": "문관", "class_hanja": "文官"},
-	"dosa": {"class_ko": "도사", "class_hanja": "道士"},
-}
+var CHARACTER_FALLBACK: Dictionary:
+	get:
+		return {
+			"mugwan": {"class_ko": tr("CHAR_NAME_MUGWAN"), "class_hanja": ""},
+			"mungwan": {"class_ko": tr("CHAR_NAME_MUNGWAN"), "class_hanja": ""},
+			"dosa": {"class_ko": tr("CHAR_NAME_DOSA"), "class_hanja": ""},
+		}
 
 
 func _build_character_list() -> void:
@@ -325,7 +327,7 @@ func _build_character_cards() -> void:
 			hp_label.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19))
 			stat_hbox.add_child(hp_label)
 			var qi_label := Label.new()
-			qi_label.text = "氣 %d" % character["qi"]
+			qi_label.text = tr("CHARSEL_QI_FMT") % character["qi"]
 			qi_label.add_theme_font_size_override("font_size", fs_stat)
 			qi_label.add_theme_color_override("font_color", Color(0.45, 0.60, 0.80))
 			stat_hbox.add_child(qi_label)

@@ -16,7 +16,9 @@ const PATTERN_VARIANTS: Array = [
 	[3, 4, 4],  # 변격 1
 	[4, 3, 3],  # 변격 2
 ]
-const JANG_NAMES: Array[String] = ["초장", "중장", "종장"]
+static var JANG_NAMES: Array[String]:
+	get:
+		return [tr("SIJO_FIRST_VERSE"), tr("SIJO_MIDDLE_VERSE"), tr("SIJO_FINAL_VERSE")]
 
 var pattern: Array[int] = [3, 4, 3]  # 현재 전투 패턴
 var slots: Array[String] = []  # 채워진 카드 ID

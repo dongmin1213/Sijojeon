@@ -124,7 +124,7 @@ func trigger_battle_start(battle_manager: BattleManager) -> void:
 				if values.has("self_poison_on_battle_start"):
 					var poison: int = values["self_poison_on_battle_start"]
 					battle_manager.status_effects.apply_effect("player", "독", poison)
-					relic_triggered.emit(relic_id, "전투 시작 독 %d 자해" % poison)
+					relic_triggered.emit(relic_id, tr("RELIC_POISON_SELF_FMT") % poison)
 			"on_turn_start":
 				pass  # 턴 시작마다 처리 (trigger_turn_start에서)
 			"passive":
@@ -135,7 +135,7 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 	# R001 편자: 방어도 5
 	if values.has("block"):
 		battle_manager.gain_block(values["block"])
-		relic_triggered.emit(relic_id, "방어도 +%d" % values["block"])
+		relic_triggered.emit(relic_id, tr("RELIC_BLOCK_FMT") % values["block"])
 
 	# R006 호신검: AP +1 (무관 전용)
 	if values.has("ap_bonus_per_battle"):
@@ -146,7 +146,7 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 
 	# R009 무당 방울: 영력 +2 (무당 전용, 향후 확장)
 	if values.has("spirit_power_on_battle_start"):
-		relic_triggered.emit(relic_id, "영력 +%d" % values["spirit_power_on_battle_start"])
+		relic_triggered.emit(relic_id, tr("RELIC_SPIRIT_POWER_FMT") % values["spirit_power_on_battle_start"])
 
 	# RS003 필연: 문관 전투 시작 시 학식 2 획득
 	if values.has("scholarship_on_battle_start") and battle_manager.has_class_resource and battle_manager.character_id == "mungwan":
@@ -154,7 +154,7 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 		battle_manager.current_class_resource += amount
 		battle_manager.current_class_resource = mini(battle_manager.current_class_resource, battle_manager.max_class_resource)
 		battle_manager.class_resource_changed.emit(battle_manager.current_class_resource, battle_manager.max_class_resource)
-		relic_triggered.emit(relic_id, "학식 +%d" % amount)
+		relic_triggered.emit(relic_id, tr("RELIC_SCHOLARSHIP_FMT") % amount)
 
 	# R012 어사마패: 최고 HP 적에게 취약 2
 	if values.has("vulnerable_stacks"):
@@ -163,22 +163,22 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 		if highest_hp_index >= 0:
 			var target := "enemy_%d" % highest_hp_index
 			battle_manager.status_effects.apply_effect(target, "취약", stacks)
-			relic_triggered.emit(relic_id, "적에게 취약 %d 부여" % stacks)
+			relic_triggered.emit(relic_id, tr("RELIC_VULN_ENEMY_FMT") % stacks)
 
 	# R016: 전투 시작 시 독 제거
 	if values.has("cleanse_poison_on_battle_start") and values["cleanse_poison_on_battle_start"]:
 		battle_manager.status_effects.remove_effect("player", "독")
-		relic_triggered.emit(relic_id, "독 제거")
+		relic_triggered.emit(relic_id, tr("RELIC_CURE_POISON"))
 
 	# R020: 전투 시작 시 방어도
 	if values.has("block_on_battle_start"):
 		battle_manager.gain_block(values["block_on_battle_start"])
-		relic_triggered.emit(relic_id, "방어도 +%d" % values["block_on_battle_start"])
+		relic_triggered.emit(relic_id, tr("RELIC_BLOCK_FMT") % values["block_on_battle_start"])
 
 	# R025: 전투마다 공격력 +1 / 최대 기 +1
 	if values.has("strength_per_battle"):
 		battle_manager.status_effects.apply_effect("player", "strength", values["strength_per_battle"])
-		relic_triggered.emit(relic_id, "힘 +%d" % values["strength_per_battle"])
+		relic_triggered.emit(relic_id, tr("RELIC_STRENGTH_FMT") % values["strength_per_battle"])
 	if values.has("max_qi_per_battle"):
 		battle_manager.max_qi += values["max_qi_per_battle"]
 		battle_manager.current_qi += values["max_qi_per_battle"]
@@ -187,13 +187,13 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 	# RS002: 무관 시작 유물 — 전투 시작 시 토큰 생성
 	if values.has("tokens") and battle_manager.character_id == "mugwan":
 		battle_manager.status_effects.apply_effect("player", "병사_토큰", values["tokens"])
-		relic_triggered.emit(relic_id, "병사 토큰 +%d" % values["tokens"])
+		relic_triggered.emit(relic_id, tr("RELIC_SOLDIER_TOKEN_FMT") % values["tokens"])
 
 
 func _handle_passive_relic(_relic_id: String, _relic: Dictionary, values: Dictionary, battle_manager: BattleManager) -> void:
 	# R010 각궁: 전투 시작 화살 +2 (궁수 전용, 향후 확장)
 	if values.has("arrows_on_battle_start"):
-		relic_triggered.emit(_relic_id, "화살 +%d" % values["arrows_on_battle_start"])
+		relic_triggered.emit(_relic_id, tr("RELIC_ARROWS_FMT") % values["arrows_on_battle_start"])
 
 
 func trigger_turn_start(battle_manager: BattleManager) -> void:
@@ -213,11 +213,11 @@ func trigger_turn_start(battle_manager: BattleManager) -> void:
 			if values.has("ap_per_turn_bonus"):
 				battle_manager.current_qi += values["ap_per_turn_bonus"]
 				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-				relic_triggered.emit(relic_id, "턴 시작 AP +%d" % values["ap_per_turn_bonus"])
+				relic_triggered.emit(relic_id, tr("RELIC_TURN_AP_FMT") % values["ap_per_turn_bonus"])
 			# R017: 턴 시작 시 방어도
 			if values.has("block_per_turn"):
 				battle_manager.gain_block(values["block_per_turn"])
-				relic_triggered.emit(relic_id, "방어도 +%d" % values["block_per_turn"])
+				relic_triggered.emit(relic_id, tr("RELIC_TURN_BLOCK_FMT") % values["block_per_turn"])
 
 
 func trigger_combat_victory() -> void:
@@ -233,7 +233,7 @@ func trigger_combat_victory() -> void:
 			# R003 행운의 엽전: 골드 +10
 			if values.has("gold_on_victory"):
 				GameManager.run_data.gold += values["gold_on_victory"]
-				relic_triggered.emit(relic_id, "골드 +%d" % values["gold_on_victory"])
+				relic_triggered.emit(relic_id, tr("RELIC_GOLD_FMT") % values["gold_on_victory"])
 
 
 func trigger_elite_victory() -> void:
@@ -253,11 +253,11 @@ func trigger_elite_victory() -> void:
 					GameManager.run_data.current_hp + heal,
 					GameManager.run_data.max_hp
 				)
-				relic_triggered.emit(relic_id, "체력 +%d 회복" % heal)
+				relic_triggered.emit(relic_id, tr("RELIC_HEAL_FMT") % heal)
 			# R024: 엘리트 승리 시 골드
 			if values.has("gold_on_elite_victory"):
 				GameManager.run_data.gold += values["gold_on_elite_victory"]
-				relic_triggered.emit(relic_id, "골드 +%d" % values["gold_on_elite_victory"])
+				relic_triggered.emit(relic_id, tr("RELIC_GOLD_FMT") % values["gold_on_elite_victory"])
 
 
 func trigger_boss_enter() -> void:
@@ -278,7 +278,7 @@ func trigger_boss_enter() -> void:
 					GameManager.run_data.current_hp + heal,
 					GameManager.run_data.max_hp
 				)
-				relic_triggered.emit(relic_id, "체력 %d%% 회복 (+%d)" % [percent, heal])
+				relic_triggered.emit(relic_id, tr("RELIC_HEAL_PERCENT_FMT") % [percent, heal])
 
 
 func trigger_enter_shop() -> void:
@@ -299,7 +299,7 @@ func trigger_enter_shop() -> void:
 					var gold: int = values["gold_on_enter_shop"]
 					GameManager.run_data.gold += gold
 					_activation_counts[relic_id] = count + 1
-					relic_triggered.emit(relic_id, "골드 +%d (%d/%d회)" % [gold, count + 1, max_act])
+					relic_triggered.emit(relic_id, tr("RELIC_GOLD_PER_ACT_FMT") % [gold, count + 1, max_act])
 
 
 func trigger_on_attack_card_played(battle_manager: BattleManager, target_enemy_index: int) -> void:
@@ -344,7 +344,7 @@ func trigger_on_deck_shuffle(battle_manager: BattleManager) -> void:
 			# R004 봉황 깃털: 무료 드로우 +1
 			if values.has("draw_on_shuffle"):
 				battle_manager.draw_cards(values["draw_on_shuffle"])
-				relic_triggered.emit(relic_id, "셔플 드로우 +%d" % values["draw_on_shuffle"])
+				relic_triggered.emit(relic_id, tr("RELIC_SHUFFLE_DRAW_FMT") % values["draw_on_shuffle"])
 
 
 func trigger_on_first_card_play_per_turn(battle_manager: BattleManager) -> void:
@@ -360,7 +360,7 @@ func trigger_on_first_card_play_per_turn(battle_manager: BattleManager) -> void:
 			# R007 사서: 카드 1장 추가 드로우
 			if values.has("draw_on_first_card_per_turn"):
 				battle_manager.draw_cards(values["draw_on_first_card_per_turn"])
-				relic_triggered.emit(relic_id, "첫 카드 드로우 +%d" % values["draw_on_first_card_per_turn"])
+				relic_triggered.emit(relic_id, tr("RELIC_FIRST_CARD_DRAW_FMT") % values["draw_on_first_card_per_turn"])
 
 
 func trigger_on_apply_poison(target: String, stacks: int) -> int:
@@ -377,7 +377,7 @@ func trigger_on_apply_poison(target: String, stacks: int) -> int:
 			# R008 동의보감: 독 스택 +1
 			if values.has("poison_stack_bonus"):
 				bonus += values["poison_stack_bonus"]
-				relic_triggered.emit(relic_id, "독 스택 +%d" % values["poison_stack_bonus"])
+				relic_triggered.emit(relic_id, tr("RELIC_POISON_STACK_FMT") % values["poison_stack_bonus"])
 	return stacks + bonus
 
 
@@ -394,7 +394,7 @@ func trigger_boss_battle_start(battle_manager: BattleManager) -> void:
 			# R027 왕의 옥새: 방어도 +15
 			if values.has("block_on_boss_start"):
 				battle_manager.gain_block(values["block_on_boss_start"])
-				relic_triggered.emit(relic_id, "보스 전투 방어도 +%d" % values["block_on_boss_start"])
+				relic_triggered.emit(relic_id, tr("RELIC_BOSS_BLOCK_FMT") % values["block_on_boss_start"])
 
 
 func trigger_on_lethal_damage(battle_manager: BattleManager) -> bool:
@@ -415,7 +415,7 @@ func trigger_on_lethal_damage(battle_manager: BattleManager) -> bool:
 					_activation_counts[relic_id] = count + 1
 					battle_manager.player_hp = 1
 					battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
-					relic_triggered.emit(relic_id, "즉사 방지! HP 1로 생존 (%d/%d회)" % [count + 1, max_uses])
+					relic_triggered.emit(relic_id, tr("RELIC_DEATH_PREVENT_FMT") % [count + 1, max_uses])
 					return true
 	return false
 
@@ -436,7 +436,7 @@ func trigger_on_formation_card_play(battle_manager: BattleManager) -> void:
 				battle_manager.current_class_resource += amount
 				battle_manager.current_class_resource = mini(battle_manager.current_class_resource, battle_manager.max_class_resource)
 				battle_manager.class_resource_changed.emit(battle_manager.current_class_resource, battle_manager.max_class_resource)
-				relic_triggered.emit(relic_id, "진형 카드 기력 +%d" % amount)
+				relic_triggered.emit(relic_id, tr("RELIC_FORMATION_STAMINA_FMT") % amount)
 
 
 func trigger_on_scholarship_exhaust(battle_manager: BattleManager, consumed: int) -> void:
@@ -459,7 +459,7 @@ func trigger_on_scholarship_exhaust(battle_manager: BattleManager, consumed: int
 				battle_manager.player_hp += heal
 				battle_manager.player_hp = mini(battle_manager.player_hp, battle_manager.player_max_hp)
 				battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
-				relic_triggered.emit(relic_id, "학식 전소 HP +%d (%d%%)" % [heal, percent])
+				relic_triggered.emit(relic_id, tr("RELIC_STUDY_BURN_HEAL_FMT") % [heal, percent])
 
 
 func trigger_on_spell_card_play(battle_manager: BattleManager) -> void:
@@ -477,7 +477,7 @@ func trigger_on_spell_card_play(battle_manager: BattleManager) -> void:
 				var amount: int = values["extra_qi_on_spell_card"]
 				battle_manager.current_qi += amount
 				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-				relic_triggered.emit(relic_id, "주문 카드 기 +%d" % amount)
+				relic_triggered.emit(relic_id, tr("RELIC_SPELL_QI_FMT") % amount)
 
 
 func trigger_on_summon_token_death(battle_manager: BattleManager) -> void:
@@ -493,7 +493,7 @@ func trigger_on_summon_token_death(battle_manager: BattleManager) -> void:
 			# RD002 음양패: 카드 1장 드로우
 			if values.has("draw_on_summon_death"):
 				battle_manager.draw_cards(values["draw_on_summon_death"])
-				relic_triggered.emit(relic_id, "소환 소멸 드로우 +%d" % values["draw_on_summon_death"])
+				relic_triggered.emit(relic_id, tr("RELIC_SUMMON_DEATH_DRAW_FMT") % values["draw_on_summon_death"])
 
 
 func trigger_on_wildcard_play(battle_manager: BattleManager) -> void:
@@ -511,7 +511,7 @@ func trigger_on_wildcard_play(battle_manager: BattleManager) -> void:
 				var amount: int = values["qi_on_wildcard"]
 				battle_manager.current_qi += amount
 				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-				relic_triggered.emit(relic_id, "와일드카드 기 +%d" % amount)
+				relic_triggered.emit(relic_id, tr("RELIC_WILDCARD_QI_FMT") % amount)
 
 
 func reset_run_state() -> void:
@@ -534,7 +534,7 @@ func trigger_on_enemy_kill(battle_manager: BattleManager) -> void:
 				battle_manager.current_qi += values["qi_on_kill"]
 				battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
 				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-				relic_triggered.emit(relic_id, "기 +%d" % values["qi_on_kill"])
+				relic_triggered.emit(relic_id, tr("RELIC_QI_FMT") % values["qi_on_kill"])
 
 
 func trigger_on_card_exhaust(battle_manager: BattleManager) -> void:
@@ -550,7 +550,7 @@ func trigger_on_card_exhaust(battle_manager: BattleManager) -> void:
 				battle_manager.current_qi += values["qi_on_exhaust"]
 				battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
 				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-				relic_triggered.emit(relic_id, "기 +%d" % values["qi_on_exhaust"])
+				relic_triggered.emit(relic_id, tr("RELIC_QI_FMT") % values["qi_on_exhaust"])
 
 
 func trigger_on_sijo_milestone(battle_manager: BattleManager, filled_count: int) -> void:
@@ -566,7 +566,7 @@ func trigger_on_sijo_milestone(battle_manager: BattleManager, filled_count: int)
 				battle_manager.current_qi += values["extra_qi_on_sijo_chojang"]
 				battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
 				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-				relic_triggered.emit(relic_id, "초장 완성 기 +%d" % values["extra_qi_on_sijo_chojang"])
+				relic_triggered.emit(relic_id, tr("RELIC_CHOJANG_QI_FMT") % values["extra_qi_on_sijo_chojang"])
 
 
 func trigger_on_sijo_complete(battle_manager: BattleManager) -> int:
@@ -581,7 +581,7 @@ func trigger_on_sijo_complete(battle_manager: BattleManager) -> int:
 			# R023: 시조 완성 시 추가 드로우
 			if values.has("extra_draw_on_sijo_complete"):
 				extra_draw += values["extra_draw_on_sijo_complete"]
-				relic_triggered.emit(relic_id, "시조 완성 드로우 +%d" % values["extra_draw_on_sijo_complete"])
+				relic_triggered.emit(relic_id, tr("RELIC_SIJO_DRAW_FMT") % values["extra_draw_on_sijo_complete"])
 
 			# RS101 옥피리: 직업 자원 3+ 시 적 전체 피해
 			if values.has("aoe_damage_on_sijo_if_resource_ge"):
@@ -593,14 +593,14 @@ func trigger_on_sijo_complete(battle_manager: BattleManager) -> int:
 							battle_manager.enemies[i]["current_hp"] -= dmg
 							battle_manager.enemies[i]["current_hp"] = maxi(battle_manager.enemies[i]["current_hp"], 0)
 							battle_manager.enemy_hp_changed.emit(i, battle_manager.enemies[i]["current_hp"], battle_manager.enemies[i]["max_hp"])
-					relic_triggered.emit(relic_id, "옥피리 — 적 전체 %d 피해" % dmg)
+					relic_triggered.emit(relic_id, tr("RELIC_OKPIRI_FMT") % dmg)
 
 			# RS102 호패: 시조 완성 후 초장 자동 채움
 			if values.has("auto_fill_chojang_on_sijo_complete"):
 				# battle.gd에서 sijo_system.reset() 후 호출되므로, 플래그를 설정
 				if not battle_manager.has_meta("sijo_auto_fill_chojang"):
 					battle_manager.set_meta("sijo_auto_fill_chojang", true)
-				relic_triggered.emit(relic_id, "호패 — 다음 시조 초장 자동 채움")
+				relic_triggered.emit(relic_id, tr("RELIC_HOPAE"))
 
 			# RS108 사군자 족자: 랜덤 적 약화 2
 			if values.has("weaken_on_sijo_complete"):
@@ -612,7 +612,7 @@ func trigger_on_sijo_complete(battle_manager: BattleManager) -> int:
 				if not alive.is_empty():
 					var target_idx: int = alive[randi() % alive.size()]
 					battle_manager.status_effects.apply_effect("enemy_%d" % target_idx, "약화", stacks)
-					relic_triggered.emit(relic_id, "사군자 족자 — 적 약화 %d" % stacks)
+					relic_triggered.emit(relic_id, tr("RELIC_SCROLL_WEAKEN_FMT") % stacks)
 
 			# RS109 도사의 부적: 적 전체 독 2
 			if values.has("poison_all_on_sijo_complete"):
@@ -620,7 +620,7 @@ func trigger_on_sijo_complete(battle_manager: BattleManager) -> int:
 				for i in battle_manager.enemies.size():
 					if battle_manager.enemies[i]["current_hp"] > 0:
 						battle_manager.status_effects.apply_effect("enemy_%d" % i, "독", stacks)
-				relic_triggered.emit(relic_id, "도사의 부적 — 적 전체 독 %d" % stacks)
+				relic_triggered.emit(relic_id, tr("RELIC_TALISMAN_POISON_FMT") % stacks)
 
 	return extra_draw
 
@@ -640,20 +640,20 @@ func trigger_on_sijo_chapter_complete(battle_manager: BattleManager, chapter: St
 				# RS104 청사 붓: 초장 완성 시 드로우 +1
 				if values.has("draw_on_chojang_complete"):
 					battle_manager.draw_cards(values["draw_on_chojang_complete"])
-					relic_triggered.emit(relic_id, "청사 붓 — 초장 완성 드로우 +%d" % values["draw_on_chojang_complete"])
+					relic_triggered.emit(relic_id, tr("RELIC_BRUSH_DRAW_FMT") % values["draw_on_chojang_complete"])
 			"중장":
 				# RS106 오얏나무 가지: 중장 완성 시 strength +3
 				if values.has("strength_on_jungjang_complete"):
 					var stacks: int = values["strength_on_jungjang_complete"]
 					battle_manager.status_effects.apply_effect("player", "strength", stacks)
-					relic_triggered.emit(relic_id, "오얏나무 가지 — 피해 +%d" % stacks)
+					relic_triggered.emit(relic_id, tr("RELIC_PLUM_DAMAGE_FMT") % stacks)
 			"종장":
 				# RS107 해시계 조각: 종장 완성 시 기 +2
 				if values.has("qi_on_jongjang_complete"):
 					var qi_gain: int = values["qi_on_jongjang_complete"]
 					battle_manager.current_qi = mini(battle_manager.current_qi + qi_gain, battle_manager.max_qi)
 					battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-					relic_triggered.emit(relic_id, "해시계 조각 — 기 +%d" % qi_gain)
+					relic_triggered.emit(relic_id, tr("RELIC_SUNDIAL_QI_FMT") % qi_gain)
 
 
 func trigger_on_sijo_slot_fill(battle_manager: BattleManager) -> void:
@@ -669,7 +669,7 @@ func trigger_on_sijo_slot_fill(battle_manager: BattleManager) -> void:
 				var block_val: int = values["block_on_sijo_fill"]
 				battle_manager.player_block += block_val
 				battle_manager.block_changed.emit(battle_manager.player_block)
-				relic_triggered.emit(relic_id, "무관의 갑주 — 방어도 +%d" % block_val)
+				relic_triggered.emit(relic_id, tr("RELIC_WARRIOR_ARMOR_FMT") % block_val)
 
 
 func get_card_removal_discount() -> int:

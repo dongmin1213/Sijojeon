@@ -421,8 +421,8 @@ func _init_sijo_slots() -> void:
 	for child in sijo_container.get_children():
 		child.queue_free()
 
-	var jang_names: Array[String] = ["초장", "중장", "종장"]
-	var jang_symbols: Array[String] = ["壹", "貳", "參"]
+	var jang_names: Array[String] = [tr("SIJO_FIRST_VERSE"), tr("SIJO_MIDDLE_VERSE"), tr("SIJO_FINAL_VERSE")]
+	var jang_symbols: Array[String] = [tr("JANG_SYMBOL_1"), tr("JANG_SYMBOL_2"), tr("JANG_SYMBOL_3")]
 	for i in sijo_system.pattern.size():
 		var slot_panel := PanelContainer.new()
 		var slot_style := StyleBoxFlat.new()
@@ -812,8 +812,8 @@ func _on_hand_changed(_new_hand: Array[String]) -> void:
 
 
 func _on_qi_changed(current: int, max_val: int) -> void:
-	# v9: 氣를 간결한 오브 스타일로 표시
-	qi_label.text = "氣 %d/%d" % [current, max_val]
+	# v9: 기를 간결한 오브 스타일로 표시
+	qi_label.text = tr("BATTLE_QI_FMT") % [current, max_val]
 	# 기력 부족 시 색상 변경
 	if current == 0:
 		qi_label.add_theme_color_override("font_color", Color(0.5, 0.4, 0.2, 0.7))
@@ -1151,7 +1151,7 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array, match_c
 		var extra_draw := RelicManager.trigger_on_sijo_complete(battle_manager)
 		battle_manager.draw_cards(1 + extra_draw)
 		_show_sijo_reward_popup(tr("BATTLE_SIJO_PERFECT"))
-		battle_manager.passive_triggered.emit("시조 완벽", "beat 3/3 → 효과 ×1.5 + 기 +2 + 드로우 +1")
+		battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_PERFECT_TITLE"), tr("PASSIVE_SIJO_PERFECT_DESC"))
 	elif match_count == 2:
 		# 양호 (2/3): 효과 ×1.3 + qi +1
 		battle_manager._next_card_power_bonus += 0.3
@@ -1160,7 +1160,7 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array, match_c
 		battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
 		RelicManager.trigger_on_sijo_complete(battle_manager)
 		_show_sijo_reward_popup(tr("BATTLE_SIJO_GOOD"))
-		battle_manager.passive_triggered.emit("시조 양호", "beat 2/3 → 효과 ×1.3 + 기 +1")
+		battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_GOOD_TITLE"), tr("PASSIVE_SIJO_GOOD_DESC"))
 	else:
 		# 미달 (1/3 또는 0/3): 보너스 없음
 		RelicManager.trigger_on_sijo_complete(battle_manager)
@@ -1576,28 +1576,28 @@ func _inject_resistance_phase(enemy_data: Array[Dictionary]) -> void:
 
 		var resist_phase := {
 			"phase": phases.size() + 1,
-			"hp_threshold_label": "25% → 0% (저항군)",
+			"hp_threshold_label": tr("PHASE_RESIST_LABEL"),
 			"hp_threshold_min": 0,
-			"description": "저항군이 전장에 합류한다!",
+			"description": tr("PHASE_RESIST_DESC"),
 			"phase_trigger": {
 				"type": "hp_threshold",
 				"hp_percent": 25,
 				"on_trigger": [
-					{"type": "dialogue", "text": "저항군이 나타났다! 혼란이 가중된다!"},
+					{"type": "dialogue", "text": tr("PHASE_RESIST_DIALOGUE")},
 					{"type": "apply_buff", "buff": "strength", "stacks": 2}
 				]
 			},
 			"moves": [
 				{
 					"id": "resist_charge",
-					"name": {"ko": "저항군 습격"},
+					"name": {"ko": tr("PHASE_RESIST_CHARGE"), "en": tr("PHASE_RESIST_CHARGE")},
 					"intent": "attack",
 					"damage": 12,
 					"effects": []
 				},
 				{
 					"id": "resist_rally",
-					"name": {"ko": "결집"},
+					"name": {"ko": tr("PHASE_RESIST_RALLY"), "en": tr("PHASE_RESIST_RALLY")},
 					"intent": "defend",
 					"block": 10,
 					"effects": []
@@ -1620,14 +1620,14 @@ func _inject_minran_phase(enemy_data: Array[Dictionary]) -> void:
 		# 민란 페이즈 — HP 15% 이하에서 발동
 		var minran_phase := {
 			"phase": phases.size() + 1,
-			"hp_threshold_label": "15% → 0% (민란)",
+			"hp_threshold_label": tr("PHASE_MINRAN_LABEL"),
 			"hp_threshold_min": 0,
-			"description": "분노한 백성들이 전장에 난입한다!",
+			"description": tr("PHASE_MINRAN_DESC"),
 			"phase_trigger": {
 				"type": "hp_threshold",
 				"hp_percent": 15,
 				"on_trigger": [
-					{"type": "dialogue", "text": "백성들의 분노가 폭발한다! 민란이다!"},
+					{"type": "dialogue", "text": tr("PHASE_MINRAN_DIALOGUE")},
 					{"type": "apply_buff", "buff": "strength", "stacks": 3},
 					{"type": "apply_buff", "buff": "thorns", "stacks": 3}
 				]
@@ -1635,14 +1635,14 @@ func _inject_minran_phase(enemy_data: Array[Dictionary]) -> void:
 			"moves": [
 				{
 					"id": "minran_charge",
-					"name": {"ko": "민란 돌격"},
+					"name": {"ko": tr("PHASE_MINRAN_CHARGE"), "en": tr("PHASE_MINRAN_CHARGE")},
 					"intent": "attack",
 					"damage": 18,
 					"effects": []
 				},
 				{
 					"id": "minran_fury",
-					"name": {"ko": "민중의 분노"},
+					"name": {"ko": tr("PHASE_MINRAN_FURY"), "en": tr("PHASE_MINRAN_FURY")},
 					"intent": "attack",
 					"damage": 12,
 					"hit_count": 2,
@@ -1650,7 +1650,7 @@ func _inject_minran_phase(enemy_data: Array[Dictionary]) -> void:
 				},
 				{
 					"id": "minran_barricade",
-					"name": {"ko": "바리케이드"},
+					"name": {"ko": tr("PHASE_MINRAN_BARRICADE"), "en": tr("PHASE_MINRAN_BARRICADE")},
 					"intent": "defend",
 					"block": 15,
 					"effects": []

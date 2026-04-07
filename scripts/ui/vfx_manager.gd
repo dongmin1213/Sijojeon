@@ -256,7 +256,7 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 	# 강화된 화면 흔들림
 	screen_shake(18.0, 5.0)
 
-	# 한시(漢詩) 구절 연출 — 6장 카드명을 초장/중장/종장 3행으로 표시
+	# 시조 구절 연출 — 6장 카드명을 초장/중장/종장 3행으로 표시
 	if slot_card_names.size() == 6:
 		_spawn_hanshi_overlay(parent, slot_card_names)
 	else:
@@ -316,7 +316,7 @@ func _spawn_hanshi_overlay(parent: Control, names: Array[String]) -> void:
 	panel.add_child(header)
 
 	# 초장/중장/종장 3행
-	var jang_labels: Array[String] = ["초장", "중장", "종장"]
+	var jang_labels: Array[String] = [tr("SIJO_FIRST_VERSE"), tr("SIJO_MIDDLE_VERSE"), tr("SIJO_FINAL_VERSE")]
 	for i in 3:
 		var line_text := "%s  %s" % [names[i * 2], names[i * 2 + 1]]
 		var line_label := Label.new()

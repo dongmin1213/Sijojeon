@@ -53,78 +53,78 @@ static func get_all_definitions() -> Dictionary:
 static func _init_registry() -> void:
 	# --- DoT (지속 피해) ---
 	_registry["독"] = StatusEffectData.new(
-		"독", "독", "☠", Color(0.4, 0.8, 0.2), EffectType.DOT,
-		"턴 시작 시 N 피해, 매 턴 1씩 감소", true, false
+		"독", tr("STATUS_POISON"), "☠", Color(0.4, 0.8, 0.2), EffectType.DOT,
+		tr("SE_DESC_POISON"), true, false
 	)
 	_registry["화상"] = StatusEffectData.new(
-		"화상", "화상", "🔥", Color(1.0, 0.4, 0.1), EffectType.DOT,
-		"턴 시작 시 N 피해, 매 턴 1씩 감소", true, false
+		"화상", tr("STATUS_BURN"), "🔥", Color(1.0, 0.4, 0.1), EffectType.DOT,
+		tr("SE_DESC_BURN"), true, false
 	)
 	_registry["출혈"] = StatusEffectData.new(
-		"출혈", "출혈", "🩸", Color(0.8, 0.1, 0.1), EffectType.DOT,
-		"턴 시작 시 N 피해, 매 턴 1씩 감소. 방어도 획득 시 피해 2배", true, false
+		"출혈", tr("SE_NAME_BLEED"), "🩸", Color(0.8, 0.1, 0.1), EffectType.DOT,
+		tr("SE_DESC_BLEED"), true, false
 	)
 	_registry["death_mark"] = StatusEffectData.new(
-		"death_mark", "사망표식", "💀", Color(0.5, 0.0, 0.5), EffectType.DOT,
-		"매 턴 5 피해, 1씩 감소", true, false
+		"death_mark", tr("SE_NAME_DEATH_MARK"), "💀", Color(0.5, 0.0, 0.5), EffectType.DOT,
+		tr("SE_DESC_DEATH_MARK"), true, false
 	)
 
 	# --- 디버프 ---
 	_registry["약화"] = StatusEffectData.new(
-		"약화", "약화", "⬇", Color(1.0, 0.6, 0.2), EffectType.DEBUFF,
-		"다음 공격 피해 25% 감소", true, false
+		"약화", tr("STATUS_WEAKEN"), "⬇", Color(1.0, 0.6, 0.2), EffectType.DEBUFF,
+		tr("SE_DESC_WEAKEN"), true, false
 	)
 	_registry["취약"] = StatusEffectData.new(
-		"취약", "취약", "🔻", Color(1.0, 0.3, 0.3), EffectType.DEBUFF,
-		"받는 피해 25% 증가", true, false
+		"취약", tr("STATUS_VULNERABLE"), "🔻", Color(1.0, 0.3, 0.3), EffectType.DEBUFF,
+		tr("SE_DESC_VULNERABLE"), true, false
 	)
 	_registry["냉기"] = StatusEffectData.new(
-		"냉기", "냉기", "❄", Color(0.5, 0.8, 1.0), EffectType.DEBUFF,
-		"드로우 1장 감소", false, false
+		"냉기", tr("SE_NAME_CHILL"), "❄", Color(0.5, 0.8, 1.0), EffectType.DEBUFF,
+		tr("SE_DESC_CHILL"), false, false
 	)
 	_registry["death_countdown"] = StatusEffectData.new(
-		"death_countdown", "사망선고", "⏳", Color(0.3, 0.0, 0.3), EffectType.DEBUFF,
-		"N턴 후 HP 50% 감소", true, false
+		"death_countdown", tr("SE_NAME_DEATH_COUNTDOWN"), "⏳", Color(0.3, 0.0, 0.3), EffectType.DEBUFF,
+		tr("SE_DESC_DEATH_COUNTDOWN"), true, false
 	)
 
 	# --- 버프 ---
 	_registry["strength"] = StatusEffectData.new(
-		"strength", "힘", "⚔", Color(1.0, 0.3, 0.3), EffectType.BUFF,
-		"공격 피해 +N", false, true
+		"strength", tr("STATUS_STRENGTH"), "⚔", Color(1.0, 0.3, 0.3), EffectType.BUFF,
+		tr("SE_DESC_STRENGTH"), false, true
 	)
 	_registry["thorns"] = StatusEffectData.new(
-		"thorns", "가시", "🌹", Color(0.6, 0.3, 0.1), EffectType.BUFF,
-		"피격 시 공격자에게 3 피해 반사", false, true
+		"thorns", tr("SE_NAME_THORNS"), "🌹", Color(0.6, 0.3, 0.1), EffectType.BUFF,
+		tr("SE_DESC_THORNS"), false, true
 	)
 	_registry["갑주"] = StatusEffectData.new(
-		"갑주", "갑주", "🛡", Color(0.3, 0.6, 1.0), EffectType.BUFF,
-		"턴 시작 시 사라지지 않는 방어막", false, true
+		"갑주", tr("SE_NAME_ARMOR"), "🛡", Color(0.3, 0.6, 1.0), EffectType.BUFF,
+		tr("SE_DESC_ARMOR"), false, true
 	)
 	_registry["병사_토큰"] = StatusEffectData.new(
-		"병사_토큰", "병사", "⚑", Color(0.9, 0.7, 0.2), EffectType.BUFF,
-		"무관 진형 토큰. 스택 수만큼 패시브/액티브 효과 적용", false, true
+		"병사_토큰", tr("SE_NAME_SOLDIER_TOKEN"), "⚑", Color(0.9, 0.7, 0.2), EffectType.BUFF,
+		tr("SE_DESC_SOLDIER_TOKEN"), false, true
 	)
 	_registry["구금"] = StatusEffectData.new(
-		"구금", "구금", "⛓", Color(0.6, 0.4, 0.2), EffectType.DEBUFF,
-		"카드 사용 비용 +1. 지정 턴 수 후 해제", true, false
+		"구금", tr("SE_NAME_DETENTION"), "⛓", Color(0.6, 0.4, 0.2), EffectType.DEBUFF,
+		tr("SE_DESC_DETENTION"), true, false
 	)
 	_registry["주박"] = StatusEffectData.new(
-		"주박", "주박", "🔮", Color(0.5, 0.2, 0.7), EffectType.DEBUFF,
-		"받는 DoT 피해 1.5배", true, false
+		"주박", tr("SE_NAME_SHACKLE"), "🔮", Color(0.5, 0.2, 0.7), EffectType.DEBUFF,
+		tr("SE_DESC_SHACKLE"), true, false
 	)
 	_registry["기절"] = StatusEffectData.new(
-		"기절", "기절", "💫", Color(1.0, 0.9, 0.3), EffectType.DEBUFF,
-		"행동 불가. 턴 종료 시 해제", true, false
+		"기절", tr("STATUS_STUN"), "💫", Color(1.0, 0.9, 0.3), EffectType.DEBUFF,
+		tr("SE_DESC_STUN"), true, false
 	)
 	_registry["허점_노출"] = StatusEffectData.new(
-		"허점_노출", "허점 노출", "🎯", Color(1.0, 0.2, 0.4), EffectType.DEBUFF,
-		"다음 턴 받는 피해 ×1.5. 미방어 시 부여", true, false
+		"허점_노출", tr("SE_NAME_WEAKNESS_EXPOSED"), "🎯", Color(1.0, 0.2, 0.4), EffectType.DEBUFF,
+		tr("SE_DESC_WEAKNESS_EXPOSED"), true, false
 	)
 	_registry["폭발_카운트다운"] = StatusEffectData.new(
-		"폭발_카운트다운", "폭발 예고", "💣", Color(1.0, 0.5, 0.0), EffectType.DEBUFF,
-		"N턴 후 30~40 폭발 피해", true, false
+		"폭발_카운트다운", tr("SE_NAME_EXPLOSION"), "💣", Color(1.0, 0.5, 0.0), EffectType.DEBUFF,
+		tr("SE_DESC_EXPLOSION"), true, false
 	)
 	_registry["반격"] = StatusEffectData.new(
-		"반격", "반격", "🔄", Color(0.8, 0.4, 0.1), EffectType.BUFF,
-		"피격 시 받은 피해의 30%를 공격자에게 반사", false, true
+		"반격", tr("SE_NAME_COUNTER"), "🔄", Color(0.8, 0.4, 0.1), EffectType.BUFF,
+		tr("SE_DESC_COUNTER"), false, true
 	)

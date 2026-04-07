@@ -8,7 +8,7 @@ extends Node
 enum TutorialStep {
 	INTRO,                  # 환영 메시지
 	EXPLAIN_ENEMY,          # 적 소개
-	EXPLAIN_HP_QI,          # HP/기(氣) 설명
+	EXPLAIN_HP_QI,          # HP/기 설명
 	EXPLAIN_HAND,           # 손패 설명
 	PLAY_FIRST_CARD,        # 첫 카드 사용 유도
 	EXPLAIN_SIJO,           # 시조 시스템 설명
@@ -66,103 +66,55 @@ func _show_current_step() -> void:
 
 	match current_step:
 		TutorialStep.INTRO:
-			overlay.show_message(
-				"시조전에 오신 것을 환영합니다!\n\n" +
-				"이 튜토리얼에서 전투의 기본을 배우게 됩니다.\n" +
-				"카드를 사용하여 적을 물리치는 방법을 알아보겠습니다."
-			)
+			overlay.show_message(tr("TUTORIAL_MSG_INTRO"))
 
 		TutorialStep.EXPLAIN_ENEMY:
 			var enemy_area := battle_scene.get_node_or_null("EnemyArea")
 			if enemy_area:
 				var rect := Rect2(enemy_area.global_position, enemy_area.size)
-				overlay.highlight_area(rect,
-					"앞에 적이 나타났습니다!\n\n" +
-					"적의 HP와 다음 행동(의도)이 표시됩니다.\n" +
-					"적의 의도를 파악하고 대응하세요.",
-					"down"
-				)
+				overlay.highlight_area(rect, tr("TUTORIAL_MSG_ENEMY"), "down")
 			else:
-				overlay.show_message("적이 나타났습니다! 적의 HP와 의도를 확인하세요.")
+				overlay.show_message(tr("TUTORIAL_MSG_ENEMY_SHORT"))
 
 		TutorialStep.EXPLAIN_HP_QI:
 			var player_info := battle_scene.get_node_or_null("BattleHUD/PlayerInfo")
 			if player_info:
 				var rect := Rect2(player_info.global_position, player_info.size)
-				overlay.highlight_area(rect,
-					"HP와 氣(기)가 표시됩니다.\n\n" +
-					"• HP: 체력이 0이 되면 패배합니다\n" +
-					"• 氣: 카드를 사용할 때 소비됩니다 (매 턴 회복)\n" +
-					"• 방어: 받는 피해를 줄여줍니다 (매 턴 초기화)",
-					"down"
-				)
+				overlay.highlight_area(rect, tr("TUTORIAL_MSG_HP_QI"), "down")
 			else:
-				overlay.show_message(
-					"HP: 체력이 0이면 패배\n氣: 카드 사용 비용 (매 턴 회복)\n방어: 피해 감소 (매 턴 초기화)"
-				)
+				overlay.show_message(tr("TUTORIAL_MSG_HP_QI_SHORT"))
 
 		TutorialStep.EXPLAIN_HAND:
 			var hand_area := battle_scene.get_node_or_null("HandArea")
 			if hand_area:
 				var rect := Rect2(hand_area.global_position, hand_area.size)
-				overlay.highlight_area(rect,
-					"이것이 당신의 손패입니다.\n\n" +
-					"카드를 클릭하거나 위로 드래그하여 사용할 수 있습니다.\n" +
-					"각 카드에는 비용(氣)과 음보(拍)가 표시됩니다.",
-					"up"
-				)
+				overlay.highlight_area(rect, tr("TUTORIAL_MSG_HAND"), "up")
 			else:
-				overlay.show_message("손패의 카드를 클릭하거나 드래그하여 사용합니다.")
+				overlay.show_message(tr("TUTORIAL_MSG_HAND_SHORT"))
 
 		TutorialStep.PLAY_FIRST_CARD:
-			overlay.show_message(
-				"이제 카드를 한 장 사용해보세요!\n\n" +
-				"카드를 클릭한 후 적을 클릭하거나,\n" +
-				"카드를 위로 드래그하면 됩니다.",
-				true  # 액션 대기
-			)
+			overlay.show_message(tr("TUTORIAL_MSG_PLAY_FIRST"), true)
 
 		TutorialStep.EXPLAIN_SIJO:
 			var sijo_area := battle_scene.get_node_or_null("SijoArea")
 			if sijo_area:
 				var rect := Rect2(sijo_area.global_position, sijo_area.size)
-				overlay.highlight_area(rect,
-					"시조(時調) 리듬 시스템입니다!\n\n" +
-					"6개의 슬롯이 있으며, [3,4,3,4,3,4] 패턴입니다.\n" +
-					"카드의 음보(拍)가 다음 슬롯의 숫자와 일치하면 슬롯이 채워집니다.",
-					"down"
-				)
+				overlay.highlight_area(rect, tr("TUTORIAL_MSG_SIJO"), "down")
 			else:
-				overlay.show_message("시조 시스템: 6슬롯 [3,4,3,4,3,4] 패턴. 카드 음보가 일치하면 채워집니다.")
+				overlay.show_message(tr("TUTORIAL_MSG_SIJO_SHORT"))
 
 		TutorialStep.EXPLAIN_SIJO_BEAT:
-			overlay.show_message(
-				"시조 보상:\n\n" +
-				"• 초장 완성 (3/6): 氣 +1 회복\n" +
-				"• 중장 완성 (4/6): 카드 1장 추가 드로우\n" +
-				"• 시조 완성 (6/6): 마지막 카드 효과 2배 + 氣 +1 + 카드 드로우!\n\n" +
-				"손패에서 음보가 일치하는 카드는 밝게 표시됩니다."
-			)
+			overlay.show_message(tr("TUTORIAL_MSG_SIJO_BEAT"))
 
 		TutorialStep.PLAY_SIJO_CARD:
 			var next_beat := sijo_system.get_next_required_beat()
 			if next_beat > 0:
-				overlay.show_message(
-					"다음 시조 슬롯에 필요한 음보는 [%d]입니다.\n\n" % next_beat +
-					"음보가 일치하는 카드를 사용해보세요!\n" +
-					"(일치하는 카드는 밝게 표시됩니다)",
-					true
-				)
+				overlay.show_message(tr("TUTORIAL_MSG_PLAY_SIJO_FMT") % next_beat, true)
 			else:
 				_advance_step()
 
 		TutorialStep.EXPLAIN_DEFENSE:
-			overlay.show_message(
-				"방어 카드를 사용하면 방어도를 얻습니다.\n\n" +
-				"방어도는 적의 공격 피해를 흡수합니다.\n" +
-				"단, 방어도는 매 턴 초기화되므로 적의 공격 전에 사용하세요!",
-				true
-			)
+			overlay.show_message(tr("TUTORIAL_MSG_DEFENSE"), true)
 
 		TutorialStep.PLAY_DEFENSE_CARD:
 			# 방어 카드 사용 유도 (없으면 스킵)
@@ -172,53 +124,28 @@ func _show_current_step() -> void:
 			var end_btn := battle_scene.get_node_or_null("BattleHUD/EndTurnButton")
 			if end_btn:
 				var rect := Rect2(end_btn.global_position, end_btn.size)
-				overlay.highlight_area(rect,
-					"카드를 다 사용했으면 '턴 종료' 버튼을 눌러주세요.\n\n" +
-					"남은 氣가 있어도 턴을 종료할 수 있습니다.\n" +
-					"전략적으로 氣를 아끼는 것도 중요합니다!",
-					"left",
-					true
-				)
+				overlay.highlight_area(rect, tr("TUTORIAL_MSG_END_TURN"), "left", true)
 			else:
-				overlay.show_message("턴 종료 버튼을 눌러 적에게 턴을 넘기세요.", true)
+				overlay.show_message(tr("TUTORIAL_MSG_END_TURN_SHORT"), true)
 
 		TutorialStep.END_TURN_ACTION:
 			# 턴 종료 대기 — _on_battle_state_changed에서 처리
 			pass
 
 		TutorialStep.EXPLAIN_ENEMY_TURN:
-			overlay.show_message(
-				"적의 턴입니다!\n\n" +
-				"적은 표시된 의도대로 행동합니다.\n" +
-				"공격을 받으면 방어도부터 소모되고, 남은 피해가 HP를 깎습니다.",
-				true
-			)
+			overlay.show_message(tr("TUTORIAL_MSG_ENEMY_TURN"), true)
 
 		TutorialStep.TURN2_INTRO:
-			overlay.show_message(
-				"잘하셨습니다! 2턴이 시작되었습니다.\n\n" +
-				"이제부터 자유롭게 전투를 진행하세요.\n" +
-				"시조 슬롯을 채우며 적을 물리쳐보세요!",
-			)
+			overlay.show_message(tr("TUTORIAL_MSG_TURN2"))
 
 		TutorialStep.FREE_PLAY:
 			overlay.hide_overlay()
 
 		TutorialStep.EXPLAIN_REWARD:
-			overlay.show_message(
-				"축하합니다! 첫 전투에서 승리했습니다!\n\n" +
-				"전투 후에는 보상으로 금화와 새 카드를 획득할 수 있습니다.\n" +
-				"강력한 카드를 선택하여 덱을 강화하세요."
-			)
+			overlay.show_message(tr("TUTORIAL_MSG_REWARD"))
 
 		TutorialStep.EXPLAIN_DECKBUILDING:
-			overlay.show_message(
-				"덱빌딩 팁:\n\n" +
-				"• 카드를 많이 넣으면 핵심 카드를 뽑기 어려워집니다\n" +
-				"• 상점에서 불필요한 카드를 제거할 수 있습니다\n" +
-				"• 시조 패턴에 맞는 음보(3,4) 비율을 고려하세요\n\n" +
-				"이제 본격적인 모험을 시작하세요!"
-			)
+			overlay.show_message(tr("TUTORIAL_MSG_DECKBUILDING"))
 
 		TutorialStep.COMPLETE:
 			# 튜토리얼 완료 플래그 저장

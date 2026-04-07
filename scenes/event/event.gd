@@ -60,19 +60,19 @@ func _load_random_event() -> void:
 	if file == null:
 		file = FileAccess.open("res://data/events/act1_events.json", FileAccess.READ)
 	if file == null:
-		_event_data = {"title": {"ko": "알 수 없는 사건"}, "description": {"ko": ""}, "choices": []}
+		_event_data = {"title": {"ko": "알 수 없는 사건", "en": "Unknown Event"}, "description": {"ko": "", "en": ""}, "choices": []}
 		return
 
 	var json := JSON.new()
 	var err := json.parse(file.get_as_text())
 	file.close()
 	if err != OK or not (json.data is Dictionary):
-		_event_data = {"title": {"ko": "알 수 없는 사건"}, "description": {"ko": ""}, "choices": []}
+		_event_data = {"title": {"ko": "알 수 없는 사건", "en": "Unknown Event"}, "description": {"ko": "", "en": ""}, "choices": []}
 		return
 
 	var events: Array = json.data.get("events", [])
 	if events.is_empty():
-		_event_data = {"title": {"ko": "알 수 없는 사건"}, "description": {"ko": ""}, "choices": []}
+		_event_data = {"title": {"ko": "알 수 없는 사건", "en": "Unknown Event"}, "description": {"ko": "", "en": ""}, "choices": []}
 		return
 
 	_event_data = events[randi() % events.size()]
@@ -238,11 +238,11 @@ func _build_ui() -> void:
 ## 조건 미충족 시 표시할 툴팁 텍스트.
 func _get_condition_tooltip(condition: String) -> String:
 	match condition:
-		"status_rank_ge_3": return "신분이 양반(3등급) 이상이어야 합니다"
-		"status_rank_ge_4": return "신분이 당상관(4등급) 이상이어야 합니다"
-		"minshim_ge_70": return "민심이 70 이상이어야 합니다"
-		"minshim_ge_50": return "민심이 50 이상이어야 합니다"
-		_: return "조건 미충족"
+		"status_rank_ge_3": return tr("EVENT_COND_RANK_GE_3")
+		"status_rank_ge_4": return tr("EVENT_COND_RANK_GE_4")
+		"minshim_ge_70": return tr("EVENT_COND_MINSHIM_GE_70")
+		"minshim_ge_50": return tr("EVENT_COND_MINSHIM_GE_50")
+		_: return tr("EVENT_COND_DEFAULT")
 
 
 ## 선택지의 골드 비용을 확인하여 부족하면 true 반환.
@@ -259,7 +259,7 @@ func _is_gold_insufficient(choice: Dictionary) -> bool:
 
 func _on_choice_selected(choice: Dictionary) -> void:
 	if not GameManager.run_data:
-		_show_result("아무 일도 일어나지 않았다.")
+		_show_result(tr("EVENT_FALLBACK_NOTHING"))
 		return
 
 	var effect_type: String = str(choice.get("effect_type", "none"))
@@ -298,7 +298,7 @@ func _on_choice_selected(choice: Dictionary) -> void:
 
 	# 결과 텍스트가 비어있으면 JSON의 result_text 사용
 	if result_text == "":
-		result_text = _get_text(choice.get("result_text", "아무 일도 일어나지 않았다."))
+		result_text = _get_text(choice.get("result_text", tr("EVENT_FALLBACK_NOTHING")))
 
 	_show_result(result_text)
 	_update_status_bar()
@@ -326,18 +326,18 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 	match effect_type:
 		"hp_gain":
 			rd.current_hp = mini(rd.current_hp + value, rd.max_hp)
-			return _get_text(choice.get("result_text", "HP %d 회복." % value))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_HP_GAIN_FMT") % value))
 
 		"hp_loss":
 			rd.current_hp = maxi(rd.current_hp - value, 0)
-			var text: String = _get_text(choice.get("result_text", "HP %d 손실." % value))
+			var text: String = _get_text(choice.get("result_text", tr("EVENT_FALLBACK_HP_LOSS_FMT") % value))
 			if rd.current_hp <= 0:
 				text += tr("EVENT_CONSCIOUSNESS")
 			return text
 
 		"hp_full_heal":
 			rd.current_hp = rd.max_hp
-			return _get_text(choice.get("result_text", "HP 완전 회복!"))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_HP_FULL")))
 
 		"max_hp_gain":
 			rd.max_hp += value
@@ -388,7 +388,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				var buffs: Array = rd.get_meta("next_combat_buffs")
 				buffs.append(bonus_val)
 				rd.set_meta("next_combat_buffs", buffs)
-			return _get_text(choice.get("result_text", "다음 전투에 버프가 적용된다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_DEBUFF")))
 
 		"random":
 			return _apply_random_outcome(choice)
@@ -421,7 +421,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 						scores[p] = clampi(scores.get(p, 0) + delta, -100, 100)
 					FactionSystem.change_meter(rd, p, delta)
 			rd.narrative_state["faction_scores"] = scores
-			return _get_text(choice.get("result_text", "당파 호감도가 변했다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_FACTION")))
 
 		"run_tag_add":
 			var tag: String = choice.get("effect_meta", {}).get("tag", "")
@@ -448,7 +448,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				"percent": meta.get("percent", -30),
 				"duration_shops": meta.get("duration_shops", 1)
 			})
-			return _get_text(choice.get("result_text", "상점 가격이 변동된다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_SHOP_DISCOUNT")))
 
 		"shop_price_penalty":
 			var meta: Dictionary = choice.get("effect_meta", {})
@@ -457,7 +457,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				"percent": meta.get("percent", 50),
 				"duration_shops": meta.get("duration_shops", 1)
 			})
-			return _get_text(choice.get("result_text", "상점 가격이 올랐다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_SHOP_PENALTY")))
 
 		"next_boss_hp_modifier":
 			var meta: Dictionary = choice.get("effect_meta", {})
@@ -465,7 +465,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				"type": "boss_hp_modifier",
 				"percent": meta.get("percent", -20)
 			})
-			return _get_text(choice.get("result_text", "다음 보스가 약해진다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_BOSS_WEAKEN")))
 
 		"gold_invest_deferred":
 			var meta: Dictionary = choice.get("effect_meta", {})
@@ -491,7 +491,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			JibunSystem.add_score(rd, score_delta)
 			# 하위호환: narrative_state도 동기화
 			rd.narrative_state["status_rank"] = rd.jibun_rank
-			return _get_text(choice.get("result_text", "신분이 변했다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_STATUS")))
 
 		"card_remove_random":
 			var meta: Dictionary = choice.get("effect_meta", {})
@@ -507,7 +507,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				var idx := rd.deck.find(removable[i])
 				if idx >= 0:
 					rd.deck.remove_at(idx)
-			return _get_text(choice.get("result_text", "카드가 사라졌다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_CARD_VANISH")))
 
 		"relic_gain_specific":
 			var meta: Dictionary = choice.get("effect_meta", {})
@@ -524,7 +524,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				delta = meta.get("delta", 0)
 			var current: int = rd.narrative_state.get("minshim", 50)
 			rd.narrative_state["minshim"] = clampi(current + delta, 0, 100)
-			return _get_text(choice.get("result_text", "민심이 변했다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_MINSHIM")))
 
 		"card_choice":
 			# 카드 선택 이벤트 — 풀에서 랜덤 카드 1장 덱에 추가
@@ -536,7 +536,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			if not pool_cards.is_empty():
 				pool_cards.shuffle()
 				rd.deck.append(pool_cards[0].id)
-			return _get_text(choice.get("result_text", "카드를 획득했다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_CARD_GAIN")))
 
 		"card_remove_free":
 			# 무료 카드 제거 — 랜덤 비스타터 카드 제거
@@ -553,7 +553,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				var idx := rd.deck.find(removable[0])
 				if idx >= 0:
 					rd.deck.remove_at(idx)
-			return _get_text(choice.get("result_text", "카드 1장을 제거했다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_CARD_REMOVE")))
 
 		"card_upgrade_free":
 			# 무료 카드 강화 — 강화 가능한 카드 중 첫 번째 강화
@@ -562,7 +562,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				if not cid.ends_with("+"):
 					rd.deck[i] = cid + "+"
 					break
-			return _get_text(choice.get("result_text", "카드 1장을 강화했다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_CARD_UPGRADE")))
 
 		"next_battle_block":
 			# 다음 전투 시작 시 방어도 추가
@@ -578,10 +578,10 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				"type": "reveal_map",
 				"floors": value if value > 0 else 2
 			})
-			return _get_text(choice.get("result_text", "앞의 길이 보인다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_MAP_REVEAL")))
 
 		"none", "":
-			return _get_text(choice.get("result_text", "아무 일도 일어나지 않았다."))
+			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_NOTHING")))
 
 	return _get_text(choice.get("result_text", ""))
 
@@ -600,7 +600,7 @@ func _trigger_forced_combat(choice: Dictionary, _effect_type: String) -> void:
 	var meta: Dictionary = choice.get("effect_meta", {})
 	var encounter_id: String = meta.get("encounter_id", "")
 	if encounter_id == "" or not GameManager.run_data:
-		_show_result("아무 일도 일어나지 않았다.")
+		_show_result(tr("EVENT_FALLBACK_NOTHING"))
 		return
 	# 승리 시 보상을 pending_effects에 저장
 	var victory_reward: Dictionary = meta.get("victory_reward", {})
@@ -641,7 +641,7 @@ func _apply_gold_random(choice: Dictionary) -> String:
 func _apply_random_outcome(choice: Dictionary) -> String:
 	var outcomes: Array = choice.get("outcomes", [])
 	if outcomes.is_empty():
-		return _get_text(choice.get("result_text", "아무 일도 일어나지 않았다."))
+		return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_NOTHING")))
 
 	var total_weight := 0
 	for outcome in outcomes:
@@ -679,7 +679,7 @@ func _apply_random_outcome(choice: Dictionary) -> String:
 			if relic_id != "":
 				RelicManager.acquire_relic(relic_id)
 
-	return str(selected.get("text", "결과가 나왔다."))
+	return str(selected.get("text", tr("EVENT_FALLBACK_RESULT")))
 
 
 ## 보너스 효과를 적용하고 결과 텍스트를 반환한다.
@@ -793,7 +793,7 @@ func _show_card_gain_selection(choice: Dictionary) -> void:
 	choice_container.add_child(header)
 
 	var offers := _generate_card_offers(3)
-	var base_result: String = _get_text(choice.get("result_text", "카드를 덱에 추가했습니다."))
+	var base_result: String = _get_text(choice.get("result_text", tr("EVENT_FALLBACK_CARD_ADD")))
 
 	if offers.is_empty():
 		_show_result(base_result)

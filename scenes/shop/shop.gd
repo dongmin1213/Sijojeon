@@ -175,11 +175,11 @@ func _set_merchant_greeting() -> void:
 	if not _merchant_dialogue:
 		return
 	var greetings := [
-		"어서 오시게, 좋은 물건이 많다네.",
-		"오, 손님이시군. 천천히 둘러보시게.",
-		"이 좌판의 물건은 다 일류라네.",
-		"어허, 반갑소. 오늘 물건이 좋소.",
-		"자, 구경만 해도 좋으니 편히 보시게.",
+		tr("SHOP_GREETING_1"),
+		tr("SHOP_GREETING_2"),
+		tr("SHOP_GREETING_3"),
+		tr("SHOP_GREETING_4"),
+		tr("SHOP_GREETING_5"),
 	]
 	_merchant_dialogue.text = greetings[randi() % greetings.size()]
 
