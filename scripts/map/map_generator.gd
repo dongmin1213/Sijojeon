@@ -1,24 +1,21 @@
 class_name MapGenerator
 extends RefCounted
 
-## 맵 절차적 생성기 (1~3막 지원).
-## Slay the Spire 스타일: 시작(전투) → 중간(혼합) → 휴식 → 보스.
-## 3~4 경로 분기, 막별 난이도 스케일링.
+## v10: 경로 기반 맵 생성기 (Slay the Spire 방식).
+## 7열 그리드에 6개 경로를 생성하고, 경로가 지나는 셀에만 노드를 배치.
+## 교차 연결 제거로 가시성 대폭 개선.
 
-const MIN_NODES_PER_ROW := 2
-const MAX_NODES_PER_ROW := 5
+const NUM_COLUMNS := 7
+const NUM_PATHS := 6
 
-## 막별 설정: 행 수, 목표 노드 수, 막 이름 (SlS2 스타일 — 더 많은 행과 분기)
+## 막별 설정
 const ACT_CONFIG := {
-	1: { "total_rows": 16, "min_nodes": 40, "max_nodes": 48, "name": "한양" },
-	2: { "total_rows": 17, "min_nodes": 44, "max_nodes": 52, "name": "지리산" },
-	3: { "total_rows": 17, "min_nodes": 44, "max_nodes": 52, "name": "경복궁" },
+	1: { "total_rows": 16, "name": "한양" },
+	2: { "total_rows": 17, "name": "지리산" },
+	3: { "total_rows": 17, "name": "경복궁" },
 }
 
-## 막별 노드 타입 분포 가중치 (진행도 구간별).
-## 구간: early(~25%), mid(~60%), late(~85%), pre_boss(나머지).
-## row 0: 전투 전용, 마지막 행: 보스 전용.
-## 목표 분포: 전투40% 이벤트25% 휴식15% 상점10% 엘리트8% 기타2%.
+## 막별 노드 타입 분포 가중치 (진행도 구간별)
 const ACT_PHASE_WEIGHTS := {
 	1: {
 		"early":    { "BATTLE": 50, "EVENT": 25, "SHOP": 5, "REST": 10, "ELITE": 10 },
@@ -50,7 +47,6 @@ static func get_act_name(act: int) -> String:
 	var translated := TranslationServer.translate(key)
 	if translated != key:
 		return translated
-	# 번역키가 없으면 ACT_CONFIG의 name 사용 (폴백)
 	var config: Dictionary = ACT_CONFIG.get(act, ACT_CONFIG[1])
 	return config.get("name", "%d막" % act)
 
@@ -60,75 +56,141 @@ func generate(seed_value: int, act: int = 1) -> MapData.RunMap:
 	_rng.seed = seed_value
 
 	var config: Dictionary = ACT_CONFIG.get(act, ACT_CONFIG[1])
-	var total_rows: int = config.get("total_rows", 7)
+	var total_rows: int = config.get("total_rows", 16)
 	var boss_row: int = total_rows - 1
-	var min_nodes: int = config.get("min_nodes", 15)
-	var max_nodes: int = config.get("max_nodes", 17)
 
 	var run_map := MapData.RunMap.new()
 	run_map.act = act
 	run_map.seed_value = seed_value
 	run_map.total_rows = total_rows
 
+	# 1. 경로 생성 — 6개 경로가 7열 그리드를 관통
+	var paths := _generate_paths(total_rows)
+
+	# 2. 경로를 기반으로 노드 생성 (같은 셀은 노드 공유)
+	var grid: Dictionary = {}  # "row,col" → node_id
 	var next_id := 0
 
-	# 1. 행별 노드 수 결정 (SlS2 스타일 — 다양한 경로 분기)
-	var row_sizes: Array[int] = []
-	row_sizes.append(_rng.randi_range(3, 4))  # row 0: 시작 3~4
-	for r in range(1, boss_row):
-		# 중간 행: 2~5개 노드로 다양한 분기 생성
-		var row_min := MIN_NODES_PER_ROW
-		var row_max := MAX_NODES_PER_ROW
-		# 보스 직전 행은 수렴 (2~3개)
-		if r >= boss_row - 2:
-			row_max = 3
-		row_sizes.append(_rng.randi_range(row_min, row_max))
-	row_sizes.append(1)  # boss row
-
-	# 총 노드 수 조정
-	var total := 0
-	for s in row_sizes:
-		total += s
-	while total < min_nodes:
-		var target_row := _rng.randi_range(1, boss_row - 1)
-		if row_sizes[target_row] < MAX_NODES_PER_ROW:
-			row_sizes[target_row] += 1
-			total += 1
-	while total > max_nodes:
-		var target_row := _rng.randi_range(1, boss_row - 1)
-		if row_sizes[target_row] > MIN_NODES_PER_ROW:
-			row_sizes[target_row] -= 1
-			total -= 1
-
-	# 2. 노드 생성
 	for r in range(total_rows):
 		var row_ids: Array[int] = []
-		for c in range(row_sizes[r]):
-			var node := MapData.MapNode.new()
-			node.id = next_id
-			node.row = r
-			node.column = c
-			node.type = _pick_node_type(r, boss_row, act)
-			# 보스 노드에 encounter_id 할당
-			if node.type == MapData.NodeType.BOSS:
-				node.encounter_id = _get_boss_encounter_id(act)
-			run_map.nodes[next_id] = node
-			row_ids.append(next_id)
-			next_id += 1
+		# 이 행에서 경로가 지나는 열 수집 (중복 제거, 정렬)
+		var cols_in_row: Array[int] = []
+		for path in paths:
+			var col: int = path[r]
+			if col not in cols_in_row:
+				cols_in_row.append(col)
+		cols_in_row.sort()
+
+		for col in cols_in_row:
+			var key := "%d,%d" % [r, col]
+			if not grid.has(key):
+				var node := MapData.MapNode.new()
+				node.id = next_id
+				node.row = r
+				node.column = col
+				node.type = _pick_node_type(r, boss_row, act)
+				if node.type == MapData.NodeType.BOSS:
+					node.encounter_id = _get_boss_encounter_id(act)
+				run_map.nodes[next_id] = node
+				grid[key] = next_id
+				row_ids.append(next_id)
+				next_id += 1
+			else:
+				var existing_id: int = grid[key]
+				if existing_id not in row_ids:
+					row_ids.append(existing_id)
+
+		# row_ids를 열 순서대로 정렬
+		row_ids.sort_custom(func(a: int, b: int) -> bool:
+			return run_map.nodes[a].column < run_map.nodes[b].column
+		)
 		run_map.rows.append(row_ids)
 
-	# 3. 연결 생성 (모든 노드 도달 가능 보장)
-	_generate_connections(run_map)
+	# 3. 경로를 따라 연결 생성 (교차 없음)
+	_generate_connections_from_paths(run_map, paths, grid)
 
-	# 4. 노드 타입 최소 보장 (맵 확대에 맞춰 상향)
-	_ensure_node_type(run_map, MapData.NodeType.ELITE, 4)
-	_ensure_node_type(run_map, MapData.NodeType.REST, 4)
-	_ensure_node_type(run_map, MapData.NodeType.EVENT, 6)
+	# 4. 노드 타입 최소 보장
+	_ensure_node_type(run_map, MapData.NodeType.ELITE, 3)
+	_ensure_node_type(run_map, MapData.NodeType.REST, 3)
+	_ensure_node_type(run_map, MapData.NodeType.EVENT, 4)
 
-	# 5. 과거시험 노드 1개 배치 (향교/성균관)
+	# 5. 과거시험 노드 1개 배치
 	_ensure_gwageo(run_map)
 
+	# 6. 행 규칙 적용 — 보스 직전(pre_boss) 행은 REST 보장
+	_ensure_pre_boss_rest(run_map)
+
 	return run_map
+
+
+## 6개 경로를 생성한다. 각 경로는 0행~(total_rows-1)행까지의 열 인덱스 배열.
+func _generate_paths(total_rows: int) -> Array:
+	var paths: Array = []
+	var used_start_cols: Array[int] = []
+
+	for _p in range(NUM_PATHS):
+		var path: Array[int] = []
+		# 시작 열 선택 (다양한 시작점 보장)
+		var start_col: int
+		if used_start_cols.size() < NUM_COLUMNS:
+			# 아직 사용하지 않은 열 중 선택
+			var available_cols: Array[int] = []
+			for c in range(NUM_COLUMNS):
+				if c not in used_start_cols:
+					available_cols.append(c)
+			start_col = available_cols[_rng.randi() % available_cols.size()]
+		else:
+			start_col = _rng.randi_range(0, NUM_COLUMNS - 1)
+		used_start_cols.append(start_col)
+		path.append(start_col)
+
+		# 경로 진행: 인접 열로 이동 (x-1, x, x+1)
+		for r in range(1, total_rows - 1):
+			var prev_col: int = path[r - 1]
+			var min_col := maxi(0, prev_col - 1)
+			var max_col := mini(NUM_COLUMNS - 1, prev_col + 1)
+			var next_col := _rng.randi_range(min_col, max_col)
+			path.append(next_col)
+
+		# 보스 행: 중앙 열로 수렴
+		path.append(NUM_COLUMNS / 2)
+		paths.append(path)
+
+	# 교차 제거: 두 경로가 같은 행에서 교차(X자)하면 하나를 조정
+	_remove_path_crossings(paths, total_rows)
+
+	return paths
+
+
+## 경로 교차를 제거한다. X자 교차가 발생하면 열을 맞바꿔 해소.
+func _remove_path_crossings(paths: Array, total_rows: int) -> void:
+	for r in range(total_rows - 1):
+		for i in range(paths.size()):
+			for j in range(i + 1, paths.size()):
+				var a_cur: int = paths[i][r]
+				var a_next: int = paths[i][r + 1]
+				var b_cur: int = paths[j][r]
+				var b_next: int = paths[j][r + 1]
+				# 교차 조건: a가 b보다 왼쪽인데 다음 행에서 오른쪽이 됨 (또는 반대)
+				if (a_cur < b_cur and a_next > b_next) or (a_cur > b_cur and a_next < b_next):
+					# j 경로의 다음 행 열을 i의 다음 행과 맞바꿈
+					paths[j][r + 1] = a_next
+					paths[i][r + 1] = b_next
+
+
+## 경로 기반 연결 생성 (교차 없음 보장).
+func _generate_connections_from_paths(run_map: MapData.RunMap, paths: Array, grid: Dictionary) -> void:
+	for path in paths:
+		for r in range(run_map.total_rows - 1):
+			var from_key := "%d,%d" % [r, path[r]]
+			var to_key := "%d,%d" % [r + 1, path[r + 1]]
+			if not grid.has(from_key) or not grid.has(to_key):
+				continue
+			var from_id: int = grid[from_key]
+			var to_id: int = grid[to_key]
+			var from_node: MapData.MapNode = run_map.nodes[from_id]
+			if to_id not in from_node.connections:
+				from_node.connections.append(to_id)
 
 
 func _pick_node_type(row: int, boss_row: int, act: int) -> MapData.NodeType:
@@ -145,7 +207,7 @@ func _pick_node_type(row: int, boss_row: int, act: int) -> MapData.NodeType:
 	if GameManager.run_data and weights.has("ELITE"):
 		var elite_bonus: float = JibunSystem.get_elite_spawn_bonus(GameManager.run_data)
 		if elite_bonus > 0.0:
-			weights["ELITE"] += int(elite_bonus * 100.0)  # 5% → +5 가중치
+			weights["ELITE"] += int(elite_bonus * 100.0)
 
 	var total_weight := 0
 	for w in weights.values():
@@ -173,48 +235,7 @@ func _type_from_string(s: String) -> MapData.NodeType:
 	return MapData.NodeType.BATTLE
 
 
-func _generate_connections(run_map: MapData.RunMap) -> void:
-	for r in range(run_map.total_rows - 1):
-		var current_row: Array = run_map.rows[r]
-		var next_row: Array = run_map.rows[r + 1]
-		var next_count: int = next_row.size()
-
-		# 먼저 모든 다음 행 노드가 최소 1개 부모를 갖도록 보장
-		var connected_children: Dictionary = {}  # child_id → bool
-
-		for i in range(current_row.size()):
-			var node: MapData.MapNode = run_map.nodes[current_row[i]]
-			# 기본 연결: 대응하는 위치의 자식 (또는 가장 가까운)
-			var base_child_idx := clampi(i, 0, next_count - 1)
-			var child_id: int = next_row[base_child_idx]
-			if child_id not in node.connections:
-				node.connections.append(child_id)
-			connected_children[child_id] = true
-
-			# 추가 연결 (인접 노드로, 55% 확률 — SlS2 스타일 더 많은 분기)
-			if base_child_idx > 0 and _rng.randf() < 0.55:
-				var alt_id: int = next_row[base_child_idx - 1]
-				if alt_id not in node.connections:
-					node.connections.append(alt_id)
-				connected_children[alt_id] = true
-			if base_child_idx < next_count - 1 and _rng.randf() < 0.55:
-				var alt_id: int = next_row[base_child_idx + 1]
-				if alt_id not in node.connections:
-					node.connections.append(alt_id)
-				connected_children[alt_id] = true
-
-		# 연결 안 된 자식 노드 처리 (가장 가까운 부모에서 연결)
-		for j in range(next_count):
-			var child_id: int = next_row[j]
-			if not connected_children.has(child_id):
-				var best_parent_idx := clampi(j, 0, current_row.size() - 1)
-				var parent: MapData.MapNode = run_map.nodes[current_row[best_parent_idx]]
-				if child_id not in parent.connections:
-					parent.connections.append(child_id)
-
-
 func _get_row_phase(row: int, boss_row: int) -> String:
-	## 행 번호를 진행도 구간으로 변환한다.
 	var progress := float(row) / float(boss_row)
 	if progress <= 0.25:
 		return "early"
@@ -227,7 +248,6 @@ func _get_row_phase(row: int, boss_row: int) -> String:
 
 
 func _ensure_node_type(run_map: MapData.RunMap, target_type: MapData.NodeType, min_count: int) -> void:
-	## 특정 노드 타입의 최소 개수를 보장한다. 부족 시 전투 노드를 변환.
 	var count := 0
 	for nid in run_map.nodes:
 		if run_map.nodes[nid].type == target_type:
@@ -248,8 +268,6 @@ func _ensure_node_type(run_map: MapData.RunMap, target_type: MapData.NodeType, m
 
 
 func _ensure_gwageo(run_map: MapData.RunMap) -> void:
-	## 과거시험 노드를 맵에 1개 배치한다.
-	## 행 2~(보스-2) 중 EVENT 노드를 GWAGEO로 변경.
 	var boss_row: int = run_map.total_rows - 1
 	var candidates: Array[int] = []
 	for r in range(2, maxi(boss_row - 1, 3)):
@@ -257,7 +275,6 @@ func _ensure_gwageo(run_map: MapData.RunMap) -> void:
 			if run_map.nodes[nid].type == MapData.NodeType.EVENT:
 				candidates.append(nid)
 	if candidates.is_empty():
-		# EVENT 없으면 BATTLE에서 변환
 		for r in range(2, maxi(boss_row - 1, 3)):
 			for nid in run_map.rows[r]:
 				if run_map.nodes[nid].type == MapData.NodeType.BATTLE:
@@ -267,8 +284,26 @@ func _ensure_gwageo(run_map: MapData.RunMap) -> void:
 		run_map.nodes[pick].type = MapData.NodeType.GWAGEO
 
 
+## 보스 직전 2행의 노드 중 최소 1개는 REST 보장.
+func _ensure_pre_boss_rest(run_map: MapData.RunMap) -> void:
+	var boss_row: int = run_map.total_rows - 1
+	var pre_boss_row: int = boss_row - 1
+	if pre_boss_row < 1:
+		return
+	var has_rest := false
+	for nid in run_map.rows[pre_boss_row]:
+		if run_map.nodes[nid].type == MapData.NodeType.REST:
+			has_rest = true
+			break
+	if not has_rest and not run_map.rows[pre_boss_row].is_empty():
+		# 전투 노드를 REST로 변환
+		for nid in run_map.rows[pre_boss_row]:
+			if run_map.nodes[nid].type == MapData.NodeType.BATTLE:
+				run_map.nodes[nid].type = MapData.NodeType.REST
+				break
+
+
 func _get_boss_encounter_id(act: int) -> String:
-	## 막별 최종 보스 encounter_id 반환
 	match act:
 		1: return "B_ACT1_FINAL"
 		2: return "B_ACT2_FINAL"

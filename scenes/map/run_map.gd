@@ -36,9 +36,9 @@ const NODE_ICONS := {
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
 const BASE_VIEWPORT_WIDTH := 1080.0
-const BASE_NODE_SIZE := Vector2(110, 110)  # v9: 맵 확장으로 노드 크기 축소
-const BASE_ROW_SPACING := 150.0  # v9: 행 간격 축소 (행 수 증가 대응)
-const BASE_MAP_PADDING_X := 20.0  # v9: 좌우 여백 최소화
+const BASE_NODE_SIZE := Vector2(64, 64)  # v10: 아이콘 전용 노드로 축소
+const BASE_ROW_SPACING := 180.0  # v10: 고정 행 간격 (스크롤 맵)
+const BASE_MAP_PADDING_X := 10.0  # v10: 좌우 여백 최소화 (너비 100%)
 const BASE_MAP_PADDING_TOP := 140.0  # v9: 플로팅 HUD 아래 시작
 const BASE_MAP_PADDING_BOTTOM := 100.0
 
@@ -203,28 +203,27 @@ func _build_map() -> void:
 	var padding_x := BASE_MAP_PADDING_X * scale_factor
 	var padding_top := BASE_MAP_PADDING_TOP * scale_factor
 	var padding_bottom := BASE_MAP_PADDING_BOTTOM * scale_factor
-	var font_size := maxi(int(28.0 * scale_factor), 24)
+	var font_size := maxi(int(32.0 * scale_factor), 28)  # v10: 아이콘 전용 — 폰트 크기 증가
 
-	# 행 간격: 뷰포트 높이에 맞춰 동적 계산 (노드가 화면에 균등 분포)
-	var available_height: float = viewport_height - padding_top - padding_bottom - node_size.y
-	var row_spacing: float
-	if run_map.total_rows > 1:
-		row_spacing = available_height / (run_map.total_rows - 1)
-	else:
-		row_spacing = 0.0
-	# 최소 간격 보장
-	var min_row_spacing: float = BASE_ROW_SPACING * scale_factor
-	row_spacing = maxf(row_spacing, min_row_spacing)
+	# v10: 고정 행 간격 (스크롤 맵 — 뷰포트에 맞춰 압축하지 않음)
+	var row_spacing: float = BASE_ROW_SPACING * scale_factor
 
 	# 맵 전체 높이 계산 (아래에서 위로: row 0 = 하단, boss = 상단)
 	var total_height: float = padding_top + padding_bottom + (run_map.total_rows - 1) * row_spacing + node_size.y
 	map_container.custom_minimum_size = Vector2(viewport_width, total_height)
 
+	# v10: 시드 기반 jitter RNG
+	var jitter_rng := RandomNumberGenerator.new()
+	jitter_rng.seed = run_map.seed_value + 9999
+	var jitter_max: float = node_size.x * 0.35
+
+	# v10: 7열 그리드 기반 X 좌표 계산
+	var col_spacing: float = (viewport_width - padding_x * 2 - node_size.x) / float(MapGenerator.NUM_COLUMNS - 1)
+
 	# 노드 위치 계산 및 버튼 생성
 	for r in range(run_map.total_rows):
 		var row_nodes: Array = run_map.rows[r]
 		var node_count: int = row_nodes.size()
-		var usable_width: float = viewport_width - padding_x * 2
 
 		for i in range(node_count):
 			var node_id: int = row_nodes[i]
@@ -232,27 +231,29 @@ func _build_map() -> void:
 
 			# Y: 보스(마지막 행)가 위, 시작(0행)이 아래
 			var y: float = padding_top + (run_map.total_rows - 1 - r) * row_spacing
-			# X: 행 내 균등 분배
-			var x: float
-			if node_count == 1:
-				x = viewport_width / 2.0 - node_size.x / 2.0
-			else:
-				x = padding_x + (usable_width - node_size.x) * i / (node_count - 1)
+			# X: 7열 그리드 내 열 인덱스 기반
+			var x: float = padding_x + map_node.column * col_spacing
+
+			# v10: 시드 기반 jitter — 시작행/보스행/단독 노드 제외
+			if node_count > 1 and r > 0 and r < run_map.total_rows - 1:
+				var jx: float = jitter_rng.randf_range(-jitter_max, jitter_max)
+				var jy: float = jitter_rng.randf_range(-jitter_max * 0.3, jitter_max * 0.3)
+				x = clampf(x + jx, padding_x, viewport_width - padding_x - node_size.x)
+				y += jy
 
 			var center := Vector2(x + node_size.x / 2.0, y + node_size.y / 2.0)
 			_node_positions[node_id] = center
 
-			# 노드 버튼 생성
+			# v10: 노드 버튼 생성 — 아이콘 전용
 			var btn := Button.new()
 			btn.custom_minimum_size = node_size
 			btn.size = node_size
 			btn.position = Vector2(x, y)
-			btn.focus_mode = Control.FOCUS_NONE  # 모바일 원탭 진입 (포커스 단계 제거)
+			btn.focus_mode = Control.FOCUS_NONE  # 모바일 원탭 진입
 
+			# v10: 아이콘만 표시 (라벨 텍스트 제거)
 			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
-			var label_key: String = NODE_LABELS.get(map_node.type, "")
-			var label_text: String = tr(label_key) if label_key != "" else "???"
-			btn.text = "%s\n%s" % [icon_text, label_text]
+			btn.text = icon_text
 
 			btn.add_theme_font_size_override("font_size", font_size)
 			btn.pressed.connect(_on_node_pressed.bind(node_id))
@@ -267,7 +268,7 @@ func _build_map() -> void:
 func _draw_connections() -> void:
 	if not is_inside_tree():
 		return
-	# 기존 연결선 제거 — 즉시 삭제로 메모리 누적 방지
+	# 기존 연결선 제거
 	for child in line_layer.get_children():
 		line_layer.remove_child(child)
 		child.free()
@@ -276,6 +277,17 @@ func _draw_connections() -> void:
 		return
 	var run_map := GameManager.run_data.run_map
 	var visited := GameManager.run_data.visited_nodes
+
+	# v10: 현재 행 계산 (거리 기반 페이드용)
+	var current_row: int = 0
+	if not visited.is_empty():
+		var last_id: int = visited[-1]
+		if run_map.nodes.has(last_id):
+			current_row = run_map.nodes[last_id].row
+
+	# v10: 곡선 보간용 시드 RNG
+	var curve_rng := RandomNumberGenerator.new()
+	curve_rng.seed = run_map.seed_value + 7777
 
 	for nid in run_map.nodes:
 		var map_node: MapData.MapNode = run_map.nodes[nid]
@@ -289,28 +301,56 @@ func _draw_connections() -> void:
 			var to_pos: Vector2 = _node_positions[conn_id]
 
 			var is_visited_path: bool = (nid in visited) and (conn_id in visited)
+			var is_available_path: bool = (nid in visited) and (conn_id in _available_node_ids)
 			var color: Color
 			var width: float
 			if is_visited_path:
-				# v5: 이미 지나간 경로 — 단청 금색
 				color = Color(0.83, 0.66, 0.26, 0.85)
-				width = 4.0
-			elif nid in visited and conn_id in _available_node_ids:
-				# v5: 선택 가능한 경로 — 밝은 금색
-				color = Color(0.83, 0.66, 0.26, 0.6)
 				width = 3.5
+			elif is_available_path:
+				color = Color(0.83, 0.66, 0.26, 0.6)
+				width = 3.0
 			else:
-				# v5: 미래 경로 — 은은한 회색
-				color = Color(0.45, 0.40, 0.35, 0.4)
-				width = 2.5
+				# v10: 거리 기반 페이드
+				var node_row: int = map_node.row
+				var dist: int = absi(node_row - current_row)
+				var alpha: float
+				if dist <= 2:
+					alpha = 0.35
+				elif dist <= 5:
+					alpha = lerpf(0.35, 0.1, float(dist - 2) / 3.0)
+				else:
+					alpha = 0.1
+				color = Color(0.45, 0.40, 0.35, alpha)
+				width = 2.0
 
+			# v10: 베지어 곡선 — 중간 보간점 생성
 			var line := Line2D.new()
-			line.add_point(from_pos)
-			line.add_point(to_pos)
+			var curve_points := _make_curve_points(from_pos, to_pos, curve_rng)
+			for pt in curve_points:
+				line.add_point(pt)
 			line.default_color = color
 			line.width = width
 			line.antialiased = true
 			line_layer.add_child(line)
+
+
+## v10: 두 점 사이에 베지어 곡선 보간점을 생성한다.
+func _make_curve_points(from: Vector2, to: Vector2, rng: RandomNumberGenerator) -> Array[Vector2]:
+	var points: Array[Vector2] = []
+	var segments := 8
+	# 제어점: 중간 지점에서 수평 오프셋
+	var mid := (from + to) / 2.0
+	var dist := from.distance_to(to)
+	var offset_x: float = rng.randf_range(-dist * 0.15, dist * 0.15)
+	var ctrl := Vector2(mid.x + offset_x, mid.y)
+
+	for i in range(segments + 1):
+		var t: float = float(i) / float(segments)
+		# 2차 베지어: B(t) = (1-t)²P0 + 2(1-t)tP1 + t²P2
+		var p: Vector2 = (1.0 - t) * (1.0 - t) * from + 2.0 * (1.0 - t) * t * ctrl + t * t * to
+		points.append(p)
+	return points
 
 
 func _update_node_states() -> void:
@@ -350,7 +390,7 @@ func _update_node_states() -> void:
 		# 민란으로 폐업한 상점 표시
 		if nid in disabled_shop_ids and nid not in visited:
 			btn.disabled = true
-			btn.text = "X\n" + tr("MAP_CLOSED")
+			btn.text = "X"
 			btn.modulate = Color(0.35, 0.28, 0.25, 0.6)
 			btn.tooltip_text = tr("MAP_CLOSED_TOOLTIP")
 			continue
@@ -366,9 +406,7 @@ func _update_node_states() -> void:
 			# 갈림길 잠금 노드: 금화로 해제 가능
 			var cost: int = _locked_node_costs[nid]
 			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
-			var label_key: String = NODE_LABELS.get(map_node.type, "")
-			var label_text: String = tr(label_key) if label_key != "" else "???"
-			btn.text = "%s\n%s\n%s" % [icon_text, label_text, tr("MAP_FORK_COST_FMT") % cost]
+			btn.text = "%s\n%s" % [icon_text, tr("MAP_FORK_COST_FMT") % cost]
 			btn.disabled = false
 			btn.modulate = Color(0.83, 0.66, 0.26, 0.85)
 			btn.tooltip_text = tr("MAP_FORK_UNLOCK_TOOLTIP") % cost
@@ -392,11 +430,20 @@ func _update_node_states() -> void:
 			# 펄스 애니메이션
 			_start_node_pulse(btn)
 		else:
-			# v5: 미래 노드 — 어두운 타입 색상, 얇은 테두리
+			# v10: 미래 노드 — 거리 기반 페이드
 			btn.disabled = true
 			var style := _make_node_style(node_color.darkened(0.45), node_color.darkened(0.15), 1)
 			btn.add_theme_stylebox_override("disabled", style)
-			btn.modulate = Color(0.75, 0.70, 0.65, 0.65)
+			# 현재 위치에서 거리 기반 투명도
+			var dist: int = absi(map_node.row - _get_current_row())
+			var node_alpha: float
+			if dist <= 2:
+				node_alpha = 0.65
+			elif dist <= 5:
+				node_alpha = lerpf(0.65, 0.25, float(dist - 2) / 3.0)
+			else:
+				node_alpha = 0.25
+			btn.modulate = Color(0.75, 0.70, 0.65, node_alpha)
 			btn.add_theme_color_override("font_disabled_color", Color(0.60, 0.55, 0.50))
 
 	# 현재 위치 마커: 마지막 방문 노드에 밝은 금색 보더 + ▶ 표시
@@ -413,11 +460,9 @@ func _update_node_states() -> void:
 			style.shadow_size = 6
 			btn.add_theme_stylebox_override("disabled", style)
 			btn.add_theme_color_override("font_disabled_color", Color(0.83, 0.66, 0.26))
-			# 텍스트에 ▶ 마커 추가
+			# v10: 아이콘 전용 마커
 			var icon_text: String = NODE_ICONS.get(map_node_cur.type, "?")
-			var label_key: String = NODE_LABELS.get(map_node_cur.type, "")
-			var label_text: String = tr(label_key) if label_key != "" else "???"
-			btn.text = "▶ %s\n%s" % [icon_text, label_text]
+			btn.text = "▶%s" % icon_text
 
 	# 연결선 다시 그리기
 	_draw_connections()
@@ -445,12 +490,21 @@ func _scroll_to_current() -> void:
 	scroll_container.scroll_vertical = int(target_y)
 
 
-## v5: 단청 스타일 노드 공통 헬퍼 — 둥근 모서리, 그림자 포함
+## v10: 현재 위치 행 번호를 반환한다.
+func _get_current_row() -> int:
+	if GameManager.run_data == null or GameManager.run_data.visited_nodes.is_empty():
+		return 0
+	var last_id: int = GameManager.run_data.visited_nodes[-1]
+	if GameManager.run_data.run_map and GameManager.run_data.run_map.nodes.has(last_id):
+		return GameManager.run_data.run_map.nodes[last_id].row
+	return 0
+
+
+## 단청 스타일 노드 공통 헬퍼 — 둥근 모서리, 그림자 포함
 func _make_node_style(bg: Color, border_color: Color, border_width: int) -> StyleBoxFlat:
-	# v6: 원형 노드 스타일 — corner_radius를 크게 설정하여 원형 효과
 	var style := StyleBoxFlat.new()
 	style.bg_color = bg
-	style.set_corner_radius_all(45)  # BASE_NODE_SIZE / 2 = 원형
+	style.set_corner_radius_all(32)  # v10: BASE_NODE_SIZE / 2 = 원형
 	style.set_border_width_all(border_width)
 	style.border_color = border_color
 	style.shadow_color = Color(0.0, 0.0, 0.0, 0.35)
