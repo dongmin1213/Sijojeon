@@ -140,10 +140,10 @@ static func get_grade(score: int) -> String:
 ## 등급 한글 이름.
 static func get_grade_name(grade: String) -> String:
 	match grade:
-		"jangwon": return "장원 급제(壯元)"
-		"geupje": return "급제(及第)"
-		"hapgyeok": return "합격(合格)"
-		"nakbang": return "낙방(落榜)"
+		"jangwon": return "장원 급제"
+		"geupje": return "급제"
+		"hapgyeok": return "합격"
+		"nakbang": return "낙방"
 	return "낙방"
 
 

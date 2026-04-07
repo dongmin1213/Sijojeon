@@ -6,7 +6,7 @@
   "id": "B_ACT2_FINAL",
   "name": {
     "ko": "쌍두 호랑이",
-    "hanja": "兩頭虎",
+    "hanja": "",
     "romanized": "Ssangdu Horangi",
     "en": "Twin-Headed Tiger"
   },
@@ -21,7 +21,7 @@
     "name": "이두 독립 체력 (Two-Head HP)",
     "description": "쌍두 호랑이는 두 개의 독립적 머리(좌두·우두)를 가진다. 각 머리는 별도 HP 80을 보유. 한쪽 머리가 처치되면 남은 머리가 즉시 분노 상태로 전환된다. 두 머리를 모두 처치해야 전투 종료.",
     "left_head": {
-      "name": "좌두 (左頭)",
+      "name": "좌두",
       "hp": 80,
       "on_death": [
         {
@@ -35,7 +35,7 @@
       ]
     },
     "right_head": {
-      "name": "우두 (右頭)",
+      "name": "우두",
       "hp": 80,
       "on_death": [
         {
@@ -302,14 +302,14 @@
       {
         "id": "tiger_fang",
         "name": "호랑이 송곳니",
-        "hanja": "虎牙",
+        "hanja": "",
         "description": "공격 카드 사용 시 25% 확률로 추가 2피해. 다타 공격에 중복 적용.",
         "type": "rare_relic"
       },
       {
         "id": "mountain_god_totem",
         "name": "산신 토템",
-        "hanja": "山神 土邪",
+        "hanja": "",
         "description": "전투 시작 시 힘 1, 방어도 5 획득. 보스 처치 후 추가 체력 8 회복.",
         "type": "rare_relic"
       }

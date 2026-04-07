@@ -1,11 +1,11 @@
 {
   "version": "0.1",
   "type": "ascension_system",
-  "description": "시조전 귀신 단계(鬼神 段階) — 10단계 난이도 시스템. StS 어센션 참조. 이전 단계 클리어 시 다음 단계 해금. 각 단계는 이전 단계의 수정자를 누적 적용한다.",
+  "description": "시조전 귀신 단계( ) — 10단계 난이도 시스템. StS 어센션 참조. 이전 단계 클리어 시 다음 단계 해금. 각 단계는 이전 단계의 수정자를 누적 적용한다.",
   "balance_ref": "ZER-100 (어센션/난이도 시스템). 모바일 솔로 플레이 기준 설계.",
   "system_name": {
     "ko": "귀신 단계",
-    "hanja": "鬼神 段階",
+    "hanja": "",
     "romanized": "Gwisin Danji",
     "description": {
       "ko": "강해질수록 귀신도 넘는다는 조선식 표현. 단계 숫자가 높을수록 더 강한 귀신과 싸우는 난이도.",
@@ -18,7 +18,7 @@
     "id": "CURSE_001",
     "name": {
       "ko": "뒤주",
-      "hanja": "柜",
+      "hanja": "",
       "romanized": "Dweju",
       "en": "Rice Chest"
     },
@@ -241,7 +241,7 @@
           "duration": 2,
           "cumulative": true,
           "description": {
-            "ko": "정예 전투 시작 시 플레이어에게 약화(弱化) 2턴 부여",
+            "ko": "정예 전투 시작 시 플레이어에게 약화 2턴 부여",
             "en": "Apply Weaken to player for 2 turns at the start of elite combat"
           }
         }
@@ -523,7 +523,7 @@
     {
       "level": 8,
       "description": {
-        "ko": "기(氣)가 줄어들었다.",
+        "ko": "기가 줄어들었다.",
         "en": "Your Qi has been reduced."
       },
       "unlock_condition": "단계 7로 런 완료",
@@ -621,7 +621,7 @@
           "value": -1,
           "cumulative": true,
           "description": {
-            "ko": "턴당 기(氣) 기본값 -1 (3 → 2기)",
+            "ko": "턴당 기 기본값 -1 (3 → 2기)",
             "en": "Base Qi per turn -1 (3 → 2 Qi)"
           }
         }
@@ -917,7 +917,7 @@
     "id": "E_MINI_SPIRIT",
     "name": {
       "ko": "영혼 잔해",
-      "hanja": "靈魂殘骸",
+      "hanja": "",
       "romanized": "Yeonghon Janhae",
       "en": "Soul Remnant"
     },

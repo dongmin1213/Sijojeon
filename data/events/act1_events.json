@@ -308,7 +308,7 @@
     {
       "id": "EVT_A1_005",
       "title": {
-        "ko": "신당 (神堂)",
+        "ko": "신당",
         "description": {
           "ko": "길가에 작은 신당이 있다. 촛불이 켜져 있고 제물이 놓여 있다.",
           "en": "A small spirit shrine sits by the road. Candles flicker and offerings are laid out."
@@ -1169,7 +1169,7 @@
         {
           "id": "mediate",
           "text": {
-            "ko": "양쪽을 중재한다. (민심 +4, 기(氣) +1 다음 전투)",
+            "ko": "양쪽을 중재한다. (민심 +4, 기 +1 다음 전투)",
             "en": "Mediate between both sides. (Favor +4, Qi +1 next combat)"
           },
           "effect_type": "minshim_change",
@@ -1329,13 +1329,13 @@
       "title": {
         "ko": "수학 시험",
         "description": {
-          "ko": "실학자가 산학(算學) 문제를 내밀며 말한다.",
+          "ko": "실학자가 산학 문제를 내밀며 말한다.",
           "en": "The Silhak scholar presents a mathematics problem."
         },
         "en": "The Mathematics Test"
       },
       "flavor_text": {
-        "ko": "\"이 문제를 풀면 비전(秘傳)을 전수하겠소.\"",
+        "ko": "\"이 문제를 풀면 비전을 전수하겠소.\"",
         "en": "\"Solve this, and I shall impart a secret technique.\""
       },
       "choices": [

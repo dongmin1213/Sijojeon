@@ -56,7 +56,7 @@
       "id": "R001",
       "name": {
         "ko": "편자",
-        "hanja": "鞭子",
+        "hanja": "",
         "romanized": "Pyeonja",
         "en": "Horsewhip"
       },
@@ -89,7 +89,7 @@
       "id": "R002",
       "name": {
         "ko": "평안 부적",
-        "hanja": "平安符籍",
+        "hanja": "",
         "romanized": "Pyeongan Bujeok",
         "en": "Peace Talisman"
       },
@@ -122,7 +122,7 @@
       "id": "R003",
       "name": {
         "ko": "행운의 엽전",
-        "hanja": "幸運葉錢",
+        "hanja": "",
         "romanized": "Haengwun Yeopjeon",
         "en": "Lucky Coin"
       },
@@ -155,7 +155,7 @@
       "id": "R004",
       "name": {
         "ko": "봉황 깃털",
-        "hanja": "鳳凰羽",
+        "hanja": "",
         "romanized": "Bonghwang Gitteo",
         "en": "Phoenix Feather"
       },
@@ -187,7 +187,7 @@
       "id": "R005",
       "name": {
         "ko": "홍삼 뿌리",
-        "hanja": "紅蔘根",
+        "hanja": "",
         "romanized": "Hongsam Ppuri",
         "en": "Red Ginseng Root"
       },
@@ -219,7 +219,7 @@
       "id": "R006",
       "name": {
         "ko": "호신검",
-        "hanja": "護身劍",
+        "hanja": "",
         "romanized": "Hosin Geom",
         "en": "Guardian Blade"
       },
@@ -227,7 +227,7 @@
       "class_restriction": "무관",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 이번 전투 동안 기력(行動力) 최대치가 1 증가한다. (턴당 AP 4)",
+        "ko": "전투 시작 시 이번 전투 동안 기력 최대치가 1 증가한다. (턴당 AP 4)",
         "en": "At the start of combat, max Stamina is increased by 1 for this fight. (4 AP per turn)"
       },
       "effect_description": {
@@ -251,7 +251,7 @@
       "id": "R007",
       "name": {
         "ko": "사서",
-        "hanja": "四書",
+        "hanja": "",
         "romanized": "Saseo",
         "en": "Four Books"
       },
@@ -283,7 +283,7 @@
       "id": "R008",
       "name": {
         "ko": "동의보감",
-        "hanja": "東醫寶鑑",
+        "hanja": "",
         "romanized": "Dongui Bogam",
         "en": "Dongui Bogam"
       },
@@ -291,7 +291,7 @@
       "class_restriction": "의원",
       "trigger": "on_apply_poison",
       "effect": {
-        "ko": "독(毒)을 부여할 때 스택이 1 추가된다.",
+        "ko": "독을 부여할 때 스택이 1 추가된다.",
         "en": "When applying Poison, add 1 extra stack."
       },
       "effect_description": {
@@ -315,7 +315,7 @@
       "id": "R009",
       "name": {
         "ko": "무당 방울",
-        "hanja": "巫鈴",
+        "hanja": "",
         "romanized": "Muring",
         "en": "Shaman Bell"
       },
@@ -323,7 +323,7 @@
       "class_restriction": "무당",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 영력(靈力)을 2 추가 획득한다.",
+        "ko": "전투 시작 시 영력을 2 추가 획득한다.",
         "en": "Gain 2 additional Spirit Power at the start of combat."
       },
       "effect_description": {
@@ -347,7 +347,7 @@
       "id": "R010",
       "name": {
         "ko": "각궁",
-        "hanja": "角弓",
+        "hanja": "",
         "romanized": "Gakgung",
         "en": "Horn Bow"
       },
@@ -355,7 +355,7 @@
       "class_restriction": "궁수",
       "trigger": "passive",
       "effect": {
-        "ko": "화살(矢) 최대 보유량이 3 증가하고, 전투 시작 시 화살 2개를 추가로 지급한다.",
+        "ko": "화살 최대 보유량이 3 증가하고, 전투 시작 시 화살 2개를 추가로 지급한다.",
         "en": "Max arrow capacity increased by 3, and gain 2 extra arrows at the start of combat."
       },
       "effect_description": {
@@ -379,7 +379,7 @@
       "id": "R011",
       "name": {
         "ko": "상단 장부",
-        "hanja": "商團帳簿",
+        "hanja": "",
         "romanized": "Sangdan Jangbu",
         "en": "Merchant Ledger"
       },
@@ -412,7 +412,7 @@
       "id": "R012",
       "name": {
         "ko": "어사마패",
-        "hanja": "御使馬牌",
+        "hanja": "",
         "romanized": "Eosamamapae",
         "en": "Royal Inspector's Badge"
       },
@@ -420,7 +420,7 @@
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 가장 체력이 높은 적에게 취약(脆弱) 2를 부여한다.",
+        "ko": "전투 시작 시 가장 체력이 높은 적에게 취약 2를 부여한다.",
         "en": "At the start of combat, apply 2 Vulnerable to the enemy with the highest HP."
       },
       "effect_description": {
@@ -446,7 +446,7 @@
       "id": "R013",
       "name": {
         "ko": "만파식적",
-        "hanja": "萬波息笛",
+        "hanja": "",
         "romanized": "Manpasikjeok",
         "en": "Manpasikjeok"
       },
@@ -478,7 +478,7 @@
       "id": "R014",
       "name": {
         "ko": "저주받은 투구",
-        "hanja": "呪冑",
+        "hanja": "",
         "romanized": "Juchu",
         "en": "Cursed Helm"
       },
@@ -486,7 +486,7 @@
       "class_restriction": null,
       "trigger": "dual",
       "effect": {
-        "ko": "공격 카드 사용 시 대상에게 출혈(出血) 1을 추가로 부여한다. 단, 매 전투 시작 시 자신에게 독(毒) 3이 부여된다.",
+        "ko": "공격 카드 사용 시 대상에게 출혈 1을 추가로 부여한다. 단, 매 전투 시작 시 자신에게 독 3이 부여된다.",
         "en": "When playing an attack card, apply 1 additional Bleed to the target. However, gain 3 Poison on yourself at the start of each combat."
       },
       "effect_description": {
@@ -511,7 +511,7 @@
       "id": "R015",
       "name": {
         "ko": "삼족오 깃털",
-        "hanja": "三足烏羽",
+        "hanja": "",
         "romanized": "Samjogo Gitteo",
         "en": "Three-Legged Crow Feather"
       },
@@ -519,7 +519,7 @@
       "class_restriction": null,
       "trigger": "on_turn_start",
       "effect": {
-        "ko": "매 턴 시작 시 행동력(行動力) 1을 추가로 획득한다. 단, 시작 덱에 저주 카드 2장이 추가된다.",
+        "ko": "매 턴 시작 시 행동력 1을 추가로 획득한다. 단, 시작 덱에 저주 카드 2장이 추가된다.",
         "en": "Gain 1 additional AP at the start of each turn. However, 2 Curse cards are added to your starting deck."
       },
       "effect_description": {
@@ -543,7 +543,7 @@
       "id": "RS001",
       "name": {
         "ko": "부적 낭",
-        "hanja": "符籍囊",
+        "hanja": "",
         "romanized": "Bujeok Nang",
         "en": "Talisman Pouch"
       },
@@ -572,7 +572,7 @@
       "id": "RS002",
       "name": {
         "ko": "마패",
-        "hanja": "馬牌",
+        "hanja": "",
         "romanized": "Mapae",
         "en": "Horse Medallion"
       },
@@ -603,7 +603,7 @@
       "id": "RS003",
       "name": {
         "ko": "필연",
-        "hanja": "筆硯",
+        "hanja": "",
         "romanized": "Pilyeon",
         "en": "Brush and Inkstone"
       },
@@ -634,7 +634,7 @@
       "id": "R016",
       "name": {
         "ko": "약재 꾸러미",
-        "hanja": "藥材包",
+        "hanja": "",
         "romanized": "Yakmae Kkurumi",
         "en": "Herbal Bundle"
       },
@@ -642,7 +642,7 @@
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 독(毒) 상태이상을 모두 해제한다.",
+        "ko": "전투 시작 시 독 상태이상을 모두 해제한다.",
         "en": "Remove all Poison at the start of each combat."
       },
       "effect_description": {
@@ -667,7 +667,7 @@
       "id": "R017",
       "name": {
         "ko": "낡은 방패",
-        "hanja": "老盾",
+        "hanja": "",
         "romanized": "Nalgeun Banpae",
         "en": "Worn Shield"
       },
@@ -700,7 +700,7 @@
       "id": "R018",
       "name": {
         "ko": "이름 없는 비수",
-        "hanja": "無名匕首",
+        "hanja": "",
         "romanized": "Ireum Eopneun Bisu",
         "en": "Nameless Dagger"
       },
@@ -708,18 +708,18 @@
       "class_restriction": null,
       "trigger": "on_kill_enemy",
       "effect": {
-        "ko": "적을 처치할 때마다 기(氣) 1을 즉시 회복한다.",
+        "ko": "적을 처치할 때마다 기 1을 즉시 회복한다.",
         "en": "Recover 1 Qi immediately whenever you kill an enemy."
       },
       "effect_description": {
-        "ko": "적 처치 시 기(氣) +1",
+        "ko": "적 처치 시 기 +1",
         "en": "Qi +1 on enemy kill."
       },
       "flavor_text": {
         "ko": "이름도 주인도 모르는 칼 — 피를 볼 때마다 힘이 솟는 것 같다.",
         "en": "A blade with no name or owner — strength surges with every drop of blood."
       },
-      "balance_rationale": "일반 유물. 다수 적 전투(소환 포함)에서 강력. 적 처치마다 기(氣) 1 추가로 콤보 확장. 단독 전투에선 1회만 발동. 처치 압박 유도로 공격적 플레이 강화.",
+      "balance_rationale": "일반 유물. 다수 적 전투(소환 포함)에서 강력. 적 처치마다 기 1 추가로 콤보 확장. 단독 전투에선 1회만 발동. 처치 압박 유도로 공격적 플레이 강화.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -733,7 +733,7 @@
       "id": "R019",
       "name": {
         "ko": "도끼 부적",
-        "hanja": "斧符",
+        "hanja": "",
         "romanized": "Dokki Bujeok",
         "en": "Axe Talisman"
       },
@@ -741,11 +741,11 @@
       "class_restriction": null,
       "trigger": "sijo_milestone_2",
       "effect": {
-        "ko": "시조 초장(2슬롯)을 완성할 때마다 기(氣) 1을 추가 회복한다. (기존 부분 완성 보상에 누적)",
+        "ko": "시조 초장(2슬롯)을 완성할 때마다 기 1을 추가 회복한다. (기존 부분 완성 보상에 누적)",
         "en": "Recover 1 additional Qi whenever the Sijo first verse (2 slots) is completed. (Stacks with existing partial completion rewards)"
       },
       "effect_description": {
-        "ko": "초장 완성 시 기(氣) 추가 +1",
+        "ko": "초장 완성 시 기 추가 +1",
         "en": "Qi +1 on first verse completion."
       },
       "flavor_text": {
@@ -765,7 +765,7 @@
       "id": "R020",
       "name": {
         "ko": "금강석",
-        "hanja": "金剛石",
+        "hanja": "",
         "romanized": "Geumgangseok",
         "en": "Adamantine"
       },
@@ -798,7 +798,7 @@
       "id": "R021",
       "name": {
         "ko": "용뇨",
-        "hanja": "龍尿",
+        "hanja": "",
         "romanized": "Yongnyo",
         "en": "Dragon Ambergris"
       },
@@ -806,18 +806,18 @@
       "class_restriction": null,
       "trigger": "on_card_exhaust",
       "effect": {
-        "ko": "카드가 소멸(exhaust)될 때마다 기(氣) 1을 회복한다.",
+        "ko": "카드가 소멸(exhaust)될 때마다 기 1을 회복한다.",
         "en": "Recover 1 Qi whenever a card is Exhausted."
       },
       "effect_description": {
-        "ko": "카드 소멸 시 기(氣) +1",
+        "ko": "카드 소멸 시 기 +1",
         "en": "Qi +1 on card Exhaust."
       },
       "flavor_text": {
         "ko": "용의 오줌에 기운이 있다 — 소멸하는 것도 에너지가 된다.",
         "en": "There is power in dragon ambergris — even what vanishes becomes energy."
       },
-      "balance_rationale": "고급 유물. 소멸 메카닉 카드(도사 축지법 등 일부 카드, 저주 카드)와 시너지. 저주 카드를 일부러 소멸시켜 기(氣) 회복하는 전략적 빌드 지원.",
+      "balance_rationale": "고급 유물. 소멸 메카닉 카드(도사 축지법 등 일부 카드, 저주 카드)와 시너지. 저주 카드를 일부러 소멸시켜 기 회복하는 전략적 빌드 지원.",
       "obtain_from": [
         "elite_reward",
         "shop"
@@ -830,7 +830,7 @@
       "id": "R022",
       "name": {
         "ko": "흑요석 인장",
-        "hanja": "黑曜石印章",
+        "hanja": "",
         "romanized": "Heugyoseok Injang",
         "en": "Obsidian Seal"
       },
@@ -862,7 +862,7 @@
       "id": "R023",
       "name": {
         "ko": "달빛 거울",
-        "hanja": "月光鏡",
+        "hanja": "",
         "romanized": "Dalbich Geoul",
         "en": "Moonlight Mirror"
       },
@@ -895,7 +895,7 @@
       "id": "R024",
       "name": {
         "ko": "혈맹 계약서",
-        "hanja": "血盟契約書",
+        "hanja": "",
         "romanized": "Hyeolmaeng Gyeyakseo",
         "en": "Blood Pact"
       },
@@ -927,7 +927,7 @@
       "id": "R025",
       "name": {
         "ko": "오행진",
-        "hanja": "五行陣",
+        "hanja": "",
         "romanized": "Ohaengjin",
         "en": "Five Elements Formation"
       },
@@ -935,11 +935,11 @@
       "class_restriction": null,
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 힘(strength) 1과 기(氣) 최대치 +1을 이번 전투 동안 획득한다. 전투 종료 후 초기화.",
+        "ko": "전투 시작 시 힘(strength) 1과 기 최대치 +1을 이번 전투 동안 획득한다. 전투 종료 후 초기화.",
         "en": "Gain 1 Strength and +1 max Qi for this combat at the start of battle. Resets after combat."
       },
       "effect_description": {
-        "ko": "매 전투 시작 시 힘 +1, 기(氣) 최대 +1 (전투 내 지속)",
+        "ko": "매 전투 시작 시 힘 +1, 기 최대 +1 (전투 내 지속)",
         "en": "Strength +1, max Qi +1 at battle start (lasts for combat)."
       },
       "flavor_text": {
@@ -961,7 +961,7 @@
       "id": "R026",
       "name": {
         "ko": "천문도",
-        "hanja": "天文圖",
+        "hanja": "",
         "romanized": "Cheonmundo",
         "en": "Star Chart"
       },
@@ -994,7 +994,7 @@
       "id": "R027",
       "name": {
         "ko": "왕의 옥새",
-        "hanja": "王璽",
+        "hanja": "",
         "romanized": "Wangui Oksae",
         "en": "Royal Jade Seal"
       },
@@ -1027,7 +1027,7 @@
       "id": "R028",
       "name": {
         "ko": "불사신 부적",
-        "hanja": "不死符",
+        "hanja": "",
         "romanized": "Bulsasin Bujeok",
         "en": "Immortality Talisman"
       },
@@ -1059,7 +1059,7 @@
       "id": "RM001",
       "name": {
         "ko": "병서",
-        "hanja": "兵書",
+        "hanja": "",
         "romanized": "Byeongseo",
         "en": "Art of War"
       },
@@ -1067,11 +1067,11 @@
       "class_restriction": "무관",
       "trigger": "on_formation_card_play",
       "effect": {
-        "ko": "진형(陣形) 카드를 사용할 때마다 기력(氣力)을 1 추가 획득한다.",
+        "ko": "진형 카드를 사용할 때마다 기력을 1 추가 획득한다.",
         "en": "Gain 1 additional Stamina whenever you play a Formation card."
       },
       "effect_description": {
-        "ko": "진형 카드 사용 시 기력(氣力) +1 추가 (무관 전용)",
+        "ko": "진형 카드 사용 시 기력 +1 추가 (무관 전용)",
         "en": "Stamina +1 on Formation card play (Warrior only)."
       },
       "flavor_text": {
@@ -1092,7 +1092,7 @@
       "id": "RW001",
       "name": {
         "ko": "어진",
-        "hanja": "御眞",
+        "hanja": "",
         "romanized": "Eojin",
         "en": "Royal Portrait"
       },
@@ -1100,7 +1100,7 @@
       "class_restriction": "문관",
       "trigger": "on_scholarship_exhaust",
       "effect": {
-        "ko": "학식(學識)을 전소할 때마다 HP 최대치의 5%를 회복한다. (문관 전용)",
+        "ko": "학식을 전소할 때마다 HP 최대치의 5%를 회복한다. (문관 전용)",
         "en": "Restore 5% of max HP whenever Scholarship is fully spent. (Scholar only)"
       },
       "effect_description": {
@@ -1125,7 +1125,7 @@
       "id": "RD001",
       "name": {
         "ko": "선단",
-        "hanja": "仙丹",
+        "hanja": "",
         "romanized": "Seondan",
         "en": "Elixir Pill"
       },
@@ -1133,11 +1133,11 @@
       "class_restriction": "도사",
       "trigger": "on_spell_card_play",
       "effect": {
-        "ko": "주문(spell) 카드를 사용할 때마다 기(氣) 1을 추가로 획득한다. (도사 전용)",
+        "ko": "주문(spell) 카드를 사용할 때마다 기 1을 추가로 획득한다. (도사 전용)",
         "en": "Gain 1 additional Qi whenever you play a Spell card. (Taoist only)"
       },
       "effect_description": {
-        "ko": "주문 카드 사용 시 기(氣) +1 (도사 전용)",
+        "ko": "주문 카드 사용 시 기 +1 (도사 전용)",
         "en": "Qi +1 on Spell card play (Taoist only)."
       },
       "flavor_text": {
@@ -1158,7 +1158,7 @@
       "id": "RD002",
       "name": {
         "ko": "음양패",
-        "hanja": "陰陽牌",
+        "hanja": "",
         "romanized": "Eumyang-pae",
         "en": "Yin-Yang Tablet"
       },
@@ -1191,7 +1191,7 @@
       "id": "RS004",
       "name": {
         "ko": "시조집",
-        "hanja": "時調集",
+        "hanja": "",
         "romanized": "Sijojip",
         "en": "Sijo Anthology"
       },
@@ -1199,18 +1199,18 @@
       "class_restriction": null,
       "trigger": "sijo_complete",
       "effect": {
-        "ko": "시조를 완성한 턴 이후, 다음 턴에 기(氣) 1을 이월 허용한다. (최대 이월 1기, 기존 이월 없음 규칙에 예외)",
+        "ko": "시조를 완성한 턴 이후, 다음 턴에 기 1을 이월 허용한다. (최대 이월 1기, 기존 이월 없음 규칙에 예외)",
         "en": "After completing a Sijo, carry over 1 Qi to the next turn. (Max 1 Qi carryover, exception to the no-carryover rule)"
       },
       "effect_description": {
-        "ko": "시조 완성 다음 턴 기(氣) 1 이월",
+        "ko": "시조 완성 다음 턴 기 1 이월",
         "en": "Carry over 1 Qi after Sijo completion."
       },
       "flavor_text": {
         "ko": "시조를 완성한 자의 호흡은 끊기지 않는다 — 그 기운이 다음 줄로 이어진다.",
         "en": "The breath of one who completes a Sijo never breaks — that energy carries into the next verse."
       },
-      "balance_rationale": "고급 시조 시너지 유물. 시조 완성 턴의 남은 기(氣) 최대 1기를 다음 턴으로 이월. 기본 기 이월 없음 규칙의 유일한 예외. 시조 완성을 더 계획적으로 만드는 전략 심화 유물.",
+      "balance_rationale": "고급 시조 시너지 유물. 시조 완성 턴의 남은 기 최대 1기를 다음 턴으로 이월. 기본 기 이월 없음 규칙의 유일한 예외. 시조 완성을 더 계획적으로 만드는 전략 심화 유물.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1224,7 +1224,7 @@
       "id": "RS005",
       "name": {
         "ko": "장단 북",
-        "hanja": "長短鼓",
+        "hanja": "",
         "romanized": "Jangdan Buk",
         "en": "Rhythm Drum"
       },
@@ -1232,18 +1232,18 @@
       "class_restriction": null,
       "trigger": "on_wildcard_play",
       "effect": {
-        "ko": "와일드카드(beat 0, M011/M012)를 사용할 때마다 기(氣) 1을 즉시 회복한다.",
+        "ko": "와일드카드(beat 0, M011/M012)를 사용할 때마다 기 1을 즉시 회복한다.",
         "en": "Recover 1 Qi immediately whenever you play a Wildcard (beat 0, M011/M012)."
       },
       "effect_description": {
-        "ko": "와일드카드 사용 시 기(氣) +1",
+        "ko": "와일드카드 사용 시 기 +1",
         "en": "Qi +1 on Wildcard play."
       },
       "flavor_text": {
         "ko": "장단이 맞으면 흥이 난다 — 어떤 박자에도 맞는 북소리가 힘을 더한다.",
         "en": "When the rhythm aligns, excitement rises — a drum that matches any beat adds strength."
       },
-      "balance_rationale": "ZER-101 와일드카드(M011/M012) 시너지 유물. 와일드카드의 약한 직접 효과(드로우1/방어2)를 기(氣) 1 회복으로 보완. 와일드카드 2장 덱 빌드 시 기(氣) 2 추가로 콤보 확장.",
+      "balance_rationale": "ZER-101 와일드카드(M011/M012) 시너지 유물. 와일드카드의 약한 직접 효과(드로우1/방어2)를 기 1 회복으로 보완. 와일드카드 2장 덱 빌드 시 기 2 추가로 콤보 확장.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1257,7 +1257,7 @@
       "id": "RB001",
       "name": {
         "ko": "이무령의 인장",
-        "hanja": "李茂令印章",
+        "hanja": "",
         "romanized": "Yi Muryeong Injang",
         "en": "Yi Mu-ryeong's Seal"
       },
@@ -1288,7 +1288,7 @@
       "id": "RB002",
       "name": {
         "ko": "쌍두호 가죽",
-        "hanja": "兩頭虎皮",
+        "hanja": "",
         "romanized": "Ssangduho Gajuk",
         "en": "Twin-Headed Tiger Hide"
       },
@@ -1319,7 +1319,7 @@
       "id": "RB003",
       "name": {
         "ko": "역적 대감의 관인",
-        "hanja": "逆賊大監官印",
+        "hanja": "",
         "romanized": "Yeokjeok Daegam Gwanin",
         "en": "Rebel Lord's Official Seal"
       },
@@ -1353,7 +1353,7 @@
       "id": "RELIC_WANGMYEONG_PAE",
       "name": {
         "ko": "왕명패",
-        "hanja": "王命牌",
+        "hanja": "",
         "romanized": "Wangmyeong Pae",
         "en": "Royal Command Badge"
       },
@@ -1382,7 +1382,7 @@
       "id": "RS101",
       "name": {
         "ko": "옥피리",
-        "hanja": "玉笛",
+        "hanja": "",
         "romanized": "Okpiri",
         "en": "Jade Flute"
       },
@@ -1416,7 +1416,7 @@
       "id": "RS102",
       "name": {
         "ko": "호패",
-        "hanja": "號牌",
+        "hanja": "",
         "romanized": "Hopae",
         "en": "Identity Tag"
       },
@@ -1448,7 +1448,7 @@
       "id": "RS103",
       "name": {
         "ko": "연적",
-        "hanja": "硯滴",
+        "hanja": "",
         "romanized": "Yeonjeok",
         "en": "Water Dropper"
       },
@@ -1481,7 +1481,7 @@
       "id": "RS104",
       "name": {
         "ko": "청사 붓",
-        "hanja": "靑紗筆",
+        "hanja": "",
         "romanized": "Cheongsa But",
         "en": "Azure Silk Brush"
       },
@@ -1514,7 +1514,7 @@
       "id": "RS105",
       "name": {
         "ko": "무관의 갑주",
-        "hanja": "武官甲冑",
+        "hanja": "",
         "romanized": "Mugwan Gapju",
         "en": "Warrior's Armor"
       },
@@ -1546,7 +1546,7 @@
       "id": "RS106",
       "name": {
         "ko": "오얏나무 가지",
-        "hanja": "李木枝",
+        "hanja": "",
         "romanized": "Oyat Namu Gaji",
         "en": "Plum Tree Branch"
       },
@@ -1578,7 +1578,7 @@
       "id": "RS107",
       "name": {
         "ko": "해시계 조각",
-        "hanja": "日晷片",
+        "hanja": "",
         "romanized": "Haesigye Jogak",
         "en": "Sundial Fragment"
       },
@@ -1611,7 +1611,7 @@
       "id": "RS108",
       "name": {
         "ko": "사군자 족자",
-        "hanja": "四君子簇子",
+        "hanja": "",
         "romanized": "Sagunja Jokja",
         "en": "Four Gentlemen Scroll"
       },
@@ -1644,7 +1644,7 @@
       "id": "RS109",
       "name": {
         "ko": "도사의 부적",
-        "hanja": "道士符籍",
+        "hanja": "",
         "romanized": "Dosa Bujeok",
         "en": "Taoist's Talisman"
       },
@@ -1679,20 +1679,20 @@
       "id": "출혈",
       "ko": "출혈",
       "en": "Bleed",
-      "hanja": "出血",
+      "hanja": "",
       "description": "매 턴 시작 시 스택 수만큼 피해. 중첩 가능 (최대 10). 전투 종료 시 소멸. R014 저주받은 투구가 공격 카드 사용 시 적에게 1스택씩 적용.",
       "duration_type": "until_combat_end",
       "visual_note": "붉은 핏방울 아이콘. [ZER-56에서 공식 정의 추가]"
     }
   ],
   "curse_cards_reference": {
-    "note": "저주 카드(呪牌)는 R015 등 일부 유물·이벤트로 덱에 추가되는 부정적 카드. 사용 불가이며 핸드를 차지함.",
+    "note": "저주 카드는 R015 등 일부 유물·이벤트로 덱에 추가되는 부정적 카드. 사용 불가이며 핸드를 차지함.",
     "examples": [
       {
         "id": "CURSE_001",
         "name": {
           "ko": "무기력",
-          "hanja": "無氣力",
+          "hanja": "",
           "romanized": "Mugiryeok",
           "en": "Lethargy"
         },
@@ -1706,7 +1706,7 @@
         "id": "CURSE_002",
         "name": {
           "ko": "오물",
-          "hanja": "汚物",
+          "hanja": "",
           "romanized": "Omul",
           "en": "Filth"
         },

@@ -128,7 +128,7 @@
         {
           "id": "mugwan_munmuwi",
           "text": {
-            "ko": "[무관] '문무쌍전(文武雙全)' — 붓과 칼을 함께 익힌다.",
+            "ko": "[무관] '문무쌍전' — 붓과 칼을 함께 익힌다.",
             "en": "[Warrior] 'Scholar-Warrior' — Master both the brush and the blade."
           },
           "job_required": "mugwan",
@@ -158,7 +158,7 @@
         {
           "id": "mungwan_gangjik",
           "text": {
-            "ko": "[문관] '강직한 문관(剛直文官)' — 학문보다 백성을 택한다.",
+            "ko": "[문관] '강직한 문관' — 학문보다 백성을 택한다.",
             "en": "[Scholar] 'The Upright Scholar' — Choose the people over academic pursuit."
           },
           "job_required": "mungwan",
@@ -189,7 +189,7 @@
         {
           "id": "dosa_sesogin",
           "text": {
-            "ko": "[도사] '세속의 인연(世俗因緣)' — 선계를 포기하고 세상과 함께한다.",
+            "ko": "[도사] '세속의 인연' — 선계를 포기하고 세상과 함께한다.",
             "en": "[Taoist] 'Worldly Bonds' — Forsake the celestial realm and walk among mortals."
           },
           "job_required": "dosa",
@@ -202,13 +202,13 @@
             "penalty_effect": "ki_generation_reduce",
             "penalty_meta": {
               "reduce_percent": 25,
-              "description": "기(氣) 생성량이 25% 감소 (소수점 내림)"
+              "description": "기 생성량이 25% 감소 (소수점 내림)"
             },
             "display_text": "기력 +3 (최대치), 기 생성량 -25%"
           },
           "effect_value": 3,
           "result_text": {
-            "ko": "선계의 연을 끊고 세상에 발을 디뎠다. 기력을 쌓을 수 있지만, 기(氣)의 흐름이 더뎌졌다. 힘은 세졌지만 신비는 옅어졌다.",
+            "ko": "선계의 연을 끊고 세상에 발을 디뎠다. 기력을 쌓을 수 있지만, 기의 흐름이 더뎌졌다. 힘은 세졌지만 신비는 옅어졌다.",
             "en": "You sever your ties to the celestial realm and set foot in the mortal world. You can now build stamina, but the flow of Qi has slowed. Stronger, yet less mystical."
           },
           "result_title": "세속의 인연",
@@ -354,7 +354,7 @@
     "EVT_JOB_CONFLICT": {
       "mugwan_munmuwi": "학식 3은 연적(유물) 없이도 시조 단축에 기여. 카드 제거 선택권을 주어 부정적 느낌 최소화.",
       "mungwan_gangjik": "HP 회복은 초당 아닌 이벤트 기반으로 예측 가능. 학식 소비 카드 -10%는 고뎀 카드(예상 100 데미지)에서 10 손실 — 인지 가능 수준으로 조정.",
-      "dosa_sesogin": "기 생성 -25%는 기(氣) 관련 시스템 전체에 영향. 도사 후기 스케일에서 체감 큼. 기력 3 획득은 즉각적 전투력 향상으로 보상 명확.",
+      "dosa_sesogin": "기 생성 -25%는 기 관련 시스템 전체에 영향. 도사 후기 스케일에서 체감 큼. 기력 3 획득은 즉각적 전투력 향상으로 보상 명확.",
       "design_intent": "직업 교차 빌드 탐험. 순수 직업 vs 하이브리드 선택의 갈림길. 각 페널티는 직업 정체성의 반대급부로 설계."
     },
     "EVT_SIJO_TRAINING": {

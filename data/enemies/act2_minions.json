@@ -7,7 +7,7 @@
       "id": "E_BYEONGSA",
       "name": {
         "ko": "병사",
-        "hanja": "兵士",
+        "hanja": "",
         "en": "Soldier"
       },
       "description": {
@@ -60,7 +60,7 @@
       "id": "E_DANGPA_FOLLOWER",
       "name": {
         "ko": "당파 추종자",
-        "hanja": "黨派追從者",
+        "hanja": "",
         "en": "Faction Follower"
       },
       "description": {

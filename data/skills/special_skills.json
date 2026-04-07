@@ -32,12 +32,15 @@
         "description": "엘리트/보스전에서 미방어 대피해(25+) 수신 시 최대 HP -2 영구 감소",
         "trigger_threshold": 25,
         "hp_loss": 2,
-        "applies_to": ["elite", "boss"],
+        "applies_to": [
+          "elite",
+          "boss"
+        ],
         "rationale": "런 후반으로 갈수록 방어의 전략적 가치를 높인다. 방어 카드를 선택하지 않으면 최대 HP가 점진적으로 줄어들어 생존 압박 증가."
       }
     },
     "energy": {
-      "description": "기(氣) 에너지 시스템",
+      "description": "기 에너지 시스템",
       "base_energy_per_turn": 3,
       "carry_over": false,
       "rationale": "매 턴 초기화. 기를 저장하는 전략 배제 — 이번 턴 시조 완성에 집중하게 유도.",
@@ -61,11 +64,11 @@
     {
       "class_id": "dosa",
       "class_ko": "도사",
-      "class_hanja": "道士",
+      "class_hanja": "",
       "passive_name": {
-        "ko": "천지기(天地氣)",
+        "ko": "천지기",
         "description": {
-          "ko": "턴 종료 시 시조 슬롯이 2칸 이상 채워져 있으면 기(氣) 1을 회복한다.",
+          "ko": "턴 종료 시 시조 슬롯이 2칸 이상 채워져 있으면 기 1을 회복한다.",
           "en": "At end of turn, if 2 or more Sijo slots are filled, recover 1 Qi."
         },
         "en": "Heavenly Qi"
@@ -73,7 +76,7 @@
       "passive_rationale": "3슬롯 중 2칸 이상 채우면 기 회복. 매 턴 완성 사이클이므로 카드 2장 이상 사용 시 보상.",
       "active_skill": {
         "name": {
-          "ko": "방술 개방(方術開放)",
+          "ko": "방술 개방",
           "description": {
             "ko": "전투 시작 시 1회 발동. 시조 슬롯 처음 2칸을 [기공 3] → [결인 4] 순서로 자동으로 채운다.",
             "en": "Activates once at combat start. Automatically fills the first 2 Sijo slots with [Qigong 3] then [Mudra 4]."
@@ -87,8 +90,8 @@
       "starting_relic": {
         "id": "RS001",
         "name": {
-          "ko": "부적 낭(符籍 囊)",
-          "hanja": "符籍囊",
+          "ko": "부적 낭( )",
+          "hanja": "",
           "en": "Talisman Pouch"
         },
         "effect": {
@@ -103,7 +106,7 @@
       },
       "tactical_loop": {
         "name": "도사 기동 루프",
-        "description": "기(氣) 관리와 시조 완성 사이클을 반복하는 플레이 패턴.",
+        "description": "기 관리와 시조 완성 사이클을 반복하는 플레이 패턴.",
         "loop_steps": [
           "1. 후퇴(M003) 또는 기공(D001)으로 [3] 슬롯 채우며 기 절약/확보",
           "2. 결인(D002) 또는 도약(M002)으로 [4] 슬롯 채우며 다음 공격 버프 준비",
@@ -122,9 +125,9 @@
     {
       "class_id": "mugwan",
       "class_ko": "무관",
-      "class_hanja": "武官",
+      "class_hanja": "",
       "passive_name": {
-        "ko": "지휘통솔(指揮統率)",
+        "ko": "지휘통솔",
         "description": {
           "ko": "병사 토큰이 1개 이상 있으면 매 턴 시작 시 방어도 2를 추가로 획득한다.",
           "en": "If you have 1 or more soldier tokens, gain 2 extra Block at the start of each turn."
@@ -134,9 +137,9 @@
       "passive_rationale": "진형 구성(병사 토큰 생성)을 유지하는 보상. 토큰 소모 후 재생성 사이클을 강화.",
       "active_skill": {
         "name": {
-          "ko": "군령 하달(軍令 下達)",
+          "ko": "군령 하달( )",
           "description": {
-            "ko": "전투 중 1회 사용 가능. 현재 보유한 병사 토큰 수만큼 기(氣)를 즉시 회복한다. (최대 3기)",
+            "ko": "전투 중 1회 사용 가능. 현재 보유한 병사 토큰 수만큼 기를 즉시 회복한다. (최대 3기)",
             "en": "Usable once per combat. Instantly recover Qi equal to the number of soldier tokens you have. (Max 3 Qi)"
           },
           "en": "Issue Military Orders"
@@ -148,8 +151,8 @@
       "starting_relic": {
         "id": "RS002",
         "name": {
-          "ko": "마패(馬牌)",
-          "hanja": "馬牌",
+          "ko": "마패",
+          "hanja": "",
           "en": "Horse Medallion"
         },
         "effect": {
@@ -195,9 +198,9 @@
     {
       "class_id": "mungwan",
       "class_ko": "문관",
-      "class_hanja": "文官",
+      "class_hanja": "",
       "passive_name": {
-        "ko": "학식충전(學識充電)",
+        "ko": "학식충전",
         "description": {
           "ko": "턴 종료 시 이번 턴에 카드를 3장 이상 사용했으면 학식 1을 획득한다.",
           "en": "At end of turn, if you played 3 or more cards this turn, gain 1 Erudition."
@@ -207,7 +210,7 @@
       "passive_rationale": "카드 사용 장려. 적극적인 플레이를 보상하여 학식 축적 사이클 가속. 3장 조건은 기 3/턴 기준 0코스트 카드(독서) 포함 시 자연스럽게 충족.",
       "active_skill": {
         "name": {
-          "ko": "경연개설(經筵開設)",
+          "ko": "경연개설",
           "description": {
             "ko": "전투 중 1회 사용 가능. 학식을 즉시 3 획득한다.",
             "en": "Usable once per combat. Instantly gain 3 Erudition."
@@ -221,8 +224,8 @@
       "starting_relic": {
         "id": "RS003",
         "name": {
-          "ko": "필연(筆硯)",
-          "hanja": "筆硯",
+          "ko": "필연",
+          "hanja": "",
           "en": "Brush and Inkstone"
         },
         "effect": {

@@ -6,12 +6,12 @@
   "id": "B_ACT2_MID_GUNGAN",
   "name": {
     "ko": "군관",
-    "hanja": "軍官",
+    "hanja": "",
     "romanized": "Gungan",
     "en": "Military Officer"
   },
   "description": {
-    "ko": "군역을 면제해주는 대가로 포은(布銀)을 강요하는 부패한 무관. 자신의 병사들이 쓰러지면 오히려 더 결사적으로 싸운다.",
+    "ko": "군역을 면제해주는 대가로 포은을 강요하는 부패한 무관. 자신의 병사들이 쓰러지면 오히려 더 결사적으로 싸운다.",
     "en": "A corrupt military officer who demands cloth-tax in exchange for military service exemption. Fights even more desperately when his soldiers fall."
   },
   "flavor": "\"군역을 대신할 포은 300냥을 내라.\"",

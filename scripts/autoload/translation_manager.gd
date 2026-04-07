@@ -66,20 +66,14 @@ func trd(data: Dictionary, field: String, fallback: String = "") -> String:
 	return fallback
 
 
-func trd_name(data: Dictionary, include_hanja: bool = true) -> String:
-	## 이름 필드 전용 헬퍼. name.ko + name.hanja 조합.
-	## 영어 로케일에서는 영어 이름만 반환.
+func trd_name(data: Dictionary, _include_hanja: bool = false) -> String:
+	## 이름 필드 전용 헬퍼. name.ko 또는 name.en 반환.
 	var name_data = data.get("name", {})
 	if not name_data is Dictionary:
 		return str(name_data) if name_data else ""
 	var locale := get_locale()
 	if locale == "ko":
-		var ko: String = name_data.get("ko", "")
-		if include_hanja:
-			var hanja: String = name_data.get("hanja", "")
-			if hanja != "":
-				return "%s(%s)" % [ko, hanja]
-		return ko
+		return name_data.get("ko", "")
 	# 영어 또는 기타 로케일
 	if name_data.has(locale):
 		return name_data[locale]

@@ -24,7 +24,7 @@
       "id": "E201",
       "name": {
         "ko": "산적",
-        "hanja": "山賊",
+        "hanja": "",
         "romanized": "Sanjok",
         "en": "Bandit"
       },
@@ -125,7 +125,7 @@
       "id": "E202",
       "name": {
         "ko": "처녀귀신",
-        "hanja": "處女鬼神",
+        "hanja": "",
         "romanized": "Cheonyeo Gwisin",
         "en": "Maiden Ghost"
       },
@@ -250,7 +250,7 @@
       "id": "E203",
       "name": {
         "ko": "산사 승병",
-        "hanja": "山寺 僧兵",
+        "hanja": "",
         "romanized": "Sansa Seungbyeong",
         "en": "Temple Warrior Monk"
       },
@@ -376,7 +376,7 @@
       "id": "E204",
       "name": {
         "ko": "독사",
-        "hanja": "毒蛇",
+        "hanja": "",
         "romanized": "Doksa",
         "en": "Viper"
       },
@@ -499,12 +499,12 @@
       "id": "E205",
       "name": {
         "ko": "산령",
-        "hanja": "山靈",
+        "hanja": "",
         "romanized": "Sanryeong",
         "en": "Mountain Spirit"
       },
       "description": {
-        "ko": "지리산에 오래 깃든 산의 정령. 방어와 기(氣) 흡수로 플레이어의 전력을 갉아먹는다.",
+        "ko": "지리산에 오래 깃든 산의 정령. 방어와 기 흡수로 플레이어의 전력을 갉아먹는다.",
         "en": "An ancient spirit dwelling in Jirisan. Drains the player's power through defense and Qi absorption."
       },
       "hp": {
@@ -528,7 +528,7 @@
         {
           "id": "ki_drain",
           "name": {
-            "ko": "기(氣) 흡수",
+            "ko": "기 흡수",
             "en": "Qi Drain"
           },
           "intent": "attack_debuff",
@@ -610,14 +610,14 @@
         "card_chance": 0.3,
         "relic_chance": 0.08
       },
-      "ai_pattern": "방어와 기(氣) 흡수를 반복하며 지구전을 유도한다. 재생 버프로 처치가 지연되는 구간에서 약화 누적이 가장 위험.",
+      "ai_pattern": "방어와 기 흡수를 반복하며 지구전을 유도한다. 재생 버프로 처치가 지연되는 구간에서 약화 누적이 가장 위험.",
       "balance_note": "ki_drain(약화2+힘1흡수)는 플레이어 공격력을 줄이면서 자신은 강해지는 이중 효과. regenerate(HP+4×2턴)는 처치 속도를 늦춰 ki_drain을 2회 이상 허용. 고화력 집중이나 방어도 초과 피해 카드 권장."
     },
     {
       "id": "E206",
       "name": {
         "ko": "도술사",
-        "hanja": "道術士",
+        "hanja": "",
         "romanized": "Dosulsa",
         "en": "Sorcerer"
       },
@@ -727,7 +727,7 @@
       "id": "E207",
       "name": {
         "ko": "갈호",
-        "hanja": "渴虎",
+        "hanja": "",
         "romanized": "Galho",
         "en": "Starving Tiger"
       },
@@ -844,7 +844,7 @@
       "id": "E208",
       "name": {
         "ko": "별감",
-        "hanja": "別監",
+        "hanja": "",
         "romanized": "Byeolgam",
         "en": "Inspector"
       },
@@ -941,7 +941,7 @@
       "id": "E209",
       "name": {
         "ko": "토포사",
-        "hanja": "討捕使",
+        "hanja": "",
         "romanized": "Toposa",
         "en": "Bandit Hunter"
       },
@@ -1051,7 +1051,7 @@
       "id": "E210",
       "name": {
         "ko": "당파 자객",
-        "hanja": "黨派刺客",
+        "hanja": "",
         "romanized": "Dangpa Jagaek",
         "en": "Faction Assassin"
       },
@@ -1166,7 +1166,7 @@
       "id": "E211",
       "name": {
         "ko": "역관",
-        "hanja": "譯官",
+        "hanja": "",
         "romanized": "Yeokgwan",
         "en": "Interpreter Spy"
       },
@@ -1288,7 +1288,7 @@
       "id": "E212",
       "name": {
         "ko": "부패 관원",
-        "hanja": "腐敗官員",
+        "hanja": "",
         "romanized": "Bupae Gwanwon",
         "en": "Corrupt Magistrate"
       },
@@ -1400,7 +1400,7 @@
       "id": "E213",
       "name": {
         "ko": "화약술사",
-        "hanja": "火藥術士",
+        "hanja": "",
         "romanized": "Hwayak Sulsa",
         "en": "Explosives Scholar"
       },
@@ -1519,7 +1519,7 @@
       "id": "EL201",
       "name": {
         "ko": "백호",
-        "hanja": "白虎",
+        "hanja": "",
         "romanized": "Baekho",
         "en": "White Tiger"
       },
@@ -1655,7 +1655,7 @@
       "id": "EL202",
       "name": {
         "ko": "도적 두목",
-        "hanja": "盜賊頭目",
+        "hanja": "",
         "romanized": "Dojeok Dumok",
         "en": "Bandit Chief"
       },
@@ -1795,7 +1795,7 @@
       "id": "EL203",
       "name": {
         "ko": "구미호",
-        "hanja": "九尾狐",
+        "hanja": "",
         "romanized": "Gumiho",
         "en": "Nine-Tailed Fox"
       },
@@ -1994,7 +1994,7 @@
       "id": "매혹",
       "ko": "매혹",
       "en": "Charm",
-      "hanja": "魅惑",
+      "hanja": "",
       "description": "스택 수만큼 적에게 주는 공격 피해 감소. 2턴 지속. EL203 구미호 신규 디버프."
     },
     {

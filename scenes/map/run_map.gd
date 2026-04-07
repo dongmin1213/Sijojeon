@@ -31,7 +31,7 @@ const NODE_ICONS := {
 	MapData.NodeType.SHOP: "￥",
 	MapData.NodeType.REST: "♨",
 	MapData.NodeType.BOSS: "☠",
-	MapData.NodeType.GWAGEO: "筆",
+	MapData.NodeType.GWAGEO: "📝",
 }
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)

@@ -4,13 +4,13 @@
   "class": "common",
   "category": "movement",
   "description": "공통 카드 풀 — 이동/회피/지원 24종 + 시문 5종 + 무예 8종 + 책략 7종 + 술법 5종 + 외교 5종. 총 54장 (ZER-244).",
-  "balance_ref": "ZER-94 (카드 풀 확대), ZER-101 (시조 접근성 개선), ZER-233 (12→24), ZER-244 (24→54 확장). 기준: 1코스트 공격 6피해(베기), 1코스트 방어 5방어도(수호). 기(氣) 기본 3/턴. beat:5 = 종장 둘째 슬롯 전용.",
+  "balance_ref": "ZER-94 (카드 풀 확대), ZER-101 (시조 접근성 개선), ZER-233 (12→24), ZER-244 (24→54 확장). 기준: 1코스트 공격 6피해(베기), 1코스트 방어 5방어도(수호). 기 기본 3/턴. beat:5 = 종장 둘째 슬롯 전용.",
   "cards": [
     {
       "id": "M001",
       "name": {
         "ko": "회피",
-        "hanja": "回避",
+        "hanja": "",
         "romanized": "Hoepi",
         "en": "Evasion"
       },
@@ -45,7 +45,7 @@
       "id": "M002",
       "name": {
         "ko": "도약",
-        "hanja": "跳躍",
+        "hanja": "",
         "romanized": "Doyak",
         "en": "Leap"
       },
@@ -82,7 +82,7 @@
       "id": "M003",
       "name": {
         "ko": "후퇴",
-        "hanja": "後退",
+        "hanja": "",
         "romanized": "Hutoe",
         "en": "Retreat"
       },
@@ -96,7 +96,7 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "방어도 2를 획득한다. 대상 적에게 약화(弱化) 1을 부여한다.",
+        "ko": "방어도 2를 획득한다. 대상 적에게 약화 1을 부여한다.",
         "en": "Gain 2 Block. Apply 1 Weaken to the target enemy."
       },
       "effect_upgraded": {
@@ -119,7 +119,7 @@
       "id": "M004",
       "name": {
         "ko": "측면 강타",
-        "hanja": "側面强打",
+        "hanja": "",
         "romanized": "Eukmyeon Gangta",
         "en": "Flank Strike"
       },
@@ -154,7 +154,7 @@
       "id": "M005",
       "name": {
         "ko": "포복",
-        "hanja": "匍匐",
+        "hanja": "",
         "romanized": "Pobok",
         "en": "Crawl"
       },
@@ -191,7 +191,7 @@
       "id": "M006",
       "name": {
         "ko": "선제 공격",
-        "hanja": "先制攻擊",
+        "hanja": "",
         "romanized": "Seongje Gonggyeok",
         "en": "Preemptive Strike"
       },
@@ -226,7 +226,7 @@
       "id": "M007",
       "name": {
         "ko": "방어 자세",
-        "hanja": "防禦姿勢",
+        "hanja": "",
         "romanized": "Bangeo Jase",
         "en": "Defensive Stance"
       },
@@ -261,7 +261,7 @@
       "id": "M008",
       "name": {
         "ko": "눈치",
-        "hanja": "眼色",
+        "hanja": "",
         "romanized": "Nunchi",
         "en": "Nunchi"
       },
@@ -296,7 +296,7 @@
       "id": "M009",
       "name": {
         "ko": "기회 포착",
-        "hanja": "機會捕捉",
+        "hanja": "",
         "romanized": "Gihoe Poche",
         "en": "Seize the Moment"
       },
@@ -333,7 +333,7 @@
       "id": "M010",
       "name": {
         "ko": "버티기",
-        "hanja": "堅持",
+        "hanja": "",
         "romanized": "Beotigi",
         "en": "Endure"
       },
@@ -368,7 +368,7 @@
       "id": "M011",
       "name": {
         "ko": "흥",
-        "hanja": "興",
+        "hanja": "",
         "romanized": "Heung",
         "en": "Excitement"
       },
@@ -383,11 +383,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "기(氣) 2를 획득한다. 카드 2장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "ko": "기 2를 획득한다. 카드 2장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
         "en": "Gain 2 Qi. Draw 2 cards. This card can be placed in any Sijo slot."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 2를 획득한다. 카드 3장을 드로우한다. 이 카드는 어느 슬롯에나 배치 가능.",
+        "ko": "기 2를 획득한다. 카드 3장을 드로우한다. 이 카드는 어느 슬롯에나 배치 가능.",
         "en": "Gain 2 Qi. Draw 3 cards. This card can be placed in any slot."
       },
       "flavor_text": {
@@ -406,7 +406,7 @@
       "id": "M012",
       "name": {
         "ko": "여백",
-        "hanja": "餘白",
+        "hanja": "",
         "romanized": "Yeobaek",
         "en": "Empty Space"
       },
@@ -443,7 +443,7 @@
       "id": "M013",
       "name": {
         "ko": "낭송",
-        "hanja": "朗誦",
+        "hanja": "",
         "romanized": "Nangseong",
         "en": "Recitation"
       },
@@ -478,7 +478,7 @@
       "id": "M014",
       "name": {
         "ko": "절창",
-        "hanja": "絶唱",
+        "hanja": "",
         "romanized": "Jeolchang",
         "en": "Masterpiece"
       },
@@ -512,7 +512,7 @@
       "id": "M015",
       "name": {
         "ko": "여운",
-        "hanja": "餘韻",
+        "hanja": "",
         "romanized": "Yeoun",
         "en": "Lingering Echo"
       },
@@ -526,11 +526,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "카드 1장을 드로우한다. 이번 턴에 시조 1줄을 완성했다면 기(氣) 2를 획득한다.",
+        "ko": "카드 1장을 드로우한다. 이번 턴에 시조 1줄을 완성했다면 기 2를 획득한다.",
         "en": "Draw 1 card. If you completed a Sijo line this turn, gain 2 Qi."
       },
       "effect_upgraded": {
-        "ko": "카드 2장을 드로우한다. 시조 완성 시 기(氣) 3을 획득한다.",
+        "ko": "카드 2장을 드로우한다. 시조 완성 시 기 3을 획득한다.",
         "en": "Draw 2 cards. Gain 3 Qi on Sijo completion."
       },
       "flavor_text": {
@@ -549,7 +549,7 @@
       "id": "M016",
       "name": {
         "ko": "음조 조율",
-        "hanja": "音調調律",
+        "hanja": "",
         "romanized": "Eumjo Joyul",
         "en": "Tonal Shift"
       },
@@ -585,7 +585,7 @@
       "id": "M017",
       "name": {
         "ko": "화답",
-        "hanja": "和答",
+        "hanja": "",
         "romanized": "Hwadap",
         "en": "Harmonize"
       },
@@ -621,7 +621,7 @@
       "id": "M018",
       "name": {
         "ko": "결연",
-        "hanja": "結緣",
+        "hanja": "",
         "romanized": "Gyeoryeon",
         "en": "Fateful Bond"
       },
@@ -637,15 +637,15 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "기(氣) 1을 획득하고 카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "ko": "기 1을 획득하고 카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
         "en": "Gain 1 Qi and draw 1 card. This card can be placed in any Sijo slot."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 2를 획득하고 카드 2장을 드로우한다. 어느 슬롯에나 배치 가능.",
+        "ko": "기 2를 획득하고 카드 2장을 드로우한다. 어느 슬롯에나 배치 가능.",
         "en": "Gain 2 Qi and draw 2 cards. Can be placed in any slot."
       },
       "flavor_text": {
-        "ko": "인연이 맺어지는 곳엔 — 기(氣)와 흐름이 자연스레 따라온다.",
+        "ko": "인연이 맺어지는 곳엔 — 기와 흐름이 자연스레 따라온다.",
         "en": "Where bonds are forged — Qi and flow follow naturally."
       },
       "balance_rationale": "1코스트 와일드. 흥(1코스트 드로우1)보다 기 회복 추가 제공. 세 번째 와일드카드로 beat 불일치 해소 + 자원 생성 겸용. 흥·여백이 이미 있는 경우 교체 우선순위를 두는 덱 구성 판단 필요.",
@@ -660,7 +660,7 @@
       "id": "M019",
       "name": {
         "ko": "명상",
-        "hanja": "冥想",
+        "hanja": "",
         "romanized": "Myeongsang",
         "en": "Meditation"
       },
@@ -673,11 +673,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기(氣) 2를 획득한다.",
+        "ko": "기 2를 획득한다.",
         "en": "Gain 2 Qi."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 3을 획득한다.",
+        "ko": "기 3을 획득한다.",
         "en": "Gain 3 Qi."
       },
       "flavor_text": {
@@ -695,7 +695,7 @@
       "id": "M020",
       "name": {
         "ko": "집중",
-        "hanja": "集中",
+        "hanja": "",
         "romanized": "Jipjung",
         "en": "Focus"
       },
@@ -732,7 +732,7 @@
       "id": "M021",
       "name": {
         "ko": "갱생",
-        "hanja": "更生",
+        "hanja": "",
         "romanized": "Gaengsaeng",
         "en": "Revival"
       },
@@ -768,7 +768,7 @@
       "id": "M022",
       "name": {
         "ko": "독공",
-        "hanja": "篤工",
+        "hanja": "",
         "romanized": "Dokkong",
         "en": "Devotion"
       },
@@ -782,15 +782,15 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "카드 1장을 드로우한다. 현재 덱에 직업 전용 카드가 5장 이상 있다면 기(氣) 2를 추가 획득한다.",
+        "ko": "카드 1장을 드로우한다. 현재 덱에 직업 전용 카드가 5장 이상 있다면 기 2를 추가 획득한다.",
         "en": "Draw 1 card. If your deck contains 5 or more class-specific cards, gain 2 additional Qi."
       },
       "effect_upgraded": {
-        "ko": "카드 2장을 드로우한다. 직업 전용 카드 5장 이상이면 기(氣) 3 추가.",
+        "ko": "카드 2장을 드로우한다. 직업 전용 카드 5장 이상이면 기 3 추가.",
         "en": "Draw 2 cards. If 5+ class cards, gain 3 additional Qi."
       },
       "flavor_text": {
-        "ko": "한 길을 깊이 파면 — 기(氣)가 저절로 따라온다.",
+        "ko": "한 길을 깊이 파면 — 기가 저절로 따라온다.",
         "en": "Delve deep into one path — and Qi follows of its own accord."
       },
       "balance_rationale": "1코스트 드로우1 + 조건부 기 2. 직업 전문화 빌드 보상. 덱의 50% 이상을 직업 카드로 채울 때 안정적으로 발동(20장 덱 기준 10장 직업 카드). 공통 카드를 최소화한 순수 직업 빌드를 장려.",
@@ -806,7 +806,7 @@
       "id": "M023",
       "name": {
         "ko": "도전",
-        "hanja": "挑戰",
+        "hanja": "",
         "romanized": "Dojeon",
         "en": "Challenge"
       },
@@ -840,7 +840,7 @@
       "id": "M024",
       "name": {
         "ko": "역습",
-        "hanja": "逆襲",
+        "hanja": "",
         "romanized": "Yeogeup",
         "en": "Counterattack"
       },
@@ -877,7 +877,7 @@
       "id": "M025",
       "name": {
         "ko": "읊조림",
-        "hanja": "吟詠",
+        "hanja": "",
         "romanized": "Eumjolim",
         "en": "Murmur"
       },
@@ -891,11 +891,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기(氣) 1을 획득한다. 이번 턴에 시조 슬롯을 2칸 이상 채웠다면 기 1을 추가 획득한다.",
+        "ko": "기 1을 획득한다. 이번 턴에 시조 슬롯을 2칸 이상 채웠다면 기 1을 추가 획득한다.",
         "en": "Gain 1 Qi. If you have filled 2 or more Sijo slots this turn, gain 1 additional Qi."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 1을 획득한다. 시조 슬롯 2칸 이상이면 기 2를 추가 획득한다.",
+        "ko": "기 1을 획득한다. 시조 슬롯 2칸 이상이면 기 2를 추가 획득한다.",
         "en": "Gain 1 Qi. If 2+ Sijo slots filled, gain 2 additional Qi."
       },
       "flavor_text": {
@@ -915,7 +915,7 @@
       "id": "M026",
       "name": {
         "ko": "운율",
-        "hanja": "韻律",
+        "hanja": "",
         "romanized": "Unryul",
         "en": "Cadence"
       },
@@ -952,7 +952,7 @@
       "id": "M027",
       "name": {
         "ko": "퇴고",
-        "hanja": "推敲",
+        "hanja": "",
         "romanized": "Toego",
         "en": "Revision"
       },
@@ -966,11 +966,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "손에서 카드 1장을 선택해 덱 맨 위로 넣는다. 카드 2장을 드로우하고 기(氣) 1을 획득한다.",
+        "ko": "손에서 카드 1장을 선택해 덱 맨 위로 넣는다. 카드 2장을 드로우하고 기 1을 획득한다.",
         "en": "Place 1 card from your hand on top of your deck. Draw 2 cards and gain 1 Qi."
       },
       "effect_upgraded": {
-        "ko": "카드 1장을 덱 맨 위로. 카드 2장 드로우 + 기(氣) 2 획득.",
+        "ko": "카드 1장을 덱 맨 위로. 카드 2장 드로우 + 기 2 획득.",
         "en": "Place 1 card on top of deck. Draw 2 cards + gain 2 Qi."
       },
       "flavor_text": {
@@ -990,7 +990,7 @@
       "id": "M028",
       "name": {
         "ko": "시상",
-        "hanja": "詩想",
+        "hanja": "",
         "romanized": "Sisang",
         "en": "Poetic Inspiration"
       },
@@ -1004,11 +1004,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기(氣) 2를 획득한다. 이번 턴에 시조 1줄(초장 또는 중장)을 완성하면 카드 1장을 드로우한다.",
+        "ko": "기 2를 획득한다. 이번 턴에 시조 1줄(초장 또는 중장)을 완성하면 카드 1장을 드로우한다.",
         "en": "Gain 2 Qi. If you complete a Sijo line (first or second) this turn, draw 1 card."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 3을 획득한다. 시조 1줄 완성 시 카드 2장 드로우.",
+        "ko": "기 3을 획득한다. 시조 1줄 완성 시 카드 2장 드로우.",
         "en": "Gain 3 Qi. Draw 2 cards on Sijo line completion."
       },
       "flavor_text": {
@@ -1027,7 +1027,7 @@
       "id": "M029",
       "name": {
         "ko": "영감",
-        "hanja": "靈感",
+        "hanja": "",
         "romanized": "Yeonggam",
         "en": "Divine Inspiration"
       },
@@ -1042,11 +1042,11 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "기(氣) 1을 획득하고 카드 1장을 드로우한다. 이번 턴 시조를 완성하면 기(氣) 3을 추가 획득하고 카드 2장을 추가 드로우한다.",
+        "ko": "기 1을 획득하고 카드 1장을 드로우한다. 이번 턴 시조를 완성하면 기 3을 추가 획득하고 카드 2장을 추가 드로우한다.",
         "en": "Gain 1 Qi and draw 1 card. If you complete a Sijo this turn, gain 3 additional Qi and draw 2 additional cards."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 2를 획득하고 카드 2장을 드로우한다. 시조 완성 시 기(氣) 4 + 카드 2장 추가.",
+        "ko": "기 2를 획득하고 카드 2장을 드로우한다. 시조 완성 시 기 4 + 카드 2장 추가.",
         "en": "Gain 2 Qi and draw 2 cards. On Sijo completion, gain 4 Qi + draw 2 additional cards."
       },
       "flavor_text": {
@@ -1067,7 +1067,7 @@
       "id": "M030",
       "name": {
         "ko": "연타",
-        "hanja": "連打",
+        "hanja": "",
         "romanized": "Yeonta",
         "en": "Flurry"
       },
@@ -1091,7 +1091,7 @@
         "ko": "한 번으로 끝나지 않는다 — 빈틈을 찾을 때까지 계속 친다.",
         "en": "One strike is not enough — keep hitting until you find the opening."
       },
-      "balance_rationale": "1코스트 총 9피해(3×3). 선제 공격(7)보다 총합 높지만 다회 히트라 방어도에 약함. 독/취약 등 스택별 효과와 시너지. 힘(力) 버프 시 3×(3+N)으로 스케일링.",
+      "balance_rationale": "1코스트 총 9피해(3×3). 선제 공격(7)보다 총합 높지만 다회 히트라 방어도에 약함. 독/취약 등 스택별 효과와 시너지. 힘 버프 시 3×(3+N)으로 스케일링.",
       "sijo_position": "초장·중장 첫 슬롯 [3]",
       "upgrade_cost": 50,
       "values": {
@@ -1103,7 +1103,7 @@
       "id": "M031",
       "name": {
         "ko": "질풍참",
-        "hanja": "疾風斬",
+        "hanja": "",
         "romanized": "Jilpungcham",
         "en": "Gale Slash"
       },
@@ -1139,7 +1139,7 @@
       "id": "M032",
       "name": {
         "ko": "견제",
-        "hanja": "牽制",
+        "hanja": "",
         "romanized": "Gyeonje",
         "en": "Harass"
       },
@@ -1152,11 +1152,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "적에게 4 피해를 입히고 약화(弱化) 1을 부여한다.",
+        "ko": "적에게 4 피해를 입히고 약화 1을 부여한다.",
         "en": "Deal 4 damage to an enemy and apply 1 Weaken."
       },
       "effect_upgraded": {
-        "ko": "적에게 6 피해를 입히고 약화(弱化) 2를 부여한다.",
+        "ko": "적에게 6 피해를 입히고 약화 2를 부여한다.",
         "en": "Deal 6 damage to an enemy and apply 2 Weaken."
       },
       "flavor_text": {
@@ -1175,7 +1175,7 @@
       "id": "M033",
       "name": {
         "ko": "몸놀림",
-        "hanja": "身法",
+        "hanja": "",
         "romanized": "Momnollim",
         "en": "Footwork"
       },
@@ -1213,7 +1213,7 @@
       "id": "M034",
       "name": {
         "ko": "승부수",
-        "hanja": "勝負手",
+        "hanja": "",
         "romanized": "Seungbusu",
         "en": "Decisive Blow"
       },
@@ -1237,7 +1237,7 @@
         "ko": "마지막 한 수에 모든 것을 건다 — 승부는 여기서 갈린다.",
         "en": "Stake everything on this final move — victory is decided here."
       },
-      "balance_rationale": "2코스트 8피해 기본. 공격 3장 사용 시 8+9=17피해. 연타→질풍참→승부수 콤보: 9+10+17=36피해(4코스트). 공격 특화 빌드의 피니셔. 기(氣) 소비가 큰 대신 폭발력 보상.",
+      "balance_rationale": "2코스트 8피해 기본. 공격 3장 사용 시 8+9=17피해. 연타→질풍참→승부수 콤보: 9+10+17=36피해(4코스트). 공격 특화 빌드의 피니셔. 기 소비가 큰 대신 폭발력 보상.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
       "upgrade_cost": 100,
       "values": {
@@ -1249,7 +1249,7 @@
       "id": "M035",
       "name": {
         "ko": "탈기",
-        "hanja": "脫氣",
+        "hanja": "",
         "romanized": "Talgi",
         "en": "Sap"
       },
@@ -1262,11 +1262,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "적에게 3 피해를 입히고 취약(脆弱) 1을 부여한다.",
+        "ko": "적에게 3 피해를 입히고 취약 1을 부여한다.",
         "en": "Deal 3 damage to an enemy and apply 1 Vulnerable."
       },
       "effect_upgraded": {
-        "ko": "적에게 5 피해를 입히고 취약(脆弱) 1을 부여한다.",
+        "ko": "적에게 5 피해를 입히고 취약 1을 부여한다.",
         "en": "Deal 5 damage to an enemy and apply 1 Vulnerable."
       },
       "flavor_text": {
@@ -1285,7 +1285,7 @@
       "id": "M036",
       "name": {
         "ko": "반격세",
-        "hanja": "反擊勢",
+        "hanja": "",
         "romanized": "Bangyeokse",
         "en": "Riposte Stance"
       },
@@ -1321,7 +1321,7 @@
       "id": "M037",
       "name": {
         "ko": "일섬",
-        "hanja": "一閃",
+        "hanja": "",
         "romanized": "Ilseom",
         "en": "Flash"
       },
@@ -1334,7 +1334,7 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "적에게 15 피해를 입힌다. 이번 턴에 공격 카드를 3장 이상 사용했다면 이 카드는 소멸(消滅)한다. 소멸 시 적에게 15 피해를 추가로 입힌다.",
+        "ko": "적에게 15 피해를 입힌다. 이번 턴에 공격 카드를 3장 이상 사용했다면 이 카드는 소멸한다. 소멸 시 적에게 15 피해를 추가로 입힌다.",
         "en": "Deal 15 damage to an enemy. If you played 3 or more attack cards this turn, this card is Exhausted. On Exhaust, deal 15 additional damage."
       },
       "effect_upgraded": {
@@ -1358,7 +1358,7 @@
       "id": "M038",
       "name": {
         "ko": "선동",
-        "hanja": "煽動",
+        "hanja": "",
         "romanized": "Seondong",
         "en": "Agitation"
       },
@@ -1393,7 +1393,7 @@
       "id": "M039",
       "name": {
         "ko": "회유",
-        "hanja": "懷柔",
+        "hanja": "",
         "romanized": "Hoeyu",
         "en": "Appeasement"
       },
@@ -1407,11 +1407,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "민심을 3 증가시킨다. 적에게 약화(弱化) 2를 부여한다.",
+        "ko": "민심을 3 증가시킨다. 적에게 약화 2를 부여한다.",
         "en": "Increase Public Favor by 3. Apply 2 Weaken to an enemy."
       },
       "effect_upgraded": {
-        "ko": "민심을 5 증가시킨다. 약화(弱化) 3을 부여한다.",
+        "ko": "민심을 5 증가시킨다. 약화 3을 부여한다.",
         "en": "Increase Public Favor by 5. Apply 3 Weaken."
       },
       "flavor_text": {
@@ -1430,7 +1430,7 @@
       "id": "M040",
       "name": {
         "ko": "위엄",
-        "hanja": "威嚴",
+        "hanja": "",
         "romanized": "Wieom",
         "en": "Authority"
       },
@@ -1444,11 +1444,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "현재 신분이 3품 이상이면 힘(力) 2를 획득한다. 6품 이하이면 방어도 6을 획득한다.",
+        "ko": "현재 신분이 3품 이상이면 힘 2를 획득한다. 6품 이하이면 방어도 6을 획득한다.",
         "en": "If your current rank is 3rd or higher, gain 2 Strength. If 6th or lower, gain 6 Block."
       },
       "effect_upgraded": {
-        "ko": "3품 이상이면 힘(力) 3. 6품 이하이면 방어도 9.",
+        "ko": "3품 이상이면 힘 3. 6품 이하이면 방어도 9.",
         "en": "Rank 3+: gain 3 Strength. Rank 6-: gain 9 Block."
       },
       "flavor_text": {
@@ -1468,7 +1468,7 @@
       "id": "M041",
       "name": {
         "ko": "모략",
-        "hanja": "謀略",
+        "hanja": "",
         "romanized": "Moryak",
         "en": "Stratagem"
       },
@@ -1505,7 +1505,7 @@
       "id": "M042",
       "name": {
         "ko": "세력 확장",
-        "hanja": "勢力擴張",
+        "hanja": "",
         "romanized": "Seryeok Hwakjang",
         "en": "Expand Influence"
       },
@@ -1543,7 +1543,7 @@
       "id": "M043",
       "name": {
         "ko": "간언",
-        "hanja": "諫言",
+        "hanja": "",
         "romanized": "Ganeon",
         "en": "Remonstrance"
       },
@@ -1580,7 +1580,7 @@
       "id": "M044",
       "name": {
         "ko": "책봉",
-        "hanja": "冊封",
+        "hanja": "",
         "romanized": "Chaekbong",
         "en": "Investiture"
       },
@@ -1594,7 +1594,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "현재 민심이 60 이상이면 힘(力) 1과 갑주(甲冑) 3을 획득한다. 민심이 30 미만이면 취약 1을 받지만 기(氣) 2를 획득한다.",
+        "ko": "현재 민심이 60 이상이면 힘 1과 갑주 3을 획득한다. 민심이 30 미만이면 취약 1을 받지만 기 2를 획득한다.",
         "en": "If Public Favor is 60 or more, gain 1 Strength and 3 Armor. If below 30, receive 1 Vulnerable but gain 2 Qi."
       },
       "effect_upgraded": {
@@ -1621,7 +1621,7 @@
       "id": "M045",
       "name": {
         "ko": "저주",
-        "hanja": "詛呪",
+        "hanja": "",
         "romanized": "Jeoju",
         "en": "Hex"
       },
@@ -1635,11 +1635,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "적에게 2 피해를 입히고 독(毒) 4를 부여한다.",
+        "ko": "적에게 2 피해를 입히고 독 4를 부여한다.",
         "en": "Deal 2 damage to an enemy and apply 4 Poison."
       },
       "effect_upgraded": {
-        "ko": "적에게 3 피해를 입히고 독(毒) 6을 부여한다.",
+        "ko": "적에게 3 피해를 입히고 독 6을 부여한다.",
         "en": "Deal 3 damage and apply 6 Poison."
       },
       "flavor_text": {
@@ -1658,7 +1658,7 @@
       "id": "M046",
       "name": {
         "ko": "부적",
-        "hanja": "符籍",
+        "hanja": "",
         "romanized": "Bujeok",
         "en": "Talisman"
       },
@@ -1672,11 +1672,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 주박(呪縛) 2를 부여한다. 방어도 4를 획득한다.",
+        "ko": "적에게 주박 2를 부여한다. 방어도 4를 획득한다.",
         "en": "Apply 2 Jinx to an enemy. Gain 4 Block."
       },
       "effect_upgraded": {
-        "ko": "주박(呪縛) 3을 부여한다. 방어도 6을 획득한다.",
+        "ko": "주박 3을 부여한다. 방어도 6을 획득한다.",
         "en": "Apply 3 Jinx. Gain 6 Block."
       },
       "flavor_text": {
@@ -1695,7 +1695,7 @@
       "id": "M047",
       "name": {
         "ko": "역병",
-        "hanja": "疫病",
+        "hanja": "",
         "romanized": "Yeokbyeong",
         "en": "Plague"
       },
@@ -1709,11 +1709,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 독(毒) 3과 화상(火傷) 3을 부여한다. 적에게 이미 독이 있다면 독을 3 추가 부여한다.",
+        "ko": "적에게 독 3과 화상 3을 부여한다. 적에게 이미 독이 있다면 독을 3 추가 부여한다.",
         "en": "Apply 3 Poison and 3 Burn to an enemy. If the enemy already has Poison, apply 3 additional Poison."
       },
       "effect_upgraded": {
-        "ko": "독(毒) 4 + 화상(火傷) 4를 부여한다. 기존 독 시 독 4 추가.",
+        "ko": "독 4 + 화상 4를 부여한다. 기존 독 시 독 4 추가.",
         "en": "Apply 4 Poison + 4 Burn. If already poisoned, apply 4 additional Poison."
       },
       "flavor_text": {
@@ -1733,7 +1733,7 @@
       "id": "M048",
       "name": {
         "ko": "사혈",
-        "hanja": "瀉血",
+        "hanja": "",
         "romanized": "Sahyeol",
         "en": "Bloodletting"
       },
@@ -1747,11 +1747,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 출혈(出血) 4를 부여한다. 적의 독(毒) 스택이 3 이상이면 출혈을 3 추가 부여한다.",
+        "ko": "적에게 출혈 4를 부여한다. 적의 독 스택이 3 이상이면 출혈을 3 추가 부여한다.",
         "en": "Apply 4 Bleed to an enemy. If the enemy has 3 or more Poison stacks, apply 3 additional Bleed."
       },
       "effect_upgraded": {
-        "ko": "출혈(出血) 6을 부여한다. 독 3 이상 시 출혈 4 추가.",
+        "ko": "출혈 6을 부여한다. 독 3 이상 시 출혈 4 추가.",
         "en": "Apply 6 Bleed. If 3+ Poison, apply 4 additional Bleed."
       },
       "flavor_text": {
@@ -1771,7 +1771,7 @@
       "id": "M049",
       "name": {
         "ko": "독살",
-        "hanja": "毒殺",
+        "hanja": "",
         "romanized": "Doksal",
         "en": "Lethal Poison"
       },
@@ -1785,7 +1785,7 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "적의 현재 독(毒) 스택의 2배만큼 즉시 피해를 입힌다. 독 스택을 절반(내림)으로 줄인다.",
+        "ko": "적의 현재 독 스택의 2배만큼 즉시 피해를 입힌다. 독 스택을 절반(내림)으로 줄인다.",
         "en": "Deal instant damage equal to 2x the enemy's current Poison stacks. Reduce their Poison stacks by half (rounded down)."
       },
       "effect_upgraded": {
@@ -1808,7 +1808,7 @@
       "id": "M050",
       "name": {
         "ko": "뇌물",
-        "hanja": "賂物",
+        "hanja": "",
         "romanized": "Noemul",
         "en": "Bribery"
       },
@@ -1822,11 +1822,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "금화 5를 소비한다. 적에게 약화(弱化) 2와 취약(脆弱) 1을 부여한다.",
+        "ko": "금화 5를 소비한다. 적에게 약화 2와 취약 1을 부여한다.",
         "en": "Spend 5 Gold. Apply 2 Weaken and 1 Vulnerable to an enemy."
       },
       "effect_upgraded": {
-        "ko": "금화 5를 소비한다. 약화(弱化) 3 + 취약(脆弱) 2를 부여한다.",
+        "ko": "금화 5를 소비한다. 약화 3 + 취약 2를 부여한다.",
         "en": "Spend 5 Gold. Apply 3 Weaken + 2 Vulnerable."
       },
       "flavor_text": {
@@ -1846,7 +1846,7 @@
       "id": "M051",
       "name": {
         "ko": "용병",
-        "hanja": "傭兵",
+        "hanja": "",
         "romanized": "Yongbyeong",
         "en": "Mercenary"
       },
@@ -1883,7 +1883,7 @@
       "id": "M052",
       "name": {
         "ko": "매관매직",
-        "hanja": "賣官賣職",
+        "hanja": "",
         "romanized": "Maegwan Maejik",
         "en": "Selling Offices"
       },
@@ -1897,11 +1897,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "금화 8을 소비한다. 힘(力) 2를 획득하고 방어도 6을 획득한다. 민심을 3 감소시킨다.",
+        "ko": "금화 8을 소비한다. 힘 2를 획득하고 방어도 6을 획득한다. 민심을 3 감소시킨다.",
         "en": "Spend 8 Gold. Gain 2 Strength and 6 Block. Decrease Public Favor by 3."
       },
       "effect_upgraded": {
-        "ko": "금화 8 소비. 힘(力) 3 + 방어도 8. 민심 3 감소.",
+        "ko": "금화 8 소비. 힘 3 + 방어도 8. 민심 3 감소.",
         "en": "Spend 8 Gold. 3 Strength + 8 Block. Public Favor -3."
       },
       "flavor_text": {
@@ -1922,7 +1922,7 @@
       "id": "M053",
       "name": {
         "ko": "조공",
-        "hanja": "朝貢",
+        "hanja": "",
         "romanized": "Jogong",
         "en": "Tribute"
       },
@@ -1959,7 +1959,7 @@
       "id": "M054",
       "name": {
         "ko": "교역",
-        "hanja": "交易",
+        "hanja": "",
         "romanized": "Gyoyeok",
         "en": "Trade"
       },
@@ -1973,15 +1973,15 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "금화 5를 소비한다. 기(氣) 3을 획득한다.",
+        "ko": "금화 5를 소비한다. 기 3을 획득한다.",
         "en": "Spend 5 Gold. Gain 3 Qi."
       },
       "effect_upgraded": {
-        "ko": "금화 5를 소비한다. 기(氣) 4를 획득한다.",
+        "ko": "금화 5를 소비한다. 기 4를 획득한다.",
         "en": "Spend 5 Gold. Gain 4 Qi."
       },
       "flavor_text": {
-        "ko": "금화가 흐르는 곳에 — 기(氣)도 따라 흐른다.",
+        "ko": "금화가 흐르는 곳에 — 기도 따라 흐른다.",
         "en": "Where gold flows — Qi follows."
       },
       "balance_rationale": "0코스트(기)+금화5 = 기3 획득. 명상(1코스트 기2)보다 기 효율 높지만 금화 소비. 금화→기 전환으로 한 턴에 기 폭발적 사용 가능. 외교 빌드의 에너지 엔진.",
@@ -1998,7 +1998,7 @@
       "id": "약화",
       "ko": "약화",
       "en": "Weakened",
-      "hanja": "弱化",
+      "hanja": "",
       "description": "다음 공격 피해 25% 감소. 1회 발동 후 1 감소.",
       "source": "ZER-12 정의 준수"
     }

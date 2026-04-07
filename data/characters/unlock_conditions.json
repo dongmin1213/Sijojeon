@@ -4,24 +4,26 @@
   "description": "시조전 6캐릭터 해금 조건 최종 확정 데이터. 메타 진행(meta progression) 시스템과 연동.",
   "design_ref": "ZER-12 (GDD §1-3), ZER-70 (Sprint 4-D2 확정)",
   "total_characters": 6,
-  "default_unlocked": ["mugwan"],
+  "default_unlocked": [
+    "mugwan"
+  ],
   "characters": [
     {
       "id": "mugwan",
       "class_ko": "무관",
-      "class_hanja": "武官",
+      "class_hanja": "",
       "unlock_type": "default",
       "unlock_condition": null,
       "unlock_description": "기본 해금 — 게임 시작부터 사용 가능.",
       "order": 1,
-      "resource": "기력(氣力)",
+      "resource": "기력",
       "playstyle_summary": "병사 토큰 진형과 단일 폭딜. 직관적인 진입 난이도.",
       "rationale": "로그라이크 입문 캐릭터. 튜토리얼 대상 직업이므로 잠금 없음. StS Ironclad, Monster Train 첫 직업과 동일한 포지션."
     },
     {
       "id": "mungwan",
       "class_ko": "문관",
-      "class_hanja": "文官",
+      "class_hanja": "",
       "unlock_type": "act_clear",
       "unlock_condition": {
         "type": "act_clear",
@@ -31,14 +33,14 @@
       },
       "unlock_description": "임의 캐릭터로 1막(Act 1) 보스를 처치한다.",
       "order": 2,
-      "resource": "학식(學識)",
+      "resource": "학식",
       "playstyle_summary": "학식 축적 → 취약 디버프 → 상소 AoE 폭발. 전략적 준비-실행 패턴.",
       "rationale": "무관으로 1막을 돌파하면 기본 게임 메커니즘(시조 슬롯, 자원 관리)을 이해한 상태. 문관의 학식 시스템은 기력보다 복잡하므로 1막 클리어 후 해금이 적절. 무관→문관의 서사적 흐름: 무력에서 학문으로."
     },
     {
       "id": "uiwon",
       "class_ko": "의원",
-      "class_hanja": "醫員",
+      "class_hanja": "",
       "unlock_type": "run_count",
       "unlock_condition": {
         "type": "total_runs_completed",
@@ -47,14 +49,14 @@
       },
       "unlock_description": "임의 캐릭터로 런을 5회 완주한다 (캐릭터 무관).",
       "order": 3,
-      "resource": "약재(藥材)",
+      "resource": "약재",
       "playstyle_summary": "회복·독 중독, 자원 관리. 지구전형 생존 플레이.",
       "rationale": "5회 완주 = 기본 게임 구조를 충분히 파악한 시점. 의원은 독 DoT와 HP 관리라는 고급 시스템을 사용하므로 일정 숙련도 요구. 무당·궁수 해금 전 단계로 '치유사' 라인의 시작점."
     },
     {
       "id": "mudang",
       "class_ko": "무당",
-      "class_hanja": "巫堂",
+      "class_hanja": "",
       "unlock_type": "character_boss_clear",
       "unlock_condition": {
         "type": "boss_clear",
@@ -63,14 +65,14 @@
       },
       "unlock_description": "의원으로 임의 막 보스를 1회 처치한다.",
       "order": 4,
-      "resource": "영력(靈力)",
+      "resource": "영력",
       "playstyle_summary": "저주·소환·확률 메커니즘. 무작위 요소를 활용하는 카오스 플레이.",
-      "rationale": "의원의 약재 자원 관리에 숙달된 후 영력이라는 또 다른 자원 체계를 도입. 의원→무당 서사: 치료를 넘어 영계(靈界)의 힘으로. 의원 클리어 조건은 '의원을 실제로 플레이해봤다'는 보장."
+      "rationale": "의원의 약재 자원 관리에 숙달된 후 영력이라는 또 다른 자원 체계를 도입. 의원→무당 서사: 치료를 넘어 영계의 힘으로. 의원 클리어 조건은 '의원을 실제로 플레이해봤다'는 보장."
     },
     {
       "id": "gungsu",
       "class_ko": "궁수",
-      "class_hanja": "弓手",
+      "class_hanja": "",
       "unlock_type": "character_boss_clear",
       "unlock_condition": {
         "type": "boss_clear",
@@ -79,14 +81,14 @@
       },
       "unlock_description": "무관으로 임의 막 보스를 1회 처치한다.",
       "order": 5,
-      "resource": "화살(矢)",
+      "resource": "화살",
       "playstyle_summary": "준비 턴 + 폭발 딜, 화살 소모품 자원 관리. 타이밍 집중형.",
       "rationale": "무관의 병사 토큰 진형에 숙달된 후 화살 자원이라는 소모품 관리 시스템으로 확장. 무관→궁수 서사: 근거리 전투에서 원거리 전술로. 무관 클리어 = '진형 기반 전투'의 충분한 이해 증명."
     },
     {
       "id": "sangin",
       "class_ko": "상인",
-      "class_hanja": "商人",
+      "class_hanja": "",
       "unlock_type": "run_count",
       "unlock_condition": {
         "type": "total_runs_completed",
@@ -95,7 +97,7 @@
       },
       "unlock_description": "임의 캐릭터로 런을 누적 10회 완주한다 (캐릭터 무관).",
       "order": 6,
-      "resource": "은화(銀貨)",
+      "resource": "은화",
       "playstyle_summary": "골드·경제 기반, 조건부 강력 카드. 상점 및 자원 최적화 메타게임.",
       "rationale": "10회 완주 = 게임의 모든 시스템(이벤트, 상점, 유물, 엘리트)을 충분히 경험한 베테랑 단계. 상인은 경제 시스템 이해가 전제되어야 하므로 가장 늦은 해금. 캐주얼→하드코어 플레이어 전환점."
     }

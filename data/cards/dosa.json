@@ -3,16 +3,16 @@
   "type": "card_pool",
   "class": "dosa",
   "class_ko": "도사",
-  "class_hanja": "道士",
+  "class_hanja": "",
   "category": "spell",
-  "description": "도사(道士) 전용 카드 풀. 기(氣) 조작과 도술(道術)을 활용하는 주문형 직업. 총 25장 — 기공·기 폭발 아키타입, 저주·DoT 아키타입, 소환·도술 아키타입.",
-  "class_mechanic": "기공(氣功): 기(氣)를 직접 조작하여 드로우와 버프를 얻는다. 시조 완성 시 천지기 패시브로 기 1 추가 회복. 화상(火傷): 턴 종료 시 화상 수치만큼 피해, 매 턴 1 감소. 독(毒): 턴 종료 시 독 수치만큼 피해, 매 턴 1 감소.",
+  "description": "도사 전용 카드 풀. 기 조작과 도술을 활용하는 주문형 직업. 총 25장 — 기공·기 폭발 아키타입, 저주·DoT 아키타입, 소환·도술 아키타입.",
+  "class_mechanic": "기공: 기를 직접 조작하여 드로우와 버프를 얻는다. 시조 완성 시 천지기 패시브로 기 1 추가 회복. 화상: 턴 종료 시 화상 수치만큼 피해, 매 턴 1 감소. 독: 턴 종료 시 독 수치만큼 피해, 매 턴 1 감소.",
   "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
   "archetypes": [
     {
       "id": "qi_burst",
       "name_ko": "기공·기 폭발",
-      "description": "기(氣)를 추가 획득하고, 획득한 기를 소비하거나 기 획득량에 비례한 폭발 피해를 입히는 아키타입. D001·D002·D003·D008·D009·D010·D011·D012·D013 중심.",
+      "description": "기를 추가 획득하고, 획득한 기를 소비하거나 기 획득량에 비례한 폭발 피해를 입히는 아키타입. D001·D002·D003·D008·D009·D010·D011·D012·D013 중심.",
       "key_cards": [
         "D001",
         "D003",
@@ -49,7 +49,7 @@
       "id": "D001",
       "name": {
         "ko": "기공",
-        "hanja": "氣功",
+        "hanja": "",
         "romanized": "Gigong",
         "en": "Qigong"
       },
@@ -63,11 +63,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기(氣) 2를 획득하고 카드 2장을 드로우한다.",
+        "ko": "기 2를 획득하고 카드 2장을 드로우한다.",
         "en": "Gain 2 Qi and draw 2 cards."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 2를 획득하고 카드 3장을 드로우한다.",
+        "ko": "기 2를 획득하고 카드 3장을 드로우한다.",
         "en": "Gain 2 Qi and draw 3 cards."
       },
       "flavor_text": {
@@ -90,7 +90,7 @@
       "id": "D002",
       "name": {
         "ko": "결인",
-        "hanja": "結印",
+        "hanja": "",
         "romanized": "Gyeorin",
         "en": "Mudra"
       },
@@ -112,7 +112,7 @@
         "en": "Next attack card deals +6 additional damage. Gain 3 Block."
       },
       "flavor_text": {
-        "ko": "손끝에 인(印)을 맺으니 — 다음 술법에 힘이 실린다.",
+        "ko": "손끝에 인을 맺으니 — 다음 술법에 힘이 실린다.",
         "en": "Forming a mudra at the fingertips — power flows into the next spell."
       },
       "balance_rationale": "1코스트 공격 버프. 도약(1코스트 3방어+4버프)과 유사하나 방어도가 2로 낮은 대신 도사 주문 카드와의 시너지를 위해 spell 타입. 도약의 도사 버전.",
@@ -127,7 +127,7 @@
       "id": "D003",
       "name": {
         "ko": "진언",
-        "hanja": "眞言",
+        "hanja": "",
         "romanized": "Jineon",
         "en": "True Word"
       },
@@ -141,7 +141,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "모든 적에게 4 피해를 입힌다. 이번 턴 기(氣)를 획득한 적이 있으면 피해를 3 추가로 입힌다.",
+        "ko": "모든 적에게 4 피해를 입힌다. 이번 턴 기를 획득한 적이 있으면 피해를 3 추가로 입힌다.",
         "en": "Deal 4 damage to ALL enemies. If you gained Qi this turn, deal 3 additional damage."
       },
       "effect_upgraded": {
@@ -168,7 +168,7 @@
       "id": "D004",
       "name": {
         "ko": "부적",
-        "hanja": "符籍",
+        "hanja": "",
         "romanized": "Bujeok",
         "en": "Burning Talisman"
       },
@@ -182,7 +182,7 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "적에게 5 피해를 입힌다. 대상에게 화상(火傷) 4를 부여한다. (화상: 턴 종료 시 화상 수치만큼 피해, 1 감소)",
+        "ko": "적에게 5 피해를 입힌다. 대상에게 화상 4를 부여한다. (화상: 턴 종료 시 화상 수치만큼 피해, 1 감소)",
         "en": "Deal 5 damage to an enemy. Apply 4 Burn to the target. (Burn: at end of turn, take damage equal to Burn stacks, then reduce by 1)"
       },
       "effect_upgraded": {
@@ -208,7 +208,7 @@
       "id": "D005",
       "name": {
         "ko": "축지법",
-        "hanja": "縮地法",
+        "hanja": "",
         "romanized": "Chukjibeop",
         "en": "Earthshrink Step"
       },
@@ -249,7 +249,7 @@
       "id": "D006",
       "name": {
         "ko": "태산붕",
-        "hanja": "泰山崩",
+        "hanja": "",
         "romanized": "Taesanbung",
         "en": "Taesan Collapse"
       },
@@ -262,7 +262,7 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "적에게 40 피해를 입힌다. 이 카드를 사용한 후, 다음 턴 기(氣)가 2 감소한다.",
+        "ko": "적에게 40 피해를 입힌다. 이 카드를 사용한 후, 다음 턴 기가 2 감소한다.",
         "en": "Deal 40 damage to an enemy. After playing this card, lose 2 Qi at the start of next turn."
       },
       "effect_upgraded": {
@@ -289,7 +289,7 @@
       "id": "D007",
       "name": {
         "ko": "수결",
-        "hanja": "手訣",
+        "hanja": "",
         "romanized": "Sugyeol",
         "en": "Hand Seal"
       },
@@ -310,7 +310,7 @@
         "en": "Deal 9 damage to an enemy."
       },
       "flavor_text": {
-        "ko": "손가락으로 결(訣)을 맺어 기를 날린다 — 검 없이도 베는 도사의 기본기.",
+        "ko": "손가락으로 결을 맺어 기를 날린다 — 검 없이도 베는 도사의 기본기.",
         "en": "Form the seal with your fingers and launch Qi — the Daoist's basic art, cutting without a blade."
       },
       "balance_rationale": "1코스트 기본 공격. 베기(6피해)의 도사 버전. 도사는 물리 무기 대신 기공 발사로 공격. 완전히 동일한 효율로 클래스 간 밸런스 유지. 스타터 덱 3장 포함.",
@@ -324,7 +324,7 @@
       "id": "D008",
       "name": {
         "ko": "대기",
-        "hanja": "大氣",
+        "hanja": "",
         "romanized": "Daegi",
         "en": "Grand Qi"
       },
@@ -337,11 +337,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기(氣) 2를 획득한다.",
+        "ko": "기 2를 획득한다.",
         "en": "Gain 2 Qi."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 3을 획득한다.",
+        "ko": "기 3을 획득한다.",
         "en": "Gain 3 Qi."
       },
       "flavor_text": {
@@ -364,7 +364,7 @@
       "id": "D009",
       "name": {
         "ko": "기폭",
-        "hanja": "氣爆",
+        "hanja": "",
         "romanized": "Gibok",
         "en": "Qi Detonation"
       },
@@ -377,11 +377,11 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "이번 턴에 획득한 기(氣) 1당 5 피해를 입힌다 (최소 8).",
+        "ko": "이번 턴에 획득한 기 1당 5 피해를 입힌다 (최소 8).",
         "en": "Deal 5 damage per Qi gained this turn (minimum 8)."
       },
       "effect_upgraded": {
-        "ko": "이번 턴에 획득한 기(氣) 1당 6 피해를 입힌다 (최소 10).",
+        "ko": "이번 턴에 획득한 기 1당 6 피해를 입힌다 (최소 10).",
         "en": "Deal 6 damage per Qi gained this turn (minimum 10)."
       },
       "flavor_text": {
@@ -405,7 +405,7 @@
       "id": "D010",
       "name": {
         "ko": "오기",
-        "hanja": "五氣",
+        "hanja": "",
         "romanized": "Ogi",
         "en": "Five Energies"
       },
@@ -418,11 +418,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기(氣) 1을 획득한다. 이번 턴 다음에 사용하는 기공 계열 카드(energy 서브타입)의 비용을 1 감소시킨다.",
+        "ko": "기 1을 획득한다. 이번 턴 다음에 사용하는 기공 계열 카드(energy 서브타입)의 비용을 1 감소시킨다.",
         "en": "Gain 1 Qi. Reduce the cost of the next energy-type card you play this turn by 1."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 1을 획득한다. 다음 기공 계열 카드 비용 2 감소.",
+        "ko": "기 1을 획득한다. 다음 기공 계열 카드 비용 2 감소.",
         "en": "Gain 1 Qi. Reduce the next energy card's cost by 2."
       },
       "flavor_text": {
@@ -446,7 +446,7 @@
       "id": "D011",
       "name": {
         "ko": "천기",
-        "hanja": "天氣",
+        "hanja": "",
         "romanized": "Cheongi",
         "en": "Celestial Qi"
       },
@@ -459,11 +459,11 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "이번 전투 동안 매 턴 시작 시 기(氣) 1을 추가 획득한다.",
+        "ko": "이번 전투 동안 매 턴 시작 시 기 1을 추가 획득한다.",
         "en": "For the rest of this combat, gain 1 additional Qi at the start of each turn."
       },
       "effect_upgraded": {
-        "ko": "이번 전투 동안 매 턴 시작 시 기(氣) 2를 추가 획득한다.",
+        "ko": "이번 전투 동안 매 턴 시작 시 기 2를 추가 획득한다.",
         "en": "For the rest of this combat, gain 2 additional Qi at the start of each turn."
       },
       "flavor_text": {
@@ -485,7 +485,7 @@
       "id": "D012",
       "name": {
         "ko": "기류",
-        "hanja": "氣流",
+        "hanja": "",
         "romanized": "Giryu",
         "en": "Qi Flow"
       },
@@ -499,11 +499,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "기(氣) 1을 획득한다. 카드 2장을 드로우한다.",
+        "ko": "기 1을 획득한다. 카드 2장을 드로우한다.",
         "en": "Gain 1 Qi. Draw 2 cards."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 2를 획득한다. 카드 2장을 드로우한다.",
+        "ko": "기 2를 획득한다. 카드 2장을 드로우한다.",
         "en": "Gain 2 Qi. Draw 2 cards."
       },
       "flavor_text": {
@@ -526,7 +526,7 @@
       "id": "D013",
       "name": {
         "ko": "기집",
-        "hanja": "氣集",
+        "hanja": "",
         "romanized": "Gijip",
         "en": "Qi Convergence"
       },
@@ -539,11 +539,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "기(氣) 3을 획득한다.",
+        "ko": "기 3을 획득한다.",
         "en": "Gain 3 Qi."
       },
       "effect_upgraded": {
-        "ko": "기(氣) 4를 획득한다.",
+        "ko": "기 4를 획득한다.",
         "en": "Gain 4 Qi."
       },
       "flavor_text": {
@@ -565,7 +565,7 @@
       "id": "D014",
       "name": {
         "ko": "독안개",
-        "hanja": "毒霧",
+        "hanja": "",
         "romanized": "Doganae",
         "en": "Poison Mist"
       },
@@ -579,7 +579,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "모든 적에게 독(毒) 2를 부여한다. (독: 턴 종료 시 독 수치만큼 피해, 1 감소)",
+        "ko": "모든 적에게 독 2를 부여한다. (독: 턴 종료 시 독 수치만큼 피해, 1 감소)",
         "en": "Apply 2 Poison to ALL enemies. (Poison: at end of turn, take damage equal to Poison stacks, then reduce by 1)"
       },
       "effect_upgraded": {
@@ -607,7 +607,7 @@
       "id": "D015",
       "name": {
         "ko": "저주",
-        "hanja": "詛呪",
+        "hanja": "",
         "romanized": "Jeochu",
         "en": "Curse"
       },
@@ -621,7 +621,7 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "적에게 저주(詛呪)를 부여한다. 저주: 이번 턴 포함 3회 동안 매 턴 시작 시 3 피해를 입는다.",
+        "ko": "적에게 저주를 부여한다. 저주: 이번 턴 포함 3회 동안 매 턴 시작 시 3 피해를 입는다.",
         "en": "Apply Curse to an enemy. Curse: for 3 turns, take 3 damage at the start of each turn."
       },
       "effect_upgraded": {
@@ -648,7 +648,7 @@
       "id": "D016",
       "name": {
         "ko": "혼돈의 부적",
-        "hanja": "混沌符籍",
+        "hanja": "",
         "romanized": "Hondon Bujeok",
         "en": "Chaos Talisman"
       },
@@ -662,7 +662,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 화상(火傷) 3을 부여하고 약화(弱化) 2를 부여한다.",
+        "ko": "적에게 화상 3을 부여하고 약화 2를 부여한다.",
         "en": "Apply 3 Burn and 2 Weaken to an enemy."
       },
       "effect_upgraded": {
@@ -690,7 +690,7 @@
       "id": "D017",
       "name": {
         "ko": "흑염",
-        "hanja": "黑炎",
+        "hanja": "",
         "romanized": "Heukyeom",
         "en": "Black Flame"
       },
@@ -703,7 +703,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 6 피해를 입힌다. 화상(火傷)이 2 이상이면 피해를 4 추가로 입힌다. 독(毒)이 2 이상이면 피해를 4 추가로 입힌다.",
+        "ko": "적에게 6 피해를 입힌다. 화상이 2 이상이면 피해를 4 추가로 입힌다. 독이 2 이상이면 피해를 4 추가로 입힌다.",
         "en": "Deal 6 damage to an enemy. If the target has 2+ Burn, deal 4 additional damage. If the target has 2+ Poison, deal 4 additional damage."
       },
       "effect_upgraded": {
@@ -732,7 +732,7 @@
       "id": "D018",
       "name": {
         "ko": "오독",
-        "hanja": "五毒",
+        "hanja": "",
         "romanized": "Odok",
         "en": "Five Venoms"
       },
@@ -747,7 +747,7 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "모든 적에게 독(毒) 4와 화상(火傷) 3을 동시에 부여한다.",
+        "ko": "모든 적에게 독 4와 화상 3을 동시에 부여한다.",
         "en": "Apply 4 Poison and 3 Burn to ALL enemies."
       },
       "effect_upgraded": {
@@ -775,7 +775,7 @@
       "id": "D019",
       "name": {
         "ko": "주박",
-        "hanja": "呪縛",
+        "hanja": "",
         "romanized": "Jubak",
         "en": "Binding Hex"
       },
@@ -789,7 +789,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 취약(脆弱) 2턴을 부여한다. 이번 전투 동안, 대상의 DoT(독·화상·저주) 피해가 1.5배가 된다.",
+        "ko": "적에게 취약 2턴을 부여한다. 이번 전투 동안, 대상의 DoT(독·화상·저주) 피해가 1.5배가 된다.",
         "en": "Apply 2 turns of Vulnerable to an enemy. For this combat, the target's DoT (Poison, Burn, Curse) damage is multiplied by 1.5x."
       },
       "effect_upgraded": {
@@ -817,7 +817,7 @@
       "id": "D020",
       "name": {
         "ko": "구미호 소환",
-        "hanja": "九尾狐召喚",
+        "hanja": "",
         "romanized": "Gumiho Sowhan",
         "en": "Summon Gumiho"
       },
@@ -857,7 +857,7 @@
       "id": "D021",
       "name": {
         "ko": "청룡 기공",
-        "hanja": "靑龍氣功",
+        "hanja": "",
         "romanized": "Cheongnyong Gigong",
         "en": "Azure Dragon Art"
       },
@@ -870,15 +870,15 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 10 피해를 입힌다. 청룡 기공 토큰을 소환한다. 토큰: 매 턴 종료 시 기(氣) 1 회복.",
+        "ko": "적에게 10 피해를 입힌다. 청룡 기공 토큰을 소환한다. 토큰: 매 턴 종료 시 기 1 회복.",
         "en": "Deal 10 damage to an enemy. Summon an Azure Dragon token. Token: recover 1 Qi at end of each turn."
       },
       "effect_upgraded": {
-        "ko": "12 피해. 토큰 매 턴 기(氣) 2 회복.",
+        "ko": "12 피해. 토큰 매 턴 기 2 회복.",
         "en": "Deal 12 damage. Token recovers 2 Qi per turn."
       },
       "flavor_text": {
-        "ko": "청룡의 기운을 공격에 담아 — 용의 숨결이 기(氣)로 돌아온다.",
+        "ko": "청룡의 기운을 공격에 담아 — 용의 숨결이 기로 돌아온다.",
         "en": "Channel the Azure Dragon's power into your strike — the dragon's breath returns as Qi."
       },
       "balance_rationale": "2코스트 공격+지속 기 회복 토큰. 즉시 10피해는 2코스트 기준 적정. 청룡 토큰이 매 턴 기 1을 회복하여 장기전에서 총 기 3~5 추가 = 실질 3~5코스트 투자 가치. 소환+기 아키타입 하이브리드 연결 카드.",
@@ -897,7 +897,7 @@
       "id": "D022",
       "name": {
         "ko": "백호 강격",
-        "hanja": "白虎强擊",
+        "hanja": "",
         "romanized": "Baekho Ganggyeok",
         "en": "White Tiger Strike"
       },
@@ -937,7 +937,7 @@
       "id": "D023",
       "name": {
         "ko": "산신 강림",
-        "hanja": "山神降臨",
+        "hanja": "",
         "romanized": "Sansin Ganglim",
         "en": "Mountain Spirit Descent"
       },
@@ -951,11 +951,11 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "산신(山神)을 소환한다. 3턴 동안 매 턴 시작 시 방어도 5와 기(氣) 1을 획득한다.",
+        "ko": "산신을 소환한다. 3턴 동안 매 턴 시작 시 방어도 5와 기 1을 획득한다.",
         "en": "Summon the Mountain Spirit. For 3 turns, gain 5 Block and 1 Qi at the start of each turn."
       },
       "effect_upgraded": {
-        "ko": "4턴 동안. 매 턴 방어도 7과 기(氣) 2.",
+        "ko": "4턴 동안. 매 턴 방어도 7과 기 2.",
         "en": "Lasts 4 turns. Gain 7 Block and 2 Qi per turn."
       },
       "flavor_text": {
@@ -980,7 +980,7 @@
       "id": "D024",
       "name": {
         "ko": "허수아비",
-        "hanja": "稻草人",
+        "hanja": "",
         "romanized": "Heosurabi",
         "en": "Straw Effigy"
       },
@@ -1020,7 +1020,7 @@
       "id": "D025",
       "name": {
         "ko": "도깨비 부름",
-        "hanja": "鬼召",
+        "hanja": "",
         "romanized": "Dokkaebi Bureum",
         "en": "Summon Dokkaebi"
       },
@@ -1063,7 +1063,7 @@
       "id": "D026",
       "name": {
         "ko": "만법귀종",
-        "hanja": "萬法歸宗",
+        "hanja": "",
         "romanized": "Manbeop Gwijong",
         "en": "All Paths Return to the Source"
       },
@@ -1076,11 +1076,11 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "이번 턴 획득한 기(氣)당 8 피해를 입힌다. (최소 16) 예: 기 5 획득 시 40 피해!",
+        "ko": "이번 턴 획득한 기당 8 피해를 입힌다. (최소 16) 예: 기 5 획득 시 40 피해!",
         "en": "Deal 8 damage per Qi gained this turn. (Minimum 16) Example: 5 Qi gained = 40 damage!"
       },
       "effect_upgraded": {
-        "ko": "이번 턴 획득한 기(氣)당 10 피해. (최소 20)",
+        "ko": "이번 턴 획득한 기당 10 피해. (최소 20)",
         "en": "Deal 10 damage per Qi gained this turn. (Minimum 20)"
       },
       "flavor_text": {
@@ -1106,7 +1106,7 @@
       "id": "D027",
       "name": {
         "ko": "귀문도해",
-        "hanja": "鬼門圖解",
+        "hanja": "",
         "romanized": "Gwimun Dohae",
         "en": "Gates of the Spirit Realm"
       },
@@ -1120,11 +1120,11 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "기(氣) 3을 획득한다. 카드 2장을 드로우한다. (0코스트!)",
+        "ko": "기 3을 획득한다. 카드 2장을 드로우한다. (0코스트!)",
         "en": "Gain 3 Qi. Draw 2 cards. (Zero cost!)"
       },
       "effect_upgraded": {
-        "ko": "기(氣) 4를 획득한다. 카드 3장을 드로우한다.",
+        "ko": "기 4를 획득한다. 카드 3장을 드로우한다.",
         "en": "Gain 4 Qi. Draw 3 cards."
       },
       "flavor_text": {
@@ -1151,7 +1151,7 @@
       "id": "화상",
       "ko": "화상",
       "en": "Burn",
-      "hanja": "火傷",
+      "hanja": "",
       "description": "턴 종료 시 화상 수치만큼 피해를 입는다. 매 턴 수치가 1 감소하며, 0이 되면 소멸.",
       "duration_type": "stacking_decay",
       "visual_note": "적 캐릭터에 불꽃 이펙트"
@@ -1160,7 +1160,7 @@
       "id": "독",
       "ko": "독",
       "en": "Poison",
-      "hanja": "毒",
+      "hanja": "",
       "description": "턴 종료 시 독 수치만큼 피해를 입는다. 매 턴 수치가 1 감소하며, 0이 되면 소멸.",
       "duration_type": "stacking_decay",
       "visual_note": "적 캐릭터에 초록빛 독 이펙트"
@@ -1169,7 +1169,7 @@
       "id": "저주",
       "ko": "저주",
       "en": "Curse",
-      "hanja": "詛呪",
+      "hanja": "",
       "description": "매 턴 시작 시 저주 피해를 입는다. 지속 시간이 끝나면 소멸.",
       "duration_type": "turns",
       "visual_note": "적 캐릭터에 보라빛 저주 이펙트"

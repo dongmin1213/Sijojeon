@@ -24,7 +24,7 @@
       "id": "E301",
       "name": {
         "ko": "역적 무사",
-        "hanja": "逆賊武士",
+        "hanja": "",
         "romanized": "Yeokjeok Musa",
         "en": "Rebel Warrior"
       },
@@ -126,7 +126,7 @@
       "id": "E302",
       "name": {
         "ko": "역모 문관",
-        "hanja": "逆謀文官",
+        "hanja": "",
         "romanized": "Yeokmo Mungwan",
         "en": "Treacherous Scholar"
       },
@@ -267,7 +267,7 @@
       "id": "E303",
       "name": {
         "ko": "자객",
-        "hanja": "刺客",
+        "hanja": "",
         "romanized": "Jagaek",
         "en": "Assassin"
       },
@@ -387,7 +387,7 @@
       "id": "E304",
       "name": {
         "ko": "어전 내관",
-        "hanja": "御前內官",
+        "hanja": "",
         "romanized": "Eojeon Naegwan",
         "en": "Palace Eunuch"
       },
@@ -511,7 +511,7 @@
       "id": "E305",
       "name": {
         "ko": "금군 무사",
-        "hanja": "禁軍武士",
+        "hanja": "",
         "romanized": "Geumgun Musa",
         "en": "Royal Guard Warrior"
       },
@@ -630,7 +630,7 @@
       "id": "E306",
       "name": {
         "ko": "저승사자",
-        "hanja": "閻羅使者",
+        "hanja": "",
         "romanized": "Jeoungseumsaja",
         "en": "Grim Reaper"
       },
@@ -746,7 +746,7 @@
       "id": "E307",
       "name": {
         "ko": "사령",
-        "hanja": "邪靈",
+        "hanja": "",
         "romanized": "Saryeong",
         "en": "Dark Wraith"
       },
@@ -797,7 +797,7 @@
         {
           "id": "evil_aura",
           "name": {
-            "ko": "사기(邪氣)",
+            "ko": "사기",
             "en": "Evil Aura"
           },
           "intent": "debuff",
@@ -869,7 +869,7 @@
       "id": "E308",
       "name": {
         "ko": "친위군",
-        "hanja": "親衛軍",
+        "hanja": "",
         "romanized": "Chinwigun",
         "en": "Royal Bodyguard"
       },
@@ -973,7 +973,7 @@
       "id": "E309",
       "name": {
         "ko": "화포수",
-        "hanja": "火砲手",
+        "hanja": "",
         "romanized": "Hwaposu",
         "en": "Cannoneer"
       },
@@ -1092,7 +1092,7 @@
       "id": "E310",
       "name": {
         "ko": "역모 수괴",
-        "hanja": "逆謀首魁",
+        "hanja": "",
         "romanized": "Yeokmo Sugoe",
         "en": "Rebellion Ringleader"
       },
@@ -1228,7 +1228,7 @@
       "id": "E311",
       "name": {
         "ko": "어영청 군관",
-        "hanja": "御營廳軍官",
+        "hanja": "",
         "romanized": "Eoyeongcheong Gungwan",
         "en": "Royal Battalion Commander"
       },
@@ -1366,7 +1366,7 @@
       "id": "E312",
       "name": {
         "ko": "화포장",
-        "hanja": "火砲匠",
+        "hanja": "",
         "romanized": "Hwapojang",
         "en": "Artillery Master"
       },
@@ -1484,7 +1484,7 @@
       "id": "EL301",
       "name": {
         "ko": "역적 장수",
-        "hanja": "逆賊將帥",
+        "hanja": "",
         "romanized": "Yeokjeok Jangsu",
         "en": "Rebel General"
       },
@@ -1631,7 +1631,7 @@
       "id": "EL302",
       "name": {
         "ko": "어사",
-        "hanja": "御使",
+        "hanja": "",
         "romanized": "Eosa",
         "en": "Corrupted Inspector"
       },
@@ -1792,7 +1792,7 @@
       "id": "EL303",
       "name": {
         "ko": "이무기 왕",
-        "hanja": "離龍王",
+        "hanja": "",
         "romanized": "Imugi-wang",
         "en": "Imugi King"
       },

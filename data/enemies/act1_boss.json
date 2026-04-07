@@ -6,7 +6,7 @@
   "id": "B_ACT1_FINAL",
   "name": {
     "ko": "판서 이무령",
-    "hanja": "判書 李茂令",
+    "hanja": "",
     "romanized": "Panseo Yi Mu-ryeong",
     "en": "Minister Yi Mu-ryeong"
   },
@@ -357,14 +357,14 @@
       {
         "id": "corrupt_seal",
         "name": "부패한 인장",
-        "hanja": "腐敗印章",
+        "hanja": "",
         "description": "전투 시작 시 힘 2 획득. 단, 첫 번째 카드를 사용할 때 약화 1이 자신에게 부여된다.",
         "type": "rare_relic"
       },
       {
         "id": "ministerial_ledger",
         "name": "판서의 장부",
-        "hanja": "判書帳簿",
+        "hanja": "",
         "description": "전투 시작 시 금화 10을 획득. 적을 처치할 때마다 추가 금화 5를 얻는다.",
         "type": "rare_relic"
       }

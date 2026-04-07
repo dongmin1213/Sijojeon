@@ -36,6 +36,18 @@ func _ready() -> void:
 	# v9: 반딧불 파티클 효과 (타이틀 분위기)
 	_add_firefly_particles()
 
+	# 디버그 빌드에서만 디버그 메뉴 버튼 표시
+	if OS.is_debug_build():
+		var debug_btn := Button.new()
+		debug_btn.text = "Debug Menu"
+		debug_btn.custom_minimum_size = Vector2(0, 76)
+		debug_btn.add_theme_font_size_override("font_size", 34)
+		debug_btn.add_theme_color_override("font_color", Color(1.0, 0.4, 0.4))
+		debug_btn.pressed.connect(func(): GameManager.change_state(GameManager.GameState.DEBUG_MENU))
+		$TitlePanel/VBoxContainer.add_child(debug_btn)
+		# 종료 버튼 앞에 배치
+		$TitlePanel/VBoxContainer.move_child(debug_btn, quit_button.get_index())
+
 	# 버튼 연결
 	start_button.pressed.connect(_on_start_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)

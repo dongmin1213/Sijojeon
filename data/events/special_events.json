@@ -303,7 +303,7 @@
       ],
       "trigger_condition": "",
       "title": {
-        "ko": "사화 (士禍)",
+        "ko": "사화",
         "description": {
           "ko": "선왕의 제문이 역모로 지목되었다. 학자들이 처형당하고 있다. 당신의 스승이 명단에 올랐다는 소식이 들린다.",
           "en": "The late King's eulogy has been branded as treason. Scholars are being executed. Word arrives that your mentor is on the list."
@@ -393,7 +393,7 @@
       ],
       "trigger_condition": "minshim_le_20",
       "title": {
-        "ko": "민란 (民亂)",
+        "ko": "민란",
         "description": {
           "ko": "성난 백성들이 길을 막고 있다. \"당신도 그 탐관들의 일당이오?\" 횃불과 농기구를 든 무리가 노려본다.",
           "en": "Furious commoners block the road. \"Are you one of those corrupt officials' lackeys?\" A crowd bearing torches and farming tools glares at you."
@@ -474,7 +474,7 @@
       ],
       "trigger_condition": "faction_climax",
       "title": {
-        "ko": "당쟁 (黨爭)",
+        "ko": "당쟁",
         "description": {
           "ko": "당쟁이 극에 달했다. 조정이 두 파로 갈라져 피를 부르고 있다. 양측이 당신에게 결단을 요구한다.",
           "en": "Factional strife has reached its peak. The court is split in two, and blood is being called for. Both sides demand your decision."

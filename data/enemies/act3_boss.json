@@ -6,7 +6,7 @@
   "id": "B_ACT3_FINAL",
   "name": {
     "ko": "역적 대감",
-    "hanja": "逆賊大監",
+    "hanja": "",
     "romanized": "Yeokjeok Daegam",
     "en": "Rebel Lord"
   },
@@ -448,21 +448,21 @@
       {
         "id": "rebel_crown",
         "name": "역적의 왕관",
-        "hanja": "逆賊王冠",
+        "hanja": "",
         "description": "전투 시작 시 힘 3, 방어도 10 획득. 단, 매 3턴마다 독 1이 자신에게 부여된다.",
         "type": "boss_relic"
       },
       {
         "id": "traitors_seal",
         "name": "역모의 인장",
-        "hanja": "逆謀印章",
+        "hanja": "",
         "description": "카드를 버릴 때마다 다음 공격 카드 피해 +2 (이번 전투만). 최대 +20까지 누적.",
         "type": "boss_relic"
       },
       {
         "id": "blood_decree",
         "name": "혈서 어명",
-        "hanja": "血書御命",
+        "hanja": "",
         "description": "적을 처치할 때마다 체력 3 회복. 보스 처치 시 체력 15 회복.",
         "type": "boss_relic"
       }

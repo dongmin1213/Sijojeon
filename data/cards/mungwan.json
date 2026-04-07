@@ -3,16 +3,16 @@
   "type": "card_pool",
   "class": "mungwan",
   "class_ko": "문관",
-  "class_hanja": "文官",
+  "class_hanja": "",
   "category": "academic",
-  "description": "문관(文官) 전용 카드 풀. 학식(學識) 자원을 축적하고 소비하여 강력한 효과를 발휘하는 학술형 직업. 총 25장 — 학식 폭발 아키타입, 디버프 지배 아키타입, 방어·학식 루프 아키타입.",
-  "class_mechanic": "학식(學識): 학술·방어 카드 사용 시 획득. 기본 최대 6. 전투 시작 시 0으로 초기화. 공격 카드의 학식 소비 효과를 통해 취약(脆弱) 부여 및 폭발적 광역 피해를 실현.",
+  "description": "문관 전용 카드 풀. 학식 자원을 축적하고 소비하여 강력한 효과를 발휘하는 학술형 직업. 총 25장 — 학식 폭발 아키타입, 디버프 지배 아키타입, 방어·학식 루프 아키타입.",
+  "class_mechanic": "학식: 학술·방어 카드 사용 시 획득. 기본 최대 6. 전투 시작 시 0으로 초기화. 공격 카드의 학식 소비 효과를 통해 취약 부여 및 폭발적 광역 피해를 실현.",
   "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴. 학식 소비 시 2코스트 상당 효과 추가 목표.",
   "resource": {
     "id": "학식",
     "ko": "학식",
     "en": "Scholarship",
-    "hanja": "學識",
+    "hanja": "",
     "description": "문관 전용 자원. 카드 사용으로 축적되며 특정 카드에서 소비해 강화 효과를 발동한다.",
     "max": 6,
     "initial": 0,
@@ -61,7 +61,7 @@
       "id": "W001",
       "name": {
         "ko": "직언",
-        "hanja": "直言",
+        "hanja": "",
         "romanized": "Jigeon",
         "en": "Candid Speech"
       },
@@ -96,7 +96,7 @@
       "id": "W002",
       "name": {
         "ko": "탄핵",
-        "hanja": "彈劾",
+        "hanja": "",
         "romanized": "Tanhaek",
         "en": "Impeachment"
       },
@@ -109,7 +109,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 10 피해를 입힌다. 학식 1을 소비하면 대상에게 취약(脆弱) 2턴을 부여한다. (취약: 받는 피해 50% 증가)",
+        "ko": "적에게 10 피해를 입힌다. 학식 1을 소비하면 대상에게 취약 2턴을 부여한다. (취약: 받는 피해 50% 증가)",
         "en": "Deal 10 damage to an enemy. Spend 1 Erudition to apply 2 turns of Vulnerable. (Vulnerable: damage taken increased by 50%)"
       },
       "effect_upgraded": {
@@ -137,7 +137,7 @@
       "id": "W003",
       "name": {
         "ko": "상소",
-        "hanja": "上疏",
+        "hanja": "",
         "romanized": "Sangso",
         "en": "Royal Petition"
       },
@@ -179,7 +179,7 @@
       "id": "W004",
       "name": {
         "ko": "경연",
-        "hanja": "經筵",
+        "hanja": "",
         "romanized": "Gyeongyeon",
         "en": "Royal Lecture"
       },
@@ -215,7 +215,7 @@
       "id": "W005",
       "name": {
         "ko": "예제",
-        "hanja": "禮制",
+        "hanja": "",
         "romanized": "Yeoje",
         "en": "Rites & Decorum"
       },
@@ -251,7 +251,7 @@
       "id": "W006",
       "name": {
         "ko": "독서",
-        "hanja": "讀書",
+        "hanja": "",
         "romanized": "Dokseo",
         "en": "Reading"
       },
@@ -288,7 +288,7 @@
       "id": "W007",
       "name": {
         "ko": "격물치지",
-        "hanja": "格物致知",
+        "hanja": "",
         "romanized": "Gyeongmul Chiji",
         "en": "Investigation of Things"
       },
@@ -329,7 +329,7 @@
       "id": "W008",
       "name": {
         "ko": "박학다식",
-        "hanja": "博學多識",
+        "hanja": "",
         "romanized": "Bakak Dasik",
         "en": "Broad Learning"
       },
@@ -370,7 +370,7 @@
       "id": "W009",
       "name": {
         "ko": "행차",
-        "hanja": "行次",
+        "hanja": "",
         "romanized": "Haengcha",
         "en": "Royal Procession"
       },
@@ -407,7 +407,7 @@
       "id": "W010",
       "name": {
         "ko": "피화",
-        "hanja": "避禍",
+        "hanja": "",
         "romanized": "Pihwa",
         "en": "Avoid Disaster"
       },
@@ -449,7 +449,7 @@
       "id": "W011",
       "name": {
         "ko": "고언",
-        "hanja": "苦言",
+        "hanja": "",
         "romanized": "Goeon",
         "en": "Bitter Counsel"
       },
@@ -489,7 +489,7 @@
       "id": "W012",
       "name": {
         "ko": "논박",
-        "hanja": "論駁",
+        "hanja": "",
         "romanized": "Nonbak",
         "en": "Rebuttal"
       },
@@ -530,7 +530,7 @@
       "id": "W013",
       "name": {
         "ko": "논리",
-        "hanja": "論理",
+        "hanja": "",
         "romanized": "Nolli",
         "en": "Logic"
       },
@@ -571,7 +571,7 @@
       "id": "W014",
       "name": {
         "ko": "문집 편찬",
-        "hanja": "文集編纂",
+        "hanja": "",
         "romanized": "Munjip Pyeonjhan",
         "en": "Anthology Compilation"
       },
@@ -611,7 +611,7 @@
       "id": "W015",
       "name": {
         "ko": "왕의 윤허",
-        "hanja": "王의允許",
+        "hanja": "",
         "romanized": "Wang-ui Yunheo",
         "en": "Royal Sanction"
       },
@@ -654,7 +654,7 @@
       "id": "W016",
       "name": {
         "ko": "탄압",
-        "hanja": "彈壓",
+        "hanja": "",
         "romanized": "Tanan",
         "en": "Suppression"
       },
@@ -667,7 +667,7 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "대상 적에게 약화(弱化) 2를 부여한다. (약화: 다음 공격 피해 25% 감소. 발동 후 1 감소)",
+        "ko": "대상 적에게 약화 2를 부여한다. (약화: 다음 공격 피해 25% 감소. 발동 후 1 감소)",
         "en": "Apply 2 Weaken to the target enemy. (Weaken: next attack damage reduced by 25%. Reduces by 1 after each trigger)"
       },
       "effect_upgraded": {
@@ -693,7 +693,7 @@
       "id": "W017",
       "name": {
         "ko": "모함",
-        "hanja": "謀陷",
+        "hanja": "",
         "romanized": "Moham",
         "en": "False Accusation"
       },
@@ -706,7 +706,7 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "대상 적에게 약화(弱化) 3과 취약(脆弱) 2를 부여한다.",
+        "ko": "대상 적에게 약화 3과 취약 2를 부여한다.",
         "en": "Apply 3 Weaken and 2 Vulnerable to the target enemy."
       },
       "effect_upgraded": {
@@ -734,7 +734,7 @@
       "id": "W018",
       "name": {
         "ko": "파직",
-        "hanja": "罷職",
+        "hanja": "",
         "romanized": "Pajik",
         "en": "Dismissal"
       },
@@ -747,7 +747,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 8 피해를 입힌다. 대상에게 파직(罷職) 상태를 부여한다. (파직: 공격력이 3 감소, 3턴 지속)",
+        "ko": "적에게 8 피해를 입힌다. 대상에게 파직 상태를 부여한다. (파직: 공격력이 3 감소, 3턴 지속)",
         "en": "Deal 8 damage to an enemy. Apply Dismissal status. (Dismissal: attack power reduced by 3 for 3 turns)"
       },
       "effect_upgraded": {
@@ -775,7 +775,7 @@
       "id": "W019",
       "name": {
         "ko": "간언",
-        "hanja": "諫言",
+        "hanja": "",
         "romanized": "Ganeon",
         "en": "Admonition"
       },
@@ -789,7 +789,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "카드 1장을 드로우한다. 다음으로 적이 받게 되는 피해에 취약(脆弱) 2를 추가로 부여한다 (이번 턴 한정).",
+        "ko": "카드 1장을 드로우한다. 다음으로 적이 받게 되는 피해에 취약 2를 추가로 부여한다 (이번 턴 한정).",
         "en": "Draw 1 card. Apply 2 Vulnerable to the next damage the enemy receives this turn."
       },
       "effect_upgraded": {
@@ -816,7 +816,7 @@
       "id": "W020",
       "name": {
         "ko": "유배",
-        "hanja": "流配",
+        "hanja": "",
         "romanized": "Yubae",
         "en": "Exile"
       },
@@ -830,7 +830,7 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "대상 적에게서 모든 버프를 제거한다. 약화(弱化) 4를 부여한다.",
+        "ko": "대상 적에게서 모든 버프를 제거한다. 약화 4를 부여한다.",
         "en": "Remove all buffs from the target enemy. Apply 4 Weaken."
       },
       "effect_upgraded": {
@@ -857,7 +857,7 @@
       "id": "W021",
       "name": {
         "ko": "수신제가",
-        "hanja": "修身齊家",
+        "hanja": "",
         "romanized": "Sujin Jega",
         "en": "Self-Cultivation"
       },
@@ -898,7 +898,7 @@
       "id": "W022",
       "name": {
         "ko": "군자",
-        "hanja": "君子",
+        "hanja": "",
         "romanized": "Gunja",
         "en": "Noble Scholar"
       },
@@ -940,7 +940,7 @@
       "id": "W023",
       "name": {
         "ko": "청렴",
-        "hanja": "淸廉",
+        "hanja": "",
         "romanized": "Cheongnyeom",
         "en": "Integrity"
       },
@@ -981,7 +981,7 @@
       "id": "W024",
       "name": {
         "ko": "정도",
-        "hanja": "正道",
+        "hanja": "",
         "romanized": "Jeongdo",
         "en": "Righteous Path"
       },
@@ -1022,7 +1022,7 @@
       "id": "W025",
       "name": {
         "ko": "대의",
-        "hanja": "大義",
+        "hanja": "",
         "romanized": "Daeui",
         "en": "Greater Duty"
       },
@@ -1066,7 +1066,7 @@
       "id": "W026",
       "name": {
         "ko": "상소문 공세",
-        "hanja": "上疏文攻勢",
+        "hanja": "",
         "romanized": "Sangsomun Gongse",
         "en": "Memorial Offensive"
       },
@@ -1110,7 +1110,7 @@
       "id": "W027",
       "name": {
         "ko": "왕의 칙서",
-        "hanja": "王의 勅書",
+        "hanja": "",
         "romanized": "Wang-ui Chikseo",
         "en": "Royal Edict"
       },
@@ -1156,7 +1156,7 @@
       "id": "취약",
       "ko": "취약",
       "en": "Vulnerable",
-      "hanja": "脆弱",
+      "hanja": "",
       "description": "이 상태인 적이 피해를 받으면 피해량이 50% 증가한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
       "duration_type": "turns",
       "visual_note": "적 캐릭터에 금 가는 갑옷 이펙트"
@@ -1165,7 +1165,7 @@
       "id": "파직",
       "ko": "파직",
       "en": "Dismissed",
-      "hanja": "罷職",
+      "hanja": "",
       "description": "이 상태인 적의 공격력이 지정된 수치만큼 감소한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
       "duration_type": "turns",
       "visual_note": "적 캐릭터에 부러진 인장 이펙트"

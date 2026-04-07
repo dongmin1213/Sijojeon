@@ -19,6 +19,7 @@ enum GameState {
 	RUN_OVER,
 	RUN_WIN,
 	GWAGEO,
+	DEBUG_MENU,
 }
 
 const MAX_ACT := 3
@@ -61,6 +62,8 @@ func _get_scene_path(state: GameState) -> String:
 			return "res://scenes/run_result/run_result.tscn"
 		GameState.GWAGEO:
 			return "res://scenes/gwageo/gwageo_minigame.tscn"
+		GameState.DEBUG_MENU:
+			return "res://scenes/debug/debug_menu.tscn"
 	return ""
 
 

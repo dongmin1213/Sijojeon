@@ -3,10 +3,10 @@
   "type": "card_pool",
   "class": "mugwan",
   "class_ko": "무관",
-  "class_hanja": "武官",
+  "class_hanja": "",
   "category": "formation",
-  "description": "무관(武官) 전용 카드 풀. 진형(陣形) 조작과 병사 토큰을 활용하는 군사형 직업. 총 25장 — 진형·토큰 아키타입, 기력 폭딜 아키타입, 방패·연타 아키타입. G026·G027 전설 카드 2종 추가 (ZER-214 재미 개선).",
-  "class_mechanic": "병사 토큰(兵士 Token): 피해를 1회 대신 받고 소멸. 소멸 시 기(氣) 1 회복. 진형 전환으로 생성. 기력(氣力): 무관 전용 보조 자원, 최대 10, 턴 간 유지. 기력 소비 시 공격 강화.",
+  "description": "무관 전용 카드 풀. 진형 조작과 병사 토큰을 활용하는 군사형 직업. 총 25장 — 진형·토큰 아키타입, 기력 폭딜 아키타입, 방패·연타 아키타입. G026·G027 전설 카드 2종 추가 (ZER-214 재미 개선).",
+  "class_mechanic": "병사 토큰( Token): 피해를 1회 대신 받고 소멸. 소멸 시 기 1 회복. 진형 전환으로 생성. 기력: 무관 전용 보조 자원, 최대 10, 턴 간 유지. 기력 소비 시 공격 강화.",
   "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
   "archetypes": [
     {
@@ -50,7 +50,7 @@
       "id": "G001",
       "name": {
         "ko": "진형 전환",
-        "hanja": "陣形轉換",
+        "hanja": "",
         "romanized": "Jinhyeong Jeonhwan",
         "en": "Formation Shift"
       },
@@ -63,7 +63,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "병사 토큰 1개를 생성한다. 기력 2 획득. 병사 토큰: 피해를 1회 대신 받고 소멸. 소멸 시 기(氣) 1 회복.",
+        "ko": "병사 토큰 1개를 생성한다. 기력 2 획득. 병사 토큰: 피해를 1회 대신 받고 소멸. 소멸 시 기 1 회복.",
         "en": "Create 1 Soldier Token. Gain 2 Stamina. Soldier Token: absorbs 1 hit of damage and is destroyed. On destruction, recover 1 Qi."
       },
       "effect_upgraded": {
@@ -90,7 +90,7 @@
       "id": "G002",
       "name": {
         "ko": "돌격",
-        "hanja": "突擊",
+        "hanja": "",
         "romanized": "Dolgyeok",
         "en": "Charge"
       },
@@ -129,7 +129,7 @@
       "id": "G003",
       "name": {
         "ko": "포위",
-        "hanja": "包圍",
+        "hanja": "",
         "romanized": "Powi",
         "en": "Encirclement"
       },
@@ -143,7 +143,7 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "모든 적에게 포위됨(包圍됨) 상태를 2턴 부여한다. 기력 1 획득. 포위됨: 공격 피해 25% 감소.",
+        "ko": "모든 적에게 포위됨(됨) 상태를 2턴 부여한다. 기력 1 획득. 포위됨: 공격 피해 25% 감소.",
         "en": "Apply Encircled status to ALL enemies for 2 turns. Gain 1 Stamina. Encircled: attack damage reduced by 25%."
       },
       "effect_upgraded": {
@@ -168,7 +168,7 @@
       "id": "G004",
       "name": {
         "ko": "학익진",
-        "hanja": "鶴翼陣",
+        "hanja": "",
         "romanized": "Hagikjin",
         "en": "Crane Wing Formation"
       },
@@ -210,7 +210,7 @@
       "id": "G005",
       "name": {
         "ko": "천하무적진",
-        "hanja": "天下無敵陣",
+        "hanja": "",
         "romanized": "Cheonha Mujeokjin",
         "en": "Invincible Formation"
       },
@@ -252,7 +252,7 @@
       "id": "G006",
       "name": {
         "ko": "보병 전진",
-        "hanja": "步兵前進",
+        "hanja": "",
         "romanized": "Bobyeong Jeonjin",
         "en": "Infantry Advance"
       },
@@ -276,7 +276,7 @@
         "ko": "보병 하나씩 앞으로 — 작은 전진이 모여 대진형을 이룬다.",
         "en": "One soldier at a time, forward — small advances build into a grand formation."
       },
-      "balance_rationale": "0코스트 기력 충전. 기공(도사 D001)의 무관 버전으로 기(氣) 대신 기력을 충전. 0코스트이므로 시조 슬롯을 소비하면서 기력 엔진 역할. 진형·기력 아키타입 모두에서 핵심 0코스트 자원 공급원. 덱 20장 기준 최대 2장 권장.",
+      "balance_rationale": "0코스트 기력 충전. 기공(도사 D001)의 무관 버전으로 기 대신 기력을 충전. 0코스트이므로 시조 슬롯을 소비하면서 기력 엔진 역할. 진형·기력 아키타입 모두에서 핵심 0코스트 자원 공급원. 덱 20장 기준 최대 2장 권장.",
       "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 기력 충전",
       "class_synergy": [
         "G002",
@@ -292,7 +292,7 @@
       "id": "G007",
       "name": {
         "ko": "복병",
-        "hanja": "伏兵",
+        "hanja": "",
         "romanized": "Bokbyeong",
         "en": "Ambush"
       },
@@ -333,7 +333,7 @@
       "id": "G008",
       "name": {
         "ko": "삼군 배치",
-        "hanja": "三軍配置",
+        "hanja": "",
         "romanized": "Samgun Baechii",
         "en": "Triple Army Deploy"
       },
@@ -372,7 +372,7 @@
       "id": "G009",
       "name": {
         "ko": "진법 교본",
-        "hanja": "陣法敎本",
+        "hanja": "",
         "romanized": "Jinbeop Gyobon",
         "en": "Tactics Manual"
       },
@@ -413,7 +413,7 @@
       "id": "G010",
       "name": {
         "ko": "철기 돌격",
-        "hanja": "鐵騎突擊",
+        "hanja": "",
         "romanized": "Cheolgi Dolgyeok",
         "en": "Cavalry Charge"
       },
@@ -454,7 +454,7 @@
       "id": "G011",
       "name": {
         "ko": "연막",
-        "hanja": "煙幕",
+        "hanja": "",
         "romanized": "Yeonmak",
         "en": "Smoke Screen"
       },
@@ -495,7 +495,7 @@
       "id": "G012",
       "name": {
         "ko": "총통 사격",
-        "hanja": "銃筒射擊",
+        "hanja": "",
         "romanized": "Chongtong Sagyeok",
         "en": "Cannon Barrage"
       },
@@ -536,7 +536,7 @@
       "id": "G013",
       "name": {
         "ko": "기합",
-        "hanja": "氣合",
+        "hanja": "",
         "romanized": "Gihap",
         "en": "Spirit Shout"
       },
@@ -577,7 +577,7 @@
       "id": "G014",
       "name": {
         "ko": "역전의 기세",
-        "hanja": "逆轉氣勢",
+        "hanja": "",
         "romanized": "Yeokjeon Gise",
         "en": "Momentum"
       },
@@ -618,7 +618,7 @@
       "id": "G015",
       "name": {
         "ko": "불굴의 의지",
-        "hanja": "不屈意志",
+        "hanja": "",
         "romanized": "Bulgul Euiji",
         "en": "Indomitable Will"
       },
@@ -659,7 +659,7 @@
       "id": "G016",
       "name": {
         "ko": "마지막 도박",
-        "hanja": "最後賭博",
+        "hanja": "",
         "romanized": "Majimak Tobak",
         "en": "Final Gambit"
       },
@@ -699,7 +699,7 @@
       "id": "G017",
       "name": {
         "ko": "단신 돌격",
-        "hanja": "單身突擊",
+        "hanja": "",
         "romanized": "Dansin Dolgyeok",
         "en": "Solo Charge"
       },
@@ -740,7 +740,7 @@
       "id": "G018",
       "name": {
         "ko": "무쌍",
-        "hanja": "無雙",
+        "hanja": "",
         "romanized": "Mussang",
         "en": "Peerless"
       },
@@ -782,7 +782,7 @@
       "id": "G019",
       "name": {
         "ko": "수비 대형",
-        "hanja": "守備隊形",
+        "hanja": "",
         "romanized": "Subi Daehyeong",
         "en": "Defensive Formation"
       },
@@ -815,7 +815,7 @@
       "id": "G020",
       "name": {
         "ko": "찌르기",
-        "hanja": "突刺",
+        "hanja": "",
         "romanized": "Jjireureogi",
         "en": "Thrust"
       },
@@ -848,7 +848,7 @@
       "id": "G021",
       "name": {
         "ko": "반격",
-        "hanja": "反擊",
+        "hanja": "",
         "romanized": "Bangyeok",
         "en": "Retaliation"
       },
@@ -888,7 +888,7 @@
       "id": "G022",
       "name": {
         "ko": "연속 베기",
-        "hanja": "連續斬",
+        "hanja": "",
         "romanized": "Yeonsok Baegi",
         "en": "Repeated Slash"
       },
@@ -927,7 +927,7 @@
       "id": "G023",
       "name": {
         "ko": "철벽 방어",
-        "hanja": "鐵壁防禦",
+        "hanja": "",
         "romanized": "Cheolbyeok Bangeo",
         "en": "Iron Wall Defense"
       },
@@ -964,7 +964,7 @@
       "id": "G024",
       "name": {
         "ko": "격파",
-        "hanja": "擊破",
+        "hanja": "",
         "romanized": "Gyeokpa",
         "en": "Shatter"
       },
@@ -975,7 +975,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 12 피해를 입힌다. 대상이 취약(脆弱) 상태라면 피해가 8 추가된다.",
+        "ko": "적에게 12 피해를 입힌다. 대상이 취약 상태라면 피해가 8 추가된다.",
         "en": "Deal 12 damage to an enemy. If the target is Vulnerable, deal 8 additional damage."
       },
       "effect_upgraded": {
@@ -1001,7 +1001,7 @@
       "id": "G025",
       "name": {
         "ko": "백전노장",
-        "hanja": "百戰老將",
+        "hanja": "",
         "romanized": "Baekjeon Nojang",
         "en": "Battle-Hardened Veteran"
       },
@@ -1043,7 +1043,7 @@
       "id": "G026",
       "name": {
         "ko": "천마무쌍",
-        "hanja": "天馬無雙",
+        "hanja": "",
         "romanized": "Cheonma Musang",
         "en": "Peerless Warhorse Strike"
       },
@@ -1086,7 +1086,7 @@
       "id": "G027",
       "name": {
         "ko": "철벽대진",
-        "hanja": "鐵壁大陣",
+        "hanja": "",
         "romanized": "Cheolbyeok Daejin",
         "en": "Iron Wall Grand Formation"
       },
@@ -1132,7 +1132,7 @@
       "id": "포위됨",
       "ko": "포위됨",
       "en": "Surrounded",
-      "hanja": "包圍됨",
+      "hanja": "",
       "description": "이 상태의 적은 공격 피해가 25% 감소한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
       "duration_type": "turns",
       "visual_note": "적 캐릭터 주변에 포위 링 이펙트"
@@ -1141,8 +1141,8 @@
       "id": "병사_토큰",
       "ko": "병사 토큰",
       "en": "Soldier Token",
-      "hanja": "兵士 Token",
-      "description": "플레이어 대신 피해를 1회 받고 소멸. 소멸 시 기(氣) 1 회복. 중첩 가능 — 각 토큰이 순서대로 피해를 흡수.",
+      "hanja": "",
+      "description": "플레이어 대신 피해를 1회 받고 소멸. 소멸 시 기 1 회복. 중첩 가능 — 각 토큰이 순서대로 피해를 흡수.",
       "duration_type": "hit_based",
       "visual_note": "플레이어 옆에 소형 병사 토큰 아이콘 표시"
     }
