@@ -2,7 +2,7 @@
 
 [ext_resource type="Script"    path="res://scenes/shop/shop.gd"               id="1"]
 [ext_resource type="Theme"     path="res://resources/joseon_theme.tres"        id="2"]
-[ext_resource type="Texture2D" path="res://art/backgrounds/shop_bg.svg"        id="3"]
+[ext_resource type="Texture2D" path="res://art/backgrounds/shop_bg.png"        id="3"]
 
 ; 헤더 바 — 고정, 반투명 어둡게
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
