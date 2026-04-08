@@ -102,6 +102,13 @@ func _on_scene_pressed(state_name: String) -> void:
 	# 런 데이터가 없으면 디버그용으로 생성
 	if GameManager.run_data == null:
 		GameManager.start_new_run(debug_character_id)
+		# start_new_run이 MAP으로 전환하므로, 다른 씬은 다음 프레임에 전환
+		var state: GameManager.GameState = GameManager.GameState.get(state_name, GameManager.GameState.TITLE)
+		if state != GameManager.GameState.MAP:
+			get_tree().process_frame.connect(func():
+				GameManager.change_state(state)
+			, CONNECT_ONE_SHOT)
+		return
 
 	var state: GameManager.GameState = GameManager.GameState.get(state_name, GameManager.GameState.TITLE)
 	GameManager.change_state(state)

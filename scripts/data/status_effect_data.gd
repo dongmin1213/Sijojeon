@@ -53,78 +53,78 @@ static func get_all_definitions() -> Dictionary:
 static func _init_registry() -> void:
 	# --- DoT (지속 피해) ---
 	_registry["독"] = StatusEffectData.new(
-		"독", tr("STATUS_POISON"), "☠", Color(0.4, 0.8, 0.2), EffectType.DOT,
-		tr("SE_DESC_POISON"), true, false
+		"독", TranslationServer.translate("STATUS_POISON"), "☠", Color(0.4, 0.8, 0.2), EffectType.DOT,
+		TranslationServer.translate("SE_DESC_POISON"), true, false
 	)
 	_registry["화상"] = StatusEffectData.new(
-		"화상", tr("STATUS_BURN"), "🔥", Color(1.0, 0.4, 0.1), EffectType.DOT,
-		tr("SE_DESC_BURN"), true, false
+		"화상", TranslationServer.translate("STATUS_BURN"), "🔥", Color(1.0, 0.4, 0.1), EffectType.DOT,
+		TranslationServer.translate("SE_DESC_BURN"), true, false
 	)
 	_registry["출혈"] = StatusEffectData.new(
-		"출혈", tr("SE_NAME_BLEED"), "🩸", Color(0.8, 0.1, 0.1), EffectType.DOT,
-		tr("SE_DESC_BLEED"), true, false
+		"출혈", TranslationServer.translate("SE_NAME_BLEED"), "🩸", Color(0.8, 0.1, 0.1), EffectType.DOT,
+		TranslationServer.translate("SE_DESC_BLEED"), true, false
 	)
 	_registry["death_mark"] = StatusEffectData.new(
-		"death_mark", tr("SE_NAME_DEATH_MARK"), "💀", Color(0.5, 0.0, 0.5), EffectType.DOT,
-		tr("SE_DESC_DEATH_MARK"), true, false
+		"death_mark", TranslationServer.translate("SE_NAME_DEATH_MARK"), "💀", Color(0.5, 0.0, 0.5), EffectType.DOT,
+		TranslationServer.translate("SE_DESC_DEATH_MARK"), true, false
 	)
 
 	# --- 디버프 ---
 	_registry["약화"] = StatusEffectData.new(
-		"약화", tr("STATUS_WEAKEN"), "⬇", Color(1.0, 0.6, 0.2), EffectType.DEBUFF,
-		tr("SE_DESC_WEAKEN"), true, false
+		"약화", TranslationServer.translate("STATUS_WEAKEN"), "⬇", Color(1.0, 0.6, 0.2), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_WEAKEN"), true, false
 	)
 	_registry["취약"] = StatusEffectData.new(
-		"취약", tr("STATUS_VULNERABLE"), "🔻", Color(1.0, 0.3, 0.3), EffectType.DEBUFF,
-		tr("SE_DESC_VULNERABLE"), true, false
+		"취약", TranslationServer.translate("STATUS_VULNERABLE"), "🔻", Color(1.0, 0.3, 0.3), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_VULNERABLE"), true, false
 	)
 	_registry["냉기"] = StatusEffectData.new(
-		"냉기", tr("SE_NAME_CHILL"), "❄", Color(0.5, 0.8, 1.0), EffectType.DEBUFF,
-		tr("SE_DESC_CHILL"), false, false
+		"냉기", TranslationServer.translate("SE_NAME_CHILL"), "❄", Color(0.5, 0.8, 1.0), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_CHILL"), false, false
 	)
 	_registry["death_countdown"] = StatusEffectData.new(
-		"death_countdown", tr("SE_NAME_DEATH_COUNTDOWN"), "⏳", Color(0.3, 0.0, 0.3), EffectType.DEBUFF,
-		tr("SE_DESC_DEATH_COUNTDOWN"), true, false
+		"death_countdown", TranslationServer.translate("SE_NAME_DEATH_COUNTDOWN"), "⏳", Color(0.3, 0.0, 0.3), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_DEATH_COUNTDOWN"), true, false
 	)
 
 	# --- 버프 ---
 	_registry["strength"] = StatusEffectData.new(
-		"strength", tr("STATUS_STRENGTH"), "⚔", Color(1.0, 0.3, 0.3), EffectType.BUFF,
-		tr("SE_DESC_STRENGTH"), false, true
+		"strength", TranslationServer.translate("STATUS_STRENGTH"), "⚔", Color(1.0, 0.3, 0.3), EffectType.BUFF,
+		TranslationServer.translate("SE_DESC_STRENGTH"), false, true
 	)
 	_registry["thorns"] = StatusEffectData.new(
-		"thorns", tr("SE_NAME_THORNS"), "🌹", Color(0.6, 0.3, 0.1), EffectType.BUFF,
-		tr("SE_DESC_THORNS"), false, true
+		"thorns", TranslationServer.translate("SE_NAME_THORNS"), "🌹", Color(0.6, 0.3, 0.1), EffectType.BUFF,
+		TranslationServer.translate("SE_DESC_THORNS"), false, true
 	)
 	_registry["갑주"] = StatusEffectData.new(
-		"갑주", tr("SE_NAME_ARMOR"), "🛡", Color(0.3, 0.6, 1.0), EffectType.BUFF,
-		tr("SE_DESC_ARMOR"), false, true
+		"갑주", TranslationServer.translate("SE_NAME_ARMOR"), "🛡", Color(0.3, 0.6, 1.0), EffectType.BUFF,
+		TranslationServer.translate("SE_DESC_ARMOR"), false, true
 	)
 	_registry["병사_토큰"] = StatusEffectData.new(
-		"병사_토큰", tr("SE_NAME_SOLDIER_TOKEN"), "⚑", Color(0.9, 0.7, 0.2), EffectType.BUFF,
-		tr("SE_DESC_SOLDIER_TOKEN"), false, true
+		"병사_토큰", TranslationServer.translate("SE_NAME_SOLDIER_TOKEN"), "⚑", Color(0.9, 0.7, 0.2), EffectType.BUFF,
+		TranslationServer.translate("SE_DESC_SOLDIER_TOKEN"), false, true
 	)
 	_registry["구금"] = StatusEffectData.new(
-		"구금", tr("SE_NAME_DETENTION"), "⛓", Color(0.6, 0.4, 0.2), EffectType.DEBUFF,
-		tr("SE_DESC_DETENTION"), true, false
+		"구금", TranslationServer.translate("SE_NAME_DETENTION"), "⛓", Color(0.6, 0.4, 0.2), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_DETENTION"), true, false
 	)
 	_registry["주박"] = StatusEffectData.new(
-		"주박", tr("SE_NAME_SHACKLE"), "🔮", Color(0.5, 0.2, 0.7), EffectType.DEBUFF,
-		tr("SE_DESC_SHACKLE"), true, false
+		"주박", TranslationServer.translate("SE_NAME_SHACKLE"), "🔮", Color(0.5, 0.2, 0.7), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_SHACKLE"), true, false
 	)
 	_registry["기절"] = StatusEffectData.new(
-		"기절", tr("STATUS_STUN"), "💫", Color(1.0, 0.9, 0.3), EffectType.DEBUFF,
-		tr("SE_DESC_STUN"), true, false
+		"기절", TranslationServer.translate("STATUS_STUN"), "💫", Color(1.0, 0.9, 0.3), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_STUN"), true, false
 	)
 	_registry["허점_노출"] = StatusEffectData.new(
-		"허점_노출", tr("SE_NAME_WEAKNESS_EXPOSED"), "🎯", Color(1.0, 0.2, 0.4), EffectType.DEBUFF,
-		tr("SE_DESC_WEAKNESS_EXPOSED"), true, false
+		"허점_노출", TranslationServer.translate("SE_NAME_WEAKNESS_EXPOSED"), "🎯", Color(1.0, 0.2, 0.4), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_WEAKNESS_EXPOSED"), true, false
 	)
 	_registry["폭발_카운트다운"] = StatusEffectData.new(
-		"폭발_카운트다운", tr("SE_NAME_EXPLOSION"), "💣", Color(1.0, 0.5, 0.0), EffectType.DEBUFF,
-		tr("SE_DESC_EXPLOSION"), true, false
+		"폭발_카운트다운", TranslationServer.translate("SE_NAME_EXPLOSION"), "💣", Color(1.0, 0.5, 0.0), EffectType.DEBUFF,
+		TranslationServer.translate("SE_DESC_EXPLOSION"), true, false
 	)
 	_registry["반격"] = StatusEffectData.new(
-		"반격", tr("SE_NAME_COUNTER"), "🔄", Color(0.8, 0.4, 0.1), EffectType.BUFF,
-		tr("SE_DESC_COUNTER"), false, true
+		"반격", TranslationServer.translate("SE_NAME_COUNTER"), "🔄", Color(0.8, 0.4, 0.1), EffectType.BUFF,
+		TranslationServer.translate("SE_DESC_COUNTER"), false, true
 	)

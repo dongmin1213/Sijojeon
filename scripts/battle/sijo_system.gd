@@ -18,7 +18,7 @@ const PATTERN_VARIANTS: Array = [
 ]
 static var JANG_NAMES: Array[String]:
 	get:
-		return [tr("SIJO_FIRST_VERSE"), tr("SIJO_MIDDLE_VERSE"), tr("SIJO_FINAL_VERSE")]
+		return [TranslationServer.translate("SIJO_FIRST_VERSE"), TranslationServer.translate("SIJO_MIDDLE_VERSE"), TranslationServer.translate("SIJO_FINAL_VERSE")]
 
 var pattern: Array[int] = [3, 4, 3]  # 현재 전투 패턴
 var slots: Array[String] = []  # 채워진 카드 ID
