@@ -65,6 +65,14 @@
       "class_id": "dosa",
       "class_ko": "무당",
       "class_hanja": "",
+      "fantasy_desc": {
+        "ko": "귀신을 부리고 굿으로 저주한다",
+        "en": "Commands spirits and curses through shamanistic rites"
+      },
+      "build_hint": {
+        "ko": "영력 → DoT/소환",
+        "en": "Spirit Power → DoT/Summon"
+      },
       "passive_name": {
         "ko": "천지기",
         "description": {
@@ -126,6 +134,14 @@
       "class_id": "mugwan",
       "class_ko": "의적",
       "class_hanja": "",
+      "fantasy_desc": {
+        "ko": "칼로 부패를 베고 빼앗아 나눈다",
+        "en": "Cuts corruption with a blade and shares the spoils"
+      },
+      "build_hint": {
+        "ko": "기력 축적 → 폭딜",
+        "en": "Stamina buildup → Burst damage"
+      },
       "passive_name": {
         "ko": "지휘통솔",
         "description": {
@@ -199,6 +215,14 @@
       "class_id": "mungwan",
       "class_ko": "선비",
       "class_hanja": "",
+      "fantasy_desc": {
+        "ko": "붓이 칼보다 강하다",
+        "en": "The brush is mightier than the sword"
+      },
+      "build_hint": {
+        "ko": "학식 축적 → 일격",
+        "en": "Erudition buildup → One-hit burst"
+      },
       "passive_name": {
         "ko": "학식충전",
         "description": {

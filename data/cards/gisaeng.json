@@ -1,0 +1,1310 @@
+{
+  "version": "0.1",
+  "type": "card_pool",
+  "class": "gungsu",
+  "class_ko": "기생",
+  "class_hanja": "妓生",
+  "category": "charm",
+  "description": "기생 전용 카드 풀. 흥(興) 자원 조작과 가무·예술로 적을 제압하는 매혹형 직업. 총 27장 (기본 20 + 해금 7) — 매혹·조종 아키타입, 가무·연타 아키타입, 풍류·버프 아키타입.",
+  "class_mechanic": "흥(興): 기생 전용 보조 자원. 기존 기(qi) 시스템을 '흥'으로 표현하며, 매 턴 흥을 획득/소비하여 효과를 발동한다. 매혹: 적의 행동을 제한하는 상태이상(턴 종료 시 수치 1 감소). 연타: 한 번의 카드 사용으로 복수 피해를 입힌다.",
+  "balance_ref": "ZER-94 기준 준수. 기준: 1코스트 6피해, 1코스트 5방어도, 기(흥) 3/턴.",
+  "archetypes": [
+    {
+      "id": "charm",
+      "name_ko": "매혹·조종",
+      "description": "적을 매혹시켜 행동을 제한하고 약화·스턴 상태를 누적시키는 아키타입. G001·G002·G003·G008·G009·G010·G011 중심.",
+      "key_cards": [
+        "GI001",
+        "GI003",
+        "GI008",
+        "GI009",
+        "GI011"
+      ]
+    },
+    {
+      "id": "dance",
+      "name_ko": "가무·연타",
+      "description": "가무로 연속 공격을 퍼붓고 흥 수치에 비례해 피해가 강화되는 아키타입. G004·G005·G006·G007·G012·G013·G014 중심.",
+      "key_cards": [
+        "GI004",
+        "GI005",
+        "GI006",
+        "GI012",
+        "GI014"
+      ]
+    },
+    {
+      "id": "pungyu",
+      "name_ko": "풍류·버프",
+      "description": "흥을 축적하여 아군을 강화하고 드로우·에너지를 가속시키는 지원형 아키타입. G015·G016·G017·G018·G019·G020 중심.",
+      "key_cards": [
+        "GI015",
+        "GI016",
+        "GI017",
+        "GI018",
+        "GI020"
+      ]
+    }
+  ],
+  "cards": [
+
+    {
+      "id": "GI001",
+      "name": {
+        "ko": "추파",
+        "hanja": "秋波",
+        "romanized": "Chupa",
+        "en": "Seductive Glance"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "spell",
+      "subtypes": [
+        "charm",
+        "debuff"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "적에게 매혹 2를 부여한다. 적에게 4 피해를 입힌다. (매혹: 턴 종료 시 수치 1 감소, 수치가 1 이상이면 적이 행동하지 않는다)",
+        "en": "Apply 2 Charm to an enemy. Deal 4 damage to them. (Charm: enemy cannot act while Charm > 0; stacks decay by 1 each turn)"
+      },
+      "effect_upgraded": {
+        "ko": "적에게 매혹 3을 부여한다. 적에게 5 피해를 입힌다.",
+        "en": "Apply 3 Charm to an enemy. Deal 5 damage to them."
+      },
+      "flavor_text": {
+        "ko": "눈빛 하나로도 사람을 옭아맬 수 있으니 — 칼이 필요하랴.",
+        "en": "A single glance can bind a man in chains — what need is there for a blade?"
+      },
+      "balance_rationale": "1코스트 4피해+매혹2. 기준 6피해 대비 낮지만 매혹2로 다음 1턴 적 행동 차단. 총 가치: 4피해+1턴 방어 = 1코스트 정당. 매혹 아키타입 진입 카드.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI003",
+        "GI009"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "damage": 4,
+        "charm": 2
+      }
+    },
+
+    {
+      "id": "GI002",
+      "name": {
+        "ko": "향낭",
+        "hanja": "香囊",
+        "romanized": "Hyangnang",
+        "en": "Scented Pouch"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "spell",
+      "subtypes": [
+        "charm",
+        "buff"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "흥 2를 획득한다. 카드 1장을 드로우한다.",
+        "en": "Gain 2 Heung. Draw 1 card."
+      },
+      "effect_upgraded": {
+        "ko": "흥 2를 획득한다. 카드 2장을 드로우한다.",
+        "en": "Gain 2 Heung. Draw 2 cards."
+      },
+      "flavor_text": {
+        "ko": "치마폭에서 향낭을 꺼내 드니 — 그 향에 이끌려 발걸음이 저절로 멈추누나.",
+        "en": "A scented pouch drawn from her skirts — and all who smell it halt unbidden."
+      },
+      "balance_rationale": "0코스트 흥 회복+드로우1. 기공(도사 D001, 0코+기2+드2)보다 효율은 낮지만 기생의 흥 가속 스타터. 드로우 1장으로 핸드 중립. 매혹·풍류 양쪽 아키타입 연결.",
+      "sijo_position": "초장 첫 슬롯 [3] — 흥 생성 스타터",
+      "class_synergy": [
+        "GI015",
+        "GI016"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "qi_gain": 2,
+        "draw": 1
+      }
+    },
+
+    {
+      "id": "GI003",
+      "name": {
+        "ko": "가인박명",
+        "hanja": "佳人薄命",
+        "romanized": "Gaine Baengmyeong",
+        "en": "Fate of the Beauty"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "spell",
+      "subtypes": [
+        "charm",
+        "aoe"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "모든 적에게 매혹 2를 부여한다. 모든 적에게 3 피해를 입힌다.",
+        "en": "Apply 2 Charm to ALL enemies. Deal 3 damage to ALL enemies."
+      },
+      "effect_upgraded": {
+        "ko": "모든 적에게 매혹 3을 부여한다. 모든 적에게 4 피해를 입힌다.",
+        "en": "Apply 3 Charm to ALL enemies. Deal 4 damage to ALL enemies."
+      },
+      "flavor_text": {
+        "ko": "가인의 슬픔이 전장에 흐르면 — 적들마저 칼을 내려놓고 멈추고 만다.",
+        "en": "When the beauty's sorrow fills the battlefield — even enemies lay down their swords."
+      },
+      "balance_rationale": "2코스트 전체 매혹+광역 피해. 3 AoE는 낮지만 전체 매혹2로 다음 턴 모든 적 행동 차단. 다수전에서 가치 폭증. 매혹 아키타입의 핵심 광역 제어 카드.",
+      "sijo_position": "중장 둘째 슬롯 [4]",
+      "class_synergy": [
+        "GI001",
+        "GI009",
+        "GI011"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage": 3,
+        "charm": 2,
+        "is_aoe": true
+      }
+    },
+
+    {
+      "id": "GI004",
+      "name": {
+        "ko": "춤사위",
+        "hanja": "",
+        "romanized": "Chumsawi",
+        "en": "Dance Step"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": [
+        "dance",
+        "multi"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "적에게 3 피해를 2번 입힌다.",
+        "en": "Deal 3 damage twice to an enemy."
+      },
+      "effect_upgraded": {
+        "ko": "적에게 4 피해를 2번 입힌다.",
+        "en": "Deal 4 damage twice to an enemy."
+      },
+      "flavor_text": {
+        "ko": "발끝에서 손끝까지 — 춤 하나에 두 번의 바람이 인다.",
+        "en": "From toe to fingertip — a single dance stirs two gusts of wind."
+      },
+      "balance_rationale": "1코스트 다타 6피해. 기준 6피해와 동일 총량. 방패 관통, 방어도 있는 적에 2회 적용되는 이점. 가무 아키타입 기본 다타 카드. 스타터 덱 포함.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI005",
+        "GI006"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "damage": 3,
+        "hits": 2
+      }
+    },
+
+    {
+      "id": "GI005",
+      "name": {
+        "ko": "부채춤",
+        "hanja": "",
+        "romanized": "Buchaechum",
+        "en": "Fan Dance"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "dance",
+        "multi"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "적에게 2 피해를 4번 입힌다. 흥 1을 획득한다.",
+        "en": "Deal 2 damage 4 times to an enemy. Gain 1 Heung."
+      },
+      "effect_upgraded": {
+        "ko": "적에게 3 피해를 4번 입힌다. 흥 2를 획득한다.",
+        "en": "Deal 3 damage 4 times to an enemy. Gain 2 Heung."
+      },
+      "flavor_text": {
+        "ko": "부채가 펼쳐지고 접히기를 네 번 — 그 사이 적은 이미 쓰러져 있다.",
+        "en": "The fan opens and closes four times — and the enemy has already fallen."
+      },
+      "balance_rationale": "2코스트 다타 8피해+흥1. 총 8피해는 2코스트 기준(12피해 기대)보다 낮지만 4회 타격과 흥1 획득으로 가무 아키타입 자원 순환. 방어도 무력화 효율 높음.",
+      "sijo_position": "중장 둘째 슬롯 [4]",
+      "class_synergy": [
+        "GI004",
+        "GI006",
+        "GI012"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage": 2,
+        "hits": 4,
+        "qi_gain": 1
+      }
+    },
+
+    {
+      "id": "GI006",
+      "name": {
+        "ko": "검무",
+        "hanja": "劍舞",
+        "romanized": "Geomu",
+        "en": "Sword Dance"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": [
+        "dance",
+        "multi"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "적에게 4 피해를 입힌다. 이번 턴 가무(dance) 카드를 이미 사용했다면, 4 추가 피해를 입힌다.",
+        "en": "Deal 4 damage to an enemy. If you have played a dance card this turn, deal 4 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "적에게 5 피해를 입힌다. 이번 턴 가무 카드 사용 시 5 추가 피해.",
+        "en": "Deal 5 damage to an enemy. Dance card bonus: +5 additional damage."
+      },
+      "flavor_text": {
+        "ko": "치마가 펼쳐지듯 칼이 돌아가면 — 가무와 무예 사이 경계가 사라진다.",
+        "en": "As the skirts spin, so does the blade — and the line between dance and war dissolves."
+      },
+      "balance_rationale": "1코스트 콤보 카드. 단독 4피해는 기준 미달이지만 가무 카드 1장 선행 시 8피해로 기준 초과. 콤보 강요로 가무 아키타입 빌드 방향성 강화. 춤사위(G004)+검무=총 14피해.",
+      "sijo_position": "중장·종장 둘째 슬롯 [4]",
+      "class_synergy": [
+        "GI004",
+        "GI005",
+        "GI012"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "damage": 4,
+        "bonus_if_dance_played": 4
+      }
+    },
+
+    {
+      "id": "GI007",
+      "name": {
+        "ko": "소고춤",
+        "hanja": "",
+        "romanized": "Sogochum",
+        "en": "Hand Drum Dance"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": [
+        "dance"
+      ],
+      "rarity": 1,
+      "rarity_stars": "★☆☆☆☆",
+      "effect": {
+        "ko": "적에게 6 피해를 입힌다.",
+        "en": "Deal 6 damage to an enemy."
+      },
+      "effect_upgraded": {
+        "ko": "적에게 9 피해를 입힌다.",
+        "en": "Deal 9 damage to an enemy."
+      },
+      "flavor_text": {
+        "ko": "소고를 치며 발을 구르니 — 땅이 울리고 적의 무릎이 꺾인다.",
+        "en": "Beat the hand drum and stamp the ground — the earth shakes and the enemy's knees buckle."
+      },
+      "balance_rationale": "1코스트 기본 공격. 수결(도사 D007, 6피해)의 기생 버전. 기준 6피해 충족. dance 서브타입 부여로 검무(G006) 등 가무 콤보 연결 가능. 스타터 덱 3장 포함.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "upgrade_cost": 50,
+      "values": {
+        "damage": 6
+      }
+    },
+
+    {
+      "id": "GI008",
+      "name": {
+        "ko": "매혹의 시선",
+        "hanja": "",
+        "romanized": "Maehok-ui Siseon",
+        "en": "Bewitching Gaze"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "spell",
+      "subtypes": [
+        "charm",
+        "debuff"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "적에게 약화 2를 부여한다. 적에게 매혹 1을 부여한다. 방어도 3을 획득한다.",
+        "en": "Apply 2 Weak to an enemy. Apply 1 Charm to an enemy. Gain 3 Block."
+      },
+      "effect_upgraded": {
+        "ko": "약화 3, 매혹 2 부여. 방어도 4를 획득한다.",
+        "en": "Apply 3 Weak and 2 Charm to an enemy. Gain 4 Block."
+      },
+      "flavor_text": {
+        "ko": "눈을 마주친 자는 먼저 힘이 빠지고 — 그 다음에야 정신을 차린다.",
+        "en": "Those who meet her gaze first lose their strength — and only then regain their senses."
+      },
+      "balance_rationale": "1코스트 약화2+매혹1+방어3. 단순 방어도(5)보다 낮지만 약화로 적 피해 25% 감소 + 매혹1 행동 차단 = 총 방어 가치 충분. 매혹+방어 하이브리드 카드.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI001",
+        "GI003",
+        "GI011"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "block": 3,
+        "weak": 2,
+        "charm": 1
+      }
+    },
+
+    {
+      "id": "GI009",
+      "name": {
+        "ko": "절세가인",
+        "hanja": "絶世佳人",
+        "romanized": "Jeolse Gain",
+        "en": "Peerless Beauty"
+      },
+      "beat": 3,
+      "cost": 2,
+      "type": "spell",
+      "subtypes": [
+        "charm",
+        "power"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "적에게 매혹 4를 부여하고 7 피해를 입힌다. 매혹 상태의 적을 공격하면 피해 +3 보너스가 이번 전투 동안 지속된다.",
+        "en": "Apply 4 Charm and deal 7 damage to an enemy. This battle, your attacks deal +3 damage against Charmed enemies."
+      },
+      "effect_upgraded": {
+        "ko": "매혹 5, 9 피해. 매혹된 적 대상 공격 피해 +4 보너스.",
+        "en": "Apply 5 Charm and deal 9 damage. Bonus damage against Charmed enemies is +4."
+      },
+      "flavor_text": {
+        "ko": "절세가인 앞에 서면 칼을 들 생각조차 나지 않나니 — 그것이 가장 두려운 무기로다.",
+        "en": "Before such beauty, none can raise their sword — and that is the most fearsome weapon of all."
+      },
+      "balance_rationale": "2코스트 매혹4+7피해+영구 버프. 7피해는 2코스트 기준(12) 이하지만 매혹4로 다음 4턴 제어+지속 피해 버프 부여. 매혹 아키타입의 핵심 패시브 생성 카드.",
+      "sijo_position": "중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI001",
+        "GI003",
+        "GI008"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage": 7,
+        "charm": 4,
+        "passive_bonus_vs_charmed": 3
+      }
+    },
+
+    {
+      "id": "GI010",
+      "name": {
+        "ko": "요염",
+        "hanja": "妖艶",
+        "romanized": "Yoyeom",
+        "en": "Allure"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "spell",
+      "subtypes": [
+        "charm"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "적에게 매혹 1을 부여한다. 흥 1을 획득한다.",
+        "en": "Apply 1 Charm to an enemy. Gain 1 Heung."
+      },
+      "effect_upgraded": {
+        "ko": "매혹 2를 부여한다. 흥 1을 획득한다.",
+        "en": "Apply 2 Charm to an enemy. Gain 1 Heung."
+      },
+      "flavor_text": {
+        "ko": "한 번 웃음에 성이 기울고 — 두 번 웃음에 나라가 기운다 하였거늘.",
+        "en": "One smile topples a fortress — a second smile, a kingdom."
+      },
+      "balance_rationale": "0코스트 매혹1+흥1. 단독 가치는 낮지만 0코스트로 매혹 스택 누적 가능. G001·G003·G009 전 자유롭게 선행 사용. 흥1 획득으로 풍류 아키타입과도 연결.",
+      "sijo_position": "초장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI001",
+        "GI009",
+        "GI015"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "charm": 1,
+        "qi_gain": 1
+      }
+    },
+
+    {
+      "id": "GI011",
+      "name": {
+        "ko": "혼미",
+        "hanja": "昏迷",
+        "romanized": "Honmi",
+        "en": "Stupor"
+      },
+      "beat": 5,
+      "cost": 3,
+      "type": "spell",
+      "subtypes": [
+        "charm",
+        "stun"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "적에게 매혹 6을 부여한다. 적에게 즉시 10 피해를 입힌다. 매혹된 적이 공격을 시도할 때마다 그 피해의 절반이 자신에게 돌아간다 (이번 전투).",
+        "en": "Apply 6 Charm to an enemy. Deal 10 damage immediately. For this battle, when a Charmed enemy attempts an attack, half the damage is reflected back at them."
+      },
+      "effect_upgraded": {
+        "ko": "매혹 6, 13 피해. 반사 비율 60%.",
+        "en": "Apply 6 Charm and deal 13 damage. Reflection is 60%."
+      },
+      "flavor_text": {
+        "ko": "혼이 미혹되어 스스로를 치는 것이니 — 이 아니 통쾌한가.",
+        "en": "When the mind is bewitched, the enemy strikes themselves — is this not the finest satisfaction?"
+      },
+      "balance_rationale": "3코스트 매혹 극한 제어 카드. 10피해+매혹6(6턴 차단)+반사 패시브. 3코스트 기대 18피해 대비 낮지만 매혹 반사 효과로 장기전 총 피해 배증. 매혹 아키타입 최강 피니셔.",
+      "sijo_position": "종장 둘째 슬롯 [5] — 매혹 절정",
+      "class_synergy": [
+        "GI001",
+        "GI003",
+        "GI009"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage": 10,
+        "charm": 6,
+        "reflect_ratio": 0.5
+      }
+    },
+
+    {
+      "id": "GI012",
+      "name": {
+        "ko": "판소리",
+        "hanja": "",
+        "romanized": "Pansori",
+        "en": "Pansori"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "dance",
+        "aoe"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "모든 적에게 4 피해를 입힌다. 이번 턴 가무(dance) 카드를 사용했다면 3 추가 피해를 입힌다.",
+        "en": "Deal 4 damage to ALL enemies. If you have played a dance card this turn, deal 3 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "모든 적에게 5 피해. 가무 카드 사용 시 4 추가 피해.",
+        "en": "Deal 5 damage to ALL enemies. Dance bonus: +4 additional damage."
+      },
+      "flavor_text": {
+        "ko": "목청이 울려 퍼지면 — 자리한 모든 이의 가슴이 흔들린다.",
+        "en": "When her voice carries across the air — every heart in the room is shaken."
+      },
+      "balance_rationale": "2코스트 가무 콤보 광역 공격. 기본 4 AoE는 2코스트 대비 낮지만 가무 콤보 시 7 AoE로 상향. 가무 아키타입의 광역 피니셔. 도사 진언(D003)과 역할 대응.",
+      "sijo_position": "중장 둘째 슬롯 [4]",
+      "class_synergy": [
+        "GI004",
+        "GI005",
+        "GI006"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage": 4,
+        "is_aoe": true,
+        "bonus_if_dance_played": 3
+      }
+    },
+
+    {
+      "id": "GI013",
+      "name": {
+        "ko": "가야금",
+        "hanja": "伽倻琴",
+        "romanized": "Gayageum",
+        "en": "Gayageum"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "dance",
+        "buff"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "이번 턴 다음에 사용하는 가무(dance) 카드의 피해를 +4 증가시킨다. 흥 1을 획득한다.",
+        "en": "The next dance card you play this turn deals +4 additional damage. Gain 1 Heung."
+      },
+      "effect_upgraded": {
+        "ko": "다음 가무 카드 피해 +6 증가. 흥 2를 획득한다.",
+        "en": "Next dance card deals +6 additional damage. Gain 2 Heung."
+      },
+      "flavor_text": {
+        "ko": "가야금 가락이 흥을 돋우면 — 몸이 먼저 움직이고 적은 그것을 막지 못한다.",
+        "en": "When the gayageum stirs her spirit — the body moves first and the enemy cannot stop it."
+      },
+      "balance_rationale": "1코스트 가무 카드 버프+흥1. 결인(도사 D002, 1코+방2+다음공격+4)의 기생 버전. 방어도 대신 흥1 획득으로 풍류 시너지 추가. 가무 아키타입 콤보 촉매.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI004",
+        "GI005",
+        "GI006",
+        "GI012"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "next_dance_bonus": 4,
+        "qi_gain": 1
+      }
+    },
+
+    {
+      "id": "GI014",
+      "name": {
+        "ko": "흥에 겨워",
+        "hanja": "",
+        "romanized": "Heunge Gyeowo",
+        "en": "Lost in Rhythm"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "dance",
+        "multi"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "현재 흥 수치만큼 적에게 피해를 입힌다. (최소 4, 최대 20) 흥 2를 소비한다.",
+        "en": "Deal damage to an enemy equal to your current Heung (minimum 4, maximum 20). Consume 2 Heung."
+      },
+      "effect_upgraded": {
+        "ko": "현재 흥 수치×1.5만큼 피해를 입힌다. (최소 6, 최대 24) 흥 2를 소비한다.",
+        "en": "Deal damage equal to Heung × 1.5 (minimum 6, maximum 24). Consume 2 Heung."
+      },
+      "flavor_text": {
+        "ko": "흥이 오르면 오를수록 — 몸이 날카로워지고 타격이 묵직해진다.",
+        "en": "The higher her spirit soars — the sharper her body becomes, the heavier each blow."
+      },
+      "balance_rationale": "2코스트 흥 기반 피해. 흥 8 보유 시 8피해(기준 미달)이지만 흥 10이면 10피해. 흥 소비로 자원 순환 유도. 가무+풍류 하이브리드 카드. 흥 6이상에서 본전.",
+      "sijo_position": "중장·종장 둘째 슬롯 [4]",
+      "class_synergy": [
+        "GI002",
+        "GI013",
+        "GI016"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage_equals_heung": true,
+        "min_damage": 4,
+        "max_damage": 20,
+        "heung_consume": 2
+      }
+    },
+
+    {
+      "id": "GI015",
+      "name": {
+        "ko": "풍류",
+        "hanja": "風流",
+        "romanized": "Pungyu",
+        "en": "Pungyu"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "spell",
+      "subtypes": [
+        "pungyu",
+        "buff"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "흥 3을 획득한다.",
+        "en": "Gain 3 Heung."
+      },
+      "effect_upgraded": {
+        "ko": "흥 4를 획득한다.",
+        "en": "Gain 4 Heung."
+      },
+      "flavor_text": {
+        "ko": "가락 하나 흥얼거렸을 뿐인데 — 온 방 안에 흥이 돌았다.",
+        "en": "She hummed but a single note — and the whole room was filled with joy."
+      },
+      "balance_rationale": "0코스트 흥 3 획득. 기공(도사 D001)의 기생 버전. 0코스트로 흥 3은 기준(흥 3/턴) 충족. 풍류 아키타입의 핵심 엔진. 흥에 겨워(G014)·대흥(G016)의 연료.",
+      "sijo_position": "초장·중장 첫 슬롯 [3] — 흥 생성 엔진",
+      "class_synergy": [
+        "GI016",
+        "GI018",
+        "GI014"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "qi_gain": 3
+      }
+    },
+
+    {
+      "id": "GI016",
+      "name": {
+        "ko": "대흥",
+        "hanja": "大興",
+        "romanized": "Daeheung",
+        "en": "Grand Heung"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "spell",
+      "subtypes": [
+        "pungyu",
+        "buff"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "흥 2를 획득한다. 방어도 3을 획득한다.",
+        "en": "Gain 2 Heung. Gain 3 Block."
+      },
+      "effect_upgraded": {
+        "ko": "흥 3을 획득한다. 방어도 4를 획득한다.",
+        "en": "Gain 3 Heung. Gain 4 Block."
+      },
+      "flavor_text": {
+        "ko": "흥이 오르면 몸도 가벼워지고 — 마음도 굳건해지는 법이라.",
+        "en": "When the spirit rises, the body grows light — and the heart grows firm."
+      },
+      "balance_rationale": "1코스트 흥2+방어3. 기준 방어5에서 방어도 2 부족하지만 흥2 획득으로 풍류 아키타입 자원 공급. 대기(도사 D008)의 기생 버전. 방어+흥 복합으로 중반 생존 안정화.",
+      "sijo_position": "초장·중장 둘째 슬롯 [4]",
+      "class_synergy": [
+        "GI015",
+        "GI018",
+        "GI014"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "qi_gain": 2,
+        "block": 3
+      }
+    },
+
+    {
+      "id": "GI017",
+      "name": {
+        "ko": "시조창",
+        "hanja": "時調唱",
+        "romanized": "Sijochang",
+        "en": "Sijo Song"
+      },
+      "beat": 3,
+      "cost": 2,
+      "type": "skill",
+      "subtypes": [
+        "pungyu",
+        "draw"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "카드 3장을 드로우한다. 이번 턴 다음에 사용하는 카드의 비용이 1 감소한다 (최소 0).",
+        "en": "Draw 3 cards. The next card you play this turn costs 1 less (minimum 0)."
+      },
+      "effect_upgraded": {
+        "ko": "카드 4장을 드로우한다. 다음 카드 비용 2 감소.",
+        "en": "Draw 4 cards. The next card costs 2 less."
+      },
+      "flavor_text": {
+        "ko": "시조 한 수를 읊으면 — 마음이 열려 손이 먼저 움직이더이다.",
+        "en": "Recite a verse of sijo — and the mind opens, the hand moves on its own."
+      },
+      "balance_rationale": "2코스트 드로우3+다음 카드 비용1 감소. 축지법(도사 D005, 3코+드3+비용감소1)의 경량화 버전. 1코스트 저렴한 대신 드로우 효과와 비용 감소 범위가 작음. 풍류 아키타입 핸드 확장.",
+      "sijo_position": "중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI015",
+        "GI016",
+        "GI018"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "draw": 3,
+        "cost_reduce_next_card": 1
+      }
+    },
+
+    {
+      "id": "GI018",
+      "name": {
+        "ko": "흥타령",
+        "hanja": "",
+        "romanized": "Heungtaryeong",
+        "en": "Heung Ballad"
+      },
+      "beat": 3,
+      "cost": 3,
+      "type": "power",
+      "subtypes": [
+        "pungyu"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "매 턴 시작 시 흥 2를 추가로 획득한다 (이번 전투 지속). 흥 5 이상 보유 시 모든 카드의 비용이 1 감소한다 (이번 전투).",
+        "en": "At the start of each turn, gain 2 additional Heung (this battle). While you have 5 or more Heung, all cards cost 1 less (this battle)."
+      },
+      "effect_upgraded": {
+        "ko": "매 턴 흥 3 추가 획득. 흥 4 이상 보유 시 비용 감소 조건 완화.",
+        "en": "Gain 3 additional Heung at start of each turn. Cost reduction triggers at 4 or more Heung."
+      },
+      "flavor_text": {
+        "ko": "흥이 한번 오르면 멈출 수가 없으니 — 오늘 밤 가락이 끝날 줄 모르겠구나.",
+        "en": "Once the spirit rises it cannot be stopped — it seems the music will not end tonight."
+      },
+      "balance_rationale": "3코스트 영구 흥 가속+비용 감소 조건. 천기(도사 D011) 패시브 유형. 흥 5 유지 시 모든 카드 1코스트 감소 = 실질 3~5기 절약/턴. 풍류 아키타입 최강 패시브. 흥 관리가 전략의 핵심.",
+      "sijo_position": "중장·종장 첫 슬롯 [3] — 풍류 핵심 패시브",
+      "class_synergy": [
+        "GI015",
+        "GI016",
+        "GI017"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "heung_per_turn_bonus": 2,
+        "cost_reduce_threshold": 5,
+        "is_permanent": true
+      }
+    },
+
+    {
+      "id": "GI019",
+      "name": {
+        "ko": "회심곡",
+        "hanja": "回心曲",
+        "romanized": "Hoesimgok",
+        "en": "Song of Contrition"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "pungyu",
+        "heal"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "체력 4를 회복한다. 흥 1을 획득한다. 카드 1장을 드로우한다.",
+        "en": "Restore 4 HP. Gain 1 Heung. Draw 1 card."
+      },
+      "effect_upgraded": {
+        "ko": "체력 6을 회복한다. 흥 2를 획득한다. 카드 1장을 드로우한다.",
+        "en": "Restore 6 HP. Gain 2 Heung. Draw 1 card."
+      },
+      "flavor_text": {
+        "ko": "회심곡 한 자락에 — 상처도 아물고 마음도 되돌아오더이다.",
+        "en": "One verse of the song of contrition — and wounds close, the heart returns."
+      },
+      "balance_rationale": "1코스트 회복4+흥1+드로우1. 기준 방어5보다 낮지만 회복 + 흥 + 드로우 복합 유틸리티. 풍류 아키타입 생존 보조. 중반 체력 관리 핵심.",
+      "sijo_position": "중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI015",
+        "GI016",
+        "GI018"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "heal": 4,
+        "qi_gain": 1,
+        "draw": 1
+      }
+    },
+
+    {
+      "id": "GI020",
+      "name": {
+        "ko": "해어화",
+        "hanja": "解語花",
+        "romanized": "Haeeohwa",
+        "en": "Flower That Speaks"
+      },
+      "beat": 5,
+      "cost": 3,
+      "type": "spell",
+      "subtypes": [
+        "pungyu",
+        "charm",
+        "draw"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "카드 3장을 드로우한다. 흥을 최대치로 채운다. 매혹 상태의 적이 있다면, 그 적에게 흥 수치만큼 피해를 입힌다.",
+        "en": "Draw 3 cards. Fill Heung to maximum. If any enemy is Charmed, deal damage equal to your Heung to that enemy."
+      },
+      "effect_upgraded": {
+        "ko": "카드 4장을 드로우한다. 흥 최대치로 채우기. 매혹된 적 피해 흥×1.5.",
+        "en": "Draw 4 cards. Fill Heung to maximum. Damage to Charmed enemy is Heung × 1.5."
+      },
+      "flavor_text": {
+        "ko": "말을 알아듣는 꽃이라 하였으니 — 기생의 가장 높은 이름이요, 가장 날카로운 칼이라.",
+        "en": "They call her a flower that speaks — the highest name of a gisaeng, and the sharpest blade."
+      },
+      "balance_rationale": "3코스트 드로우3+흥 충전+매혹 피해. 단독 가치보다 매혹+풍류 아키타입 융합 피니셔. 흥 최대(10)+매혹 적 보유 시 10 추가 피해. 풍류 아키타입 종장 마무리 카드.",
+      "sijo_position": "종장 둘째 슬롯 [5] — 풍류·매혹 융합 피날레",
+      "class_synergy": [
+        "GI009",
+        "GI015",
+        "GI018"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "draw": 3,
+        "fill_heung": true,
+        "damage_if_charmed_equals_heung": true
+      }
+    },
+
+    {
+      "id": "GI021",
+      "name": {
+        "ko": "황진이의 노래",
+        "hanja": "",
+        "romanized": "Hwang Jini-ui Norae",
+        "en": "Song of Hwang Jini"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "spell",
+      "subtypes": [
+        "charm",
+        "pungyu"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "모든 적에게 매혹 3을 부여한다. 흥 3을 획득한다. 카드 2장을 드로우한다.",
+        "en": "Apply 3 Charm to ALL enemies. Gain 3 Heung. Draw 2 cards."
+      },
+      "effect_upgraded": {
+        "ko": "모든 적에게 매혹 4를 부여한다. 흥 4를 획득한다. 카드 3장을 드로우한다.",
+        "en": "Apply 4 Charm to ALL enemies. Gain 4 Heung. Draw 3 cards."
+      },
+      "flavor_text": {
+        "ko": "황진이의 목소리가 닿는 곳에서는 — 누구도 그 뜻을 거스르지 못하였다 하더이다.",
+        "en": "Wherever Hwang Jini's voice reached — none could defy her will, they say."
+      },
+      "balance_rationale": "해금 카드. 2코스트 전체 매혹3+흥3+드로우2. 매혹과 풍류를 동시에 전진시키는 하이브리드 카드. 단독으로도 2코스트 이상의 가치. G003+G015의 복합 효과.",
+      "sijo_position": "중장 둘째 슬롯 [4]",
+      "class_synergy": [
+        "GI003",
+        "GI009",
+        "GI015",
+        "GI018"
+      ],
+      "upgrade_cost": 125,
+      "unlock_condition": {
+        "type": "run_complete",
+        "class": "gisaeng",
+        "description": "기생으로 런을 처음 완료한다.",
+        "description_en": "Complete a run as Gisaeng for the first time."
+      },
+      "values": {
+        "charm": 3,
+        "qi_gain": 3,
+        "draw": 2,
+        "is_aoe_charm": true
+      }
+    },
+
+    {
+      "id": "GI022",
+      "name": {
+        "ko": "춘향의 절개",
+        "hanja": "",
+        "romanized": "Chunhyang-ui Jeolgae",
+        "en": "Chunhyang's Loyalty"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "charm",
+        "defense"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "방어도 8을 획득한다. 이번 전투 동안, 매혹된 적에게 받는 피해가 0이 된다.",
+        "en": "Gain 8 Block. For this battle, you take no damage from Charmed enemies."
+      },
+      "effect_upgraded": {
+        "ko": "방어도 10을 획득한다. 매혹된 적에게 받는 피해 0 (지속).",
+        "en": "Gain 10 Block. Take no damage from Charmed enemies (persists)."
+      },
+      "flavor_text": {
+        "ko": "절개가 꺾이지 않는다면 — 어떤 칼도 나를 베지 못하리라.",
+        "en": "If loyalty does not break — no blade can cut me."
+      },
+      "balance_rationale": "해금 카드. 1코스트 방어8+매혹 적 완전 면역. 방어8은 기준(5) 초과, 패시브 면역은 매혹 아키타입 생존력을 극적으로 강화. 매혹된 적이 많을수록 무결 방어. 매혹 빌드 필수 카드.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI001",
+        "GI003",
+        "GI009",
+        "GI011"
+      ],
+      "upgrade_cost": 125,
+      "unlock_condition": {
+        "type": "run_complete",
+        "class": "gisaeng",
+        "description": "기생으로 매혹 카드만으로 보스를 처치한다.",
+        "description_en": "Defeat a boss using only Charm cards as Gisaeng."
+      },
+      "values": {
+        "block": 8,
+        "passive_immune_to_charmed": true
+      }
+    },
+
+    {
+      "id": "GI023",
+      "name": {
+        "ko": "천하제일가무",
+        "hanja": "天下第一歌舞",
+        "romanized": "Cheonha Jeeil Gamu",
+        "en": "Greatest Dance Under Heaven"
+      },
+      "beat": 5,
+      "cost": 3,
+      "type": "attack",
+      "subtypes": [
+        "dance",
+        "multi",
+        "aoe"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "모든 적에게 5 피해를 3번 입힌다. 가무(dance) 카드를 3장 이상 사용했다면, 한 번 더 반복한다.",
+        "en": "Deal 5 damage 3 times to ALL enemies. If you have played 3 or more dance cards this turn, repeat once more."
+      },
+      "effect_upgraded": {
+        "ko": "모든 적에게 6 피해를 3번 입힌다. 가무 카드 3장 조건 동일.",
+        "en": "Deal 6 damage 3 times to ALL enemies. Same 3-dance-card condition."
+      },
+      "flavor_text": {
+        "ko": "천하에서 가장 아름다운 춤이 끝날 즈음 — 적은 이미 숨이 없었다.",
+        "en": "When the most beautiful dance under heaven drew to a close — the enemy had long since stopped breathing."
+      },
+      "balance_rationale": "해금 카드. 3코스트 다타 광역 피니셔. 기본 15 AoE, 가무 3장 조건 충족 시 30 AoE. 조건 충족이 어렵지만 가무 아키타입 최강 딜링 카드. 태산붕(도사 D006) 대응.",
+      "sijo_position": "종장 둘째 슬롯 [5] — 가무 아키타입 최강 딜러",
+      "class_synergy": [
+        "GI004",
+        "GI005",
+        "GI006",
+        "GI012",
+        "GI013"
+      ],
+      "upgrade_cost": 150,
+      "unlock_condition": {
+        "type": "run_complete",
+        "class": "gisaeng",
+        "challenge": "dance_archetype",
+        "description": "기생 가무 아키타입으로 런을 완료한다 (덱의 50% 이상이 가무 카드).",
+        "description_en": "Complete a run as Gisaeng with the dance archetype (50%+ dance cards in deck)."
+      },
+      "values": {
+        "damage": 5,
+        "hits": 3,
+        "is_aoe": true,
+        "repeat_if_3_dance_played": true
+      }
+    },
+
+    {
+      "id": "GI024",
+      "name": {
+        "ko": "기방풍류",
+        "hanja": "妓房風流",
+        "romanized": "Gibang Pungyu",
+        "en": "Salon Pungyu"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "power",
+      "subtypes": [
+        "pungyu",
+        "buff"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "이번 전투 동안, 카드를 사용할 때마다 흥 1을 추가로 획득한다. 흥 10 이상 보유 시 체력 2를 회복한다.",
+        "en": "For this battle, gain 1 additional Heung each time you play a card. While you have 10 or more Heung, restore 2 HP each turn."
+      },
+      "effect_upgraded": {
+        "ko": "카드 사용 시 흥 1 추가 획득 (지속). 흥 8 이상 보유 시 체력 2 회복.",
+        "en": "Gain 1 additional Heung per card played (persists). HP recovery triggers at 8+ Heung."
+      },
+      "flavor_text": {
+        "ko": "기방에서의 풍류는 멈추지 않으니 — 가락이 이어지는 한 힘도 이어지더라.",
+        "en": "The pungyu of the salon never ceases — while the music continues, so does the strength."
+      },
+      "balance_rationale": "해금 카드. 2코스트 패시브 흥 생성기. 카드당 흥 1이면 1턴에 카드 4~5장 사용 시 흥 4~5 추가. 흥 10 유지 시 회복 2/턴으로 지구전 생존력 강화. 풍류 아키타입 중반 엔진.",
+      "sijo_position": "중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI015",
+        "GI016",
+        "GI018",
+        "GI020"
+      ],
+      "upgrade_cost": 125,
+      "unlock_condition": {
+        "type": "ascension",
+        "level": 5,
+        "class": "gisaeng",
+        "description": "기생으로 고난도 5 이상으로 런을 완료한다.",
+        "description_en": "Complete a run as Gisaeng at Ascension 5 or higher."
+      },
+      "values": {
+        "heung_per_card_played": 1,
+        "heal_per_turn_at_max_heung": 2,
+        "heal_heung_threshold": 10,
+        "is_permanent": true
+      }
+    },
+
+    {
+      "id": "GI025",
+      "name": {
+        "ko": "삼현육각",
+        "hanja": "三絃六角",
+        "romanized": "Samhyeon Yukgak",
+        "en": "Six-instrument Ensemble"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "spell",
+      "subtypes": [
+        "pungyu",
+        "dance",
+        "aoe"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "모든 적에게 3 피해를 입힌다. 모든 적에게 약화 1을 부여한다. 흥 2를 획득한다.",
+        "en": "Deal 3 damage to ALL enemies. Apply 1 Weak to ALL enemies. Gain 2 Heung."
+      },
+      "effect_upgraded": {
+        "ko": "모든 적에게 4 피해와 약화 2를 부여한다. 흥 3을 획득한다.",
+        "en": "Deal 4 damage and apply 2 Weak to ALL enemies. Gain 3 Heung."
+      },
+      "flavor_text": {
+        "ko": "여섯 악기가 한 소리로 어우러지면 — 듣는 자의 기력이 절로 꺾이더이다.",
+        "en": "When six instruments blend into one sound — the listener's strength is broken without a blow."
+      },
+      "balance_rationale": "해금 카드. 1코스트 광역 약화+피해+흥 획득. 1코스트 기준 단일 6피해 대비 광역 3피해+약화+흥은 유틸리티 가치로 보상. 가무·풍류 두 아키타입 공통 카드.",
+      "sijo_position": "초장·중장 첫 슬롯 [3]",
+      "class_synergy": [
+        "GI003",
+        "GI012",
+        "GI015",
+        "GI016"
+      ],
+      "upgrade_cost": 100,
+      "unlock_condition": {
+        "type": "run_complete",
+        "class": "gisaeng",
+        "challenge": "no_charm_cards",
+        "description": "기생으로 매혹 카드 없이 런을 완료한다.",
+        "description_en": "Complete a run as Gisaeng without using any Charm cards."
+      },
+      "values": {
+        "damage": 3,
+        "weak": 1,
+        "qi_gain": 2,
+        "is_aoe": true
+      }
+    },
+
+    {
+      "id": "GI026",
+      "name": {
+        "ko": "일무",
+        "hanja": "佾舞",
+        "romanized": "Ilmu",
+        "en": "Ilmu — Court Ritual Dance"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "dance",
+        "charm"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "적에게 12 피해를 입힌다. 대상에게 매혹 3을 부여한다. 이번 턴 이미 가무 카드를 사용했다면, 8 추가 피해를 입힌다.",
+        "en": "Deal 12 damage to an enemy. Apply 3 Charm to them. If you have played a dance card this turn, deal 8 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "15 피해, 매혹 4. 가무 카드 사용 시 10 추가 피해.",
+        "en": "Deal 15 damage. Apply 4 Charm. Dance card bonus: +10 additional damage."
+      },
+      "flavor_text": {
+        "ko": "의례 춤이라 하나 — 그 격식 안에 칼날이 숨어있으니 함부로 볼 것이 아니라.",
+        "en": "They call it a ritual dance — but hidden within its grace is a blade, and none should take it lightly."
+      },
+      "balance_rationale": "해금 전설 카드. 2코스트 12피해+매혹3+가무 콤보 보너스 8. 가무 조건 충족 시 20피해+매혹3 = 2코스트 최고 단일 딜. 가무+매혹 융합 아키타입 핵심 딜러.",
+      "sijo_position": "종장 둘째 슬롯 [5] — 가무·매혹 융합 딜러",
+      "class_synergy": [
+        "GI004",
+        "GI006",
+        "GI009",
+        "GI012"
+      ],
+      "upgrade_cost": 150,
+      "unlock_condition": {
+        "type": "run_complete",
+        "class": "gisaeng",
+        "challenge": "hybrid_archetype",
+        "description": "기생으로 매혹과 가무를 동시에 활용하여 최종 보스를 처치한다.",
+        "description_en": "Defeat the final boss as Gisaeng using both Charm and Dance archetype cards."
+      },
+      "values": {
+        "damage": 12,
+        "charm": 3,
+        "bonus_if_dance_played": 8
+      }
+    },
+
+    {
+      "id": "GI027",
+      "name": {
+        "ko": "천년화",
+        "hanja": "千年花",
+        "romanized": "Cheonnyeonhwa",
+        "en": "Flower of a Thousand Years"
+      },
+      "beat": 5,
+      "cost": 0,
+      "type": "spell",
+      "subtypes": [
+        "pungyu",
+        "charm",
+        "dance"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "흥 4를 획득한다. 카드 2장을 드로우한다. 적에게 매혹 2를 부여한다. (0코스트!)",
+        "en": "Gain 4 Heung. Draw 2 cards. Apply 2 Charm to an enemy. (Zero cost!)"
+      },
+      "effect_upgraded": {
+        "ko": "흥 5를 획득한다. 카드 3장을 드로우한다. 매혹 3을 부여한다.",
+        "en": "Gain 5 Heung. Draw 3 cards. Apply 3 Charm to an enemy."
+      },
+      "flavor_text": {
+        "ko": "천 년을 피어 있을 꽃 한 송이가 — 세상을 뒤흔드는 데 기력이 필요하랴.",
+        "en": "A flower that blooms for a thousand years — why would it need effort to shake the world?"
+      },
+      "balance_rationale": "해금 전설 카드. 0코스트 흥4+드로우2+매혹2. 귀문도해(도사 D027, 0코+기3+드2)의 기생 강화 버전. 세 아키타입 모두 전진시키는 0코스트 만능 엔진. 전설 등급 정당. G020·G014·G011과 콤보 시 폭발적.",
+      "sijo_position": "중장·종장 둘째 슬롯 [4] — 0코스트 삼중 엔진",
+      "class_synergy": [
+        "GI014",
+        "GI020",
+        "GI018",
+        "GI011"
+      ],
+      "upgrade_cost": 150,
+      "unlock_condition": {
+        "type": "ascension",
+        "level": 15,
+        "class": "gisaeng",
+        "description": "기생으로 고난도 15 이상으로 런을 완료한다.",
+        "description_en": "Complete a run as Gisaeng at Ascension 15 or higher."
+      },
+      "values": {
+        "qi_gain": 4,
+        "draw": 2,
+        "charm": 2
+      }
+    }
+
+  ],
+  "status_conditions_defined": [
+    {
+      "id": "매혹",
+      "ko": "매혹",
+      "en": "Charm",
+      "hanja": "魅惑",
+      "description": "매혹 수치가 1 이상인 동안 적은 행동하지 않는다. 매 턴 종료 시 수치가 1 감소하며, 0이 되면 소멸.",
+      "duration_type": "stacking_decay",
+      "visual_note": "적 캐릭터에 분홍빛 심장 이펙트"
+    },
+    {
+      "id": "흥",
+      "ko": "흥(興)",
+      "en": "Heung",
+      "hanja": "興",
+      "description": "기생 전용 보조 자원. 기(qi) 시스템과 동일하게 작동하며, 흥이라는 이름으로 표현된다. 최대 10. 카드 효과 및 패시브 조건 트리거에 사용.",
+      "duration_type": "persistent",
+      "visual_note": "기생 캐릭터 주변 붉은빛 흥 게이지"
+    },
+    {
+      "id": "약화",
+      "ko": "약화",
+      "en": "Weak",
+      "hanja": "弱化",
+      "description": "약화 수치가 1 이상인 동안 적의 공격 피해가 25% 감소한다. 매 턴 종료 시 수치 1 감소.",
+      "duration_type": "stacking_decay",
+      "visual_note": "적 캐릭터에 회색빛 약화 이펙트"
+    }
+  ]
+}

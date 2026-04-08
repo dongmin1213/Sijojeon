@@ -280,8 +280,9 @@ func begin_player_turn() -> void:
 		player_block = 0
 	block_changed.emit(player_block)
 
-	# 시조 실패 패널티: 기 회복 감소
-	var effective_max_qi := max_qi + sijo_qi_penalty
+	# 시조 실패 패널티: 기 회복 감소 + 신분 레벨업 기 보너스
+	var qi_bonus := JibunSystem.get_qi_bonus(GameManager.run_data)
+	var effective_max_qi := max_qi + sijo_qi_penalty + qi_bonus
 	effective_max_qi = maxi(effective_max_qi, 1)  # 최소 1은 회복
 	current_qi = effective_max_qi
 	if sijo_qi_penalty < 0:
@@ -304,8 +305,9 @@ func begin_player_turn() -> void:
 				battle_ended.emit(false)
 				return
 
-	# 카드 드로우 (냉기 등 드로우 수정자 적용 + 시조 실패 패널티)
-	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player") + sijo_draw_penalty
+	# 카드 드로우 (냉기 등 드로우 수정자 적용 + 시조 실패 패널티 + 신분 레벨업 보너스)
+	var draw_bonus := JibunSystem.get_draw_bonus(GameManager.run_data)
+	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player") + sijo_draw_penalty + draw_bonus
 	if sijo_draw_penalty < 0:
 		passive_triggered.emit(tr("PASSIVE_SIJO_INCOMPLETE"), tr("PASSIVE_SIJO_INCOMPLETE_DESC_FMT") % sijo_draw_penalty)
 	draw_count = maxi(draw_count, 1)  # 최소 1장은 드로우

@@ -114,13 +114,13 @@ func get_type_color(card_type: String) -> Color:
 
 
 func _default_colors() -> Dictionary:
-	# v4: 단청 팔레트 — card_ui.gd TYPE_COLORS와 동기화
+	# v5: 오방색 팔레트 — card_ui.gd TYPE_COLORS와 동기화
 	return {
-		"attack": Color(0.78, 0.29, 0.19),    # 주홍
-		"defense": Color(0.17, 0.30, 0.50),   # 남색
-		"spell": Color(0.42, 0.25, 0.63),     # 자주
+		"attack": Color(0.76, 0.23, 0.13),    # 적 (#C23B22)
+		"defense": Color(0.18, 0.31, 0.56),   # 청 (#2E5090)
+		"spell": Color(0.18, 0.31, 0.56),     # 청 (도사)
 		"movement": Color(0.23, 0.49, 0.27),  # 송록
-		"formation": Color(0.77, 0.61, 0.22), # 금색
+		"formation": Color(0.83, 0.63, 0.09), # 황 (#D4A017)
 	}
 
 
@@ -129,7 +129,7 @@ func _protanopia_colors() -> Dictionary:
 	return {
 		"attack": Color(0.9, 0.6, 0.1),    # 주황
 		"defense": Color(0.2, 0.4, 0.9),   # 파랑
-		"spell": Color(0.7, 0.3, 0.9),     # 보라
+		"spell": Color(0.1, 0.5, 0.7),     # 틸 (보라 제거)
 		"movement": Color(0.1, 0.7, 0.9),  # 시안
 		"formation": Color(0.9, 0.85, 0.2), # 노랑
 	}

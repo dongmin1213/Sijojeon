@@ -4,12 +4,12 @@
 
 ; 보상 패널 — 전체화면 모달, 금색 테두리
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reward_panel"]
-bg_color = Color(0.06, 0.05, 0.10, 0.97)
+bg_color = Color(0.10, 0.09, 0.08, 0.97)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.83, 0.66, 0.26, 0.7)
+border_color = Color(0.83, 0.63, 0.09, 0.7)
 corner_radius_top_left = 0
 corner_radius_top_right = 0
 corner_radius_bottom_right = 0
@@ -36,7 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.04, 0.03, 0.08, 0.95)
+color = Color(0.08, 0.07, 0.06, 0.95)
 
 ; ─── 보상 패널 (전체화면) ─────────────────────────────────────────────────
 [node name="RewardPanel" type="PanelContainer" parent="."]
@@ -57,7 +57,7 @@ layout_mode = 2
 text = "REWARD_TITLE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
+theme_override_colors/font_color = Color(0.83, 0.63, 0.09, 1.0)
 
 [node name="GoldLabel" type="Label" parent="RewardPanel/VBoxContainer"]
 layout_mode = 2

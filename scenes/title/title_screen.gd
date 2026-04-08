@@ -89,24 +89,24 @@ func _on_quit_pressed() -> void:
 func _apply_primary_button_style(btn: Button) -> void:
 	## v8: 주 액션 버튼에 금색 강조 스타일 적용 (CTA)
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.83, 0.66, 0.26, 0.15)
+	style.bg_color = Color(0.83, 0.63, 0.09, 0.15)
 	style.set_border_width_all(2)
-	style.border_color = Color(0.83, 0.66, 0.26, 0.9)
+	style.border_color = Color(0.83, 0.63, 0.09, 0.9)
 	style.set_corner_radius_all(16)
 	style.set_content_margin_all(12)
-	style.shadow_color = Color(0.83, 0.66, 0.26, 0.15)
+	style.shadow_color = Color(0.83, 0.63, 0.09, 0.15)
 	style.shadow_size = 8
 	style.shadow_offset = Vector2(0, 3)
 	btn.add_theme_stylebox_override("normal", style)
 	var hover := style.duplicate()
-	hover.bg_color = Color(0.83, 0.66, 0.26, 0.25)
+	hover.bg_color = Color(0.83, 0.63, 0.09, 0.25)
 	hover.shadow_size = 10
 	btn.add_theme_stylebox_override("hover", hover)
 	var pressed := style.duplicate()
-	pressed.bg_color = Color(0.83, 0.66, 0.26, 0.35)
+	pressed.bg_color = Color(0.83, 0.63, 0.09, 0.35)
 	pressed.shadow_size = 4
 	btn.add_theme_stylebox_override("pressed", pressed)
-	btn.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+	btn.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 	btn.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
 	btn.add_theme_font_size_override("font_size", 38)
 
@@ -114,11 +114,11 @@ func _apply_primary_button_style(btn: Button) -> void:
 func _apply_hover_glow(btn: Button) -> void:
 	## v9: 일반 버튼에 호버 시 금색 글로우 효과 적용
 	var hover_style := StyleBoxFlat.new()
-	hover_style.bg_color = Color(0.83, 0.66, 0.26, 0.08)
+	hover_style.bg_color = Color(0.83, 0.63, 0.09, 0.08)
 	hover_style.set_border_width_all(1)
-	hover_style.border_color = Color(0.83, 0.66, 0.26, 0.4)
+	hover_style.border_color = Color(0.83, 0.63, 0.09, 0.4)
 	hover_style.set_corner_radius_all(12)
-	hover_style.shadow_color = Color(0.83, 0.66, 0.26, 0.1)
+	hover_style.shadow_color = Color(0.83, 0.63, 0.09, 0.1)
 	hover_style.shadow_size = 6
 	btn.add_theme_stylebox_override("hover", hover_style)
 	btn.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
@@ -172,16 +172,16 @@ func _add_firefly_particles() -> void:
 	mat.gravity = Vector3(0, -2, 0)
 	mat.scale_min = 2.0
 	mat.scale_max = 5.0
-	mat.color = Color(0.83, 0.66, 0.26, 0.4)
+	mat.color = Color(0.83, 0.63, 0.09, 0.4)
 
 	# 페이드인/아웃을 위한 색상 램프
 	var gradient := Gradient.new()
 	gradient.set_offset(0, 0.0)
-	gradient.set_color(0, Color(0.83, 0.66, 0.26, 0.0))
-	gradient.add_point(0.3, Color(0.83, 0.66, 0.26, 0.5))
-	gradient.add_point(0.7, Color(0.83, 0.66, 0.26, 0.4))
+	gradient.set_color(0, Color(0.83, 0.63, 0.09, 0.0))
+	gradient.add_point(0.3, Color(0.83, 0.63, 0.09, 0.5))
+	gradient.add_point(0.7, Color(0.83, 0.63, 0.09, 0.4))
 	gradient.set_offset(gradient.get_point_count() - 1, 1.0)
-	gradient.set_color(gradient.get_point_count() - 1, Color(0.83, 0.66, 0.26, 0.0))
+	gradient.set_color(gradient.get_point_count() - 1, Color(0.83, 0.63, 0.09, 0.0))
 	var color_ramp := GradientTexture1D.new()
 	color_ramp.gradient = gradient
 	mat.color_ramp = color_ramp

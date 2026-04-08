@@ -2,15 +2,15 @@ extends Control
 
 ## 런 맵 화면. 세로 스크롤 가능한 노드 맵을 표시하고 노드 탭으로 이동.
 
-# v5: 단청 팔레트 노드 색상 — 타입별 명확한 시각 구분
+# v6: 오방색 팔레트 노드 색상 — 보라색 완전 제거
 const NODE_COLORS := {
-	MapData.NodeType.BATTLE: Color(0.78, 0.29, 0.19),    # 주홍 (공격)
-	MapData.NodeType.ELITE: Color(0.42, 0.25, 0.63),     # 자주 (엘리트)
+	MapData.NodeType.BATTLE: Color(0.76, 0.23, 0.13),    # 적 (공격 — #C23B22)
+	MapData.NodeType.ELITE: Color(0.76, 0.23, 0.13),     # 적 (엘리트 — 밝은 적)
 	MapData.NodeType.EVENT: Color(0.23, 0.49, 0.27),     # 송록 (이벤트)
-	MapData.NodeType.SHOP: Color(0.17, 0.30, 0.50),      # 남색 (상점)
+	MapData.NodeType.SHOP: Color(0.18, 0.31, 0.56),      # 청 (상점 — #2E5090)
 	MapData.NodeType.REST: Color(0.24, 0.67, 0.43),      # 녹색 (휴식)
 	MapData.NodeType.BOSS: Color(0.70, 0.15, 0.15),      # 진홍 (보스)
-	MapData.NodeType.GWAGEO: Color(0.83, 0.66, 0.26),   # 금색 (과거시험)
+	MapData.NodeType.GWAGEO: Color(0.83, 0.63, 0.09),   # 황 (과거시험 — #D4A017)
 }
 
 var NODE_LABELS := {
@@ -42,9 +42,9 @@ const BASE_MAP_PADDING_X := 10.0  # v10: 좌우 여백 최소화 (너비 100%)
 const BASE_MAP_PADDING_TOP := 140.0  # v9: 플로팅 HUD 아래 시작
 const BASE_MAP_PADDING_BOTTOM := 100.0
 
-## 막별 맵 배경 색상 (그라데이션 기반)
+## 막별 맵 배경 색상 (오방색 기반)
 const ACT_BG_COLORS := {
-	1: Color(0.08, 0.06, 0.12),  # 한양 — 어두운 보라
+	1: Color(0.10, 0.10, 0.10),  # 한양 — 먹색 (흑)
 	2: Color(0.05, 0.1, 0.06),   # 지리산 — 어두운 녹색
 	3: Color(0.12, 0.04, 0.04),  # 경복궁 — 어두운 적색
 }
@@ -146,7 +146,8 @@ func _on_hud_tapped(event: InputEvent) -> void:
 		return
 	_hud_expanded = not _hud_expanded
 	$HUD/VBoxContainer/SubHBox.visible = _hud_expanded
-	$HUD/VBoxContainer/FactionRow.visible = _hud_expanded
+	# 당파 UI 숨김 처리 (Phase 1-4: 혼란 제거)
+	#$HUD/VBoxContainer/FactionRow.visible = _hud_expanded
 	# HUD 크기 조정 (safe area 기반)
 	var hud := $HUD
 	if _hud_expanded:
@@ -172,16 +173,17 @@ func _update_hud() -> void:
 	var act_name: String = MapGenerator.get_act_name(rd.current_act)
 	act_label.text = tr("MAP_ACT_FMT") % [rd.current_act, act_name]
 
-	# 신분/당파/민심 HUD 업데이트
+	# 신분/민심 HUD 업데이트 (당파 UI 숨김 — Phase 1-4)
 	_update_jibun_display(rd)
-	if rd.faction_pair.size() == 2:
-		var fa := FactionSystem.get_faction_name(rd.faction_pair[0])
-		var fb := FactionSystem.get_faction_name(rd.faction_pair[1])
-		var ma: int = rd.faction_meters.get(rd.faction_pair[0], 0)
-		var mb: int = rd.faction_meters.get(rd.faction_pair[1], 0)
-		faction_label.text = tr("MAP_FACTION_FMT") % [fa, ma, fb, mb]
-	else:
-		faction_label.text = tr("MAP_FACTION_NONE")
+	# 당파 표시 비활성화 (코드 유지, UI만 숨김)
+	#if rd.faction_pair.size() == 2:
+	#	var fa := FactionSystem.get_faction_name(rd.faction_pair[0])
+	#	var fb := FactionSystem.get_faction_name(rd.faction_pair[1])
+	#	var ma: int = rd.faction_meters.get(rd.faction_pair[0], 0)
+	#	var mb: int = rd.faction_meters.get(rd.faction_pair[1], 0)
+	#	faction_label.text = tr("MAP_FACTION_FMT") % [fa, ma, fb, mb]
+	#else:
+	#	faction_label.text = tr("MAP_FACTION_NONE")
 	_update_minshim_display(rd)
 
 	# 막별 배경색 적용
@@ -319,10 +321,10 @@ func _draw_connections() -> void:
 			var color: Color
 			var width: float
 			if is_visited_path:
-				color = Color(0.83, 0.66, 0.26, 0.85)
+				color = Color(0.83, 0.63, 0.09, 0.85)
 				width = 3.5
 			elif is_available_path:
-				color = Color(0.83, 0.66, 0.26, 0.6)
+				color = Color(0.83, 0.63, 0.09, 0.6)
 				width = 3.0
 			else:
 				# v10: 거리 기반 페이드
@@ -422,17 +424,17 @@ func _update_node_states() -> void:
 			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
 			btn.text = "%s\n%s" % [icon_text, tr("MAP_FORK_COST_FMT") % cost]
 			btn.disabled = false
-			btn.modulate = Color(0.83, 0.66, 0.26, 0.85)
+			btn.modulate = Color(0.83, 0.63, 0.09, 0.85)
 			btn.tooltip_text = tr("MAP_FORK_UNLOCK_TOOLTIP") % cost
-			var style := _make_node_style(Color(0.15, 0.12, 0.08), Color(0.83, 0.66, 0.26, 0.7), 2)
+			var style := _make_node_style(Color(0.15, 0.12, 0.08), Color(0.83, 0.63, 0.09, 0.7), 2)
 			btn.add_theme_stylebox_override("normal", style)
 			btn.add_theme_stylebox_override("hover", style)
-			btn.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+			btn.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 		elif nid in _available_node_ids:
 			# v5: 선택 가능한 노드 — 타입 색상 + 금박 보더 + 펄스
 			btn.disabled = false
 			btn.modulate = Color.WHITE
-			var style := _make_node_style(node_color.darkened(0.15), Color(0.83, 0.66, 0.26, 0.9), 3)
+			var style := _make_node_style(node_color.darkened(0.15), Color(0.83, 0.63, 0.09, 0.9), 3)
 			btn.add_theme_stylebox_override("normal", style)
 			btn.add_theme_stylebox_override("hover", style)
 
@@ -469,11 +471,11 @@ func _update_node_states() -> void:
 			var cur_color: Color = NODE_COLORS.get(map_node_cur.type, Color.WHITE)
 			btn.modulate = Color(1.0, 1.0, 1.0, 1.0)
 			# v5: 현재 위치 — 금박 강조 보더
-			var style := _make_node_style(cur_color.darkened(0.2), Color(0.83, 0.66, 0.26, 1.0), 4)
-			style.shadow_color = Color(0.83, 0.66, 0.26, 0.3)
+			var style := _make_node_style(cur_color.darkened(0.2), Color(0.83, 0.63, 0.09, 1.0), 4)
+			style.shadow_color = Color(0.83, 0.63, 0.09, 0.3)
 			style.shadow_size = 6
 			btn.add_theme_stylebox_override("disabled", style)
-			btn.add_theme_color_override("font_disabled_color", Color(0.83, 0.66, 0.26))
+			btn.add_theme_color_override("font_disabled_color", Color(0.83, 0.63, 0.09))
 			# v10: 아이콘 전용 마커
 			var icon_text: String = NODE_ICONS.get(map_node_cur.type, "?")
 			btn.text = "▶%s" % icon_text
@@ -675,7 +677,7 @@ func _get_minshim_tier(value: int) -> Dictionary:
 	elif value >= 50:
 		return {"name": tr("MINSHIM_TIER_NORMAL"), "color": Color(0.75, 0.70, 0.65)}
 	elif value >= 30:
-		return {"name": tr("MINSHIM_TIER_UNREST"), "color": Color(0.83, 0.66, 0.26)}
+		return {"name": tr("MINSHIM_TIER_UNREST"), "color": Color(0.83, 0.63, 0.09)}
 	else:
 		return {"name": tr("MINSHIM_TIER_CRISIS"), "color": Color(0.78, 0.29, 0.19)}
 
@@ -777,34 +779,19 @@ func _on_jibun_tapped(event: InputEvent) -> void:
 	text += "─────────────────\n"
 	text += "%s:\n" % tr("JIBUN_TOOLTIP_EFFECTS")
 
-	# 현재 등급의 활성 효과 표시
-	match rank:
-		0:
-			text += "■ %s\n" % tr("JIBUN_EFFECT_0_GOLD")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_0_HIDDEN")
-		1:
-			text += "■ %s\n" % tr("JIBUN_EFFECT_1_CARD")
-		2:
-			text += "■ %s\n" % tr("JIBUN_EFFECT_2_UPGRADE")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_2_ELITE")
-		3:
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_SHOP")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_MINSHIM")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_GWAGEO")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_ELITE_HP")
-		4:
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_SHOP")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_MINSHIM")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_GWAGEO")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_ELITE_HP")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_4_BOSS_HP")
-		5:
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_SHOP")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_MINSHIM")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_GWAGEO")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_3_ELITE_HP")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_4_BOSS_HP")
-			text += "■ %s\n" % tr("JIBUN_EFFECT_5_REWARD")
+	# 현재 등급의 활성 효과 누적 표시
+	if rank >= 2:
+		text += "■ %s\n" % tr("JIBUN_EFFECT_2_QI")
+		text += "■ %s\n" % tr("JIBUN_EFFECT_2_ELITE")
+	if rank >= 3:
+		text += "■ %s\n" % tr("JIBUN_EFFECT_3_DRAW")
+		text += "■ %s\n" % tr("JIBUN_EFFECT_3_GWAGEO")
+	if rank >= 4:
+		text += "■ %s\n" % tr("JIBUN_EFFECT_4_ELITE_REWARD")
+	if rank >= 5:
+		text += "■ %s\n" % tr("JIBUN_EFFECT_5_SIJO")
+	if rank <= 1:
+		text += "(아직 활성 효과 없음)\n"
 
 	# 다음 등급 정보
 	var next_threshold := _get_next_rank_threshold(rank)

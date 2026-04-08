@@ -83,14 +83,60 @@ func record_run_result(victory: bool, character_id: String, act_reached: int) ->
 # --- 어센션 진행도 ---
 
 func save_ascension_progress(character_id: String, level: int) -> void:
-	## 어센션 클리어 시 다음 레벨 해금
+	## 어센션 클리어 시 다음 레벨 해금 + 단계별 보상 적용
 	var meta := load_meta()
 	if not meta.has("ascension"):
 		meta["ascension"] = {}
 	var current_max: int = meta["ascension"].get(character_id, 0)
 	if level + 1 > current_max:
 		meta["ascension"][character_id] = level + 1
+		# 해금 보상 처리
+		_process_ascension_unlock_rewards(meta, level)
 	save_meta(meta)
+
+
+func _process_ascension_unlock_rewards(meta: Dictionary, cleared_level: int) -> void:
+	## 클리어한 어센션 레벨의 unlock_rewards를 메타에 기록
+	var asc_data := DataLoader.get_ascension_level(cleared_level)
+	if asc_data.is_empty():
+		return
+	var rewards: Array = asc_data.get("unlock_rewards", [])
+	if rewards.is_empty():
+		return
+	if not meta.has("ascension_rewards"):
+		meta["ascension_rewards"] = {}
+	for reward in rewards:
+		var reward_type: String = reward.get("type", "")
+		match reward_type:
+			"card_skin":
+				if not meta.has("unlocked_skins"):
+					meta["unlocked_skins"] = []
+				var skin_id: String = reward.get("id", "")
+				if skin_id != "" and not meta["unlocked_skins"].has(skin_id):
+					meta["unlocked_skins"].append(skin_id)
+			"starter_relic_option":
+				meta["ascension_rewards"]["alternate_starter_relic"] = true
+			"event_unlock":
+				if not meta.has("unlocked_events"):
+					meta["unlocked_events"] = []
+				for evt_id in reward.get("event_ids", []):
+					if not meta["unlocked_events"].has(evt_id):
+						meta["unlocked_events"].append(evt_id)
+			"relic_unlock":
+				if not meta.has("unlocked_relics"):
+					meta["unlocked_relics"] = []
+				var relic_id: String = reward.get("relic_id", "")
+				if relic_id != "" and not meta["unlocked_relics"].has(relic_id):
+					meta["unlocked_relics"].append(relic_id)
+			"ending_unlock":
+				if not meta.has("unlocked_endings"):
+					meta["unlocked_endings"] = []
+				var ending_id: String = reward.get("ending_id", "")
+				if ending_id != "" and not meta["unlocked_endings"].has(ending_id):
+					meta["unlocked_endings"].append(ending_id)
+		# 보상 해금 기록 (중복 방지용 타임스탬프)
+		var key := "level_%d_%s" % [cleared_level, reward.get("type", "unknown")]
+		meta["ascension_rewards"][key] = true
 
 
 func get_max_ascension_level(character_id: String) -> int:

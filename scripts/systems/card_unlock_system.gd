@@ -46,6 +46,33 @@ const UNLOCK_CARDS_PER_CLASS := {
 		25: "ascension_3",
 		26: "ascension_5",
 	},
+	"uiwon": {
+		20: "class_runs_3",
+		21: "class_runs_3",
+		22: "class_clear",
+		23: "class_clear",
+		24: "sijo_total_10",
+		25: "ascension_3",
+		26: "ascension_5",
+	},
+	"gungsu": {
+		20: "class_runs_3",
+		21: "class_runs_3",
+		22: "class_clear",
+		23: "class_clear",
+		24: "sijo_total_10",
+		25: "ascension_3",
+		26: "ascension_5",
+	},
+	"sangin": {
+		20: "class_runs_3",
+		21: "class_runs_3",
+		22: "class_clear",
+		23: "class_clear",
+		24: "sijo_total_10",
+		25: "ascension_3",
+		26: "ascension_5",
+	},
 }
 
 ## 공용 카드 해금 (54장 중 마지막 8장)
@@ -119,7 +146,7 @@ static func check_and_unlock(victory: bool, character_id: String) -> Array[Strin
 
 	# 직업별 카드 체크
 	var card_pool_name := character_id
-	if card_pool_name == "mugwan" or card_pool_name == "mungwan" or card_pool_name == "dosa":
+	if UNLOCK_CARDS_PER_CLASS.has(card_pool_name):
 		var class_unlocks: Dictionary = UNLOCK_CARDS_PER_CLASS.get(card_pool_name, {})
 		var cards: Array = _get_card_ids_for_pool(card_pool_name)
 		for idx in class_unlocks:

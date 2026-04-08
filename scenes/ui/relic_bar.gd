@@ -43,7 +43,7 @@ func _add_relic_icon(relic_id: String) -> void:
 	var panel := PanelContainer.new()
 	# v5: 단청 스타일 유물 아이콘
 	var stylebox := StyleBoxFlat.new()
-	stylebox.bg_color = Color(0.08, 0.06, 0.14, 0.9)
+	stylebox.bg_color = Color(0.08, 0.07, 0.06, 0.9)
 	stylebox.border_color = RelicManager.get_relic_rarity_color(relic_id)
 	stylebox.set_border_width_all(int(2.0 * sf))
 	stylebox.set_corner_radius_all(int(8.0 * sf))

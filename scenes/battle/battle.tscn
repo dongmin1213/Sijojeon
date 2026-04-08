@@ -12,12 +12,12 @@
 
 ; 상단 HUD — 반투명 어두운 배경, 노치 세이프
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_status_bar"]
-bg_color = Color(0.03, 0.02, 0.06, 0.85)
+bg_color = Color(0.06, 0.06, 0.06, 0.85)
 border_width_left = 0
 border_width_top = 0
 border_width_right = 0
 border_width_bottom = 1
-border_color = Color(0.83, 0.66, 0.26, 0.25)
+border_color = Color(0.83, 0.63, 0.09, 0.25)
 corner_radius_top_left = 0
 corner_radius_top_right = 0
 corner_radius_bottom_right = 0
@@ -29,12 +29,12 @@ content_margin_bottom = 4.0
 
 ; 액션 바 — 시조+턴종료 영역, 반투명
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_action_bar"]
-bg_color = Color(0.03, 0.02, 0.06, 0.75)
+bg_color = Color(0.06, 0.06, 0.06, 0.75)
 border_width_left = 0
 border_width_top = 1
 border_width_right = 0
 border_width_bottom = 0
-border_color = Color(0.83, 0.66, 0.26, 0.2)
+border_color = Color(0.83, 0.63, 0.09, 0.2)
 corner_radius_top_left = 0
 corner_radius_top_right = 0
 corner_radius_bottom_right = 0
@@ -94,7 +94,7 @@ theme_override_colors/font_color = Color(0.78, 0.29, 0.19, 1.0)
 layout_mode = 2
 text = ""
 theme_override_font_sizes/font_size = 22
-theme_override_colors/font_color = Color(0.83, 0.66, 0.26, 1.0)
+theme_override_colors/font_color = Color(0.83, 0.63, 0.09, 1.0)
 
 [node name="BlockLabel" type="Label" parent="PlayerHUD/StatusRow"]
 layout_mode = 2

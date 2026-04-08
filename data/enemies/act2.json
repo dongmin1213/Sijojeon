@@ -1512,6 +1512,319 @@
         "relic_chance": 0.0
       },
       "balance_note": "폭발 카운트다운(3턴 후 30~40피해)이 핵심 위협. 방어도 30+ 준비 또는 빠른 처치 필요. fire_splash+화상으로 추가 압박."
+    },
+    {
+      "id": "E214",
+      "name": {
+        "ko": "창귀",
+        "hanja": "倀鬼",
+        "romanized": "Changgwi",
+        "en": "Tiger's Thrall"
+      },
+      "description": {
+        "ko": "호랑이에게 물려 죽은 원혼. 죽어서도 호랑이의 앞잡이가 되어 새 먹이를 끌어들인다. 처치하면 본체인 호랑이가 나타난다.",
+        "en": "The ghost of one slain by a tiger. Even in death, it lures new prey for its master. Defeating it summons the tiger itself."
+      },
+      "hp": {
+        "min": 22,
+        "max": 30
+      },
+      "special_pattern": "two_phase",
+      "moves": [
+        {
+          "id": "lure",
+          "name": {
+            "ko": "유인",
+            "en": "Lure"
+          },
+          "intent": "debuff",
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
+          ],
+          "description": {
+            "ko": "호랑이를 위해 먹이를 약하게 만든다. 취약 2 부여.",
+            "en": "Weakens prey for the tiger. Applies 2 Vulnerable."
+          }
+        },
+        {
+          "id": "ghost_claw",
+          "name": {
+            "ko": "원혼 할퀴기",
+            "en": "Ghost Claw"
+          },
+          "intent": "attack",
+          "damage": 8,
+          "times": 1,
+          "description": {
+            "ko": "원혼의 손톱으로 할퀴는 공격.",
+            "en": "Claws at the player with ghostly nails."
+          }
+        },
+        {
+          "id": "wail_for_master",
+          "name": {
+            "ko": "호환 부름",
+            "en": "Call the Tiger"
+          },
+          "intent": "buff",
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 1,
+              "target": "self"
+            }
+          ],
+          "description": {
+            "ko": "호랑이를 부르는 울부짖음. 힘 1 획득.",
+            "en": "A wail calling for the tiger. Gains 1 Strength."
+          }
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "lure",
+          "ghost_claw",
+          "wail_for_master",
+          "ghost_claw",
+          "lure",
+          "ghost_claw"
+        ]
+      },
+      "on_death": {
+        "type": "summon_enemy",
+        "summon_id": "E214_tiger",
+        "description": {
+          "ko": "창귀 처치 시 산호랑이(HP 45~55, 높은 공격력) 등장. 2단 전투.",
+          "en": "On death, a mountain tiger (HP 45-55, high attack) appears. Two-phase fight."
+        }
+      },
+      "rewards": {
+        "gold": {
+          "min": 20,
+          "max": 32
+        },
+        "card_chance": 0.3,
+        "relic_chance": 0.05
+      },
+      "balance_note": "창귀 자체는 약하지만(HP 22~30), 처치 후 산호랑이(HP 45~55)가 등장하는 2단 전투. 창귀 단계에서 취약이 걸린 상태로 호랑이를 맞게 되므로 방어 준비 필수."
+    },
+    {
+      "id": "E214_tiger",
+      "name": {
+        "ko": "산호랑이",
+        "hanja": "山虎",
+        "romanized": "Sanhorangi",
+        "en": "Mountain Tiger"
+      },
+      "description": {
+        "ko": "창귀의 본체. 지리산에서 사람을 잡아먹어온 맹수. 창귀가 약하게 만든 먹이를 단숨에 물어뜯는다.",
+        "en": "The tiger behind the changgwi. A man-eating predator of Jirisan. Devours prey weakened by its thrall."
+      },
+      "hp": {
+        "min": 45,
+        "max": 55
+      },
+      "spawned_by": "E214",
+      "moves": [
+        {
+          "id": "pounce",
+          "name": {
+            "ko": "맹호 도약",
+            "en": "Tiger Pounce"
+          },
+          "intent": "attack",
+          "damage": 18,
+          "times": 1,
+          "description": {
+            "ko": "강력한 도약 공격. 취약 상태에서 받으면 치명적.",
+            "en": "A powerful leap attack. Devastating when Vulnerable."
+          }
+        },
+        {
+          "id": "rend",
+          "name": {
+            "ko": "갈기찢기",
+            "en": "Rend"
+          },
+          "intent": "attack",
+          "damage": 7,
+          "times": 3,
+          "description": {
+            "ko": "7피해 × 3회 = 21 총피해. 방어도 분산.",
+            "en": "7 damage x3 = 21 total damage. Splits block."
+          }
+        },
+        {
+          "id": "roar",
+          "name": {
+            "ko": "포효",
+            "en": "Roar"
+          },
+          "intent": "buff",
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 3,
+              "target": "self"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": {
+            "ko": "힘 3 획득 + 플레이어 약화 1. 위압적 포효.",
+            "en": "Gains 3 Strength + applies 1 Weaken. An intimidating roar."
+          }
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "pounce",
+          "rend",
+          "roar",
+          "pounce",
+          "rend"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 0,
+          "max": 0
+        },
+        "card_chance": 0.0,
+        "relic_chance": 0.0
+      },
+      "balance_note": "창귀 사후 등장. 보상은 창귀 처치 시 지급. 호랑이는 순수 전투만. pounce(18) + 취약 상태 = 실질 27피해. 방어 우선."
+    },
+    {
+      "id": "E215",
+      "name": {
+        "ko": "물귀신",
+        "hanja": "水鬼",
+        "romanized": "Mulgwisin",
+        "en": "Drowning Ghost"
+      },
+      "description": {
+        "ko": "물에 빠져 죽은 원혼. '물귀신 작전'이란 말의 유래. 매 턴 플레이어의 카드를 잠가 함께 끌어내리려 한다.",
+        "en": "The ghost of one who drowned. Origin of the saying 'drowning ghost tactics.' Locks player cards each turn, trying to drag them down."
+      },
+      "hp": {
+        "min": 35,
+        "max": 46
+      },
+      "special_pattern": "card_lock",
+      "moves": [
+        {
+          "id": "drag_under",
+          "name": {
+            "ko": "수중 끌기",
+            "en": "Drag Under"
+          },
+          "intent": "debuff",
+          "effects": [
+            {
+              "type": "lock_card",
+              "count": 1,
+              "duration": 3,
+              "target": "player",
+              "note": "패에서 랜덤 카드 1장을 3턴간 사용 불가로 만듦. 3턴 후 소멸."
+            }
+          ],
+          "description": {
+            "ko": "패에서 카드 1장을 3턴간 잠금. 풀지 못하면 소멸!",
+            "en": "Locks 1 card in hand for 3 turns. If not freed, it vanishes!"
+          }
+        },
+        {
+          "id": "cold_grasp",
+          "name": {
+            "ko": "차가운 손길",
+            "en": "Cold Grasp"
+          },
+          "intent": "attack_debuff",
+          "damage": 9,
+          "times": 1,
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": {
+            "ko": "9피해 + 냉기 1. 차가운 물속으로 끌어당긴다.",
+            "en": "9 damage + 1 Chill. Pulls toward the cold water."
+          }
+        },
+        {
+          "id": "undertow",
+          "name": {
+            "ko": "소용돌이",
+            "en": "Undertow"
+          },
+          "intent": "attack",
+          "damage": 6,
+          "times": 2,
+          "description": {
+            "ko": "6피해 × 2회. 물살에 휩쓸리는 공격.",
+            "en": "6 damage x2. Swept by the current."
+          }
+        },
+        {
+          "id": "flood",
+          "name": {
+            "ko": "범람",
+            "en": "Flood"
+          },
+          "intent": "debuff",
+          "effects": [
+            {
+              "type": "lock_card",
+              "count": 2,
+              "duration": 2,
+              "target": "player",
+              "note": "패에서 랜덤 카드 2장을 2턴간 잠금."
+            }
+          ],
+          "description": {
+            "ko": "패에서 카드 2장을 2턴간 잠금. 대량 잠금!",
+            "en": "Locks 2 cards in hand for 2 turns. Mass lock!"
+          }
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "drag_under",
+          "cold_grasp",
+          "undertow",
+          "drag_under",
+          "cold_grasp",
+          "flood"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 18,
+          "max": 28
+        },
+        "card_chance": 0.25,
+        "relic_chance": 0.05
+      },
+      "balance_note": "카드 잠금이 핵심 메카닉. 3턴 잠금 → 소멸은 덱 빌딩에 장기 영향. 빠른 처치 또는 잠금 해제 카드 필요. 직접 피해는 낮지만(9+12=21/사이클) 핸드 제한이 체감 위협 높음."
     }
   ],
   "elite_enemies": [

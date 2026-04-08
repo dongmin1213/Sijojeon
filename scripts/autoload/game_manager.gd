@@ -196,6 +196,9 @@ func end_run(victory: bool) -> void:
 		# 어센션 클리어 시 다음 레벨 해금 (최대 10)
 		if victory and run_data.ascension_level >= 0 and run_data.ascension_level < 10:
 			SaveManager.save_ascension_progress(run_data.character_id, run_data.ascension_level)
+		# 엔딩 결정 (승리 시)
+		if victory:
+			run_data.narrative_state["determined_ending"] = _determine_ending()
 	# 새 업적 달성 여부 확인
 	AchievementManager.check_new_achievements()
 
@@ -347,5 +350,28 @@ func is_tutorial_completed() -> bool:
 func start_tutorial() -> void:
 	## 튜토리얼 전투를 시작한다.
 	change_state(GameState.TUTORIAL)
+
+
+func _determine_ending() -> String:
+	## 런 종료 시 엔딩 점수 기반으로 엔딩 ID를 결정한다.
+	if run_data == null:
+		return "ending_justice"
+	# 귀신 10단계 + 진 엔딩 해금 확인
+	if run_data.ascension_level >= 10:
+		var meta := SaveManager.load_meta()
+		var unlocked: Array = meta.get("unlocked_endings", [])
+		if unlocked.has("true_ending"):
+			return "true_ending"
+	# 점수 기반 엔딩 결정
+	var scores: Dictionary = run_data.ending_scores
+	var justice: int = scores.get("justice", 0)
+	var mercy: int = scores.get("mercy", 0)
+	var ambition: int = scores.get("ambition", 0)
+	# 최고 점수 엔딩 (동점 시 정의 우선)
+	if ambition > justice and ambition > mercy:
+		return "ending_ambition"
+	elif mercy > justice:
+		return "ending_mercy"
+	return "ending_justice"
 
 

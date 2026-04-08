@@ -51,22 +51,22 @@ const BASE_CARD_WIDTH := 380.0
 const BASE_CARD_HEIGHT := 580.0
 const BASE_VIEWPORT_WIDTH := 1080.0
 
-# 카드 타입별 색상 — v4: 단청 색채 기반, 높은 대비
+# 카드 타입별 색상 — v5: 오방색 팔레트, 보라색 제거
 const TYPE_COLORS := {
-	"attack": Color(0.78, 0.29, 0.19),    # 주홍 (단청 빨강)
-	"defense": Color(0.17, 0.30, 0.50),   # 남색 (조선 남색)
-	"spell": Color(0.42, 0.25, 0.63),     # 자주 (도사 보라)
+	"attack": Color(0.76, 0.23, 0.13),    # 적 (오방색 빨강 #C23B22)
+	"defense": Color(0.18, 0.31, 0.56),   # 청 (오방색 파랑 #2E5090)
+	"spell": Color(0.18, 0.31, 0.56),     # 청 (도사 — 학자의 색)
 	"movement": Color(0.23, 0.49, 0.27),  # 송록 (소나무 녹색)
-	"formation": Color(0.77, 0.61, 0.22), # 금색 (금박)
+	"formation": Color(0.83, 0.63, 0.09), # 황 (오방색 노랑 #D4A017)
 }
 
-# 희귀도별 색상 — v4: 재질감 연상
+# 희귀도별 색상 — v5: 오방색 기반 재질감
 const RARITY_COLORS := {
 	1: Color(0.45, 0.42, 0.38),  # 나무 (일반)
 	2: Color(0.55, 0.45, 0.30),  # 청동 (고급)
 	3: Color(0.65, 0.68, 0.72),  # 은 (희귀)
-	4: Color(0.50, 0.28, 0.70),  # 자수정 (영웅)
-	5: Color(0.83, 0.66, 0.26),  # 금박 (전설)
+	4: Color(0.76, 0.23, 0.13),  # 적옥 (영웅 — 오방색 적)
+	5: Color(0.83, 0.63, 0.09),  # 금박 (전설 — 오방색 황)
 }
 
 # v6: 카드 프레임 SVG 텍스처 경로 (희귀도별)
@@ -133,10 +133,10 @@ func setup(data: CardData, index: int, playable: bool, matches_sijo: bool) -> vo
 
 
 func _create_styleboxes() -> void:
-	# v4: 모던 미니멀 스타일 — 얇은 테두리, 넉넉한 라운딩, 부드러운 그림자
+	# v5: 오방색 스타일 — 흑 기반, 따뜻한 테두리
 	_normal_stylebox = StyleBoxFlat.new()
-	_normal_stylebox.bg_color = Color(0.10, 0.08, 0.14)
-	_normal_stylebox.border_color = Color(0.30, 0.25, 0.40)
+	_normal_stylebox.bg_color = Color(0.12, 0.11, 0.10)
+	_normal_stylebox.border_color = Color(0.25, 0.23, 0.20)
 	_normal_stylebox.set_border_width_all(2)
 	_normal_stylebox.set_corner_radius_all(14)
 	_normal_stylebox.shadow_color = Color(0, 0, 0, 0.4)
@@ -144,45 +144,45 @@ func _create_styleboxes() -> void:
 	_normal_stylebox.shadow_offset = Vector2(0, 4)
 
 	_hover_stylebox = StyleBoxFlat.new()
-	_hover_stylebox.bg_color = Color(0.16, 0.14, 0.22)
-	_hover_stylebox.border_color = Color(0.83, 0.66, 0.26, 0.9)
+	_hover_stylebox.bg_color = Color(0.16, 0.15, 0.13)
+	_hover_stylebox.border_color = Color(0.83, 0.63, 0.09, 0.9)
 	_hover_stylebox.set_border_width_all(2)
 	_hover_stylebox.set_corner_radius_all(14)
-	_hover_stylebox.shadow_color = Color(0.83, 0.66, 0.26, 0.2)
+	_hover_stylebox.shadow_color = Color(0.83, 0.63, 0.09, 0.2)
 	_hover_stylebox.shadow_size = 10
 	_hover_stylebox.shadow_offset = Vector2(0, 2)
 
 	_selected_stylebox = StyleBoxFlat.new()
-	_selected_stylebox.bg_color = Color(0.18, 0.16, 0.26)
-	_selected_stylebox.border_color = Color(0.83, 0.66, 0.26, 1.0)
+	_selected_stylebox.bg_color = Color(0.18, 0.17, 0.15)
+	_selected_stylebox.border_color = Color(0.83, 0.63, 0.09, 1.0)
 	_selected_stylebox.set_border_width_all(3)
 	_selected_stylebox.set_corner_radius_all(14)
-	_selected_stylebox.shadow_color = Color(0.83, 0.66, 0.26, 0.3)
+	_selected_stylebox.shadow_color = Color(0.83, 0.63, 0.09, 0.3)
 	_selected_stylebox.shadow_size = 12
 	_selected_stylebox.shadow_offset = Vector2(0, 2)
 
 	_disabled_stylebox = StyleBoxFlat.new()
-	_disabled_stylebox.bg_color = Color(0.08, 0.07, 0.10)
-	_disabled_stylebox.border_color = Color(0.18, 0.16, 0.22, 0.5)
+	_disabled_stylebox.bg_color = Color(0.08, 0.08, 0.07)
+	_disabled_stylebox.border_color = Color(0.18, 0.17, 0.15, 0.5)
 	_disabled_stylebox.set_border_width_all(1)
 	_disabled_stylebox.set_corner_radius_all(14)
 
 	_drag_stylebox = StyleBoxFlat.new()
-	_drag_stylebox.bg_color = Color(0.20, 0.18, 0.28)
-	_drag_stylebox.border_color = Color(0.83, 0.66, 0.26, 1.0)
+	_drag_stylebox.bg_color = Color(0.20, 0.19, 0.17)
+	_drag_stylebox.border_color = Color(0.83, 0.63, 0.09, 1.0)
 	_drag_stylebox.set_border_width_all(3)
 	_drag_stylebox.set_corner_radius_all(14)
-	_drag_stylebox.shadow_color = Color(0.83, 0.66, 0.26, 0.25)
+	_drag_stylebox.shadow_color = Color(0.83, 0.63, 0.09, 0.25)
 	_drag_stylebox.shadow_size = 14
 	_drag_stylebox.shadow_offset = Vector2(0, 4)
 
 	# 시조 비트 매칭 카드 — 금색 글로우 (초록보다 테마에 맞음)
 	_sijo_match_stylebox = StyleBoxFlat.new()
 	_sijo_match_stylebox.bg_color = Color(0.14, 0.12, 0.08)
-	_sijo_match_stylebox.border_color = Color(0.83, 0.66, 0.26, 1.0)
+	_sijo_match_stylebox.border_color = Color(0.83, 0.63, 0.09, 1.0)
 	_sijo_match_stylebox.set_border_width_all(4)
 	_sijo_match_stylebox.set_corner_radius_all(14)
-	_sijo_match_stylebox.shadow_color = Color(0.83, 0.66, 0.26, 0.35)
+	_sijo_match_stylebox.shadow_color = Color(0.83, 0.63, 0.09, 0.35)
 	_sijo_match_stylebox.shadow_size = 10
 
 
@@ -216,7 +216,7 @@ func _update_display() -> void:
 	if card_data.upgraded:
 		display_name += "+"
 	card_name_label.text = display_name
-	card_name_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+	card_name_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 
 	# 카드 일러스트 (TextureManager에서 로드, 없으면 placeholder)
 	card_art.texture = TextureManager.get_card_texture(card_data.id, card_data.type)
@@ -251,7 +251,7 @@ func _update_display() -> void:
 	# 시조 비트 일치 표시
 	if sijo_match:
 		sijo_indicator.text = "♪"
-		sijo_indicator.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+		sijo_indicator.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 		sijo_indicator.visible = true
 	else:
 		sijo_indicator.visible = false
@@ -312,7 +312,7 @@ func _start_sijo_glow() -> void:
 
 func _set_sijo_border_alpha(alpha: float) -> void:
 	if _sijo_match_stylebox:
-		_sijo_match_stylebox.border_color = Color(0.83, 0.66, 0.26, alpha)
+		_sijo_match_stylebox.border_color = Color(0.83, 0.63, 0.09, alpha)
 
 
 func _make_frame_stylebox(rarity: int, tint: Color = Color.WHITE) -> StyleBoxTexture:
@@ -343,25 +343,25 @@ func _make_frame_stylebox(rarity: int, tint: Color = Color.WHITE) -> StyleBoxTex
 
 
 func _get_type_bg_color(type: String) -> Color:
-	## 카드 타입별 배경색 — v4: 단청 색채, 어둡지만 확실히 구별
+	## 카드 타입별 배경색 — v5: 오방색 흑 기반, 타입별 은은한 색조
 	match type:
-		"attack": return Color(0.18, 0.08, 0.06)    # 먹+주홍
-		"defense": return Color(0.06, 0.10, 0.18)   # 먹+남색
-		"spell": return Color(0.14, 0.08, 0.20)     # 먹+자주
-		"movement": return Color(0.06, 0.14, 0.08)  # 먹+송록
-		"formation": return Color(0.16, 0.13, 0.06) # 먹+금색
-		_: return Color(0.10, 0.08, 0.14)
+		"attack": return Color(0.16, 0.08, 0.06)    # 흑+적
+		"defense": return Color(0.06, 0.10, 0.16)   # 흑+청
+		"spell": return Color(0.06, 0.10, 0.16)     # 흑+청
+		"movement": return Color(0.06, 0.14, 0.08)  # 흑+송록
+		"formation": return Color(0.16, 0.13, 0.04) # 흑+황
+		_: return Color(0.12, 0.11, 0.10)
 
 
 func _get_type_border_color(type: String) -> Color:
-	## 카드 타입별 테두리색 — v4: 선명한 단청 강조색
+	## 카드 타입별 테두리색 — v5: 오방색 팔레트
 	match type:
-		"attack": return Color(0.78, 0.29, 0.19)
-		"defense": return Color(0.17, 0.30, 0.50)
-		"spell": return Color(0.42, 0.25, 0.63)
+		"attack": return Color(0.76, 0.23, 0.13)
+		"defense": return Color(0.18, 0.31, 0.56)
+		"spell": return Color(0.18, 0.31, 0.56)
 		"movement": return Color(0.23, 0.49, 0.27)
-		"formation": return Color(0.77, 0.61, 0.22)
-		_: return Color(0.30, 0.25, 0.40)
+		"formation": return Color(0.83, 0.63, 0.09)
+		_: return Color(0.25, 0.23, 0.20)
 
 
 func set_selected(selected: bool) -> void:

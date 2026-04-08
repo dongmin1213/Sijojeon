@@ -1,8 +1,9 @@
 class_name JibunSystem
 extends RefCounted
 
-## 신분 트랙 시스템 (Phase 3-A).
-## 신분 점수를 관리하고 단계를 갱신한다.
+## 신분 레벨업 시스템 (Phase 1-5 재설계).
+## 전투 승리 기반 레벨업. 각 단계별 패시브 보너스 제공.
+## 천민→상민(카드 업그레이드)→중인(기+1)→양반(드로우+1)→당상관(엘리트 보상 2배)→정승(시조 일격 2배)
 
 ## 신분 단계별 진입 점수
 const RANK_THRESHOLDS := {
@@ -82,69 +83,50 @@ static func on_gwageo_result(rd: RunData, grade: String) -> Variant:
 	return null
 
 
-## 종장 클리어 보너스 배율 반환 (5단계: +30%).
-static func get_jongchang_bonus(rd: RunData) -> float:
-	if rd == null or rd.jibun_rank < 5:
-		return 1.0
-	return 1.3
+# ── 레벨업 패시브 보너스 ──────────────────────────────
 
-
-# ── 신분별 gameplay 보너스 ──────────────────────────────
-
-## 양반(3+): 상점 카드 가격 -15%
-static func get_shop_price_modifier(rd: RunData) -> float:
-	if rd != null and rd.jibun_rank >= 3:
-		return 0.85
-	return 1.0
-
-
-## 양반(3+): 민심 획득량 +10%
-static func get_minshim_gain_multiplier(rd: RunData) -> float:
-	if rd != null and rd.jibun_rank >= 3:
-		return 1.1
-	return 1.0
-
-
-## 중인(2): 카드 업그레이드 비용 -25%
-static func get_upgrade_cost_discount(rd: RunData) -> float:
-	if rd != null and rd.jibun_rank == 2:
-		return 0.75
-	return 1.0
-
-
-## 상민(1): 카드 보상 선택지 +1
-static func get_card_offer_bonus(rd: RunData) -> int:
-	if rd != null and rd.jibun_rank == 1:
+## 중인(2+): 턴당 기 +1
+static func get_qi_bonus(rd: RunData) -> int:
+	if rd != null and rd.jibun_rank >= 2:
 		return 1
 	return 0
 
 
-## 천민(0): 전투 보상 금화 +50%
-static func get_gold_reward_multiplier(rd: RunData) -> float:
-	if rd != null and rd.jibun_rank <= 0:
-		return 1.5
+## 양반(3+): 턴당 드로우 +1
+static func get_draw_bonus(rd: RunData) -> int:
+	if rd != null and rd.jibun_rank >= 3:
+		return 1
+	return 0
+
+
+## 당상관(4+): 엘리트 보상 배율
+static func get_elite_reward_multiplier(rd: RunData) -> float:
+	if rd != null and rd.jibun_rank >= 4:
+		return 2.0
 	return 1.0
 
 
-## 천민(0): 이벤트 히든 선택지 해금 여부
-static func has_hidden_choices(rd: RunData) -> bool:
-	if rd == null:
-		return false
-	return rd.jibun_rank <= 0
+## 정승(5): 시조 일격 배율
+static func get_sijo_strike_multiplier(rd: RunData) -> float:
+	if rd != null and rd.jibun_rank >= 5:
+		return 2.0
+	return 1.0
 
 
 # ── 신분 승급 즉각 보상 ──────────────────────────────
 
 ## 승급 보상 타입 상수
 const RANK_UP_REWARDS := {
-	2: "card_select",      # 중인 승급: 카드 1장 추가 선택
-	3: "card_remove_free", # 양반 승급: 카드 제거 1회 무료
-	4: "relic_select",     # 당상관 승급: 유물 선택 1회 추가
-	5: "card_upgrade",     # 판서/정승 승급: 덱 카드 1장 강화
+	1: "card_upgrade",     # 상민 승급: 덱 카드 1장 강화
+	2: "qi_bonus",         # 중인 승급: 기+1 (패시브)
+	3: "draw_bonus",       # 양반 승급: 드로우+1 (패시브)
+	4: "elite_reward_2x",  # 당상관 승급: 엘리트 보상 2배 (패시브)
+	5: "sijo_strike_2x",   # 정승 승급: 시조 일격 2배 (패시브)
 }
 
 ## 승급 보상 설명 번역 키
 const RANK_UP_REWARD_KEYS := {
+	1: "JIBUN_RANKUP_1",
 	2: "JIBUN_RANKUP_2",
 	3: "JIBUN_RANKUP_3",
 	4: "JIBUN_RANKUP_4",
@@ -152,38 +134,22 @@ const RANK_UP_REWARD_KEYS := {
 }
 
 
-# ── 신분 등급별 지속 효과 ──────────────────────────────
+# ── 기존 호환 함수 (다른 시스템에서 호출) ──────────────────────────────
 
-## 등급 2(중인): 엘리트 등장률 +5%
+## 종장 클리어 보너스 배율 반환 — 정승(5): 시조 일격 2배로 대체
+static func get_jongchang_bonus(rd: RunData) -> float:
+	return get_sijo_strike_multiplier(rd)
+
+
+## 과거시험 접근 — 양반(3+)
+static func can_access_gwageo(rd: RunData) -> bool:
+	if rd == null:
+		return true
+	return rd.jibun_rank >= 3
+
+
+## 엘리트 등장 보너스 — 중인(2+): +5%
 static func get_elite_spawn_bonus(rd: RunData) -> float:
 	if rd != null and rd.jibun_rank >= 2:
 		return 0.05
 	return 0.0
-
-
-## 등급 3(양반): 엘리트 HP +10%
-static func get_elite_hp_modifier(rd: RunData) -> float:
-	if rd != null and rd.jibun_rank >= 3:
-		return 1.1
-	return 1.0
-
-
-## 등급 4(당상관): 보스 HP +10% (고위직의 무게감)
-static func get_boss_hp_modifier(rd: RunData) -> float:
-	if rd != null and rd.jibun_rank >= 4:
-		return 1.1
-	return 1.0
-
-
-## 등급 3(양반)+: 과거시험 접근 가능 여부
-static func can_access_gwageo(rd: RunData) -> bool:
-	if rd == null:
-		return true  # 기본 접근 허용
-	return rd.jibun_rank >= 3
-
-
-## 등급 5(판서/정승): 모든 전투 보상 +30%
-static func get_all_reward_multiplier(rd: RunData) -> float:
-	if rd != null and rd.jibun_rank >= 5:
-		return 1.3
-	return 1.0

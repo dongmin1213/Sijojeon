@@ -1956,6 +1956,153 @@
       "ai_pattern": "독을 최대로 쌓고 소형 이무기 소환으로 전선을 분산시킨다. serpent_coil 후 wrath_strike 준비. dragon_breath의 화상+독 중첩이 누적되면 매 턴 DoT 피해 급증.",
       "balance_note": "HP 90-110. king_venom(독6) 총 피해 21, dragon_breath(독3+화상3)으로 독 최대 중첩 시 매 턴 9+ 피해. serpent_coil(방어18+힘3) 후 wrath_strike(24+3=27)는 HP 40% 이하 순간 폭발 위험. 독 해제 카드 보유 권장.",
       "type": "elite"
+    },
+    {
+      "id": "EL304",
+      "name": {
+        "ko": "해태",
+        "hanja": "獬豸",
+        "romanized": "Haetae",
+        "en": "Haetae"
+      },
+      "description": {
+        "ko": "궁궐을 지키는 신수. 선악을 가려내는 능력이 있어, 사악한 자에게는 맹렬한 반격을 가한다. 공격 카드를 많이 쓸수록 위험해지는 도덕 판정 전투.",
+        "en": "A divine beast guarding the palace. Able to discern good from evil, it retaliates fiercely against the wicked. The more attack cards you play, the more dangerous it becomes."
+      },
+      "hp": {
+        "min": 95,
+        "max": 115
+      },
+      "note": "엘리트 — 유물 보상 확정. 공격 카드 사용 시 반격하는 '도덕 판정' 메카닉.",
+      "special_pattern": "moral_judgement",
+      "moves": [
+        {
+          "id": "judgement_gaze",
+          "name": {
+            "ko": "심판의 눈",
+            "en": "Judgement Gaze"
+          },
+          "intent": "debuff",
+          "effects": [
+            {
+              "type": "apply_debuff",
+              "debuff": "심판",
+              "stacks": 1,
+              "target": "player",
+              "note": "심판: 이번 턴 공격 카드 사용 시마다 해태가 8 반격피해를 가함"
+            }
+          ],
+          "description": {
+            "ko": "심판의 눈으로 응시. 이번 턴 공격 카드 사용 시마다 8 반격피해!",
+            "en": "Gazes with eyes of judgement. Each attack card played this turn triggers 8 counter-damage!"
+          }
+        },
+        {
+          "id": "horn_charge",
+          "name": {
+            "ko": "뿔 돌진",
+            "en": "Horn Charge"
+          },
+          "intent": "attack",
+          "damage": 16,
+          "times": 1,
+          "description": {
+            "ko": "신수의 뿔로 돌진하는 강력한 일격.",
+            "en": "A powerful charge with the divine beast's horn."
+          }
+        },
+        {
+          "id": "righteous_shield",
+          "name": {
+            "ko": "정의의 갑옷",
+            "en": "Righteous Shield"
+          },
+          "intent": "defend_buff",
+          "block": 18,
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "가시",
+              "stacks": 4,
+              "target": "self"
+            }
+          ],
+          "description": {
+            "ko": "방어도 18 + 가시 4. 공격하면 피해를 받는다.",
+            "en": "18 Block + 4 Thorns. Attacking deals damage back."
+          }
+        },
+        {
+          "id": "purifying_flame",
+          "name": {
+            "ko": "정화의 불꽃",
+            "en": "Purifying Flame"
+          },
+          "intent": "attack_debuff",
+          "damage": 10,
+          "times": 2,
+          "effects": [
+            {
+              "type": "remove_buff",
+              "target": "player",
+              "note": "플레이어 버프 1개 제거"
+            }
+          ],
+          "description": {
+            "ko": "10피해 × 2회 + 플레이어 버프 1개 제거. 사악한 힘을 태운다.",
+            "en": "10 damage x2 + removes 1 player buff. Burns away wicked power."
+          }
+        },
+        {
+          "id": "divine_roar",
+          "name": {
+            "ko": "신수의 포효",
+            "en": "Divine Roar"
+          },
+          "intent": "buff",
+          "effects": [
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 3,
+              "target": "self"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
+          ],
+          "description": {
+            "ko": "힘 3 획득 + 플레이어 취약 1. 신수의 위엄.",
+            "en": "Gains 3 Strength + applies 1 Vulnerable. The divine beast's majesty."
+          }
+        }
+      ],
+      "move_pattern": {
+        "type": "sequential",
+        "sequence": [
+          "judgement_gaze",
+          "horn_charge",
+          "righteous_shield",
+          "purifying_flame",
+          "judgement_gaze",
+          "divine_roar",
+          "horn_charge"
+        ]
+      },
+      "rewards": {
+        "gold": {
+          "min": 40,
+          "max": 60
+        },
+        "card_chance": 0.5,
+        "relic_chance": 1.0
+      },
+      "ai_pattern": "심판의 눈 → 공격 카드 반격 유도. 플레이어가 방어/스킬 카드 위주로 플레이하면 안전. 공격 카드 남발 시 반격 피해 누적으로 자멸. 정화의 불꽃으로 버프 제거하여 장기전 유도.",
+      "balance_note": "심판 반격(8/공격카드) + 가시(4) + horn_charge(16)이 핵심 위협. 공격 3장 사용 시 반격만 24피해. 방어/스킬 카드 비중 높은 덱이 유리. 시조 시스템(비전투 행동)이 안전한 대안.",
+      "type": "elite"
     }
   ],
   "status_conditions_referenced": [

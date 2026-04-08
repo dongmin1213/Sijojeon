@@ -14,7 +14,7 @@ var CHARACTER_NAMES := {
 const CHARACTER_ORDER := ["mugwan", "mungwan", "dosa"]
 
 # 색상 상수 — v4: 단청 팔레트
-const COLOR_GOLD := Color(0.83, 0.66, 0.26)
+const COLOR_GOLD := Color(0.83, 0.63, 0.09)
 const COLOR_CREAM := Color(0.92, 0.88, 0.80)
 const COLOR_DIM := Color(0.55, 0.50, 0.42)
 const COLOR_GREEN := Color(0.24, 0.67, 0.43)

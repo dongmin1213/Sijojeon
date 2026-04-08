@@ -40,6 +40,9 @@ var faction_meters: Dictionary = {}       # {"faction_id": int} 0~100
 ## 시상(詩想) 시스템 (Phase 2-2) — 런 전체 시조 완성 누적
 var sisang_count: int = 0  # 이번 런에서 완성한 시조 총 수
 
+## 엔딩 분기 점수 (Phase 3-4) — 이벤트 선택에 따라 누적
+var ending_scores: Dictionary = {"justice": 0, "mercy": 0, "ambition": 0}
+
 
 func to_dict() -> Dictionary:
 	var prev_maps_arr := []
@@ -73,6 +76,7 @@ func to_dict() -> Dictionary:
 		"faction_pair": faction_pair,
 		"faction_meters": faction_meters,
 		"sisang_count": sisang_count,
+		"ending_scores": ending_scores,
 	}
 
 
@@ -111,4 +115,5 @@ static func from_dict(data: Dictionary) -> RunData:
 			rd.faction_pair.append(str(s))
 	rd.faction_meters = data.get("faction_meters", {})
 	rd.sisang_count = data.get("sisang_count", 0)
+	rd.ending_scores = data.get("ending_scores", {"justice": 0, "mercy": 0, "ambition": 0})
 	return rd

@@ -65,7 +65,7 @@ static func _init_registry() -> void:
 		TranslationServer.translate("SE_DESC_BLEED"), true, false
 	)
 	_registry["death_mark"] = StatusEffectData.new(
-		"death_mark", TranslationServer.translate("SE_NAME_DEATH_MARK"), "💀", Color(0.5, 0.0, 0.5), EffectType.DOT,
+		"death_mark", TranslationServer.translate("SE_NAME_DEATH_MARK"), "💀", Color(0.50, 0.10, 0.10), EffectType.DOT,
 		TranslationServer.translate("SE_DESC_DEATH_MARK"), true, false
 	)
 
@@ -83,7 +83,7 @@ static func _init_registry() -> void:
 		TranslationServer.translate("SE_DESC_CHILL"), false, false
 	)
 	_registry["death_countdown"] = StatusEffectData.new(
-		"death_countdown", TranslationServer.translate("SE_NAME_DEATH_COUNTDOWN"), "⏳", Color(0.3, 0.0, 0.3), EffectType.DEBUFF,
+		"death_countdown", TranslationServer.translate("SE_NAME_DEATH_COUNTDOWN"), "⏳", Color(0.30, 0.08, 0.08), EffectType.DEBUFF,
 		TranslationServer.translate("SE_DESC_DEATH_COUNTDOWN"), true, false
 	)
 
@@ -109,7 +109,7 @@ static func _init_registry() -> void:
 		TranslationServer.translate("SE_DESC_DETENTION"), true, false
 	)
 	_registry["주박"] = StatusEffectData.new(
-		"주박", TranslationServer.translate("SE_NAME_SHACKLE"), "🔮", Color(0.5, 0.2, 0.7), EffectType.DEBUFF,
+		"주박", TranslationServer.translate("SE_NAME_SHACKLE"), "🔮", Color(0.18, 0.31, 0.56), EffectType.DEBUFF,
 		TranslationServer.translate("SE_DESC_SHACKLE"), true, false
 	)
 	_registry["기절"] = StatusEffectData.new(

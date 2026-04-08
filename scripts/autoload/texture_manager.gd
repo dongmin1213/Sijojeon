@@ -28,22 +28,22 @@ const CATEGORY_PATHS := {
 	AssetCategory.EFFECT: "res://art/effects/",
 }
 
-## 카테고리별 placeholder 색상 (배경색, 전경 텍스트 색)
+## 카테고리별 placeholder 색상 (오방색 기반, 보라 제거)
 const PLACEHOLDER_COLORS := {
-	AssetCategory.CARD: Color(0.25, 0.2, 0.35),
+	AssetCategory.CARD: Color(0.17, 0.17, 0.17),
 	AssetCategory.ENEMY: Color(0.5, 0.15, 0.15),
-	AssetCategory.BACKGROUND: Color(0.08, 0.06, 0.14),
-	AssetCategory.UI_ICON: Color(0.3, 0.3, 0.4),
+	AssetCategory.BACKGROUND: Color(0.10, 0.10, 0.10),
+	AssetCategory.UI_ICON: Color(0.30, 0.30, 0.28),
 	AssetCategory.EFFECT: Color(0.15, 0.3, 0.35),
 }
 
-## 카드 타입별 placeholder 색상
+## 카드 타입별 placeholder 색상 (오방색 기반)
 const CARD_TYPE_COLORS := {
-	"attack": Color(0.6, 0.15, 0.12),
-	"defense": Color(0.12, 0.35, 0.6),
-	"spell": Color(0.4, 0.18, 0.6),
+	"attack": Color(0.60, 0.18, 0.10),
+	"defense": Color(0.14, 0.24, 0.44),
+	"spell": Color(0.14, 0.24, 0.44),
 	"movement": Color(0.12, 0.5, 0.3),
-	"formation": Color(0.6, 0.45, 0.1),
+	"formation": Color(0.60, 0.45, 0.07),
 }
 
 ## 캐시 (path → Texture2D)

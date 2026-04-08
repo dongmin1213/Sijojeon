@@ -487,11 +487,9 @@ func _update_remove_section() -> void:
 		remove_button.remove_theme_color_override("font_color")
 
 
-## 카드 강화 비용 계산 (중인 신분 시 -25% 할인)
+## 카드 강화 비용 계산
 func _get_upgrade_cost() -> int:
-	var base_cost := UPGRADE_BASE_COST
-	var discount: float = JibunSystem.get_upgrade_cost_discount(GameManager.run_data)
-	return maxi(int(base_cost * discount), 1)
+	return UPGRADE_BASE_COST
 
 
 func _on_upgrade_toggle_pressed() -> void:
@@ -859,8 +857,6 @@ func _get_minshim_price_modifier() -> float:
 		modifier = 1.15  # +15%
 	elif minshim >= 70:
 		modifier = 0.8   # -20% (높은 민심 할인)
-	# 양반 이상 신분 할인 적용 (-15%)
-	modifier *= JibunSystem.get_shop_price_modifier(GameManager.run_data)
 	return modifier
 
 
@@ -872,12 +868,7 @@ func _get_discount_breakdown() -> Dictionary:
 	if not GameManager.run_data:
 		return {"has_discount": false, "reasons": ""}
 
-	# 신분 할인
-	var jibun_mod := JibunSystem.get_shop_price_modifier(GameManager.run_data)
-	if jibun_mod < 1.0:
-		var rank_name := JibunSystem.get_rank_name(GameManager.run_data.jibun_rank)
-		reasons.append("%s %s" % [rank_name, tr("SHOP_DISCOUNT_JIBUN")])
-		has_discount = true
+	# (Phase 1-5: 신분 상점 할인 제거됨)
 
 	# 민심 할인/할증
 	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
@@ -891,11 +882,11 @@ func _get_discount_breakdown() -> Dictionary:
 		reasons.append("%s %s" % [tr("MINSHIM_TOOLTIP_TITLE"), tr("SHOP_DISCOUNT_MINSHIM_LOW")])
 		has_discount = true
 
-	# 당파 할인
-	var faction_mod := FactionSystem.get_shop_discount(GameManager.run_data)
-	if faction_mod < 1.0:
-		reasons.append("%s %s" % [tr("MAP_FACTION_NONE").split(":")[0], tr("SHOP_DISCOUNT_FACTION")])
-		has_discount = true
+	# 당파 할인 — UI 숨김 처리 (Phase 1-4: 혼란 제거, 할인 로직은 유지)
+	#var faction_mod := FactionSystem.get_shop_discount(GameManager.run_data)
+	#if faction_mod < 1.0:
+	#	reasons.append("%s %s" % [tr("MAP_FACTION_NONE").split(":")[0], tr("SHOP_DISCOUNT_FACTION")])
+	#	has_discount = true
 
 	return {"has_discount": has_discount, "reasons": ", ".join(reasons)}
 
@@ -927,7 +918,7 @@ func _show_rankup_popup(new_rank: int) -> void:
 
 	# 골드 플래시 오버레이
 	var flash := ColorRect.new()
-	flash.color = Color(0.83, 0.66, 0.26, 0.35)
+	flash.color = Color(0.83, 0.63, 0.09, 0.35)
 	flash.anchors_preset = Control.PRESET_FULL_RECT
 	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(flash)
@@ -936,7 +927,7 @@ func _show_rankup_popup(new_rank: int) -> void:
 	var popup_label := Label.new()
 	popup_label.text = tr("JIBUN_RANKUP_POPUP_FMT") % rank_name
 	popup_label.add_theme_font_size_override("font_size", 40)
-	popup_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+	popup_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 	popup_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	popup_label.anchors_preset = Control.PRESET_CENTER

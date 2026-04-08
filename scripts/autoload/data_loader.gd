@@ -44,6 +44,30 @@ const STARTER_DECKS := {
 		"W005",          # 예제 ×1 (beat4)
 		"W007", "W007",  # 격물치지 ×2 (beat4, cost1) — ZER-234 1장 추가 → beat4 총 3장 확보
 	],
+	"uiwon": [
+		"M003", "M003",  # 후퇴 ×2 (beat3)
+		"M005",          # 포복 ×1 (beat3)
+		"H001", "H001",  # 침술 ×2 (beat3) — 기본 공격
+		"H002", "H002",  # 약재 채집 ×2 (beat3) — 자원 획득
+		"H003",          # 경옥고 ×1 (beat4) — 회복
+		"H004", "H004",  # 독침 ×2 (beat4) — 독 부여
+	],
+	"gungsu": [
+		"M003", "M003",    # 후퇴 ×2 (beat3)
+		"M005",            # 포복 ×1 (beat3)
+		"GI001", "GI001",  # 추파 ×2 (beat3) — 기본 공격
+		"GI002", "GI002",  # 향낭 ×2 (beat3) — 0코스트 버프
+		"GI004",           # 춤사위 ×1 (beat3) — 방어+연타
+		"GI006", "GI006",  # 검무 ×2 (beat4) — 공격
+	],
+	"sangin": [
+		"M003", "M003",  # 후퇴 ×2 (beat3)
+		"M005",          # 포복 ×1 (beat3)
+		"S001", "S001",  # 석장 타격 ×2 (beat3) — 기본 공격
+		"S002", "S002",  # 참선 ×2 (beat3) — 방어+인과
+		"S003",          # 금강역사 ×1 (beat4) — 반격
+		"S004", "S004",  # 염불 ×2 (beat4) — 회복
+	],
 }
 
 
@@ -63,6 +87,9 @@ func _load_all_cards() -> void:
 		"res://data/cards/dosa.json",
 		"res://data/cards/mugwan.json",
 		"res://data/cards/mungwan.json",
+		"res://data/cards/uinyeo.json",
+		"res://data/cards/gisaeng.json",
+		"res://data/cards/seungbyeong.json",
 	]
 	for path in card_files:
 		_load_card_file(path)
@@ -306,13 +333,12 @@ func get_available_relics(owned_ids: Array[String], character_id: String) -> Arr
 func _matches_class(restriction: String, character_id: String) -> bool:
 	## 직업 제한 문자열(한글)과 캐릭터 ID 매칭
 	var class_map := {
-		"도사": "dosa",
-		"무관": "mugwan",
-		"문관": "mungwan",
-		"의원": "physician",
-		"무당": "shaman",
-		"궁수": "archer",
-		"상인": "merchant",
+		"무당": "dosa",
+		"의적": "mugwan",
+		"선비": "mungwan",
+		"의녀": "physician",
+		"기생": "archer",
+		"승병": "merchant",
 	}
 	return class_map.get(restriction, "") == character_id
 
