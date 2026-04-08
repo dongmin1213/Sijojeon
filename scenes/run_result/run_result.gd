@@ -38,7 +38,7 @@ func _setup_display() -> void:
 	# v5: 단청 팔레트 결과 화면 + 엔딩 분기
 	if _is_victory:
 		title_label.text = tr("RESULT_VICTORY")
-		title_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+		title_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 		# 엔딩 제목 표시
 		var ending_name := _get_ending_display_name()
 		if ending_name != "":

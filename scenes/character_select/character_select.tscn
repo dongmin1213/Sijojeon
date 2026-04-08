@@ -36,35 +36,35 @@ texture = ExtResource("3")
 expand_mode = 1
 stretch_mode = 6
 
-; ─── 타이틀 (카드 영역 바로 위) ────────────────────────────────────────────
+; ─── 타이틀 (상단 안전영역 확보) ────────────────────────────────────────────
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.20
+anchor_top = 0.08
 anchor_right = 0.95
-anchor_bottom = 0.25
+anchor_bottom = 0.13
 grow_horizontal = 2
 text = "UI_CHARACTER_SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 theme_override_font_sizes/font_size = 40
-theme_override_colors/font_color = Color(0.83, 0.63, 0.09, 1.0)
+theme_override_colors/font_color = Color(0.96, 0.94, 0.91, 1.0)
 
-; ─── 캐릭터 쇼케이스 영역 (25-48%) — 컴팩트 ─────────────────────────────
+; ─── 캐릭터 쇼케이스 영역 (14-48%) — 확장 ─────────────────────────────
 [node name="CardContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.04
-anchor_top = 0.25
-anchor_right = 0.96
+anchor_left = 0.02
+anchor_top = 0.14
+anchor_right = 0.98
 anchor_bottom = 0.48
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-theme_override_constants/separation = 24
+theme_override_constants/separation = 12
 
-; ─── 하단 바 (50-82%) — 상세정보+버튼 ────────────────────────────────────
+; ─── 하단 바 (50-85%) — 상세정보+버튼 ────────────────────────────────────
 [node name="BottomBar" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_bottom_bar")
 layout_mode = 1
@@ -72,7 +72,7 @@ anchors_preset = -1
 anchor_left = 0.0
 anchor_top = 0.50
 anchor_right = 1.0
-anchor_bottom = 0.82
+anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 

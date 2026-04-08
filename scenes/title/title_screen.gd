@@ -12,8 +12,8 @@ extends Control
 
 
 func _ready() -> void:
-	# v8: 타이틀 레이블에 나눔명조 ExtraBold 적용
-	var title_font := load("res://fonts/NanumMyeongjo-ExtraBold.ttf") as Font
+	# v10: 타이틀 레이블에 고운바탕 Bold 적용
+	var title_font := load("res://fonts/GowunBatang-Bold.ttf") as Font
 	if title_font:
 		title_label.add_theme_font_override("font", title_font)
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 	# 버전 표시
 	version_label.text = "v%s" % ProjectSettings.get_setting("application/config/version", "0.1.0")
 
-	# v8: "새 게임" 버튼을 주 액션(CTA)으로 강조 — 금색 배경+큰 글씨
+	# v10: "새 게임" 버튼을 주 액션(CTA)으로 강조 — 적색 배경+큰 글씨
 	_apply_primary_button_style(start_button)
 
 	# v9: 모든 버튼에 호버 글로우 효과 적용
@@ -87,41 +87,41 @@ func _on_quit_pressed() -> void:
 
 
 func _apply_primary_button_style(btn: Button) -> void:
-	## v8: 주 액션 버튼에 금색 강조 스타일 적용 (CTA)
+	## v10: 주 액션 버튼에 적색 강조 스타일 적용 (CTA) — 단청 적색
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.83, 0.63, 0.09, 0.15)
+	style.bg_color = Color(0.76, 0.23, 0.13, 0.15)
 	style.set_border_width_all(2)
-	style.border_color = Color(0.83, 0.63, 0.09, 0.9)
+	style.border_color = Color(0.76, 0.23, 0.13, 0.9)
 	style.set_corner_radius_all(16)
 	style.set_content_margin_all(12)
-	style.shadow_color = Color(0.83, 0.63, 0.09, 0.15)
+	style.shadow_color = Color(0.76, 0.23, 0.13, 0.15)
 	style.shadow_size = 8
 	style.shadow_offset = Vector2(0, 3)
 	btn.add_theme_stylebox_override("normal", style)
 	var hover := style.duplicate()
-	hover.bg_color = Color(0.83, 0.63, 0.09, 0.25)
+	hover.bg_color = Color(0.76, 0.23, 0.13, 0.25)
 	hover.shadow_size = 10
 	btn.add_theme_stylebox_override("hover", hover)
 	var pressed := style.duplicate()
-	pressed.bg_color = Color(0.83, 0.63, 0.09, 0.35)
+	pressed.bg_color = Color(0.76, 0.23, 0.13, 0.35)
 	pressed.shadow_size = 4
 	btn.add_theme_stylebox_override("pressed", pressed)
-	btn.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
-	btn.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
+	btn.add_theme_color_override("font_color", Color(0.96, 0.88, 0.78))
+	btn.add_theme_color_override("font_hover_color", Color(1.0, 0.92, 0.85))
 	btn.add_theme_font_size_override("font_size", 38)
 
 
 func _apply_hover_glow(btn: Button) -> void:
-	## v9: 일반 버튼에 호버 시 금색 글로우 효과 적용
+	## v10: 일반 버튼에 호버 시 적색 글로우 효과 적용 — 단청 적색
 	var hover_style := StyleBoxFlat.new()
-	hover_style.bg_color = Color(0.83, 0.63, 0.09, 0.08)
+	hover_style.bg_color = Color(0.76, 0.23, 0.13, 0.08)
 	hover_style.set_border_width_all(1)
-	hover_style.border_color = Color(0.83, 0.63, 0.09, 0.4)
+	hover_style.border_color = Color(0.76, 0.23, 0.13, 0.4)
 	hover_style.set_corner_radius_all(12)
-	hover_style.shadow_color = Color(0.83, 0.63, 0.09, 0.1)
+	hover_style.shadow_color = Color(0.76, 0.23, 0.13, 0.1)
 	hover_style.shadow_size = 6
 	btn.add_theme_stylebox_override("hover", hover_style)
-	btn.add_theme_color_override("font_hover_color", Color(0.93, 0.78, 0.36))
+	btn.add_theme_color_override("font_hover_color", Color(1.0, 0.92, 0.85))
 
 
 func _add_panel_gradient_transition() -> void:
@@ -172,16 +172,16 @@ func _add_firefly_particles() -> void:
 	mat.gravity = Vector3(0, -2, 0)
 	mat.scale_min = 2.0
 	mat.scale_max = 5.0
-	mat.color = Color(0.83, 0.63, 0.09, 0.4)
+	mat.color = Color(0.85, 0.35, 0.15, 0.4)
 
-	# 페이드인/아웃을 위한 색상 램프
+	# 페이드인/아웃을 위한 색상 램프 — 붉은 등불 색감
 	var gradient := Gradient.new()
 	gradient.set_offset(0, 0.0)
-	gradient.set_color(0, Color(0.83, 0.63, 0.09, 0.0))
-	gradient.add_point(0.3, Color(0.83, 0.63, 0.09, 0.5))
-	gradient.add_point(0.7, Color(0.83, 0.63, 0.09, 0.4))
+	gradient.set_color(0, Color(0.85, 0.35, 0.15, 0.0))
+	gradient.add_point(0.3, Color(0.85, 0.35, 0.15, 0.5))
+	gradient.add_point(0.7, Color(0.85, 0.35, 0.15, 0.4))
 	gradient.set_offset(gradient.get_point_count() - 1, 1.0)
-	gradient.set_color(gradient.get_point_count() - 1, Color(0.83, 0.63, 0.09, 0.0))
+	gradient.set_color(gradient.get_point_count() - 1, Color(0.85, 0.35, 0.15, 0.0))
 	var color_ramp := GradientTexture1D.new()
 	color_ramp.gradient = gradient
 	mat.color_ramp = color_ramp

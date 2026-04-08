@@ -120,18 +120,18 @@ func _default_colors() -> Dictionary:
 		"defense": Color(0.18, 0.31, 0.56),   # 청 (#2E5090)
 		"spell": Color(0.18, 0.31, 0.56),     # 청 (도사)
 		"movement": Color(0.23, 0.49, 0.27),  # 송록
-		"formation": Color(0.83, 0.63, 0.09), # 황 (#D4A017)
+		"formation": Color(0.76, 0.23, 0.13), # 황 (#D4A017)
 	}
 
 
 func _protanopia_colors() -> Dictionary:
 	## 적녹색맹용 — 빨강/초록을 파랑/노랑 대비로 교체
 	return {
-		"attack": Color(0.9, 0.6, 0.1),    # 주황
+		"attack": Color(0.76, 0.23, 0.13),    # 주황
 		"defense": Color(0.2, 0.4, 0.9),   # 파랑
 		"spell": Color(0.1, 0.5, 0.7),     # 틸 (보라 제거)
 		"movement": Color(0.1, 0.7, 0.9),  # 시안
-		"formation": Color(0.9, 0.85, 0.2), # 노랑
+		"formation": Color(0.96, 0.94, 0.91), # 노랑
 	}
 
 

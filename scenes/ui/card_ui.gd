@@ -57,7 +57,7 @@ const TYPE_COLORS := {
 	"defense": Color(0.18, 0.31, 0.56),   # 청 (오방색 파랑 #2E5090)
 	"spell": Color(0.18, 0.31, 0.56),     # 청 (도사 — 학자의 색)
 	"movement": Color(0.23, 0.49, 0.27),  # 송록 (소나무 녹색)
-	"formation": Color(0.83, 0.63, 0.09), # 황 (오방색 노랑 #D4A017)
+	"formation": Color(0.76, 0.23, 0.13), # 황 (오방색 노랑 #D4A017)
 }
 
 # 희귀도별 색상 — v5: 오방색 기반 재질감
@@ -66,7 +66,7 @@ const RARITY_COLORS := {
 	2: Color(0.55, 0.45, 0.30),  # 청동 (고급)
 	3: Color(0.65, 0.68, 0.72),  # 은 (희귀)
 	4: Color(0.76, 0.23, 0.13),  # 적옥 (영웅 — 오방색 적)
-	5: Color(0.83, 0.63, 0.09),  # 금박 (전설 — 오방색 황)
+	5: Color(0.76, 0.23, 0.13),  # 금박 (전설 — 오방색 황)
 }
 
 # v6: 카드 프레임 SVG 텍스처 경로 (희귀도별)
@@ -145,19 +145,19 @@ func _create_styleboxes() -> void:
 
 	_hover_stylebox = StyleBoxFlat.new()
 	_hover_stylebox.bg_color = Color(0.16, 0.15, 0.13)
-	_hover_stylebox.border_color = Color(0.83, 0.63, 0.09, 0.9)
+	_hover_stylebox.border_color = Color(0.76, 0.23, 0.13, 0.9)
 	_hover_stylebox.set_border_width_all(2)
 	_hover_stylebox.set_corner_radius_all(14)
-	_hover_stylebox.shadow_color = Color(0.83, 0.63, 0.09, 0.2)
+	_hover_stylebox.shadow_color = Color(0.76, 0.23, 0.13, 0.2)
 	_hover_stylebox.shadow_size = 10
 	_hover_stylebox.shadow_offset = Vector2(0, 2)
 
 	_selected_stylebox = StyleBoxFlat.new()
 	_selected_stylebox.bg_color = Color(0.18, 0.17, 0.15)
-	_selected_stylebox.border_color = Color(0.83, 0.63, 0.09, 1.0)
+	_selected_stylebox.border_color = Color(0.76, 0.23, 0.13, 1.0)
 	_selected_stylebox.set_border_width_all(3)
 	_selected_stylebox.set_corner_radius_all(14)
-	_selected_stylebox.shadow_color = Color(0.83, 0.63, 0.09, 0.3)
+	_selected_stylebox.shadow_color = Color(0.76, 0.23, 0.13, 0.3)
 	_selected_stylebox.shadow_size = 12
 	_selected_stylebox.shadow_offset = Vector2(0, 2)
 
@@ -169,20 +169,20 @@ func _create_styleboxes() -> void:
 
 	_drag_stylebox = StyleBoxFlat.new()
 	_drag_stylebox.bg_color = Color(0.20, 0.19, 0.17)
-	_drag_stylebox.border_color = Color(0.83, 0.63, 0.09, 1.0)
+	_drag_stylebox.border_color = Color(0.76, 0.23, 0.13, 1.0)
 	_drag_stylebox.set_border_width_all(3)
 	_drag_stylebox.set_corner_radius_all(14)
-	_drag_stylebox.shadow_color = Color(0.83, 0.63, 0.09, 0.25)
+	_drag_stylebox.shadow_color = Color(0.76, 0.23, 0.13, 0.25)
 	_drag_stylebox.shadow_size = 14
 	_drag_stylebox.shadow_offset = Vector2(0, 4)
 
 	# 시조 비트 매칭 카드 — 금색 글로우 (초록보다 테마에 맞음)
 	_sijo_match_stylebox = StyleBoxFlat.new()
 	_sijo_match_stylebox.bg_color = Color(0.14, 0.12, 0.08)
-	_sijo_match_stylebox.border_color = Color(0.83, 0.63, 0.09, 1.0)
+	_sijo_match_stylebox.border_color = Color(0.76, 0.23, 0.13, 1.0)
 	_sijo_match_stylebox.set_border_width_all(4)
 	_sijo_match_stylebox.set_corner_radius_all(14)
-	_sijo_match_stylebox.shadow_color = Color(0.83, 0.63, 0.09, 0.35)
+	_sijo_match_stylebox.shadow_color = Color(0.76, 0.23, 0.13, 0.35)
 	_sijo_match_stylebox.shadow_size = 10
 
 
@@ -216,7 +216,7 @@ func _update_display() -> void:
 	if card_data.upgraded:
 		display_name += "+"
 	card_name_label.text = display_name
-	card_name_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+	card_name_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 
 	# 카드 일러스트 (TextureManager에서 로드, 없으면 placeholder)
 	card_art.texture = TextureManager.get_card_texture(card_data.id, card_data.type)
@@ -251,7 +251,7 @@ func _update_display() -> void:
 	# 시조 비트 일치 표시
 	if sijo_match:
 		sijo_indicator.text = "♪"
-		sijo_indicator.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+		sijo_indicator.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 		sijo_indicator.visible = true
 	else:
 		sijo_indicator.visible = false
@@ -312,7 +312,7 @@ func _start_sijo_glow() -> void:
 
 func _set_sijo_border_alpha(alpha: float) -> void:
 	if _sijo_match_stylebox:
-		_sijo_match_stylebox.border_color = Color(0.83, 0.63, 0.09, alpha)
+		_sijo_match_stylebox.border_color = Color(0.76, 0.23, 0.13, alpha)
 
 
 func _make_frame_stylebox(rarity: int, tint: Color = Color.WHITE) -> StyleBoxTexture:
@@ -360,7 +360,7 @@ func _get_type_border_color(type: String) -> Color:
 		"defense": return Color(0.18, 0.31, 0.56)
 		"spell": return Color(0.18, 0.31, 0.56)
 		"movement": return Color(0.23, 0.49, 0.27)
-		"formation": return Color(0.83, 0.63, 0.09)
+		"formation": return Color(0.76, 0.23, 0.13)
 		_: return Color(0.25, 0.23, 0.20)
 
 

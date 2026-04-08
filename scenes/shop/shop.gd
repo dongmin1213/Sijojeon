@@ -918,7 +918,7 @@ func _show_rankup_popup(new_rank: int) -> void:
 
 	# 골드 플래시 오버레이
 	var flash := ColorRect.new()
-	flash.color = Color(0.83, 0.63, 0.09, 0.35)
+	flash.color = Color(0.76, 0.23, 0.13, 0.35)
 	flash.anchors_preset = Control.PRESET_FULL_RECT
 	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(flash)
@@ -927,7 +927,7 @@ func _show_rankup_popup(new_rank: int) -> void:
 	var popup_label := Label.new()
 	popup_label.text = tr("JIBUN_RANKUP_POPUP_FMT") % rank_name
 	popup_label.add_theme_font_size_override("font_size", 40)
-	popup_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+	popup_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 	popup_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	popup_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	popup_label.anchors_preset = Control.PRESET_CENTER

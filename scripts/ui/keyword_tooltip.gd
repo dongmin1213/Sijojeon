@@ -27,7 +27,7 @@ func _build_ui() -> void:
 	# v6: 오방색 스타일 키워드 툴팁 — 흑 배경 + 황 테두리
 	stylebox.bg_color = Color(0.10, 0.09, 0.08, 0.97)
 	stylebox.set_border_width_all(2)
-	stylebox.border_color = Color(0.83, 0.63, 0.09, 0.8)
+	stylebox.border_color = Color(0.76, 0.23, 0.13, 0.8)
 	stylebox.set_corner_radius_all(10)
 	stylebox.set_content_margin_all(14)
 	stylebox.shadow_color = Color(0.0, 0.0, 0.0, 0.4)
@@ -39,7 +39,7 @@ func _build_ui() -> void:
 
 	_name_label = Label.new()
 	_name_label.add_theme_font_size_override("font_size", 18)
-	_name_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+	_name_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 	vbox.add_child(_name_label)
 
 	_desc_label = Label.new()
@@ -103,7 +103,7 @@ func show_tooltip(keyword_id: String, global_pos: Vector2) -> void:
 		_name_label.text = _get_localized(kw, "name", keyword_id)
 		_desc_label.text = _get_localized(kw, "description", "")
 		var color_hex: String = kw.get("color", "#FFD966")
-		_name_label.add_theme_color_override("font_color", Color.from_string(color_hex, Color(1, 0.85, 0.3)))
+		_name_label.add_theme_color_override("font_color", Color.from_string(color_hex, Color(0.96, 0.94, 0.91)))
 
 	_panel.visible = true
 	_visible = true

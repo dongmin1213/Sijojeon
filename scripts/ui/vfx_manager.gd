@@ -251,7 +251,7 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 	_apply_slow_motion(0.05, 0.3)
 
 	# 화면 플래시 (더 밝고 오래 지속)
-	flash_screen(parent, Color(1.0, 0.85, 0.3, 0.55), 0.4)
+	flash_screen(parent, Color(1.0, 0.85, 0.85, 0.45), 0.4)
 
 	# 강화된 화면 흔들림
 	screen_shake(18.0, 5.0)
@@ -266,8 +266,8 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		label.add_theme_font_size_override("font_size", 56)
-		label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
-		label.add_theme_color_override("font_outline_color", Color(0.6, 0.3, 0.0))
+		label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
+		label.add_theme_color_override("font_outline_color", Color(0.5, 0.15, 0.08))
 		label.add_theme_constant_override("outline_size", 4)
 		label.z_index = 90
 		# 앵커 기반 센터링 — add_child 전에 설정
@@ -284,7 +284,7 @@ func sijo_complete_vfx(parent: Control, slot_card_names: Array[String] = []) -> 
 		tween.tween_callback(_release_label.bind(label))
 
 	# 1차 파티클: 빠르게 퍼지는 코어 (24개)
-	_spawn_particles(parent, 24, Color(0.83, 0.63, 0.09))
+	_spawn_particles(parent, 24, Color(0.76, 0.23, 0.13))
 	# 2차 파티클: 느리게 퍼지는 외곽 링 (12개, 더 크고 밝음)
 	_spawn_ring_particles(parent, 12, Color(1.0, 0.95, 0.6))
 
@@ -311,7 +311,7 @@ func _spawn_hanshi_overlay(parent: Control, names: Array[String]) -> void:
 	header.anchor_top = 0.05
 	header.anchor_bottom = 0.25
 	header.add_theme_font_size_override("font_size", 22)
-	header.add_theme_color_override("font_color", Color(0.9, 0.75, 0.3))
+	header.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 	header.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.add_child(header)
 
@@ -408,7 +408,7 @@ func _spawn_ring_particles(parent: Control, count: int, color: Color) -> void:
 
 # --- 턴 전환 효과 ---
 
-func turn_transition(parent: Control, text: String, color: Color = Color(1, 0.85, 0.3)) -> void:
+func turn_transition(parent: Control, text: String, color: Color = Color(0.96, 0.94, 0.91)) -> void:
 	## 턴 시작 시 슬라이드 인/아웃 텍스트 배너
 	var vp_size := parent.get_viewport().get_visible_rect().size
 	var banner := _acquire_color_rect()
@@ -531,7 +531,7 @@ func animate_hp_bar(label: Label, from_hp: int, to_hp: int, max_hp: int, duratio
 		if ratio < 0.25:
 			label.add_theme_color_override("font_color", Color(1.0, 0.2, 0.2))
 		elif ratio < 0.5:
-			label.add_theme_color_override("font_color", Color(1.0, 0.7, 0.2))
+			label.add_theme_color_override("font_color", Color(0.76, 0.23, 0.13))
 		else:
 			label.remove_theme_color_override("font_color")
 	, float(from_hp), float(to_hp), duration)

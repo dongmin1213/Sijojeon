@@ -130,7 +130,7 @@ func _on_relic_claimed() -> void:
 		for child in relic_section.get_children():
 			if child is Button:
 				child.disabled = true
-				child.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+				child.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 
 
 func _apply_gold() -> void:
@@ -409,7 +409,7 @@ func _get_rarity_color(rarity_level: int) -> Color:
 		2:
 			return Color(0.17, 0.30, 0.50)  # 고급: 남색
 		3:
-			return Color(0.83, 0.63, 0.09)  # 희귀: 금색
+			return Color(0.76, 0.23, 0.13)  # 희귀: 금색
 	return Color(0.60, 0.55, 0.50)  # 일반: 따뜻한 회색
 
 
@@ -428,7 +428,7 @@ func _on_card_chosen(index: int) -> void:
 		var buttons := card_container.get_children()
 		for i in buttons.size():
 			if i == index:
-				buttons[i].add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+				buttons[i].add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 				buttons[i].disabled = true
 			else:
 				buttons[i].modulate = Color(0.4, 0.4, 0.4)
@@ -470,7 +470,7 @@ func _check_rank_up_reward() -> void:
 	rank_label.text = tr("REWARD_RANK_UP_FMT") % rank_name
 	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	rank_label.add_theme_font_size_override("font_size", 30)
-	rank_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+	rank_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 	rank_section.add_child(rank_label)
 
 	var desc_label := Label.new()
@@ -577,7 +577,7 @@ func _build_rank_relic_select(parent: VBoxContainer) -> void:
 	btn.pressed.connect(func():
 		RelicManager.acquire_relic(relic_id)
 		btn.disabled = true
-		btn.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+		btn.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 	)
 	parent.add_child(btn)
 

@@ -1194,7 +1194,7 @@ func get_class_resource_name() -> String:
 func get_class_resource_color() -> Color:
 	match character_id:
 		"mugwan":
-			return Color(0.9, 0.6, 0.2)  # 주황 (기력)
+			return Color(0.76, 0.23, 0.13)  # 주황 (기력)
 		"mungwan":
 			return Color(0.3, 0.7, 1.0)  # 파랑 (학식)
 		_:

@@ -37,7 +37,7 @@ func _build_ui() -> void:
 	title.text = "디버그 메뉴"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 40)
-	title.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+	title.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 	vbox.add_child(title)
 
 	# 캐릭터 선택
@@ -93,7 +93,7 @@ func _on_char_selected(char_id: String) -> void:
 			for btn in child.get_children():
 				if btn is Button:
 					if btn.text == char_id:
-						btn.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+						btn.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 					else:
 						btn.remove_theme_color_override("font_color")
 

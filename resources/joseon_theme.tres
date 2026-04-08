@@ -1,17 +1,16 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://joseon_theme"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://joseon_theme"]
 
 ; ═══════════════════════════════════════════════════════════════════════════
-; 시조전 디자인 시스템 v9 — 오방색 팔레트 적용
-; 색상: 흑(#2C2C2C) 배경 + 한지크림(#F5E6C8) 텍스트 + 황(#D4A017) 강조
-;       적(#C23B22), 청(#2E5090), 백(#F5F0E8) — 보라색 완전 제거
-; 폰트: 나눔명조 (OFL) — 조선시대 명조 서체
+; 시조전 디자인 시스템 v10 — 조선 팔레트 적용
+; 색상: 흑(#2C2C2C) 배경 + 한지크림(#F5E6C8) 텍스트 + 적(#C23B22) 강조
+;       청(#2E5090), 백(#F5F0E8) — 황색/금색 완전 제거 (중국풍 방지)
+; 폰트: 고운바탕 (OFL) — 한국 전통 바탕체
 ; 스타일: 모던 미니멀, 얇은 테두리, 넉넉한 패딩, 부드러운 그림자
 ; ═══════════════════════════════════════════════════════════════════════════
 
-; ─── 나눔명조 폰트 리소스 ─────────────────────────────────────────────────
-[ext_resource type="FontFile" path="res://fonts/NanumMyeongjo-Regular.ttf" id="font_regular"]
-[ext_resource type="FontFile" path="res://fonts/NanumMyeongjo-Bold.ttf" id="font_bold"]
-[ext_resource type="FontFile" path="res://fonts/NanumMyeongjo-ExtraBold.ttf" id="font_extrabold"]
+; ─── 고운바탕 폰트 리소스 ─────────────────────────────────────────────────
+[ext_resource type="FontFile" path="res://fonts/GowunBatang-Regular.ttf" id="font_regular"]
+[ext_resource type="FontFile" path="res://fonts/GowunBatang-Bold.ttf" id="font_bold"]
 
 ; ─── Button 스타일 ─────────────────────────────────────────────────────────
 [sub_resource type="StyleBoxFlat" id="btn_normal"]
@@ -39,12 +38,12 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.83, 0.63, 0.09, 0.8)
+border_color = Color(0.76, 0.23, 0.13, 0.8)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-shadow_color = Color(0.83, 0.63, 0.09, 0.15)
+shadow_color = Color(0.76, 0.23, 0.13, 0.15)
 shadow_size = 8
 shadow_offset = Vector2(0, 2)
 content_margin_left = 16.0
@@ -58,7 +57,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.83, 0.63, 0.09, 0.5)
+border_color = Color(0.76, 0.23, 0.13, 0.5)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -77,7 +76,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.83, 0.63, 0.09, 0.7)
+border_color = Color(0.76, 0.23, 0.13, 0.7)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
@@ -191,7 +190,7 @@ content_margin_top = 4.0
 content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id="slider_fill"]
-bg_color = Color(0.83, 0.63, 0.09, 0.9)
+bg_color = Color(0.76, 0.23, 0.13, 0.9)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -208,10 +207,10 @@ content_margin_bottom = 1.0
 ; ─── 테마 리소스 정의 ──────────────────────────────────────────────────────
 [resource]
 
-; 기본 폰트: 나눔명조 Regular — 조선시대 테마에 맞는 명조 서체
+; 기본 폰트: 고운바탕 Regular — 한국 전통 바탕체
 default_font = ExtResource("font_regular")
 
-; Button — 나눔명조 Bold 사용
+; Button — 고운바탕 Bold 사용
 Button/fonts/font = ExtResource("font_bold")
 Button/styles/normal   = SubResource("btn_normal")
 Button/styles/hover    = SubResource("btn_hover")
@@ -222,7 +221,7 @@ Button/colors/font_color          = Color(0.92, 0.88, 0.80, 1.0)
 Button/colors/font_hover_color    = Color(1.0, 0.96, 0.84, 1.0)
 Button/colors/font_pressed_color  = Color(0.75, 0.72, 0.65, 1.0)
 Button/colors/font_disabled_color = Color(0.40, 0.38, 0.35, 0.5)
-Button/colors/font_focus_color    = Color(0.83, 0.63, 0.09, 1.0)
+Button/colors/font_focus_color    = Color(0.76, 0.23, 0.13, 1.0)
 Button/font_sizes/font_size = 32
 
 ; Panel
@@ -231,7 +230,7 @@ Panel/styles/panel = SubResource("panel_normal")
 ; PanelContainer
 PanelContainer/styles/panel = SubResource("panelcontainer_normal")
 
-; Label — 나눔명조 Regular + 한지 크림색 텍스트 + 깔끔한 그림자
+; Label — 고운바탕 Regular + 한지 크림색 텍스트 + 깔끔한 그림자
 Label/fonts/font = ExtResource("font_regular")
 Label/colors/font_color         = Color(0.92, 0.88, 0.80, 1.0)
 Label/colors/font_shadow_color  = Color(0, 0, 0, 0.35)
@@ -250,7 +249,7 @@ OptionButton/colors/font_color          = Color(0.92, 0.88, 0.80, 1.0)
 OptionButton/colors/font_hover_color    = Color(1.0, 0.96, 0.84, 1.0)
 OptionButton/colors/font_pressed_color  = Color(0.75, 0.72, 0.65, 1.0)
 OptionButton/colors/font_disabled_color = Color(0.40, 0.38, 0.35, 0.5)
-OptionButton/colors/font_focus_color    = Color(0.83, 0.63, 0.09, 1.0)
+OptionButton/colors/font_focus_color    = Color(0.76, 0.23, 0.13, 1.0)
 OptionButton/font_sizes/font_size = 28
 
 ; CheckButton
@@ -266,7 +265,7 @@ ProgressBar/styles/fill       = SubResource("progressbar_fill")
 LineEdit/styles/normal = SubResource("lineedit_normal")
 LineEdit/colors/font_color             = Color(0.92, 0.88, 0.80, 1.0)
 LineEdit/colors/font_placeholder_color = Color(0.50, 0.46, 0.40, 0.5)
-LineEdit/colors/caret_color            = Color(0.83, 0.63, 0.09, 1.0)
+LineEdit/colors/caret_color            = Color(0.76, 0.23, 0.13, 1.0)
 LineEdit/font_sizes/font_size = 28
 
 ; RichTextLabel

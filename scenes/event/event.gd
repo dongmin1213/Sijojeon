@@ -795,7 +795,7 @@ func _show_card_gain_selection(choice: Dictionary) -> void:
 	header.text = tr("EVENT_CARD_SELECT_HEADER")
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	header.add_theme_font_size_override("font_size", 22)
-	header.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+	header.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 	choice_container.add_child(header)
 
 	var offers := _generate_card_offers(3)

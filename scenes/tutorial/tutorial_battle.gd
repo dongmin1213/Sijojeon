@@ -340,7 +340,7 @@ func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String, beat_
 		else:
 			sijo_slot_labels[index].text = card_id
 		if beat_matched:
-			sijo_slot_labels[index].add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 		else:
 			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	if _sijo_collapsed:
@@ -397,5 +397,5 @@ func _on_battle_ended(victory: bool) -> void:
 	label.layout_mode = 1
 	label.anchors_preset = Control.PRESET_FULL_RECT
 	label.add_theme_font_size_override("font_size", 64)
-	label.add_theme_color_override("font_color", Color(1, 0.85, 0.3) if victory else Color(1, 0.3, 0.3))
+	label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91) if victory else Color(1, 0.3, 0.3))
 	overlay.add_child(label)

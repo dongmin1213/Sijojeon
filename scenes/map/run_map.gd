@@ -10,7 +10,7 @@ const NODE_COLORS := {
 	MapData.NodeType.SHOP: Color(0.18, 0.31, 0.56),      # 청 (상점 — #2E5090)
 	MapData.NodeType.REST: Color(0.24, 0.67, 0.43),      # 녹색 (휴식)
 	MapData.NodeType.BOSS: Color(0.70, 0.15, 0.15),      # 진홍 (보스)
-	MapData.NodeType.GWAGEO: Color(0.83, 0.63, 0.09),   # 황 (과거시험 — #D4A017)
+	MapData.NodeType.GWAGEO: Color(0.76, 0.23, 0.13),   # 황 (과거시험 — #D4A017)
 }
 
 var NODE_LABELS := {
@@ -321,10 +321,10 @@ func _draw_connections() -> void:
 			var color: Color
 			var width: float
 			if is_visited_path:
-				color = Color(0.83, 0.63, 0.09, 0.85)
+				color = Color(0.76, 0.23, 0.13, 0.85)
 				width = 3.5
 			elif is_available_path:
-				color = Color(0.83, 0.63, 0.09, 0.6)
+				color = Color(0.76, 0.23, 0.13, 0.6)
 				width = 3.0
 			else:
 				# v10: 거리 기반 페이드
@@ -424,17 +424,17 @@ func _update_node_states() -> void:
 			var icon_text: String = NODE_ICONS.get(map_node.type, "?")
 			btn.text = "%s\n%s" % [icon_text, tr("MAP_FORK_COST_FMT") % cost]
 			btn.disabled = false
-			btn.modulate = Color(0.83, 0.63, 0.09, 0.85)
+			btn.modulate = Color(0.76, 0.23, 0.13, 0.85)
 			btn.tooltip_text = tr("MAP_FORK_UNLOCK_TOOLTIP") % cost
-			var style := _make_node_style(Color(0.15, 0.12, 0.08), Color(0.83, 0.63, 0.09, 0.7), 2)
+			var style := _make_node_style(Color(0.15, 0.12, 0.08), Color(0.76, 0.23, 0.13, 0.7), 2)
 			btn.add_theme_stylebox_override("normal", style)
 			btn.add_theme_stylebox_override("hover", style)
-			btn.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
+			btn.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 		elif nid in _available_node_ids:
 			# v5: 선택 가능한 노드 — 타입 색상 + 금박 보더 + 펄스
 			btn.disabled = false
 			btn.modulate = Color.WHITE
-			var style := _make_node_style(node_color.darkened(0.15), Color(0.83, 0.63, 0.09, 0.9), 3)
+			var style := _make_node_style(node_color.darkened(0.15), Color(0.76, 0.23, 0.13, 0.9), 3)
 			btn.add_theme_stylebox_override("normal", style)
 			btn.add_theme_stylebox_override("hover", style)
 
@@ -471,11 +471,11 @@ func _update_node_states() -> void:
 			var cur_color: Color = NODE_COLORS.get(map_node_cur.type, Color.WHITE)
 			btn.modulate = Color(1.0, 1.0, 1.0, 1.0)
 			# v5: 현재 위치 — 금박 강조 보더
-			var style := _make_node_style(cur_color.darkened(0.2), Color(0.83, 0.63, 0.09, 1.0), 4)
-			style.shadow_color = Color(0.83, 0.63, 0.09, 0.3)
+			var style := _make_node_style(cur_color.darkened(0.2), Color(0.76, 0.23, 0.13, 1.0), 4)
+			style.shadow_color = Color(0.76, 0.23, 0.13, 0.3)
 			style.shadow_size = 6
 			btn.add_theme_stylebox_override("disabled", style)
-			btn.add_theme_color_override("font_disabled_color", Color(0.83, 0.63, 0.09))
+			btn.add_theme_color_override("font_disabled_color", Color(0.76, 0.23, 0.13))
 			# v10: 아이콘 전용 마커
 			var icon_text: String = NODE_ICONS.get(map_node_cur.type, "?")
 			btn.text = "▶%s" % icon_text
@@ -677,7 +677,7 @@ func _get_minshim_tier(value: int) -> Dictionary:
 	elif value >= 50:
 		return {"name": tr("MINSHIM_TIER_NORMAL"), "color": Color(0.75, 0.70, 0.65)}
 	elif value >= 30:
-		return {"name": tr("MINSHIM_TIER_UNREST"), "color": Color(0.83, 0.63, 0.09)}
+		return {"name": tr("MINSHIM_TIER_UNREST"), "color": Color(0.76, 0.23, 0.13)}
 	else:
 		return {"name": tr("MINSHIM_TIER_CRISIS"), "color": Color(0.78, 0.29, 0.19)}
 
