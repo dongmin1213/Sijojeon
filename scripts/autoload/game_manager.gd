@@ -93,7 +93,7 @@ func change_state(new_state: GameState) -> void:
 			push_warning("GameManager: 씬 파일 없음 — %s (상태: %s)" % [scene_path, GameState.keys()[new_state]])
 
 
-func start_new_run(character_id: String, ascension_level: int = 0) -> void:
+func start_new_run(character_id: String, ascension_level: int = 0, navigate_to_map: bool = true) -> void:
 	if character_id.is_empty():
 		push_error("GameManager.start_new_run: character_id가 비어있음")
 		return
@@ -149,7 +149,8 @@ func start_new_run(character_id: String, ascension_level: int = 0) -> void:
 	var generator := MapGenerator.new()
 	run_data.run_map = generator.generate(run_data.map_seed, run_data.current_act)
 
-	change_state(GameState.MAP)
+	if navigate_to_map:
+		change_state(GameState.MAP)
 
 
 func load_saved_run() -> bool:
