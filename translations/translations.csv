@@ -520,6 +520,8 @@ EVENT_COND_RANK_GE_3,신분이 양반(3등급) 이상이어야 합니다,Require
 EVENT_COND_RANK_GE_4,신분이 당상관(4등급) 이상이어야 합니다,Requires Dangsanggwan (Rank 4) or higher
 EVENT_COND_MINSHIM_GE_70,민심이 70 이상이어야 합니다,Requires Sentiment 70 or higher
 EVENT_COND_MINSHIM_GE_50,민심이 50 이상이어야 합니다,Requires Sentiment 50 or higher
+RESULT_CARDS_UNLOCKED,새 카드 해금!,New Cards Unlocked!
+RESULT_CARD_UNLOCKED_DESC,다음 런부터 보상에 등장,Available in rewards from next run
 EVENT_COND_SISANG_GE_5,시상 5 이상 필요 (시조를 더 지으세요),Requires Sisang 5+ (complete more sijo)
 EVENT_COND_SISANG_GE_10,시상 10 이상 필요,Requires Sisang 10+
 EVENT_COND_DEFAULT,조건 미충족,Condition not met

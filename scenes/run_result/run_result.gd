@@ -26,6 +26,7 @@ func _ready() -> void:
 
 	_setup_display()
 	_populate_stats()
+	_check_card_unlocks()
 	_populate_achievements()
 	_play_entrance_animation()
 
@@ -34,7 +35,7 @@ func _setup_display() -> void:
 	# v5: 단청 팔레트 결과 화면
 	if _is_victory:
 		title_label.text = tr("RESULT_VICTORY")
-		title_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+		title_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 		subtitle_label.text = tr("RESULT_VICTORY_SUBTITLE")
 		overlay.color = Color(0.04, 0.04, 0.08, 0.92)
 	else:
@@ -92,6 +93,29 @@ func _populate_achievements() -> void:
 			_add_stat_row(name_text, TranslationManager.trd(ach, "description", ""))
 
 	_add_stat_row(tr("RESULT_ACHIEVEMENT_RATE"), "%d / %d" % [unlocked_count, all_achs.size()])
+
+
+func _check_card_unlocks() -> void:
+	## 런 종료 시 카드 해금 조건 체크 + 시조 메타 누적
+	var rd: RunData = GameManager.run_data
+	if rd == null:
+		return
+	# 시조 완성 수를 메타에 누적
+	if rd.sisang_count > 0:
+		CardUnlockSystem.add_sijo_completion_to_meta(rd.sisang_count)
+	# 카드 해금 체크
+	var newly_unlocked := CardUnlockSystem.check_and_unlock(_is_victory, rd.character_id)
+	if newly_unlocked.is_empty():
+		return
+	# 해금된 카드 표시
+	_add_stat_row("", "")
+	_add_stat_row(tr("RESULT_CARDS_UNLOCKED"), "")
+	for card_id in newly_unlocked:
+		var card: CardData = DataLoader.get_card(card_id)
+		var card_name := card_id
+		if card:
+			card_name = card.get_display_name()
+		_add_stat_row("★ " + card_name, tr("RESULT_CARD_UNLOCKED_DESC"))
 
 
 func _add_stat_row(label_text: String, value_text: String) -> void:

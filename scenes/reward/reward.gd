@@ -94,7 +94,7 @@ func _display_relic_offer() -> void:
 	# v5: 단청 스타일 유물 버튼
 	var relic_color := RelicManager.get_relic_rarity_color(relic_offer_id)
 	var relic_style := StyleBoxFlat.new()
-	relic_style.bg_color = Color(0.08, 0.06, 0.14, 0.95)
+	relic_style.bg_color = Color(0.08, 0.07, 0.06, 0.95)
 	relic_style.border_color = relic_color
 	relic_style.set_border_width_all(2)
 	relic_style.set_corner_radius_all(14)
@@ -104,7 +104,7 @@ func _display_relic_offer() -> void:
 	relic_btn.add_theme_stylebox_override("normal", relic_style)
 
 	var relic_hover := relic_style.duplicate()
-	relic_hover.bg_color = Color(0.12, 0.10, 0.20, 0.95)
+	relic_hover.bg_color = Color(0.12, 0.11, 0.10, 0.95)
 	relic_hover.set_border_width_all(3)
 	relic_hover.shadow_size = 6
 	relic_btn.add_theme_stylebox_override("hover", relic_hover)
@@ -130,7 +130,7 @@ func _on_relic_claimed() -> void:
 		for child in relic_section.get_children():
 			if child is Button:
 				child.disabled = true
-				child.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+				child.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 
 
 func _apply_gold() -> void:
@@ -138,11 +138,10 @@ func _apply_gold() -> void:
 		# Act 1 기본 전투 골드 +25% (초반 경제 보강)
 		if GameManager.run_data.current_act == 1 and GameManager.run_data.current_node_type == MapData.NodeType.BATTLE:
 			reward_gold = int(reward_gold * 1.25)
-		# 천민 신분: 전투 보상 금화 +50%
-		var gold_mult: float = JibunSystem.get_gold_reward_multiplier(GameManager.run_data)
-		# 판서/정승(5등급): 모든 전투 보상 +30%
-		gold_mult *= JibunSystem.get_all_reward_multiplier(GameManager.run_data)
-		reward_gold = int(reward_gold * gold_mult)
+		# 당상관(4+): 엘리트 보상 2배
+		if GameManager.run_data.current_node_type == MapData.NodeType.ELITE:
+			var elite_mult: float = JibunSystem.get_elite_reward_multiplier(GameManager.run_data)
+			reward_gold = int(reward_gold * elite_mult)
 		GameManager.run_data.gold += reward_gold
 		if reward_gold > 0:
 			AudioManager.play_sfx_by_key("coin")
@@ -157,14 +156,17 @@ func _generate_card_offers() -> void:
 	var character_id: String = GameManager.run_data.character_id
 	var pool_cards: Array[CardData] = []
 
-	# 캐릭터 클래스 카드 + 공용 카드 풀에서 선택
+	# 캐릭터 클래스 카드 + 공용 카드 풀에서 선택 (해금된 카드만)
 	var class_cards := DataLoader.get_cards_by_pool(character_id)
 	var common_cards := DataLoader.get_cards_by_pool("common")
-	pool_cards.append_array(class_cards)
-	pool_cards.append_array(common_cards)
+	for card in class_cards:
+		if CardUnlockSystem.is_card_unlocked(card.id):
+			pool_cards.append(card)
+	for card in common_cards:
+		if CardUnlockSystem.is_card_unlocked(card.id):
+			pool_cards.append(card)
 
-	# 상민 신분: 카드 보상 선택지 +1
-	var offer_count: int = CARD_OFFER_COUNT + JibunSystem.get_card_offer_bonus(GameManager.run_data)
+	var offer_count: int = CARD_OFFER_COUNT
 
 	# 아키타입 가중치: 덱 내 카드 아키타입과 일치하는 카드를 50% 확률로 1장 이상 포함
 	var archetype_card := _pick_archetype_weighted_card(pool_cards)
@@ -407,7 +409,7 @@ func _get_rarity_color(rarity_level: int) -> Color:
 		2:
 			return Color(0.17, 0.30, 0.50)  # 고급: 남색
 		3:
-			return Color(0.83, 0.66, 0.26)  # 희귀: 금색
+			return Color(0.83, 0.63, 0.09)  # 희귀: 금색
 	return Color(0.60, 0.55, 0.50)  # 일반: 따뜻한 회색
 
 
@@ -426,7 +428,7 @@ func _on_card_chosen(index: int) -> void:
 		var buttons := card_container.get_children()
 		for i in buttons.size():
 			if i == index:
-				buttons[i].add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+				buttons[i].add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 				buttons[i].disabled = true
 			else:
 				buttons[i].modulate = Color(0.4, 0.4, 0.4)
@@ -468,7 +470,7 @@ func _check_rank_up_reward() -> void:
 	rank_label.text = tr("REWARD_RANK_UP_FMT") % rank_name
 	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	rank_label.add_theme_font_size_override("font_size", 30)
-	rank_label.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+	rank_label.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 	rank_section.add_child(rank_label)
 
 	var desc_label := Label.new()
@@ -478,14 +480,10 @@ func _check_rank_up_reward() -> void:
 	rank_section.add_child(desc_label)
 
 	match reward_type:
-		"card_select":
-			_build_rank_card_select(rank_section)
-		"card_remove_free":
-			_build_rank_card_remove(rank_section)
-		"relic_select":
-			_build_rank_relic_select(rank_section)
 		"card_upgrade":
 			_build_rank_card_upgrade(rank_section)
+		"qi_bonus", "draw_bonus", "elite_reward_2x", "sijo_strike_2x":
+			pass  # 패시브 보너스는 자동 적용 — 팝업으로 안내만
 
 	# 카드 섹션 앞에 삽입
 	$RewardPanel/VBoxContainer.add_child(rank_section)
@@ -579,7 +577,7 @@ func _build_rank_relic_select(parent: VBoxContainer) -> void:
 	btn.pressed.connect(func():
 		RelicManager.acquire_relic(relic_id)
 		btn.disabled = true
-		btn.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+		btn.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 	)
 	parent.add_child(btn)
 
