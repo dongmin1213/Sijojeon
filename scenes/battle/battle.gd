@@ -1341,7 +1341,7 @@ func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array, match_c
 	# 보스 퍼즐 메카닉: 시조 완성 처리 (ZER-330)
 	battle_manager.process_boss_puzzle_sijo_complete()
 
-	# 시상(詩想) 누적 (Phase 2-2)
+	# 시상 누적 (Phase 2-2)
 	var sisang_result := SisangSystem.on_sijo_complete(GameManager.run_data)
 	if sisang_result.get("milestone_reached", "") != "":
 		var ms_key: String = sisang_result["milestone_reached"]

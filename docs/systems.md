@@ -26,13 +26,13 @@
 
 | 메서드 | 설명 |
 |--------|------|
-| `start_new_run(character_id)` | 새 런 시작. RunData 초기화, 덱·HP·기(氣) 설정 후 MAP 전환 |
-| `load_saved_run()` | SaveManager에서 런 데이터 복원. 성공 시 true 반환 |
+| `start_new_run(character_id)` | 새 런 시작. RunData 초기화, 덱·HP·기 설정 후 MAP 전환 |
+| `load_saved_run` | SaveManager에서 런 데이터 복원. 성공 시 true 반환 |
 | `end_run(victory)` | 런 종료. victory=true면 RUN_WIN, false면 RUN_OVER. 세이브 삭제 |
-| `save_current_run()` | 현재 run_data를 SaveManager를 통해 저장 |
+| `save_current_run` | 현재 run_data를 SaveManager를 통해 저장 |
 | `change_state(new_state)` | 상태 전이 + 해당 씬으로 전환 |
-| `advance_floor()` | `run_data.current_floor += 1` |
-| `advance_act()` | act 증가, floor 초기화, visited_nodes 초기화 |
+| `advance_floor` | `run_data.current_floor += 1` |
+| `advance_act` | act 증가, floor 초기화, visited_nodes 초기화 |
 
 ---
 
@@ -44,7 +44,7 @@
 
 | 변수 | 타입 | 설명 |
 |------|------|------|
-| `current_qi` / `max_qi` | int | 기(氣) 현재/최대. 턴 시작 시 max_qi로 회복, 이월 없음 |
+| `current_qi` / `max_qi` | int | 기 현재/최대. 턴 시작 시 max_qi로 회복, 이월 없음 |
 | `current_stamina` / `is_mugwan` | int/bool | 무관 전용 기력. 턴 간 유지. MAX_STAMINA=10 |
 | `draw_pile` / `hand` / `discard_pile` / `exhaust_pile` | Array[String] | 카드 더미 (String = card_id) |
 | `player_hp` / `player_max_hp` / `player_block` | int | 플레이어 HP와 방어도 |
@@ -57,7 +57,7 @@
 | 상수 | 값 | 설명 |
 |------|----|------|
 | `HAND_SIZE` | 5 | 기본 드로우 장 수 |
-| `STARTING_QI` | 3 | 턴당 기(氣) 기본값 |
+| `STARTING_QI` | 3 | 턴당 기 기본값 |
 | `MAX_STAMINA` | 10 | 무관 기력 상한 |
 
 ### 시그널
@@ -84,7 +84,7 @@
 |--------|------|
 | `start_battle(deck, enemy_data, hp, max_hp, qi, character_id)` | 전투 시작 |
 | `try_play_card(hand_index, target_enemy_index)` | 기/기력 확인 후 카드 효과 적용. 성공 시 true |
-| `end_player_turn()` | 손패 버리고 적 턴 실행 |
+| `end_player_turn` | 손패 버리고 적 턴 실행 |
 | `draw_cards(count)` | 드로우. 파일 소진 시 discard 재셔플 |
 | `take_damage(amount)` | 취약 수정 → 방어도 차감 → HP 감소 |
 | `gain_block(amount)` | 방어도 획득. 출혈 상태이면 추가 피해 처리 |
@@ -93,7 +93,7 @@
 
 ### 무관 기력(Stamina) 시스템
 
-무관(武官) 전용 자원. 기(氣)와 독립적으로 관리되며 턴 간 이월. 전투 시작 시 0 초기화.
+무관 전용 자원. 기와 독립적으로 관리되며 턴 간 이월. 전투 시작 시 0 초기화.
 - 획득: 진형 전환(G001) 등 `stamina_gain` 카드 사용 시
 - 소비: 돌격(G002) 등 `stamina_cost` 있는 카드 사용 시
 - 상한: `MAX_STAMINA = 10`
@@ -124,12 +124,12 @@
 | 메서드 | 설명 |
 |--------|------|
 | `try_fill_slot(card_beat, card_id)` | 슬롯에 카드를 채운다. beat 일치 시 true 반환 |
-| `get_next_required_beat()` | 다음 슬롯 필요 beat. 완성됐으면 -1 |
-| `get_filled_count()` | 현재 채워진 슬롯 수 |
-| `get_match_count()` | beat 일치 슬롯 수 반환 |
-| `is_complete()` | 3슬롯 모두 채워졌는지 |
-| `reset()` | 슬롯 초기화 + 새 패턴 랜덤 선택 |
-| `reset_random_slot()` | 마지막 슬롯 1개 초기화 (보스 특수 능력) |
+| `get_next_required_beat` | 다음 슬롯 필요 beat. 완성됐으면 -1 |
+| `get_filled_count` | 현재 채워진 슬롯 수 |
+| `get_match_count` | beat 일치 슬롯 수 반환 |
+| `is_complete` | 3슬롯 모두 채워졌는지 |
+| `reset` | 슬롯 초기화 + 새 패턴 랜덤 선택 |
+| `reset_random_slot` | 마지막 슬롯 1개 초기화 (보스 특수 능력) |
 
 ---
 
@@ -188,7 +188,7 @@ target 키: `"player"`, `"enemy_0"`, `"enemy_1"`, ...
 | 메서드 | 설명 |
 |--------|------|
 | `get_definition(effect_id)` | (static) effect_id에 해당하는 StatusEffectData 반환 |
-| `get_all_definitions()` | (static) 전체 레지스트리 Dictionary 반환 |
+| `get_all_definitions` | (static) 전체 레지스트리 Dictionary 반환 |
 
 ---
 
@@ -196,14 +196,14 @@ target 키: `"player"`, `"enemy_0"`, `"enemy_1"`, ...
 
 **파일:** `scripts/data/card_data.gd` (class_name Resource)
 
-JSON에서 파싱된 카드 한 장의 데이터. DataLoader가 `from_dict()`로 생성.
+JSON에서 파싱된 카드 한 장의 데이터. DataLoader가 `from_dict`로 생성.
 
 | 필드 | 타입 | 설명 |
 |------|------|------|
 | `id` | String | 카드 고유 ID |
 | `name_ko` / `name_hanja` / `name_romanized` | String | 카드 이름 |
 | `beat` | int | 시조 음보 (3 또는 4, 와일드카드는 0) |
-| `cost` | int | 기(氣) 소비량 |
+| `cost` | int | 기 소비량 |
 | `type` | String | attack, defense, movement, formation, 술법 등 |
 | `subtypes` | Array[String] | 부가 타입 |
 | `rarity` | int | 1~5 희귀도 |
@@ -239,7 +239,7 @@ JSON에서 파싱된 카드 한 장의 데이터. DataLoader가 `from_dict()`로
 
 | 시그널 | 설명 |
 |--------|------|
-| `card_played(hand_index, target_enemy_index)` | battle.gd에서 수신하여 BattleManager.try_play_card() 호출 |
+| `card_played(hand_index, target_enemy_index)` | battle.gd에서 수신하여 BattleManager.try_play_card 호출 |
 
 | 메서드 | 설명 |
 |--------|------|
@@ -282,7 +282,7 @@ JSON에서 파싱된 카드 한 장의 데이터. DataLoader가 `from_dict()`로
 
 **파일:** `scripts/data/run_data.gd` (class_name Resource)
 
-`to_dict()` / `from_dict()`로 직렬화.
+`to_dict` / `from_dict`로 직렬화.
 
 | 필드 | 타입 | 설명 |
 |------|------|------|

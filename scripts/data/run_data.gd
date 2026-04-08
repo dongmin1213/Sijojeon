@@ -37,14 +37,14 @@ var jibun_rank: int = 1         # 현재 신분 단계 (1~5)
 var faction_pair: Array[String] = []      # 런의 당파 대립 쌍 [faction_a, faction_b]
 var faction_meters: Dictionary = {}       # {"faction_id": int} 0~100
 
-## 시상(詩想) 시스템 (Phase 2-2) — 런 전체 시조 완성 누적
+## 시상 시스템 (Phase 2-2) — 런 전체 시조 완성 누적
 var sisang_count: int = 0  # 이번 런에서 완성한 시조 총 수
 
 ## 엔딩 분기 점수 (Phase 3-4) — 이벤트 선택에 따라 누적
 var ending_scores: Dictionary = {"justice": 0, "mercy": 0, "ambition": 0}
 
 
-func to_dict() -> Dictionary:
+func to_dict -> Dictionary:
 	var prev_maps_arr := []
 	for pm in previous_maps:
 		prev_maps_arr.append(pm)
@@ -62,7 +62,7 @@ func to_dict() -> Dictionary:
 		"upgraded_cards": upgraded_cards,
 		"map_seed": map_seed,
 		"visited_nodes": visited_nodes,
-		"run_map": run_map.to_dict() if run_map else {},
+		"run_map": run_map.to_dict if run_map else {},
 		"previous_maps": prev_maps_arr,
 		"current_node_type": current_node_type,
 		"current_encounter_id": current_encounter_id,
@@ -81,7 +81,7 @@ func to_dict() -> Dictionary:
 
 
 static func from_dict(data: Dictionary) -> RunData:
-	var rd := RunData.new()
+	var rd := RunData.new
 	rd.character_id = data.get("character_id", "")
 	rd.current_hp = data.get("current_hp", 70)
 	rd.max_hp = data.get("max_hp", 70)
@@ -96,7 +96,7 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.map_seed = data.get("map_seed", 0)
 	rd.visited_nodes = Array(data.get("visited_nodes", []), TYPE_INT, "", null)
 	var map_dict: Dictionary = data.get("run_map", {})
-	if not map_dict.is_empty():
+	if not map_dict.is_empty:
 		rd.run_map = MapData.RunMap.from_dict(map_dict)
 	rd.previous_maps = data.get("previous_maps", [])
 	rd.current_node_type = data.get("current_node_type", -1)

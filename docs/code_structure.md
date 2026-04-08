@@ -60,7 +60,7 @@ enum GameState {
 | 변수 | 타입 | 설명 |
 |------|------|------|
 | `state` | `BattleState` | 현재 전투 단계 |
-| `current_qi` / `max_qi` | int | 기(氣) 현재/최대 |
+| `current_qi` / `max_qi` | int | 기 현재/최대 |
 | `current_class_resource` | int | 직업 고유 자원 (무관: 기력, 문관: 학식) |
 | `draw_pile` / `hand` / `discard_pile` | Array[String] | 카드 ID 배열 |
 | `enemies` | Array[Dictionary] | 적 인스턴스 목록 |
@@ -123,7 +123,7 @@ BATTLE_START
 @export var character_id: String       # 직업 ID
 @export var current_hp / max_hp: int   # HP
 @export var gold: int                  # 골드 (시작: 99)
-@export var qi_per_turn: int           # 턴당 기(氣)
+@export var qi_per_turn: int           # 턴당 기
 @export var current_act: int           # 현재 막 (1~3)
 @export var deck: Array[String]        # 카드 ID 목록
 @export var relics: Array[String]      # 유물 ID 목록
@@ -164,10 +164,10 @@ var previous_maps: Array              # 이전 막 맵 보존
 ```
 data/*.json
     └─ DataLoader (오토로드, 캐시)
-           ├─ BattleManager.card_data()  → 카드 효과 계산
-           ├─ BattleManager.enemy_data() → 적 AI 스케줄
-           ├─ RelicManager.get_relic()   → 유물 효과 트리거
-           └─ EventScene.load_event()    → 이벤트 텍스트·선택지
+           ├─ BattleManager.card_data  → 카드 효과 계산
+           ├─ BattleManager.enemy_data → 적 AI 스케줄
+           ├─ RelicManager.get_relic   → 유물 효과 트리거
+           └─ EventScene.load_event    → 이벤트 텍스트·선택지
 ```
 
 ---

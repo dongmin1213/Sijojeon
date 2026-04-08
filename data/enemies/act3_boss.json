@@ -6,7 +6,6 @@
   "id": "B_ACT3_FINAL",
   "name": {
     "ko": "역모대감",
-    "hanja": "逆謀大監",
     "romanized": "Yeokmo Daegam",
     "en": "The Treasonous Lord"
   },
@@ -32,18 +31,38 @@
     "on_sijo_complete": {
       "crack_mask": 1,
       "dialogue_per_crack": [
-        { "ko": "\"흠... 대단한 문재(文才)로구나. 하나 그것으로는 부족하다.\"", "en": "\"Hmm... impressive literary talent. But it is not enough.\"" },
-        { "ko": "\"뭐... 뭐냐! 가면에 금이...! 이럴 수가!\"", "en": "\"Wh-what?! A crack in the mask...! Impossible!\"" },
-        { "ko": "\"안 돼! 가면이... 깨진다!\"", "en": "\"No! The mask... is breaking!\"" }
+        {
+          "ko": "\"흠... 대단한 문재로구나. 하나 그것으로는 부족하다.\"",
+          "en": "\"Hmm... impressive literary talent. But it is not enough.\""
+        },
+        {
+          "ko": "\"뭐... 뭐냐! 가면에 금이...! 이럴 수가!\"",
+          "en": "\"Wh-what?! A crack in the mask...! Impossible!\""
+        },
+        {
+          "ko": "\"안 돼! 가면이... 깨진다!\"",
+          "en": "\"No! The mask... is breaking!\""
+        }
       ]
     },
     "on_mask_shattered": {
       "apply_to_boss": [
-        { "type": "apply_debuff", "debuff": "약화", "stacks": 3 },
-        { "type": "apply_debuff", "debuff": "취약", "stacks": 3 }
+        {
+          "type": "apply_debuff",
+          "debuff": "약화",
+          "stacks": 3
+        },
+        {
+          "type": "apply_debuff",
+          "debuff": "취약",
+          "stacks": 3
+        }
       ],
       "halve_strength": true,
-      "dialogue": { "ko": "\"크아아아! 이 가면 없이는... 나는... 나는 아무것도 아니란 말이냐!\"", "en": "\"AAAARGH! Without this mask... am I... am I nothing?!\"" }
+      "dialogue": {
+        "ko": "\"크아아아! 이 가면 없이는... 나는... 나는 아무것도 아니란 말이냐!\"",
+        "en": "\"AAAARGH! Without this mask... am I... am I nothing?!\""
+      }
     }
   },
   "phases": [
@@ -56,50 +75,101 @@
       "moves": [
         {
           "id": "call_to_arms",
-          "name": { "ko": "거병령", "en": "Call to Arms" },
+          "name": {
+            "ko": "거병령",
+            "en": "Call to Arms"
+          },
           "intent": "summon",
           "summons": "E301",
           "summon_count": 2,
-          "description": { "ko": "역적 무사 2명 소환.", "en": "Summons 2 Rebel Warriors." }
+          "description": {
+            "ko": "역적 무사 2명 소환.",
+            "en": "Summons 2 Rebel Warriors."
+          }
         },
         {
           "id": "scheme",
-          "name": { "ko": "음모 획책", "en": "Plot Scheme" },
+          "name": {
+            "ko": "음모 획책",
+            "en": "Plot Scheme"
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" },
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": { "ko": "약화 2 + 냉기 1.", "en": "2 Weak + 1 Chill." }
+          "description": {
+            "ko": "약화 2 + 냉기 1.",
+            "en": "2 Weak + 1 Chill."
+          }
         },
         {
           "id": "noble_shield",
-          "name": { "ko": "귀족의 방패", "en": "Noble's Shield" },
+          "name": {
+            "ko": "귀족의 방패",
+            "en": "Noble's Shield"
+          },
           "intent": "defend",
           "block": 18,
-          "description": { "ko": "방어도 18 획득.", "en": "Gain 18 Block." }
+          "description": {
+            "ko": "방어도 18 획득.",
+            "en": "Gain 18 Block."
+          }
         },
         {
           "id": "hidden_blade",
-          "name": { "ko": "암기", "en": "Hidden Blade" },
+          "name": {
+            "ko": "암기",
+            "en": "Hidden Blade"
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": { "ko": "가면 뒤에서 꺼낸 단검 공격.", "en": "A dagger strike from behind the mask." }
+          "description": {
+            "ko": "가면 뒤에서 꺼낸 단검 공격.",
+            "en": "A dagger strike from behind the mask."
+          }
         },
         {
           "id": "sijo_disrupt",
-          "name": { "ko": "시조 방해", "en": "Sijo Disruption" },
+          "name": {
+            "ko": "시조 방해",
+            "en": "Sijo Disruption"
+          },
           "intent": "special",
           "effects": [
-            { "type": "reset_sijo_slot", "count": 1 }
+            {
+              "type": "reset_sijo_slot",
+              "count": 1
+            }
           ],
-          "description": { "ko": "시조 슬롯 1개 초기화.", "en": "Reset 1 sijo slot." }
+          "description": {
+            "ko": "시조 슬롯 1개 초기화.",
+            "en": "Reset 1 sijo slot."
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["scheme", "noble_shield", "hidden_blade", "call_to_arms", "hidden_blade", "sijo_disrupt", "noble_shield"]
+        "sequence": [
+          "scheme",
+          "noble_shield",
+          "hidden_blade",
+          "call_to_arms",
+          "hidden_blade",
+          "sijo_disrupt",
+          "noble_shield"
+        ]
       }
     },
     {
@@ -112,62 +182,130 @@
         "type": "hp_threshold",
         "hp_percent": 60,
         "on_trigger": [
-          { "type": "apply_buff", "buff": "strength", "stacks": 4, "target": "self" },
-          { "type": "dialogue", "text": "\"더 이상 충신 행세는 그만이다! 왕좌는 내 것이니라!\"" }
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 4,
+            "target": "self"
+          },
+          {
+            "type": "dialogue",
+            "text": "\"더 이상 충신 행세는 그만이다! 왕좌는 내 것이니라!\""
+          }
         ]
       },
       "moves": [
         {
           "id": "treason_strike",
-          "name": { "ko": "역모의 일격", "en": "Treasonous Strike" },
+          "name": {
+            "ko": "역모의 일격",
+            "en": "Treasonous Strike"
+          },
           "intent": "attack",
           "damage": 16,
           "times": 1,
-          "description": { "ko": "역심을 담은 강타.", "en": "A blow fueled by treason." }
+          "description": {
+            "ko": "역심을 담은 강타.",
+            "en": "A blow fueled by treason."
+          }
         },
         {
           "id": "poison_court",
-          "name": { "ko": "조정 농간", "en": "Court Manipulation" },
+          "name": {
+            "ko": "조정 농간",
+            "en": "Court Manipulation"
+          },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 4,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": { "ko": "10 피해 + 독 4 + 취약 1.", "en": "10 damage + 4 Poison + 1 Vulnerable." }
+          "description": {
+            "ko": "10 피해 + 독 4 + 취약 1.",
+            "en": "10 damage + 4 Poison + 1 Vulnerable."
+          }
         },
         {
           "id": "double_blade",
-          "name": { "ko": "쌍검", "en": "Twin Blades" },
+          "name": {
+            "ko": "쌍검",
+            "en": "Twin Blades"
+          },
           "intent": "attack",
           "damage": 9,
           "times": 3,
-          "description": { "ko": "9 피해 × 3회 = 27 총피해.", "en": "9 damage x3 = 27 total." }
+          "description": {
+            "ko": "9 피해 × 3회 = 27 총피해.",
+            "en": "9 damage x3 = 27 total."
+          }
         },
         {
           "id": "sijo_shatter",
-          "name": { "ko": "시조 파괴", "en": "Sijo Shatter" },
+          "name": {
+            "ko": "시조 파괴",
+            "en": "Sijo Shatter"
+          },
           "intent": "special",
           "effects": [
-            { "type": "reset_sijo_slot", "count": 2 }
+            {
+              "type": "reset_sijo_slot",
+              "count": 2
+            }
           ],
-          "description": { "ko": "시조 슬롯 2개 초기화.", "en": "Reset 2 sijo slots." }
+          "description": {
+            "ko": "시조 슬롯 2개 초기화.",
+            "en": "Reset 2 sijo slots."
+          }
         },
         {
           "id": "power_seize",
-          "name": { "ko": "권력 탈취", "en": "Power Seizure" },
+          "name": {
+            "ko": "권력 탈취",
+            "en": "Power Seizure"
+          },
           "intent": "buff",
           "effects": [
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" },
-            { "type": "strip_buff", "count": 1, "target": "player" }
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            },
+            {
+              "type": "strip_buff",
+              "count": 1,
+              "target": "player"
+            }
           ],
-          "description": { "ko": "힘 2 획득 + 플레이어 버프 1개 박탈.", "en": "Gain 2 Strength + strip 1 player buff." }
+          "description": {
+            "ko": "힘 2 획득 + 플레이어 버프 1개 박탈.",
+            "en": "Gain 2 Strength + strip 1 player buff."
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["treason_strike", "poison_court", "double_blade", "sijo_shatter", "treason_strike", "power_seize", "double_blade"]
+        "sequence": [
+          "treason_strike",
+          "poison_court",
+          "double_blade",
+          "sijo_shatter",
+          "treason_strike",
+          "power_seize",
+          "double_blade"
+        ]
       }
     },
     {
@@ -179,51 +317,109 @@
         "type": "hp_threshold",
         "hp_percent": 30,
         "on_trigger": [
-          { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" },
-          { "type": "apply_debuff", "debuff": "death_countdown", "stacks": 4, "target": "player" },
-          { "type": "dialogue", "text": "\"이 나라를 가져갈 수 없다면... 모두 불태우겠다!\"" }
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 3,
+            "target": "self"
+          },
+          {
+            "type": "apply_debuff",
+            "debuff": "death_countdown",
+            "stacks": 4,
+            "target": "player"
+          },
+          {
+            "type": "dialogue",
+            "text": "\"이 나라를 가져갈 수 없다면... 모두 불태우겠다!\""
+          }
         ]
       },
       "moves": [
         {
           "id": "royal_wrath",
-          "name": { "ko": "역모 폭주", "en": "Treasonous Rampage" },
+          "name": {
+            "ko": "역모 폭주",
+            "en": "Treasonous Rampage"
+          },
           "intent": "attack",
           "damage": 12,
           "times": 3,
-          "description": { "ko": "12 피해 × 3회.", "en": "12 damage x3." }
+          "description": {
+            "ko": "12 피해 × 3회.",
+            "en": "12 damage x3."
+          }
         },
         {
           "id": "self_destruction",
-          "name": { "ko": "옥쇄", "en": "Mutual Destruction" },
+          "name": {
+            "ko": "옥쇄",
+            "en": "Mutual Destruction"
+          },
           "intent": "attack",
           "damage": 30,
           "times": 1,
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 6, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 6,
+              "target": "player"
+            }
           ],
-          "description": { "ko": "자폭적 30 피해 + 독 6.", "en": "Self-destructive 30 damage + 6 Poison." }
+          "description": {
+            "ko": "자폭적 30 피해 + 독 6.",
+            "en": "Self-destructive 30 damage + 6 Poison."
+          }
         },
         {
           "id": "last_scheme",
-          "name": { "ko": "최후의 계략", "en": "Final Scheme" },
+          "name": {
+            "ko": "최후의 계략",
+            "en": "Final Scheme"
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 3, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
-            { "type": "reset_sijo_slot", "count": 2 }
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 3,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            },
+            {
+              "type": "reset_sijo_slot",
+              "count": 2
+            }
           ],
-          "description": { "ko": "약화 3 + 취약 2 + 시조 슬롯 2개 초기화.", "en": "3 Weak + 2 Vulnerable + reset 2 sijo slots." }
+          "description": {
+            "ko": "약화 3 + 취약 2 + 시조 슬롯 2개 초기화.",
+            "en": "3 Weak + 2 Vulnerable + reset 2 sijo slots."
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["royal_wrath", "self_destruction", "last_scheme", "royal_wrath", "self_destruction"]
+        "sequence": [
+          "royal_wrath",
+          "self_destruction",
+          "last_scheme",
+          "royal_wrath",
+          "self_destruction"
+        ]
       }
     }
   ],
   "rewards": {
-    "gold": { "min": 100, "max": 130 },
+    "gold": {
+      "min": 100,
+      "max": 130
+    },
     "relic": "보스 유물 1개 (확정)",
     "relic_candidates": [
       {

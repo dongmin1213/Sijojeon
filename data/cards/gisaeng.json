@@ -3,10 +3,9 @@
   "type": "card_pool",
   "class": "gungsu",
   "class_ko": "기생",
-  "class_hanja": "妓生",
   "category": "charm",
-  "description": "기생 전용 카드 풀. 흥(興) 자원 조작과 가무·예술로 적을 제압하는 매혹형 직업. 총 27장 (기본 20 + 해금 7) — 매혹·조종 아키타입, 가무·연타 아키타입, 풍류·버프 아키타입.",
-  "class_mechanic": "흥(興): 기생 전용 보조 자원. 기존 기(qi) 시스템을 '흥'으로 표현하며, 매 턴 흥을 획득/소비하여 효과를 발동한다. 매혹: 적의 행동을 제한하는 상태이상(턴 종료 시 수치 1 감소). 연타: 한 번의 카드 사용으로 복수 피해를 입힌다.",
+  "description": "기생 전용 카드 풀. 흥 자원 조작과 가무·예술로 적을 제압하는 매혹형 직업. 총 27장 (기본 20 + 해금 7) — 매혹·조종 아키타입, 가무·연타 아키타입, 풍류·버프 아키타입.",
+  "class_mechanic": "흥: 기생 전용 보조 자원. 기존 기(qi) 시스템을 '흥'으로 표현하며, 매 턴 흥을 획득/소비하여 효과를 발동한다. 매혹: 적의 행동을 제한하는 상태이상(턴 종료 시 수치 1 감소). 연타: 한 번의 카드 사용으로 복수 피해를 입힌다.",
   "balance_ref": "ZER-94 기준 준수. 기준: 1코스트 6피해, 1코스트 5방어도, 기(흥) 3/턴.",
   "archetypes": [
     {
@@ -47,12 +46,10 @@
     }
   ],
   "cards": [
-
     {
       "id": "GI001",
       "name": {
         "ko": "추파",
-        "hanja": "秋波",
         "romanized": "Chupa",
         "en": "Seductive Glance"
       },
@@ -89,12 +86,10 @@
         "charm": 2
       }
     },
-
     {
       "id": "GI002",
       "name": {
         "ko": "향낭",
-        "hanja": "香囊",
         "romanized": "Hyangnang",
         "en": "Scented Pouch"
       },
@@ -131,12 +126,10 @@
         "draw": 1
       }
     },
-
     {
       "id": "GI003",
       "name": {
         "ko": "가인박명",
-        "hanja": "佳人薄命",
         "romanized": "Gaine Baengmyeong",
         "en": "Fate of the Beauty"
       },
@@ -175,12 +168,10 @@
         "is_aoe": true
       }
     },
-
     {
       "id": "GI004",
       "name": {
         "ko": "춤사위",
-        "hanja": "",
         "romanized": "Chumsawi",
         "en": "Dance Step"
       },
@@ -217,12 +208,10 @@
         "hits": 2
       }
     },
-
     {
       "id": "GI005",
       "name": {
         "ko": "부채춤",
-        "hanja": "",
         "romanized": "Buchaechum",
         "en": "Fan Dance"
       },
@@ -261,12 +250,10 @@
         "qi_gain": 1
       }
     },
-
     {
       "id": "GI006",
       "name": {
         "ko": "검무",
-        "hanja": "劍舞",
         "romanized": "Geomu",
         "en": "Sword Dance"
       },
@@ -304,12 +291,10 @@
         "bonus_if_dance_played": 4
       }
     },
-
     {
       "id": "GI007",
       "name": {
         "ko": "소고춤",
-        "hanja": "",
         "romanized": "Sogochum",
         "en": "Hand Drum Dance"
       },
@@ -340,12 +325,10 @@
         "damage": 6
       }
     },
-
     {
       "id": "GI008",
       "name": {
         "ko": "매혹의 시선",
-        "hanja": "",
         "romanized": "Maehok-ui Siseon",
         "en": "Bewitching Gaze"
       },
@@ -384,12 +367,10 @@
         "charm": 1
       }
     },
-
     {
       "id": "GI009",
       "name": {
         "ko": "절세가인",
-        "hanja": "絶世佳人",
         "romanized": "Jeolse Gain",
         "en": "Peerless Beauty"
       },
@@ -428,12 +409,10 @@
         "passive_bonus_vs_charmed": 3
       }
     },
-
     {
       "id": "GI010",
       "name": {
         "ko": "요염",
-        "hanja": "妖艶",
         "romanized": "Yoyeom",
         "en": "Allure"
       },
@@ -470,12 +449,10 @@
         "qi_gain": 1
       }
     },
-
     {
       "id": "GI011",
       "name": {
         "ko": "혼미",
-        "hanja": "昏迷",
         "romanized": "Honmi",
         "en": "Stupor"
       },
@@ -514,12 +491,10 @@
         "reflect_ratio": 0.5
       }
     },
-
     {
       "id": "GI012",
       "name": {
         "ko": "판소리",
-        "hanja": "",
         "romanized": "Pansori",
         "en": "Pansori"
       },
@@ -558,12 +533,10 @@
         "bonus_if_dance_played": 3
       }
     },
-
     {
       "id": "GI013",
       "name": {
         "ko": "가야금",
-        "hanja": "伽倻琴",
         "romanized": "Gayageum",
         "en": "Gayageum"
       },
@@ -602,12 +575,10 @@
         "qi_gain": 1
       }
     },
-
     {
       "id": "GI014",
       "name": {
         "ko": "흥에 겨워",
-        "hanja": "",
         "romanized": "Heunge Gyeowo",
         "en": "Lost in Rhythm"
       },
@@ -647,12 +618,10 @@
         "heung_consume": 2
       }
     },
-
     {
       "id": "GI015",
       "name": {
         "ko": "풍류",
-        "hanja": "風流",
         "romanized": "Pungyu",
         "en": "Pungyu"
       },
@@ -689,12 +658,10 @@
         "qi_gain": 3
       }
     },
-
     {
       "id": "GI016",
       "name": {
         "ko": "대흥",
-        "hanja": "大興",
         "romanized": "Daeheung",
         "en": "Grand Heung"
       },
@@ -732,12 +699,10 @@
         "block": 3
       }
     },
-
     {
       "id": "GI017",
       "name": {
         "ko": "시조창",
-        "hanja": "時調唱",
         "romanized": "Sijochang",
         "en": "Sijo Song"
       },
@@ -775,12 +740,10 @@
         "cost_reduce_next_card": 1
       }
     },
-
     {
       "id": "GI018",
       "name": {
         "ko": "흥타령",
-        "hanja": "",
         "romanized": "Heungtaryeong",
         "en": "Heung Ballad"
       },
@@ -818,12 +781,10 @@
         "is_permanent": true
       }
     },
-
     {
       "id": "GI019",
       "name": {
         "ko": "회심곡",
-        "hanja": "回心曲",
         "romanized": "Hoesimgok",
         "en": "Song of Contrition"
       },
@@ -862,12 +823,10 @@
         "draw": 1
       }
     },
-
     {
       "id": "GI020",
       "name": {
         "ko": "해어화",
-        "hanja": "解語花",
         "romanized": "Haeeohwa",
         "en": "Flower That Speaks"
       },
@@ -907,12 +866,10 @@
         "damage_if_charmed_equals_heung": true
       }
     },
-
     {
       "id": "GI021",
       "name": {
         "ko": "황진이의 노래",
-        "hanja": "",
         "romanized": "Hwang Jini-ui Norae",
         "en": "Song of Hwang Jini"
       },
@@ -959,12 +916,10 @@
         "is_aoe_charm": true
       }
     },
-
     {
       "id": "GI022",
       "name": {
         "ko": "춘향의 절개",
-        "hanja": "",
         "romanized": "Chunhyang-ui Jeolgae",
         "en": "Chunhyang's Loyalty"
       },
@@ -1009,12 +964,10 @@
         "passive_immune_to_charmed": true
       }
     },
-
     {
       "id": "GI023",
       "name": {
         "ko": "천하제일가무",
-        "hanja": "天下第一歌舞",
         "romanized": "Cheonha Jeeil Gamu",
         "en": "Greatest Dance Under Heaven"
       },
@@ -1064,12 +1017,10 @@
         "repeat_if_3_dance_played": true
       }
     },
-
     {
       "id": "GI024",
       "name": {
         "ko": "기방풍류",
-        "hanja": "妓房風流",
         "romanized": "Gibang Pungyu",
         "en": "Salon Pungyu"
       },
@@ -1117,12 +1068,10 @@
         "is_permanent": true
       }
     },
-
     {
       "id": "GI025",
       "name": {
         "ko": "삼현육각",
-        "hanja": "三絃六角",
         "romanized": "Samhyeon Yukgak",
         "en": "Six-instrument Ensemble"
       },
@@ -1171,12 +1120,10 @@
         "is_aoe": true
       }
     },
-
     {
       "id": "GI026",
       "name": {
         "ko": "일무",
-        "hanja": "佾舞",
         "romanized": "Ilmu",
         "en": "Ilmu — Court Ritual Dance"
       },
@@ -1223,12 +1170,10 @@
         "bonus_if_dance_played": 8
       }
     },
-
     {
       "id": "GI027",
       "name": {
         "ko": "천년화",
-        "hanja": "千年花",
         "romanized": "Cheonnyeonhwa",
         "en": "Flower of a Thousand Years"
       },
@@ -1276,23 +1221,20 @@
         "charm": 2
       }
     }
-
   ],
   "status_conditions_defined": [
     {
       "id": "매혹",
       "ko": "매혹",
       "en": "Charm",
-      "hanja": "魅惑",
       "description": "매혹 수치가 1 이상인 동안 적은 행동하지 않는다. 매 턴 종료 시 수치가 1 감소하며, 0이 되면 소멸.",
       "duration_type": "stacking_decay",
       "visual_note": "적 캐릭터에 분홍빛 심장 이펙트"
     },
     {
       "id": "흥",
-      "ko": "흥(興)",
+      "ko": "흥",
       "en": "Heung",
-      "hanja": "興",
       "description": "기생 전용 보조 자원. 기(qi) 시스템과 동일하게 작동하며, 흥이라는 이름으로 표현된다. 최대 10. 카드 효과 및 패시브 조건 트리거에 사용.",
       "duration_type": "persistent",
       "visual_note": "기생 캐릭터 주변 붉은빛 흥 게이지"
@@ -1301,7 +1243,6 @@
       "id": "약화",
       "ko": "약화",
       "en": "Weak",
-      "hanja": "弱化",
       "description": "약화 수치가 1 이상인 동안 적의 공격 피해가 25% 감소한다. 매 턴 종료 시 수치 1 감소.",
       "duration_type": "stacking_decay",
       "visual_note": "적 캐릭터에 회색빛 약화 이펙트"

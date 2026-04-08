@@ -10,7 +10,6 @@
       "id": "M001",
       "name": {
         "ko": "회피",
-        "hanja": "",
         "romanized": "Hoepi",
         "en": "Evasion"
       },
@@ -45,7 +44,6 @@
       "id": "M002",
       "name": {
         "ko": "도약",
-        "hanja": "",
         "romanized": "Doyak",
         "en": "Leap"
       },
@@ -82,7 +80,6 @@
       "id": "M003",
       "name": {
         "ko": "후퇴",
-        "hanja": "",
         "romanized": "Hutoe",
         "en": "Retreat"
       },
@@ -119,7 +116,6 @@
       "id": "M004",
       "name": {
         "ko": "측면 강타",
-        "hanja": "",
         "romanized": "Eukmyeon Gangta",
         "en": "Flank Strike"
       },
@@ -154,7 +150,6 @@
       "id": "M005",
       "name": {
         "ko": "포복",
-        "hanja": "",
         "romanized": "Pobok",
         "en": "Crawl"
       },
@@ -191,7 +186,6 @@
       "id": "M006",
       "name": {
         "ko": "선제 공격",
-        "hanja": "",
         "romanized": "Seongje Gonggyeok",
         "en": "Preemptive Strike"
       },
@@ -226,7 +220,6 @@
       "id": "M007",
       "name": {
         "ko": "방어 자세",
-        "hanja": "",
         "romanized": "Bangeo Jase",
         "en": "Defensive Stance"
       },
@@ -261,7 +254,6 @@
       "id": "M008",
       "name": {
         "ko": "눈치",
-        "hanja": "",
         "romanized": "Nunchi",
         "en": "Nunchi"
       },
@@ -296,7 +288,6 @@
       "id": "M009",
       "name": {
         "ko": "기회 포착",
-        "hanja": "",
         "romanized": "Gihoe Poche",
         "en": "Seize the Moment"
       },
@@ -333,7 +324,6 @@
       "id": "M010",
       "name": {
         "ko": "버티기",
-        "hanja": "",
         "romanized": "Beotigi",
         "en": "Endure"
       },
@@ -368,7 +358,6 @@
       "id": "M011",
       "name": {
         "ko": "흥",
-        "hanja": "",
         "romanized": "Heung",
         "en": "Excitement"
       },
@@ -406,7 +395,6 @@
       "id": "M012",
       "name": {
         "ko": "여백",
-        "hanja": "",
         "romanized": "Yeobaek",
         "en": "Empty Space"
       },
@@ -443,7 +431,6 @@
       "id": "M013",
       "name": {
         "ko": "낭송",
-        "hanja": "",
         "romanized": "Nangseong",
         "en": "Recitation"
       },
@@ -478,7 +465,6 @@
       "id": "M014",
       "name": {
         "ko": "절창",
-        "hanja": "",
         "romanized": "Jeolchang",
         "en": "Masterpiece"
       },
@@ -512,7 +498,6 @@
       "id": "M015",
       "name": {
         "ko": "여운",
-        "hanja": "",
         "romanized": "Yeoun",
         "en": "Lingering Echo"
       },
@@ -549,7 +534,6 @@
       "id": "M016",
       "name": {
         "ko": "음조 조율",
-        "hanja": "",
         "romanized": "Eumjo Joyul",
         "en": "Tonal Shift"
       },
@@ -585,7 +569,6 @@
       "id": "M017",
       "name": {
         "ko": "화답",
-        "hanja": "",
         "romanized": "Hwadap",
         "en": "Harmonize"
       },
@@ -621,7 +604,6 @@
       "id": "M018",
       "name": {
         "ko": "결연",
-        "hanja": "",
         "romanized": "Gyeoryeon",
         "en": "Fateful Bond"
       },
@@ -660,7 +642,6 @@
       "id": "M019",
       "name": {
         "ko": "명상",
-        "hanja": "",
         "romanized": "Myeongsang",
         "en": "Meditation"
       },
@@ -695,7 +676,6 @@
       "id": "M020",
       "name": {
         "ko": "집중",
-        "hanja": "",
         "romanized": "Jipjung",
         "en": "Focus"
       },
@@ -732,7 +712,6 @@
       "id": "M021",
       "name": {
         "ko": "갱생",
-        "hanja": "",
         "romanized": "Gaengsaeng",
         "en": "Revival"
       },
@@ -768,7 +747,6 @@
       "id": "M022",
       "name": {
         "ko": "독공",
-        "hanja": "",
         "romanized": "Dokkong",
         "en": "Devotion"
       },
@@ -806,7 +784,6 @@
       "id": "M023",
       "name": {
         "ko": "도전",
-        "hanja": "",
         "romanized": "Dojeon",
         "en": "Challenge"
       },
@@ -840,7 +817,6 @@
       "id": "M024",
       "name": {
         "ko": "역습",
-        "hanja": "",
         "romanized": "Yeogeup",
         "en": "Counterattack"
       },
@@ -877,7 +853,6 @@
       "id": "M025",
       "name": {
         "ko": "읊조림",
-        "hanja": "",
         "romanized": "Eumjolim",
         "en": "Murmur"
       },
@@ -915,7 +890,6 @@
       "id": "M026",
       "name": {
         "ko": "운율",
-        "hanja": "",
         "romanized": "Unryul",
         "en": "Cadence"
       },
@@ -952,7 +926,6 @@
       "id": "M027",
       "name": {
         "ko": "퇴고",
-        "hanja": "",
         "romanized": "Toego",
         "en": "Revision"
       },
@@ -990,7 +963,6 @@
       "id": "M028",
       "name": {
         "ko": "시상",
-        "hanja": "",
         "romanized": "Sisang",
         "en": "Poetic Inspiration"
       },
@@ -1027,7 +999,6 @@
       "id": "M029",
       "name": {
         "ko": "영감",
-        "hanja": "",
         "romanized": "Yeonggam",
         "en": "Divine Inspiration"
       },
@@ -1067,7 +1038,6 @@
       "id": "M030",
       "name": {
         "ko": "연타",
-        "hanja": "",
         "romanized": "Yeonta",
         "en": "Flurry"
       },
@@ -1103,7 +1073,6 @@
       "id": "M031",
       "name": {
         "ko": "질풍참",
-        "hanja": "",
         "romanized": "Jilpungcham",
         "en": "Gale Slash"
       },
@@ -1139,7 +1108,6 @@
       "id": "M032",
       "name": {
         "ko": "견제",
-        "hanja": "",
         "romanized": "Gyeonje",
         "en": "Harass"
       },
@@ -1175,7 +1143,6 @@
       "id": "M033",
       "name": {
         "ko": "몸놀림",
-        "hanja": "",
         "romanized": "Momnollim",
         "en": "Footwork"
       },
@@ -1213,7 +1180,6 @@
       "id": "M034",
       "name": {
         "ko": "승부수",
-        "hanja": "",
         "romanized": "Seungbusu",
         "en": "Decisive Blow"
       },
@@ -1249,7 +1215,6 @@
       "id": "M035",
       "name": {
         "ko": "탈기",
-        "hanja": "",
         "romanized": "Talgi",
         "en": "Sap"
       },
@@ -1285,7 +1250,6 @@
       "id": "M036",
       "name": {
         "ko": "반격세",
-        "hanja": "",
         "romanized": "Bangyeokse",
         "en": "Riposte Stance"
       },
@@ -1321,7 +1285,6 @@
       "id": "M037",
       "name": {
         "ko": "일섬",
-        "hanja": "",
         "romanized": "Ilseom",
         "en": "Flash"
       },
@@ -1358,7 +1321,6 @@
       "id": "M038",
       "name": {
         "ko": "선동",
-        "hanja": "",
         "romanized": "Seondong",
         "en": "Agitation"
       },
@@ -1393,7 +1355,6 @@
       "id": "M039",
       "name": {
         "ko": "회유",
-        "hanja": "",
         "romanized": "Hoeyu",
         "en": "Appeasement"
       },
@@ -1430,7 +1391,6 @@
       "id": "M040",
       "name": {
         "ko": "위엄",
-        "hanja": "",
         "romanized": "Wieom",
         "en": "Authority"
       },
@@ -1468,7 +1428,6 @@
       "id": "M041",
       "name": {
         "ko": "모략",
-        "hanja": "",
         "romanized": "Moryak",
         "en": "Stratagem"
       },
@@ -1505,7 +1464,6 @@
       "id": "M042",
       "name": {
         "ko": "세력 확장",
-        "hanja": "",
         "romanized": "Seryeok Hwakjang",
         "en": "Expand Influence"
       },
@@ -1543,7 +1501,6 @@
       "id": "M043",
       "name": {
         "ko": "간언",
-        "hanja": "",
         "romanized": "Ganeon",
         "en": "Remonstrance"
       },
@@ -1580,7 +1537,6 @@
       "id": "M044",
       "name": {
         "ko": "책봉",
-        "hanja": "",
         "romanized": "Chaekbong",
         "en": "Investiture"
       },
@@ -1621,7 +1577,6 @@
       "id": "M045",
       "name": {
         "ko": "저주",
-        "hanja": "",
         "romanized": "Jeoju",
         "en": "Hex"
       },
@@ -1658,7 +1613,6 @@
       "id": "M046",
       "name": {
         "ko": "부적",
-        "hanja": "",
         "romanized": "Bujeok",
         "en": "Talisman"
       },
@@ -1695,7 +1649,6 @@
       "id": "M047",
       "name": {
         "ko": "역병",
-        "hanja": "",
         "romanized": "Yeokbyeong",
         "en": "Plague"
       },
@@ -1733,7 +1686,6 @@
       "id": "M048",
       "name": {
         "ko": "사혈",
-        "hanja": "",
         "romanized": "Sahyeol",
         "en": "Bloodletting"
       },
@@ -1771,7 +1723,6 @@
       "id": "M049",
       "name": {
         "ko": "독살",
-        "hanja": "",
         "romanized": "Doksal",
         "en": "Lethal Poison"
       },
@@ -1808,7 +1759,6 @@
       "id": "M050",
       "name": {
         "ko": "뇌물",
-        "hanja": "",
         "romanized": "Noemul",
         "en": "Bribery"
       },
@@ -1846,7 +1796,6 @@
       "id": "M051",
       "name": {
         "ko": "용병",
-        "hanja": "",
         "romanized": "Yongbyeong",
         "en": "Mercenary"
       },
@@ -1883,7 +1832,6 @@
       "id": "M052",
       "name": {
         "ko": "매관매직",
-        "hanja": "",
         "romanized": "Maegwan Maejik",
         "en": "Selling Offices"
       },
@@ -1922,7 +1870,6 @@
       "id": "M053",
       "name": {
         "ko": "조공",
-        "hanja": "",
         "romanized": "Jogong",
         "en": "Tribute"
       },
@@ -1959,7 +1906,6 @@
       "id": "M054",
       "name": {
         "ko": "교역",
-        "hanja": "",
         "romanized": "Gyoyeok",
         "en": "Trade"
       },
@@ -1998,7 +1944,6 @@
       "id": "약화",
       "ko": "약화",
       "en": "Weakened",
-      "hanja": "",
       "description": "다음 공격 피해 25% 감소. 1회 발동 후 1 감소.",
       "source": "ZER-12 정의 준수"
     }

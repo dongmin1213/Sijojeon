@@ -3,7 +3,6 @@
   "type": "card_pool",
   "class": "dosa",
   "class_ko": "도사",
-  "class_hanja": "",
   "category": "spell",
   "description": "도사 전용 카드 풀. 기 조작과 도술을 활용하는 주문형 직업. 총 25장 — 기공·기 폭발 아키타입, 저주·DoT 아키타입, 소환·도술 아키타입.",
   "class_mechanic": "기공: 기를 직접 조작하여 드로우와 버프를 얻는다. 시조 완성 시 천지기 패시브로 기 1 추가 회복. 화상: 턴 종료 시 화상 수치만큼 피해, 매 턴 1 감소. 독: 턴 종료 시 독 수치만큼 피해, 매 턴 1 감소.",
@@ -49,7 +48,6 @@
       "id": "D001",
       "name": {
         "ko": "기공",
-        "hanja": "",
         "romanized": "Gigong",
         "en": "Qigong"
       },
@@ -90,7 +88,6 @@
       "id": "D002",
       "name": {
         "ko": "결인",
-        "hanja": "",
         "romanized": "Gyeorin",
         "en": "Mudra"
       },
@@ -127,7 +124,6 @@
       "id": "D003",
       "name": {
         "ko": "진언",
-        "hanja": "",
         "romanized": "Jineon",
         "en": "True Word"
       },
@@ -168,7 +164,6 @@
       "id": "D004",
       "name": {
         "ko": "부적",
-        "hanja": "",
         "romanized": "Bujeok",
         "en": "Burning Talisman"
       },
@@ -208,7 +203,6 @@
       "id": "D005",
       "name": {
         "ko": "축지법",
-        "hanja": "",
         "romanized": "Chukjibeop",
         "en": "Earthshrink Step"
       },
@@ -249,7 +243,6 @@
       "id": "D006",
       "name": {
         "ko": "태산붕",
-        "hanja": "",
         "romanized": "Taesanbung",
         "en": "Taesan Collapse"
       },
@@ -289,7 +282,6 @@
       "id": "D007",
       "name": {
         "ko": "수결",
-        "hanja": "",
         "romanized": "Sugyeol",
         "en": "Hand Seal"
       },
@@ -324,7 +316,6 @@
       "id": "D008",
       "name": {
         "ko": "대기",
-        "hanja": "",
         "romanized": "Daegi",
         "en": "Grand Qi"
       },
@@ -364,7 +355,6 @@
       "id": "D009",
       "name": {
         "ko": "기폭",
-        "hanja": "",
         "romanized": "Gibok",
         "en": "Qi Detonation"
       },
@@ -405,7 +395,6 @@
       "id": "D010",
       "name": {
         "ko": "오기",
-        "hanja": "",
         "romanized": "Ogi",
         "en": "Five Energies"
       },
@@ -446,7 +435,6 @@
       "id": "D011",
       "name": {
         "ko": "천기",
-        "hanja": "",
         "romanized": "Cheongi",
         "en": "Celestial Qi"
       },
@@ -485,7 +473,6 @@
       "id": "D012",
       "name": {
         "ko": "기류",
-        "hanja": "",
         "romanized": "Giryu",
         "en": "Qi Flow"
       },
@@ -526,7 +513,6 @@
       "id": "D013",
       "name": {
         "ko": "기집",
-        "hanja": "",
         "romanized": "Gijip",
         "en": "Qi Convergence"
       },
@@ -565,7 +551,6 @@
       "id": "D014",
       "name": {
         "ko": "독안개",
-        "hanja": "",
         "romanized": "Doganae",
         "en": "Poison Mist"
       },
@@ -607,7 +592,6 @@
       "id": "D015",
       "name": {
         "ko": "저주",
-        "hanja": "",
         "romanized": "Jeochu",
         "en": "Curse"
       },
@@ -648,7 +632,6 @@
       "id": "D016",
       "name": {
         "ko": "혼돈의 부적",
-        "hanja": "",
         "romanized": "Hondon Bujeok",
         "en": "Chaos Talisman"
       },
@@ -690,7 +673,6 @@
       "id": "D017",
       "name": {
         "ko": "흑염",
-        "hanja": "",
         "romanized": "Heukyeom",
         "en": "Black Flame"
       },
@@ -732,7 +714,6 @@
       "id": "D018",
       "name": {
         "ko": "오독",
-        "hanja": "",
         "romanized": "Odok",
         "en": "Five Venoms"
       },
@@ -775,7 +756,6 @@
       "id": "D019",
       "name": {
         "ko": "주박",
-        "hanja": "",
         "romanized": "Jubak",
         "en": "Binding Hex"
       },
@@ -817,7 +797,6 @@
       "id": "D020",
       "name": {
         "ko": "구미호 소환",
-        "hanja": "",
         "romanized": "Gumiho Sowhan",
         "en": "Summon Gumiho"
       },
@@ -857,7 +836,6 @@
       "id": "D021",
       "name": {
         "ko": "산신 기공",
-        "hanja": "",
         "romanized": "Sansin Gigong",
         "en": "Mountain Spirit Art"
       },
@@ -897,7 +875,6 @@
       "id": "D022",
       "name": {
         "ko": "산군 강격",
-        "hanja": "",
         "romanized": "Sangun Ganggyeok",
         "en": "Mountain Lord Strike"
       },
@@ -937,7 +914,6 @@
       "id": "D023",
       "name": {
         "ko": "산신 강림",
-        "hanja": "",
         "romanized": "Sansin Ganglim",
         "en": "Mountain Spirit Descent"
       },
@@ -980,7 +956,6 @@
       "id": "D024",
       "name": {
         "ko": "허수아비",
-        "hanja": "",
         "romanized": "Heosurabi",
         "en": "Straw Effigy"
       },
@@ -1020,7 +995,6 @@
       "id": "D025",
       "name": {
         "ko": "도깨비 부름",
-        "hanja": "",
         "romanized": "Dokkaebi Bureum",
         "en": "Summon Dokkaebi"
       },
@@ -1063,7 +1037,6 @@
       "id": "D026",
       "name": {
         "ko": "만법귀종",
-        "hanja": "",
         "romanized": "Manbeop Gwijong",
         "en": "All Paths Return to the Source"
       },
@@ -1106,7 +1079,6 @@
       "id": "D027",
       "name": {
         "ko": "귀문도해",
-        "hanja": "",
         "romanized": "Gwimun Dohae",
         "en": "Gates of the Spirit Realm"
       },
@@ -1151,7 +1123,6 @@
       "id": "화상",
       "ko": "화상",
       "en": "Burn",
-      "hanja": "",
       "description": "턴 종료 시 화상 수치만큼 피해를 입는다. 매 턴 수치가 1 감소하며, 0이 되면 소멸.",
       "duration_type": "stacking_decay",
       "visual_note": "적 캐릭터에 불꽃 이펙트"
@@ -1160,7 +1131,6 @@
       "id": "독",
       "ko": "독",
       "en": "Poison",
-      "hanja": "",
       "description": "턴 종료 시 독 수치만큼 피해를 입는다. 매 턴 수치가 1 감소하며, 0이 되면 소멸.",
       "duration_type": "stacking_decay",
       "visual_note": "적 캐릭터에 초록빛 독 이펙트"
@@ -1169,7 +1139,6 @@
       "id": "저주",
       "ko": "저주",
       "en": "Curse",
-      "hanja": "",
       "description": "매 턴 시작 시 저주 피해를 입는다. 지속 시간이 끝나면 소멸.",
       "duration_type": "turns",
       "visual_note": "적 캐릭터에 보라빛 저주 이펙트"

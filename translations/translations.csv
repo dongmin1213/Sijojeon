@@ -443,7 +443,7 @@ JIBUN_RANK_3,양반,Yangban
 JIBUN_RANK_4,당상관,Dangsanggwan
 JIBUN_RANK_5,판서/정승,Panseo/Jeongseung
 JIBUN_RANKUP_1,상민 승급: 덱에서 카드 1장을 강화할 수 있습니다!,Sangmin promotion: Upgrade 1 card in your deck!
-JIBUN_RANKUP_2,중인 승급: 턴당 기(氣) +1!,Jungin promotion: +1 Qi per turn!
+JIBUN_RANKUP_2,중인 승급: 턴당 기 +1!,Jungin promotion: +1 Qi per turn!
 JIBUN_RANKUP_3,양반 승급: 턴당 드로우 +1!,Yangban promotion: +1 draw per turn!
 JIBUN_RANKUP_4,당상관 승급: 엘리트 전투 보상 2배!,Dangsanggwan promotion: Elite battle rewards x2!
 JIBUN_RANKUP_5,정승 승급: 시조 일격 효과 2배!,Jeongseung promotion: Sijo Strike effects x2!
@@ -474,13 +474,13 @@ JIBUN_TOOLTIP_POINTS,점,pts
 JIBUN_TOOLTIP_EFFECTS,현재 효과,Current Effects
 JIBUN_TOOLTIP_NEXT,다음 단계,Next Rank
 JIBUN_TOOLTIP_RANKUP,승급 보상,Rank-Up Reward
-JIBUN_EFFECT_2_QI,턴당 기(氣) +1,+1 Qi per turn
+JIBUN_EFFECT_2_QI,턴당 기 +1,+1 Qi per turn
 JIBUN_EFFECT_2_ELITE,엘리트 등장률 +5%,Elite spawn rate +5%
 JIBUN_EFFECT_3_DRAW,턴당 드로우 +1,+1 draw per turn
 JIBUN_EFFECT_3_GWAGEO,과거시험 접근 가능,Civil exam access
 JIBUN_EFFECT_4_ELITE_REWARD,엘리트 전투 보상 2배,Elite battle rewards x2
 JIBUN_EFFECT_5_SIJO,시조 일격 효과 2배,Sijo Strike effects x2
-SISANG_MILESTONE_TITLE,시상(詩想) 마일스톤,Sisang Milestone
+SISANG_MILESTONE_TITLE,시상 마일스톤,Sisang Milestone
 SISANG_MILESTONE_5,시상 5 달성! 이벤트 추가 선택지 해금,Sisang 5 reached! Bonus event choices unlocked
 SISANG_MILESTONE_10,시상 10 달성! 시조 일격 피해 +25%,Sisang 10 reached! Sijo Strike damage +25%
 SISANG_MILESTONE_15,시상 15 달성! 보스전 시조 ×2.0,Sisang 15 reached! Boss battle sijo x2.0

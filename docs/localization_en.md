@@ -40,23 +40,23 @@
 
 | 한국어 | 한자 | 영문 표기 | 주석 |
 |--------|------|-----------|------|
-| 기(氣) | 氣 | Qi | 에너지 자원. 괄호 없이 "Qi"만 사용 |
-| 시조 | 時調 | Sijo | 고유 게임 메카닉. 항상 "Sijo" |
-| 초장 | 初章 | First Verse | 시조 1~2번 슬롯 |
-| 중장 | 中章 | Middle Verse | 시조 3~4번 슬롯 |
-| 종장 | 終章 | Final Verse | 시조 5~6번 슬롯 |
-| 음보 | 音步 | Beat | 카드 리듬 값 (3 또는 4) |
-| 도사 | 道士 | Daoist Sorcerer | 직업명 |
-| 무관 | 武官 | Military Officer | 직업명 |
-| 문관 | 文官 | Scholar Official | 직업명 |
-| 기력 | 氣力 | Stamina | 무관 전용 자원 |
-| 방어도 | 防禦度 | Block | 턴 내 피해 방어 수치 |
-| 약화 | 弱化 | Weakened | 다음 공격 피해 감소 상태이상 |
-| 화상 | 火傷 | Burn | 지속 화염 피해 상태이상 |
-| 독 | 毒 | Poison | 지속 독 피해 상태이상 |
-| 부적 | 符籍 | Talisman | 유물/아이템 |
-| 도술 | 道術 | Daoist Arts | 도사 마법 계통 |
-| 병사 토큰 | 兵士 | Soldier Token | 무관 전용 방어 토큰 |
+| 기 |  | Qi | 에너지 자원. 괄호 없이 "Qi"만 사용 |
+| 시조 |  | Sijo | 고유 게임 메카닉. 항상 "Sijo" |
+| 초장 |  | First Verse | 시조 1~2번 슬롯 |
+| 중장 |  | Middle Verse | 시조 3~4번 슬롯 |
+| 종장 |  | Final Verse | 시조 5~6번 슬롯 |
+| 음보 |  | Beat | 카드 리듬 값 (3 또는 4) |
+| 도사 |  | Daoist Sorcerer | 직업명 |
+| 무관 |  | Military Officer | 직업명 |
+| 문관 |  | Scholar Official | 직업명 |
+| 기력 |  | Stamina | 무관 전용 자원 |
+| 방어도 |  | Block | 턴 내 피해 방어 수치 |
+| 약화 |  | Weakened | 다음 공격 피해 감소 상태이상 |
+| 화상 |  | Burn | 지속 화염 피해 상태이상 |
+| 독 |  | Poison | 지속 독 피해 상태이상 |
+| 부적 |  | Talisman | 유물/아이템 |
+| 도술 |  | Daoist Arts | 도사 마법 계통 |
+| 병사 토큰 |  | Soldier Token | 무관 전용 방어 토큰 |
 
 ---
 
@@ -142,9 +142,9 @@ Plan carefully. Strike with poetry.
 
 | 한국어 | 한자 | 영문 이름 | 영문 설명 |
 |--------|------|-----------|-----------|
-| 도사 | 道士 | Daoist Sorcerer | Master of Qi arts and mystic spells. Amplifies energy, casts curses, and detonates Sijo with devastating force. |
-| 무관 | 武官 | Military Officer | Commands soldiers and unleashes tactical formations. Uses Stamina to power overwhelming assaults. |
-| 문관 | 文官 | Scholar Official | Wields the power of the written word and Confucian ritual. Weaves defensive rites and political gambits to outlast any foe. |
+| 도사 |  | Daoist Sorcerer | Master of Qi arts and mystic spells. Amplifies energy, casts curses, and detonates Sijo with devastating force. |
+| 무관 |  | Military Officer | Commands soldiers and unleashes tactical formations. Uses Stamina to power overwhelming assaults. |
+| 문관 |  | Scholar Official | Wields the power of the written word and Confucian ritual. Weaves defensive rites and political gambits to outlast any foe. |
 
 ### 3.2 직업별 핵심 메카닉 영문 설명
 
@@ -381,7 +381,7 @@ Ritual Protocol: Reduces damage taken this turn.
 | EVT_A1_002 | 포졸의 검문 | Guard Checkpoint |
 | EVT_A1_003 | 원혼의 한탄 | The Spirit's Lament |
 | EVT_A1_004 | 길거리 상인 | Street Merchant |
-| EVT_A1_005 | 신당 (神堂) | The Roadside Shrine |
+| EVT_A1_005 | 신당 | The Roadside Shrine |
 | EVT_A1_006 | 노박판 | The Gambling Den |
 | EVT_A1_007 | 버려진 무기 | Abandoned Weapon |
 | EVT_A1_008 | 거리의 의원 | The Street Healer |
@@ -436,15 +436,15 @@ Ritual Protocol: Reduces damage taken this turn.
 
 | 한국어 | 한자 | 영문 이름 | 영문 설명 |
 |--------|------|-----------|-----------|
-| 약화 | 弱化 | Weakened | Next attack deals 25% less damage. Expires after 1 use. |
-| 화상 | 火傷 | Burn [X] | Take X damage at end of turn. X decreases by 1 each turn. |
-| 독 | 毒 | Poison [X] | Take X damage at end of turn. X decreases by 1 each turn. |
-| 방어도 | 防禦度 | Block | Absorbs incoming damage this turn. Lost at start of your turn. |
+| 약화 |  | Weakened | Next attack deals 25% less damage. Expires after 1 use. |
+| 화상 |  | Burn [X] | Take X damage at end of turn. X decreases by 1 each turn. |
+| 독 |  | Poison [X] | Take X damage at end of turn. X decreases by 1 each turn. |
+| 방어도 |  | Block | Absorbs incoming damage this turn. Lost at start of your turn. |
 | 버프 | — | Buff | Positive status effect with a duration. |
 | 디버프 | — | Debuff | Negative status effect applied to enemies. |
 | 기 회복 | — | Qi +X | Recover X Qi immediately. |
 | 병사 토큰 | — | Soldier Token | Absorbs 1 hit, then vanishes. Recover 1 Qi on death. |
-| 기력 | 氣力 | Stamina | Mugwan resource. Carries between turns. Max 10. |
+| 기력 |  | Stamina | Mugwan resource. Carries between turns. Max 10. |
 
 ---
 
@@ -454,7 +454,7 @@ Ritual Protocol: Reduces damage taken this turn.
 
 | 한국어 | 영문 |
 |--------|------|
-| 기(氣) | Qi |
+| 기 | Qi |
 | 기 : X | Qi: X |
 | 방어도 | Block |
 | 손패 | Hand |
@@ -473,7 +473,7 @@ Ritual Protocol: Reduces damage taken this turn.
 | 모든 적에게 X 피해를 입힌다 | Deal X damage to ALL enemies. |
 | 방어도 X를 획득한다 | Gain X Block. |
 | 카드 X장을 드로우한다 | Draw X card(s). |
-| 기(氣) X를 획득한다 | Gain X Qi. |
+| 기 X를 획득한다 | Gain X Qi. |
 | 업그레이드 | Upgrade |
 | 강화됨 | Enhanced |
 | 이번 턴 | This turn |

@@ -34,9 +34,9 @@
 런마다 새롭게 덱을 구성하고, 도깨비·구미호·이무기와 같은 전설 속 요괴를 상대하세요.
 
 🎴 시조 리듬 시스템
-조선의 전통 시가 '시조(時調)'를 전투에 접목한 독창적인 시스템!
+조선의 전통 시가 '시조'를 전투에 접목한 독창적인 시스템!
 초장·중장·종장의 리듬(3-4-3-4-3-4)에 맞춰 카드를 내면 시조가 완성됩니다.
-시조 완성 → 마지막 카드 효과 2배 + 기(氣) 회복 + 추가 드로우!
+시조 완성 → 마지막 카드 효과 2배 + 기 회복 + 추가 드로우!
 패턴을 완성하는 순간의 짜릿함이 전투를 더욱 즐겁게 만듭니다.
 
 🀄 매 런마다 완전히 다른 덱
@@ -44,8 +44,8 @@
 100가지 이상의 카드와 부적(유물)을 조합해 나만의 최강 덱을 만드세요.
 
 🧙 개성 넘치는 직업들
-• 도사(道士) — 기(氣)를 다루는 방술가. 시조 완성 보너스 극대화
-• 무관(武官) — 병사 토큰을 지휘하는 장군. 진형으로 광역 폭딜
+• 도사 — 기를 다루는 방술가. 시조 완성 보너스 극대화
+• 무관 — 병사 토큰을 지휘하는 장군. 진형으로 광역 폭딜
 • (업데이트 예정) 암행어사, 무당, 판수, 전기수…
 
 🗺️ 한양에서 저승까지
@@ -77,11 +77,11 @@ Sijojeon is a roguelike deckbuilding card game set in the Joseon Dynasty.
 Build a new deck every run, battle goblins (dokkaebi), nine-tailed foxes (gumiho), and sea serpents (imugi) drawn from Korean mythology.
 
 🎴 The Sijo Rhythm System — A Truly Unique Mechanic
-Sijo (時調) is a classic Korean poetic form with a strict 3-4-3-4-3-4 syllable rhythm.
+Sijo is a classic Korean poetic form with a strict 3-4-3-4-3-4 syllable rhythm.
 In Sijojeon, each card carries a beat value [3] or [4].
 Play cards in the correct Sijo rhythm across the six slots (초장-중장-종장) to trigger a Sijo Completion:
 
-✨ Last card effect x2 + Ki (氣) recovery + bonus card draw!
+✨ Last card effect x2 + Ki recovery + bonus card draw!
 
 The thrill of landing a Sijo combo mid-battle is unlike anything else.
 
@@ -90,8 +90,8 @@ Every run starts fresh. 100+ cards and relics (charms) to combine.
 No pay-to-win. No gacha pulls. Just strategy.
 
 🧙 Distinct Classes with Unique Playstyles
-• Dosa (道士) — A mystical arts practitioner who manipulates Ki (氣). Maximizes Sijo bonus damage.
-• Mugwan (武官) — A military commander who summons soldier tokens and unleashes formation-based AoE.
+• Dosa — A mystical arts practitioner who manipulates Ki. Maximizes Sijo bonus damage.
+• Mugwan — A military commander who summons soldier tokens and unleashes formation-based AoE.
 • (Coming soon) Amhaengeosa, Mudang, Pansu, Jeongi-su…
 
 🗺️ Journey from Hanyang to the Underworld

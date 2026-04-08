@@ -24,7 +24,6 @@
       "id": "E201",
       "name": {
         "ko": "산적",
-        "hanja": "",
         "romanized": "Sanjok",
         "en": "Bandit"
       },
@@ -125,7 +124,6 @@
       "id": "E202",
       "name": {
         "ko": "처녀귀신",
-        "hanja": "",
         "romanized": "Cheonyeo Gwisin",
         "en": "Maiden Ghost"
       },
@@ -250,7 +248,6 @@
       "id": "E203",
       "name": {
         "ko": "산사 승병",
-        "hanja": "",
         "romanized": "Sansa Seungbyeong",
         "en": "Temple Warrior Monk"
       },
@@ -376,7 +373,6 @@
       "id": "E204",
       "name": {
         "ko": "독사",
-        "hanja": "",
         "romanized": "Doksa",
         "en": "Viper"
       },
@@ -499,7 +495,6 @@
       "id": "E205",
       "name": {
         "ko": "산령",
-        "hanja": "",
         "romanized": "Sanryeong",
         "en": "Mountain Spirit"
       },
@@ -617,7 +612,6 @@
       "id": "E206",
       "name": {
         "ko": "도술사",
-        "hanja": "",
         "romanized": "Dosulsa",
         "en": "Sorcerer"
       },
@@ -727,7 +721,6 @@
       "id": "E207",
       "name": {
         "ko": "갈호",
-        "hanja": "",
         "romanized": "Galho",
         "en": "Starving Tiger"
       },
@@ -844,7 +837,6 @@
       "id": "E208",
       "name": {
         "ko": "별감",
-        "hanja": "",
         "romanized": "Byeolgam",
         "en": "Inspector"
       },
@@ -941,7 +933,6 @@
       "id": "E209",
       "name": {
         "ko": "토포사",
-        "hanja": "",
         "romanized": "Toposa",
         "en": "Bandit Hunter"
       },
@@ -1051,7 +1042,6 @@
       "id": "E210",
       "name": {
         "ko": "당파 자객",
-        "hanja": "",
         "romanized": "Dangpa Jagaek",
         "en": "Faction Assassin"
       },
@@ -1166,7 +1156,6 @@
       "id": "E211",
       "name": {
         "ko": "역관",
-        "hanja": "",
         "romanized": "Yeokgwan",
         "en": "Interpreter Spy"
       },
@@ -1288,7 +1277,6 @@
       "id": "E212",
       "name": {
         "ko": "부패 관원",
-        "hanja": "",
         "romanized": "Bupae Gwanwon",
         "en": "Corrupt Magistrate"
       },
@@ -1400,7 +1388,6 @@
       "id": "E213",
       "name": {
         "ko": "화약술사",
-        "hanja": "",
         "romanized": "Hwayak Sulsa",
         "en": "Explosives Scholar"
       },
@@ -1517,7 +1504,6 @@
       "id": "E214",
       "name": {
         "ko": "창귀",
-        "hanja": "倀鬼",
         "romanized": "Changgwi",
         "en": "Tiger's Thrall"
       },
@@ -1619,7 +1605,6 @@
       "id": "E214_tiger",
       "name": {
         "ko": "산호랑이",
-        "hanja": "山虎",
         "romanized": "Sanhorangi",
         "en": "Mountain Tiger"
       },
@@ -1712,7 +1697,6 @@
       "id": "E215",
       "name": {
         "ko": "물귀신",
-        "hanja": "水鬼",
         "romanized": "Mulgwisin",
         "en": "Drowning Ghost"
       },
@@ -1832,7 +1816,6 @@
       "id": "EL201",
       "name": {
         "ko": "백호",
-        "hanja": "",
         "romanized": "Baekho",
         "en": "White Tiger"
       },
@@ -1968,7 +1951,6 @@
       "id": "EL202",
       "name": {
         "ko": "도적 두목",
-        "hanja": "",
         "romanized": "Dojeok Dumok",
         "en": "Bandit Chief"
       },
@@ -2108,7 +2090,6 @@
       "id": "EL203",
       "name": {
         "ko": "구미호",
-        "hanja": "",
         "romanized": "Gumiho",
         "en": "Nine-Tailed Fox"
       },
@@ -2307,7 +2288,6 @@
       "id": "매혹",
       "ko": "매혹",
       "en": "Charm",
-      "hanja": "",
       "description": "스택 수만큼 적에게 주는 공격 피해 감소. 2턴 지속. EL203 구미호 신규 디버프."
     },
     {

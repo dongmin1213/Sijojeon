@@ -6,7 +6,6 @@
   "id": "B_ACT2_FINAL",
   "name": {
     "ko": "이무기",
-    "hanja": "蛟龍",
     "romanized": "Imugi",
     "en": "Imugi"
   },
@@ -31,22 +30,41 @@
     "on_sijo_complete": {
       "strip_scales": 1,
       "dialogue_per_scale": [
-        { "ko": "\"크르르... 비늘이... 감히!\"", "en": "\"Grr... my scales... how dare you!\"" },
-        { "ko": "\"으아아! 살갗이 드러나다니!\"", "en": "\"Aaargh! My flesh is exposed!\"" },
-        { "ko": "\"안 돼! 서기가... 빛을 잃는다!\"", "en": "\"No! My aura... is losing its light!\"" }
+        {
+          "ko": "\"크르르... 비늘이... 감히!\"",
+          "en": "\"Grr... my scales... how dare you!\""
+        },
+        {
+          "ko": "\"으아아! 살갗이 드러나다니!\"",
+          "en": "\"Aaargh! My flesh is exposed!\""
+        },
+        {
+          "ko": "\"안 돼! 서기가... 빛을 잃는다!\"",
+          "en": "\"No! My aura... is losing its light!\""
+        }
       ]
     },
     "on_all_stripped": {
       "apply_to_boss": [
-        { "type": "apply_debuff", "debuff": "취약", "stacks": 2 }
+        {
+          "type": "apply_debuff",
+          "debuff": "취약",
+          "stacks": 2
+        }
       ],
-      "dialogue": { "ko": "\"으아아아! 비늘이 모두... 천 년의 수련이...!\"", "en": "\"AAAARGH! All my scales... a thousand years of cultivation...!\"" }
+      "dialogue": {
+        "ko": "\"으아아아! 비늘이 모두... 천 년의 수련이...!\"",
+        "en": "\"AAAARGH! All my scales... a thousand years of cultivation...!\""
+      }
     },
     "scale_regen": {
       "enabled": true,
       "turns_to_regen": 4,
       "regen_amount": 1,
-      "dialogue": { "ko": "\"비늘이 다시 자라난다... 승천을 막을 수 없으리라!\"", "en": "\"My scales regrow... you cannot stop my ascension!\"" }
+      "dialogue": {
+        "ko": "\"비늘이 다시 자라난다... 승천을 막을 수 없으리라!\"",
+        "en": "\"My scales regrow... you cannot stop my ascension!\""
+      }
     }
   },
   "phases": [
@@ -59,47 +77,99 @@
       "moves": [
         {
           "id": "tail_sweep",
-          "name": { "ko": "꼬리 휩쓸기", "en": "Tail Sweep" },
+          "name": {
+            "ko": "꼬리 휩쓸기",
+            "en": "Tail Sweep"
+          },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": { "ko": "거대한 꼬리로 휩쓰는 공격.", "en": "A sweeping tail strike." }
+          "description": {
+            "ko": "거대한 꼬리로 휩쓰는 공격.",
+            "en": "A sweeping tail strike."
+          }
         },
         {
           "id": "venomous_breath",
-          "name": { "ko": "독기", "en": "Venomous Breath" },
+          "name": {
+            "ko": "독기",
+            "en": "Venomous Breath"
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" },
-            { "type": "apply_debuff", "debuff": "약화", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 4,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "약화",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": { "ko": "독 4 + 약화 1 부여.", "en": "4 Poison + 1 Weak." }
+          "description": {
+            "ko": "독 4 + 약화 1 부여.",
+            "en": "4 Poison + 1 Weak."
+          }
         },
         {
           "id": "coil_crush",
-          "name": { "ko": "감아쥐기", "en": "Coil Crush" },
+          "name": {
+            "ko": "감아쥐기",
+            "en": "Coil Crush"
+          },
           "intent": "attack_debuff",
           "damage": 8,
           "times": 2,
           "effects": [
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": { "ko": "8 피해 × 2회 + 취약 1.", "en": "8 damage x2 + 1 Vulnerable." }
+          "description": {
+            "ko": "8 피해 × 2회 + 취약 1.",
+            "en": "8 damage x2 + 1 Vulnerable."
+          }
         },
         {
           "id": "scale_harden",
-          "name": { "ko": "비늘 경화", "en": "Scale Harden" },
+          "name": {
+            "ko": "비늘 경화",
+            "en": "Scale Harden"
+          },
           "intent": "defend_buff",
           "block": 16,
           "effects": [
-            { "type": "apply_buff", "buff": "thorns", "stacks": 3, "target": "self" }
+            {
+              "type": "apply_buff",
+              "buff": "thorns",
+              "stacks": 3,
+              "target": "self"
+            }
           ],
-          "description": { "ko": "방어도 16 + 가시 3.", "en": "16 Block + 3 Thorns." }
+          "description": {
+            "ko": "방어도 16 + 가시 3.",
+            "en": "16 Block + 3 Thorns."
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["venomous_breath", "scale_harden", "tail_sweep", "coil_crush", "tail_sweep", "venomous_breath", "coil_crush"]
+        "sequence": [
+          "venomous_breath",
+          "scale_harden",
+          "tail_sweep",
+          "coil_crush",
+          "tail_sweep",
+          "venomous_breath",
+          "coil_crush"
+        ]
       }
     },
     {
@@ -112,53 +182,109 @@
         "type": "hp_threshold",
         "hp_percent": 55,
         "on_trigger": [
-          { "type": "apply_buff", "buff": "strength", "stacks": 4, "target": "self" },
-          { "type": "dialogue", "text": "\"서기가 차오른다! 이 몸이 곧 승천하리라!\"" }
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 4,
+            "target": "self"
+          },
+          {
+            "type": "dialogue",
+            "text": "\"서기가 차오른다! 이 몸이 곧 승천하리라!\""
+          }
         ]
       },
       "moves": [
         {
           "id": "venom_fang",
-          "name": { "ko": "독아", "en": "Venom Fang" },
+          "name": {
+            "ko": "독아",
+            "en": "Venom Fang"
+          },
           "intent": "attack",
           "damage": 15,
           "times": 1,
-          "description": { "ko": "독이빨로 깊이 물어뜯기.", "en": "A deep bite with venomous fangs." }
+          "description": {
+            "ko": "독이빨로 깊이 물어뜯기.",
+            "en": "A deep bite with venomous fangs."
+          }
         },
         {
           "id": "coiled_pulse",
-          "name": { "ko": "서린 파동", "en": "Coiled Pulse" },
+          "name": {
+            "ko": "서린 파동",
+            "en": "Coiled Pulse"
+          },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 1,
           "effects": [
-            { "type": "reset_sijo_slot", "count": 1 },
-            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
+            {
+              "type": "reset_sijo_slot",
+              "count": 1
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "냉기",
+              "stacks": 1,
+              "target": "player"
+            }
           ],
-          "description": { "ko": "10 피해 + 시조 슬롯 1개 초기화 + 냉기 1.", "en": "10 damage + reset 1 sijo slot + 1 Chill." }
+          "description": {
+            "ko": "10 피해 + 시조 슬롯 1개 초기화 + 냉기 1.",
+            "en": "10 damage + reset 1 sijo slot + 1 Chill."
+          }
         },
         {
           "id": "constrict",
-          "name": { "ko": "졸라매기", "en": "Constrict" },
+          "name": {
+            "ko": "졸라매기",
+            "en": "Constrict"
+          },
           "intent": "attack",
           "damage": 7,
           "times": 3,
-          "description": { "ko": "7 피해 × 3회 = 21 총피해.", "en": "7 damage x3 = 21 total." }
+          "description": {
+            "ko": "7 피해 × 3회 = 21 총피해.",
+            "en": "7 damage x3 = 21 total."
+          }
         },
         {
           "id": "shed_scales",
-          "name": { "ko": "탈피", "en": "Shed Scales" },
+          "name": {
+            "ko": "탈피",
+            "en": "Shed Scales"
+          },
           "intent": "buff",
           "effects": [
-            { "type": "cleanse_debuffs", "target": "self" },
-            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" }
+            {
+              "type": "cleanse_debuffs",
+              "target": "self"
+            },
+            {
+              "type": "apply_buff",
+              "buff": "strength",
+              "stacks": 2,
+              "target": "self"
+            }
           ],
-          "description": { "ko": "디버프 전체 해제 + 힘 2 획득.", "en": "Cleanse all debuffs + gain 2 Strength." }
+          "description": {
+            "ko": "디버프 전체 해제 + 힘 2 획득.",
+            "en": "Cleanse all debuffs + gain 2 Strength."
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["venom_fang", "coiled_pulse", "constrict", "venom_fang", "shed_scales", "coiled_pulse", "constrict"]
+        "sequence": [
+          "venom_fang",
+          "coiled_pulse",
+          "constrict",
+          "venom_fang",
+          "shed_scales",
+          "coiled_pulse",
+          "constrict"
+        ]
       }
     },
     {
@@ -170,47 +296,97 @@
         "type": "hp_threshold",
         "hp_percent": 25,
         "on_trigger": [
-          { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" },
-          { "type": "apply_debuff", "debuff": "death_countdown", "stacks": 5, "target": "player" },
-          { "type": "dialogue", "text": "\"용이 되지 못한다면... 모두 삼키겠다!\"" }
+          {
+            "type": "apply_buff",
+            "buff": "strength",
+            "stacks": 3,
+            "target": "self"
+          },
+          {
+            "type": "apply_debuff",
+            "debuff": "death_countdown",
+            "stacks": 5,
+            "target": "player"
+          },
+          {
+            "type": "dialogue",
+            "text": "\"용이 되지 못한다면... 모두 삼키겠다!\""
+          }
         ]
       },
       "moves": [
         {
           "id": "rampage_bite",
-          "name": { "ko": "광란의 이빨", "en": "Rampage Bite" },
+          "name": {
+            "ko": "광란의 이빨",
+            "en": "Rampage Bite"
+          },
           "intent": "attack",
           "damage": 10,
           "times": 3,
-          "description": { "ko": "10 피해 × 3회.", "en": "10 damage x3." }
+          "description": {
+            "ko": "10 피해 × 3회.",
+            "en": "10 damage x3."
+          }
         },
         {
           "id": "toxic_flood",
-          "name": { "ko": "독류", "en": "Toxic Flood" },
+          "name": {
+            "ko": "독류",
+            "en": "Toxic Flood"
+          },
           "intent": "debuff",
           "effects": [
-            { "type": "apply_debuff", "debuff": "독", "stacks": 8, "target": "player" },
-            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" }
+            {
+              "type": "apply_debuff",
+              "debuff": "독",
+              "stacks": 8,
+              "target": "player"
+            },
+            {
+              "type": "apply_debuff",
+              "debuff": "취약",
+              "stacks": 2,
+              "target": "player"
+            }
           ],
-          "description": { "ko": "독 8 + 취약 2.", "en": "8 Poison + 2 Vulnerable." }
+          "description": {
+            "ko": "독 8 + 취약 2.",
+            "en": "8 Poison + 2 Vulnerable."
+          }
         },
         {
           "id": "death_throes",
-          "name": { "ko": "최후의 몸부림", "en": "Death Throes" },
+          "name": {
+            "ko": "최후의 몸부림",
+            "en": "Death Throes"
+          },
           "intent": "attack",
           "damage": 25,
           "times": 1,
-          "description": { "ko": "자폭적 최대 피해 일격.", "en": "Self-destructive maximum damage strike." }
+          "description": {
+            "ko": "자폭적 최대 피해 일격.",
+            "en": "Self-destructive maximum damage strike."
+          }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["rampage_bite", "toxic_flood", "death_throes", "rampage_bite", "toxic_flood"]
+        "sequence": [
+          "rampage_bite",
+          "toxic_flood",
+          "death_throes",
+          "rampage_bite",
+          "toxic_flood"
+        ]
       }
     }
   ],
   "rewards": {
-    "gold": { "min": 80, "max": 110 },
+    "gold": {
+      "min": 80,
+      "max": 110
+    },
     "relic": "보스 유물 1개 (확정)",
     "relic_candidates": [
       {

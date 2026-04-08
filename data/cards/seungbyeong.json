@@ -3,10 +3,9 @@
   "type": "card_pool",
   "class": "sangin",
   "class_ko": "승병",
-  "class_hanja": "僧兵",
   "category": "counter",
-  "description": "승병 전용 카드 풀. 인과(因果) 자원을 활용해 반격과 수행, 파계를 오가는 직업. 총 27장 — 인과·반격 아키타입, 수행·방어 아키타입, 파계·역전 아키타입. 원형: 사명대사, 서산대사. '버림받은 자가 나라를 지킨다.'",
-  "class_mechanic": "인과(因果): 기(qi) 시스템을 활용. 피해를 받을 때 인과 수치 증가. 인과가 쌓이면 반격기 강화. 금강(金剛): 일정 수치의 방어도를 영구 유지. 파계(破戒): 현재 HP가 최대 HP의 40% 이하일 때 일부 카드 강화.",
+  "description": "승병 전용 카드 풀. 인과 자원을 활용해 반격과 수행, 파계를 오가는 직업. 총 27장 — 인과·반격 아키타입, 수행·방어 아키타입, 파계·역전 아키타입. 원형: 사명대사, 서산대사. '버림받은 자가 나라를 지킨다.'",
+  "class_mechanic": "인과: 기(qi) 시스템을 활용. 피해를 받을 때 인과 수치 증가. 인과가 쌓이면 반격기 강화. 금강: 일정 수치의 방어도를 영구 유지. 파계: 현재 HP가 최대 HP의 40% 이하일 때 일부 카드 강화.",
   "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
   "archetypes": [
     {
@@ -47,13 +46,11 @@
     }
   ],
   "cards": [
-
     {
       "_comment": "=== 인과·반격 아키타입 ===",
       "id": "S001",
       "name": {
         "ko": "석장 일격",
-        "hanja": "錫杖一擊",
         "romanized": "Seokjang Ilgyeok",
         "en": "Staff Strike"
       },
@@ -90,12 +87,10 @@
         "karma_gain": 1
       }
     },
-
     {
       "id": "S002",
       "name": {
         "ko": "반격의 인과",
-        "hanja": "反擊因果",
         "romanized": "Bangyeok-ui Ingwa",
         "en": "Karmic Counter"
       },
@@ -130,16 +125,14 @@
       "upgrade_cost": 75,
       "values": {
         "damage": 4,
-        "bonus_pct_of_damage_received": 0.20,
+        "bonus_pct_of_damage_received": 0.2,
         "bonus_max": 10
       }
     },
-
     {
       "id": "S003",
       "name": {
         "ko": "참선",
-        "hanja": "參禪",
         "romanized": "Chamseon",
         "en": "Meditation"
       },
@@ -177,12 +170,10 @@
         "qi_gain": 1
       }
     },
-
     {
       "id": "S004",
       "name": {
         "ko": "염불",
-        "hanja": "念佛",
         "romanized": "Yeombul",
         "en": "Sutra Chant"
       },
@@ -220,12 +211,10 @@
         "next_card_cost_reduce": 1
       }
     },
-
     {
       "id": "S005",
       "name": {
         "ko": "금강심",
-        "hanja": "金剛心",
         "romanized": "Geumgangshim",
         "en": "Diamond Mind"
       },
@@ -263,12 +252,10 @@
         "block_next_turn": 4
       }
     },
-
     {
       "id": "S006",
       "name": {
         "ko": "파계의 칼",
-        "hanja": "破戒劍",
         "romanized": "Pagye-ui Kal",
         "en": "Blade of Broken Vows"
       },
@@ -306,12 +293,10 @@
         "breakthrough_damage": 12
       }
     },
-
     {
       "id": "S007",
       "name": {
         "ko": "가시 호신",
-        "hanja": "刺護身",
         "romanized": "Gashi Hosin",
         "en": "Thorn Guard"
       },
@@ -350,12 +335,10 @@
         "thorns": 3
       }
     },
-
     {
       "id": "S008",
       "name": {
         "ko": "인욕",
-        "hanja": "忍辱",
         "romanized": "Inyok",
         "en": "Endurance"
       },
@@ -393,12 +376,10 @@
         "karma_on_hit_bonus": 1
       }
     },
-
     {
       "id": "S009",
       "name": {
         "ko": "인과응보",
-        "hanja": "因果應報",
         "romanized": "Ingwa Eungbo",
         "en": "Karmic Retribution"
       },
@@ -437,12 +418,10 @@
         "consumes_all_karma": true
       }
     },
-
     {
       "id": "S010",
       "name": {
         "ko": "금강반격",
-        "hanja": "金剛反擊",
         "romanized": "Geumgang Bangyeok",
         "en": "Vajra Counter"
       },
@@ -480,12 +459,10 @@
         "block": 3
       }
     },
-
     {
       "id": "S011",
       "name": {
         "ko": "석장 회전",
-        "hanja": "錫杖回轉",
         "romanized": "Seokjang Hoejeon",
         "en": "Staff Spin"
       },
@@ -524,13 +501,11 @@
         "karma_gain": 2
       }
     },
-
     {
       "_comment": "=== 수행·방어 아키타입 ===",
       "id": "S012",
       "name": {
         "ko": "화두",
-        "hanja": "話頭",
         "romanized": "Hwadu",
         "en": "Koan"
       },
@@ -568,12 +543,10 @@
         "block_bonus_per_block_card_this_turn": 2
       }
     },
-
     {
       "id": "S013",
       "name": {
         "ko": "수행의 경지",
-        "hanja": "修行境地",
         "romanized": "Suhaeng-ui Gyeongji",
         "en": "Realm of Practice"
       },
@@ -596,7 +569,7 @@
         "en": "Gain 10 Block. Heal 6 HP. Gain 2 additional Block for each card played without spending Qi this turn."
       },
       "flavor_text": {
-        "ko": "수행이 깊어질수록 상처가 아무는 속도도 빨라진다 — 몸이 법(法)에 따라 움직인다.",
+        "ko": "수행이 깊어질수록 상처가 아무는 속도도 빨라진다 — 몸이 법에 따라 움직인다.",
         "en": "The deeper the practice, the faster the wounds heal — the body moves in accordance with the Dharma."
       },
       "balance_rationale": "2코스트 방어 + 체력 회복 + 조건부 방어 증가. 8방어+4회복은 2코스트 과분하지만 조건부 추가 방어는 0코스트 카드와 시너지 요구. 수행 아키타입의 지구전 핵심 카드.",
@@ -613,12 +586,10 @@
         "block_per_free_card_this_turn": 1
       }
     },
-
     {
       "id": "S014",
       "name": {
         "ko": "공즉시색",
-        "hanja": "空卽是色",
         "romanized": "Gong-jeuk-si-saek",
         "en": "Form is Emptiness"
       },
@@ -657,12 +628,10 @@
         "draw_next_turn": 1
       }
     },
-
     {
       "id": "S015",
       "name": {
         "ko": "해탈의 기운",
-        "hanja": "解脫氣運",
         "romanized": "Haetal-ui Giun",
         "en": "Aura of Liberation"
       },
@@ -700,12 +669,10 @@
         "damage_to_heal_ratio": 0.5
       }
     },
-
     {
       "id": "S016",
       "name": {
         "ko": "범종 울림",
-        "hanja": "梵鐘響",
         "romanized": "Beomjong Urrim",
         "en": "Temple Bell Toll"
       },
@@ -743,13 +710,11 @@
         "is_aoe": true
       }
     },
-
     {
       "_comment": "=== 파계·역전 아키타입 ===",
       "id": "S017",
       "name": {
         "ko": "분노의 일갈",
-        "hanja": "忿怒一喝",
         "romanized": "Bunno-ui Ilgal",
         "en": "Furious Roar"
       },
@@ -788,12 +753,10 @@
         "breakthrough_weaken": 2
       }
     },
-
     {
       "id": "S018",
       "name": {
         "ko": "배수진",
-        "hanja": "背水陣",
         "romanized": "Baesujeun",
         "en": "Last Stand"
       },
@@ -827,17 +790,15 @@
       ],
       "upgrade_cost": 125,
       "values": {
-        "damage_pct_of_missing_hp": 0.50,
+        "damage_pct_of_missing_hp": 0.5,
         "min_damage": 8,
         "max_damage": 30
       }
     },
-
     {
       "id": "S019",
       "name": {
         "ko": "불굴의 기세",
-        "hanja": "不屈氣勢",
         "romanized": "Bulgul-ui Gise",
         "en": "Indomitable Spirit"
       },
@@ -875,12 +836,10 @@
         "breakthrough_all_attack_bonus": 4
       }
     },
-
     {
       "id": "S020",
       "name": {
         "ko": "사즉생",
-        "hanja": "死卽生",
         "romanized": "Sajeukssaeng",
         "en": "Death Becomes Life"
       },
@@ -922,13 +881,11 @@
         "breakthrough_heal": 10
       }
     },
-
     {
       "_comment": "=== 해금 카드 S021~S027 (unlock_condition 필드 추가) ===",
       "id": "S021",
       "name": {
         "ko": "사명의 불꽃",
-        "hanja": "使命炎",
         "romanized": "Samyeong-ui Bulkkot",
         "en": "Flame of Duty"
       },
@@ -951,7 +908,7 @@
         "en": "Deal 13 damage to an enemy. Apply 4 Burn. Gain 2 Karma."
       },
       "flavor_text": {
-        "ko": "사명대사의 이름은 곧 사명(使命)이었다 — 나라를 위한 불꽃은 꺼지지 않는다.",
+        "ko": "사명대사의 이름은 곧 사명이었다 — 나라를 위한 불꽃은 꺼지지 않는다.",
         "en": "The name Samyeong was his destiny — a flame lit for the nation never goes out."
       },
       "balance_rationale": "2코스트 공격+DoT+인과. 10피해 + 화상3(총 6피해) + 인과1. 인과·반격 + DoT 하이브리드 카드. 해금 카드로 두 아키타입을 연결하는 역할.",
@@ -974,12 +931,10 @@
         "karma_gain": 1
       }
     },
-
     {
       "id": "S022",
       "name": {
         "ko": "서산의 지혜",
-        "hanja": "西山智慧",
         "romanized": "Seosan-ui Jihye",
         "en": "Wisdom of Seosan"
       },
@@ -1025,12 +980,10 @@
         "chain_draw_if_block_card": 1
       }
     },
-
     {
       "id": "S023",
       "name": {
         "ko": "인과의 고리",
-        "hanja": "因果環",
         "romanized": "Ingwa-ui Gori",
         "en": "Karmic Chain"
       },
@@ -1074,12 +1027,10 @@
         "karma_gain_first_play": 5
       }
     },
-
     {
       "id": "S024",
       "name": {
         "ko": "열반",
-        "hanja": "涅槃",
         "romanized": "Yeolban",
         "en": "Nirvana"
       },
@@ -1121,17 +1072,15 @@
         "description": "승병으로 2막(Act 2) 보스를 처치한다."
       },
       "values": {
-        "heal_pct_of_max_hp": 0.30,
+        "heal_pct_of_max_hp": 0.3,
         "block_per_turn_end": 5,
         "heal_per_turn_end": 2
       }
     },
-
     {
       "id": "S025",
       "name": {
         "ko": "파계광풍",
-        "hanja": "破戒狂風",
         "romanized": "Pagye Gwangpung",
         "en": "Whirlwind of Broken Vows"
       },
@@ -1178,12 +1127,10 @@
         "breakthrough_weaken_aoe": 3
       }
     },
-
     {
       "id": "S026",
       "name": {
         "ko": "금강불괴",
-        "hanja": "金剛不壞",
         "romanized": "Geumgang Bulgwe",
         "en": "Indestructible Vajra"
       },
@@ -1228,12 +1175,10 @@
         "block_per_turn_start": 4
       }
     },
-
     {
       "id": "S027",
       "name": {
         "ko": "삼세인과",
-        "hanja": "三世因果",
         "romanized": "Samse Ingwa",
         "en": "Karma of Three Lives"
       },
@@ -1281,14 +1226,12 @@
         "karma_gain_per_kill": 1
       }
     }
-
   ],
   "status_conditions_defined": [
     {
       "id": "인과",
       "ko": "인과",
       "en": "Karma",
-      "hanja": "因果",
       "description": "전투 중 누적되는 승병 전용 자원. 피해를 받거나 특정 카드 사용 시 획득. 인과응보(S009)·삼세인과(S027) 사용 시 소모. 기(qi) 시스템 활용.",
       "duration_type": "stacking_persistent",
       "visual_note": "캐릭터 주변에 황금빛 불경 문자 이펙트"
@@ -1297,7 +1240,6 @@
       "id": "파계",
       "ko": "파계 상태",
       "en": "Breakthrough State",
-      "hanja": "破戒",
       "description": "현재 HP가 최대 HP의 40% 이하일 때 자동 활성화. 일부 카드 효과가 강화됨. HP 회복으로 40% 초과 시 비활성화.",
       "duration_type": "conditional_auto",
       "visual_note": "캐릭터 아우라가 붉게 타오르는 이펙트"
@@ -1306,7 +1248,6 @@
       "id": "가시",
       "ko": "가시",
       "en": "Thorns",
-      "hanja": "",
       "description": "공격받을 때 공격자에게 가시 수치만큼 피해를 입힌다. 승병 전용 반격 메커니즘.",
       "duration_type": "stacking_persistent",
       "visual_note": "캐릭터 주변에 가시 광환 이펙트"
@@ -1315,7 +1256,6 @@
       "id": "혼란",
       "ko": "혼란",
       "en": "Confusion",
-      "hanja": "",
       "description": "혼란 상태의 적은 공격 시 혼란 수치만큼 피해가 감소한다. 혼란 수치는 공격 1회당 1 감소.",
       "duration_type": "stacking_decay_on_attack",
       "visual_note": "적 캐릭터 머리 위에 흔들리는 물음표 이펙트"

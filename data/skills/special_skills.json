@@ -64,7 +64,6 @@
     {
       "class_id": "dosa",
       "class_ko": "무당",
-      "class_hanja": "",
       "fantasy_desc": {
         "ko": "귀신을 부리고 굿으로 저주한다",
         "en": "Commands spirits and curses through shamanistic rites"
@@ -99,7 +98,6 @@
         "id": "RS001",
         "name": {
           "ko": "신내림 방울",
-          "hanja": "神降鈴",
           "en": "Spirit Descent Bells"
         },
         "effect": {
@@ -133,7 +131,6 @@
     {
       "class_id": "mugwan",
       "class_ko": "의적",
-      "class_hanja": "",
       "fantasy_desc": {
         "ko": "칼로 부패를 베고 빼앗아 나눈다",
         "en": "Cuts corruption with a blade and shares the spoils"
@@ -168,7 +165,6 @@
         "id": "RS002",
         "name": {
           "ko": "활빈당 두건",
-          "hanja": "活貧黨頭巾",
           "en": "Hwalbindang Headband"
         },
         "effect": {
@@ -214,7 +210,6 @@
     {
       "class_id": "mungwan",
       "class_ko": "선비",
-      "class_hanja": "",
       "fantasy_desc": {
         "ko": "붓이 칼보다 강하다",
         "en": "The brush is mightier than the sword"
@@ -249,7 +244,6 @@
         "id": "RS003",
         "name": {
           "ko": "벼루",
-          "hanja": "硯",
           "en": "Inkstone"
         },
         "effect": {
@@ -287,7 +281,6 @@
     {
       "class_id": "uiwon",
       "class_ko": "의녀",
-      "class_hanja": "",
       "passive_name": {
         "ko": "약초학",
         "description": {
@@ -314,7 +307,6 @@
         "id": "RS006",
         "name": {
           "ko": "약방 주머니",
-          "hanja": "藥房囊",
           "en": "Apothecary Pouch"
         },
         "effect": {
@@ -335,7 +327,6 @@
     {
       "class_id": "gungsu",
       "class_ko": "기생",
-      "class_hanja": "",
       "passive_name": {
         "ko": "흥겨운 무대",
         "description": {
@@ -362,7 +353,6 @@
         "id": "RS007",
         "name": {
           "ko": "비파",
-          "hanja": "琵琶",
           "en": "Pipa"
         },
         "effect": {
@@ -383,7 +373,6 @@
     {
       "class_id": "sangin",
       "class_ko": "승병",
-      "class_hanja": "",
       "passive_name": {
         "ko": "업보",
         "description": {
@@ -410,7 +399,6 @@
         "id": "RS008",
         "name": {
           "ko": "목탁",
-          "hanja": "木鐸",
           "en": "Wooden Moktak"
         },
         "effect": {

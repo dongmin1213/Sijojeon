@@ -12,9 +12,9 @@
 | 파일 | class | 설명 |
 |------|-------|------|
 | `common.json` | `common` | 공통 카드 54종 (M001-M054) — 이동/지원 + 와일드카드 |
-| `dosa.json` | `dosa` | 도사(道士) 전용 카드 27종 (D001-D027) |
-| `mugwan.json` | `mugwan` | 무관(武官) 전용 진형 카드 27종 (G001-G027) |
-| `mungwan.json` | `mungwan` | 문관(文官) 전용 학식 카드 27종 (W001-W027) |
+| `dosa.json` | `dosa` | 도사 전용 카드 27종 (D001-D027) |
+| `mugwan.json` | `mugwan` | 무관 전용 진형 카드 27종 (G001-G027) |
+| `mungwan.json` | `mungwan` | 문관 전용 학식 카드 27종 (W001-W027) |
 
 ### 1.2 파일 루트 스키마
 
@@ -24,7 +24,7 @@
   "type": "card_pool",
   "class": "mugwan",
   "class_ko": "무관",
-  "class_hanja": "武官",
+  "class_hanja": "",
   "category": "movement",
   "description": "...",
   "balance_ref": "...",
@@ -42,7 +42,7 @@
 | `name.romanized` | string | 로마자 표기 |
 | `beat` | int | 음보 (3 또는 4) — 시조 슬롯 매칭 기준. **0 = 와일드카드** (어느 슬롯에나 배치 가능, ZER-101) |
 | `beat_note` | string | (선택) 와일드카드 등 beat 값에 대한 추가 설명 |
-| `cost` | int | 기(氣) 소모량 |
+| `cost` | int | 기 소모량 |
 | `type` | string | `attack`, `defense`, `formation`, `skill`, `power` |
 | `subtypes` | string[] | 보조 타입 (예: `movement`, `token`) |
 | `rarity` | int | 1~5 등급 (1=일반, 5=전설) |
@@ -239,9 +239,9 @@
 
 | 직업 | 조건 |
 |------|------|
-| 무관(武官) | 기본 해금 |
-| 문관(文官) | 무관으로 1막 보스 처치 |
-| 도사(道士) | 총 런 3회 완료 |
+| 무관 | 기본 해금 |
+| 문관 | 무관으로 1막 보스 처치 |
+| 도사 | 총 런 3회 완료 |
 
 ---
 
@@ -313,8 +313,8 @@
 | 직업 | HP | 기/턴 | 고유 자원 |
 |------|-----|-------|----------|
 | 도사 | 75 | 3 | 없음 (천지기 패시브) |
-| 무관 | 80 | 3 | 기력(氣力, max 8) |
-| 문관 | 70 | 3 | 학식(學識, max 6) |
+| 무관 | 80 | 3 | 기력(max 8) |
+| 문관 | 70 | 3 | 학식(max 6) |
 
 ---
 

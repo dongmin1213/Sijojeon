@@ -27,7 +27,6 @@
       "id": "E001",
       "name": {
         "ko": "불량배",
-        "hanja": "",
         "romanized": "Bullyangbae",
         "en": "Thug"
       },
@@ -114,7 +113,6 @@
       "id": "E002",
       "name": {
         "ko": "포졸",
-        "hanja": "",
         "romanized": "Pojol",
         "en": "Constable"
       },
@@ -215,7 +213,6 @@
       "id": "E003",
       "name": {
         "ko": "원혼",
-        "hanja": "",
         "romanized": "Wonhon",
         "en": "Grudge Spirit"
       },
@@ -327,7 +324,6 @@
       "id": "E004",
       "name": {
         "ko": "도깨비",
-        "hanja": "",
         "romanized": "Dokkaebi",
         "en": "Dokkaebi"
       },
@@ -437,7 +433,6 @@
       "id": "E005",
       "name": {
         "ko": "포졸 대장",
-        "hanja": "",
         "romanized": "Pojol Daejang",
         "en": "Constable Captain"
       },
@@ -539,7 +534,6 @@
       "id": "E006",
       "name": {
         "ko": "악귀",
-        "hanja": "",
         "romanized": "Akgwi",
         "en": "Fiend"
       },
@@ -649,7 +643,6 @@
       "id": "E007",
       "name": {
         "ko": "탐관오리",
-        "hanja": "",
         "romanized": "Tamgwan-oli",
         "en": "Corrupt Official"
       },
@@ -778,7 +771,6 @@
       "id": "E008",
       "name": {
         "ko": "포졸 창병",
-        "hanja": "",
         "romanized": "Pojol Changbyeong",
         "en": "Spear Constable"
       },
@@ -867,7 +859,6 @@
       "id": "E009",
       "name": {
         "ko": "행수",
-        "hanja": "",
         "romanized": "Haengsu",
         "en": "Guild Boss"
       },
@@ -955,7 +946,6 @@
       "id": "E010",
       "name": {
         "ko": "기생",
-        "hanja": "",
         "romanized": "Gisaeng",
         "en": "Gisaeng"
       },
@@ -1051,7 +1041,6 @@
       "id": "E011",
       "name": {
         "ko": "점쟁이",
-        "hanja": "",
         "romanized": "Jeomjaengi",
         "en": "Fortune Teller"
       },
@@ -1176,7 +1165,6 @@
       "id": "EL001",
       "name": {
         "ko": "이무기",
-        "hanja": "",
         "romanized": "Imugi",
         "en": "Imugi"
       },
@@ -1275,7 +1263,6 @@
       "id": "EL002",
       "name": {
         "ko": "옥사장",
-        "hanja": "",
         "romanized": "Oksajang",
         "en": "Prison Warden"
       },
@@ -1414,7 +1401,6 @@
       "id": "EL003",
       "name": {
         "ko": "무당",
-        "hanja": "",
         "romanized": "Mudang",
         "en": "Shaman"
       },
@@ -1608,7 +1594,6 @@
       "id": "출혈",
       "ko": "출혈",
       "en": "Bleed",
-      "hanja": "",
       "description": "매 턴 시작 시 스택 수만큼 피해. 중첩 가능 (최대 10). 전투 종료 시 소멸. ZER-56 에서 정의 추가 (R014 저주받은 투구 연동).",
       "duration_type": "until_combat_end",
       "visual_note": "붉은 핏방울 아이콘"
@@ -1623,7 +1608,6 @@
       "id": "구금",
       "ko": "구금",
       "en": "Detention",
-      "hanja": "",
       "description": "카드 사용 비용 +1. 지정 턴 수 후 해제. EL002 옥사장이 사용하는 신규 디버프."
     }
   ]

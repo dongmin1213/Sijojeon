@@ -1,7 +1,7 @@
 class_name SisangSystem
 extends RefCounted
 
-## 시상(詩想) 시스템 (Phase 2-2).
+## 시상 시스템 (Phase 2-2).
 ## 런 전체에 시조 완성 횟수를 누적하여 마일스톤 보상 제공.
 ## 시상 5: 이벤트 추가 선택지 해금
 ## 시상 10: 시조 일격 피해 +25%

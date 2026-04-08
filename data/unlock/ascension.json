@@ -5,7 +5,6 @@
   "balance_ref": "ZER-100 (어센션/난이도 시스템). 모바일 솔로 플레이 기준 설계.",
   "system_name": {
     "ko": "귀신 단계",
-    "hanja": "",
     "romanized": "Gwisin Danji",
     "description": {
       "ko": "강해질수록 귀신도 넘는다는 조선식 표현. 단계 숫자가 높을수록 더 강한 귀신과 싸우는 난이도.",
@@ -18,7 +17,6 @@
     "id": "CURSE_001",
     "name": {
       "ko": "뒤주",
-      "hanja": "",
       "romanized": "Dweju",
       "en": "Rice Chest"
     },
@@ -348,7 +346,11 @@
       "unlock_rewards": [
         {
           "type": "event_unlock",
-          "event_ids": ["EVT_ASC5_001", "EVT_ASC5_002", "EVT_ASC5_003"],
+          "event_ids": [
+            "EVT_ASC5_001",
+            "EVT_ASC5_002",
+            "EVT_ASC5_003"
+          ],
           "description": {
             "ko": "고난이도 전용 이벤트 3개 해금 — '산신의 시험', '원혼의 거래', '도깨비 장터'",
             "en": "Unlock 3 high-difficulty events — 'Mountain God's Trial', 'Ghost's Bargain', 'Dokkaebi Market'"
@@ -967,7 +969,6 @@
     "id": "E_MINI_SPIRIT",
     "name": {
       "ko": "영혼 잔해",
-      "hanja": "",
       "romanized": "Yeonghon Janhae",
       "en": "Soul Remnant"
     },

@@ -56,7 +56,6 @@
       "id": "R001",
       "name": {
         "ko": "편자",
-        "hanja": "",
         "romanized": "Pyeonja",
         "en": "Horsewhip"
       },
@@ -89,7 +88,6 @@
       "id": "R002",
       "name": {
         "ko": "평안 부적",
-        "hanja": "",
         "romanized": "Pyeongan Bujeok",
         "en": "Peace Talisman"
       },
@@ -122,7 +120,6 @@
       "id": "R003",
       "name": {
         "ko": "행운의 엽전",
-        "hanja": "",
         "romanized": "Haengwun Yeopjeon",
         "en": "Lucky Coin"
       },
@@ -155,7 +152,6 @@
       "id": "R004",
       "name": {
         "ko": "봉황 깃털",
-        "hanja": "",
         "romanized": "Bonghwang Gitteo",
         "en": "Phoenix Feather"
       },
@@ -187,7 +183,6 @@
       "id": "R005",
       "name": {
         "ko": "홍삼 뿌리",
-        "hanja": "",
         "romanized": "Hongsam Ppuri",
         "en": "Red Ginseng Root"
       },
@@ -219,7 +214,6 @@
       "id": "R006",
       "name": {
         "ko": "호신검",
-        "hanja": "",
         "romanized": "Hosin Geom",
         "en": "Guardian Blade"
       },
@@ -251,7 +245,6 @@
       "id": "R007",
       "name": {
         "ko": "사서",
-        "hanja": "",
         "romanized": "Saseo",
         "en": "Four Books"
       },
@@ -283,7 +276,6 @@
       "id": "R008",
       "name": {
         "ko": "동의보감",
-        "hanja": "",
         "romanized": "Dongui Bogam",
         "en": "Dongui Bogam"
       },
@@ -315,7 +307,6 @@
       "id": "R009",
       "name": {
         "ko": "무당 방울",
-        "hanja": "",
         "romanized": "Muring",
         "en": "Shaman Bell"
       },
@@ -347,7 +338,6 @@
       "id": "R010",
       "name": {
         "ko": "각궁",
-        "hanja": "",
         "romanized": "Gakgung",
         "en": "Horn Bow"
       },
@@ -379,7 +369,6 @@
       "id": "R011",
       "name": {
         "ko": "상단 장부",
-        "hanja": "",
         "romanized": "Sangdan Jangbu",
         "en": "Merchant Ledger"
       },
@@ -412,7 +401,6 @@
       "id": "R012",
       "name": {
         "ko": "어사마패",
-        "hanja": "",
         "romanized": "Eosamamapae",
         "en": "Royal Inspector's Badge"
       },
@@ -446,7 +434,6 @@
       "id": "R013",
       "name": {
         "ko": "만파식적",
-        "hanja": "",
         "romanized": "Manpasikjeok",
         "en": "Manpasikjeok"
       },
@@ -478,7 +465,6 @@
       "id": "R014",
       "name": {
         "ko": "저주받은 투구",
-        "hanja": "",
         "romanized": "Juchu",
         "en": "Cursed Helm"
       },
@@ -511,7 +497,6 @@
       "id": "R015",
       "name": {
         "ko": "삼족오 깃털",
-        "hanja": "",
         "romanized": "Samjogo Gitteo",
         "en": "Three-Legged Crow Feather"
       },
@@ -543,7 +528,6 @@
       "id": "RS001",
       "name": {
         "ko": "신내림 방울",
-        "hanja": "神降鈴",
         "romanized": "Sinnaelim Bang-ul",
         "en": "Spirit Descent Bells"
       },
@@ -574,7 +558,6 @@
       "id": "RS002",
       "name": {
         "ko": "활빈당 두건",
-        "hanja": "活貧黨頭巾",
         "romanized": "Hwalbindang Dugeon",
         "en": "Hwalbindang Headband"
       },
@@ -605,7 +588,6 @@
       "id": "RS003",
       "name": {
         "ko": "벼루",
-        "hanja": "硯",
         "romanized": "Byeoru",
         "en": "Inkstone"
       },
@@ -636,7 +618,6 @@
       "id": "RS006",
       "name": {
         "ko": "약방 주머니",
-        "hanja": "藥房囊",
         "romanized": "Yakbang Jumeoni",
         "en": "Apothecary Pouch"
       },
@@ -667,7 +648,6 @@
       "id": "RS007",
       "name": {
         "ko": "비파",
-        "hanja": "琵琶",
         "romanized": "Bipa",
         "en": "Pipa"
       },
@@ -698,7 +678,6 @@
       "id": "RS008",
       "name": {
         "ko": "목탁",
-        "hanja": "木鐸",
         "romanized": "Moktak",
         "en": "Wooden Moktak"
       },
@@ -730,7 +709,6 @@
       "id": "R016",
       "name": {
         "ko": "약재 꾸러미",
-        "hanja": "",
         "romanized": "Yakmae Kkurumi",
         "en": "Herbal Bundle"
       },
@@ -763,7 +741,6 @@
       "id": "R017",
       "name": {
         "ko": "낡은 방패",
-        "hanja": "",
         "romanized": "Nalgeun Banpae",
         "en": "Worn Shield"
       },
@@ -796,7 +773,6 @@
       "id": "R018",
       "name": {
         "ko": "이름 없는 비수",
-        "hanja": "",
         "romanized": "Ireum Eopneun Bisu",
         "en": "Nameless Dagger"
       },
@@ -829,7 +805,6 @@
       "id": "R019",
       "name": {
         "ko": "도끼 부적",
-        "hanja": "",
         "romanized": "Dokki Bujeok",
         "en": "Axe Talisman"
       },
@@ -861,7 +836,6 @@
       "id": "R020",
       "name": {
         "ko": "금강석",
-        "hanja": "",
         "romanized": "Geumgangseok",
         "en": "Adamantine"
       },
@@ -894,7 +868,6 @@
       "id": "R021",
       "name": {
         "ko": "용뇨",
-        "hanja": "",
         "romanized": "Yongnyo",
         "en": "Dragon Ambergris"
       },
@@ -926,7 +899,6 @@
       "id": "R022",
       "name": {
         "ko": "흑요석 인장",
-        "hanja": "",
         "romanized": "Heugyoseok Injang",
         "en": "Obsidian Seal"
       },
@@ -958,7 +930,6 @@
       "id": "R023",
       "name": {
         "ko": "달빛 거울",
-        "hanja": "",
         "romanized": "Dalbich Geoul",
         "en": "Moonlight Mirror"
       },
@@ -991,7 +962,6 @@
       "id": "R024",
       "name": {
         "ko": "혈맹 계약서",
-        "hanja": "",
         "romanized": "Hyeolmaeng Gyeyakseo",
         "en": "Blood Pact"
       },
@@ -1023,7 +993,6 @@
       "id": "R025",
       "name": {
         "ko": "오행진",
-        "hanja": "",
         "romanized": "Ohaengjin",
         "en": "Five Elements Formation"
       },
@@ -1057,7 +1026,6 @@
       "id": "R026",
       "name": {
         "ko": "천문도",
-        "hanja": "",
         "romanized": "Cheonmundo",
         "en": "Star Chart"
       },
@@ -1090,7 +1058,6 @@
       "id": "R027",
       "name": {
         "ko": "왕의 옥새",
-        "hanja": "",
         "romanized": "Wangui Oksae",
         "en": "Royal Jade Seal"
       },
@@ -1123,7 +1090,6 @@
       "id": "R028",
       "name": {
         "ko": "불사신 부적",
-        "hanja": "",
         "romanized": "Bulsasin Bujeok",
         "en": "Immortality Talisman"
       },
@@ -1155,7 +1121,6 @@
       "id": "RM001",
       "name": {
         "ko": "병서",
-        "hanja": "",
         "romanized": "Byeongseo",
         "en": "Art of War"
       },
@@ -1188,7 +1153,6 @@
       "id": "RW001",
       "name": {
         "ko": "어진",
-        "hanja": "",
         "romanized": "Eojin",
         "en": "Royal Portrait"
       },
@@ -1221,7 +1185,6 @@
       "id": "RD001",
       "name": {
         "ko": "선단",
-        "hanja": "",
         "romanized": "Seondan",
         "en": "Elixir Pill"
       },
@@ -1254,7 +1217,6 @@
       "id": "RD002",
       "name": {
         "ko": "음양패",
-        "hanja": "",
         "romanized": "Eumyang-pae",
         "en": "Yin-Yang Tablet"
       },
@@ -1287,7 +1249,6 @@
       "id": "RS004",
       "name": {
         "ko": "시조집",
-        "hanja": "",
         "romanized": "Sijojip",
         "en": "Sijo Anthology"
       },
@@ -1320,7 +1281,6 @@
       "id": "RS005",
       "name": {
         "ko": "장단 북",
-        "hanja": "",
         "romanized": "Jangdan Buk",
         "en": "Rhythm Drum"
       },
@@ -1353,7 +1313,6 @@
       "id": "RB001",
       "name": {
         "ko": "이무령의 인장",
-        "hanja": "",
         "romanized": "Yi Muryeong Injang",
         "en": "Yi Mu-ryeong's Seal"
       },
@@ -1384,7 +1343,6 @@
       "id": "RB002",
       "name": {
         "ko": "쌍두호 가죽",
-        "hanja": "",
         "romanized": "Ssangduho Gajuk",
         "en": "Twin-Headed Tiger Hide"
       },
@@ -1415,7 +1373,6 @@
       "id": "RB003",
       "name": {
         "ko": "역적 대감의 관인",
-        "hanja": "",
         "romanized": "Yeokjeok Daegam Gwanin",
         "en": "Rebel Lord's Official Seal"
       },
@@ -1449,7 +1406,6 @@
       "id": "RELIC_WANGMYEONG_PAE",
       "name": {
         "ko": "왕명패",
-        "hanja": "",
         "romanized": "Wangmyeong Pae",
         "en": "Royal Command Badge"
       },
@@ -1478,7 +1434,6 @@
       "id": "RS101",
       "name": {
         "ko": "옥피리",
-        "hanja": "",
         "romanized": "Okpiri",
         "en": "Jade Flute"
       },
@@ -1512,7 +1467,6 @@
       "id": "RS102",
       "name": {
         "ko": "호패",
-        "hanja": "",
         "romanized": "Hopae",
         "en": "Identity Tag"
       },
@@ -1544,7 +1498,6 @@
       "id": "RS103",
       "name": {
         "ko": "연적",
-        "hanja": "",
         "romanized": "Yeonjeok",
         "en": "Water Dropper"
       },
@@ -1577,7 +1530,6 @@
       "id": "RS104",
       "name": {
         "ko": "청사 붓",
-        "hanja": "",
         "romanized": "Cheongsa But",
         "en": "Azure Silk Brush"
       },
@@ -1610,7 +1562,6 @@
       "id": "RS105",
       "name": {
         "ko": "의적의 갑주",
-        "hanja": "",
         "romanized": "Mugwan Gapju",
         "en": "Warrior's Armor"
       },
@@ -1642,7 +1593,6 @@
       "id": "RS106",
       "name": {
         "ko": "오얏나무 가지",
-        "hanja": "",
         "romanized": "Oyat Namu Gaji",
         "en": "Plum Tree Branch"
       },
@@ -1674,7 +1624,6 @@
       "id": "RS107",
       "name": {
         "ko": "해시계 조각",
-        "hanja": "",
         "romanized": "Haesigye Jogak",
         "en": "Sundial Fragment"
       },
@@ -1707,7 +1656,6 @@
       "id": "RS108",
       "name": {
         "ko": "사군자 족자",
-        "hanja": "",
         "romanized": "Sagunja Jokja",
         "en": "Four Gentlemen Scroll"
       },
@@ -1740,7 +1688,6 @@
       "id": "RS109",
       "name": {
         "ko": "무당의 부적",
-        "hanja": "",
         "romanized": "Dosa Bujeok",
         "en": "Taoist's Talisman"
       },
@@ -1775,7 +1722,6 @@
       "id": "출혈",
       "ko": "출혈",
       "en": "Bleed",
-      "hanja": "",
       "description": "매 턴 시작 시 스택 수만큼 피해. 중첩 가능 (최대 10). 전투 종료 시 소멸. R014 저주받은 투구가 공격 카드 사용 시 적에게 1스택씩 적용.",
       "duration_type": "until_combat_end",
       "visual_note": "붉은 핏방울 아이콘. [ZER-56에서 공식 정의 추가]"
@@ -1788,7 +1734,6 @@
         "id": "CURSE_001",
         "name": {
           "ko": "무기력",
-          "hanja": "",
           "romanized": "Mugiryeok",
           "en": "Lethargy"
         },
@@ -1802,7 +1747,6 @@
         "id": "CURSE_002",
         "name": {
           "ko": "오물",
-          "hanja": "",
           "romanized": "Omul",
           "en": "Filth"
         },

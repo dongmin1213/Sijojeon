@@ -69,21 +69,21 @@ No text, no border, no frame.
 
 ## 1. 플레이어 캐릭터
 
-### char_mugwan — 무관 (武官)
+### char_mugwan — 무관
 
 ```
 [스타일 프리픽스]
 Draw a fierce chibi Korean Joseon military officer (무관) ready for battle. He wears Korean-style lamellar armor (두정갑) over a dark navy blue jeogori jacket and baji trousers. He carries a Korean hwando (환도) single-edged curved sword drawn and ready. He has a fierce determined expression with sharp eyes, a Korean sangtu topknot under a Korean warrior's headband (전립 or 벙거지 military hat). Compact sturdy body in an aggressive battle-ready stance facing slightly right. Korean armor differs from Chinese — it uses riveted plates over fabric, not scales or lacquer. NOT Chinese style.
 ```
 
-### char_dosa — 도사 (道士)
+### char_dosa — 도사
 
 ```
 [스타일 프리픽스]
 Draw a powerful chibi Korean Joseon Taoist mystic (도사) channeling supernatural energy. He wears a white Korean dopo (도포) overcoat with wide sleeves over a blue jeogori, tied with a Korean cloth belt (대대). He holds a glowing Korean paper talisman (부적) with red ink characters in one hand. He has a long white beard, intense piercing eyes, a Korean sangtu topknot with a jade binyeo pin, and wears a Korean jeongjagwan (정자관) horsehair hat. He faces slightly right. Ethereal teal glow. NOT Chinese robes.
 ```
 
-### char_mungwan — 문관 (文官)
+### char_mungwan — 문관
 
 ```
 [스타일 프리픽스]
@@ -234,14 +234,14 @@ No text, no border, no frame — illustration only.
 Plain white background with no shadows and no other elements.
 ```
 
-### M001 — 회피 (回避)
+### M001 — 회피
 
 ```
 [카드 공통]
 A Korean Joseon warrior in hanbok gracefully sidestepping a sword strike. Korean dopo robes trail behind the dodge with motion blur. Fluid circular evasion movement. Cool blue and silver tones.
 ```
 
-### M002 — 도약 (跳躍)
+### M002 — 도약
 
 ```
 [카드 공통]
@@ -269,7 +269,7 @@ A Korean warrior in hanbok in defensive stance with arms crossed, emanating a qi
 A Korean figure in white dopo kneeling in meditation with eyes closed. Golden qi energy wisps spiral inward toward the body. Calm serene atmosphere with soft glowing aura. Korean Joseon scholar meditation pose. Gold and soft violet tones.
 ```
 
-### G001 — 진형 전환 (陣形轉換)
+### G001 — 진형 전환
 
 ```
 [카드 공통]
@@ -290,7 +290,7 @@ A V-shaped charging formation of Korean Joseon soldiers in jeonbok military vest
 A Korean Joseon Taoist mystic in white dopo overcoat throwing a burning Korean paper talisman (부적) with red ink characters. Talisman mid-flight trailing golden fire and Korean mystical symbols. Korean dopo robes billow with supernatural energy. Teal and gold tones. NOT Chinese Taoist.
 ```
 
-### W001 — 경연 (經筵)
+### W001 — 경연
 
 ```
 [카드 공통]
@@ -370,7 +370,7 @@ A Korean Joseon-era civil service examination hall (과거 시험장). Rows of l
 
 ## 7. 유물 아이콘
 
-### R001 — 편자 (鞭子)
+### R001 — 편자
 
 ```
 [아이콘 프리픽스]

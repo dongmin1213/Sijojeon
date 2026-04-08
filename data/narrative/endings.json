@@ -6,7 +6,11 @@
   "ending_determination": {
     "method": "score_based",
     "description": "런 중 이벤트 선택에서 '정의', '자비', '야망' 태그가 붙은 선택지를 고를 때마다 해당 점수가 누적. Act 3 최종 보스 처치 후 가장 높은 점수의 엔딩으로 분기.",
-    "score_keys": ["justice", "mercy", "ambition"],
+    "score_keys": [
+      "justice",
+      "mercy",
+      "ambition"
+    ],
     "tiebreaker": "justice"
   },
   "endings": [
@@ -14,7 +18,6 @@
       "id": "ending_justice",
       "name": {
         "ko": "어사출두 — 정의의 끝",
-        "hanja": "暗行御史出頭",
         "en": "The Inspector Revealed — End of Justice"
       },
       "condition": {
@@ -48,7 +51,6 @@
       "id": "ending_mercy",
       "name": {
         "ko": "마패를 묻다 — 자비의 끝",
-        "hanja": "慈悲",
         "en": "Burying the Mapae — End of Mercy"
       },
       "condition": {
@@ -82,7 +84,6 @@
       "id": "ending_ambition",
       "name": {
         "ko": "새 권좌 — 야망의 끝",
-        "hanja": "野望",
         "en": "The New Throne — End of Ambition"
       },
       "condition": {
@@ -116,7 +117,6 @@
       "id": "true_ending",
       "name": {
         "ko": "마패를 넘어서 — 진 엔딩",
-        "hanja": "超越",
         "en": "Beyond the Mapae — True Ending"
       },
       "condition": {
@@ -157,15 +157,29 @@
     "description": "이벤트 선택지에 태그를 부여하여 엔딩 점수를 누적시키는 시스템. 기존 이벤트 데이터에 tag 필드 추가 필요.",
     "justice": {
       "ko": "정의",
-      "examples": ["부패 관리 고발", "뇌물 거절", "약자 보호를 위해 싸움 선택"]
+      "examples": [
+        "부패 관리 고발",
+        "뇌물 거절",
+        "약자 보호를 위해 싸움 선택"
+      ]
     },
     "mercy": {
       "ko": "자비",
-      "examples": ["적 살려줌", "용서 선택", "비폭력 해결", "자원 나눔"]
+      "examples": [
+        "적 살려줌",
+        "용서 선택",
+        "비폭력 해결",
+        "자원 나눔"
+      ]
     },
     "ambition": {
       "ko": "야망",
-      "examples": ["뇌물 수수", "권력 추구", "이기적 선택", "금화 우선"]
+      "examples": [
+        "뇌물 수수",
+        "권력 추구",
+        "이기적 선택",
+        "금화 우선"
+      ]
     }
   }
 }
