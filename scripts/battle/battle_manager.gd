@@ -123,17 +123,25 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	discard_pile.clear()
 	exhaust_pile.clear()
 
-	# 클래스 고유 자원 초기화 (무관: 기력 최대 10, 문관: 학식 최대 6)
+	# 클래스 고유 자원 초기화 (6직업 전부 고유 자원 보유)
 	self.character_id = character_id
-	has_class_resource = character_id in ["mugwan", "mungwan"]
+	has_class_resource = character_id in ["mugwan", "mungwan", "dosa", "uiwon", "gungsu", "sangin"]
 	current_class_resource = 0
 	_next_card_cost_reduce = 0
 	_next_card_power_bonus = 0.0
 	match character_id:
 		"mugwan":
-			max_class_resource = 10
+			max_class_resource = 10  # 기력
 		"mungwan":
-			max_class_resource = 6
+			max_class_resource = 6   # 학식
+		"dosa":
+			max_class_resource = 8   # 영력
+		"uiwon":
+			max_class_resource = 8   # 약재
+		"gungsu":
+			max_class_resource = 8   # 흥
+		"sangin":
+			max_class_resource = 6   # 인과
 		_:
 			max_class_resource = DEFAULT_MAX_CLASS_RESOURCE
 	if has_class_resource:

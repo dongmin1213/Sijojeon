@@ -144,17 +144,13 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 		battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
 		relic_triggered.emit(relic_id, "AP +%d" % values["ap_bonus_per_battle"])
 
-	# R009 무당 방울: 영력 +2 (무당 전용, 향후 확장)
-	if values.has("spirit_power_on_battle_start"):
-		relic_triggered.emit(relic_id, tr("RELIC_SPIRIT_POWER_FMT") % values["spirit_power_on_battle_start"])
-
-	# RS003 필연: 문관 전투 시작 시 학식 2 획득
-	if values.has("scholarship_on_battle_start") and battle_manager.has_class_resource and battle_manager.character_id == "mungwan":
-		var amount: int = values["scholarship_on_battle_start"]
+	# 시작 유물: 클래스 고유 자원 획득 (RS001 신내림 방울, RS003 벼루, RS006 약방 주머니, RS007 비파, RS008 목탁)
+	if values.has("class_resource_on_battle_start") and battle_manager.has_class_resource:
+		var amount: int = values["class_resource_on_battle_start"]
 		battle_manager.current_class_resource += amount
 		battle_manager.current_class_resource = mini(battle_manager.current_class_resource, battle_manager.max_class_resource)
 		battle_manager.class_resource_changed.emit(battle_manager.current_class_resource, battle_manager.max_class_resource)
-		relic_triggered.emit(relic_id, tr("RELIC_SCHOLARSHIP_FMT") % amount)
+		relic_triggered.emit(relic_id, tr("RELIC_CLASS_RESOURCE_FMT") % amount)
 
 	# R012 어사마패: 최고 HP 적에게 취약 2
 	if values.has("vulnerable_stacks"):
@@ -184,7 +180,7 @@ func _handle_battle_start_relic(relic_id: String, relic: Dictionary, values: Dic
 		battle_manager.current_qi += values["max_qi_per_battle"]
 		battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
 
-	# RS002: 무관 시작 유물 — 전투 시작 시 토큰 생성
+	# RS002 활빈당 두건: 의적 시작 유물 — 전투 시작 시 토큰 생성
 	if values.has("tokens") and battle_manager.character_id == "mugwan":
 		battle_manager.status_effects.apply_effect("player", "병사_토큰", values["tokens"])
 		relic_triggered.emit(relic_id, tr("RELIC_SOLDIER_TOKEN_FMT") % values["tokens"])

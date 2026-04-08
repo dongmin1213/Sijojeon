@@ -8,17 +8,17 @@
       "description": "플레이어 HP 시스템",
       "base_hp_by_class": {
         "dosa": {
-          "class_ko": "도사",
+          "class_ko": "무당",
           "hp": 75,
           "rationale": "StS Ironclad(80)보다 낮고 Silent(70)와 동일. 술법형 캐릭터는 방어보다 디버프/회피로 생존 — 낮은 HP로 긴장감 유지."
         },
         "mugwan": {
-          "class_ko": "무관",
+          "class_ko": "의적",
           "hp": 80,
           "rationale": "진형과 병사 토큰으로 실질 피해를 줄이는 구조. 기본 HP를 높게 설정해 방어 플레이 패턴에 적합."
         },
         "mungwan": {
-          "class_ko": "문관",
+          "class_ko": "선비",
           "hp": 70,
           "rationale": "학식 축적 → 폭발형 지략 캐릭터. HP가 낮지만 취약 디버프와 광역 폭딜로 전투를 빠르게 끝내는 전략. 방어도 카드(경연·예제)로 생존. 65→70으로 상향하여 초반 생존성 개선."
         }
@@ -63,7 +63,7 @@
   "character_special_skills": [
     {
       "class_id": "dosa",
-      "class_ko": "도사",
+      "class_ko": "무당",
       "class_hanja": "",
       "passive_name": {
         "ko": "천지기",
@@ -90,19 +90,19 @@
       "starting_relic": {
         "id": "RS001",
         "name": {
-          "ko": "부적 낭( )",
-          "hanja": "",
-          "en": "Talisman Pouch"
+          "ko": "신내림 방울",
+          "hanja": "神降鈴",
+          "en": "Spirit Descent Bells"
         },
         "effect": {
-          "ko": "전투 시작 시 손패에 무작위 부적 카드(T001~T005 중 1장) 1장 추가.",
-          "en": "At combat start, add 1 random talisman card (from T001-T005) to your hand."
+          "ko": "전투 시작 시 영력 2를 획득한다.",
+          "en": "Gain 2 Spirit Power at the start of combat."
         },
         "flavor": {
-          "ko": "천 주머니에 담긴 부적이 전투 시작을 알린다.",
-          "en": "The talismans within this cloth pouch herald the start of battle."
+          "ko": "방울 소리에 신령이 내려앉는다 — 무당의 전투는 여기서 시작된다.",
+          "en": "Spirits descend at the sound of these bells — the shaman's battle begins here."
         },
-        "rationale": "0코스트 카드 1장 선물 — 시조 초장 슬롯을 채우거나 기 관리에 활용 가능."
+        "rationale": "첫 턴부터 영력 2로 시작. 저주·소환 카드의 영력 조건을 즉시 충족 가능."
       },
       "tactical_loop": {
         "name": "도사 기동 루프",
@@ -124,7 +124,7 @@
     },
     {
       "class_id": "mugwan",
-      "class_ko": "무관",
+      "class_ko": "의적",
       "class_hanja": "",
       "passive_name": {
         "ko": "지휘통솔",
@@ -151,17 +151,17 @@
       "starting_relic": {
         "id": "RS002",
         "name": {
-          "ko": "마패",
-          "hanja": "",
-          "en": "Horse Medallion"
+          "ko": "활빈당 두건",
+          "hanja": "活貧黨頭巾",
+          "en": "Hwalbindang Headband"
         },
         "effect": {
           "ko": "전투 시작 시 병사 토큰 1개를 자동으로 생성한다.",
           "en": "At combat start, automatically generate 1 soldier token."
         },
         "flavor": {
-          "ko": "국왕의 명을 받은 장수의 마패 — 출전과 동시에 부하가 집결한다.",
-          "en": "The medallion of a general bearing the King's command — soldiers rally the moment battle begins."
+          "ko": "활빈당의 표식이 새겨진 두건 — 쓰는 순간 동료들이 뒤를 따른다.",
+          "en": "A headband marked with the Hwalbindang seal — the moment you don it, comrades follow."
         },
         "rationale": "첫 턴부터 지휘통솔 패시브 발동. 방어도 2 보너스 + 첫 토큰으로 G002(돌격) 즉시 보너스 가능."
       },
@@ -197,7 +197,7 @@
     },
     {
       "class_id": "mungwan",
-      "class_ko": "문관",
+      "class_ko": "선비",
       "class_hanja": "",
       "passive_name": {
         "ko": "학식충전",
@@ -224,17 +224,17 @@
       "starting_relic": {
         "id": "RS003",
         "name": {
-          "ko": "필연",
-          "hanja": "",
-          "en": "Brush and Inkstone"
+          "ko": "벼루",
+          "hanja": "硯",
+          "en": "Inkstone"
         },
         "effect": {
           "ko": "전투 시작 시 학식 2를 획득한다.",
           "en": "At combat start, gain 2 Erudition."
         },
         "flavor": {
-          "ko": "붓과 벼루를 항상 곁에 두는 관료 — 전장에서도 학문을 게을리하지 않는다.",
-          "en": "A bureaucrat who keeps brush and inkstone always at hand — never neglecting scholarship, even on the battlefield."
+          "ko": "먹물이 마르지 않는 벼루 — 선비의 학식은 전장에서도 빛난다.",
+          "en": "An inkstone that never dries — a scholar's wisdom shines even on the battlefield."
         },
         "rationale": "첫 턴부터 학식 2로 시작. 탄핵(학식 1 소비) 즉시 사용 가능. 독서 1장이면 학식 3으로 상소 준비 완료."
       },
@@ -258,6 +258,150 @@
           "상소 발동 시점: 학식 4(12 AoE)에서 즉시 vs 학식 6(18 AoE)까지 기다리기",
           "경연개설 타이밍: 상소 직전 학식 보충 vs 초반 학식 빌드업 가속"
         ]
+      }
+    },
+    {
+      "class_id": "uiwon",
+      "class_ko": "의녀",
+      "class_hanja": "",
+      "passive_name": {
+        "ko": "약초학",
+        "description": {
+          "ko": "턴 종료 시 이번 턴에 회복 또는 독 카드를 사용했으면 약재 1을 획득한다.",
+          "en": "At end of turn, if you played a healing or poison card this turn, gain 1 Herb."
+        },
+        "en": "Herbalism"
+      },
+      "passive_rationale": "회복·독 카드 사용을 장려. 약재 축적 사이클 가속.",
+      "active_skill": {
+        "name": {
+          "ko": "처방전",
+          "description": {
+            "ko": "전투 중 1회 사용 가능. 약재를 2 소비하여 HP 8을 회복한다.",
+            "en": "Usable once per combat. Spend 2 Herbs to restore 8 HP."
+          },
+          "en": "Prescription"
+        },
+        "active_rationale": "약재 소비로 HP 회복. 지구전 전략 지원.",
+        "cooldown": "전투당 1회",
+        "unlock_condition": "기본 보유 (잠금 없음)"
+      },
+      "starting_relic": {
+        "id": "RS006",
+        "name": {
+          "ko": "약방 주머니",
+          "hanja": "藥房囊",
+          "en": "Apothecary Pouch"
+        },
+        "effect": {
+          "ko": "전투 시작 시 약재 2를 획득한다.",
+          "en": "Gain 2 Herbs at the start of combat."
+        },
+        "flavor": {
+          "ko": "갖은 약초가 든 주머니 — 의녀의 손길이 닿으면 독도 약이 된다.",
+          "en": "A pouch filled with various herbs — in the healer's hands, even poison becomes medicine."
+        },
+        "rationale": "첫 턴부터 약재 2로 시작. 회복·해독 카드의 약재 조건을 즉시 충족 가능."
+      },
+      "class_resource": {
+        "id": "약재",
+        "max": 8
+      }
+    },
+    {
+      "class_id": "gungsu",
+      "class_ko": "기생",
+      "class_hanja": "",
+      "passive_name": {
+        "ko": "흥겨운 무대",
+        "description": {
+          "ko": "시조 슬롯을 채울 때마다 흥 1을 획득한다.",
+          "en": "Gain 1 Excitement each time you fill a Sijo slot."
+        },
+        "en": "Lively Stage"
+      },
+      "passive_rationale": "시조 시스템과 연동. 카드 사용이 곧 흥 축적으로 이어져 폭발 딜 준비.",
+      "active_skill": {
+        "name": {
+          "ko": "절정",
+          "description": {
+            "ko": "전투 중 1회 사용 가능. 현재 흥을 모두 소비하여 그 2배의 피해를 모든 적에게 준다.",
+            "en": "Usable once per combat. Consume all Excitement to deal double that amount as damage to all enemies."
+          },
+          "en": "Grand Finale"
+        },
+        "active_rationale": "흥 축적의 최종 폭발. 타이밍 판단이 핵심 — 너무 일찍 쓰면 피해 부족, 너무 늦으면 피해 누적.",
+        "cooldown": "전투당 1회",
+        "unlock_condition": "기본 보유 (잠금 없음)"
+      },
+      "starting_relic": {
+        "id": "RS007",
+        "name": {
+          "ko": "비파",
+          "hanja": "琵琶",
+          "en": "Pipa"
+        },
+        "effect": {
+          "ko": "전투 시작 시 흥 2를 획득한다.",
+          "en": "Gain 2 Excitement at the start of combat."
+        },
+        "flavor": {
+          "ko": "비파 한 곡조에 전장의 기운이 달라진다 — 기생의 무대는 어디든 펼쳐진다.",
+          "en": "A single pipa melody shifts the battlefield's energy — the entertainer's stage is wherever she stands."
+        },
+        "rationale": "첫 턴부터 흥 2로 시작. 준비 턴 없이 폭발 딜 카드의 흥 조건 즉시 활용 가능."
+      },
+      "class_resource": {
+        "id": "흥",
+        "max": 8
+      }
+    },
+    {
+      "class_id": "sangin",
+      "class_ko": "승병",
+      "class_hanja": "",
+      "passive_name": {
+        "ko": "업보",
+        "description": {
+          "ko": "적을 처치할 때마다 인과 1을 획득한다.",
+          "en": "Gain 1 Karma each time you defeat an enemy."
+        },
+        "en": "Karmic Retribution"
+      },
+      "passive_rationale": "적 처치가 인과 축적으로 이어져 조건부 강력 카드 활성화.",
+      "active_skill": {
+        "name": {
+          "ko": "참선",
+          "description": {
+            "ko": "전투 중 1회 사용 가능. 인과 2를 획득하고 방어도 5를 얻는다.",
+            "en": "Usable once per combat. Gain 2 Karma and 5 Block."
+          },
+          "en": "Meditation"
+        },
+        "active_rationale": "인과 축적 + 방어. 수비적 플레이 패턴 지원.",
+        "cooldown": "전투당 1회",
+        "unlock_condition": "기본 보유 (잠금 없음)"
+      },
+      "starting_relic": {
+        "id": "RS008",
+        "name": {
+          "ko": "목탁",
+          "hanja": "木鐸",
+          "en": "Wooden Moktak"
+        },
+        "effect": {
+          "ko": "전투 시작 시 인과 1을 획득하고 방어도 3을 얻는다.",
+          "en": "Gain 1 Karma and 3 Block at the start of combat."
+        },
+        "flavor": {
+          "ko": "목탁 소리가 울릴 때마다 인과의 수레바퀴가 돌아간다 — 승병의 길은 수행과 전투가 하나다.",
+          "en": "With each strike of the moktak, the wheel of karma turns — for the warrior monk, training and battle are one."
+        },
+        "rationale": "인과 1 + 방어도 3으로 수비적 시작. 경제 기반 조건부 강력 카드를 위한 인과 축적 시작점."
+      },
+      "class_resource": {
+        "id": "인과",
+        "max": 6
       }
     }
   ],

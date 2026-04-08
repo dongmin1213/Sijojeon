@@ -224,21 +224,21 @@
         "en": "Guardian Blade"
       },
       "rarity": 2,
-      "class_restriction": "무관",
+      "class_restriction": "의적",
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 이번 전투 동안 기력 최대치가 1 증가한다. (턴당 AP 4)",
         "en": "At the start of combat, max Stamina is increased by 1 for this fight. (4 AP per turn)"
       },
       "effect_description": {
-        "ko": "매 전투 AP 최대치 +1 (무관 전용)",
+        "ko": "매 전투 AP 최대치 +1 (의적 전용)",
         "en": "Max AP +1 per combat (Warrior only)."
       },
       "flavor_text": {
-        "ko": "무관의 허리춤에는 반드시 비상용 단검 한 자루. 이것이 있으면 손이 하나 더 생긴다.",
+        "ko": "의적의 허리춤에는 반드시 비상용 단검 한 자루. 이것이 있으면 손이 하나 더 생긴다.",
         "en": "A warrior always keeps an emergency dagger at the waist. With it, you gain an extra hand."
       },
-      "balance_rationale": "AP 1 = 기대 피해 약 6~8. 전투당 5~8턴 × 6~8 = 30~64 추가 피해 잠재. 다만 카드가 없으면 무용지물이라 '카드 수 확보' 전략을 요구. 무관 전용이므로 고급 등급 적합.",
+      "balance_rationale": "AP 1 = 기대 피해 약 6~8. 전투당 5~8턴 × 6~8 = 30~64 추가 피해 잠재. 다만 카드가 없으면 무용지물이라 '카드 수 확보' 전략을 요구. 의적 전용이므로 고급 등급 적합.",
       "obtain_from": [
         "elite_reward",
         "boss_reward"
@@ -256,14 +256,14 @@
         "en": "Four Books"
       },
       "rarity": 2,
-      "class_restriction": "문관",
+      "class_restriction": "선비",
       "trigger": "on_first_card_play_per_turn",
       "effect": {
         "ko": "매 턴 첫 번째 카드를 사용할 때 카드 1장을 추가로 드로우한다.",
         "en": "Draw 1 additional card when you play the first card each turn."
       },
       "effect_description": {
-        "ko": "턴당 첫 카드 사용 시 드로우 +1 (문관 전용)",
+        "ko": "턴당 첫 카드 사용 시 드로우 +1 (선비 전용)",
         "en": "Draw +1 on first card played per turn (Scholar only)."
       },
       "flavor_text": {
@@ -288,14 +288,14 @@
         "en": "Dongui Bogam"
       },
       "rarity": 2,
-      "class_restriction": "의원",
+      "class_restriction": "의녀",
       "trigger": "on_apply_poison",
       "effect": {
         "ko": "독을 부여할 때 스택이 1 추가된다.",
         "en": "When applying Poison, add 1 extra stack."
       },
       "effect_description": {
-        "ko": "독 부여 스택 +1 (의원 전용)",
+        "ko": "독 부여 스택 +1 (의녀 전용)",
         "en": "Poison stacks +1 (Physician only)."
       },
       "flavor_text": {
@@ -340,7 +340,7 @@
         "event"
       ],
       "values": {
-        "spirit_power_on_battle_start": 2
+        "class_resource_on_battle_start": 2
       }
     },
     {
@@ -352,21 +352,21 @@
         "en": "Horn Bow"
       },
       "rarity": 2,
-      "class_restriction": "궁수",
+      "class_restriction": "기생",
       "trigger": "passive",
       "effect": {
         "ko": "화살 최대 보유량이 3 증가하고, 전투 시작 시 화살 2개를 추가로 지급한다.",
         "en": "Max arrow capacity increased by 3, and gain 2 extra arrows at the start of combat."
       },
       "effect_description": {
-        "ko": "화살 최대 +3, 전투 시작 화살 +2 (궁수 전용)",
+        "ko": "흥 최대 +3, 전투 시작 흥 +2 (기생 전용)",
         "en": "Max arrows +3, arrows +2 at battle start (Archer only)."
       },
       "flavor_text": {
         "ko": "쇠뿔로 만든 활은 탄성이 뛰어나 멀리, 더 많이 쏠 수 있다.",
         "en": "A bow made of ox horn — its elasticity allows farther and more frequent shots."
       },
-      "balance_rationale": "궁수의 핵심 제약은 화살 고갈. 최대량 +3은 한 전투에서 2~3회 추가 발사 잠재. 시작 화살 +2는 초반 폭발력 강화. 궁수 전용 리소스라 직접 수치 비교가 무의미하지만, 의존 전략 활성화에 충분.",
+      "balance_rationale": "궁수의 핵심 제약은 화살 고갈. 최대량 +3은 한 전투에서 2~3회 추가 발사 잠재. 시작 화살 +2는 초반 폭발력 강화. 기생 전용 리소스라 직접 수치 비교가 무의미하지만, 의존 전략 활성화에 충분.",
       "obtain_from": [
         "elite_reward"
       ],
@@ -384,14 +384,14 @@
         "en": "Merchant Ledger"
       },
       "rarity": 2,
-      "class_restriction": "상인",
+      "class_restriction": "승병",
       "trigger": "on_enter_shop",
       "effect": {
         "ko": "상점에 입장할 때마다 골드 35를 추가로 획득한다. (런당 최대 2회)",
         "en": "Gain 35 Gold each time you enter a shop. (Max 2 times per run)"
       },
       "effect_description": {
-        "ko": "상점 입장 시 골드 +35 (최대 2회, 상인 전용)",
+        "ko": "상점 입장 시 골드 +35 (최대 2회, 승병 전용)",
         "en": "Gold +35 on shop entry (max 2 per run, Merchant only)."
       },
       "flavor_text": {
@@ -542,56 +542,58 @@
     {
       "id": "RS001",
       "name": {
-        "ko": "부적 낭",
-        "hanja": "",
-        "romanized": "Bujeok Nang",
-        "en": "Talisman Pouch"
+        "ko": "신내림 방울",
+        "hanja": "神降鈴",
+        "romanized": "Sinnaelim Bang-ul",
+        "en": "Spirit Descent Bells"
       },
       "rarity": 2,
-      "class_restriction": "도사",
+      "class_restriction": "무당",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 손패에 무작위 부적 카드 1장 추가.",
-        "en": "Add 1 random Talisman card to your hand at the start of combat."
+        "ko": "전투 시작 시 영력 2를 획득한다.",
+        "en": "Gain 2 Spirit Power at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 시 부적 카드 1장 추가 (도사 전용, 시작 유물)",
-        "en": "Add 1 Talisman card at battle start (Taoist only, starting relic)."
+        "ko": "전투 시작 시 영력 +2 (무당 전용, 시작 유물)",
+        "en": "Spirit Power +2 at battle start (Shaman only, starting relic)."
       },
       "flavor_text": {
-        "ko": "천 주머니에 담긴 부적이 전투 시작을 알린다.",
-        "en": "The talismans in the cloth pouch herald the start of battle."
+        "ko": "방울 소리에 신령이 내려앉는다 — 무당의 전투는 여기서 시작된다.",
+        "en": "Spirits descend at the sound of these bells — the shaman's battle begins here."
       },
-      "balance_rationale": "도사 시작 유물. 0코스트 카드 1장 선물 — 시조 초장 슬롯을 채우거나 기 관리에 활용 가능.",
+      "balance_rationale": "무당 시작 유물. 첫 턴부터 영력 2로 시작. 저주·소환 카드의 영력 조건을 즉시 충족 가능. 영력 기반 콤보 진입 장벽 완화.",
       "obtain_from": [
         "starting_relic"
       ],
-      "values": {}
+      "values": {
+        "class_resource_on_battle_start": 2
+      }
     },
     {
       "id": "RS002",
       "name": {
-        "ko": "마패",
-        "hanja": "",
-        "romanized": "Mapae",
-        "en": "Horse Medallion"
+        "ko": "활빈당 두건",
+        "hanja": "活貧黨頭巾",
+        "romanized": "Hwalbindang Dugeon",
+        "en": "Hwalbindang Headband"
       },
       "rarity": 2,
-      "class_restriction": "무관",
+      "class_restriction": "의적",
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 병사 토큰 1개를 자동으로 생성한다.",
         "en": "Automatically create 1 Soldier Token at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 시 병사 토큰 1개 생성 (무관 전용, 시작 유물)",
-        "en": "Create 1 Soldier Token at battle start (Warrior only, starting relic)."
+        "ko": "전투 시작 시 병사 토큰 1개 생성 (의적 전용, 시작 유물)",
+        "en": "Create 1 Soldier Token at battle start (Bandit only, starting relic)."
       },
       "flavor_text": {
-        "ko": "국왕의 명을 받은 장수의 마패 — 출전과 동시에 부하가 집결한다.",
-        "en": "A commander's medallion bearing the king's orders — troops rally the moment battle begins."
+        "ko": "활빈당의 표식이 새겨진 두건 — 쓰는 순간 동료들이 뒤를 따른다.",
+        "en": "A headband marked with the Hwalbindang seal — the moment you don it, comrades follow."
       },
-      "balance_rationale": "무관 시작 유물. 첫 턴부터 지휘통솔 패시브 발동. 방어도 2 보너스 + 첫 토큰으로 돌격 보너스 가능.",
+      "balance_rationale": "의적 시작 유물. 첫 턴부터 지휘통솔 패시브 발동. 방어도 2 보너스 + 첫 토큰으로 돌격 보너스 가능.",
       "obtain_from": [
         "starting_relic"
       ],
@@ -602,32 +604,126 @@
     {
       "id": "RS003",
       "name": {
-        "ko": "필연",
-        "hanja": "",
-        "romanized": "Pilyeon",
-        "en": "Brush and Inkstone"
+        "ko": "벼루",
+        "hanja": "硯",
+        "romanized": "Byeoru",
+        "en": "Inkstone"
       },
       "rarity": 2,
-      "class_restriction": "문관",
+      "class_restriction": "선비",
       "trigger": "battle_start",
       "effect": {
         "ko": "전투 시작 시 학식 2를 획득한다.",
         "en": "Gain 2 Scholarship at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 시 학식 +2 (문관 전용, 시작 유물)",
+        "ko": "전투 시작 시 학식 +2 (선비 전용, 시작 유물)",
         "en": "Scholarship +2 at battle start (Scholar only, starting relic)."
       },
       "flavor_text": {
-        "ko": "붓과 벼루를 항상 곁에 두는 관료 — 전장에서도 학문을 게을리하지 않는다.",
-        "en": "A bureaucrat who always keeps brush and inkstone at hand — never neglecting scholarship, even on the battlefield."
+        "ko": "먹물이 마르지 않는 벼루 — 선비의 학식은 전장에서도 빛난다.",
+        "en": "An inkstone that never dries — a scholar's wisdom shines even on the battlefield."
       },
-      "balance_rationale": "문관 시작 유물. 첫 턴부터 학식 2로 시작. 탄핵(학식 1 소비) 즉시 사용 가능. 독서 1장이면 학식 3으로 상소 준비 완료.",
+      "balance_rationale": "선비 시작 유물. 첫 턴부터 학식 2로 시작. 탄핵(학식 1 소비) 즉시 사용 가능. 독서 1장이면 학식 3으로 상소 준비 완료.",
       "obtain_from": [
         "starting_relic"
       ],
       "values": {
-        "scholarship_on_battle_start": 2
+        "class_resource_on_battle_start": 2
+      }
+    },
+    {
+      "id": "RS006",
+      "name": {
+        "ko": "약방 주머니",
+        "hanja": "藥房囊",
+        "romanized": "Yakbang Jumeoni",
+        "en": "Apothecary Pouch"
+      },
+      "rarity": 2,
+      "class_restriction": "의녀",
+      "trigger": "battle_start",
+      "effect": {
+        "ko": "전투 시작 시 약재 2를 획득한다.",
+        "en": "Gain 2 Herbs at the start of combat."
+      },
+      "effect_description": {
+        "ko": "전투 시작 시 약재 +2 (의녀 전용, 시작 유물)",
+        "en": "Herbs +2 at battle start (Healer only, starting relic)."
+      },
+      "flavor_text": {
+        "ko": "갖은 약초가 든 주머니 — 의녀의 손길이 닿으면 독도 약이 된다.",
+        "en": "A pouch filled with various herbs — in the healer's hands, even poison becomes medicine."
+      },
+      "balance_rationale": "의녀 시작 유물. 첫 턴부터 약재 2로 시작. 회복·해독 카드의 약재 조건을 즉시 충족 가능. 독 DoT와 HP 관리 전략의 진입 장벽 완화.",
+      "obtain_from": [
+        "starting_relic"
+      ],
+      "values": {
+        "class_resource_on_battle_start": 2
+      }
+    },
+    {
+      "id": "RS007",
+      "name": {
+        "ko": "비파",
+        "hanja": "琵琶",
+        "romanized": "Bipa",
+        "en": "Pipa"
+      },
+      "rarity": 2,
+      "class_restriction": "기생",
+      "trigger": "battle_start",
+      "effect": {
+        "ko": "전투 시작 시 흥 2를 획득한다.",
+        "en": "Gain 2 Excitement at the start of combat."
+      },
+      "effect_description": {
+        "ko": "전투 시작 시 흥 +2 (기생 전용, 시작 유물)",
+        "en": "Excitement +2 at battle start (Entertainer only, starting relic)."
+      },
+      "flavor_text": {
+        "ko": "비파 한 곡조에 전장의 기운이 달라진다 — 기생의 무대는 어디든 펼쳐진다.",
+        "en": "A single pipa melody shifts the battlefield's energy — the entertainer's stage is wherever she stands."
+      },
+      "balance_rationale": "기생 시작 유물. 첫 턴부터 흥 2로 시작. 준비 턴 없이 폭발 딜 카드의 흥 조건 즉시 활용 가능. 타이밍 집중형 플레이의 초반 리듬 확보.",
+      "obtain_from": [
+        "starting_relic"
+      ],
+      "values": {
+        "class_resource_on_battle_start": 2
+      }
+    },
+    {
+      "id": "RS008",
+      "name": {
+        "ko": "목탁",
+        "hanja": "木鐸",
+        "romanized": "Moktak",
+        "en": "Wooden Moktak"
+      },
+      "rarity": 2,
+      "class_restriction": "승병",
+      "trigger": "battle_start",
+      "effect": {
+        "ko": "전투 시작 시 인과 1을 획득하고 방어도 3을 얻는다.",
+        "en": "Gain 1 Karma and 3 Block at the start of combat."
+      },
+      "effect_description": {
+        "ko": "전투 시작 시 인과 +1, 방어도 +3 (승병 전용, 시작 유물)",
+        "en": "Karma +1, Block +3 at battle start (Warrior Monk only, starting relic)."
+      },
+      "flavor_text": {
+        "ko": "목탁 소리가 울릴 때마다 인과의 수레바퀴가 돌아간다 — 승병의 길은 수행과 전투가 하나다.",
+        "en": "With each strike of the moktak, the wheel of karma turns — for the warrior monk, training and battle are one."
+      },
+      "balance_rationale": "승병 시작 유물. 인과 1 + 방어도 3으로 수비적 시작. 승병의 경제 기반 조건부 강력 카드를 위한 인과 축적 시작점. 방어도는 느린 시작을 보완.",
+      "obtain_from": [
+        "starting_relic"
+      ],
+      "values": {
+        "class_resource_on_battle_start": 1,
+        "block_on_battle_start": 3
       }
     },
     {
@@ -1064,21 +1160,21 @@
         "en": "Art of War"
       },
       "rarity": 2,
-      "class_restriction": "무관",
+      "class_restriction": "의적",
       "trigger": "on_formation_card_play",
       "effect": {
         "ko": "진형 카드를 사용할 때마다 기력을 1 추가 획득한다.",
         "en": "Gain 1 additional Stamina whenever you play a Formation card."
       },
       "effect_description": {
-        "ko": "진형 카드 사용 시 기력 +1 추가 (무관 전용)",
+        "ko": "진형 카드 사용 시 기력 +1 추가 (의적 전용)",
         "en": "Stamina +1 on Formation card play (Warrior only)."
       },
       "flavor_text": {
         "ko": "손자의 병법을 이어받아 — 진형을 치를 때마다 기운이 더 솟는다.",
         "en": "Inheriting Sun Tzu's strategies — energy surges with every formation deployed."
       },
-      "balance_rationale": "무관 전용 고급 유물. G001 진형 전환(기력+2)→진형 전환+1=기력+3으로 강화. 진형·토큰 아키타입 핵심 가속. 기력 폭딜 아키타입과도 시너지.",
+      "balance_rationale": "의적 전용 고급 유물. G001 진형 전환(기력+2)→진형 전환+1=기력+3으로 강화. 진형·토큰 아키타입 핵심 가속. 기력 폭딜 아키타입과도 시너지.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1097,21 +1193,21 @@
         "en": "Royal Portrait"
       },
       "rarity": 2,
-      "class_restriction": "문관",
+      "class_restriction": "선비",
       "trigger": "on_scholarship_exhaust",
       "effect": {
-        "ko": "학식을 전소할 때마다 HP 최대치의 5%를 회복한다. (문관 전용)",
+        "ko": "학식을 전소할 때마다 HP 최대치의 5%를 회복한다. (선비 전용)",
         "en": "Restore 5% of max HP whenever Scholarship is fully spent. (Scholar only)"
       },
       "effect_description": {
-        "ko": "학식 전소 시 HP 최대치 5% 회복 (문관 전용)",
+        "ko": "학식 전소 시 HP 최대치 5% 회복 (선비 전용)",
         "en": "Restore 5% max HP on Scholarship exhaust (Scholar only)."
       },
       "flavor_text": {
         "ko": "왕의 초상을 곁에 두고 충성을 다한다 — 지식을 쏟아낼 때 몸이 회복된다.",
         "en": "Keeping the royal portrait close, serving with loyalty — when knowledge pours forth, the body recovers."
       },
-      "balance_rationale": "문관 전용 고급 유물. 문관 HP 65 기준 학식 전소(상소/왕의 윤허) 시 HP 3 회복. 학식 폭발 빌드에서 매 번 학식을 전소하면 전투마다 3~5회 회복 가능.",
+      "balance_rationale": "선비 전용 고급 유물. 문관 HP 65 기준 학식 전소(상소/왕의 윤허) 시 HP 3 회복. 학식 폭발 빌드에서 매 번 학식을 전소하면 전투마다 3~5회 회복 가능.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1130,21 +1226,21 @@
         "en": "Elixir Pill"
       },
       "rarity": 2,
-      "class_restriction": "도사",
+      "class_restriction": "무당",
       "trigger": "on_spell_card_play",
       "effect": {
-        "ko": "주문(spell) 카드를 사용할 때마다 기 1을 추가로 획득한다. (도사 전용)",
+        "ko": "주문(spell) 카드를 사용할 때마다 기 1을 추가로 획득한다. (무당 전용)",
         "en": "Gain 1 additional Qi whenever you play a Spell card. (Taoist only)"
       },
       "effect_description": {
-        "ko": "주문 카드 사용 시 기 +1 (도사 전용)",
+        "ko": "주문 카드 사용 시 기 +1 (무당 전용)",
         "en": "Qi +1 on Spell card play (Taoist only)."
       },
       "flavor_text": {
         "ko": "선인들이 만든 영약 — 도술을 쓸수록 기운이 넘친다.",
         "en": "An elixir crafted by immortals — the more spells you cast, the more energy overflows."
       },
-      "balance_rationale": "도사 전용 고급 유물. D001 기공(0코스트, 기+1)이 사용 시 기+2가 됨. D008 대기(1코스트, 기+2)는 기+3. 기공·기 폭발 아키타입 핵심 가속 유물.",
+      "balance_rationale": "무당 전용 고급 유물. D001 기공(0코스트, 기+1)이 사용 시 기+2가 됨. D008 대기(1코스트, 기+2)는 기+3. 기공·기 폭발 아키타입 핵심 가속 유물.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1163,21 +1259,21 @@
         "en": "Yin-Yang Tablet"
       },
       "rarity": 2,
-      "class_restriction": "도사",
+      "class_restriction": "무당",
       "trigger": "on_summon_token_death",
       "effect": {
-        "ko": "소환한 토큰이 소멸할 때마다 카드 1장을 드로우한다. (도사 전용)",
+        "ko": "소환한 토큰이 소멸할 때마다 카드 1장을 드로우한다. (무당 전용)",
         "en": "Draw 1 card whenever a summoned token is destroyed. (Taoist only)"
       },
       "effect_description": {
-        "ko": "소환 토큰 소멸 시 드로우 +1 (도사 전용)",
+        "ko": "소환 토큰 소멸 시 드로우 +1 (무당 전용)",
         "en": "Draw +1 on summon token death (Taoist only)."
       },
       "flavor_text": {
         "ko": "음이 사라지면 양이 생기고 — 소환이 끊어지는 순간 새로운 패가 들어온다.",
         "en": "When yin fades, yang rises — the moment a summon perishes, new cards arrive."
       },
-      "balance_rationale": "도사 전용 고급 유물. D024 허수아비(소환: 소멸 시 드로우1→드로우2), D020 구미호(매 턴 5피해→소멸 시 드로우1). 소환·도술 아키타입 핵심 드로우 엔진.",
+      "balance_rationale": "무당 전용 고급 유물. D024 허수아비(소환: 소멸 시 드로우1→드로우2), D020 구미호(매 턴 5피해→소멸 시 드로우1). 소환·도술 아키타입 핵심 드로우 엔진.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1453,21 +1549,21 @@
         "en": "Water Dropper"
       },
       "rarity": 2,
-      "class_restriction": "mungwan",
+      "class_restriction": "선비",
       "trigger": "on_resource_spend",
       "effect": {
-        "ko": "학식을 소비할 때 시조 슬롯을 추가로 1칸 채운다. (문관 전용)",
+        "ko": "학식을 소비할 때 시조 슬롯을 추가로 1칸 채운다. (선비 전용)",
         "en": "Fill 1 additional Sijo slot when spending Scholarship. (Scholar only)"
       },
       "effect_description": {
-        "ko": "학식 소비 시 시조 슬롯 +1 (문관 전용)",
+        "ko": "학식 소비 시 시조 슬롯 +1 (선비 전용)",
         "en": "Sijo slot +1 on Scholarship spend (Scholar only)."
       },
       "flavor_text": {
         "ko": "먹물을 담는 작은 그릇. 학식이 흐르면 시조도 따라 흐른다.",
         "en": "A small vessel for ink. When scholarship flows, so does the Sijo."
       },
-      "balance_rationale": "문관 전용 시너지. 학식 소비 카드를 쓰면 시조 진행도 가속. 고급 등급 적합.",
+      "balance_rationale": "선비 전용 시너지. 학식 소비 카드를 쓰면 시조 진행도 가속. 고급 등급 적합.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1513,27 +1609,27 @@
     {
       "id": "RS105",
       "name": {
-        "ko": "무관의 갑주",
+        "ko": "의적의 갑주",
         "hanja": "",
         "romanized": "Mugwan Gapju",
         "en": "Warrior's Armor"
       },
       "rarity": 2,
-      "class_restriction": "mugwan",
+      "class_restriction": "의적",
       "trigger": "sijo_slot_fill",
       "effect": {
-        "ko": "시조 슬롯을 채울 때마다 방어도 3을 획득한다. (무관 전용)",
+        "ko": "시조 슬롯을 채울 때마다 방어도 3을 획득한다. (의적 전용)",
         "en": "Gain 3 Block each time a Sijo slot is filled. (Warrior only)"
       },
       "effect_description": {
-        "ko": "시조 슬롯 채움 시 방어도 +3 (무관 전용)",
+        "ko": "시조 슬롯 채움 시 방어도 +3 (의적 전용)",
         "en": "Block +3 on Sijo slot fill (Warrior only)."
       },
       "flavor_text": {
         "ko": "시를 읊조리며 갑옷을 고쳐 입는다. 무인의 시는 곧 방어다.",
         "en": "Reciting poetry while adjusting armor. A warrior's poem is defense itself."
       },
-      "balance_rationale": "시조 6슬롯 × 방어도 3 = 최대 18 방어도. 무관 전용 시조 시너지. 고급 등급 적합.",
+      "balance_rationale": "시조 6슬롯 × 방어도 3 = 최대 18 방어도. 의적 전용 시조 시너지. 고급 등급 적합.",
       "obtain_from": [
         "elite_reward",
         "shop"
@@ -1643,7 +1739,7 @@
     {
       "id": "RS109",
       "name": {
-        "ko": "도사의 부적",
+        "ko": "무당의 부적",
         "hanja": "",
         "romanized": "Dosa Bujeok",
         "en": "Taoist's Talisman"
@@ -1652,18 +1748,18 @@
       "class_restriction": "dosa",
       "trigger": "sijo_complete",
       "effect": {
-        "ko": "시조 완성 시 적 전체에 독 2를 적용한다. (도사 전용)",
+        "ko": "시조 완성 시 적 전체에 독 2를 적용한다. (무당 전용)",
         "en": "On Sijo completion, apply 2 Poison to all enemies. (Taoist only)"
       },
       "effect_description": {
-        "ko": "시조 완성 시 적 전체 독 2 (도사 전용)",
+        "ko": "시조 완성 시 적 전체 독 2 (무당 전용)",
         "en": "Poison 2 to all enemies on Sijo completion (Taoist only)."
       },
       "flavor_text": {
-        "ko": "도사가 직접 써넣은 부적. 시조의 힘이 주문을 증폭시킨다.",
+        "ko": "무당이 직접 써넣은 부적. 시조의 힘이 주문을 증폭시킨다.",
         "en": "A talisman inscribed by the Taoist himself. The power of Sijo amplifies the spell."
       },
-      "balance_rationale": "도사 전용 시조 시너지. 독 빌드와 시너지. 고급 등급 적합.",
+      "balance_rationale": "무당 전용 시조 시너지. 독 빌드와 시너지. 고급 등급 적합.",
       "obtain_from": [
         "elite_reward",
         "event",
