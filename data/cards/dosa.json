@@ -856,10 +856,10 @@
     {
       "id": "D021",
       "name": {
-        "ko": "청룡 기공",
+        "ko": "산신 기공",
         "hanja": "",
-        "romanized": "Cheongnyong Gigong",
-        "en": "Azure Dragon Art"
+        "romanized": "Sansin Gigong",
+        "en": "Mountain Spirit Art"
       },
       "beat": 4,
       "cost": 2,
@@ -870,18 +870,18 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 10 피해를 입힌다. 청룡 기공 토큰을 소환한다. 토큰: 매 턴 종료 시 기 1 회복.",
-        "en": "Deal 10 damage to an enemy. Summon an Azure Dragon token. Token: recover 1 Qi at end of each turn."
+        "ko": "적에게 10 피해를 입힌다. 산신 기공 토큰을 소환한다. 토큰: 매 턴 종료 시 기 1 회복.",
+        "en": "Deal 10 damage to an enemy. Summon a Mountain Spirit token. Token: recover 1 Qi at end of each turn."
       },
       "effect_upgraded": {
         "ko": "12 피해. 토큰 매 턴 기 2 회복.",
         "en": "Deal 12 damage. Token recovers 2 Qi per turn."
       },
       "flavor_text": {
-        "ko": "청룡의 기운을 공격에 담아 — 용의 숨결이 기로 돌아온다.",
-        "en": "Channel the Azure Dragon's power into your strike — the dragon's breath returns as Qi."
+        "ko": "산신의 기운을 공격에 담으니 — 산의 숨결이 기로 돌아온다.",
+        "en": "Channel the Mountain Spirit's power into your strike — the mountain's breath returns as Qi."
       },
-      "balance_rationale": "2코스트 공격+지속 기 회복 토큰. 즉시 10피해는 2코스트 기준 적정. 청룡 토큰이 매 턴 기 1을 회복하여 장기전에서 총 기 3~5 추가 = 실질 3~5코스트 투자 가치. 소환+기 아키타입 하이브리드 연결 카드.",
+      "balance_rationale": "2코스트 공격+지속 기 회복 토큰. 즉시 10피해는 2코스트 기준 적정. 산신 토큰이 매 턴 기 1을 회복하여 장기전에서 총 기 3~5 추가 = 실질 3~5코스트 투자 가치. 소환+기 아키타입 하이브리드 연결 카드.",
       "sijo_position": "중장·종장 둘째 슬롯 [4]",
       "class_synergy": [
         "D001",
@@ -896,10 +896,10 @@
     {
       "id": "D022",
       "name": {
-        "ko": "백호 강격",
+        "ko": "산군 강격",
         "hanja": "",
-        "romanized": "Baekho Ganggyeok",
-        "en": "White Tiger Strike"
+        "romanized": "Sangun Ganggyeok",
+        "en": "Mountain Lord Strike"
       },
       "beat": 3,
       "cost": 3,
@@ -910,18 +910,18 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "백호를 소환하여 적에게 22 피해를 입힌다. 소환 중인 토큰이나 소환체가 있으면 피해를 8 추가로 입힌다.",
-        "en": "Summon a White Tiger to deal 22 damage to an enemy. If you have an active summon or token, deal 8 additional damage."
+        "ko": "산군을 소환하여 적에게 22 피해를 입힌다. 소환 중인 토큰이나 소환체가 있으면 피해를 8 추가로 입힌다.",
+        "en": "Summon the Mountain Lord to deal 22 damage to an enemy. If you have an active summon or token, deal 8 additional damage."
       },
       "effect_upgraded": {
         "ko": "28 피해. 소환 보너스 +12.",
         "en": "Deal 28 damage. Summon bonus +12."
       },
       "flavor_text": {
-        "ko": "백호가 달려들어 으르렁대면 — 하늘도 땅도 떨린다.",
-        "en": "When the White Tiger charges in with a roar — both heaven and earth tremble."
+        "ko": "산군이 달려들어 으르렁대면 — 하늘도 땅도 떨린다.",
+        "en": "When the Mountain Lord charges in with a roar — both heaven and earth tremble."
       },
-      "balance_rationale": "3코스트 강공격. 기본 22피해는 3코스트 준수. 소환체 있으면 30피해로 태산붕(40)보다 낮지만 패널티 없음. 소환 아키타입의 주력 피해 딜러. D020(구미호)+D022(백호) = 5+22+8=35피해 잠재력.",
+      "balance_rationale": "3코스트 강공격. 기본 22피해는 3코스트 준수. 소환체 있으면 30피해로 태산붕(40)보다 낮지만 패널티 없음. 소환 아키타입의 주력 피해 딜러. D020(구미호)+D022(산군) = 5+22+8=35피해 잠재력.",
       "sijo_position": "종장 첫 슬롯 [3] — 소환 아키타입 피니셔",
       "class_synergy": [
         "D020",

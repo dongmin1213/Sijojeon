@@ -6,13 +6,13 @@
   "id": "B_ACT2_FINAL",
   "name": {
     "ko": "이무기",
-    "hanja": "螭龍",
+    "hanja": "蛟龍",
     "romanized": "Imugi",
     "en": "Imugi"
   },
   "description": {
-    "ko": "천 년을 기다려 용이 되려는 거대한 이무기. 여의주를 품고 비늘로 온몸을 감싼 채 지리산 깊은 곳에 서린다. 비늘을 벗기지 않으면 진정한 피해를 줄 수 없다. 시조의 힘으로 비늘을 벗겨야 한다.",
-    "en": "A great serpent that has waited a thousand years to become a true dragon. Wrapped in scales and clutching the Dragon Pearl deep in Jirisan. Cannot be truly harmed until its scales are stripped — only the power of sijo can breach them."
+    "ko": "천 년을 기다려 용이 되려는 거대한 이무기. 비늘로 온몸을 감싼 채 지리산 깊은 곳에 서린다. 비늘을 벗기지 않으면 진정한 피해를 줄 수 없다. 시조의 힘으로 비늘을 벗겨야 한다.",
+    "en": "A great serpent that has waited a thousand years to ascend. Wrapped in scales deep in Jirisan. Cannot be truly harmed until its scales are stripped — only the power of sijo can breach them."
   },
   "hp": 160,
   "flavor": "\"천 년을 기다렸다... 용이 되는 것을 막을 자는 없느니라!\"",
@@ -33,7 +33,7 @@
       "dialogue_per_scale": [
         { "ko": "\"크르르... 비늘이... 감히!\"", "en": "\"Grr... my scales... how dare you!\"" },
         { "ko": "\"으아아! 살갗이 드러나다니!\"", "en": "\"Aaargh! My flesh is exposed!\"" },
-        { "ko": "\"안 돼! 여의주가... 빛을 잃는다!\"", "en": "\"No! The Dragon Pearl... is losing its light!\"" }
+        { "ko": "\"안 돼! 서기가... 빛을 잃는다!\"", "en": "\"No! My aura... is losing its light!\"" }
       ]
     },
     "on_all_stripped": {
@@ -46,7 +46,7 @@
       "enabled": true,
       "turns_to_regen": 4,
       "regen_amount": 1,
-      "dialogue": { "ko": "\"비늘이 다시 자라난다... 용의 힘을 막을 수 없으리라!\"", "en": "\"My scales regrow... you cannot stop the dragon's power!\"" }
+      "dialogue": { "ko": "\"비늘이 다시 자라난다... 승천을 막을 수 없으리라!\"", "en": "\"My scales regrow... you cannot stop my ascension!\"" }
     }
   },
   "phases": [
@@ -107,27 +107,27 @@
       "phase_label": "승천 시도",
       "hp_threshold_label": "55% → 25%",
       "hp_threshold_min": 40,
-      "description": "여의주 빛이 강해지며 공격력 상승. 시조 슬롯 방해 시작.",
+      "description": "서기가 강해지며 공격력 상승. 시조 슬롯 방해 시작.",
       "phase_trigger": {
         "type": "hp_threshold",
         "hp_percent": 55,
         "on_trigger": [
           { "type": "apply_buff", "buff": "strength", "stacks": 4, "target": "self" },
-          { "type": "dialogue", "text": "\"여의주의 빛이여! 이 몸에 용의 힘을 내려라!\"" }
+          { "type": "dialogue", "text": "\"서기가 차오른다! 이 몸이 곧 승천하리라!\"" }
         ]
       },
       "moves": [
         {
-          "id": "dragon_fang",
-          "name": { "ko": "용아", "en": "Dragon Fang" },
+          "id": "venom_fang",
+          "name": { "ko": "독아", "en": "Venom Fang" },
           "intent": "attack",
           "damage": 15,
           "times": 1,
-          "description": { "ko": "용의 이빨로 물어뜯기.", "en": "A bite with dragon fangs." }
+          "description": { "ko": "독이빨로 깊이 물어뜯기.", "en": "A deep bite with venomous fangs." }
         },
         {
-          "id": "pearl_pulse",
-          "name": { "ko": "여의주 파동", "en": "Pearl Pulse" },
+          "id": "coiled_pulse",
+          "name": { "ko": "서린 파동", "en": "Coiled Pulse" },
           "intent": "attack_debuff",
           "damage": 10,
           "times": 1,
@@ -158,7 +158,7 @@
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": ["dragon_fang", "pearl_pulse", "constrict", "dragon_fang", "shed_scales", "pearl_pulse", "constrict"]
+        "sequence": ["venom_fang", "coiled_pulse", "constrict", "venom_fang", "shed_scales", "coiled_pulse", "constrict"]
       }
     },
     {
@@ -220,8 +220,8 @@
         "type": "rare_relic"
       },
       {
-        "id": "dragon_pearl_shard",
-        "name": "여의주 파편",
+        "id": "imugi_jewel",
+        "name": "이무기의 내단",
         "description": "시조 완성 시 적 전체에 피해 6. 시조 일격 피해 +25%.",
         "type": "rare_relic"
       }

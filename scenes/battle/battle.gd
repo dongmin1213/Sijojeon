@@ -1874,8 +1874,8 @@ func _apply_post_battle_minshim() -> void:
 			# 추적 값 초기화
 			rd.narrative_state.erase("gold_drained_this_run")
 
-	# 일반 정예 적 처치 민심 +3 (양반 보너스 적용)
+	# 일반 정예 적 처치 민심 +3
 	if rd.current_node_type == MapData.NodeType.ELITE:
-		var elite_delta: int = int(3 * minshim_mult)
+		var elite_delta: int = 3
 		var current: int = rd.narrative_state.get("minshim", 50)
 		rd.narrative_state["minshim"] = clampi(current + elite_delta, 0, 100)
