@@ -8,14 +8,14 @@
       "title": {
         "ko": "시조의 변주",
         "description": {
-          "ko": "낡은 시조 악보 한 장이 담장 틈에 끼어 있다. 펼쳐보니 평소와는 다른 구성의 시조가 적혀있다. \"규칙을 바꾸면 노래가 달라지리.\"",
+          "ko": "낡은 시조 악보 한 장이 담장 틈에 끼어 있도다. 펼쳐보니 평소와는 다른 구성의 시조가 적혀 있느니라. \"규칙을 바꾸면 노래가 달라지리라.\"",
           "en": "An old sijo score is wedged in a crack in the wall. Unfolding it reveals a sijo with an unusual structure. \"Change the rules, and the song changes.\""
         },
         "loc_key": "event_title_sijo_variation",
         "en": "Variations of the Sijo"
       },
       "flavor_text": {
-        "ko": "\"정해진 형식이 있어야 시조인가, 아니면 마음이 담기면 그것이 시조인가.\"",
+        "ko": "\"정해진 형식이 있어야 시조인가, 아니면 마음이 담기면 그것이 곧 시조이겠느냐.\"",
         "en": "\"Must a sijo follow a fixed form, or does the heart's intent make it a sijo?\""
       },
       "type": "common",
@@ -49,7 +49,7 @@
           },
           "effect_value": 0,
           "result_text": {
-            "ko": "낡은 악보의 구성을 받아들였다. 이제 시조의 첫 자리에 어떤 장의 카드든 놓을 수 있다. 형식보다 흐름이 중요하다.",
+            "ko": "낡은 악보의 구성을 받아들였느니라. 이제 시조의 첫 자리에 어떤 장의 카드든 놓을 수 있도다. 형식보다 흐름이 중한 법이니라.",
             "en": "You adopt the old score's arrangement. Now any verse card can be placed in the first sijo slot. Flow matters more than form."
           },
           "result_title": "이음새 슬롯 획득",
@@ -58,7 +58,7 @@
         {
           "id": "length_shorten",
           "text": {
-            "ko": "짧고 빠르게 부른다. (시조 2장으로 단축)",
+            "ko": "짧고 빠르게 읊는다. (시조 2장으로 단축)",
             "en": "Sing it short and fast. (Shorten sijo to 2 verses)"
           },
           "effect_type": "sijo_length_change",
@@ -72,7 +72,7 @@
           },
           "effect_value": 0,
           "result_text": {
-            "ko": "시조를 두 장으로 줄였다. 완성 횟수가 늘어날수록 총량은 비슷해진다. 빠른 콤보와 유물 누적을 노린다.",
+            "ko": "시조를 두 장으로 줄였느니라. 완성 횟수가 늘어날수록 총량은 비슷해지리라. 빠른 콤보와 유물 누적을 노리는 것이니라.",
             "en": "You shorten the sijo to two verses. As completions add up, the total yield evens out. Aim for rapid combos and relic stacking."
           },
           "result_title": "시조 단축",
@@ -81,13 +81,13 @@
         {
           "id": "decline",
           "text": {
-            "ko": "악보를 덮어두고 지나친다.",
+            "ko": "악보를 덮어두고 발걸음을 옮긴다.",
             "en": "Cover the score and move on."
           },
           "effect_type": "none",
           "effect_value": 0,
           "result_text": {
-            "ko": "조용히 악보를 제자리에 돌려놓았다. 형식은 그대로다.",
+            "ko": "조용히 악보를 제자리에 돌려놓았느니라. 형식은 그대로이도다.",
             "en": "You quietly return the score to its place. The form remains unchanged."
           },
           "result_title": "",
@@ -100,14 +100,14 @@
       "title": {
         "ko": "직업의 갈등",
         "description": {
-          "ko": "오래된 서원에서 낯선 이를 만났다. 그는 당신의 직업에 대해 묻더니, 잠시 고민하다가 은밀한 제안을 꺼낸다. \"다른 길도 있지 않소.\"",
+          "ko": "오래된 서원에서 낯선 이를 만났도다. 그는 그대의 직분에 대해 묻더니, 잠시 고민하다가 은밀한 제안을 꺼내느니라. \"다른 길도 있지 않소이까.\"",
           "en": "At an old academy, you meet a stranger. He asks about your calling, ponders briefly, then makes a covert offer. \"There is another path, you know.\""
         },
         "loc_key": "event_title_job_conflict",
         "en": "The Crossroads of Calling"
       },
       "flavor_text": {
-        "ko": "\"하나를 얻으면 하나를 잃는 법. 그래도 선택하시겠소?\"",
+        "ko": "\"하나를 얻으면 하나를 잃는 법이오. 그래도 선택하시겠소?\"",
         "en": "\"To gain one thing, you must lose another. Will you still choose?\""
       },
       "type": "common",
@@ -149,7 +149,7 @@
           },
           "effect_value": 3,
           "result_text": {
-            "ko": "칼 솜씨 대신 문자를 배웠다. 학식을 쌓을 수 있지만 무관으로서의 날카로움이 무뎌졌다. 덱에서 무관 카드 1장을 포기한다.",
+            "ko": "칼 솜씨 대신 학문을 배웠느니라. 학식을 쌓을 수 있으나 무관으로서의 날카로움이 무뎌졌도다. 덱에서 무관 카드 1장을 포기하느니라.",
             "en": "You trade swordsmanship for scholarship. You can now build learning, but your warrior's edge has dulled. Remove 1 warrior card from your deck."
           },
           "result_title": "문무쌍전",
@@ -180,7 +180,7 @@
           },
           "effect_value": 0,
           "result_text": {
-            "ko": "학문을 뒤로 하고 민심을 택했다. 시조를 완성할 때마다 백성의 기운이 몸을 회복시킨다. 다만 학문의 예리함은 다소 무뎌졌다.",
+            "ko": "학문을 뒤로 하고 민심을 택하였느니라. 시조를 완성할 때마다 백성의 기운이 몸을 회복시키는도다. 다만 학문의 예리함은 다소 무뎌졌느니라.",
             "en": "You set aside scholarship for the people's sake. Each sijo completion restores your body with the people's energy. However, your scholarly acuity has dulled somewhat."
           },
           "result_title": "강직한 문관",
@@ -208,7 +208,7 @@
           },
           "effect_value": 3,
           "result_text": {
-            "ko": "선계의 연을 끊고 세상에 발을 디뎠다. 기력을 쌓을 수 있지만, 기의 흐름이 더뎌졌다. 힘은 세졌지만 신비는 옅어졌다.",
+            "ko": "선계의 연을 끊고 세상에 발을 디뎠느니라. 기력을 쌓을 수 있으나, 기의 흐름이 더뎌졌도다. 힘은 세졌으나 신비는 옅어졌느니라.",
             "en": "You sever your ties to the celestial realm and set foot in the mortal world. You can now build stamina, but the flow of Qi has slowed. Stronger, yet less mystical."
           },
           "result_title": "세속의 인연",
@@ -217,13 +217,13 @@
         {
           "id": "decline",
           "text": {
-            "ko": "\"필요 없소.\" 제안을 거절한다.",
+            "ko": "\"필요 없소이다.\" 제안을 물리친다.",
             "en": "\"I have no need.\" Decline the offer."
           },
           "effect_type": "none",
           "effect_value": 0,
           "result_text": {
-            "ko": "낯선 이의 제안을 뿌리쳤다. 자신의 길을 굳건히 지켰다.",
+            "ko": "낯선 이의 제안을 뿌리쳤느니라. 자신의 길을 굳건히 지켰도다.",
             "en": "You rebuff the stranger's offer, holding firmly to your own path."
           },
           "result_title": "",
@@ -236,14 +236,14 @@
       "title": {
         "ko": "시조 특화 수련",
         "description": {
-          "ko": "깊은 산속 암자에서 백발의 노인이 시조를 읊고 있다. 그 소리에는 보통 시조와는 다른 깊이가 담겨 있다. 노인은 당신을 보더니 수련을 제안한다.",
+          "ko": "깊은 산속 암자에서 백발의 노인이 시조를 읊고 계시도다. 그 소리에는 보통 시조와는 다른 깊이가 담겨 있느니라. 노인은 그대를 보시더니 수련을 제안하시느니라.",
           "en": "Deep in the mountains, a white-haired elder recites sijo in a hermitage. His voice carries a depth unlike any ordinary sijo. Seeing you, he offers to train you."
         },
         "loc_key": "event_title_sijo_training",
         "en": "Sijo Mastery Training"
       },
       "flavor_text": {
-        "ko": "\"극한까지 밀어붙이면 반드시 대가가 따르는 법. 그래도 배우시겠소?\"",
+        "ko": "\"극한까지 밀어붙이면 반드시 대가가 따르는 법이오. 그래도 배우시겠소?\"",
         "en": "\"Push to the limit, and there will always be a price. Will you still learn?\""
       },
       "type": "rare",
@@ -300,7 +300,7 @@
           },
           "effect_value_3": 2,
           "result_text": {
-            "ko": "혹독한 수련이 시작됐다. 시조를 완성할 때마다 두 배의 기운이 솟구치고, 호패까지 얻었다. 하지만 자원의 그릇이 작아졌고, 시조를 완성하지 못한 채 시간을 보내면 몸이 상한다.",
+            "ko": "혹독한 수련이 시작되었느니라. 시조를 완성할 때마다 두 배의 기운이 솟구치고, 호패까지 얻었도다. 허나 자원의 그릇이 작아졌고, 시조를 완성하지 못한 채 시간을 보내면 몸이 상하느니라.",
             "en": "The grueling training begins. Each sijo completion now surges with double the energy, and you receive a hopae badge. However, your resource capacity has shrunk, and failing to complete a sijo before the turn ends damages your body."
           },
           "result_title": "시조 특화 수련 완료",
@@ -309,7 +309,7 @@
         {
           "id": "observe_only",
           "text": {
-            "ko": "\"잠깐 지켜보겠소.\" 수련을 관찰만 한다.",
+            "ko": "\"잠깐 지켜보겠소이다.\" 수련을 관찰만 한다.",
             "en": "\"I'll just watch for now.\" Observe the training only."
           },
           "effect_type": "card_gain_choice",
@@ -321,7 +321,7 @@
           },
           "effect_value": 1,
           "result_text": {
-            "ko": "멀찌감치서 수련을 지켜보며 한 수 배웠다. 덱에 시조 관련 카드를 1장 추가할 수 있다.",
+            "ko": "멀찌감치서 수련을 지켜보며 한 수 배웠느니라. 덱에 시조 관련 카드를 1장 추가할 수 있도다.",
             "en": "Watching from a distance, you learn a thing or two. You may add 1 sijo-related card to your deck."
           },
           "result_title": "관찰자",
@@ -330,13 +330,13 @@
         {
           "id": "decline",
           "text": {
-            "ko": "\"사양하겠소.\" 암자를 떠난다.",
+            "ko": "\"사양하겠소이다.\" 암자를 떠난다.",
             "en": "\"I must decline.\" Leave the hermitage."
           },
           "effect_type": "none",
           "effect_value": 0,
           "result_text": {
-            "ko": "노인에게 예를 갖추고 발걸음을 돌렸다. 수련의 대가를 치를 준비가 되지 않았다.",
+            "ko": "노인에게 예를 갖추고 발걸음을 돌렸느니라. 수련의 대가를 치를 준비가 되지 않았도다.",
             "en": "You bow respectfully to the elder and turn away. You weren't ready to pay the price of training."
           },
           "result_title": "",

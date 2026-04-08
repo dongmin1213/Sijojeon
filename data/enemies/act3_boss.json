@@ -1,477 +1,243 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "type": "boss",
   "act": 3,
-  "balance_ref": "ZER-12. 플레이어 기준: HP 20~40(3막 보스 전), 덱 규모 18~24장, 턴당 피해 18~24, 방어도 12~16. 보스 목표 전투 길이: 15~18턴. 시조 완성 2~3회 필수.",
+  "balance_ref": "ZER-330. 플레이어 기준: HP 20~40, 덱 18~24장, 턴당 피해 18~24, 방어도 12~16. 보스 목표 전투 길이: 15~18턴. 시조 완성 3회 필수.",
   "id": "B_ACT3_FINAL",
   "name": {
-    "ko": "역적 대감",
-    "hanja": "",
-    "romanized": "Yeokjeok Daegam",
-    "en": "Rebel Lord"
+    "ko": "역모대감",
+    "hanja": "逆謀大監",
+    "romanized": "Yeokmo Daegam",
+    "en": "The Treasonous Lord"
   },
   "description": {
-    "ko": "왕위를 노리는 역모의 주모자. 오랜 세월 실세를 쥐고 흔들었던 대감으로, 겉으로는 충신의 탈을 쓰고 안으로는 왕좌를 갈망해 왔다. 3페이즈에 걸쳐 역모의 전모를 드러낸다.",
-    "en": "The mastermind of the rebellion who covets the throne. A lord who held real power for years, wearing the mask of a loyal subject while yearning for the throne. Reveals the full scope of his treason across 3 phases."
+    "ko": "왕위를 노리는 역모의 주모자. 충신의 가면을 쓰고 조정을 농단해 왔다. 가면을 쓴 동안 진정한 피해를 줄 수 없다. 시조를 세 번 완성하여 가면을 벗겨야 한다.",
+    "en": "The mastermind of treason who covets the throne. Has manipulated the court while wearing the mask of loyalty. Cannot be truly harmed while masked. Complete three sijo to shatter the mask."
   },
   "hp": 195,
-  "flavor": "\"왕이란 자격 있는 자가 앉는 것이니라. 그 자리는 내 것이다.\"",
+  "flavor": "\"충신이 무엇인지 보여주마. 이 나라의 진정한 주인은 나니라.\"",
+  "puzzle_mechanic": {
+    "type": "loyalty_mask",
+    "name": {
+      "ko": "충신 가면",
+      "en": "Mask of Loyalty"
+    },
+    "description": {
+      "ko": "가면 내구도 3. 가면이 있는 동안 받는 피해 40% 감소 + 디버프 면역. 시조 완성 1회당 가면 1 균열. 가면 파괴 시 역모대감 약화 3 + 취약 3 + 힘 절반 감소.",
+      "en": "Mask durability 3. While masked: 40% damage reduction + debuff immunity. Each sijo completion cracks mask by 1. When shattered: 3 Weak + 3 Vulnerable + halve Strength."
+    },
+    "mask_durability": 3,
+    "damage_reduction_percent": 40,
+    "debuff_immunity": true,
+    "on_sijo_complete": {
+      "crack_mask": 1,
+      "dialogue_per_crack": [
+        { "ko": "\"흠... 대단한 문재(文才)로구나. 하나 그것으로는 부족하다.\"", "en": "\"Hmm... impressive literary talent. But it is not enough.\"" },
+        { "ko": "\"뭐... 뭐냐! 가면에 금이...! 이럴 수가!\"", "en": "\"Wh-what?! A crack in the mask...! Impossible!\"" },
+        { "ko": "\"안 돼! 가면이... 깨진다!\"", "en": "\"No! The mask... is breaking!\"" }
+      ]
+    },
+    "on_mask_shattered": {
+      "apply_to_boss": [
+        { "type": "apply_debuff", "debuff": "약화", "stacks": 3 },
+        { "type": "apply_debuff", "debuff": "취약", "stacks": 3 }
+      ],
+      "halve_strength": true,
+      "dialogue": { "ko": "\"크아아아! 이 가면 없이는... 나는... 나는 아무것도 아니란 말이냐!\"", "en": "\"AAAARGH! Without this mask... am I... am I nothing?!\"" }
+    }
+  },
   "phases": [
     {
       "phase": 1,
-      "phase_label": "역모 세력 소환",
-      "hp_threshold_label": "100% → 65%",
-      "hp_threshold_min": 127,
-      "description": "권세를 앞세워 부하를 소환하고 방어에 집중. 직접 공격은 자제하며 소환한 무사들 뒤에 숨는다. 플레이어에게 다수 대상 관리 부담을 강요.",
+      "phase_label": "충신의 탈",
+      "hp_threshold_label": "100% → 60%",
+      "hp_threshold_min": 117,
+      "description": "가면을 쓴 채 충신 행세. 부하를 소환하고 방어에 집중하며, 교묘한 디버프로 플레이어를 압박.",
       "moves": [
         {
           "id": "call_to_arms",
-          "name": {
-            "ko": "거병 령",
-            "en": "Call to Arms"
-          },
+          "name": { "ko": "거병령", "en": "Call to Arms" },
           "intent": "summon",
           "summons": "E301",
           "summon_count": 2,
-          "description": {
-            "ko": "역적 무사 2명 소환. 처치 시 재소환 없음.",
-            "en": "Summons 2 Rebel Warriors. No re-summon after defeat."
-          }
+          "description": { "ko": "역적 무사 2명 소환.", "en": "Summons 2 Rebel Warriors." }
         },
         {
           "id": "scheme",
-          "name": {
-            "ko": "음모 획책",
-            "en": "Plot Scheme"
-          },
+          "name": { "ko": "음모 획책", "en": "Plot Scheme" },
           "intent": "debuff",
           "effects": [
-            {
-              "type": "apply_debuff",
-              "debuff": "약화",
-              "stacks": 2,
-              "target": "player"
-            },
-            {
-              "type": "apply_debuff",
-              "debuff": "냉기",
-              "stacks": 1,
-              "target": "player"
-            }
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 2, "target": "player" },
+            { "type": "apply_debuff", "debuff": "냉기", "stacks": 1, "target": "player" }
           ],
-          "description": {
-            "ko": "약화 2 + 냉기 1 부여. 플레이어의 대응 능력을 제한.",
-            "en": "Applies 2 Weaken + 1 Chill. Limits the player's response capability."
-          }
+          "description": { "ko": "약화 2 + 냉기 1.", "en": "2 Weak + 1 Chill." }
         },
         {
           "id": "noble_shield",
-          "name": {
-            "ko": "귀족의 방패",
-            "en": "Noble's Shield"
-          },
+          "name": { "ko": "귀족의 방패", "en": "Noble's Shield" },
           "intent": "defend",
           "block": 18,
-          "description": {
-            "ko": "귀족으로서의 특권으로 만든 강력한 방어막. 방어도 18 획득.",
-            "en": "A powerful barrier made from noble privilege. Gain 18 Block."
-          }
+          "description": { "ko": "방어도 18 획득.", "en": "Gain 18 Block." }
         },
         {
-          "id": "seal_authority",
-          "name": {
-            "ko": "인장 휘두르기",
-            "en": "Seal Brandish"
-          },
+          "id": "hidden_blade",
+          "name": { "ko": "암기", "en": "Hidden Blade" },
           "intent": "attack",
           "damage": 12,
           "times": 1,
-          "description": {
-            "ko": "예상 밖의 직접 공격. 대감의 개인 무력.",
-            "en": "An unexpected direct attack. The lord's personal combat skill."
-          }
+          "description": { "ko": "가면 뒤에서 꺼낸 단검 공격.", "en": "A dagger strike from behind the mask." }
         },
         {
-          "id": "summon_assassin",
-          "name": {
-            "ko": "자객 파견",
-            "en": "Dispatch Assassin"
-          },
-          "intent": "summon",
-          "summons": "E303",
-          "summon_count": 1,
-          "description": {
-            "ko": "자객 1명 소환. 처치 시 재소환 없음.",
-            "en": "Summons 1 Assassin. No re-summon after defeat."
-          }
+          "id": "sijo_disrupt",
+          "name": { "ko": "시조 방해", "en": "Sijo Disruption" },
+          "intent": "special",
+          "effects": [
+            { "type": "reset_sijo_slot", "count": 1 }
+          ],
+          "description": { "ko": "시조 슬롯 1개 초기화.", "en": "Reset 1 sijo slot." }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": [
-          "call_to_arms",
-          "scheme",
-          "noble_shield",
-          "seal_authority",
-          "summon_assassin",
-          "scheme",
-          "noble_shield",
-          "seal_authority"
-        ]
+        "sequence": ["scheme", "noble_shield", "hidden_blade", "call_to_arms", "hidden_blade", "sijo_disrupt", "noble_shield"]
       }
     },
     {
       "phase": 2,
-      "phase_label": "상태이상 폭격",
-      "hp_threshold_label": "65% → 30%",
+      "phase_label": "본색",
+      "hp_threshold_label": "60% → 30%",
       "hp_threshold_min": 59,
-      "description": "부하가 처치되자 직접 나선 대감. 수십 년 간 쌓인 독과 저주를 폭격하여 플레이어를 상태이상으로 만신창이로 만든다. 상태이상 제거 카드가 없으면 치명적.",
+      "description": "가면이 흔들리며 본색을 드러내기 시작. 공격성 급상승, 시조 방해 빈도 증가.",
       "phase_trigger": {
         "type": "hp_threshold",
-        "hp_percent": 65,
+        "hp_percent": 60,
         "on_trigger": [
-          {
-            "type": "cleanse_debuffs",
-            "target": "self"
-          },
-          {
-            "type": "apply_buff",
-            "buff": "strength",
-            "stacks": 4,
-            "target": "self"
-          },
-          {
-            "type": "apply_buff",
-            "buff": "분노",
-            "stacks": 2,
-            "target": "self",
-            "note": "분노: 공격력 +50%, 받는 피해 +25%, 2턴 지속"
-          },
-          {
-            "type": "dialogue",
-            "text": "어리석은 것! 내 진면목을 보여주마. 역모의 칼은 이미 왕의 목전에 닿아있느니라!"
-          }
+          { "type": "apply_buff", "buff": "strength", "stacks": 4, "target": "self" },
+          { "type": "dialogue", "text": "\"더 이상 충신 행세는 그만이다! 왕좌는 내 것이니라!\"" }
         ]
       },
       "moves": [
         {
-          "id": "poison_edict",
-          "name": {
-            "ko": "독 어명",
-            "en": "Poison Edict"
-          },
-          "intent": "debuff",
-          "effects": [
-            {
-              "type": "apply_debuff",
-              "debuff": "독",
-              "stacks": 6,
-              "target": "player"
-            },
-            {
-              "type": "apply_debuff",
-              "debuff": "취약",
-              "stacks": 2,
-              "target": "player"
-            }
-          ],
-          "description": {
-            "ko": "독 6 + 취약 2 부여. 독 누적 피해: 6+5+4+3+2+1=21.",
-            "en": "Applies 6 Poison + 2 Vulnerable. Cumulative poison damage: 21."
-          }
-        },
-        {
-          "id": "curse_volley",
-          "name": {
-            "ko": "저주 연사",
-            "en": "Curse Volley"
-          },
-          "intent": "debuff",
-          "effects": [
-            {
-              "type": "apply_debuff",
-              "debuff": "약화",
-              "stacks": 3,
-              "target": "player"
-            },
-            {
-              "type": "apply_debuff",
-              "debuff": "출혈",
-              "stacks": 5,
-              "target": "player"
-            },
-            {
-              "type": "apply_debuff",
-              "debuff": "냉기",
-              "stacks": 1,
-              "target": "player"
-            }
-          ],
-          "description": {
-            "ko": "약화 3 + 출혈 5 + 냉기 1. 3개 상태이상 동시 부여.",
-            "en": "3 Weaken + 5 Bleed + 1 Chill. Applies 3 status effects simultaneously."
-          }
-        },
-        {
-          "id": "corrupted_strike",
-          "name": {
-            "ko": "부패의 일격",
-            "en": "Corrupted Strike"
-          },
+          "id": "treason_strike",
+          "name": { "ko": "역모의 일격", "en": "Treasonous Strike" },
           "intent": "attack",
-          "damage": 14,
+          "damage": 16,
           "times": 1,
-          "effects": [
-            {
-              "type": "apply_debuff",
-              "debuff": "출혈",
-              "stacks": 3,
-              "target": "player"
-            }
-          ],
-          "description": {
-            "ko": "14피해(힘+4 적용 시 18) + 출혈 3.",
-            "en": "14 damage (18 with Str+4) + 3 Bleed."
-          }
+          "description": { "ko": "역심을 담은 강타.", "en": "A blow fueled by treason." }
         },
         {
-          "id": "iron_will_2",
-          "name": {
-            "ko": "역적의 철의",
-            "en": "Rebel's Iron Will"
-          },
-          "intent": "defend_buff",
-          "block": 15,
-          "effects": [
-            {
-              "type": "apply_buff",
-              "buff": "strength",
-              "stacks": 2,
-              "target": "self"
-            }
-          ],
-          "description": {
-            "ko": "방어도 15 + 힘 2 추가. 분노가 방어까지 강화.",
-            "en": "15 Block + 2 Strength. Rage strengthens even defense."
-          }
-        },
-        {
-          "id": "combo_debuff",
-          "name": {
-            "ko": "오욕의 낙인",
-            "en": "Brand of Disgrace"
-          },
+          "id": "poison_court",
+          "name": { "ko": "조정 농간", "en": "Court Manipulation" },
           "intent": "attack_debuff",
           "damage": 10,
-          "times": 2,
+          "times": 1,
           "effects": [
-            {
-              "type": "apply_debuff",
-              "debuff": "약화",
-              "stacks": 2,
-              "target": "player"
-            },
-            {
-              "type": "apply_debuff",
-              "debuff": "취약",
-              "stacks": 1,
-              "target": "player"
-            }
+            { "type": "apply_debuff", "debuff": "독", "stacks": 4, "target": "player" },
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 1, "target": "player" }
           ],
-          "description": {
-            "ko": "10피해 × 2회(힘+4 기준 14×2=28) + 약화 2 + 취약 1.",
-            "en": "10 damage x2 (14x2=28 with Str+4) + 2 Weaken + 1 Vulnerable."
-          }
+          "description": { "ko": "10 피해 + 독 4 + 취약 1.", "en": "10 damage + 4 Poison + 1 Vulnerable." }
+        },
+        {
+          "id": "double_blade",
+          "name": { "ko": "쌍검", "en": "Twin Blades" },
+          "intent": "attack",
+          "damage": 9,
+          "times": 3,
+          "description": { "ko": "9 피해 × 3회 = 27 총피해.", "en": "9 damage x3 = 27 total." }
+        },
+        {
+          "id": "sijo_shatter",
+          "name": { "ko": "시조 파괴", "en": "Sijo Shatter" },
+          "intent": "special",
+          "effects": [
+            { "type": "reset_sijo_slot", "count": 2 }
+          ],
+          "description": { "ko": "시조 슬롯 2개 초기화.", "en": "Reset 2 sijo slots." }
+        },
+        {
+          "id": "power_seize",
+          "name": { "ko": "권력 탈취", "en": "Power Seizure" },
+          "intent": "buff",
+          "effects": [
+            { "type": "apply_buff", "buff": "strength", "stacks": 2, "target": "self" },
+            { "type": "strip_buff", "count": 1, "target": "player" }
+          ],
+          "description": { "ko": "힘 2 획득 + 플레이어 버프 1개 박탈.", "en": "Gain 2 Strength + strip 1 player buff." }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": [
-          "poison_edict",
-          "corrupted_strike",
-          "curse_volley",
-          "combo_debuff",
-          "iron_will_2",
-          "poison_edict",
-          "corrupted_strike",
-          "combo_debuff"
-        ]
+        "sequence": ["treason_strike", "poison_court", "double_blade", "sijo_shatter", "treason_strike", "power_seize", "double_blade"]
       }
     },
     {
       "phase": 3,
-      "phase_label": "광전사 모드",
+      "phase_label": "폭주",
       "hp_threshold_label": "30% → 0%",
-      "description": "절망에 빠진 역적 대감이 마지막 패를 꺼낸다. 금지된 무공과 자신의 목숨을 담보로 한 극단적 공격. 사망 카운트다운으로 DPS 레이스 강요.",
+      "description": "가면 파괴 여부에 따라 난이도 분기. 가면 파괴: 약화+취약 상태로 쉬움. 미파괴: 디버프 면역 유지 + 광폭화.",
       "phase_trigger": {
         "type": "hp_threshold",
         "hp_percent": 30,
         "on_trigger": [
-          {
-            "type": "cleanse_all",
-            "target": "self"
-          },
-          {
-            "type": "apply_buff",
-            "buff": "strength",
-            "stacks": 6,
-            "target": "self"
-          },
-          {
-            "type": "apply_buff",
-            "buff": "분노",
-            "stacks": 4,
-            "target": "self",
-            "note": "분노: 공격력 +50%, 받는 피해 +25%, 4턴 지속"
-          },
-          {
-            "type": "apply_debuff",
-            "debuff": "death_countdown",
-            "stacks": 4,
-            "target": "player",
-            "note": "사망 카운트다운: 4턴 후 플레이어 현재 HP 50% 강제 감소. 역적 대감 처치 시 즉시 해제."
-          },
-          {
-            "type": "dialogue",
-            "text": "왕좌는 내 것! 죽으면서도 너를 데려가겠다! 어명이니라!!"
-          }
+          { "type": "apply_buff", "buff": "strength", "stacks": 3, "target": "self" },
+          { "type": "apply_debuff", "debuff": "death_countdown", "stacks": 4, "target": "player" },
+          { "type": "dialogue", "text": "\"이 나라를 가져갈 수 없다면... 모두 불태우겠다!\"" }
         ]
       },
       "moves": [
         {
-          "id": "berserk_slash",
-          "name": {
-            "ko": "광전 베기",
-            "en": "Berserk Slash"
-          },
+          "id": "royal_wrath",
+          "name": { "ko": "역모 폭주", "en": "Treasonous Rampage" },
           "intent": "attack",
-          "damage": 14,
-          "times": 2,
-          "effects": [
-            {
-              "type": "apply_debuff",
-              "debuff": "출혈",
-              "stacks": 2,
-              "target": "player"
-            }
-          ],
-          "description": {
-            "ko": "14피해 × 2회(힘+6 기준 20×2=40) + 출혈 2. 분노 적용 시 60피해.",
-            "en": "14 damage x2 (20x2=40 with Str+6) + 2 Bleed. 60 damage with Rage."
-          }
-        },
-        {
-          "id": "wrath_of_the_fallen",
-          "name": {
-            "ko": "패자의 분노",
-            "en": "Wrath of the Fallen"
-          },
-          "intent": "attack",
-          "damage": 28,
-          "times": 1,
-          "description": {
-            "ko": "힘+6 기준 34피해. 분노 적용 시 51피해. 최대 단발 피해.",
-            "en": "34 damage with Str+6. 51 with Rage. Maximum single-hit damage."
-          }
+          "damage": 12,
+          "times": 3,
+          "description": { "ko": "12 피해 × 3회.", "en": "12 damage x3." }
         },
         {
           "id": "self_destruction",
-          "name": {
-            "ko": "자폭 어명",
-            "en": "Self-Destruct Decree"
-          },
+          "name": { "ko": "옥쇄", "en": "Mutual Destruction" },
           "intent": "attack",
-          "damage": 10,
-          "times": 3,
-          "effects": [
-            {
-              "type": "self_damage",
-              "damage": 15,
-              "target": "self",
-              "note": "자신도 15피해를 입는 자폭 기술"
-            }
-          ],
-          "description": {
-            "ko": "10피해 × 3회(힘+6 기준 16×3=48) + 자신도 15피해. HP 낮을수록 사용 빈도 증가.",
-            "en": "10 damage x3 (16x3=48 with Str+6) + self-damage 15. Used more frequently at low HP."
-          }
-        },
-        {
-          "id": "last_edict",
-          "name": {
-            "ko": "최후의 어명",
-            "en": "Final Edict"
-          },
-          "intent": "attack_debuff",
-          "damage": 20,
+          "damage": 30,
           "times": 1,
           "effects": [
-            {
-              "type": "apply_debuff",
-              "debuff": "취약",
-              "stacks": 3,
-              "target": "player"
-            },
-            {
-              "type": "apply_debuff",
-              "debuff": "약화",
-              "stacks": 3,
-              "target": "player"
-            }
+            { "type": "apply_debuff", "debuff": "독", "stacks": 6, "target": "player" }
           ],
-          "description": {
-            "ko": "20피해(힘+6+분노 기준 39피해) + 취약 3 + 약화 3. 페이즈 3 시작 직후 사용.",
-            "en": "20 damage (39 with Str+6+Rage) + 3 Vulnerable + 3 Weaken. Used right after Phase 3 begins."
-          }
+          "description": { "ko": "자폭적 30 피해 + 독 6.", "en": "Self-destructive 30 damage + 6 Poison." }
+        },
+        {
+          "id": "last_scheme",
+          "name": { "ko": "최후의 계략", "en": "Final Scheme" },
+          "intent": "debuff",
+          "effects": [
+            { "type": "apply_debuff", "debuff": "약화", "stacks": 3, "target": "player" },
+            { "type": "apply_debuff", "debuff": "취약", "stacks": 2, "target": "player" },
+            { "type": "reset_sijo_slot", "count": 2 }
+          ],
+          "description": { "ko": "약화 3 + 취약 2 + 시조 슬롯 2개 초기화.", "en": "3 Weak + 2 Vulnerable + reset 2 sijo slots." }
         }
       ],
       "move_pattern": {
         "type": "sequential",
-        "sequence": [
-          "last_edict",
-          "berserk_slash",
-          "wrath_of_the_fallen",
-          "berserk_slash",
-          "self_destruction",
-          "wrath_of_the_fallen"
-        ]
+        "sequence": ["royal_wrath", "self_destruction", "last_scheme", "royal_wrath", "self_destruction"]
       }
     }
   ],
   "rewards": {
-    "gold": {
-      "min": 100,
-      "max": 130
-    },
-    "relic": "최종 보스 유물 1개 (확정) + 런 클리어 보상",
+    "gold": { "min": 100, "max": 130 },
+    "relic": "보스 유물 1개 (확정)",
     "relic_candidates": [
       {
-        "id": "rebel_crown",
-        "name": "역적의 왕관",
-        "hanja": "",
-        "description": "전투 시작 시 힘 3, 방어도 10 획득. 단, 매 3턴마다 독 1이 자신에게 부여된다.",
-        "type": "boss_relic"
+        "id": "broken_mask",
+        "name": "깨진 충신 가면",
+        "description": "전투 시작 시 받는 피해 15% 감소 (3턴). 시조 완성 시 해제되며 힘 3 획득.",
+        "type": "rare_relic"
       },
       {
-        "id": "traitors_seal",
-        "name": "역모의 인장",
-        "hanja": "",
-        "description": "카드를 버릴 때마다 다음 공격 카드 피해 +2 (이번 전투만). 최대 +20까지 누적.",
-        "type": "boss_relic"
-      },
-      {
-        "id": "blood_decree",
-        "name": "혈서 어명",
-        "hanja": "",
-        "description": "적을 처치할 때마다 체력 3 회복. 보스 처치 시 체력 15 회복.",
-        "type": "boss_relic"
+        "id": "royal_decree_scroll",
+        "name": "왕명 두루마리",
+        "description": "전투 시작 시 적 전체에 약화 1. 시조 완성 시 적 전체에 추가 약화 1.",
+        "type": "rare_relic"
       }
     ]
-  },
-  "balance_note": "HP 195. 페이즈 1(195→127=68HP): 소환 관리 + 방어 중심 — 7~8턴. 페이즈 2(127→59=68HP): 상태이상 폭격 + 힘+4 공격 — 6~7턴, 독 제거나 빠른 딜 필수. 페이즈 3(59→0=59HP): 사망 카운트다운(4턴) + 광전사 모드 — 4턴 내 처치. 힘+6+분노 wrath_of_the_fallen = 34×1.5=51피해. self_destruction은 자신도 15피해 → 실질 처치 기여. 시조 완성 2회 이상 필수. 방어도 20+ + 상태이상 제거 카드 1장 이상 권장.",
-  "design_notes": {
-    "thematic_concept": "GDD의 '역적 대감 — 3페이즈: 소환 → 상태이상 → 광전사' 충실 구현. 조선 역모 클라이맥스 테마. 각 페이즈가 역모의 단계(병력 동원 → 독살 음모 → 최후의 반란)를 상징.",
-    "mechanical_pillar": "페이즈별 완전히 다른 위협 유형 — 1페이즈: 다수 대상 관리, 2페이즈: 상태이상 누적 해소, 3페이즈: 타임어택 DPS 레이스. 플레이어 덱의 모든 측면을 테스트.",
-    "player_counterplay": "페이즈 1: 소환 몹 우선 처치 → 대감 직접 피해 집중. 페이즈 2: 상태이상 제거 카드 사용 시점 관리, 방어도로 출혈 발동 최소화. 페이즈 3: 사망 카운트다운(4턴) 내 59HP 처치 — 시조 완성 + 취약 부여 콤보 필수."
   }
 }

@@ -19,20 +19,20 @@
       "title": {
         "ko": "사도세자 사건",
         "description": {
-          "ko": "한밤중에 밀서 하나가 도착했다. \"왕세자가 뒤주에 갇혔습니다. 어서 구해주십시오.\" 측근의 얼굴이 새하얗게 질려 있다.",
+          "ko": "한밤중에 밀서 하나가 도착하였도다. \"왕세자께서 뒤주에 갇히셨사옵니다. 어서 구해주시옵소서.\" 측근의 얼굴이 새하얗게 질려 있느니라.",
           "en": "A secret letter arrives at midnight. \"The Crown Prince has been locked in a rice chest. Please, save him at once.\" Your aide's face is deathly pale."
         },
         "en": "The Crown Prince Sado Incident"
       },
       "flavor_text": {
-        "ko": "\"지금 구하지 않으면 영영 늦습니다.\"",
+        "ko": "\"지금 구하지 않으면 영영 늦사옵니다.\"",
         "en": "\"If we don't save him now, it will be too late.\""
       },
       "choices": [
         {
           "id": "save_prince",
           "text": {
-            "ko": "세자를 구한다.",
+            "ko": "세자 저하를 구한다.",
             "en": "Save the Crown Prince."
           },
           "effect_type": "faction_change",
@@ -51,7 +51,7 @@
             "tag": "역모_가담_의심"
           },
           "result_text": {
-            "ko": "밤새 세자를 피신시켰다. 남인·소론의 신망을 얻었지만, 노론의 눈 밖에 났다.",
+            "ko": "밤새 세자 저하를 피신시켰느니라. 남인·소론의 신망을 얻었으나, 노론의 눈 밖에 나게 되었도다.",
             "en": "You spirit the Prince away through the night. The Namin and Soron factions praise you, but the Noron turn hostile."
           },
           "effect_type_3": "minshim_change",
@@ -62,7 +62,7 @@
         {
           "id": "obey_king",
           "text": {
-            "ko": "왕명에 따른다.",
+            "ko": "왕명을 받든다.",
             "en": "Obey the King's command."
           },
           "effect_type": "faction_change",
@@ -85,7 +85,7 @@
             "stacks": 2
           },
           "result_text": {
-            "ko": "왕명패를 받았다. 피해 카드 피해량 +2 (죄책감으로 인한 분노 — 다음 전투 힘 +2). 노론 호감 +30, 남인·소론 -30.",
+            "ko": "왕명패를 하사받았느니라. 피해 카드 피해량 +2 (죄책감으로 인한 분노 — 다음 전투 힘 +2). 노론 호감 +30, 남인·소론 -30.",
             "en": "You receive the King's command tablet. Attack card damage +2 (rage born from guilt — next combat Strength +2). Noron favor +30, Namin/Soron -30."
           },
           "effect_type_4": "minshim_change",
@@ -96,7 +96,7 @@
         {
           "id": "flee",
           "text": {
-            "ko": "도망친다.",
+            "ko": "황급히 몸을 피한다.",
             "en": "Flee."
           },
           "effect_type": "faction_change",
@@ -109,7 +109,7 @@
             "tag": "겁쟁이"
           },
           "result_text": {
-            "ko": "황급히 몸을 피했다. 모든 세력의 신망을 잃었다.",
+            "ko": "황급히 몸을 피하였느니라. 모든 세력의 신망을 잃었도다.",
             "en": "You flee in haste, losing the trust of all factions."
           },
           "effect_type_2": "minshim_change",
@@ -137,20 +137,20 @@
       "title": {
         "ko": "수상한 선비",
         "description": {
-          "ko": "장시에 갓을 눌러쓴 선비가 홀로 앉아 있다. 화려한 비단옷도, 패도도 없지만 눈빛이 범상치 않다. 어딘지 모르게 무언가를 기록하고 있는 것 같다.",
+          "ko": "장시에 갓을 눌러쓴 선비가 홀로 앉아 있도다. 화려한 비단옷도 패도도 없으나 눈빛이 범상치 않으니라. 어딘지 모르게 무언가를 기록하고 있는 듯하도다.",
           "en": "A scholar in a pressed-down hat sits alone at the market. No fine silk robes or badge of office, yet his gaze is anything but ordinary. He seems to be recording something."
         },
         "en": "The Suspicious Scholar"
       },
       "flavor_text": {
-        "ko": "\"...당신도 느끼시오? 이 장시의 악취를.\"",
+        "ko": "\"...그대도 느끼시오? 이 장시의 악취를 말이오.\"",
         "en": "\"...Can you smell it too? The stench of this market.\""
       },
       "choices": [
         {
           "id": "talk",
           "text": {
-            "ko": "말을 건다.",
+            "ko": "말을 건넨다.",
             "en": "Strike up a conversation."
           },
           "effect_type": "narrative_flag_set",
@@ -163,14 +163,14 @@
             "tag": "암행어사_동행"
           },
           "result_text": {
-            "ko": "그가 암행어사임을 알아챘다. 그는 당신에게 부패 사건의 단서를 넘겨준다. 이후 부패 관련 이벤트 연쇄 선택이 개방된다.",
+            "ko": "그가 암행어사임을 알아챘도다. 그는 그대에게 부패 사건의 단서를 넘겨주느니라. 이후 부패 관련 이벤트 연쇄 선택이 개방되느니라.",
             "en": "You realize he is a Royal Inspector in disguise. He passes you clues about a corruption case. Corruption-related event chains become available."
           }
         },
         {
           "id": "ignore",
           "text": {
-            "ko": "무시한다.",
+            "ko": "못 본 척 지나친다.",
             "en": "Ignore him."
           },
           "effect_type": "shop_price_discount",
@@ -179,14 +179,14 @@
             "duration_shops": 1
           },
           "result_text": {
-            "ko": "그는 탐관오리를 처단하고 지나갔다. 부패한 상인들이 도망가 이번 상점 가격이 30% 하락한다.",
+            "ko": "그는 탐관오리를 처단하고 지나갔느니라. 부패한 상인들이 도망가 이번 상점 가격이 30% 하락하느니라.",
             "en": "He moves on and punishes the corrupt officials. Corrupt merchants flee, reducing shop prices by 30%."
           }
         },
         {
           "id": "show_status",
           "text": {
-            "ko": "[신분 양반(3) 이상 전용] 신분증을 내보인다.",
+            "ko": "[신분 양반(3) 이상 전용] 신분패를 내보인다.",
             "en": "[Rank Yangban (3) or higher] Show your credentials."
           },
           "trigger_condition": "status_rank_ge_3",
@@ -195,7 +195,7 @@
             "percent": -20
           },
           "result_text": {
-            "ko": "암행어사가 협력을 제안했다. 다음 보스 HP 20% 감소.",
+            "ko": "암행어사가 협력을 제안하시는도다. 다음 보스 HP 20% 감소.",
             "en": "The Royal Inspector proposes an alliance. Next boss HP reduced by 20%."
           }
         }
@@ -218,13 +218,13 @@
       "title": {
         "ko": "매점매석",
         "description": {
-          "ko": "도성으로 가는 길목에서 대상인의 수레 행렬을 마주쳤다. 쌀, 소금, 포목이 가득 실려 있다. 상인의 부하들이 길을 막아서며 소리친다. \"비켜라! 이 물건 전부 우리 것이다!\"",
+          "ko": "도성으로 가는 길목에서 대상인의 수레 행렬을 마주쳤도다. 쌀, 소금, 포목이 가득 실려 있느니라. 상인의 부하들이 길을 막아서며 호통치되, \"비켜라! 이 물건 전부 우리 것이다!\"",
           "en": "On the road to the capital, you encounter a caravan of a great merchant. The carts overflow with rice, salt, and cloth. The merchant's men block the road, shouting, \"Out of the way! These goods are all ours!\""
         },
         "en": "The Great Hoarding"
       },
       "flavor_text": {
-        "ko": "\"한 달 뒤에 이 쌀 한 가마가 지금의 세 배가 될 것이오.\"",
+        "ko": "\"한 달 뒤에 이 쌀 한 가마가 지금의 세 배가 되리이다.\"",
         "en": "\"In a month, a single sack of this rice will cost three times what it does now.\""
       },
       "choices": [
@@ -243,7 +243,7 @@
             }
           },
           "result_text": {
-            "ko": "대상인과 그 부하들이 무기를 든다. 이겨야 한다. 승리하면 이번 상점에서 카드 1장을 무료로 가져갈 수 있다.",
+            "ko": "대상인과 그 부하들이 무기를 드는도다. 기필코 이겨야 하느니라. 승리하면 이번 상점에서 카드 1장을 무료로 가져갈 수 있도다.",
             "en": "The merchant and his men draw weapons. You must prevail. Victory grants 1 free card from the next shop."
           }
         },
@@ -262,7 +262,7 @@
             "tag_cost": "매점매석_투자자"
           },
           "result_text": {
-            "ko": "엽전 80을 투자했다. 3개 상점 이후 150냥을 돌려받는다. 단, 당신이 매점매석에 가담했다는 소문이 퍼진다.",
+            "ko": "엽전 80을 투자하였느니라. 3개 상점 이후 150냥을 돌려받으리라. 단, 그대가 매점매석에 가담했다는 소문이 퍼지느니라.",
             "en": "You invest 80 gold. After 3 shops, you'll receive 150 nyang back. However, rumors spread that you took part in the hoarding."
           },
           "effect_type_2": "minshim_change",
@@ -273,7 +273,7 @@
         {
           "id": "pass",
           "text": {
-            "ko": "그냥 지나친다.",
+            "ko": "길을 재촉한다.",
             "en": "Simply pass by."
           },
           "effect_type": "shop_price_penalty",
@@ -282,7 +282,7 @@
             "duration_shops": 1
           },
           "result_text": {
-            "ko": "아무것도 하지 않았다. 물가가 폭등해 이번 상점 카드 가격이 50% 올랐다.",
+            "ko": "아무것도 하지 않았느니라. 물가가 폭등하여 이번 상점 카드 가격이 50% 올랐도다.",
             "en": "You do nothing. Prices skyrocket — card prices in the next shop increase by 50%."
           }
         }
@@ -305,20 +305,20 @@
       "title": {
         "ko": "사화",
         "description": {
-          "ko": "선왕의 제문이 역모로 지목되었다. 학자들이 처형당하고 있다. 당신의 스승이 명단에 올랐다는 소식이 들린다.",
+          "ko": "선왕의 제문이 역모로 지목되었느니라. 학자들이 처형당하고 있도다. 그대의 스승이 명단에 올랐다는 소식이 들려오느니라.",
           "en": "The late King's eulogy has been branded as treason. Scholars are being executed. Word arrives that your mentor is on the list."
         },
         "en": "The Literati Purge"
       },
       "flavor_text": {
-        "ko": "\"도망치면 살고, 남으면 죽는다. 그런데 살아야 할 이유가 있는가?\"",
+        "ko": "\"도망치면 살고, 남으면 죽느니라. 그런데 살아야 할 이유가 있겠느냐?\"",
         "en": "\"Flee and live, stay and die. But is there a reason worth living for?\""
       },
       "choices": [
         {
           "id": "hide_teacher",
           "text": {
-            "ko": "스승을 숨겨준다.",
+            "ko": "스승을 숨겨 드린다.",
             "en": "Hide your mentor."
           },
           "effect_type": "forced_elite_immediate",
@@ -332,14 +332,14 @@
             }
           },
           "result_text": {
-            "ko": "금부도사들이 들이닥쳤다! 즉시 전투가 발동된다. 이겨낸다면 스승에게서 전설 카드 3장 중 1장을 받는다.",
+            "ko": "금부도사들이 들이닥쳤느니라! 즉시 전투가 발동되는도다. 이겨낸다면 스승에게서 전설 카드 3장 중 1장을 받게 되리라.",
             "en": "The secret police storm in! Combat begins immediately. If you prevail, your mentor rewards you with 1 of 3 legendary cards."
           }
         },
         {
           "id": "pretend",
           "text": {
-            "ko": "모른 척한다.",
+            "ko": "모르는 척한다.",
             "en": "Pretend you don't know."
           },
           "effect_type": "card_remove_random",
@@ -348,7 +348,7 @@
             "from": "starter"
           },
           "result_text": {
-            "ko": "스승이 끌려갔다. 스타터 카드 1장이 영구히 사라진다 (죄책감).",
+            "ko": "스승이 끌려가셨도다. 스타터 카드 1장이 영구히 사라지느니라 (죄책감).",
             "en": "Your mentor is dragged away. 1 starter card is permanently removed (guilt)."
           }
         },
@@ -367,7 +367,7 @@
             "tag": "배신자"
           },
           "result_text": {
-            "ko": "신분이 2단계 도약했다. 그러나 배신자라는 꼬리표가 붙는다. 이후 NPC들의 반응이 달라진다.",
+            "ko": "신분이 2단계 도약하였느니라. 그러나 배신자라는 꼬리표가 붙게 되는도다. 이후 NPC들의 반응이 달라지리라.",
             "en": "Your rank jumps 2 levels. However, you are branded a traitor. NPCs will react differently to you."
           },
           "effect_type_2": "minshim_change",
@@ -395,13 +395,13 @@
       "title": {
         "ko": "민란",
         "description": {
-          "ko": "성난 백성들이 길을 막고 있다. \"당신도 그 탐관들의 일당이오?\" 횃불과 농기구를 든 무리가 노려본다.",
+          "ko": "성난 백성들이 길을 막고 있도다. \"그대도 저 탐관들의 일당이오?\" 횃불과 농기구를 든 무리가 노려보느니라.",
           "en": "Furious commoners block the road. \"Are you one of those corrupt officials' lackeys?\" A crowd bearing torches and farming tools glares at you."
         },
         "en": "The People's Uprising"
       },
       "flavor_text": {
-        "ko": "\"더 이상 못 참겠소! 이 길을 지나려면 우리와 싸워야 하오!\"",
+        "ko": "\"더 이상은 못 참겠소이다! 이 길을 지나려거든 우리와 싸워야 하오!\"",
         "en": "\"We can't take it anymore! If you want to pass, you'll have to fight us!\""
       },
       "choices": [
@@ -418,7 +418,7 @@
             "delta": -10
           },
           "result_text": {
-            "ko": "백성들과 싸워 돌파했다. 승리해도 기쁘지 않다. HP 25 손실. 민심이 더 떨어졌다.",
+            "ko": "백성들과 싸워 돌파하였느니라. 승리해도 기쁘지 않도다. HP 25 손실. 민심이 더 떨어졌느니라.",
             "en": "You fight through the crowd. Even in victory, there is no joy. Lose 25 HP. Public favor drops further."
           }
         },
@@ -435,7 +435,7 @@
             "delta": 25
           },
           "result_text": {
-            "ko": "백성들이 분노를 삭이며 길을 비켜준다. HP 20 손실. 민심이 크게 회복되었다.",
+            "ko": "백성들이 분노를 삭이며 길을 비켜주느니라. HP 20 손실. 민심이 크게 회복되었도다.",
             "en": "The people's anger subsides and they make way. Lose 20 HP. Public favor recovers greatly."
           }
         },
@@ -452,7 +452,7 @@
             "delta": 30
           },
           "result_text": {
-            "ko": "백성들이 엽전을 받고 자리를 비켜준다. 엽전 60 소비. 민심이 크게 회복되었다.",
+            "ko": "백성들이 엽전을 받고 자리를 비켜주느니라. 엽전 60 소비. 민심이 크게 회복되었도다.",
             "en": "The people accept the coins and clear the way. Spend 60 gold. Public favor recovers greatly."
           }
         }
@@ -476,13 +476,13 @@
       "title": {
         "ko": "당쟁",
         "description": {
-          "ko": "당쟁이 극에 달했다. 조정이 두 파로 갈라져 피를 부르고 있다. 양측이 당신에게 결단을 요구한다.",
+          "ko": "당쟁이 극에 달하였도다. 조정이 두 파로 갈라져 피를 부르고 있느니라. 양측이 그대에게 결단을 요구하는도다.",
           "en": "Factional strife has reached its peak. The court is split in two, and blood is being called for. Both sides demand your decision."
         },
         "en": "The Factional Strife"
       },
       "flavor_text": {
-        "ko": "\"중립은 없소. 지금 편을 들지 않으면 양측 모두의 적이 되오.\"",
+        "ko": "\"중립은 없소이다. 지금 편을 들지 않으면 양측 모두의 적이 되리다.\"",
         "en": "\"There is no neutrality. Choose a side now, or become the enemy of both.\""
       },
       "choices": [
@@ -503,14 +503,14 @@
             }
           },
           "result_text": {
-            "ko": "내 당파의 유물을 획득했다. 라이벌 당파의 자객이 공격해 온다!",
+            "ko": "내 당파의 유물을 획득하였도다. 라이벌 당파의 자객이 공격해 오느니라!",
             "en": "You acquire your faction's relic. An assassin from the rival faction attacks!"
           }
         },
         {
           "id": "royal_order",
           "text": {
-            "ko": "[신분 당상관(4) 이상] 왕의 명으로 양측을 진정시킨다.",
+            "ko": "[신분 당상관(4) 이상] 왕명으로 양측을 진정시킨다.",
             "en": "[Rank Dangsanggwan (4) or higher] Calm both sides by royal decree."
           },
           "trigger_condition": "status_rank_ge_4",
@@ -522,7 +522,7 @@
             "delta": -50
           },
           "result_text": {
-            "ko": "왕명으로 양측을 진정시켰다. 양측 당파 미터 -50. 조정의 중립 유물을 획득했다.",
+            "ko": "왕명으로 양측을 진정시켰느니라. 양측 당파 미터 -50. 조정의 중립 유물을 획득하였도다.",
             "en": "By royal decree, you pacify both factions. Both faction meters -50. Gain a neutral court relic."
           },
           "effect_type_2": "status_rank_change",
@@ -533,7 +533,7 @@
         {
           "id": "flee_dangjeng",
           "text": {
-            "ko": "도망친다.",
+            "ko": "황급히 몸을 피한다.",
             "en": "Flee."
           },
           "effect_type": "faction_change",
@@ -546,7 +546,7 @@
             "delta": -10
           },
           "result_text": {
-            "ko": "양측 당파 미터 -30. 민심이 떨어졌다. 현재 챕터의 남은 이벤트가 전투로 교체된다.",
+            "ko": "양측 당파 미터 -30. 민심이 떨어졌느니라. 현재 챕터의 남은 이벤트가 전투로 교체되는도다.",
             "en": "Both faction meters -30. Public favor drops. Remaining events in this chapter are replaced with combat."
           }
         }

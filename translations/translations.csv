@@ -669,3 +669,19 @@ PASSIVE_MILITARY_ORDER,군령 하달,Military Order
 PASSIVE_MILITARY_ORDER_FMT,토큰 %d개 → 기 +%d,Tokens %d → Qi +%d
 PASSIVE_LECTURE,경연개설,Royal Lecture
 PASSIVE_LECTURE_DESC,학식 +3,Scholarship +3
+PUZZLE_PUNISHMENT_NAME,형벌 카운터,Punishment Counter
+PUZZLE_PUNISHMENT_STACK_FMT,형벌 %d / %d — 최대 시 곤장 집행!,Punishment %d / %d — Rod execution at max!
+PUZZLE_PUNISHMENT_EXEC,곤장 집행!,Rod Punishment!
+PUZZLE_PUNISHMENT_EXEC_FMT,곤장 집행! %d 피해!,Rod execution! %d damage!
+PUZZLE_PUNISHMENT_PLEA,시조 간청,Sijo Plea
+PUZZLE_PUNISHMENT_PLEA_DESC,시조로 간청하여 형벌을 멈추었다!,The sijo plea stayed the punishment!
+PUZZLE_SCALE_NAME,비늘 방어막,Scale Barrier
+PUZZLE_SCALE_STATUS_FMT,비늘 %d / %d — 시조로 비늘을 벗겨라!,Scales %d / %d — Strip with sijo!
+PUZZLE_SCALE_STRIP,비늘 벗김!,Scale Stripped!
+PUZZLE_SCALE_BROKEN,비늘 파괴!,Scales Destroyed!
+PUZZLE_SCALE_BROKEN_DESC,모든 비늘이 벗겨졌다! 이무기가 취약해졌다!,All scales stripped! Imugi is vulnerable!
+PUZZLE_SCALE_REGEN,비늘 재생,Scale Regrowth
+PUZZLE_SCALE_REGEN_FMT,비늘이 다시 자라났다! 비늘 %d,Scales have regrown! Scales: %d
+PUZZLE_MASK_CRACK,가면 균열!,Mask Cracked!
+PUZZLE_MASK_SHATTER,가면 파괴!,Mask Shattered!
+PUZZLE_MASK_SHATTER_DESC,충신 가면이 산산조각! 역모대감이 약화되었다!,The loyal mask shattered! The Treasonous Lord is weakened!

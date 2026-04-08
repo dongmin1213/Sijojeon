@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <!-- Background circle -->
+  <circle cx="128" cy="120" r="110" fill="#1a1510"/>
+
+  <!-- Body - monk robe silhouette -->
+  <ellipse cx="128" cy="185" rx="50" ry="45" fill="#8a6a3a"/>
+  <!-- Upper body - wider monk robe -->
+  <rect x="100" y="115" width="56" height="55" rx="10" fill="#a0803a"/>
+  <!-- Robe overlap -->
+  <path d="M108 115 L128 155 L148 115" fill="none" stroke="#c0a050" stroke-width="3"/>
+  <!-- Kesa/prayer sash diagonal -->
+  <line x1="108" y1="118" x2="148" y2="165" stroke="#d0b060" stroke-width="5" opacity="0.7"/>
+  <!-- Sleeves - wide monk sleeves -->
+  <ellipse cx="88" cy="140" rx="20" ry="14" fill="#a0803a" transform="rotate(-5 88 140)"/>
+  <ellipse cx="168" cy="140" rx="20" ry="14" fill="#a0803a" transform="rotate(5 168 140)"/>
+
+  <!-- Head - shaved -->
+  <circle cx="128" cy="88" r="32" fill="#e0be90"/>
+  <!-- Shaved head - no hair, just slight shadow on top -->
+  <ellipse cx="128" cy="72" rx="28" ry="8" fill="#d0ae80" opacity="0.5"/>
+  <!-- Dot on forehead (Buddhist mark) -->
+  <circle cx="128" cy="74" r="3" fill="#8a4a2a"/>
+
+  <!-- Eyes - determined chibi style -->
+  <ellipse cx="118" cy="90" rx="4" ry="4.5" fill="#1a1a1a"/>
+  <ellipse cx="138" cy="90" rx="4" ry="4.5" fill="#1a1a1a"/>
+  <circle cx="119" cy="88" r="1.5" fill="white"/>
+  <circle cx="139" cy="88" r="1.5" fill="white"/>
+  <!-- Thick eyebrows - determined look -->
+  <path d="M112 83 L124 82" stroke="#5a3a1a" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M132 82 L144 83" stroke="#5a3a1a" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Mouth - firm -->
+  <line x1="122" y1="102" x2="134" y2="102" stroke="#8a5a4a" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Staff (jangbong) - held to the side -->
+  <line x1="175" y1="50" x2="175" y2="220" stroke="#6a4a2a" stroke-width="5" stroke-linecap="round"/>
+  <!-- Staff rings at top -->
+  <circle cx="175" cy="55" r="6" fill="none" stroke="#c0a050" stroke-width="2"/>
+  <circle cx="175" cy="45" r="4" fill="none" stroke="#c0a050" stroke-width="1.5"/>
+
+  <!-- Prayer beads (yeomju) around neck -->
+  <g>
+    <circle cx="110" cy="118" r="3.5" fill="#6a4a2a" stroke="#c0a050" stroke-width="0.8"/>
+    <circle cx="116" cy="122" r="3.5" fill="#6a4a2a" stroke="#c0a050" stroke-width="0.8"/>
+    <circle cx="123" cy="124" r="3.5" fill="#6a4a2a" stroke="#c0a050" stroke-width="0.8"/>
+    <circle cx="130" cy="124" r="3.5" fill="#6a4a2a" stroke="#c0a050" stroke-width="0.8"/>
+    <circle cx="137" cy="122" r="3.5" fill="#6a4a2a" stroke="#c0a050" stroke-width="0.8"/>
+    <circle cx="143" cy="118" r="3.5" fill="#6a4a2a" stroke="#c0a050" stroke-width="0.8"/>
+  </g>
+
+  <!-- Robe pattern lines -->
+  <path d="M100 190 Q128 200 156 190" fill="none" stroke="#6a4a2a" stroke-width="1.5"/>
+  <path d="M95 200 Q128 210 161 200" fill="none" stroke="#6a4a2a" stroke-width="1.5"/>
+
+  <!-- Korean label -->
+  <text x="128" y="245" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#d0b060">승병</text>
+</svg>

@@ -5,7 +5,7 @@
   "act_name": {
     "ko": "경복궁",
     "description": {
-      "ko": "왕조의 심장부. 역모의 불꽃이 타오르는 궁궐 내전.",
+      "ko": "왕조의 심장부이로다. 역모의 불꽃이 타오르는 궁궐 내전이니라.",
       "en": "The heart of the dynasty. The inner palace, where the flames of treason burn bright."
     },
     "en": "Gyeongbokgung"
@@ -16,13 +16,13 @@
       "title": {
         "ko": "충신의 밀서",
         "description": {
-          "ko": "궁궐 복도에서 한 관리가 몰래 다가와 밀서를 건넨다.",
+          "ko": "궁궐 복도에서 한 관리가 은밀히 다가와 밀서를 건네느니라.",
           "en": "In the palace corridors, an official approaches in secret and hands you a letter."
         },
         "en": "The Loyalist's Secret Letter"
       },
       "flavor_text": {
-        "ko": "\"역적의 배치도를 입수했소. 이것이 도움이 될 것이오.\"",
+        "ko": "\"역적의 배치도를 입수하였소이다. 이것이 도움이 되리이다.\"",
         "en": "\"I've obtained the traitors' deployment map. This should be of use.\""
       },
       "choices": [
@@ -38,7 +38,7 @@
             "stacks": 3
           },
           "result_text": {
-            "ko": "역적의 약점을 파악했다. 다음 전투 힘 +3.",
+            "ko": "역적의 약점을 파악하였느니라. 다음 전투 힘 +3.",
             "en": "You identify the traitors' weaknesses. Next combat: Strength +3."
           }
         },
@@ -51,20 +51,20 @@
           "effect_type": "card_gain",
           "effect_value": 1,
           "result_text": {
-            "ko": "관리가 비밀 무공 서적을 건넨다. 카드 1장 획득.",
+            "ko": "관리가 비밀 무공 서적을 건네느니라. 카드 1장 획득.",
             "en": "The official hands over a secret martial arts manual. Gain 1 card."
           }
         },
         {
           "id": "refuse",
           "text": {
-            "ko": "함정일 수 있다며 거절한다.",
+            "ko": "\"함정일 수 있소이다.\" 거절한다.",
             "en": "Refuse, suspecting a trap."
           },
           "effect_type": "gold_gain",
           "effect_value": 25,
           "result_text": {
-            "ko": "관리가 보상으로 엽전을 놓고 간다. 엽전 25 획득.",
+            "ko": "관리가 보상으로 엽전을 놓고 떠나느니라. 엽전 25 획득.",
             "en": "The official leaves some coins as consolation. Gain 25 gold."
           }
         },
@@ -83,7 +83,7 @@
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus_2": 1,
           "result_text": {
-            "ko": "관리가 감격하여 밀서와 함께 비장의 유물을 건넨다. 다음 전투 힘 +5, 유물 1개.",
+            "ko": "관리가 감격하여 밀서와 함께 비장의 유물을 건네느니라. 다음 전투 힘 +5, 유물 1개.",
             "en": "The official, deeply moved, offers the letter and a hidden relic. Next combat: Strength +5, Relic +1."
           },
           "note": "시상 5 해금 보너스. 강화된 전투 버프 + 유물."
@@ -95,13 +95,13 @@
       "title": {
         "ko": "궁녀의 부탁",
         "description": {
-          "ko": "떨고 있는 궁녀가 길을 막는다. 역적에게 쫓기고 있는 듯하다.",
+          "ko": "사색이 된 궁녀가 길을 막아서는도다. 역적에게 쫓기고 있는 듯하니라.",
           "en": "A trembling court lady blocks your path. She appears to be fleeing from the traitors."
         },
         "en": "The Court Lady's Plea"
       },
       "flavor_text": {
-        "ko": "\"제발 숨겨주세요... 그들이 오고 있어요.\"",
+        "ko": "\"제발 숨겨주시옵소서... 그자들이 오고 있사옵니다.\"",
         "en": "\"Please, hide me... They're coming.\""
       },
       "choices": [
@@ -114,20 +114,20 @@
           "effect_type": "hp_gain",
           "effect_value": 15,
           "result_text": {
-            "ko": "궁녀가 감사히 여기며 비장의 약을 건넨다. HP 15 회복.",
+            "ko": "궁녀가 감읍하며 비장의 약을 건네느니라. HP 15 회복.",
             "en": "The grateful court lady offers a precious medicine. Restore 15 HP."
           }
         },
         {
           "id": "fight_guards",
           "text": {
-            "ko": "추격하는 역적 병사를 상대한다.",
+            "ko": "추격하는 역적 병졸을 상대한다.",
             "en": "Confront the pursuing rebel soldiers."
           },
           "effect_type": "hp_loss",
           "effect_value": 12,
           "result_text": {
-            "ko": "병사를 물리쳤다. HP 12 손실, 엽전 40 + 카드 1장 획득.",
+            "ko": "병졸을 물리쳤느니라. HP 12 손실, 엽전 40 + 카드 1장 획득.",
             "en": "You defeat the soldiers. Lose 12 HP, gain 40 gold + 1 card."
           },
           "effect_type_bonus": "gold_gain",
@@ -140,13 +140,13 @@
         {
           "id": "betray",
           "text": {
-            "ko": "궁녀의 위치를 역적에게 알린다.",
+            "ko": "궁녀의 위치를 역적에게 밀고한다.",
             "en": "Reveal the court lady's location to the traitors."
           },
           "effect_type": "gold_gain",
           "effect_value": 60,
           "result_text": {
-            "ko": "역적이 보상으로 엽전을 건넨다. 엽전 60 획득, 최대 HP -5.",
+            "ko": "역적이 보상으로 엽전을 건네느니라. 엽전 60 획득, 최대 HP -5.",
             "en": "The traitors reward you with coins. Gain 60 gold, Max HP -5."
           },
           "effect_type_bonus": "max_hp_loss",
@@ -163,26 +163,26 @@
       "title": {
         "ko": "어의의 치료실",
         "description": {
-          "ko": "궁궐 한쪽에 어의의 치료실이 아직 남아 있다. 약재가 풍부하다.",
+          "ko": "궁궐 한쪽에 어의의 치료실이 아직 남아 있도다. 약재가 풍부하니라.",
           "en": "The Royal Physician's clinic still stands in a corner of the palace. Medicinal supplies are plentiful."
         },
         "en": "The Royal Physician's Clinic"
       },
       "flavor_text": {
-        "ko": "\"아직 쓸 수 있는 약재가 남아있소.\"",
+        "ko": "\"아직 쓸 수 있는 약재가 남아있소이다.\"",
         "en": "\"There are still usable medicines here.\""
       },
       "choices": [
         {
           "id": "full_heal",
           "text": {
-            "ko": "어의의 치료를 받는다. (엽전 50)",
+            "ko": "어의의 치료를 청한다. (엽전 50)",
             "en": "Receive the Royal Physician's treatment. (50 gold)"
           },
           "effect_type": "gold_loss",
           "effect_value": 50,
           "result_text": {
-            "ko": "어의의 명의술로 몸이 완전히 회복된다. 엽전 50 소비, HP 완전 회복.",
+            "ko": "어의의 명의술로 몸이 완전히 회복되는도다. 엽전 50 소비, HP 완전 회복.",
             "en": "The Royal Physician's expert care fully restores you. Spend 50 gold, fully restore HP."
           },
           "effect_type_bonus": "hp_full_heal",
@@ -197,7 +197,7 @@
           "effect_type": "gold_loss",
           "effect_value": 30,
           "result_text": {
-            "ko": "영약의 효과로 체질이 강화된다. 엽전 30 소비, 최대 HP +5.",
+            "ko": "영약의 효험으로 체질이 강화되는도다. 엽전 30 소비, 최대 HP +5.",
             "en": "The elixir strengthens your constitution. Spend 30 gold, Max HP +5."
           },
           "effect_type_bonus": "max_hp_gain",
@@ -206,13 +206,13 @@
         {
           "id": "steal",
           "text": {
-            "ko": "약재를 훔쳐 달아난다.",
+            "ko": "약재를 슬쩍 훔쳐 달아난다.",
             "en": "Steal the medicines and flee."
           },
           "effect_type": "hp_gain",
           "effect_value": 25,
           "result_text": {
-            "ko": "약재로 자가 치료했다. HP 25 회복.",
+            "ko": "약재로 자가 치료하였느니라. HP 25 회복.",
             "en": "You treat yourself with the stolen medicines. Restore 25 HP."
           }
         }
@@ -223,13 +223,13 @@
       "title": {
         "ko": "역적의 함정",
         "description": {
-          "ko": "궁궐 통로에 설치된 역적의 함정. 앞서간 자의 흔적이 남아 있다.",
+          "ko": "궁궐 통로에 설치된 역적의 함정이로다. 앞서간 자의 흔적이 남아 있느니라.",
           "en": "A trap set by the traitors in a palace corridor. Traces of a previous victim remain."
         },
         "en": "The Traitor's Trap"
       },
       "flavor_text": {
-        "ko": "바닥에 미세한 실이 걸려 있다.",
+        "ko": "바닥에 미세한 실이 걸려 있도다.",
         "en": "A thin thread stretches across the floor."
       },
       "choices": [
@@ -242,7 +242,7 @@
           "effect_type": "gold_gain",
           "effect_value": 30,
           "result_text": {
-            "ko": "함정 장치를 분해하여 값진 부품을 얻었다. 엽전 30 획득.",
+            "ko": "함정 장치를 분해하여 값진 부품을 얻었느니라. 엽전 30 획득.",
             "en": "You dismantle the trap and salvage valuable parts. Gain 30 gold."
           }
         },
@@ -255,7 +255,7 @@
           "effect_type": "hp_loss",
           "effect_value": 10,
           "result_text": {
-            "ko": "함정에 맞았지만 달려온 역적 병사의 물건을 빼앗았다.",
+            "ko": "함정에 맞았으나, 달려온 역적 병졸의 물건을 빼앗았느니라.",
             "en": "The trap hits you, but you seize the belongings of the rebel soldier who came running."
           },
           "effect_type_bonus": "relic_gain",
@@ -274,7 +274,7 @@
           "effect_type": "none",
           "effect_value": 0,
           "result_text": {
-            "ko": "안전하게 다른 길로 돌아간다.",
+            "ko": "안전하게 다른 길로 돌아가느니라.",
             "en": "You safely take another route."
           }
         }
@@ -285,13 +285,13 @@
       "title": {
         "ko": "왕의 서재",
         "description": {
-          "ko": "역적이 미처 약탈하지 못한 왕의 서재를 발견했다.",
+          "ko": "역적이 미처 약탈하지 못한 왕의 서재를 발견하였도다.",
           "en": "You discover the King's study, which the traitors failed to plunder."
         },
         "en": "The King's Study"
       },
       "flavor_text": {
-        "ko": "서가에는 비전서와 왕실의 보물이 남아 있다.",
+        "ko": "서가에는 비전서와 왕실의 보물이 남아 있느니라.",
         "en": "Secret manuals and royal treasures remain on the shelves."
       },
       "choices": [
@@ -304,7 +304,7 @@
           "effect_type": "card_gain",
           "effect_value": 1,
           "result_text": {
-            "ko": "강력한 무공의 비급을 깨달았다. 카드 1장 획득.",
+            "ko": "강력한 무공의 비급을 깨달았도다. 카드 1장 획득.",
             "en": "You master a powerful martial technique. Gain 1 card."
           }
         },
@@ -317,7 +317,7 @@
           "effect_type": "gold_gain",
           "effect_value": 50,
           "result_text": {
-            "ko": "왕실 보물을 챙겼다. 엽전 50 획득.",
+            "ko": "왕실 보물을 챙겼느니라. 엽전 50 획득.",
             "en": "You claim the royal treasures. Gain 50 gold."
           }
         },
@@ -330,7 +330,7 @@
           "effect_type": "gold_gain",
           "effect_value": 30,
           "result_text": {
-            "ko": "욕심에 서두르다 일부만 챙겼다. 엽전 30 + HP 8 손실.",
+            "ko": "욕심에 서두르다 일부만 챙기고 말았느니라. 엽전 30 + HP 8 손실.",
             "en": "In your greed and haste, you grab only some. Gain 30 gold, lose 8 HP."
           },
           "effect_type_bonus": "hp_loss",
@@ -347,26 +347,26 @@
       "title": {
         "ko": "전투 전야",
         "description": {
-          "ko": "최후의 결전을 앞두고 잠시 쉴 수 있는 방을 찾았다.",
+          "ko": "최후의 결전을 앞두고 잠시 쉴 수 있는 방을 찾았도다.",
           "en": "On the eve of the final battle, you find a room to rest briefly."
         },
         "en": "Eve of the Final Battle"
       },
       "flavor_text": {
-        "ko": "마지막 준비를 할 시간이다.",
+        "ko": "마지막 준비를 할 시간이로다.",
         "en": "Time for your final preparations."
       },
       "choices": [
         {
           "id": "rest",
           "text": {
-            "ko": "몸을 쉬어 체력을 회복한다.",
+            "ko": "몸을 추스려 체력을 회복한다.",
             "en": "Rest your body to recover strength."
           },
           "effect_type": "hp_gain",
           "effect_value": 20,
           "result_text": {
-            "ko": "잠시나마 몸을 추스렸다. HP 20 회복.",
+            "ko": "잠시나마 몸을 추스렸도다. HP 20 회복.",
             "en": "A brief rest restores your body. Restore 20 HP."
           }
         },
@@ -382,20 +382,20 @@
             "stacks": 4
           },
           "result_text": {
-            "ko": "결의를 다졌다. 다음 전투 힘 +4.",
+            "ko": "비장한 결의를 다졌도다. 다음 전투 힘 +4.",
             "en": "Your resolve hardens. Next combat: Strength +4."
           }
         },
         {
           "id": "pray",
           "text": {
-            "ko": "왕실 사당에서 기도한다.",
+            "ko": "왕실 사당에 엎드려 기도한다.",
             "en": "Pray at the royal shrine."
           },
           "effect_type": "max_hp_gain",
           "effect_value": 5,
           "result_text": {
-            "ko": "선왕의 가호가 느껴진다. 최대 HP +5.",
+            "ko": "선왕의 가호가 느껴지는도다. 최대 HP +5.",
             "en": "You feel the blessing of the former kings. Max HP +5."
           }
         }
@@ -406,20 +406,20 @@
       "title": {
         "ko": "왕의 밀명",
         "description": {
-          "ko": "어둠 속에서 내관이 다가온다. \"전하께서 밀명을 내리셨습니다. 들으시겠습니까?\"",
+          "ko": "어둠 속에서 내관이 다가오느니라. \"전하께서 밀명을 내리셨사옵니다. 들으시겠나이까?\"",
           "en": "A court eunuch approaches from the shadows. \"His Majesty has issued a secret edict. Will you hear it?\""
         },
         "en": "The King's Secret Edict"
       },
       "flavor_text": {
-        "ko": "두루마리에는 왕의 친필이 적혀있다.",
+        "ko": "두루마리에는 왕의 친필이 적혀 있도다.",
         "en": "The scroll bears the King's own handwriting."
       },
       "choices": [
         {
           "id": "accept_mission",
           "text": {
-            "ko": "밀명을 받아들인다.",
+            "ko": "밀명을 받들어 들인다.",
             "en": "Accept the edict."
           },
           "effect_type": "relic_gain",
@@ -427,7 +427,7 @@
             "rarity": 4
           },
           "result_text": {
-            "ko": "전하의 신임을 받아 전설 유물 1개를 하사받는다.",
+            "ko": "전하의 신임을 받아 전설 유물 1개를 하사받는도다.",
             "en": "You earn His Majesty's trust and are bestowed a legendary relic."
           },
           "note": "전설 유물 1개 획득."
@@ -435,13 +435,13 @@
         {
           "id": "reject_for_gold",
           "text": {
-            "ko": "거절하고 보상만 받는다.",
+            "ko": "거절하고 보상만 챙긴다.",
             "en": "Decline and take only the reward."
           },
           "effect_type": "gold_gain",
           "effect_value": 80,
           "result_text": {
-            "ko": "엽전 80을 챙긴다.",
+            "ko": "엽전 80을 챙기느니라.",
             "en": "You pocket 80 gold."
           },
           "note": "골드 80 획득."
@@ -455,7 +455,7 @@
           "effect_type": "none",
           "effect_value": 0,
           "result_text": {
-            "ko": "모르는 척 자리를 피했다.",
+            "ko": "모르는 척 자리를 피하였느니라.",
             "en": "You slip away unnoticed."
           },
           "note": "중립."
@@ -467,26 +467,26 @@
       "title": {
         "ko": "역모 문서",
         "description": {
-          "ko": "죽은 역적 문관의 품에서 두루마리가 나왔다. 역모의 전모가 적혀 있는 듯하다.",
+          "ko": "죽은 역적 문관의 품에서 두루마리가 나왔도다. 역모의 전모가 적혀 있는 듯하니라.",
           "en": "A scroll is found on the body of a slain rebel scribe. It appears to detail the full scope of the treason."
         },
         "en": "The Treason Documents"
       },
       "flavor_text": {
-        "ko": "이 문서 하나가 모든 것을 바꿀 수 있다.",
+        "ko": "이 문서 하나가 모든 것을 바꿀 수 있으리라.",
         "en": "This single document could change everything."
       },
       "choices": [
         {
           "id": "use_document",
           "text": {
-            "ko": "문서를 이용해 협박한다.",
+            "ko": "문서를 이용하여 협박한다.",
             "en": "Use the document as blackmail."
           },
           "effect_type": "gold_gain",
           "effect_value": 100,
           "result_text": {
-            "ko": "역모 가담자들이 입막음 비용으로 엽전 100을 건넨다.",
+            "ko": "역모 가담자들이 입막음 비용으로 엽전 100을 건네느니라.",
             "en": "The conspirators pay 100 gold to buy your silence."
           },
           "note": "골드 100 획득."
@@ -494,13 +494,13 @@
         {
           "id": "submit",
           "text": {
-            "ko": "문서를 왕에게 올린다.",
+            "ko": "문서를 전하께 올린다.",
             "en": "Present the document to the King."
           },
           "effect_type": "max_hp_gain",
           "effect_value": 15,
           "result_text": {
-            "ko": "충성심을 인정받아 최대 HP +15.",
+            "ko": "충성심을 인정받아 최대 HP +15를 얻었도다.",
             "en": "Your loyalty is recognized. Max HP +15."
           },
           "note": "최대 HP +15."
@@ -508,13 +508,13 @@
         {
           "id": "destroy",
           "text": {
-            "ko": "문서를 태워버린다.",
+            "ko": "문서를 불에 태운다.",
             "en": "Burn the document."
           },
           "effect_type": "card_remove_free",
           "effect_value": 1,
           "result_text": {
-            "ko": "증거를 없앴다. 덱에서 카드 1장을 무료로 제거할 수 있다.",
+            "ko": "증거를 없앴느니라. 덱에서 카드 1장을 무료로 제거할 수 있도다.",
             "en": "The evidence is destroyed. Remove 1 card from your deck for free."
           },
           "note": "무료 카드 제거 1회."
@@ -526,26 +526,26 @@
       "title": {
         "ko": "마지막 결전 전야",
         "description": {
-          "ko": "최후의 전투를 앞두고 낡은 주막에 들렀다. 술잔을 기울이며 지나온 길을 돌아본다.",
+          "ko": "최후의 전투를 앞두고 낡은 주막에 들렀도다. 술잔을 기울이며 지나온 길을 돌아보느니라.",
           "en": "Before the final battle, you stop at a worn tavern. Raising your cup, you reflect on the journey behind you."
         },
         "en": "Night Before the Final Stand"
       },
       "flavor_text": {
-        "ko": "\"오늘 밤이 지나면 모든 것이 결판나겠지.\"",
+        "ko": "\"오늘 밤이 지나면 모든 것이 결판나리라.\"",
         "en": "\"After tonight, everything will be decided.\""
       },
       "choices": [
         {
           "id": "rest_fully",
           "text": {
-            "ko": "푹 쉬며 몸을 회복한다.",
+            "ko": "푹 쉬며 몸을 추스린다.",
             "en": "Rest well and recover."
           },
           "effect_type": "hp_full_heal",
           "effect_value": 0,
           "result_text": {
-            "ko": "편안한 잠을 자고 일어나니 몸이 한결 가볍다. HP 완전 회복.",
+            "ko": "편안한 잠을 자고 일어나니 몸이 한결 가벼운도다. HP 완전 회복.",
             "en": "A peaceful sleep leaves your body feeling light. Fully restore HP."
           },
           "note": "HP 완전 회복."
@@ -553,13 +553,13 @@
         {
           "id": "sharpen_skills",
           "text": {
-            "ko": "덱을 정비하고 전술을 다듬는다.",
+            "ko": "덱을 정비하고 전법을 가다듬는다.",
             "en": "Refine your deck and sharpen your tactics."
           },
           "effect_type": "card_upgrade_free",
           "effect_value": 1,
           "result_text": {
-            "ko": "덱에서 카드 1장을 무료로 강화한다.",
+            "ko": "덱에서 카드 1장을 무료로 강화하느니라.",
             "en": "Upgrade 1 card in your deck for free."
           },
           "note": "무료 카드 강화 1장."
@@ -567,13 +567,13 @@
         {
           "id": "drink_courage",
           "text": {
-            "ko": "술을 마시며 기운을 모은다.",
+            "ko": "술을 들이키며 기개를 다진다.",
             "en": "Drink and gather your courage."
           },
           "effect_type": "next_battle_block",
           "effect_value": 20,
           "result_text": {
-            "ko": "다음 전투 시작 시 방어도 20 추가 획득.",
+            "ko": "다음 전투 시작 시 방어도 20을 추가로 얻느니라.",
             "en": "Gain 20 additional Block at the start of the next combat."
           },
           "note": "다음 전투 시작 방어도 +20."
@@ -585,20 +585,20 @@
       "title": {
         "ko": "보부상의 짐",
         "description": {
-          "ko": "보부상이 무거운 짐을 지고 고개를 넘고 있다. 짐 속에 희귀한 물건이 보인다.",
+          "ko": "보부상이 무거운 짐을 지고 고개를 넘고 있도다. 짐 속에 희귀한 물건이 보이느니라.",
           "en": "A traveling peddler carries a heavy load over a mountain pass. Rare goods peek out from the bundles."
         },
         "en": "The Peddler's Burden"
       },
       "flavor_text": {
-        "ko": "\"좋은 물건 있소! 다 팔아야 고향에 돌아갈 수 있다오.\"",
+        "ko": "\"좋은 물건 있소이다! 다 팔아야 고향에 돌아갈 수 있다오.\"",
         "en": "\"Fine wares for sale! I must sell them all to make it home.\""
       },
       "choices": [
         {
           "id": "buy_rare",
           "text": {
-            "ko": "희귀 물건을 산다. (금화 -25, 유물 획득)",
+            "ko": "희귀 물건을 구한다. (금화 -25, 유물 획득)",
             "en": "Buy the rare goods. (Gold -25, gain relic)"
           },
           "effect_type": "gold_loss",
@@ -606,7 +606,7 @@
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus": 1,
           "result_text": {
-            "ko": "진귀한 물건을 구입했다. 유물 1개 획득!",
+            "ko": "진귀한 물건을 구하였도다. 유물 1개 획득!",
             "en": "You purchase something truly precious. Gain 1 relic!"
           },
           "note": "금화→유물. 고비용."
@@ -614,7 +614,7 @@
         {
           "id": "buy_cheap",
           "text": {
-            "ko": "잡화를 산다. (금화 -8, HP +10)",
+            "ko": "잡화를 구한다. (금화 -8, HP +10)",
             "en": "Buy sundries. (Gold -8, HP +10)"
           },
           "effect_type": "gold_loss",
@@ -622,7 +622,7 @@
           "effect_type_bonus": "hp_gain",
           "effect_value_bonus": 10,
           "result_text": {
-            "ko": "약재와 음식을 구입했다. HP 10 회복.",
+            "ko": "약재와 음식을 구하였느니라. HP 10 회복.",
             "en": "You buy medicines and food. Restore 10 HP."
           },
           "note": "금화→HP."
@@ -638,7 +638,7 @@
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": 2,
           "result_text": {
-            "ko": "짐을 도와주자 감사히 여기며 노자를 건넸다.",
+            "ko": "짐을 도와주니 감사히 여기며 노자를 건네느니라.",
             "en": "Grateful for the help, the peddler offers you some travel money."
           },
           "note": "무료 보상."
@@ -650,20 +650,20 @@
       "title": {
         "ko": "대동강 교역선",
         "description": {
-          "ko": "대동강에 정박한 교역선. 청나라 상인이 물건을 펼쳐놓고 있다.",
+          "ko": "대동강에 정박한 교역선이로다. 청나라 상인이 물건을 펼쳐놓고 있느니라.",
           "en": "A trading vessel docked on the Taedong River. A Qing merchant displays his wares."
         },
         "en": "The Taedong River Trading Ship"
       },
       "flavor_text": {
-        "ko": "\"조선 양반! 이 물건은 중원에서도 구하기 힘든 것이오.\"",
+        "ko": "\"조선 나으리! 이 물건은 중원에서도 구하기 힘든 것이오.\"",
         "en": "\"Joseon nobleman! These goods are hard to find even in the Central Plains.\""
       },
       "choices": [
         {
           "id": "trade_big",
           "text": {
-            "ko": "대규모 교역을 한다. (금화 -30, 카드 3장 중 선택 + 유물)",
+            "ko": "대규모 교역을 벌인다. (금화 -30, 카드 3장 중 선택 + 유물)",
             "en": "Make a major trade. (Gold -30, choose from 3 cards + relic)"
           },
           "effect_type": "gold_loss",
@@ -671,7 +671,7 @@
           "effect_type_bonus": "card_choice",
           "effect_value_bonus": 3,
           "result_text": {
-            "ko": "금화 30을 투자하여 진귀한 물건들을 얻었다. 카드 선택 + 유물.",
+            "ko": "금화 30을 투자하여 진귀한 물건들을 얻었느니라. 카드 선택 + 유물.",
             "en": "You invest 30 gold and acquire rare goods. Card selection + relic."
           },
           "note": "고비용 최대 보상."
@@ -687,7 +687,7 @@
           "effect_type_bonus": "card_gain",
           "effect_value_bonus": 1,
           "result_text": {
-            "ko": "적당한 물건을 구입했다. 카드 1장 획득.",
+            "ko": "적당한 물건을 구하였느니라. 카드 1장 획득.",
             "en": "You purchase a decent item. Gain 1 card."
           },
           "note": "표준 거래."
@@ -706,7 +706,7 @@
               "effect_type": "gold_gain",
               "effect_value": 40,
               "text": {
-                "ko": "대박! 금화 40을 벌었다!",
+                "ko": "대박이로다! 금화 40을 벌었느니라!",
                 "en": "Jackpot! Gain 40 gold!"
               }
             },
@@ -715,7 +715,7 @@
               "effect_type": "gold_loss",
               "effect_value": 20,
               "text": {
-                "ko": "사기를 당했다. 금화 20 손실.",
+                "ko": "사기를 당하고 말았느니라. 금화 20 손실.",
                 "en": "You've been swindled. Lose 20 gold."
               }
             }
@@ -733,13 +733,13 @@
       "title": {
         "ko": "역관의 제안",
         "description": {
-          "ko": "역관(통역관)이 비밀 교역을 제안한다. 위험하지만 수익이 크다.",
+          "ko": "역관(통역관)이 비밀 교역을 제안하느니라. 위험하나 수익이 크도다.",
           "en": "An interpreter proposes a secret trade. Risky, but highly profitable."
         },
         "en": "The Interpreter's Proposal"
       },
       "flavor_text": {
-        "ko": "\"이 물건을 국경 너머로 가져가면 — 열 배의 값을 받을 수 있소.\"",
+        "ko": "\"이 물건을 국경 너머로 가져가면 — 열 배의 값을 받을 수 있소이다.\"",
         "en": "\"Take these goods across the border, and you'll fetch ten times the price.\""
       },
       "choices": [
@@ -754,7 +754,7 @@
           "effect_type_bonus": "hp_loss",
           "effect_value_bonus": 10,
           "result_text": {
-            "ko": "밀무역으로 큰 돈을 벌었으나, 관군에게 쫓기다 부상을 입었다. 소문도 퍼졌다.",
+            "ko": "밀무역으로 큰 돈을 벌었으나, 관군에게 쫓기다 부상을 입었느니라. 소문도 퍼졌도다.",
             "en": "Smuggling earns big money, but soldiers wound you in pursuit. Word spreads."
           },
           "note": "최대 금화. HP+민심 리스크."
@@ -770,7 +770,7 @@
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": 3,
           "result_text": {
-            "ko": "정당한 거래로 적당한 수익과 평판을 얻었다.",
+            "ko": "정당한 거래로 적당한 수익과 평판을 얻었느니라.",
             "en": "Honest trading yields moderate profit and a good reputation."
           },
           "note": "안전한 보상."
@@ -784,7 +784,7 @@
           "effect_type": "minshim_change",
           "effect_value": 8,
           "result_text": {
-            "ko": "밀무역을 고발하자 백성들이 환호했다. 민심이 크게 올랐다.",
+            "ko": "밀무역을 고발하니 백성들이 환호하는도다. 민심이 크게 올랐느니라.",
             "en": "Reporting the smuggling earns cheers from the people. Public favor rises greatly."
           },
           "note": "민심 루트."

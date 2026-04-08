@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <!-- Background circle -->
+  <circle cx="128" cy="120" r="110" fill="#2a1a1a"/>
+
+  <!-- Body - hanbok silhouette -->
+  <ellipse cx="128" cy="185" rx="55" ry="45" fill="#c4506a"/>
+  <!-- Upper body -->
+  <rect x="104" y="120" width="48" height="50" rx="8" fill="#e06888"/>
+  <!-- Jeogori collar - goreum ribbon -->
+  <path d="M112 120 L128 140 L144 120" fill="none" stroke="#ffb0c0" stroke-width="3"/>
+  <path d="M126 138 L120 168" stroke="#ffb0c0" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M130 138 L136 168" stroke="#ffb0c0" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Sleeves - wider, more elegant -->
+  <ellipse cx="90" cy="142" rx="22" ry="12" fill="#e06888" transform="rotate(-10 90 142)"/>
+  <ellipse cx="166" cy="142" rx="22" ry="12" fill="#e06888" transform="rotate(10 166 142)"/>
+
+  <!-- Head -->
+  <circle cx="128" cy="90" r="32" fill="#e8c9a0"/>
+  <!-- Hair - elaborate gisaeng style with eoyeo meori -->
+  <ellipse cx="128" cy="74" rx="36" ry="24" fill="#1a0a0a"/>
+  <ellipse cx="128" cy="58" rx="16" ry="12" fill="#1a0a0a"/>
+  <!-- Hair ornaments - dwikkoji -->
+  <circle cx="112" cy="60" r="5" fill="#ff6080"/>
+  <circle cx="144" cy="60" r="5" fill="#ff6080"/>
+  <circle cx="112" cy="60" r="2.5" fill="#ffb0c0"/>
+  <circle cx="144" cy="60" r="2.5" fill="#ffb0c0"/>
+
+  <!-- Eyes - cute chibi style -->
+  <ellipse cx="118" cy="92" rx="4" ry="5" fill="#1a1a1a"/>
+  <ellipse cx="138" cy="92" rx="4" ry="5" fill="#1a1a1a"/>
+  <circle cx="119" cy="90" r="1.5" fill="white"/>
+  <circle cx="139" cy="90" r="1.5" fill="white"/>
+  <!-- Beauty mark -->
+  <circle cx="140" cy="100" r="1" fill="#4a2a2a"/>
+  <!-- Blush -->
+  <ellipse cx="112" cy="100" rx="6" ry="3" fill="#e0a0a0" opacity="0.5"/>
+  <ellipse cx="144" cy="100" rx="6" ry="3" fill="#e0a0a0" opacity="0.5"/>
+  <!-- Mouth - slight smile -->
+  <path d="M122 104 Q128 109 134 104" fill="none" stroke="#c05a5a" stroke-width="1.5"/>
+
+  <!-- Fan symbol - held in hand -->
+  <g transform="translate(80, 130) rotate(-30)">
+    <path d="M0 20 L0 0 Q-20 -15 -25 5 Z" fill="#ff8090" stroke="#c04060" stroke-width="1"/>
+    <path d="M0 20 L0 0 Q-10 -20 -18 -2 Z" fill="#ffb0c0" stroke="#c04060" stroke-width="0.5"/>
+    <path d="M0 20 L0 0 Q10 -20 18 -2 Z" fill="#ffb0c0" stroke="#c04060" stroke-width="0.5"/>
+    <path d="M0 20 L0 0 Q20 -15 25 5 Z" fill="#ff8090" stroke="#c04060" stroke-width="1"/>
+    <rect x="-2" y="18" width="4" height="10" rx="1" fill="#8a4a2a"/>
+  </g>
+
+  <!-- Chima pattern - flower motifs -->
+  <circle cx="115" cy="190" r="4" fill="#a03050" opacity="0.6"/>
+  <circle cx="141" cy="195" r="3.5" fill="#a03050" opacity="0.6"/>
+  <circle cx="128" cy="205" r="3" fill="#a03050" opacity="0.6"/>
+  <path d="M95 190 Q128 202 161 190" fill="none" stroke="#a03050" stroke-width="1.5"/>
+  <path d="M90 200 Q128 212 166 200" fill="none" stroke="#a03050" stroke-width="1.5"/>
+
+  <!-- Korean label -->
+  <text x="128" y="245" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#ffb0c0">기생</text>
+</svg>

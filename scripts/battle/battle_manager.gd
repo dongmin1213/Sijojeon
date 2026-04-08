@@ -216,6 +216,10 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 			var et := "enemy_%d" % i
 			status_effects.apply_effect(et, "반격", 1)
 
+	# 보스 퍼즐 메카닉 초기화 (ZER-330)
+	for i in enemies.size():
+		init_boss_puzzle(i)
+
 	# 민심 70+ → 백성 지원병 등장
 	_check_minshim_ally_support()
 
@@ -304,6 +308,9 @@ func begin_player_turn() -> void:
 				_change_state(BattleState.BATTLE_LOSE)
 				battle_ended.emit(false)
 				return
+
+	# 보스 퍼즐: 턴 시작 처리 (형벌 카운터, 비늘 재생 등)
+	process_boss_puzzle_turn_start()
 
 	# 카드 드로우 (냉기 등 드로우 수정자 적용 + 시조 실패 패널티 + 신분 레벨업 보너스)
 	var draw_bonus := JibunSystem.get_draw_bonus(GameManager.run_data)
@@ -653,6 +660,9 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 	# 적의 취약 적용
 	var enemy_target := "enemy_%d" % enemy_index
 	final_damage = status_effects.calculate_incoming_damage(enemy_target, final_damage)
+
+	# 보스 퍼즐 메카닉: 피해 감소 적용 (비늘 방어막 / 충신 가면)
+	final_damage = _apply_puzzle_damage_reduction(enemy_index, final_damage)
 
 	var remaining := final_damage
 	var eblock: int = enemy.get("block", 0)
@@ -1524,3 +1534,226 @@ func get_active_skill_description() -> String:
 			return "학식을 3 즉시 획득합니다. (전투당 1회)"
 		_:
 			return ""
+
+
+# --- 보스 퍼즐 메카닉 (ZER-330) ---
+
+## 보스 퍼즐 상태 초기화 — start_battle에서 적 초기화 후 호출
+func init_boss_puzzle(enemy_index: int) -> void:
+	var enemy := enemies[enemy_index]
+	var puzzle: Dictionary = enemy.get("puzzle_mechanic", {})
+	if puzzle.is_empty():
+		return
+
+	var ptype: String = puzzle.get("type", "")
+	match ptype:
+		"punishment_counter":
+			# 변학도: 형벌 카운터 초기화
+			enemy["_puzzle_stacks"] = 0
+			enemy["_puzzle_max"] = puzzle.get("max_stacks", 5)
+			enemy["_puzzle_type"] = "punishment_counter"
+		"scale_barrier":
+			# 이무기: 비늘 방어막 초기화
+			enemy["_puzzle_scales"] = puzzle.get("max_scales", 3)
+			enemy["_puzzle_max_scales"] = puzzle.get("max_scales", 3)
+			enemy["_puzzle_reduction"] = puzzle.get("damage_reduction_percent", 50)
+			enemy["_puzzle_regen_timer"] = 0
+			enemy["_puzzle_type"] = "scale_barrier"
+		"loyalty_mask":
+			# 역모대감: 충신 가면 초기화
+			enemy["_puzzle_mask"] = puzzle.get("mask_durability", 3)
+			enemy["_puzzle_max_mask"] = puzzle.get("mask_durability", 3)
+			enemy["_puzzle_reduction"] = puzzle.get("damage_reduction_percent", 40)
+			enemy["_puzzle_debuff_immune"] = puzzle.get("debuff_immunity", true)
+			enemy["_puzzle_type"] = "loyalty_mask"
+
+
+## 퍼즐 기반 피해 감소 — deal_damage_to_enemy에서 호출
+func _apply_puzzle_damage_reduction(enemy_index: int, damage: int) -> int:
+	if enemy_index < 0 or enemy_index >= enemies.size():
+		return damage
+	var enemy := enemies[enemy_index]
+	var ptype: String = enemy.get("_puzzle_type", "")
+
+	match ptype:
+		"scale_barrier":
+			# 비늘이 남아있으면 피해 감소
+			var scales: int = enemy.get("_puzzle_scales", 0)
+			if scales > 0:
+				var reduction: int = enemy.get("_puzzle_reduction", 50)
+				var reduced := int(damage * (100 - reduction) / 100.0)
+				return maxi(reduced, 1)  # 최소 1 피해
+		"loyalty_mask":
+			# 가면이 남아있으면 피해 감소
+			var mask: int = enemy.get("_puzzle_mask", 0)
+			if mask > 0:
+				var reduction: int = enemy.get("_puzzle_reduction", 40)
+				var reduced := int(damage * (100 - reduction) / 100.0)
+				return maxi(reduced, 1)
+
+	return damage
+
+
+## 보스 퍼즐: 턴 시작 처리 — begin_player_turn에서 호출
+func process_boss_puzzle_turn_start() -> void:
+	for i in enemies.size():
+		var enemy := enemies[i]
+		if enemy["current_hp"] <= 0:
+			continue
+		var ptype: String = enemy.get("_puzzle_type", "")
+
+		match ptype:
+			"punishment_counter":
+				# 변학도: 형벌 카운터 +1 (페이즈 2이면 +2)
+				var increment := 1
+				var phase_idx: int = enemy.get("current_phase", 0)
+				var phases: Array = enemy.get("phases", [])
+				if phase_idx < phases.size():
+					var phase_data: Dictionary = phases[phase_idx]
+					var override: Dictionary = phase_data.get("puzzle_override", {})
+					increment = override.get("stacks_per_turn", increment)
+
+				enemy["_puzzle_stacks"] = enemy.get("_puzzle_stacks", 0) + increment
+				var stacks: int = enemy["_puzzle_stacks"]
+				var max_stacks: int = enemy.get("_puzzle_max", 5)
+
+				passive_triggered.emit(
+					tr("PUZZLE_PUNISHMENT_NAME"),
+					tr("PUZZLE_PUNISHMENT_STACK_FMT") % [stacks, max_stacks]
+				)
+
+				if stacks >= max_stacks:
+					# 곤장 집행: 플레이어 최대 HP 30% 피해
+					var puzzle: Dictionary = enemy.get("puzzle_mechanic", {})
+					var on_max: Dictionary = puzzle.get("on_max", {})
+					var dmg_pct: int = on_max.get("damage_percent", 30)
+					var dmg := int(player_max_hp * dmg_pct / 100.0)
+					player_hp -= dmg
+					player_hp = maxi(player_hp, 0)
+					hp_changed.emit(player_hp, player_max_hp)
+					passive_triggered.emit(
+						tr("PUZZLE_PUNISHMENT_EXEC"),
+						tr("PUZZLE_PUNISHMENT_EXEC_FMT") % dmg
+					)
+					enemy["_puzzle_stacks"] = 0
+					if player_hp <= 0:
+						if not RelicManager.trigger_on_lethal_damage(self):
+							AudioManager.play_sfx_by_key("defeat")
+							_change_state(BattleState.BATTLE_LOSE)
+							battle_ended.emit(false)
+
+			"scale_barrier":
+				# 이무기: 비늘 재생 타이머
+				var scales: int = enemy.get("_puzzle_scales", 0)
+				var max_scales: int = enemy.get("_puzzle_max_scales", 3)
+				if scales < max_scales:
+					enemy["_puzzle_regen_timer"] = enemy.get("_puzzle_regen_timer", 0) + 1
+					var puzzle: Dictionary = enemy.get("puzzle_mechanic", {})
+					var regen_cfg: Dictionary = puzzle.get("scale_regen", {})
+					var turns_needed: int = regen_cfg.get("turns_to_regen", 4)
+					if enemy["_puzzle_regen_timer"] >= turns_needed and regen_cfg.get("enabled", false):
+						var regen_amount: int = regen_cfg.get("regen_amount", 1)
+						enemy["_puzzle_scales"] = mini(scales + regen_amount, max_scales)
+						enemy["_puzzle_regen_timer"] = 0
+						passive_triggered.emit(
+							tr("PUZZLE_SCALE_REGEN"),
+							tr("PUZZLE_SCALE_REGEN_FMT") % enemy["_puzzle_scales"]
+						)
+
+				if scales > 0:
+					passive_triggered.emit(
+						tr("PUZZLE_SCALE_NAME"),
+						tr("PUZZLE_SCALE_STATUS_FMT") % [scales, max_scales]
+					)
+
+
+## 보스 퍼즐: 시조 완성 처리 — battle.gd의 _on_sijo_completed에서 호출
+func process_boss_puzzle_sijo_complete() -> void:
+	for i in enemies.size():
+		var enemy := enemies[i]
+		if enemy["current_hp"] <= 0:
+			continue
+		var ptype: String = enemy.get("_puzzle_type", "")
+		var puzzle: Dictionary = enemy.get("puzzle_mechanic", {})
+		var on_sijo: Dictionary = puzzle.get("on_sijo_complete", {})
+		var enemy_target := "enemy_%d" % i
+
+		match ptype:
+			"punishment_counter":
+				# 변학도: 형벌 카운터 초기화 + 취약 부여
+				if on_sijo.get("reset_counter", false):
+					enemy["_puzzle_stacks"] = 0
+				var effects: Array = on_sijo.get("apply_to_boss", [])
+				for eff in effects:
+					if eff is Dictionary and eff.get("type", "") == "apply_debuff":
+						status_effects.apply_effect(enemy_target, eff.get("debuff", ""), eff.get("stacks", 1))
+				passive_triggered.emit(
+					tr("PUZZLE_PUNISHMENT_PLEA"),
+					tr("PUZZLE_PUNISHMENT_PLEA_DESC")
+				)
+
+			"scale_barrier":
+				# 이무기: 비늘 1겹 벗기기
+				var scales: int = enemy.get("_puzzle_scales", 0)
+				if scales > 0:
+					var strip: int = on_sijo.get("strip_scales", 1)
+					enemy["_puzzle_scales"] = maxi(scales - strip, 0)
+					enemy["_puzzle_regen_timer"] = 0  # 재생 타이머 리셋
+
+					# 벗긴 비늘 수에 따른 대사
+					var dialogues: Array = on_sijo.get("dialogue_per_scale", [])
+					var stripped_idx: int = puzzle.get("max_scales", 3) - enemy["_puzzle_scales"] - 1
+					if stripped_idx >= 0 and stripped_idx < dialogues.size():
+						var dlg: Dictionary = dialogues[stripped_idx]
+						passive_triggered.emit(
+							tr("PUZZLE_SCALE_STRIP"),
+							dlg.get("ko", "")
+						)
+
+					if enemy["_puzzle_scales"] <= 0:
+						# 비늘 전부 벗김 → 취약 부여
+						var on_all: Dictionary = puzzle.get("on_all_stripped", {})
+						var effects: Array = on_all.get("apply_to_boss", [])
+						for eff in effects:
+							if eff is Dictionary and eff.get("type", "") == "apply_debuff":
+								status_effects.apply_effect(enemy_target, eff.get("debuff", ""), eff.get("stacks", 1))
+						passive_triggered.emit(
+							tr("PUZZLE_SCALE_BROKEN"),
+							tr("PUZZLE_SCALE_BROKEN_DESC")
+						)
+
+			"loyalty_mask":
+				# 역모대감: 가면 1 균열
+				var mask: int = enemy.get("_puzzle_mask", 0)
+				if mask > 0:
+					var crack: int = on_sijo.get("crack_mask", 1)
+					enemy["_puzzle_mask"] = maxi(mask - crack, 0)
+
+					# 균열에 따른 대사
+					var dialogues: Array = on_sijo.get("dialogue_per_crack", [])
+					var crack_idx: int = puzzle.get("mask_durability", 3) - enemy["_puzzle_mask"] - 1
+					if crack_idx >= 0 and crack_idx < dialogues.size():
+						var dlg: Dictionary = dialogues[crack_idx]
+						passive_triggered.emit(
+							tr("PUZZLE_MASK_CRACK"),
+							dlg.get("ko", "")
+						)
+
+					if enemy["_puzzle_mask"] <= 0:
+						# 가면 파괴 → 약화 + 취약 + 힘 절반
+						var on_shatter: Dictionary = puzzle.get("on_mask_shattered", {})
+						var effects: Array = on_shatter.get("apply_to_boss", [])
+						for eff in effects:
+							if eff is Dictionary and eff.get("type", "") == "apply_debuff":
+								status_effects.apply_effect(enemy_target, eff.get("debuff", ""), eff.get("stacks", 1))
+						# 힘 절반 감소
+						if on_shatter.get("halve_strength", false):
+							var current_str: int = status_effects.get_all_effects(enemy_target).get("strength", 0)
+							if current_str > 0:
+								var remove_str := current_str / 2
+								status_effects.apply_effect(enemy_target, "약화_strength", remove_str)
+						enemy["_puzzle_debuff_immune"] = false
+						passive_triggered.emit(
+							tr("PUZZLE_MASK_SHATTER"),
+							tr("PUZZLE_MASK_SHATTER_DESC")
+						)

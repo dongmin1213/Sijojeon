@@ -5,7 +5,7 @@
   "act_name": {
     "ko": "지리산",
     "description": {
-      "ko": "험준한 산세와 깊은 숲. 산적, 요괴, 수도하는 승려가 공존하는 위험한 길.",
+      "ko": "험준한 산세와 깊은 숲이로다. 산적, 요괴, 수도하는 승려가 공존하는 위험천만한 길이니라.",
       "en": "Treacherous peaks and deep forests. A dangerous path where bandits, demons, and meditating monks coexist."
     },
     "en": "Jirisan"
@@ -16,52 +16,52 @@
       "title": {
         "ko": "산사의 승려",
         "description": {
-          "ko": "지리산 깊은 곳의 작은 암자에서 한 승려가 좌선하고 있다. 다가가자 눈을 뜬다.",
+          "ko": "지리산 깊은 곳 작은 암자에서 한 승려가 좌선하고 있도다. 다가가니 눈을 뜨시느니라.",
           "en": "Deep in Jirisan, a monk meditates in a small hermitage. He opens his eyes as you approach."
         },
         "en": "The Mountain Monk"
       },
       "flavor_text": {
-        "ko": "\"산을 오르는 자에게는 반드시 이유가 있는 법.\"",
+        "ko": "\"산을 오르는 자에게는 반드시 이유가 있는 법이니라.\"",
         "en": "\"Those who climb the mountain always carry a reason.\""
       },
       "choices": [
         {
           "id": "meditate",
           "text": {
-            "ko": "함께 좌선에 들어간다.",
+            "ko": "함께 좌선에 드는도다.",
             "en": "Join in meditation."
           },
           "effect_type": "max_hp_gain",
           "effect_value": 4,
           "result_text": {
-            "ko": "깊은 명상으로 심신이 단련된다. 최대 HP +4.",
+            "ko": "깊은 명상으로 심신이 단련되는도다. 최대 HP +4.",
             "en": "Deep meditation tempers body and spirit. Max HP +4."
           }
         },
         {
           "id": "ask_teaching",
           "text": {
-            "ko": "무예의 가르침을 청한다.",
+            "ko": "무예의 가르침을 청하여 본다.",
             "en": "Ask for martial instruction."
           },
           "effect_type": "card_gain",
           "effect_value": 1,
           "result_text": {
-            "ko": "승려가 비전의 한 수를 알려준다. 카드 1장 획득.",
+            "ko": "승려가 비전의 한 수를 전수하시느니라. 카드 1장 획득.",
             "en": "The monk reveals a secret technique. Gain 1 card."
           }
         },
         {
           "id": "rob",
           "text": {
-            "ko": "암자의 보물을 훔친다.",
+            "ko": "암자의 보물을 슬쩍 훔친다.",
             "en": "Steal the hermitage's treasures."
           },
           "effect_type": "gold_gain",
           "effect_value": 45,
           "result_text": {
-            "ko": "금불상을 챙겼다. 엽전 45 획득. 하지만 죄업이 깊어진다.",
+            "ko": "금불상을 챙겼으나, 죄업이 깊어지는도다. 엽전 45 획득.",
             "en": "You pocket a golden Buddha statue. Gain 45 gold. But your karma deepens."
           },
           "effect_type_bonus": "max_hp_loss",
@@ -89,7 +89,7 @@
         {
           "id": "sijo_exchange",
           "text": {
-            "ko": "[시상] 시조를 읊어 승려와 시로 교감한다.",
+            "ko": "[시상] 시조를 읊어 승려와 시로써 교감한다.",
             "en": "[Sisang] Share a sijo with the monk, bonding through poetry."
           },
           "trigger_condition": "sisang_ge_5",
@@ -98,7 +98,7 @@
           "effect_type_bonus": "card_upgrade",
           "effect_value_bonus": 1,
           "result_text": {
-            "ko": "승려가 시조에 화답하며 비전의 깨달음을 전한다. 최대 HP +5, 카드 1장 강화.",
+            "ko": "승려가 시조에 화답하시며 비전의 깨달음을 전하시는도다. 최대 HP +5, 카드 1장 강화.",
             "en": "The monk responds with a verse of his own and shares a secret insight. Max HP +5, upgrade 1 card."
           },
           "note": "시상 5 해금 보너스. 최대HP + 카드 강화."
@@ -110,26 +110,26 @@
       "title": {
         "ko": "산적의 매복",
         "description": {
-          "ko": "숲 사이로 무장한 산적들이 길을 막는다. 두목이 앞으로 나선다.",
+          "ko": "숲 사이로 무장한 산적 떼가 길을 막아서는도다. 두목이 앞으로 나서느니라.",
           "en": "Armed bandits emerge from the forest to block the road. Their leader steps forward."
         },
         "en": "The Bandit Ambush"
       },
       "flavor_text": {
-        "ko": "\"재물을 놓고 가면 목숨은 살려주마.\"",
+        "ko": "\"재물을 놓고 가면 목숨만은 살려주마.\"",
         "en": "\"Leave your valuables and we'll spare your life.\""
       },
       "choices": [
         {
           "id": "pay",
           "text": {
-            "ko": "순순히 통행료를 낸다. (엽전 25)",
+            "ko": "순순히 통행료를 바친다. (엽전 25)",
             "en": "Pay the toll obediently. (25 gold)"
           },
           "effect_type": "gold_loss",
           "effect_value": 25,
           "result_text": {
-            "ko": "산적들이 비켜선다. 엽전 25 소비.",
+            "ko": "산적들이 비켜서느니라. 엽전 25 소비.",
             "en": "The bandits step aside. Spend 25 gold."
           }
         },
@@ -142,7 +142,7 @@
           "effect_type": "hp_loss",
           "effect_value": 15,
           "result_text": {
-            "ko": "격전 끝에 산적을 물리쳤다. HP 15 손실, 엽전 40 획득.",
+            "ko": "격전 끝에 산적을 물리쳤느니라. HP 15 손실, 엽전 40 획득.",
             "en": "After a fierce battle, you defeat the bandits. Lose 15 HP, gain 40 gold."
           },
           "effect_type_bonus": "gold_gain",
@@ -155,13 +155,13 @@
         {
           "id": "negotiate",
           "text": {
-            "ko": "두목과 담판을 짓는다.",
+            "ko": "두목과 담판을 벌인다.",
             "en": "Negotiate with the bandit chief."
           },
           "effect_type": "hp_loss",
           "effect_value": 8,
           "result_text": {
-            "ko": "구타를 당한 후 겨우 풀려났다. HP 8 손실.",
+            "ko": "구타를 당한 후 겨우 풀려났느니라. HP 8 손실.",
             "en": "You're beaten before being released. Lose 8 HP."
           }
         },
@@ -187,39 +187,39 @@
       "title": {
         "ko": "약초 채집터",
         "description": {
-          "ko": "산 중턱에 희귀 약초가 자라는 곳을 발견했다.",
+          "ko": "산 중턱에서 희귀 약초가 자라는 곳을 발견하였도다.",
           "en": "You discover a patch of rare medicinal herbs on the mountainside."
         },
         "en": "The Herb Garden"
       },
       "flavor_text": {
-        "ko": "산삼의 향기가 코끝을 스친다.",
+        "ko": "산삼의 향기가 코끝을 스치는도다.",
         "en": "The scent of wild ginseng tickles your nose."
       },
       "choices": [
         {
           "id": "gather_carefully",
           "text": {
-            "ko": "조심스럽게 약초를 채집한다.",
+            "ko": "조심스럽게 약초를 캐어 든다.",
             "en": "Gather herbs carefully."
           },
           "effect_type": "hp_gain",
           "effect_value": 20,
           "result_text": {
-            "ko": "산삼으로 기운을 보충했다. HP 20 회복.",
+            "ko": "산삼으로 기운을 보하였도다. HP 20 회복.",
             "en": "Wild ginseng restores your energy. Restore 20 HP."
           }
         },
         {
           "id": "gather_all",
           "text": {
-            "ko": "욕심내어 전부 캐낸다.",
+            "ko": "욕심을 내어 전부 캐낸다.",
             "en": "Greedily dig up everything."
           },
           "effect_type": "hp_gain",
           "effect_value": 10,
           "result_text": {
-            "ko": "서두르다 독초와 섞었다. HP 10 회복, 다음 전투 시작 시 독 3.",
+            "ko": "서두르다 독초와 섞이고 말았느니라. HP 10 회복, 다음 전투 시작 시 독 3.",
             "en": "In your haste, you mix in poisonous plants. Restore 10 HP, start next combat with 3 Poison."
           },
           "effect_type_bonus": "debuff",
@@ -233,13 +233,13 @@
         {
           "id": "sell_location",
           "text": {
-            "ko": "채집터 위치를 약장수에게 판다.",
+            "ko": "채집터 위치를 약장수에게 흘린다.",
             "en": "Sell the location to an apothecary."
           },
           "effect_type": "gold_gain",
           "effect_value": 35,
           "result_text": {
-            "ko": "약장수가 큰 값에 위치 정보를 사간다. 엽전 35 획득.",
+            "ko": "약장수가 큰 값에 위치 정보를 사가느니라. 엽전 35 획득.",
             "en": "The apothecary pays handsomely for the information. Gain 35 gold."
           }
         }
@@ -250,13 +250,13 @@
       "title": {
         "ko": "산신령의 시련",
         "description": {
-          "ko": "안개가 자욱한 고갯길에서 호랑이 형상의 산신령이 나타난다.",
+          "ko": "안개가 자욱한 고갯길에서 호랑이 형상의 산신령이 현신하시는도다.",
           "en": "In the fog-shrouded mountain pass, a tiger-shaped mountain spirit appears."
         },
         "en": "The Mountain Spirit's Trial"
       },
       "flavor_text": {
-        "ko": "\"이 산을 지나려면 시련을 통과해야 하느니라.\"",
+        "ko": "\"이 산을 지나려거든 시련을 통과해야 하느니라.\"",
         "en": "\"To cross this mountain, you must pass my trial.\""
       },
       "choices": [
@@ -269,7 +269,7 @@
           "effect_type": "hp_loss",
           "effect_value": 10,
           "result_text": {
-            "ko": "시련을 통과했다. HP 10 손실, 최대 HP +6.",
+            "ko": "시련을 통과하였느니라. HP 10 손실, 최대 HP +6.",
             "en": "You pass the trial. Lose 10 HP, Max HP +6."
           },
           "effect_type_bonus": "max_hp_gain",
@@ -282,13 +282,13 @@
         {
           "id": "offer_respect",
           "text": {
-            "ko": "경의를 표하고 제물을 바친다. (엽전 20)",
+            "ko": "경의를 표하며 제물을 올린다. (엽전 20)",
             "en": "Show respect and offer tribute. (20 gold)"
           },
           "effect_type": "gold_loss",
           "effect_value": 20,
           "result_text": {
-            "ko": "산신령이 흡족히 여기며 축복을 내린다. 다음 전투 힘 +3.",
+            "ko": "산신령이 흡족히 여기사 축복을 내리시느니라. 다음 전투 힘 +3.",
             "en": "The mountain spirit is pleased and bestows a blessing. Next combat: Strength +3."
           },
           "effect_type_bonus": "buff_next_combat",
@@ -300,14 +300,14 @@
         {
           "id": "flee",
           "text": {
-            "ko": "무시하고 도망친다.",
+            "ko": "무례히 도망친다.",
             "en": "Ignore it and flee."
           },
           "effect_type": "debuff",
           "debuff_type": "약화",
           "effect_value": 2,
           "result_text": {
-            "ko": "산신령의 분노로 기운이 빠진다. 다음 전투 약화 2.",
+            "ko": "산신령의 진노로 기운이 빠지는도다. 다음 전투 약화 2.",
             "en": "The mountain spirit's wrath drains your energy. Next combat: 2 Weak."
           }
         }
@@ -318,7 +318,7 @@
       "title": {
         "ko": "폭포 수련장",
         "description": {
-          "ko": "거대한 폭포 아래에서 무인이 수련하고 있다. 자리를 권한다.",
+          "ko": "거대한 폭포 아래에서 무인이 수련하고 있도다. 함께할 자리를 권하느니라.",
           "en": "A warrior trains beneath a towering waterfall. He invites you to join."
         },
         "en": "The Waterfall Training Ground"
@@ -331,13 +331,13 @@
         {
           "id": "train",
           "text": {
-            "ko": "폭포 아래에서 수련한다.",
+            "ko": "폭포 아래에서 수련에 임한다.",
             "en": "Train beneath the waterfall."
           },
           "effect_type": "hp_loss",
           "effect_value": 8,
           "result_text": {
-            "ko": "고된 수련이었지만 한층 강해진 느낌이다. HP 8 손실, 카드 1장 획득.",
+            "ko": "고된 수련이었으나 한층 강해진 느낌이로다. HP 8 손실, 카드 1장 획득.",
             "en": "The grueling training makes you stronger. Lose 8 HP, gain 1 card."
           },
           "effect_type_bonus": "card_gain",
@@ -350,13 +350,13 @@
         {
           "id": "rest",
           "text": {
-            "ko": "폭포 옆에서 쉬어간다.",
+            "ko": "폭포 곁에서 쉬어간다.",
             "en": "Rest beside the waterfall."
           },
           "effect_type": "hp_gain",
           "effect_value": 12,
           "result_text": {
-            "ko": "맑은 물로 갈증을 해소하고 쉬었다. HP 12 회복.",
+            "ko": "맑은 물로 갈증을 해소하고 쉬었도다. HP 12 회복.",
             "en": "You quench your thirst with clear water and rest. Restore 12 HP."
           }
         },
@@ -369,7 +369,7 @@
           "effect_type": "hp_loss",
           "effect_value": 18,
           "result_text": {
-            "ko": "무인이 너무 강했다. HP 18 손실, 하지만 엽전 50 획득.",
+            "ko": "무인이 너무 강하였느니라. HP 18 손실, 허나 엽전 50 획득.",
             "en": "The warrior is too strong. Lose 18 HP, but gain 50 gold."
           },
           "effect_type_bonus": "gold_gain",
@@ -386,20 +386,20 @@
       "title": {
         "ko": "버려진 광산",
         "description": {
-          "ko": "산 중턱에 폐광이 보인다. 입구에서 희미한 빛이 새어나온다.",
+          "ko": "산 중턱에 폐광이 보이는도다. 입구에서 희미한 빛이 새어나오느니라.",
           "en": "An abandoned mine appears on the mountainside. A faint light seeps from its entrance."
         },
         "en": "The Abandoned Mine"
       },
       "flavor_text": {
-        "ko": "깊은 곳에서 금속 부딪히는 소리가 들린다.",
+        "ko": "깊은 곳에서 금속 부딪히는 소리가 들려오는도다.",
         "en": "The sound of clinking metal echoes from deep within."
       },
       "choices": [
         {
           "id": "explore",
           "text": {
-            "ko": "광산 안으로 들어간다.",
+            "ko": "광산 안으로 발을 들인다.",
             "en": "Enter the mine."
           },
           "effect_type": "random",
@@ -409,7 +409,7 @@
               "effect_type": "gold_gain",
               "effect_value": 55,
               "text": {
-                "ko": "금맥을 발견했다! 엽전 55 획득.",
+                "ko": "금맥을 발견하였도다! 엽전 55 획득.",
                 "en": "You strike a gold vein! Gain 55 gold."
               }
             },
@@ -418,7 +418,7 @@
               "effect_type": "relic_gain",
               "effect_value": 1,
               "text": {
-                "ko": "광부가 남긴 유물을 발견했다.",
+                "ko": "광부가 남긴 유물을 발견하였느니라.",
                 "en": "You find a relic left behind by miners."
               }
             },
@@ -427,13 +427,13 @@
               "effect_type": "hp_loss",
               "effect_value": 15,
               "text": {
-                "ko": "갱도가 무너졌다! HP 15 손실.",
+                "ko": "갱도가 무너졌느니라! HP 15 손실.",
                 "en": "The mine shaft collapses! Lose 15 HP."
               }
             }
           ],
           "result_text": {
-            "ko": "광산 속으로 발걸음을 옮긴다.",
+            "ko": "광산 속으로 발걸음을 옮기느니라.",
             "en": "You step into the mine."
           }
         },
@@ -446,20 +446,20 @@
           "effect_type": "gold_gain",
           "effect_value": 20,
           "result_text": {
-            "ko": "입구에서 잡광석을 주웠다. 엽전 20 획득.",
+            "ko": "입구에서 잡광석을 주웠느니라. 엽전 20 획득.",
             "en": "You pick up some rough ore at the entrance. Gain 20 gold."
           }
         },
         {
           "id": "ignore",
           "text": {
-            "ko": "위험해 보여 지나친다.",
+            "ko": "위험해 보여 발걸음을 돌린다.",
             "en": "It looks dangerous. Move on."
           },
           "effect_type": "none",
           "effect_value": 0,
           "result_text": {
-            "ko": "안전하게 길을 계속한다.",
+            "ko": "안전하게 길을 재촉하느니라.",
             "en": "You continue safely on your way."
           }
         }
@@ -470,20 +470,20 @@
       "title": {
         "ko": "산신의 시험",
         "description": {
-          "ko": "거대한 바위 위에 노인이 앉아 있다. 범상치 않은 기운에 발이 멈춘다. \"이 산의 힘을 시험해 주겠다.\"",
+          "ko": "거대한 바위 위에 노인이 앉아 계시도다. 범상치 않은 기운에 절로 발이 멈추느니라. \"이 산의 힘을 시험해 주겠노라.\"",
           "en": "An elder sits atop a great boulder, radiating an unearthly presence. \"I shall test you with the mountain's power.\""
         },
         "en": "The Mountain God's Test"
       },
       "flavor_text": {
-        "ko": "\"세 가지 길이 있다. 어떤 길을 택하겠느냐?\"",
+        "ko": "\"세 가지 길이 있느니라. 어떤 길을 택하겠느냐?\"",
         "en": "\"Three paths lie before you. Which will you choose?\""
       },
       "choices": [
         {
           "id": "strength_test",
           "text": {
-            "ko": "힘을 시험받는다.",
+            "ko": "힘의 시험을 받는다.",
             "en": "Face the test of strength."
           },
           "effect_type": "random",
@@ -493,7 +493,7 @@
               "effect_type": "max_hp_gain",
               "effect_value": 12,
               "text": {
-                "ko": "산신이 고개를 끄덕인다. 최대 HP +12.",
+                "ko": "산신이 고개를 끄덕이시느니라. 최대 HP +12.",
                 "en": "The mountain god nods approvingly. Max HP +12."
               }
             },
@@ -502,20 +502,20 @@
               "effect_type": "hp_loss",
               "effect_value": 20,
               "text": {
-                "ko": "힘이 부족했다. HP 20 손실.",
+                "ko": "힘이 부족하였느니라. HP 20 손실.",
                 "en": "Your strength was lacking. Lose 20 HP."
               }
             }
           ],
           "result_text": {
-            "ko": "산신의 시험에 응한다.",
+            "ko": "산신의 시험에 응하느니라.",
             "en": "You accept the mountain god's test."
           }
         },
         {
           "id": "wisdom_test",
           "text": {
-            "ko": "지혜를 시험받는다.",
+            "ko": "지혜의 시험을 받는다.",
             "en": "Face the test of wisdom."
           },
           "effect_type": "card_choice",
@@ -525,7 +525,7 @@
             "choice_count": 3
           },
           "result_text": {
-            "ko": "산신이 미소 짓는다. 희귀 카드 3장 중 1장을 선택해 덱에 추가.",
+            "ko": "산신이 미소 지으시느니라. 희귀 카드 3장 중 1장을 골라 덱에 추가.",
             "en": "The mountain god smiles. Choose 1 of 3 rare cards to add to your deck."
           },
           "note": "희귀 카드 3선택 1."
@@ -533,7 +533,7 @@
         {
           "id": "courage_test",
           "text": {
-            "ko": "용기를 시험받는다.",
+            "ko": "용기의 시험을 받는다.",
             "en": "Face the test of courage."
           },
           "effect_type": "relic_gain",
@@ -542,7 +542,7 @@
             "rarity": 3
           },
           "result_text": {
-            "ko": "두려움 없이 다가가자 산신이 희귀 유물을 건넨다.",
+            "ko": "두려움 없이 다가가니 산신이 희귀 유물을 건네시는도다.",
             "en": "You approach without fear, and the mountain god presents a rare relic."
           },
           "note": "희귀 유물 1개 획득."
@@ -554,13 +554,13 @@
       "title": {
         "ko": "독사의 굴",
         "description": {
-          "ko": "길 가운데 독사 둥지가 있다. 우회로는 멀리 돌아가야 한다.",
+          "ko": "길 한가운데 독사 둥지가 있도다. 우회로는 멀리 돌아가야 하느니라.",
           "en": "A nest of vipers blocks the path. The detour is long."
         },
         "en": "The Viper's Den"
       },
       "flavor_text": {
-        "ko": "독사들이 혀를 날름거리며 경계한다.",
+        "ko": "독사들이 혀를 날름거리며 경계하는도다.",
         "en": "The vipers flick their tongues, watching warily."
       },
       "choices": [
@@ -573,7 +573,7 @@
           "effect_type": "hp_loss",
           "effect_value": 10,
           "result_text": {
-            "ko": "독에 조금 노출됐지만 지나갔다. HP 10 손실. 독사 비늘 유물 획득.",
+            "ko": "독에 조금 노출되었으나 지나갔느니라. HP 10 손실. 독사 비늘 유물 획득.",
             "en": "You suffer some exposure to venom but make it through. Lose 10 HP. Gain a viper scale relic."
           },
           "effect_type_bonus": "relic_gain",
@@ -583,13 +583,13 @@
         {
           "id": "detour",
           "text": {
-            "ko": "멀리 돌아간다.",
+            "ko": "멀리 우회한다.",
             "en": "Take the long way around."
           },
           "effect_type": "gold_gain",
           "effect_value": 25,
           "result_text": {
-            "ko": "돌아가다가 버려진 짐을 발견한다. 골드 25 획득.",
+            "ko": "우회하다 버려진 짐을 발견하였도다. 골드 25 획득.",
             "en": "On the detour, you find abandoned supplies. Gain 25 gold."
           },
           "note": "우회로에서 골드 획득."
@@ -597,7 +597,7 @@
         {
           "id": "fight",
           "text": {
-            "ko": "독사를 처치하고 지나간다.",
+            "ko": "독사를 베어 처치하고 지나간다.",
             "en": "Slay the vipers and pass through."
           },
           "effect_type": "hp_loss",
@@ -605,7 +605,7 @@
           "effect_type_bonus": "max_hp_gain",
           "effect_value_bonus": 5,
           "result_text": {
-            "ko": "독사를 처치했지만 한 번 물렸다. HP 15 손실, 최대 HP +5.",
+            "ko": "독사를 처치했으나 한 번 물리고 말았느니라. HP 15 손실, 최대 HP +5.",
             "en": "You kill the vipers but get bitten once. Lose 15 HP, Max HP +5."
           },
           "note": "HP 손실이 있지만 최대 HP 성장."
@@ -617,26 +617,26 @@
       "title": {
         "ko": "도술 수련자",
         "description": {
-          "ko": "산속 동굴 앞에서 젊은 도술사가 수련 중이다. \"당신, 수련에 관심 있소?\"",
+          "ko": "산속 동굴 앞에서 젊은 도술사가 수련 중이로다. \"그대, 수련에 관심이 있소?\"",
           "en": "A young Taoist practices outside a mountain cave. \"Interested in some training?\""
         },
         "en": "The Taoist Practitioner"
       },
       "flavor_text": {
-        "ko": "\"내 기술을 일부 전수해줄 수 있소.\"",
+        "ko": "\"이 사람의 도술을 일부 전수해줄 수 있소이다.\"",
         "en": "\"I can teach you some of my arts.\""
       },
       "choices": [
         {
           "id": "learn_spell",
           "text": {
-            "ko": "도술을 배운다. (HP 15 소비)",
+            "ko": "도술을 익힌다. (HP 15 소비)",
             "en": "Learn Taoist arts. (Spend 15 HP)"
           },
           "effect_type": "hp_loss",
           "effect_value": 15,
           "result_text": {
-            "ko": "혹독한 수련 끝에 도술 카드 1장을 배웠다. HP 15 손실, 도사 카드 1장 (무작위) 덱 추가.",
+            "ko": "혹독한 수련 끝에 도술 한 가지를 터득하였느니라. HP 15 손실, 도사 카드 1장 덱 추가.",
             "en": "After rigorous training, you learn a Taoist technique. Lose 15 HP, add 1 random Taoist card to your deck."
           },
           "effect_type_bonus": "card_gain_class",
@@ -646,13 +646,13 @@
         {
           "id": "trade_gold",
           "text": {
-            "ko": "엽전을 주고 카드를 구매한다. (엽전 35)",
+            "ko": "엽전을 내고 비전을 구한다. (엽전 35)",
             "en": "Buy a card with coins. (35 gold)"
           },
           "effect_type": "gold_loss",
           "effect_value": 35,
           "result_text": {
-            "ko": "엽전 35 소비, 카드 3장 중 1장을 선택.",
+            "ko": "엽전 35 소비, 카드 3장 중 1장을 고르느니라.",
             "en": "Spend 35 gold. Choose 1 of 3 cards."
           },
           "effect_type_bonus": "card_choice_class",
@@ -668,7 +668,7 @@
           "effect_type": "none",
           "effect_value": 0,
           "result_text": {
-            "ko": "도술사가 아쉽다는 듯 다시 수련에 들어간다.",
+            "ko": "도술사가 아쉬운 기색으로 다시 수련에 드느니라.",
             "en": "The Taoist shrugs and returns to his practice."
           },
           "note": "중립."
@@ -680,13 +680,13 @@
       "title": {
         "ko": "암행어사 출두",
         "description": {
-          "ko": "마을에 도착하니 암행어사가 출두하여 탐관을 처벌하고 있다. 당신에게도 도움을 요청한다.",
+          "ko": "마을에 도착하니 암행어사가 출두하여 탐관을 처벌하고 있도다. 그대에게도 도움을 청하느니라.",
           "en": "Upon arriving at the village, you find a Royal Inspector punishing corrupt officials. He asks for your help."
         },
         "en": "The Royal Inspector Appears"
       },
       "flavor_text": {
-        "ko": "\"암행어사 출두요! 이 고을의 부패를 척결하겠소!\"",
+        "ko": "\"암행어사 출두요! 이 고을의 부패를 척결하겠소이다!\"",
         "en": "\"Make way for the Royal Inspector! I will purge this county of corruption!\""
       },
       "choices": [
@@ -701,7 +701,7 @@
           "effect_type_bonus": "gold_loss",
           "effect_value_bonus": 5,
           "result_text": {
-            "ko": "부패 관리를 몰아내자 백성들이 열광한다! 민심이 크게 올랐다.",
+            "ko": "부패 관리를 몰아내니 백성들이 열광하는도다! 민심이 크게 올랐느니라.",
             "en": "Driving out the corrupt officials sends the people into celebration! Public favor rises greatly."
           },
           "note": "민심 대폭 상승. 금화 소량 소비."
@@ -717,7 +717,7 @@
           "effect_type_bonus": "rank_down",
           "effect_value_bonus": 1,
           "result_text": {
-            "ko": "증거 덕분에 더 많은 관리가 처벌받았다. 하지만 권력층에서 밀려났다.",
+            "ko": "증거 덕분에 더 많은 관리가 처벌받았느니라. 허나 권력층에서 밀려나게 되었도다.",
             "en": "Your evidence brings down more officials, but you lose standing among the powerful."
           },
           "note": "민심 상승 + 신분 하락."
@@ -731,7 +731,7 @@
           "effect_type": "gold_gain",
           "effect_value": 10,
           "result_text": {
-            "ko": "혼란을 틈타 떨어진 엽전을 주웠다. 금화 10 획득.",
+            "ko": "혼란을 틈타 떨어진 엽전을 주웠느니라. 금화 10 획득.",
             "en": "Amid the commotion, you pick up dropped coins. Gain 10 gold."
           },
           "note": "금화 획득."
@@ -743,13 +743,13 @@
       "title": {
         "ko": "숨겨진 곡간",
         "description": {
-          "ko": "암행어사의 단서를 따라가니 관리가 숨겨둔 대규모 곡간을 발견했다.",
+          "ko": "암행어사의 단서를 따라가니 관리가 숨겨둔 대규모 곡간을 발견하였도다.",
           "en": "Following the Inspector's clues, you discover a massive granary hidden by corrupt officials."
         },
         "en": "The Hidden Granary"
       },
       "flavor_text": {
-        "ko": "\"이 곡식은 백성의 것이오! 모두 돌려보내야 하오!\"",
+        "ko": "\"이 곡식은 백성의 것이오! 모조리 돌려보내야 하오이다!\"",
         "en": "\"This grain belongs to the people! It must all be returned!\""
       },
       "choices": [
@@ -764,7 +764,7 @@
           "effect_type_bonus": "hp_full_heal",
           "effect_value_bonus": 0,
           "result_text": {
-            "ko": "백성들이 감격의 눈물을 흘린다. 감사의 보답으로 치료와 음식을 대접받았다.",
+            "ko": "백성들이 감격의 눈물을 흘리느니라. 감사의 보답으로 치료와 음식을 대접받았도다.",
             "en": "The people weep tears of joy. In gratitude, they treat your wounds and offer a feast."
           },
           "note": "최대 보상. 민심+HP 완전 회복."
@@ -780,7 +780,7 @@
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": -5,
           "result_text": {
-            "ko": "곡식 일부를 팔아 금화를 벌었으나 소문이 나서 민심이 떨어졌다.",
+            "ko": "곡식 일부를 팔아 금화를 벌었으나, 소문이 나서 민심이 떨어졌느니라.",
             "en": "You sell some grain for gold, but word spreads and public favor drops."
           },
           "note": "금화 대량 획득 + 민심 페널티."
@@ -788,13 +788,13 @@
         {
           "id": "report_only",
           "text": {
-            "ko": "관아에 보고만 한다. (민심 +3)",
+            "ko": "관아에 보고만 올린다. (민심 +3)",
             "en": "Just report it to the magistrate. (Favor +3)"
           },
           "effect_type": "minshim_change",
           "effect_value": 3,
           "result_text": {
-            "ko": "관아에서 처리하겠다고 한다. 민심이 소폭 올랐다.",
+            "ko": "관아에서 처리하겠다 하느니라. 민심이 소폭 올랐도다.",
             "en": "The magistrate says they'll handle it. Public favor rises slightly."
           },
           "note": "안전한 소량 보상."
@@ -806,13 +806,13 @@
       "title": {
         "ko": "뇌물 제안",
         "description": {
-          "ko": "부패한 현감이 당신에게 몰래 접근하여 뇌물을 제안한다.",
+          "ko": "부패한 현감이 그대에게 몰래 접근하여 뇌물을 제안하느니라.",
           "en": "A corrupt magistrate approaches you in secret and offers a bribe."
         },
         "en": "The Bribe"
       },
       "flavor_text": {
-        "ko": "\"나를 봐주시오. 이 정도면 충분하지 않겠소?\"",
+        "ko": "\"나를 봐주시오. 이 정도면 충분하지 않겠소이까?\"",
         "en": "\"Look the other way. Surely this is enough?\""
       },
       "choices": [
@@ -827,7 +827,7 @@
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": -8,
           "result_text": {
-            "ko": "금화를 받았으나 소문이 퍼져 민심이 크게 떨어졌다.",
+            "ko": "금화를 받았으나 소문이 퍼져 민심이 크게 떨어졌느니라.",
             "en": "You take the gold, but rumors spread and public favor drops significantly."
           },
           "note": "금화 vs 민심 트레이드오프."
@@ -835,7 +835,7 @@
         {
           "id": "refuse_report",
           "text": {
-            "ko": "거절하고 고발한다. (민심 +8, 카드 획득)",
+            "ko": "단호히 거절하고 고발한다. (민심 +8, 카드 획득)",
             "en": "Refuse and report him. (Favor +8, gain card)"
           },
           "effect_type": "minshim_change",
@@ -843,7 +843,7 @@
           "effect_type_bonus": "card_gain",
           "effect_value_bonus": 1,
           "result_text": {
-            "ko": "정의로운 행동에 백성들이 감동했다. 마을 장로가 비전서를 선물했다.",
+            "ko": "정의로운 행동에 백성들이 감동하였도다. 마을 장로가 비전서를 선물하느니라.",
             "en": "The people are moved by your righteous act. A village elder gifts you a secret scroll."
           },
           "note": "민심 + 카드. 정의 루트."
@@ -851,7 +851,7 @@
         {
           "id": "negotiate",
           "text": {
-            "ko": "자진 사퇴를 권유한다. (민심 +4, 금화 +10)",
+            "ko": "자진 사퇴를 권한다. (민심 +4, 금화 +10)",
             "en": "Suggest he resign voluntarily. (Favor +4, Gold +10)"
           },
           "effect_type": "minshim_change",
@@ -859,7 +859,7 @@
           "effect_type_bonus": "gold_gain",
           "effect_value_bonus": 10,
           "result_text": {
-            "ko": "현감이 자진 사퇴하며 위로금을 건넸다. 민심도 소폭 올랐다.",
+            "ko": "현감이 자진 사퇴하며 위로금을 건네느니라. 민심도 소폭 올랐도다.",
             "en": "The magistrate resigns and offers a parting sum. Public favor also rises slightly."
           },
           "note": "절충안. 양쪽 소량 보상."
@@ -871,13 +871,13 @@
       "title": {
         "ko": "억울한 죄수",
         "description": {
-          "ko": "옥사에서 억울하게 투옥된 죄수가 도움을 호소한다. 조사해보니 부패 관리의 모함이었다.",
+          "ko": "옥사에서 억울하게 투옥된 죄수가 도움을 호소하고 있도다. 조사해보니 부패 관리의 모함이었느니라.",
           "en": "A wrongly imprisoned man begs for help from his cell. Investigation reveals it was a corrupt official's scheme."
         },
         "en": "The Wrongly Imprisoned"
       },
       "flavor_text": {
-        "ko": "\"제발 구해주시오! 제 가족이 굶어가고 있소!\"",
+        "ko": "\"제발 구해주시오! 소인의 가족이 굶어가고 있사옵니다!\"",
         "en": "\"Please save me! My family is starving!\""
       },
       "choices": [
@@ -892,7 +892,7 @@
           "effect_type_bonus": "hp_loss",
           "effect_value_bonus": 6,
           "result_text": {
-            "ko": "석방에 성공했으나 관리의 보복으로 부상을 입었다. 백성들의 지지를 얻었다.",
+            "ko": "석방에 성공하였으나 관리의 보복으로 부상을 입었느니라. 백성들의 지지를 얻었도다.",
             "en": "You succeed in freeing him, but the official retaliates. The people rally behind you."
           },
           "note": "HP 리스크 + 민심."
@@ -906,7 +906,7 @@
           "effect_type": "gold_loss",
           "effect_value": 15,
           "result_text": {
-            "ko": "간수에게 금화를 건네 죄수를 빼냈다. 깔끔하게 해결.",
+            "ko": "간수에게 금화를 건네어 죄수를 빼냈느니라. 깔끔한 처사로다.",
             "en": "You slip coins to the jailer and spring the prisoner. Clean and simple."
           },
           "note": "금화만 소비. 리스크 없음."
@@ -920,7 +920,7 @@
           "effect_type": "minshim_change",
           "effect_value": -2,
           "result_text": {
-            "ko": "죄수의 원망스러운 눈빛이 마음에 걸린다. 주변 백성들도 실망했다.",
+            "ko": "죄수의 원망스러운 눈빛이 마음에 걸리는도다. 주변 백성들도 실망하였느니라.",
             "en": "The prisoner's reproachful gaze haunts you. The surrounding people are disappointed."
           },
           "note": "민심 소폭 하락."
@@ -932,20 +932,20 @@
       "title": {
         "ko": "암행어사의 마패",
         "description": {
-          "ko": "길에서 암행어사의 마패를 주웠다. 이것이 있으면 어디서든 권위를 행사할 수 있다.",
+          "ko": "길에서 암행어사의 마패를 주웠도다. 이것이 있으면 어디서든 왕명을 행사할 수 있느니라.",
           "en": "You find a Royal Inspector's badge on the road. With it, you can wield authority anywhere."
         },
         "en": "The Royal Inspector's Badge"
       },
       "flavor_text": {
-        "ko": "\"마패를 가진 자는 — 왕의 대리인이다.\"",
+        "ko": "\"마패를 가진 자는 곧 왕의 대리인이니라.\"",
         "en": "\"The bearer of the badge speaks with the King's authority.\""
       },
       "choices": [
         {
           "id": "use_mapat",
           "text": {
-            "ko": "마패를 사용해 부패를 척결한다. (민심 +10, 신분 +1, 소멸)",
+            "ko": "마패를 내세워 부패를 척결한다. (민심 +10, 신분 +1, 소멸)",
             "en": "Use the badge to root out corruption. (Favor +10, Rank +1, badge consumed)"
           },
           "effect_type": "minshim_change",
@@ -953,7 +953,7 @@
           "effect_type_bonus": "rank_up",
           "effect_value_bonus": 1,
           "result_text": {
-            "ko": "마패를 내세워 고을의 부패를 척결했다! 민심이 크게 오르고 신분도 올랐다.",
+            "ko": "마패를 내세워 고을의 부패를 척결하였도다! 민심이 크게 오르고 신분도 올랐느니라.",
             "en": "You wield the badge to purge corruption from the county! Public favor and your rank both rise."
           },
           "note": "최대 보상. 1회 이벤트."
@@ -961,13 +961,13 @@
         {
           "id": "sell_mapat",
           "text": {
-            "ko": "마패를 높은 가격에 판다. (금화 +35)",
+            "ko": "마패를 높은 값에 판다. (금화 +35)",
             "en": "Sell the badge at a high price. (Gold +35)"
           },
           "effect_type": "gold_gain",
           "effect_value": 35,
           "result_text": {
-            "ko": "마패를 비싼 값에 팔았다. 금화 35 획득.",
+            "ko": "마패를 비싼 값에 팔았느니라. 금화 35 획득.",
             "en": "You sell the badge for a handsome sum. Gain 35 gold."
           },
           "note": "금화 대량 획득."
@@ -975,7 +975,7 @@
         {
           "id": "return_mapat",
           "text": {
-            "ko": "주인에게 돌려준다. (카드 강화 1장, 민심 +3)",
+            "ko": "주인에게 돌려드린다. (카드 강화 1장, 민심 +3)",
             "en": "Return it to its owner. (Upgrade 1 card, Favor +3)"
           },
           "effect_type": "card_upgrade",
@@ -983,7 +983,7 @@
           "effect_type_bonus": "minshim_change",
           "effect_value_bonus": 3,
           "result_text": {
-            "ko": "어사가 감사히 여기며 비전을 전수해주었다. 카드 1장 강화 + 민심 소폭 상승.",
+            "ko": "어사가 감읍하시며 비전을 전수해주시느니라. 카드 1장 강화 + 민심 소폭 상승.",
             "en": "The Inspector thanks you and shares a secret technique. Upgrade 1 card, Favor rises slightly."
           },
           "note": "카드 강화 + 소량 민심."

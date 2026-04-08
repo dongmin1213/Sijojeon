@@ -11,9 +11,9 @@ const CHARACTER_ART_MAP := {
 	"mugwan": "res://art/characters/mugwan.png",
 	"mungwan": "res://art/characters/mungwan.png",
 	"dosa": "res://art/characters/dosa.png",
-	"uiwon": "res://art/characters/uiwon.png",
-	"gungsu": "res://art/characters/gungsu.png",
-	"sangin": "res://art/characters/sangin.png",
+	"uiwon": "res://art/characters/uiwon.svg",
+	"gungsu": "res://art/characters/gungsu.svg",
+	"sangin": "res://art/characters/sangin.svg",
 }
 
 var _selected_index: int = -1
