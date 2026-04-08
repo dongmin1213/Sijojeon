@@ -73,6 +73,23 @@
             "en": "You feel the old man's reproachful gaze boring into your back. Nothing happens."
           },
           "note": "중립 결과."
+        },
+        {
+          "id": "recite_sijo",
+          "text": {
+            "ko": "[시상] 시조 한 수를 읊어 노인의 마음을 달랜다.",
+            "en": "[Sisang] Recite a sijo to soothe the old man's heart."
+          },
+          "trigger_condition": "sisang_ge_5",
+          "effect_type": "hp_gain",
+          "effect_value": 12,
+          "effect_type_bonus": "gold_gain",
+          "effect_value_bonus": 10,
+          "result_text": {
+            "ko": "노인이 눈물을 글썽이며 말한다. \"이리 아름다운 시를 읊는 젊은이라니...\" HP 12 회복, 금화 10 획득.",
+            "en": "The old man tears up. \"Such a beautiful poem from one so young...\" Restore 12 HP, gain 10 gold."
+          },
+          "note": "시상 5 해금 보너스 선택지. 최선의 결과."
         }
       ]
     },
@@ -153,6 +170,23 @@
             "en": "Your high public favor commands even the constables' respect. They offer you travel money. Gain 15 gold."
           },
           "note": "민심 70+ 전용. 무조건 이득."
+        },
+        {
+          "id": "sijo_charm",
+          "text": {
+            "ko": "[시상] 시조를 읊어 포졸의 마음을 녹인다.",
+            "en": "[Sisang] Recite a sijo to soften the constables' hearts."
+          },
+          "trigger_condition": "sisang_ge_5",
+          "effect_type": "gold_gain",
+          "effect_value": 10,
+          "effect_type_bonus": "card_gain",
+          "effect_value_bonus": 1,
+          "result_text": {
+            "ko": "포졸들이 시조에 감탄하여 길을 비키고 전투 비법이 적힌 서찰까지 건넨다. 금화 10 + 카드 1장.",
+            "en": "The constables are moved by your poem. They clear the way and hand you a scroll. Gold +10, Card +1."
+          },
+          "note": "시상 5 해금 보너스. 골드 + 카드."
         }
       ]
     },

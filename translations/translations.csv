@@ -79,16 +79,19 @@ REWARD_GOLD,금화 {n}개 획득,Gained {n} Gold
 REWARD_CARD,카드 선택,Choose a Card
 REWARD_RELIC,유물 획득,Relic Acquired
 REWARD_SKIP,건너뛰기,Skip
-CHARACTER_DOSA,도사,Daoist Sorcerer
-CHARACTER_MUGWAN,무관,Military Officer
-CHARACTER_MUNGWAN,문관,Scholar Official
-CHARACTER_PHYSICIAN,의원,Physician
+CHARACTER_DOSA,무당,Shaman
+CHARACTER_MUGWAN,의적,Uijeok
+CHARACTER_MUNGWAN,선비,Seonbi
+CHARACTER_PHYSICIAN,의녀,Uinyeo
 CHARACTER_SHAMAN,무당,Shaman
-CHARACTER_ARCHER,궁수,Archer
-CHARACTER_MERCHANT,상인,Merchant
+CHARACTER_ARCHER,기생,Gisaeng
+CHARACTER_MERCHANT,승병,Seungbyeong
 RESOURCE_QI,기,Qi
 RESOURCE_STAMINA,기력,Stamina
 RESOURCE_SCHOLARSHIP,학식,Scholarship
+RESOURCE_SPIRIT,영력,Spirit Power
+RESOURCE_HEUNG,흥,Heung
+RESOURCE_CAUSE,인과,Karma
 STATUS_BURN,화상,Burn
 STATUS_POISON,독,Poison
 STATUS_CURSE,저주,Curse
@@ -352,6 +355,23 @@ BATTLE_JEOLCHANG_STUN,적 전체 기절!,All enemies stunned!
 BATTLE_JEOLCHANG_CARD_FREE,카드 +%d 다음 카드 무료!,Card +%d next card free!
 BATTLE_SISEON_QI,기 +1,Qi +1
 BATTLE_JEOLCHANG_DOSA,모든 적 독3+화상3 기 최대 회복!,All enemies Poison 3+Burn 3 Qi fully restored!
+BATTLE_CHOJANG_REWARD,초장 완성! 적 전체 취약,First Verse! All enemies Vulnerable
+BATTLE_JUNGJANG_REWARD,중장 완성! 핸드 비용 -1,Middle Verse! Hand cost -1
+PASSIVE_SIJO_STRIKE,시조 일격,Sijo Strike
+SIJO_STRIKE_HWALBIN,활빈,Hwalbin
+SIJO_STRIKE_HWALBIN_DESC,적 전체 피해 8 + 취약 2,All enemies 8 damage + Vulnerable 2
+SIJO_STRIKE_JIKPIL,직필,Jikpil
+SIJO_STRIKE_JIKPIL_DESC,카드 3장 드로우 + 비용 -1,Draw 3 cards + cost -1
+SIJO_STRIKE_JEOPSIN,접신,Jeopsin
+SIJO_STRIKE_JEOPSIN_DESC,적 전체 독 4 + 화상 4 + 기 전체 회복,All enemies Poison 4 + Burn 4 + full Qi restore
+SIJO_STRIKE_JEDOK,제독,Jedok
+SIJO_STRIKE_JEDOK_DESC,HP 12 회복 + 독 제거 후 피해 전환,HP +12 + convert poison to damage
+SIJO_STRIKE_JEOLCHANG,절창,Jeolchang
+SIJO_STRIKE_JEOLCHANG_DESC,흥 %d 소비 → 전체 피해 %d,Consume %d excitement → %d AoE damage
+SIJO_STRIKE_PASA,파사현정,Pasahyeonjeong
+SIJO_STRIKE_PASA_DESC,방어 15 + 적 전체 약화 2 + 기절 1,Block 15 + all enemies Weaken 2 + Stun 1
+SIJO_STRIKE_DEFAULT,시조 일격,Sijo Strike
+SIJO_STRIKE_DEFAULT_DESC,적 전체 피해 6,All enemies 6 damage
 BATTLE_CHOJANG_COMPLETE_STAMINA,초장 완성! 기력 +1,First Verse! Stamina +1
 BATTLE_CHOJANG_COMPLETE_SCHOLAR,초장 완성! 학식 +1,First Verse! Scholarship +1
 BATTLE_CHOJANG_COMPLETE,초장 완성!,First Verse!
@@ -383,9 +403,12 @@ PASSIVE_SIJO_CHAPTER,시조 %s,Sijo %s
 ACT_DESC_1,"왕조의 수도, 한양.\n거리에는 불온한 기운이 감돌고 있다.","The royal capital, Hanyang.\nAn ominous atmosphere pervades the streets."
 ACT_DESC_2,험준한 산세의 지리산.\n산적과 요괴가 도사리는 위험한 길.,The rugged peaks of Jirisan.\nA perilous path haunted by bandits and spirits.
 ACT_DESC_3,왕좌를 노리는 역모의 심장부.\n경복궁의 내전에 최후의 결전이 기다린다.,The heart of the conspiracy against the throne.\nThe final battle awaits in Gyeongbokgung Palace.
-CHAR_NAME_MUGWAN,무관,Warrior
-CHAR_NAME_MUNGWAN,문관,Scholar
-CHAR_NAME_DOSA,도사,Mystic
+CHAR_NAME_MUGWAN,의적,Uijeok
+CHAR_NAME_MUNGWAN,선비,Seonbi
+CHAR_NAME_DOSA,무당,Mudang
+CHAR_NAME_UIWON,의녀,Uinyeo
+CHAR_NAME_GUNGSU,기생,Gisaeng
+CHAR_NAME_SANGIN,승병,Seungbyeong
 NODE_BATTLE,전투,Battle
 NODE_ELITE,정예,Elite
 NODE_EVENT,이벤트,Event
@@ -419,10 +442,11 @@ JIBUN_RANK_2,중인,Jungin
 JIBUN_RANK_3,양반,Yangban
 JIBUN_RANK_4,당상관,Dangsanggwan
 JIBUN_RANK_5,판서/정승,Panseo/Jeongseung
-JIBUN_RANKUP_2,중인 승급 보상: 카드 1장을 추가로 선택할 수 있습니다!,Jungin promotion reward: Choose 1 additional card!
-JIBUN_RANKUP_3,양반 승급 보상: 카드 제거 1회를 무료로 제공합니다!,Yangban promotion reward: 1 free card removal!
-JIBUN_RANKUP_4,당상관 승급 보상: 유물 선택 기회 1회를 추가로 받습니다!,Dangsanggwan promotion reward: 1 additional relic selection!
-JIBUN_RANKUP_5,판서/정승 승급 보상: 덱에서 카드 1장을 강화할 수 있습니다!,Panseo/Jeongseung promotion reward: Upgrade 1 card in your deck!
+JIBUN_RANKUP_1,상민 승급: 덱에서 카드 1장을 강화할 수 있습니다!,Sangmin promotion: Upgrade 1 card in your deck!
+JIBUN_RANKUP_2,중인 승급: 턴당 기(氣) +1!,Jungin promotion: +1 Qi per turn!
+JIBUN_RANKUP_3,양반 승급: 턴당 드로우 +1!,Yangban promotion: +1 draw per turn!
+JIBUN_RANKUP_4,당상관 승급: 엘리트 전투 보상 2배!,Dangsanggwan promotion: Elite battle rewards x2!
+JIBUN_RANKUP_5,정승 승급: 시조 일격 효과 2배!,Jeongseung promotion: Sijo Strike effects x2!
 ACT_NAME_1,한양,Hanyang
 ACT_NAME_2,지리산,Jirisan
 ACT_NAME_3,경복궁,Gyeongbokgung
@@ -433,7 +457,7 @@ FACTION_SEOIN,서인,Seoin (Westerners)
 FACTION_DONGIN,동인,Dongin (Easterners)
 FACTION_BUGIN,북인,Bugin (Northerners)
 UNLOCK_DEFAULT,기본 해금,Unlocked by default
-UNLOCK_MUGWAN_ACT1,무관으로 1막 보스 처치,Defeat Act 1 boss with Warrior
+UNLOCK_MUGWAN_ACT1,의적으로 1막 보스 처치,Defeat Act 1 boss with Uijeok
 UNLOCK_TOTAL_RUNS_3,총 3회 런 완료,Complete 3 total runs
 MINSHIM_TIER_HIGH,민심 높음,High Sentiment
 MINSHIM_TIER_NORMAL,보통,Normal
@@ -450,17 +474,19 @@ JIBUN_TOOLTIP_POINTS,점,pts
 JIBUN_TOOLTIP_EFFECTS,현재 효과,Current Effects
 JIBUN_TOOLTIP_NEXT,다음 단계,Next Rank
 JIBUN_TOOLTIP_RANKUP,승급 보상,Rank-Up Reward
-JIBUN_EFFECT_0_GOLD,전투 보상 금화 +50%,Battle gold rewards +50%
-JIBUN_EFFECT_0_HIDDEN,이벤트 히든 선택지 해금,Hidden event choices unlocked
-JIBUN_EFFECT_1_CARD,카드 보상 선택지 +1,+1 card reward choice
-JIBUN_EFFECT_2_UPGRADE,카드 업그레이드 비용 -25%,Card upgrade cost -25%
+JIBUN_EFFECT_2_QI,턴당 기(氣) +1,+1 Qi per turn
 JIBUN_EFFECT_2_ELITE,엘리트 등장률 +5%,Elite spawn rate +5%
-JIBUN_EFFECT_3_SHOP,상점 카드 가격 -15%,Shop card prices -15%
-JIBUN_EFFECT_3_MINSHIM,민심 획득량 +10%,Sentiment gain +10%
+JIBUN_EFFECT_3_DRAW,턴당 드로우 +1,+1 draw per turn
 JIBUN_EFFECT_3_GWAGEO,과거시험 접근 가능,Civil exam access
-JIBUN_EFFECT_3_ELITE_HP,엘리트 HP +10%,Elite HP +10%
-JIBUN_EFFECT_4_BOSS_HP,보스 HP +10%,Boss HP +10%
-JIBUN_EFFECT_5_REWARD,모든 전투 보상 +30%,All battle rewards +30%
+JIBUN_EFFECT_4_ELITE_REWARD,엘리트 전투 보상 2배,Elite battle rewards x2
+JIBUN_EFFECT_5_SIJO,시조 일격 효과 2배,Sijo Strike effects x2
+SISANG_MILESTONE_TITLE,시상(詩想) 마일스톤,Sisang Milestone
+SISANG_MILESTONE_5,시상 5 달성! 이벤트 추가 선택지 해금,Sisang 5 reached! Bonus event choices unlocked
+SISANG_MILESTONE_10,시상 10 달성! 시조 일격 피해 +25%,Sisang 10 reached! Sijo Strike damage +25%
+SISANG_MILESTONE_15,시상 15 달성! 보스전 시조 ×2.0,Sisang 15 reached! Boss battle sijo x2.0
+SISANG_MILESTONE_20,시상 20 달성! 어사출두 해금!,Sisang 20 reached! Eosa Chuldu unlocked!
+SISANG_LABEL_FMT,시상: %d,Sisang: %d
+SISANG_NEXT_FMT,다음 마일스톤까지 %d,Next milestone in %d
 JIBUN_RANKUP_POPUP_FMT,%s(으)로 승급!,Promoted to %s!
 SHOP_DISCOUNT_BADGE_FMT,[%s %s],[ %s %s]
 SHOP_DISCOUNT_JIBUN,-15%,-15%
@@ -494,6 +520,8 @@ EVENT_COND_RANK_GE_3,신분이 양반(3등급) 이상이어야 합니다,Require
 EVENT_COND_RANK_GE_4,신분이 당상관(4등급) 이상이어야 합니다,Requires Dangsanggwan (Rank 4) or higher
 EVENT_COND_MINSHIM_GE_70,민심이 70 이상이어야 합니다,Requires Sentiment 70 or higher
 EVENT_COND_MINSHIM_GE_50,민심이 50 이상이어야 합니다,Requires Sentiment 50 or higher
+EVENT_COND_SISANG_GE_5,시상 5 이상 필요 (시조를 더 지으세요),Requires Sisang 5+ (complete more sijo)
+EVENT_COND_SISANG_GE_10,시상 10 이상 필요,Requires Sisang 10+
 EVENT_COND_DEFAULT,조건 미충족,Condition not met
 EVENT_FALLBACK_NOTHING,아무 일도 일어나지 않았다.,Nothing happened.
 EVENT_FALLBACK_HP_GAIN_FMT,HP %d 회복.,HP restored by %d.
@@ -542,7 +570,7 @@ SE_DESC_DEATH_COUNTDOWN,N턴 후 HP 50% 감소,HP reduced by 50% after N turns
 SE_DESC_STRENGTH,공격 피해 +N,Attack damage +N
 SE_DESC_THORNS,피격 시 공격자에게 3 피해 반사,Reflects 3 damage to attacker when hit
 SE_DESC_ARMOR,턴 시작 시 사라지지 않는 방어막,Persistent block that doesn't expire at turn start
-SE_DESC_SOLDIER_TOKEN,무관 진형 토큰. 스택 수만큼 패시브/액티브 효과 적용,Warrior formation token. Effects scale with stack count
+SE_DESC_SOLDIER_TOKEN,의적 진형 토큰. 스택 수만큼 패시브/액티브 효과 적용,Uijeok formation token. Effects scale with stack count
 SE_DESC_DETENTION,카드 사용 비용 +1. 지정 턴 수 후 해제,Card cost +1. Removed after set turns
 SE_DESC_SHACKLE,받는 DoT 피해 1.5배,DoT damage taken x1.5
 SE_DESC_STUN,행동 불가. 턴 종료 시 해제,Cannot act. Removed at end of turn
@@ -583,7 +611,7 @@ RELIC_VULN_ENEMY_FMT,적에게 취약 %d 부여,Apply Vulnerable %d to enemy
 RELIC_CURE_POISON,독 제거,Poison removed
 RELIC_STRENGTH_FMT,힘 +%d,Strength +%d
 RELIC_SOLDIER_TOKEN_FMT,병사 토큰 +%d,Soldier Token +%d
-RELIC_ARROWS_FMT,화살 +%d,Arrows +%d
+RELIC_ARROWS_FMT,흥 +%d,Heung +%d
 RELIC_TURN_AP_FMT,턴 시작 AP +%d,Turn start AP +%d
 RELIC_TURN_BLOCK_FMT,턴 시작 방어도 +%d,Turn start Block +%d
 RELIC_GOLD_FMT,골드 +%d,Gold +%d
@@ -606,11 +634,11 @@ RELIC_SIJO_DRAW_FMT,시조 완성 드로우 +%d,Sijo complete draw +%d
 RELIC_OKPIRI_FMT,옥피리 — 적 전체 %d 피해,Jade Flute — %d damage to all enemies
 RELIC_HOPAE,호패 — 다음 시조 초장 자동 채움,Hopae — Auto-fill next sijo first verse
 RELIC_SCROLL_WEAKEN_FMT,사군자 족자 — 적 약화 %d,Four Gentlemen Scroll — Enemy weakened %d
-RELIC_TALISMAN_POISON_FMT,도사의 부적 — 적 전체 독 %d,Daoist Talisman — All enemies poison %d
+RELIC_TALISMAN_POISON_FMT,무당의 부적 — 적 전체 독 %d,Mudang's Talisman — All enemies poison %d
 RELIC_BRUSH_DRAW_FMT,청사 붓 — 초장 완성 드로우 +%d,Blue Brush — First verse draw +%d
 RELIC_PLUM_DAMAGE_FMT,오얏나무 가지 — 피해 +%d,Plum Branch — Damage +%d
 RELIC_SUNDIAL_QI_FMT,해시계 조각 — 기 +%d,Sundial Fragment — Qi +%d
-RELIC_WARRIOR_ARMOR_FMT,무관의 갑주 — 방어도 +%d,Warrior's Armor — Block +%d
+RELIC_WARRIOR_ARMOR_FMT,의적의 갑주 — 방어도 +%d,Uijeok's Armor — Block +%d
 RELIC_GOLD_ELITE_FMT,엘리트 골드 +%d,Elite Gold +%d
 PHASE_RESIST_LABEL,25% → 0% (저항군),25% → 0% (Resistance)
 PHASE_RESIST_DESC,저항군이 전장에 합류한다!,Resistance fighters join the battle!

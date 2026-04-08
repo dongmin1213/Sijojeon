@@ -67,6 +67,26 @@
             "ko": "관리가 보상으로 엽전을 놓고 간다. 엽전 25 획득.",
             "en": "The official leaves some coins as consolation. Gain 25 gold."
           }
+        },
+        {
+          "id": "sijo_inspire",
+          "text": {
+            "ko": "[시상] 시조로 충신의 용기를 북돋운다.",
+            "en": "[Sisang] Inspire the loyalist's courage with a sijo."
+          },
+          "trigger_condition": "sisang_ge_5",
+          "effect_type": "buff_next_combat",
+          "effect_value_bonus": {
+            "buff": "strength",
+            "stacks": 5
+          },
+          "effect_type_bonus": "relic_gain",
+          "effect_value_bonus_2": 1,
+          "result_text": {
+            "ko": "관리가 감격하여 밀서와 함께 비장의 유물을 건넨다. 다음 전투 힘 +5, 유물 1개.",
+            "en": "The official, deeply moved, offers the letter and a hidden relic. Next combat: Strength +5, Relic +1."
+          },
+          "note": "시상 5 해금 보너스. 강화된 전투 버프 + 유물."
         }
       ]
     },

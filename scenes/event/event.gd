@@ -169,6 +169,10 @@ func _check_trigger_condition(condition: String) -> bool:
 			return rd.narrative_state.get("minshim", 50) >= 70
 		"minshim_ge_50":
 			return rd.narrative_state.get("minshim", 50) >= 50
+		"sisang_ge_5":
+			return SisangSystem.has_event_bonus(rd)
+		"sisang_ge_10":
+			return rd.sisang_count >= 10
 		_:
 			return true
 
@@ -242,6 +246,8 @@ func _get_condition_tooltip(condition: String) -> String:
 		"status_rank_ge_4": return tr("EVENT_COND_RANK_GE_4")
 		"minshim_ge_70": return tr("EVENT_COND_MINSHIM_GE_70")
 		"minshim_ge_50": return tr("EVENT_COND_MINSHIM_GE_50")
+		"sisang_ge_5": return tr("EVENT_COND_SISANG_GE_5")
+		"sisang_ge_10": return tr("EVENT_COND_SISANG_GE_10")
 		_: return tr("EVENT_COND_DEFAULT")
 
 
@@ -789,7 +795,7 @@ func _show_card_gain_selection(choice: Dictionary) -> void:
 	header.text = tr("EVENT_CARD_SELECT_HEADER")
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	header.add_theme_font_size_override("font_size", 22)
-	header.add_theme_color_override("font_color", Color(0.83, 0.66, 0.26))
+	header.add_theme_color_override("font_color", Color(0.83, 0.63, 0.09))
 	choice_container.add_child(header)
 
 	var offers := _generate_card_offers(3)

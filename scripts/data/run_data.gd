@@ -37,6 +37,9 @@ var jibun_rank: int = 1         # 현재 신분 단계 (1~5)
 var faction_pair: Array[String] = []      # 런의 당파 대립 쌍 [faction_a, faction_b]
 var faction_meters: Dictionary = {}       # {"faction_id": int} 0~100
 
+## 시상(詩想) 시스템 (Phase 2-2) — 런 전체 시조 완성 누적
+var sisang_count: int = 0  # 이번 런에서 완성한 시조 총 수
+
 
 func to_dict() -> Dictionary:
 	var prev_maps_arr := []
@@ -69,6 +72,7 @@ func to_dict() -> Dictionary:
 		"jibun_rank": jibun_rank,
 		"faction_pair": faction_pair,
 		"faction_meters": faction_meters,
+		"sisang_count": sisang_count,
 	}
 
 
@@ -106,4 +110,5 @@ static func from_dict(data: Dictionary) -> RunData:
 		for s in fp:
 			rd.faction_pair.append(str(s))
 	rd.faction_meters = data.get("faction_meters", {})
+	rd.sisang_count = data.get("sisang_count", 0)
 	return rd
