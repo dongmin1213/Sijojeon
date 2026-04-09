@@ -35,12 +35,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		# F1: 선택된 캐릭터로 게임 시작 (터치 입력 불가 환경 대응)
 		if event.keycode == KEY_F1:
 			if _selected_index >= 0:
-				_on_start_pressed()
 				get_viewport().set_input_as_handled()
+				_on_start_pressed()
 		# F2: 뒤로 가기
 		elif event.keycode == KEY_F2:
-			_on_back_pressed()
 			get_viewport().set_input_as_handled()
+			_on_back_pressed()
 
 
 func _ready() -> void:
