@@ -21,7 +21,7 @@ var _character_list: Array[Dictionary] = []
 var _unlock_data: Array[Dictionary] = []
 
 @onready var title_label: Label = $TitleLabel
-@onready var card_container: HBoxContainer = $CardContainer
+@onready var card_container: HBoxContainer = $CardScroll/CardContainer
 @onready var start_button: Button = $BottomBar/VBoxContainer/ButtonRow/StartButton
 @onready var back_button: Button = $BottomBar/VBoxContainer/ButtonRow/BackButton
 
@@ -241,12 +241,13 @@ func _build_character_cards() -> void:
 	var scale_y := vp_size.y / 1920.0
 	var ui_scale := minf(scale_x, scale_y)
 
-	# v10: 쇼케이스 영역 확장 — 카드 영역을 화면 14-48%로 넓힘
+	# v11: 가로 스크롤 지원 — 카드 최소 폭 200px 보장
 	var card_count := _character_list.size()
 	var separation := int(card_container.get_theme_constant("separation"))
-	var showcase_w := vp_size.x * 0.96  # CardContainer는 화면 96% 사용
-	var panel_min_w := minf(280.0 * scale_x, (showcase_w - separation * (card_count - 1)) / card_count)
-	var panel_min_h := vp_size.y * 0.32  # 확장 카드 영역 (14-48%)
+	var showcase_w := vp_size.x * 0.96
+	var fit_w := (showcase_w - separation * (card_count - 1)) / card_count
+	var panel_min_w := maxf(200.0 * ui_scale, fit_w)  # 최소 200px 보장 (스크롤 허용)
+	var panel_min_h := vp_size.y * 0.32
 
 	# 스케일된 폰트 크기 계산 (모바일 가독성 확보)
 	var fs_name := maxi(int(34 * ui_scale), 30)
@@ -260,9 +261,8 @@ func _build_character_cards() -> void:
 		push_warning("CharacterSelect: _character_list 비어있음 — 카드 생성 건너뜀")
 		return
 
-	# CardContainer에 최소 높이 보장 및 오버플로 방지
+	# CardContainer에 최소 높이 보장
 	card_container.custom_minimum_size = Vector2(0, panel_min_h)
-	card_container.clip_contents = true
 
 	for i in _character_list.size():
 		var character: Dictionary = _character_list[i]
@@ -270,8 +270,8 @@ func _build_character_cards() -> void:
 
 		var panel := PanelContainer.new()
 		panel.custom_minimum_size = Vector2(panel_min_w, panel_min_h)
-		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		panel.clip_contents = true
+		panel.size_flags_horizontal = Control.SIZE_FILL
+		panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 
 		# v5: 단청 스타일 캐릭터 카드 — 금박 테두리, 깊은 배경
 		var card_style := StyleBoxFlat.new()

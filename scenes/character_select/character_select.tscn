@@ -51,8 +51,8 @@ vertical_alignment = 1
 theme_override_font_sizes/font_size = 40
 theme_override_colors/font_color = Color(0.96, 0.94, 0.91, 1.0)
 
-; ─── 캐릭터 쇼케이스 영역 (14-48%) — 확장 ─────────────────────────────
-[node name="CardContainer" type="HBoxContainer" parent="."]
+; ─── 캐릭터 쇼케이스 스크롤 영역 (14-48%) ─────────────────────────────
+[node name="CardScroll" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -61,7 +61,14 @@ anchor_right = 0.98
 anchor_bottom = 0.48
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+horizontal_scroll_mode = 1
+vertical_scroll_mode = 3
+
+[node name="CardContainer" type="HBoxContainer" parent="CardScroll"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+alignment = 0
 theme_override_constants/separation = 12
 
 ; ─── 하단 바 (50-85%) — 상세정보+버튼 ────────────────────────────────────
