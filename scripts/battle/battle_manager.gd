@@ -1186,6 +1186,14 @@ func get_class_resource_name() -> String:
 			return "기력"
 		"mungwan":
 			return "학식"
+		"dosa":
+			return "영력"
+		"uiwon":
+			return "약재"
+		"gungsu":
+			return "흥"
+		"sangin":
+			return "인과"
 		_:
 			return ""
 
@@ -1197,6 +1205,14 @@ func get_class_resource_color() -> Color:
 			return Color(0.76, 0.23, 0.13)  # 주황 (기력)
 		"mungwan":
 			return Color(0.3, 0.7, 1.0)  # 파랑 (학식)
+		"dosa":
+			return Color(0.6, 0.4, 0.9)  # 보라 (영력)
+		"uiwon":
+			return Color(0.3, 0.8, 0.5)  # 녹색 (약재)
+		"gungsu":
+			return Color(0.9, 0.5, 0.7)  # 분홍 (흥)
+		"sangin":
+			return Color(0.8, 0.7, 0.3)  # 금색 (인과)
 		_:
 			return Color.WHITE
 
