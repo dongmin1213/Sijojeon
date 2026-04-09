@@ -146,6 +146,9 @@ var CHARACTER_FALLBACK: Dictionary:
 			"mugwan": {"class_ko": tr("CHAR_NAME_MUGWAN"), "class_hanja": ""},
 			"mungwan": {"class_ko": tr("CHAR_NAME_MUNGWAN"), "class_hanja": ""},
 			"dosa": {"class_ko": tr("CHAR_NAME_DOSA"), "class_hanja": ""},
+			"uiwon": {"class_ko": tr("CHAR_NAME_UIWON"), "class_hanja": ""},
+			"gungsu": {"class_ko": tr("CHAR_NAME_GUNGSU"), "class_hanja": ""},
+			"sangin": {"class_ko": tr("CHAR_NAME_SANGIN"), "class_hanja": ""},
 		}
 
 

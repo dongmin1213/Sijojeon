@@ -8,10 +8,13 @@ var CHARACTER_NAMES := {
 	"mugwan": "CHAR_NAME_MUGWAN",
 	"mungwan": "CHAR_NAME_MUNGWAN",
 	"dosa": "CHAR_NAME_DOSA",
+	"uiwon": "CHAR_NAME_UIWON",
+	"gungsu": "CHAR_NAME_GUNGSU",
+	"sangin": "CHAR_NAME_SANGIN",
 }
 
-# 캐릭터 ID 순서
-const CHARACTER_ORDER := ["mugwan", "mungwan", "dosa"]
+# 캐릭터 ID 순서 (캐릭터 선택 화면과 동일)
+const CHARACTER_ORDER := ["mugwan", "mungwan", "dosa", "uiwon", "gungsu", "sangin"]
 
 # 색상 상수 — v4: 단청 팔레트
 const COLOR_GOLD := Color(0.76, 0.23, 0.13)
