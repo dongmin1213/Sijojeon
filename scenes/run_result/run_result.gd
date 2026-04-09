@@ -161,18 +161,18 @@ func _play_entrance_animation() -> void:
 	tween.set_trans(Tween.TRANS_CUBIC)
 
 	# 배경 페이드인
-	tween.tween_property(overlay, "modulate:a", 1.0, 0.5)
+	tween.tween_property(overlay, "modulate:a", 1.0, 0.3)
 	# 제목
-	tween.tween_property(title_label, "modulate:a", 1.0, 0.6)
-	tween.tween_interval(0.2)
+	tween.tween_property(title_label, "modulate:a", 1.0, 0.4)
+	tween.tween_interval(0.1)
 	# 부제
-	tween.tween_property(subtitle_label, "modulate:a", 1.0, 0.5)
-	tween.tween_interval(0.3)
+	tween.tween_property(subtitle_label, "modulate:a", 1.0, 0.3)
+	tween.tween_interval(0.1)
 	# 통계
-	tween.tween_property(stats_container, "modulate:a", 1.0, 0.6)
-	tween.tween_interval(0.3)
-	# 버튼
-	tween.tween_property(button_container, "modulate:a", 1.0, 0.4)
+	tween.tween_property(stats_container, "modulate:a", 1.0, 0.4)
+	tween.tween_interval(0.1)
+	# 버튼 — 빠르게 표시하여 화면 탈출 수단 즉시 제공
+	tween.tween_property(button_container, "modulate:a", 1.0, 0.3)
 
 
 func _on_title_pressed() -> void:

@@ -14,7 +14,7 @@ const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 @export var fan_y_curve: float = 8.0          # 부채꼴 높이 커브 (완만)
 @export var hover_lift: float = 280.0         # 호버 시 위로 올라가는 높이 (카드 전체가 보이도록)
 @export var select_lift: float = 320.0        # 선택 시 위로 올라가는 높이
-@export var card_peek_ratio: float = 0.35     # 숨김 상태에서 보이는 카드 비율 (35% — 이름+코스트 가시성)
+@export var card_peek_ratio: float = 0.45     # 숨김 상태에서 보이는 카드 비율 (45% — 이름+코스트+효과 일부 가시성)
 
 # 뷰포트 기준 비율 (1080x1920 기본 해상도 기준)
 const BASE_WIDTH := 1080.0

@@ -50,9 +50,19 @@ func _build_ui() -> void:
 	char_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	vbox.add_child(char_hbox)
 
-	for char_id in ["dosa", "mugwan", "mungwan"]:
+	# 6캐릭터 전체 지원 + 한국어 표시명
+	var char_display := {
+		"mugwan": "CHAR_NAME_MUGWAN",
+		"mungwan": "CHAR_NAME_MUNGWAN",
+		"dosa": "CHAR_NAME_DOSA",
+		"uiwon": "CHAR_NAME_UIWON",
+		"gungsu": "CHAR_NAME_GUNGSU",
+		"sangin": "CHAR_NAME_SANGIN",
+	}
+	for char_id in ["mugwan", "mungwan", "dosa", "uiwon", "gungsu", "sangin"]:
 		var btn := Button.new()
-		btn.text = char_id
+		var name_key: String = char_display.get(char_id, "")
+		btn.text = tr(name_key) if name_key != "" else char_id
 		btn.custom_minimum_size = Vector2(160, 56)
 		btn.pressed.connect(_on_char_selected.bind(char_id))
 		char_hbox.add_child(btn)

@@ -54,7 +54,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
-scroll_deadzone = 30
+scroll_deadzone = 50
 horizontal_scroll_mode = 0
 
 [node name="MapContainer" type="Control" parent="ScrollContainer"]

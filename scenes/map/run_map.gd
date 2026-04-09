@@ -36,11 +36,11 @@ const NODE_ICONS := {
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
 const BASE_VIEWPORT_WIDTH := 1080.0
-const BASE_NODE_SIZE := Vector2(64, 64)  # v10: 아이콘 전용 노드로 축소
+const BASE_NODE_SIZE := Vector2(80, 80)  # v11: 모바일 터치 타겟 확대 (64→80)
 const BASE_ROW_SPACING := 180.0  # v10: 고정 행 간격 (스크롤 맵)
-const BASE_MAP_PADDING_X := 10.0  # v10: 좌우 여백 최소화 (너비 100%)
+const BASE_MAP_PADDING_X := 20.0  # v11: 좌우 여백 확대 (잘림 방지)
 const BASE_MAP_PADDING_TOP := 140.0  # v9: 플로팅 HUD 아래 시작
-const BASE_MAP_PADDING_BOTTOM := 100.0
+const BASE_MAP_PADDING_BOTTOM := 140.0  # v11: 하단 잘림 방지 여백 확대
 
 ## 막별 맵 배경 색상 (오방색 기반)
 const ACT_BG_COLORS := {

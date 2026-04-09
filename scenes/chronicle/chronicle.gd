@@ -54,11 +54,11 @@ func _build_ui() -> void:
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	add_child(scroll)
 
-	# 메인 컨테이너 (마우스 이벤트 무시 → 스크롤 성능 개선)
+	# 메인 컨테이너 (PASS 설정으로 스크롤 + 자식 터치 모두 정상 동작)
 	var main := VBoxContainer.new()
 	main.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	main.add_theme_constant_override("separation", 24)
-	main.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	main.mouse_filter = Control.MOUSE_FILTER_PASS
 	scroll.add_child(main)
 
 	# 상단/하단 여백
@@ -68,13 +68,13 @@ func _build_ui() -> void:
 	margin.add_theme_constant_override("margin_left", 40)
 	margin.add_theme_constant_override("margin_right", 40)
 	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	margin.mouse_filter = Control.MOUSE_FILTER_PASS
 	main.add_child(margin)
 
 	var content := VBoxContainer.new()
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation", 24)
-	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.mouse_filter = Control.MOUSE_FILTER_PASS
 	margin.add_child(content)
 
 	# 제목
