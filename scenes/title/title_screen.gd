@@ -159,7 +159,7 @@ func _add_firefly_particles() -> void:
 	var particles := GPUParticles2D.new()
 	particles.amount = 12
 	particles.lifetime = 4.0
-	particles.set_anchors_preset(Control.PRESET_FULL_RECT)
+	# GPUParticles2D는 Node2D 기반이므로 anchors 대신 position으로 배치
 	particles.z_index = -1  # 배경 위, UI 아래
 
 	var mat := ParticleProcessMaterial.new()
