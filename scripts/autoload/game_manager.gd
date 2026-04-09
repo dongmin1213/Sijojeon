@@ -89,6 +89,12 @@ func change_state(new_state: GameState) -> void:
 				_transitioning = false
 				SafeAreaManager.apply_to_current_scene()
 			, CONNECT_ONE_SHOT)
+			# 안전장치: 0.5초 후에도 잠금 상태이면 강제 해제 (교착 방지)
+			get_tree().create_timer(0.5).timeout.connect(func():
+				if _transitioning:
+					push_warning("GameManager: 씬 전환 타임아웃 — 잠금 강제 해제")
+					_transitioning = false
+			)
 		else:
 			push_warning("GameManager: 씬 파일 없음 — %s (상태: %s)" % [scene_path, GameState.keys()[new_state]])
 

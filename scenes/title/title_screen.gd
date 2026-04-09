@@ -12,16 +12,23 @@ extends Control
 
 
 func _ready() -> void:
-	# v10: 타이틀 레이블에 고운바탕 Bold 적용
-	var title_font := load("res://fonts/GowunBatang-Bold.ttf") as Font
-	if title_font:
-		title_label.add_theme_font_override("font", title_font)
+	# 버튼 연결을 최우선으로 — 이후 시각 효과에서 에러 발생해도 버튼 작동 보장
+	start_button.pressed.connect(_on_start_pressed)
+	continue_button.pressed.connect(_on_continue_pressed)
+	chronicle_button.pressed.connect(_on_chronicle_pressed)
+	settings_button.pressed.connect(_on_settings_pressed)
+	quit_button.pressed.connect(_on_quit_pressed)
 
 	# 이어하기 버튼: 세이브 있을 때만 표시
 	continue_button.visible = SaveManager.has_run_save()
 
 	# 버전 표시
 	version_label.text = "v%s" % ProjectSettings.get_setting("application/config/version", "0.1.0")
+
+	# v10: 타이틀 레이블에 고운바탕 Bold 적용
+	var title_font := load("res://fonts/GowunBatang-Bold.ttf") as Font
+	if title_font:
+		title_label.add_theme_font_override("font", title_font)
 
 	# v10: "새 게임" 버튼을 주 액션(CTA)으로 강조 — 적색 배경+큰 글씨
 	_apply_primary_button_style(start_button)
@@ -33,7 +40,7 @@ func _ready() -> void:
 	# v10: 바텀 시트 상단 그라데이션 전환 (배경→패널 자연 블렌딩)
 	_add_panel_gradient_transition()
 
-	# v9: 반딧불 파티클 효과 (타이틀 분위기)
+	# v9: 반딧불 파티클 효과 (타이틀 분위기) — 일부 기기에서 실패할 수 있으므로 안전 처리
 	_add_firefly_particles()
 
 	# 디버그 빌드에서만 디버그 메뉴 버튼 표시
@@ -47,13 +54,6 @@ func _ready() -> void:
 		$TitlePanel/VBoxContainer.add_child(debug_btn)
 		# 종료 버튼 앞에 배치
 		$TitlePanel/VBoxContainer.move_child(debug_btn, quit_button.get_index())
-
-	# 버튼 연결
-	start_button.pressed.connect(_on_start_pressed)
-	continue_button.pressed.connect(_on_continue_pressed)
-	chronicle_button.pressed.connect(_on_chronicle_pressed)
-	settings_button.pressed.connect(_on_settings_pressed)
-	quit_button.pressed.connect(_on_quit_pressed)
 
 	# 타이틀 페이드인 연출 (ColorRect 오버레이로 입력 차단 방지)
 	var fade_rect := ColorRect.new()
