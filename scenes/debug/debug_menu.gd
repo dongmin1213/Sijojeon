@@ -63,7 +63,7 @@ func _build_ui() -> void:
 		var btn := Button.new()
 		var name_key: String = char_display.get(char_id, "")
 		btn.text = tr(name_key) if name_key != "" else char_id
-		btn.custom_minimum_size = Vector2(160, 56)
+		btn.custom_minimum_size = Vector2(140, 56)
 		btn.pressed.connect(_on_char_selected.bind(char_id))
 		char_hbox.add_child(btn)
 
@@ -97,12 +97,13 @@ func _build_ui() -> void:
 
 func _on_char_selected(char_id: String) -> void:
 	debug_character_id = char_id
-	# 선택된 캐릭터 피드백
+	# 선택된 캐릭터 피드백 — 번역된 이름으로 비교
+	var selected_name := tr("CHAR_NAME_" + char_id.to_upper())
 	for child in $ScrollContainer/VBoxContainer.get_children():
 		if child is HBoxContainer:
 			for btn in child.get_children():
 				if btn is Button:
-					if btn.text == char_id:
+					if btn.text == selected_name:
 						btn.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 					else:
 						btn.remove_theme_color_override("font_color")

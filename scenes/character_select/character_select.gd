@@ -504,6 +504,13 @@ func _show_detail_panel(character: Dictionary) -> void:
 
 	_detail_panel = PanelContainer.new()
 	_detail_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	# BottomBar 영역 초과 방지 — 상세 패널 최대 높이 제한
+	var bottom_bar_h: float = $BottomBar.size.y
+	var button_row_h: float = 100.0  # ButtonRow + 여백
+	_detail_panel.custom_minimum_size = Vector2(0, 0)
+	_detail_panel.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	_detail_panel.clip_contents = true
+	var max_detail_h: float = maxf(bottom_bar_h - button_row_h - 40.0, 120.0)
 
 	# 반투명 다크 배경으로 가독성 확보
 	var style := StyleBoxFlat.new()
@@ -591,7 +598,15 @@ func _show_detail_panel(character: Dictionary) -> void:
 		detail_vbox.add_child(r_desc)
 
 	margin.add_child(detail_vbox)
-	_detail_panel.add_child(margin)
+
+	# 스크롤 가능한 컨테이너로 감싸서 오버플로우 방지
+	var detail_scroll := ScrollContainer.new()
+	detail_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	detail_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	detail_scroll.custom_minimum_size = Vector2(0, min(max_detail_h, 200))
+	detail_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	detail_scroll.add_child(margin)
+	_detail_panel.add_child(detail_scroll)
 
 	# BottomBar 내에 삽입 (캐릭터 카드 아래)
 	$BottomBar/VBoxContainer.add_child(_detail_panel)

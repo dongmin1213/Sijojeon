@@ -291,10 +291,13 @@ func _setup_player_sprite(character_id: String) -> void:
 	_player_sprite.anchor_bottom = 0.60
 	_player_sprite.z_index = 3
 	_player_sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	# 캐릭터 텍스처 로드
+	# 캐릭터 텍스처 로드 (PNG → SVG 순서로 탐색)
 	var tex_path := "res://art/characters/%s.png" % character_id
+	var tex_path_svg := "res://art/characters/%s.svg" % character_id
 	if ResourceLoader.exists(tex_path):
 		_player_sprite.texture = load(tex_path)
+	elif ResourceLoader.exists(tex_path_svg):
+		_player_sprite.texture = load(tex_path_svg)
 	else:
 		_player_sprite.texture = TextureManager.get_enemy_texture(character_id)
 	add_child(_player_sprite)
