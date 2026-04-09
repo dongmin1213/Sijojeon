@@ -1,6 +1,6 @@
 # 시조전 — NanoBanana 프롬프트 가이드
 
-> 버전: 2.0 | 최종 업데이트: 2026-04-06
+> 버전: 3.0 | 최종 업데이트: 2026-04-09
 > Google NanoBanana 2 (Gemini Plus) 기반 에셋 생성 프롬프트 모음
 > **아트 스타일: SD(슈퍼디폼) 하이브리드 도트 일러스트**
 > 참조: 가디언테일즈, 메이플스토리, 월드플리퍼
@@ -83,11 +83,32 @@ Draw a fierce chibi Korean Joseon military officer (무관) ready for battle. He
 Draw a powerful chibi Korean Joseon Taoist mystic (도사) channeling supernatural energy. He wears a white Korean dopo (도포) overcoat with wide sleeves over a blue jeogori, tied with a Korean cloth belt (대대). He holds a glowing Korean paper talisman (부적) with red ink characters in one hand. He has a long white beard, intense piercing eyes, a Korean sangtu topknot with a jade binyeo pin, and wears a Korean jeongjagwan (정자관) horsehair hat. He faces slightly right. Ethereal teal glow. NOT Chinese robes.
 ```
 
-### char_mungwan — 문관
+### char_mungwan — 선비
 
 ```
 [스타일 프리픽스]
-Draw a commanding chibi Korean Joseon civil scholar-official (문관) with an aura of authority. He wears a Korean samo (사모) black winged hat and a crimson dallyeong (달령) court robe with a Korean rank badge (흉배) on the chest — a square embroidered panel showing a crane. He holds a calligraphy brush with glowing hanja characters floating around. He has sharp intelligent eyes, a neatly trimmed beard, and a dignified stance facing slightly right. Korean samo hat has horizontal "wings" on the sides — NOT a Chinese guanmao. NOT Chinese official robes.
+Draw a commanding chibi Korean Joseon civil scholar-official (선비) with an aura of authority. He wears a Korean samo (사모) black winged hat and a crimson dallyeong (달령) court robe with a Korean rank badge (흉배) on the chest — a square embroidered panel showing a crane. He holds a calligraphy brush with glowing hanja characters floating around. He has sharp intelligent eyes, a neatly trimmed beard, and a dignified stance facing slightly right. Korean samo hat has horizontal "wings" on the sides — NOT a Chinese guanmao. NOT Chinese official robes.
+```
+
+### char_uiwon — 의녀
+
+```
+[스타일 프리픽스]
+Draw a determined chibi Korean Joseon female physician (의녀) ready for battle. She wears a modest Korean hanbok — a short white jeogori jacket with indigo blue dongjeong collar, a long dark green chima skirt, and a white apron tied at the waist for herb gathering. Her hair is in a single Korean daenggi (댕기) braid with a simple white ribbon. She holds a Korean medicine gourd (약호리병) in one hand and a bundle of Korean medicinal herbs in the other with a faint green healing glow. Determined focused expression, practical sturdy stance facing slightly right. She carries a small Korean wooden medicine box (약장) on her back. Korean Joseon-era female healer — NOT Chinese traditional medicine practitioner. NOT Japanese shrine maiden.
+```
+
+### char_gungsu — 기생
+
+```
+[스타일 프리픽스]
+Draw a graceful yet fierce chibi Korean Joseon gisaeng (기생, Korean entertainer-warrior) in a dazzling performance stance. She wears a vibrant Korean hanbok — a short crimson jeogori jacket with flowing wide sleeves and a layered indigo and gold chima skirt with dancheong-inspired patterns. Her hair is styled in a elaborate Korean eoyeo meori (얹은머리) updo decorated with a golden Korean binyeo (비녀) hairpin and small Korean norigae (노리개) ornaments. She holds a Korean gayageum (가야금, 12-string zither) angled across her body like a weapon, with glowing pink musical note energy emanating from the strings. Captivating confident smile with sharp clever eyes, dynamic performance-ready pose facing slightly right. Korean traditional entertainer aesthetic — NOT Chinese/Japanese geisha. NOT Chinese pipa player.
+```
+
+### char_sangin — 승병
+
+```
+[스타일 프리픽스]
+Draw a powerful chibi Korean Joseon warrior monk (승병) radiating inner strength. He wears a gray Korean monk's robe (승복) with wide cloth belt tied simply, and a Korean wooden prayer bead necklace (염주) with 108 beads around his neck. His head is shaved completely bald with small incense burn dots (계인) on the crown. He wields a long Korean monk's staff (석장) — a metal-topped walking staff with dangling rings that jingle — in one hand. Calm but fierce eyes with inner golden karma aura glowing faintly around his body. Powerful grounded martial arts stance facing slightly right, barefoot on the ground. Korean Buddhist warrior monk (의승) aesthetic — NOT Chinese Shaolin monk. NOT Japanese sohei. Korean temple warrior from Imjin War era.
 ```
 
 ---

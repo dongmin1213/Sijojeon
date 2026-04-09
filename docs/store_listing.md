@@ -1,6 +1,6 @@
 # 시조전 (Sijojeon) — 스토어 등록 문서
 
-> 최종 수정: 2026-04-02
+> 최종 수정: 2026-04-09
 > 담당: Document Specialist (ZER-109)
 
 ---
@@ -43,10 +43,13 @@
 가챠 없음. 런마다 리셋. 순수한 덱빌딩의 재미!
 100가지 이상의 카드와 부적(유물)을 조합해 나만의 최강 덱을 만드세요.
 
-🧙 개성 넘치는 직업들
-• 도사 — 기를 다루는 방술가. 시조 완성 보너스 극대화
-• 무관 — 병사 토큰을 지휘하는 장군. 진형으로 광역 폭딜
-• (업데이트 예정) 암행어사, 무당, 판수, 전기수…
+🧙 개성 넘치는 6종 직업
+• 의적 — 활빈당 의적. 병사 토큰을 지휘하는 진형 전투
+• 선비 — 학식을 축적하여 상소로 광역 폭발
+• 무당 — 귀신을 부리고 굿으로 저주하는 주술사
+• 의녀 — 약초와 독을 다루는 조선의 여의사
+• 기생 — 시·음악·무용으로 전장을 지배하는 예인
+• 승병 — 불심으로 싸우는 전투 승려
 
 🗺️ 한양에서 저승까지
 한양 → 산속 → 무덤 → 저승
@@ -89,10 +92,13 @@ The thrill of landing a Sijo combo mid-battle is unlike anything else.
 Every run starts fresh. 100+ cards and relics (charms) to combine.
 No pay-to-win. No gacha pulls. Just strategy.
 
-🧙 Distinct Classes with Unique Playstyles
-• Dosa — A mystical arts practitioner who manipulates Ki. Maximizes Sijo bonus damage.
-• Mugwan — A military commander who summons soldier tokens and unleashes formation-based AoE.
-• (Coming soon) Amhaengeosa, Mudang, Pansu, Jeongi-su…
+🧙 6 Distinct Classes with Unique Playstyles
+• Uijeok (Outlaw) — Lead the Hwalbindang outlaws with soldier tokens and formation tactics.
+• Seonbi (Scholar) — Accumulate erudition and unleash devastating AoE through royal petitions.
+• Mudang (Shaman) — Command spirits and curse enemies through shamanistic rites.
+• Uinyeo (Healer) — Master herbs and poisons as Joseon's female physician.
+• Gisaeng (Entertainer) — Dominate the battlefield with poetry, music, and dance.
+• Seungbyeong (Warrior Monk) — Fight with karmic strength as a Buddhist warrior monk.
 
 🗺️ Journey from Hanyang to the Underworld
 Hanyang → Mountain Forest → Graveyard → Underworld

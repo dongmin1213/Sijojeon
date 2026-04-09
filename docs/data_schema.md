@@ -1,6 +1,6 @@
 # 시조전 데이터 스키마
 
-> 최종 업데이트: Sprint 8 (2026-04-06)
+> 최종 업데이트: 2026-04-09 (6캐릭터 확정 반영)
 > 모든 JSON 파일은 `data/` 디렉터리에 위치. 인코딩: UTF-8.
 
 ---
@@ -12,9 +12,12 @@
 | 파일 | class | 설명 |
 |------|-------|------|
 | `common.json` | `common` | 공통 카드 54종 (M001-M054) — 이동/지원 + 와일드카드 |
-| `dosa.json` | `dosa` | 도사 전용 카드 27종 (D001-D027) |
-| `mugwan.json` | `mugwan` | 무관 전용 진형 카드 27종 (G001-G027) |
-| `mungwan.json` | `mungwan` | 문관 전용 학식 카드 27종 (W001-W027) |
+| `dosa.json` | `dosa` | 무당 전용 카드 27종 (D001-D027) |
+| `mugwan.json` | `mugwan` | 의적 전용 진형 카드 27종 (G001-G027) |
+| `mungwan.json` | `mungwan` | 선비 전용 학식 카드 27종 (W001-W027) |
+| `uinyeo.json` | `uiwon` | 의녀 전용 카드 27종 |
+| `gisaeng.json` | `gungsu` | 기생 전용 카드 27종 |
+| `seungbyeong.json` | `sangin` | 승병 전용 카드 27종 |
 
 ### 1.2 파일 루트 스키마
 
@@ -229,19 +232,23 @@
 
 | 필드 | 타입 | 설명 |
 |------|------|------|
-| `id` | string | 캐릭터 ID (`mugwan`, `mungwan`, `dosa`) |
-| `name_ko` / `name_hanja` | string | 이름 |
-| `unlock_type` | string | `default`, `character_act_clear`, `total_runs` |
-| `unlock_params` | object | 해금 파라미터 |
+| `id` | string | 캐릭터 ID (`mugwan`, `mungwan`, `dosa`, `uiwon`, `gungsu`, `sangin`) |
+| `class_ko` | string | 한국어 이름 |
+| `unlock_type` | string | `default`, `act_clear`, `boss_clear`, `run_count` |
+| `unlock_condition` | object | 해금 파라미터 |
 | `unlock_description` | string | 조건 설명 |
+| `resource` | string | 고유 자원명 |
 
-**해금 조건 요약:**
+**해금 조건 요약 (6캐릭터):**
 
-| 직업 | 조건 |
-|------|------|
-| 무관 | 기본 해금 |
-| 문관 | 무관으로 1막 보스 처치 |
-| 도사 | 총 런 3회 완료 |
+| ID | 직업 | 조건 | 고유 자원 |
+|----|------|------|----------|
+| mugwan | 의적 | 기본 해금 | 기력 (max 8) |
+| mungwan | 선비 | 1막 보스 처치 | 학식 (max 8) |
+| uiwon | 의녀 | 5회 완주 | 약재 (max 8) |
+| mudang | 무당 | 의녀로 보스 클리어 | 영력 (max 8) |
+| gungsu | 기생 | 의적으로 보스 클리어 | 흥 (max 8) |
+| sangin | 승병 | 10회 완주 | 인과 (max 6) |
 
 ---
 
@@ -310,11 +317,14 @@
 
 **기본 수치:**
 
-| 직업 | HP | 기/턴 | 고유 자원 |
-|------|-----|-------|----------|
-| 도사 | 75 | 3 | 없음 (천지기 패시브) |
-| 무관 | 80 | 3 | 기력(max 8) |
-| 문관 | 70 | 3 | 학식(max 6) |
+| 직업 | class_id | HP | 기/턴 | 고유 자원 |
+|------|----------|----|-------|----------|
+| 의적 | mugwan | 80 | 3 | 기력 (max 8) |
+| 선비 | mungwan | 70 | 3 | 학식 (max 8) |
+| 무당 | dosa | 75 | 3 | 영력 (max 8) |
+| 의녀 | uiwon | - | 3 | 약재 (max 8) |
+| 기생 | gungsu | - | 3 | 흥 (max 8) |
+| 승병 | sangin | - | 3 | 인과 (max 6) |
 
 ---
 
@@ -326,8 +336,11 @@
 - ID 체계:
   - 공통 카드: `M001~`
   - 도사 카드: `D001~`
-  - 무관 카드: `G001~` (진형 카드)
-  - 문관 카드: `W001~` (예상)
+  - 의적 카드: `G001~` (진형 카드)
+  - 선비 카드: `W001~`
+  - 의녀 카드: `uinyeo.json`
+  - 기생 카드: `gisaeng.json`
+  - 승병 카드: `seungbyeong.json`
   - 일반 적: `E001~`
   - 정예 적: `EL001~`
   - 보스: `BOSS_ACT{n}`
