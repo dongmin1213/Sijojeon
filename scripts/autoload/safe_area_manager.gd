@@ -72,10 +72,9 @@ func _calculate_margins() -> void:
 	var is_full_screen_alt := (safe_rect.position == Vector2i.ZERO and safe_rect.size == screen_size)
 	if is_full_screen or is_full_screen_alt:
 		if _is_mobile():
-			print("[SafeAreaManager] safe area == 전체 화면 (OS 미보고 가능성) — fallback 마진 적용")
-			# 노치 미보고 시 fallback 최소 상단 마진 (약 5% 뷰포트)
-			var viewport_size := get_viewport().get_visible_rect().size
-			margin_top = maxf(margin_top, viewport_size.y * 0.05)
+			print("[SafeAreaManager] safe area == 전체 화면 — fallback 마진 미적용 (하단 터치 불가 방지)")
+			# 노치 미보고 시에도 fallback 마진을 적용하지 않음
+			# 이전에 5% 상단 마진을 적용했으나, 이로 인해 하단 버튼 터치 불가 문제 발생
 		return
 
 	# 뷰포트 크기 (stretch mode 적용 후)

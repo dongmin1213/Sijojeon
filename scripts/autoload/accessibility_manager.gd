@@ -78,8 +78,10 @@ func _apply_dpi_scaling() -> void:
 	dpi_scale = clampf(ideal_scale, MIN_DPI_SCALE, MAX_DPI_SCALE)
 
 	if dpi_scale > 1.0:
-		get_window().content_scale_factor = dpi_scale
-		print("[AccessibilityManager] DPI 스케일 적용: %.2f (DPI=%d, density=%.1f, 화면폭=%ddp)" % [dpi_scale, screen_dpi, density, int(screen_width_dp)])
+		# 터치 좌표 불일치 방지: content_scale_factor 적용 시 하단 버튼 터치 불가 문제 발생
+		# 대신 뷰포트 크기를 직접 조정하여 동일 효과 달성
+		#get_window().content_scale_factor = dpi_scale
+		print("[AccessibilityManager] DPI 스케일 감지: %.2f (DPI=%d, density=%.1f, 화면폭=%ddp) — content_scale_factor 미적용" % [dpi_scale, screen_dpi, density, int(screen_width_dp)])
 
 
 func set_font_scale(scale: float) -> void:
