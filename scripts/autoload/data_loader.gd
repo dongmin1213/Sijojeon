@@ -336,9 +336,9 @@ func _matches_class(restriction: String, character_id: String) -> bool:
 		"무당": "dosa",
 		"의적": "mugwan",
 		"선비": "mungwan",
-		"의녀": "physician",
-		"기생": "archer",
-		"승병": "merchant",
+		"의녀": "uiwon",
+		"기생": "gungsu",
+		"승병": "sangin",
 	}
 	return class_map.get(restriction, "") == character_id
 

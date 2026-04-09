@@ -242,6 +242,54 @@
       "icon": "talisman"
     },
     {
+      "id": "ACH_UIWON_VICTORY",
+      "name": {
+        "ko": "의녀의 길",
+        "en": "Path of the Healer"
+      },
+      "description": {
+        "ko": "의녀로 승리하다",
+        "en": "Win a run as the Healer"
+      },
+      "type": "character_victory",
+      "params": {
+        "character_id": "uiwon"
+      },
+      "icon": "herb"
+    },
+    {
+      "id": "ACH_GUNGSU_VICTORY",
+      "name": {
+        "ko": "기생의 길",
+        "en": "Path of the Entertainer"
+      },
+      "description": {
+        "ko": "기생으로 승리하다",
+        "en": "Win a run as the Entertainer"
+      },
+      "type": "character_victory",
+      "params": {
+        "character_id": "gungsu"
+      },
+      "icon": "fan"
+    },
+    {
+      "id": "ACH_SANGIN_VICTORY",
+      "name": {
+        "ko": "승병의 길",
+        "en": "Path of the Warrior Monk"
+      },
+      "description": {
+        "ko": "승병으로 승리하다",
+        "en": "Win a run as the Warrior Monk"
+      },
+      "type": "character_victory",
+      "params": {
+        "character_id": "sangin"
+      },
+      "icon": "staff"
+    },
+    {
       "id": "ACH_ALL_CHARACTERS",
       "name": {
         "ko": "만능 관리",
@@ -256,7 +304,10 @@
         "character_ids": [
           "mugwan",
           "mungwan",
-          "dosa"
+          "dosa",
+          "uiwon",
+          "gungsu",
+          "sangin"
         ]
       },
       "icon": "trophy",
@@ -618,6 +669,261 @@
       }
     },
     {
+      "id": "ACH_UIWON_RUNS_5",
+      "name": {
+        "ko": "약초 채집",
+        "en": "Herb Gathering"
+      },
+      "description": {
+        "ko": "의녀로 5회 런을 완료하다",
+        "en": "Complete 5 runs as the Healer"
+      },
+      "type": "character_runs",
+      "params": {
+        "character_id": "uiwon",
+        "min_runs": 5
+      },
+      "icon": "herb_basket"
+    },
+    {
+      "id": "ACH_UIWON_VICTORIES_3",
+      "name": {
+        "ko": "의녀 삼승",
+        "en": "Healer's Three Wins"
+      },
+      "description": {
+        "ko": "의녀로 3회 승리하다",
+        "en": "Win 3 runs as the Healer"
+      },
+      "type": "character_victories_n",
+      "params": {
+        "character_id": "uiwon",
+        "min_victories": 3
+      },
+      "icon": "three_herbs"
+    },
+    {
+      "id": "ACH_UIWON_ASCENSION_1",
+      "name": {
+        "ko": "의녀의 시험",
+        "en": "Healer's Trial"
+      },
+      "description": {
+        "ko": "의녀로 귀신 1단계 클리어",
+        "en": "Clear Gwisin Level 1 as the Healer"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "uiwon",
+        "min_level": 1
+      },
+      "icon": "uiwon_ghost_1"
+    },
+    {
+      "id": "ACH_UIWON_ASCENSION_5",
+      "name": {
+        "ko": "의녀의 도",
+        "en": "Healer's Way"
+      },
+      "description": {
+        "ko": "의녀로 귀신 5단계 클리어",
+        "en": "Clear Gwisin Level 5 as the Healer"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "uiwon",
+        "min_level": 5
+      },
+      "icon": "uiwon_ghost_5"
+    },
+    {
+      "id": "ACH_UIWON_ASCENSION_10",
+      "name": {
+        "ko": "신의",
+        "en": "Divine Healer"
+      },
+      "description": {
+        "ko": "의녀로 귀신 10단계 클리어",
+        "en": "Clear Gwisin Level 10 as the Healer"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "uiwon",
+        "min_level": 10
+      },
+      "icon": "uiwon_god"
+    },
+    {
+      "id": "ACH_GUNGSU_RUNS_5",
+      "name": {
+        "ko": "풍류",
+        "en": "Artistry"
+      },
+      "description": {
+        "ko": "기생으로 5회 런을 완료하다",
+        "en": "Complete 5 runs as the Entertainer"
+      },
+      "type": "character_runs",
+      "params": {
+        "character_id": "gungsu",
+        "min_runs": 5
+      },
+      "icon": "fan_dance"
+    },
+    {
+      "id": "ACH_GUNGSU_VICTORIES_3",
+      "name": {
+        "ko": "기생 삼승",
+        "en": "Entertainer's Three Wins"
+      },
+      "description": {
+        "ko": "기생으로 3회 승리하다",
+        "en": "Win 3 runs as the Entertainer"
+      },
+      "type": "character_victories_n",
+      "params": {
+        "character_id": "gungsu",
+        "min_victories": 3
+      },
+      "icon": "three_fans"
+    },
+    {
+      "id": "ACH_GUNGSU_ASCENSION_1",
+      "name": {
+        "ko": "기생의 시험",
+        "en": "Entertainer's Trial"
+      },
+      "description": {
+        "ko": "기생으로 귀신 1단계 클리어",
+        "en": "Clear Gwisin Level 1 as the Entertainer"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "gungsu",
+        "min_level": 1
+      },
+      "icon": "gungsu_ghost_1"
+    },
+    {
+      "id": "ACH_GUNGSU_ASCENSION_5",
+      "name": {
+        "ko": "기생의 기",
+        "en": "Entertainer's Art"
+      },
+      "description": {
+        "ko": "기생으로 귀신 5단계 클리어",
+        "en": "Clear Gwisin Level 5 as the Entertainer"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "gungsu",
+        "min_level": 5
+      },
+      "icon": "gungsu_ghost_5"
+    },
+    {
+      "id": "ACH_GUNGSU_ASCENSION_10",
+      "name": {
+        "ko": "명기",
+        "en": "Legendary Entertainer"
+      },
+      "description": {
+        "ko": "기생으로 귀신 10단계 클리어",
+        "en": "Clear Gwisin Level 10 as the Entertainer"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "gungsu",
+        "min_level": 10
+      },
+      "icon": "gungsu_god"
+    },
+    {
+      "id": "ACH_SANGIN_RUNS_5",
+      "name": {
+        "ko": "수련",
+        "en": "Training"
+      },
+      "description": {
+        "ko": "승병으로 5회 런을 완료하다",
+        "en": "Complete 5 runs as the Warrior Monk"
+      },
+      "type": "character_runs",
+      "params": {
+        "character_id": "sangin",
+        "min_runs": 5
+      },
+      "icon": "prayer_beads"
+    },
+    {
+      "id": "ACH_SANGIN_VICTORIES_3",
+      "name": {
+        "ko": "승병 삼승",
+        "en": "Warrior Monk's Three Wins"
+      },
+      "description": {
+        "ko": "승병으로 3회 승리하다",
+        "en": "Win 3 runs as the Warrior Monk"
+      },
+      "type": "character_victories_n",
+      "params": {
+        "character_id": "sangin",
+        "min_victories": 3
+      },
+      "icon": "three_staffs"
+    },
+    {
+      "id": "ACH_SANGIN_ASCENSION_1",
+      "name": {
+        "ko": "승병의 시험",
+        "en": "Warrior Monk's Trial"
+      },
+      "description": {
+        "ko": "승병으로 귀신 1단계 클리어",
+        "en": "Clear Gwisin Level 1 as the Warrior Monk"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "sangin",
+        "min_level": 1
+      },
+      "icon": "sangin_ghost_1"
+    },
+    {
+      "id": "ACH_SANGIN_ASCENSION_5",
+      "name": {
+        "ko": "승병의 도",
+        "en": "Warrior Monk's Way"
+      },
+      "description": {
+        "ko": "승병으로 귀신 5단계 클리어",
+        "en": "Clear Gwisin Level 5 as the Warrior Monk"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "sangin",
+        "min_level": 5
+      },
+      "icon": "sangin_ghost_5"
+    },
+    {
+      "id": "ACH_SANGIN_ASCENSION_10",
+      "name": {
+        "ko": "호국승",
+        "en": "Guardian Monk"
+      },
+      "description": {
+        "ko": "승병으로 귀신 10단계 클리어",
+        "en": "Clear Gwisin Level 10 as the Warrior Monk"
+      },
+      "type": "character_ascension",
+      "params": {
+        "character_id": "sangin",
+        "min_level": 10
+      },
+      "icon": "sangin_god"
+    },
+    {
       "id": "ACH_ASCENSION_10",
       "name": {
         "ko": "전설의 풍류객",
@@ -632,7 +938,10 @@
         "character_ids": [
           "mugwan",
           "mungwan",
-          "dosa"
+          "dosa",
+          "uiwon",
+          "gungsu",
+          "sangin"
         ],
         "min_level": 10
       },
@@ -651,15 +960,18 @@
         "en": "Ghosts of Three Paths"
       },
       "description": {
-        "ko": "세 캐릭터 모두 귀신 1단계 이상 클리어",
-        "en": "Clear Gwisin Level 1 or higher with all three characters"
+        "ko": "모든 캐릭터로 귀신 1단계 이상 클리어",
+        "en": "Clear Gwisin Level 1 or higher with all characters"
       },
       "type": "all_ascension_min",
       "params": {
         "character_ids": [
           "mugwan",
           "mungwan",
-          "dosa"
+          "dosa",
+          "uiwon",
+          "gungsu",
+          "sangin"
         ],
         "min_level": 1
       },
