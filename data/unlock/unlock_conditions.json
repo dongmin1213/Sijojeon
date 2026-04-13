@@ -39,6 +39,46 @@
         "ko": "총 3회 런 완료",
         "en": "Complete 3 total runs"
       }
+    },
+    {
+      "id": "uiwon",
+      "name_ko": "의녀",
+      "name_hanja": "",
+      "unlock_type": "total_runs",
+      "unlock_params": {
+        "min_runs": 5
+      },
+      "unlock_description": {
+        "ko": "임의 캐릭터로 런을 5회 완주",
+        "en": "Complete 5 total runs with any character"
+      }
+    },
+    {
+      "id": "gungsu",
+      "name_ko": "기생",
+      "name_hanja": "",
+      "unlock_type": "character_act_clear",
+      "unlock_params": {
+        "character_id": "mugwan",
+        "min_act": 1
+      },
+      "unlock_description": {
+        "ko": "의적으로 1막 보스 처치",
+        "en": "Defeat Act 1 boss with Mugwan"
+      }
+    },
+    {
+      "id": "sangin",
+      "name_ko": "승병",
+      "name_hanja": "",
+      "unlock_type": "total_runs",
+      "unlock_params": {
+        "min_runs": 10
+      },
+      "unlock_description": {
+        "ko": "임의 캐릭터로 런을 누적 10회 완주",
+        "en": "Complete 10 total runs with any character"
+      }
     }
   ]
 }
