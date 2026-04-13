@@ -19,6 +19,8 @@ const CHARACTER_ART_MAP := {
 var _selected_index: int = -1
 var _character_list: Array[Dictionary] = []
 var _unlock_data: Array[Dictionary] = []
+# 터치 탭/드래그 구분용 — 터치 시작 위치 저장
+var _card_press_pos: Dictionary = {}
 
 @onready var title_label: Label = $TitleLabel
 @onready var card_container: HBoxContainer = $CardScroll/CardContainer
@@ -428,16 +430,23 @@ func _build_character_cards() -> void:
 
 		# 카드 전체를 탭 가능하게 설정 (모바일 터치 대응)
 		_set_mouse_filter_recursive(margin, Control.MOUSE_FILTER_IGNORE)
+		# ScrollContainer 스크롤을 위해 이벤트 전파 허용
+		panel.mouse_filter = Control.MOUSE_FILTER_PASS
 		var card_index := i
 		if unlocked:
 			panel.gui_input.connect(func(event: InputEvent):
-				if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-					_select_character(card_index)
-					get_viewport().set_input_as_handled()
+				if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+					if event.pressed:
+						# 터치 시작 위치 기록 (드래그/탭 구분용)
+						_card_press_pos[card_index] = event.global_position
+					else:
+						# 터치 종료 — 이동 거리 20px 이내면 탭으로 판정
+						var press_p: Variant = _card_press_pos.get(card_index, null)
+						if press_p != null and (press_p as Vector2).distance_to(event.global_position) < 20.0:
+							_select_character(card_index)
+						_card_press_pos.erase(card_index)
 			)
 			panel.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		else:
-			panel.mouse_filter = Control.MOUSE_FILTER_STOP
 
 		# 잠금 캐릭터는 어둡게 표시
 		if not unlocked:
