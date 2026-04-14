@@ -69,7 +69,7 @@ func _show_current_step() -> void:
 			overlay.show_message(tr("TUTORIAL_MSG_INTRO"))
 
 		TutorialStep.EXPLAIN_ENEMY:
-			var enemy_area := battle_scene.get_node_or_null("EnemyArea")
+			var enemy_area := battle_scene.get_node_or_null("EnemyZone")
 			if enemy_area:
 				var rect := Rect2(enemy_area.global_position, enemy_area.size)
 				overlay.highlight_area(rect, tr("TUTORIAL_MSG_ENEMY"), "down")
@@ -77,7 +77,7 @@ func _show_current_step() -> void:
 				overlay.show_message(tr("TUTORIAL_MSG_ENEMY_SHORT"))
 
 		TutorialStep.EXPLAIN_HP_QI:
-			var player_info := battle_scene.get_node_or_null("BattleHUD/PlayerInfo")
+			var player_info := battle_scene.get_node_or_null("PlayerHUD/StatusRow")
 			if player_info:
 				var rect := Rect2(player_info.global_position, player_info.size)
 				overlay.highlight_area(rect, tr("TUTORIAL_MSG_HP_QI"), "down")
@@ -85,7 +85,7 @@ func _show_current_step() -> void:
 				overlay.show_message(tr("TUTORIAL_MSG_HP_QI_SHORT"))
 
 		TutorialStep.EXPLAIN_HAND:
-			var hand_area := battle_scene.get_node_or_null("HandArea")
+			var hand_area := battle_scene.get_node_or_null("HandZone")
 			if hand_area:
 				var rect := Rect2(hand_area.global_position, hand_area.size)
 				overlay.highlight_area(rect, tr("TUTORIAL_MSG_HAND"), "up")
@@ -96,7 +96,7 @@ func _show_current_step() -> void:
 			overlay.show_message(tr("TUTORIAL_MSG_PLAY_FIRST"), true)
 
 		TutorialStep.EXPLAIN_SIJO:
-			var sijo_area := battle_scene.get_node_or_null("SijoArea")
+			var sijo_area := battle_scene.get_node_or_null("SijoBar")
 			if sijo_area:
 				var rect := Rect2(sijo_area.global_position, sijo_area.size)
 				overlay.highlight_area(rect, tr("TUTORIAL_MSG_SIJO"), "down")
@@ -121,7 +121,7 @@ func _show_current_step() -> void:
 			_advance_step()
 
 		TutorialStep.EXPLAIN_END_TURN:
-			var end_btn := battle_scene.get_node_or_null("BattleHUD/EndTurnButton")
+			var end_btn: Button = battle_scene.end_turn_button if battle_scene.end_turn_button else battle_scene.get_node_or_null("HiddenRefs/EndTurnButton")
 			if end_btn:
 				var rect := Rect2(end_btn.global_position, end_btn.size)
 				overlay.highlight_area(rect, tr("TUTORIAL_MSG_END_TURN"), "left", true)

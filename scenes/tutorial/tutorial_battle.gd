@@ -1,18 +1,29 @@
 extends Control
 
-## 튜토리얼 전투 씬. 일반 전투 씬을 기반으로 튜토리얼 매니저를 추가한다.
-## 약한 적(불량배) 1마리와 스타터 덱으로 진행되는 학습용 전투.
+## 튜토리얼 전투 씬. 실제 전투 씬과 동일한 레이아웃을 사용하되,
+## 튜토리얼 매니저를 추가하여 학습용 전투를 진행한다.
+## 약한 적(불량배) 1마리와 스타터 덱으로 진행.
 
-@onready var hp_label: Label = $BattleHUD/PlayerInfo/HPLabel
-@onready var qi_label: Label = $BattleHUD/PlayerInfo/QiLabel
-@onready var block_label: Label = $BattleHUD/PlayerInfo/BlockLabel
-@onready var turn_label: Label = $BattleHUD/TurnLabel
-@onready var card_hand: CardHand = $HandArea/CardHand
-@onready var enemy_container: HBoxContainer = $EnemyArea/EnemyContainer
-@onready var sijo_container: HBoxContainer = $SijoArea/SijoContainer
-@onready var end_turn_button: Button = $BattleHUD/EndTurnButton
-@onready var draw_pile_label: Label = $BattleHUD/DeckInfo/DrawPileLabel
-@onready var discard_pile_label: Label = $BattleHUD/DeckInfo/DiscardPileLabel
+@onready var hp_label: Label = $PlayerHUD/StatusRow/HPLabel
+@onready var qi_label: Label = $PlayerHUD/StatusRow/QiLabel
+@onready var block_label: Label = $PlayerHUD/StatusRow/BlockLabel
+@onready var turn_label: Label = $HiddenRefs/TurnLabel
+@onready var card_hand: CardHand = $HandZone/CardHand
+@onready var enemy_container: HBoxContainer = $EnemyZone/EnemyContainer
+@onready var sijo_container: HBoxContainer = $SijoBar/SijoContainer
+@onready var _hud_end_turn_button: Button = $HiddenRefs/EndTurnButton
+@onready var draw_pile_label: Label = $HiddenRefs/DrawPileLabel
+@onready var discard_pile_label: Label = $HiddenRefs/DiscardPileLabel
+
+# 플로팅 턴 종료 버튼 (실제 전투와 동일)
+var end_turn_button: Button = null
+
+# 턴 표시 오버레이 (실제 전투와 동일)
+var _turn_overlay_label: Label = null
+
+# 덱 정보 오버레이 (실제 전투와 동일)
+var _draw_pile_overlay: PanelContainer = null
+var _discard_pile_overlay: PanelContainer = null
 
 var battle_manager: BattleManager
 var sijo_system: SijoSystem
@@ -32,12 +43,21 @@ var _enemy_ui_cache: Dictionary = {}
 
 
 func _ready() -> void:
+	# HandZone 클립 비활성화 — 카드가 위로 올라올 수 있도록
+	var hand_zone := $HandZone as PanelContainer
+	if hand_zone:
+		hand_zone.clip_contents = false
+		card_hand.clip_contents = false
+
 	# 매니저 초기화
 	battle_manager = BattleManager.new()
 	sijo_system = SijoSystem.new()
 	battle_manager.sijo_system = sijo_system
 	add_child(battle_manager)
 	add_child(sijo_system)
+
+	# 플로팅 UI 요소 생성 (실제 전투와 동일한 스타일)
+	_create_floating_ui()
 
 	# 시그널 연결
 	battle_manager.hand_changed.connect(_on_hand_changed)
@@ -63,14 +83,102 @@ func _ready() -> void:
 	_start_tutorial_battle()
 
 
+func _create_deck_pill_label(font_color: Color) -> PanelContainer:
+	## 반투명 배경 pill 컨테이너 + 라벨 — 실제 전투와 동일
+	var pill := PanelContainer.new()
+	var pill_style := StyleBoxFlat.new()
+	pill_style.bg_color = Color(0.03, 0.02, 0.06, 0.85)
+	pill_style.set_border_width_all(1)
+	pill_style.border_color = Color(font_color.r, font_color.g, font_color.b, 0.4)
+	pill_style.set_corner_radius_all(14)
+	pill_style.content_margin_left = 14.0
+	pill_style.content_margin_right = 14.0
+	pill_style.content_margin_top = 4.0
+	pill_style.content_margin_bottom = 4.0
+	pill.add_theme_stylebox_override("panel", pill_style)
+
+	var lbl := Label.new()
+	lbl.add_theme_font_size_override("font_size", 22)
+	lbl.add_theme_color_override("font_color", font_color)
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	pill.add_child(lbl)
+	return pill
+
+
+func _create_floating_ui() -> void:
+	## 플로팅 UI 요소 생성: 턴 종료 버튼, 턴 표시, 덱 정보 — 실제 전투와 동일
+	# 턴 종료 버튼 — 크고 눈에 띄는 배치
+	end_turn_button = Button.new()
+	end_turn_button.text = tr("BATTLE_END_TURN")
+	end_turn_button.custom_minimum_size = Vector2(200, 80)
+	end_turn_button.add_theme_font_size_override("font_size", 30)
+	var btn_style := StyleBoxFlat.new()
+	btn_style.bg_color = Color(0.78, 0.29, 0.19, 0.95)
+	btn_style.set_border_width_all(2)
+	btn_style.border_color = Color(0.76, 0.23, 0.13, 0.9)
+	btn_style.set_corner_radius_all(18)
+	btn_style.set_content_margin_all(12)
+	btn_style.shadow_color = Color(0.78, 0.15, 0.10, 0.4)
+	btn_style.shadow_size = 10
+	btn_style.shadow_offset = Vector2(0, 4)
+	end_turn_button.add_theme_stylebox_override("normal", btn_style)
+	var btn_hover := btn_style.duplicate()
+	btn_hover.bg_color = Color(0.88, 0.38, 0.25, 1.0)
+	btn_hover.shadow_color = Color(0.76, 0.23, 0.13, 0.3)
+	btn_hover.shadow_size = 12
+	end_turn_button.add_theme_stylebox_override("hover", btn_hover)
+	var btn_pressed := btn_style.duplicate()
+	btn_pressed.bg_color = Color(0.60, 0.20, 0.12, 0.95)
+	btn_pressed.shadow_size = 4
+	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
+	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
+	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
+	# 액션바 우측, 시조바와 같은 높이 (62-68%)
+	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
+	end_turn_button.anchor_left = 0.60
+	end_turn_button.anchor_right = 0.98
+	end_turn_button.anchor_top = 0.62
+	end_turn_button.anchor_bottom = 0.68
+	end_turn_button.z_index = 12
+	add_child(end_turn_button)
+
+	# 턴 표시 오버레이 — HUD 좌측 (노치 아래)
+	_turn_overlay_label = Label.new()
+	_turn_overlay_label.add_theme_font_size_override("font_size", 16)
+	_turn_overlay_label.add_theme_color_override("font_color", Color(0.70, 0.64, 0.50, 0.85))
+	_turn_overlay_label.anchor_left = 0.02
+	_turn_overlay_label.anchor_top = 0.035
+	_turn_overlay_label.anchor_right = 0.15
+	_turn_overlay_label.anchor_bottom = 0.06
+	_turn_overlay_label.z_index = 15
+	add_child(_turn_overlay_label)
+
+	# 드로우/버림 더미 — 핸드존 좌/우 상단 (68% 라인)
+	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.65, 0.90))
+	_draw_pile_overlay.anchor_left = 0.02
+	_draw_pile_overlay.anchor_top = 0.68
+	_draw_pile_overlay.anchor_right = 0.18
+	_draw_pile_overlay.anchor_bottom = 0.72
+	_draw_pile_overlay.z_index = 12
+	add_child(_draw_pile_overlay)
+
+	_discard_pile_overlay = _create_deck_pill_label(Color(0.90, 0.50, 0.40))
+	_discard_pile_overlay.anchor_left = 0.82
+	_discard_pile_overlay.anchor_top = 0.68
+	_discard_pile_overlay.anchor_right = 0.98
+	_discard_pile_overlay.anchor_bottom = 0.72
+	_discard_pile_overlay.z_index = 12
+	add_child(_discard_pile_overlay)
+
+
 func _start_tutorial_battle() -> void:
 	# 튜토리얼용 간단한 스타터 덱 (음보 3과 4가 골고루 포함)
 	var tutorial_deck: Array[String] = [
-		"M003", "M003",  # 후퇴 ×2 (beat 3, 0코스트, 방어+약화)
-		"D007", "D007", "D007",  # 수결 ×3 (공격 카드)
-		"D001", "D001",  # 기공 ×2 (beat 3)
-		"D002",          # 결인 ×1 (beat 4)
-		"M005",          # 포복 ×1 (beat 3)
+		"M003", "M003",  # 후퇴 x2 (beat 3, 0코스트, 방어+약화)
+		"D007", "D007", "D007",  # 수결 x3 (공격 카드)
+		"D001", "D001",  # 기공 x2 (beat 3)
+		"D002",          # 결인 x1 (beat 4)
+		"M005",          # 포복 x1 (beat 3)
 	]
 
 	# 튜토리얼용 약한 적 — 불량배(E001) 데이터를 직접 구성
@@ -111,37 +219,35 @@ func _start_tutorial_battle() -> void:
 
 
 func _on_tutorial_completed() -> void:
-	# 짧은 딜레이 후 보상 씬 또는 맵으로 전환
+	# 짧은 딜레이 후 복귀
 	var timer := get_tree().create_timer(1.5)
 	await timer.timeout
 	_return_to_game()
 
 
 func _on_tutorial_skipped() -> void:
-	# 스킵 시 즉시 복귀
 	_return_to_game()
 
 
 func _return_to_game() -> void:
-	# 튜토리얼 후 캐릭터 선택 화면으로 복귀
 	GameManager.change_state(GameManager.GameState.CHARACTER_SELECT)
 
 
-# --- 시조 슬롯 UI (battle.gd에서 복사) ---
+# --- 시조 슬롯 UI (실제 전투와 동일한 스타일) ---
 
 func _init_sijo_toggle() -> void:
-	var sijo_area := $SijoArea
+	var sijo_area := $SijoBar
 	_sijo_toggle_button = Button.new()
 	_sijo_toggle_button.text = "▼"
 	_sijo_toggle_button.custom_minimum_size = Vector2(40, 40)
-	_sijo_toggle_button.add_theme_font_size_override("font_size", 24)
+	_sijo_toggle_button.add_theme_font_size_override("font_size", 18)
 	_sijo_toggle_button.pressed.connect(_on_sijo_toggle_pressed)
 	sijo_area.add_child(_sijo_toggle_button)
 	sijo_area.move_child(_sijo_toggle_button, 0)
 
 	_sijo_summary_label = Label.new()
 	_sijo_summary_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_sijo_summary_label.add_theme_font_size_override("font_size", 22)
+	_sijo_summary_label.add_theme_font_size_override("font_size", 18)
 	_sijo_summary_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
 	_sijo_summary_label.visible = false
 	sijo_area.add_child(_sijo_summary_label)
@@ -169,21 +275,68 @@ func _init_sijo_slots() -> void:
 	for child in sijo_container.get_children():
 		child.queue_free()
 
+	var jang_names: Array[String] = [tr("SIJO_FIRST_VERSE"), tr("SIJO_MIDDLE_VERSE"), tr("SIJO_FINAL_VERSE")]
+	var jang_symbols: Array[String] = [tr("JANG_SYMBOL_1"), tr("JANG_SYMBOL_2"), tr("JANG_SYMBOL_3")]
 	for i in sijo_system.pattern.size():
+		var slot_panel := PanelContainer.new()
+		var slot_style := StyleBoxFlat.new()
+		slot_style.bg_color = Color(0.05, 0.05, 0.04, 0.9)
+		slot_style.set_border_width_all(1)
+		slot_style.border_color = Color(0.30, 0.28, 0.25, 0.6)
+		slot_style.set_corner_radius_all(12)
+		slot_style.content_margin_left = 12
+		slot_style.content_margin_right = 12
+		slot_style.content_margin_top = 8
+		slot_style.content_margin_bottom = 8
+		# 현재 활성 슬롯 강조 — 금색 테두리
+		if i == sijo_system.current_slot_index:
+			slot_style.border_color = Color(0.76, 0.23, 0.13, 0.9)
+			slot_style.shadow_color = Color(0.76, 0.23, 0.13, 0.2)
+			slot_style.shadow_size = 6
+		slot_panel.add_theme_stylebox_override("panel", slot_style)
+		slot_panel.custom_minimum_size = Vector2(140, 60)
+		slot_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+		var vbox := VBoxContainer.new()
+		vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		vbox.add_theme_constant_override("separation", 2)
+
+		# 장 이름 + 심볼 (한 줄)
+		var header := Label.new()
+		header.text = "%s %s" % [jang_symbols[i] if i < jang_symbols.size() else "", jang_names[i] if i < jang_names.size() else ""]
+		header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		header.add_theme_font_size_override("font_size", 16)
+		if i == sijo_system.current_slot_index:
+			header.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
+		else:
+			header.add_theme_color_override("font_color", Color(0.50, 0.48, 0.42))
+
+		# 음보 수 + 카드 이름 표시용 라벨
 		var label := Label.new()
 		label.text = "[%d]" % sijo_system.pattern[i]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.custom_minimum_size = Vector2(120, 60)
+		label.add_theme_font_size_override("font_size", 20)
 		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
-		sijo_container.add_child(label)
+
+		vbox.add_child(header)
+		vbox.add_child(label)
+		slot_panel.add_child(vbox)
+		sijo_container.add_child(slot_panel)
 		sijo_slot_labels.append(label)
 
 
 func _refresh_hand_ui() -> void:
 	var sijo_beat := sijo_system.get_next_required_beat() if sijo_system else -1
 	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat, battle_manager)
-	draw_pile_label.text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
-	discard_pile_label.text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
+	# 플로팅 덱 정보 업데이트
+	var draw_text := tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
+	var discard_text := tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
+	draw_pile_label.text = draw_text
+	discard_pile_label.text = discard_text
+	if _draw_pile_overlay and _draw_pile_overlay.get_child_count() > 0:
+		(_draw_pile_overlay.get_child(0) as Label).text = draw_text
+	if _discard_pile_overlay and _discard_pile_overlay.get_child_count() > 0:
+		(_discard_pile_overlay.get_child(0) as Label).text = discard_text
 
 
 func _update_enemy_ui() -> void:
@@ -209,15 +362,29 @@ func _update_enemy_ui() -> void:
 				enemy_name = tr("BATTLE_ENEMY_FALLBACK")
 
 			var panel := PanelContainer.new()
+			# 적 패널 — 실제 전투와 유사한 반투명 스타일
+			var panel_style := StyleBoxFlat.new()
+			panel_style.bg_color = Color(0.06, 0.06, 0.06, 0.75)
+			panel_style.set_border_width_all(1)
+			panel_style.border_color = Color(0.76, 0.23, 0.13, 0.3)
+			panel_style.set_corner_radius_all(12)
+			panel_style.content_margin_left = 12
+			panel_style.content_margin_right = 12
+			panel_style.content_margin_top = 8
+			panel_style.content_margin_bottom = 8
+			panel.add_theme_stylebox_override("panel", panel_style)
+
 			var vbox := VBoxContainer.new()
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			name_label.add_theme_font_size_override("font_size", 22)
+			name_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
 			var hp_lbl := Label.new()
 			hp_lbl.text = "HP: %d/%d" % [enemy["current_hp"], enemy["max_hp"]]
 			hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			hp_lbl.add_theme_font_size_override("font_size", 18)
+			hp_lbl.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19))
 
 			var intent_label := Label.new()
 			intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -230,6 +397,7 @@ func _update_enemy_ui() -> void:
 			var enemy_block_label := Label.new()
 			enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			enemy_block_label.text = tr("BATTLE_ENEMY_BLOCK_FMT") % block_val
+			enemy_block_label.add_theme_color_override("font_color", Color(0.23, 0.48, 0.84))
 			enemy_block_label.visible = block_val > 0
 
 			vbox.add_child(name_label)
@@ -257,7 +425,7 @@ func _format_intent(intent: Dictionary) -> String:
 			var dmg: int = intent.get("damage", 0)
 			var times: int = intent.get("times", 1)
 			if times > 1:
-				return "%s %d×%d" % [name_str, dmg, times] if name_str else tr("BATTLE_ATTACK_MULTI_FMT") % [dmg, times]
+				return "%s %dx%d" % [name_str, dmg, times] if name_str else tr("BATTLE_ATTACK_MULTI_FMT") % [dmg, times]
 			return "%s %d" % [name_str, dmg] if name_str else tr("BATTLE_ATTACK_FMT") % dmg
 		"defend", "defend_buff", "buff_defend":
 			var blk: int = intent.get("block", 0)
@@ -306,6 +474,8 @@ func _on_block_changed(new_block: int) -> void:
 
 func _on_turn_started(turn: int) -> void:
 	turn_label.text = tr("BATTLE_TURN_FMT") % turn
+	if _turn_overlay_label:
+		_turn_overlay_label.text = tr("BATTLE_TURN_FMT") % turn
 
 
 func _on_enemy_hp_changed(_enemy_index: int, _current: int, _max_val: int) -> void:
@@ -388,6 +558,7 @@ func _on_battle_ended(victory: bool) -> void:
 	var overlay := ColorRect.new()
 	overlay.anchors_preset = Control.PRESET_FULL_RECT
 	overlay.color = Color(0, 0, 0, 0.6)
+	overlay.z_index = 20
 	add_child(overlay)
 
 	var label := Label.new()
