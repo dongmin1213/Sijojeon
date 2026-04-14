@@ -35,16 +35,11 @@ func _ready() -> void:
 
 
 func _setup_display() -> void:
-	# v5: 단청 팔레트 결과 화면 + 엔딩 분기
+	# v5: 단청 팔레트 결과 화면
 	if _is_victory:
 		title_label.text = tr("RESULT_VICTORY")
 		title_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-		# 엔딩 제목 표시
-		var ending_name := _get_ending_display_name()
-		if ending_name != "":
-			subtitle_label.text = ending_name
-		else:
-			subtitle_label.text = tr("RESULT_VICTORY_SUBTITLE")
+		subtitle_label.text = tr("RESULT_VICTORY_SUBTITLE")
 		overlay.color = Color(0.04, 0.04, 0.08, 0.92)
 	else:
 		title_label.text = tr("RESULT_DEFEAT")
@@ -104,13 +99,10 @@ func _populate_achievements() -> void:
 
 
 func _check_card_unlocks() -> void:
-	## 런 종료 시 카드 해금 조건 체크 + 시조 메타 누적
+	## 런 종료 시 카드 해금 조건 체크
 	var rd: RunData = GameManager.run_data
 	if rd == null:
 		return
-	# 시조 완성 수를 메타에 누적
-	if rd.sisang_count > 0:
-		CardUnlockSystem.add_sijo_completion_to_meta(rd.sisang_count)
 	# 카드 해금 체크
 	var newly_unlocked := CardUnlockSystem.check_and_unlock(_is_victory, rd.character_id)
 	if newly_unlocked.is_empty():
@@ -183,24 +175,3 @@ func _on_retry_pressed() -> void:
 	GameManager.change_state(GameManager.GameState.CHARACTER_SELECT)
 
 
-## 엔딩 이름 표시용 — endings.json에서 결정된 엔딩의 한국어 이름을 가져온다.
-func _get_ending_display_name() -> String:
-	var rd: RunData = GameManager.run_data
-	if rd == null:
-		return ""
-	var ending_id: String = rd.narrative_state.get("determined_ending", "")
-	if ending_id == "":
-		return ""
-	# endings.json 로딩
-	var file := FileAccess.open("res://data/narrative/endings.json", FileAccess.READ)
-	if file == null:
-		return ""
-	var json := JSON.new()
-	if json.parse(file.get_as_text()) != OK:
-		return ""
-	var data: Dictionary = json.data
-	for ending in data.get("endings", []):
-		if ending.get("id", "") == ending_id:
-			var name_dict: Dictionary = ending.get("name", {})
-			return name_dict.get("ko", ending_id)
-	return ""

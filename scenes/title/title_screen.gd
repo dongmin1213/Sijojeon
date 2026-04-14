@@ -1,10 +1,9 @@
 extends Control
 
-## 타이틀 화면. 게임 시작, 이어하기, 연대기, 설정 등 메인 메뉴 제공.
+## 타이틀 화면. 게임 시작, 이어하기, 설정 등 메인 메뉴 제공.
 
 @onready var start_button: Button = $TitlePanel/VBoxContainer/StartButton
 @onready var continue_button: Button = $TitlePanel/VBoxContainer/ContinueButton
-@onready var chronicle_button: Button = $TitlePanel/VBoxContainer/ChronicleButton
 @onready var settings_button: Button = $TitlePanel/VBoxContainer/SettingsButton
 @onready var quit_button: Button = $TitlePanel/VBoxContainer/QuitButton
 @onready var title_label: Label = $TitleArea/TitleLabel
@@ -15,7 +14,6 @@ func _ready() -> void:
 	# 버튼 연결을 최우선으로 — 이후 시각 효과에서 에러 발생해도 버튼 작동 보장
 	start_button.pressed.connect(_on_start_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
-	chronicle_button.pressed.connect(_on_chronicle_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
@@ -34,7 +32,7 @@ func _ready() -> void:
 	_apply_primary_button_style(start_button)
 
 	# v9: 모든 버튼에 호버 글로우 효과 적용
-	for btn in [continue_button, chronicle_button, settings_button, quit_button]:
+	for btn in [continue_button, settings_button, quit_button]:
 		_apply_hover_glow(btn)
 
 	# v10: 바텀 시트 상단 그라데이션 전환 (배경→패널 자연 블렌딩)
@@ -72,10 +70,6 @@ func _on_start_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	GameManager.load_saved_run()
-
-
-func _on_chronicle_pressed() -> void:
-	GameManager.change_state(GameManager.GameState.CHRONICLE)
 
 
 func _on_settings_pressed() -> void:

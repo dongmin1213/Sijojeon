@@ -100,10 +100,6 @@ static func _init_registry() -> void:
 		"갑주", TranslationServer.translate("SE_NAME_ARMOR"), "🛡", Color(0.3, 0.6, 1.0), EffectType.BUFF,
 		TranslationServer.translate("SE_DESC_ARMOR"), false, true
 	)
-	_registry["병사_토큰"] = StatusEffectData.new(
-		"병사_토큰", TranslationServer.translate("SE_NAME_SOLDIER_TOKEN"), "⚑", Color(0.9, 0.7, 0.2), EffectType.BUFF,
-		TranslationServer.translate("SE_DESC_SOLDIER_TOKEN"), false, true
-	)
 	_registry["구금"] = StatusEffectData.new(
 		"구금", TranslationServer.translate("SE_NAME_DETENTION"), "⛓", Color(0.6, 0.4, 0.2), EffectType.DEBUFF,
 		TranslationServer.translate("SE_DESC_DETENTION"), true, false

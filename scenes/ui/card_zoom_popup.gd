@@ -166,7 +166,7 @@ func _build_ui() -> void:
 
 func _build_stat_text() -> String:
 	var lines: Array[String] = []
-	lines.append(tr("CARD_ZOOM_STAT_QI_BEAT") % [_card_data.cost, _card_data.beat])
+	lines.append(tr("CARD_ZOOM_STAT_COST") % _card_data.cost)
 
 	if _card_data.damage > 0:
 		var dmg := tr("CARD_ZOOM_DAMAGE") % _card_data.damage
@@ -179,10 +179,6 @@ func _build_stat_text() -> String:
 		lines.append(tr("CARD_ZOOM_DRAW") % _card_data.draw_count)
 	if _card_data.qi_gain > 0:
 		lines.append(tr("CARD_ZOOM_QI_GAIN") % _card_data.qi_gain)
-	if _card_data.stamina_cost > 0:
-		lines.append(tr("CARD_ZOOM_RESOURCE_COST") % _card_data.stamina_cost)
-	if _card_data.stamina_gain > 0:
-		lines.append(tr("CARD_ZOOM_RESOURCE_GAIN") % _card_data.stamina_gain)
 
 	return "\n".join(lines)
 
@@ -200,11 +196,6 @@ func _find_keywords_in_card() -> Array[Dictionary]:
 		auto_keywords.append("aoe")
 	if _card_data.block_value > 0:
 		auto_keywords.append("block")
-	if _card_data.stamina_cost > 0 or _card_data.stamina_gain > 0:
-		if _card_data.pool == "mugwan":
-			auto_keywords.append("giryeok")
-		elif _card_data.pool == "mungwan":
-			auto_keywords.append("haksik")
 
 	# 효과 텍스트에서 키워드 검색
 	var effect_text := _card_data.get_current_effect()

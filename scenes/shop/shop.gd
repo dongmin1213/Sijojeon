@@ -28,18 +28,6 @@ const REMOVAL_MAX_COST := 200
 const UPGRADE_BASE_COST := 50
 const UPGRADE_MAX_COST := 150
 
-# 민심 매수 비용
-const MINSHIM_BUY_COST := 100
-const MINSHIM_BUY_AMOUNT := 10
-
-# 시장 개방 비용 (저가 민심 획득)
-const MARKET_OPEN_COST := 25
-const MARKET_OPEN_MINSHIM := 8
-
-# 청탁 비용 (신분 점수 상승)
-const BRIBE_COST := 60
-const BRIBE_JIBUN_AMOUNT := 20
-
 # 군량미 비축 비용 (다음 전투 방어도 +8)
 const RATIONS_COST := 30
 const RATIONS_BLOCK := 8
@@ -84,9 +72,6 @@ const _C := "ScrollArea/VBoxContainer/MarginContainer/ContentVBox"
 @onready var upgrade_info: Label = get_node(_C + "/ExtraSection/UpgradeInfo")
 @onready var upgrade_scroll: ScrollContainer = get_node(_C + "/ExtraSection/UpgradeScrollContainer")
 @onready var upgrade_deck_container: GridContainer = get_node(_C + "/ExtraSection/UpgradeScrollContainer/UpgradeDeckContainer")
-@onready var minshim_button: Button = get_node(_C + "/ExtraSection/MinshimButton")
-@onready var market_open_button: Button = get_node(_C + "/ExtraSection/MarketOpenButton")
-@onready var bribe_button: Button = get_node(_C + "/ExtraSection/BribeButton")
 @onready var rations_button: Button = get_node(_C + "/ExtraSection/RationsButton")
 @onready var relic_container: HBoxContainer = get_node(_C + "/RelicSection/RelicContainer")
 @onready var leave_button: Button = $Footer/LeaveButton
@@ -96,11 +81,19 @@ func _ready() -> void:
 	refresh_button.pressed.connect(_on_refresh_pressed)
 	remove_button.pressed.connect(_on_remove_toggle_pressed)
 	upgrade_button.pressed.connect(_on_upgrade_toggle_pressed)
-	minshim_button.pressed.connect(_on_minshim_buy_pressed)
-	market_open_button.pressed.connect(_on_market_open_pressed)
-	bribe_button.pressed.connect(_on_bribe_pressed)
 	rations_button.pressed.connect(_on_rations_pressed)
 	leave_button.pressed.connect(_on_leave_pressed)
+
+	# 제거된 시스템 버튼 숨김 (민심/청탁)
+	var minshim_btn := get_node_or_null(_C + "/ExtraSection/MinshimButton")
+	if minshim_btn:
+		minshim_btn.visible = false
+	var market_btn := get_node_or_null(_C + "/ExtraSection/MarketOpenButton")
+	if market_btn:
+		market_btn.visible = false
+	var bribe_btn := get_node_or_null(_C + "/ExtraSection/BribeButton")
+	if bribe_btn:
+		bribe_btn.visible = false
 
 	deck_scroll.visible = false
 	upgrade_scroll.visible = false
@@ -121,8 +114,6 @@ func _ready() -> void:
 
 	# 대기 효과 소비 (상점 가격 변동, 투자 회수 등)
 	_price_modifier = _consume_shop_price_effects()
-	# 민심 기반 가격 수정 (민심 낮으면 가격 상승)
-	_price_modifier *= _get_minshim_price_modifier()
 
 	_generate_shop_cards()
 	_generate_shop_relics()
@@ -131,8 +122,6 @@ func _ready() -> void:
 	_update_gold_display()
 	_update_remove_section()
 	_update_upgrade_section()
-	_update_minshim_button()
-	_update_market_open_button()
 	_update_discount_badges()
 
 
@@ -325,7 +314,6 @@ func _format_card_text(card: CardData, price: int) -> String:
 		lines.append(tr("SHOP_CARD_PRICE") % price)
 	lines.append("")
 	lines.append(tr("SHOP_CARD_COST") % card.cost)
-	lines.append(tr("SHOP_CARD_BEAT") % card.beat)
 
 	if card.damage > 0:
 		var dmg_text := tr("SHOP_CARD_DAMAGE") % card.damage
@@ -472,7 +460,6 @@ func _update_gold_display() -> void:
 		refresh_button.remove_theme_color_override("font_color")
 
 	# 추가 구매 버튼 색상 갱신
-	_update_bribe_button()
 	_update_rations_button()
 
 
@@ -582,106 +569,6 @@ func _update_upgrade_section() -> void:
 		upgrade_button.remove_theme_color_override("font_color")
 
 
-func _on_minshim_buy_pressed() -> void:
-	if removal_mode or upgrade_mode:
-		return
-	if GameManager.run_data == null:
-		return
-	if GameManager.run_data.gold < MINSHIM_BUY_COST:
-		return
-
-	AudioManager.play_sfx_by_key("coin")
-	GameManager.run_data.gold -= MINSHIM_BUY_COST
-	var current: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	GameManager.run_data.narrative_state["minshim"] = clampi(current + MINSHIM_BUY_AMOUNT, 0, 100)
-
-	_update_gold_display()
-	_update_minshim_button()
-	_update_market_open_button()
-
-
-func _update_minshim_button() -> void:
-	var minshim: int = 50
-	if GameManager.run_data:
-		minshim = GameManager.run_data.narrative_state.get("minshim", 50)
-	minshim_button.text = tr("SHOP_MINSHIM_BUY_FMT") % [MINSHIM_BUY_COST, MINSHIM_BUY_AMOUNT, minshim]
-
-	if minshim >= 100:
-		minshim_button.disabled = true
-		minshim_button.text = tr("SHOP_MINSHIM_MAX")
-	elif GameManager.run_data and GameManager.run_data.gold < MINSHIM_BUY_COST:
-		minshim_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
-	else:
-		minshim_button.remove_theme_color_override("font_color")
-
-
-func _on_market_open_pressed() -> void:
-	if removal_mode or upgrade_mode:
-		return
-	if GameManager.run_data == null:
-		return
-	if GameManager.run_data.gold < MARKET_OPEN_COST:
-		return
-
-	AudioManager.play_sfx_by_key("coin")
-	GameManager.run_data.gold -= MARKET_OPEN_COST
-	var current: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	GameManager.run_data.narrative_state["minshim"] = clampi(current + MARKET_OPEN_MINSHIM, 0, 100)
-
-	_update_gold_display()
-	_update_market_open_button()
-	_update_minshim_button()
-
-
-func _update_market_open_button() -> void:
-	var minshim: int = 50
-	if GameManager.run_data:
-		minshim = GameManager.run_data.narrative_state.get("minshim", 50)
-	market_open_button.text = tr("SHOP_MARKET_OPEN_FMT") % [MARKET_OPEN_COST, MARKET_OPEN_MINSHIM, minshim]
-
-	if minshim >= 100:
-		market_open_button.disabled = true
-		market_open_button.text = tr("SHOP_MINSHIM_MAX")
-	elif GameManager.run_data and GameManager.run_data.gold < MARKET_OPEN_COST:
-		market_open_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
-	else:
-		market_open_button.remove_theme_color_override("font_color")
-
-
-## 청탁 구매 (신분 점수 +20)
-func _on_bribe_pressed() -> void:
-	if removal_mode or upgrade_mode:
-		return
-	if GameManager.run_data == null:
-		return
-	if GameManager.run_data.gold < BRIBE_COST:
-		return
-
-	AudioManager.play_sfx_by_key("coin")
-	GameManager.run_data.gold -= BRIBE_COST
-	var rank_change = JibunSystem.add_score(GameManager.run_data, BRIBE_JIBUN_AMOUNT)
-
-	_update_gold_display()
-
-	# 승급 시 연출 표시
-	if rank_change != null:
-		_show_rankup_popup(rank_change[1])
-
-
-func _update_bribe_button() -> void:
-	var jibun_score: int = 0
-	if GameManager.run_data:
-		jibun_score = GameManager.run_data.jibun_score
-	var rank: int = GameManager.run_data.jibun_rank if GameManager.run_data else 1
-	var rank_name: String = JibunSystem.get_rank_name(rank)
-	bribe_button.text = tr("SHOP_BRIBE_FMT") % [BRIBE_COST, BRIBE_JIBUN_AMOUNT, rank_name, jibun_score]
-
-	if GameManager.run_data and GameManager.run_data.gold < BRIBE_COST:
-		bribe_button.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.7))
-	else:
-		bribe_button.remove_theme_color_override("font_color")
-
-
 ## 군량미 비축 구매 (다음 전투 방어도 +8)
 func _on_rations_pressed() -> void:
 	if removal_mode or upgrade_mode:
@@ -695,9 +582,7 @@ func _on_rations_pressed() -> void:
 	GameManager.run_data.gold -= RATIONS_COST
 
 	# pending_effects에 다음 전투 방어도 효과 추가
-	if not GameManager.run_data.narrative_state.has("pending_effects"):
-		GameManager.run_data.narrative_state["pending_effects"] = []
-	GameManager.run_data.narrative_state["pending_effects"].append({
+	GameManager.run_data.pending_effects.append({
 		"type": "next_battle_block",
 		"block": RATIONS_BLOCK,
 	})
@@ -821,7 +706,7 @@ func _consume_shop_price_effects() -> float:
 	var modifier: float = 1.0
 	if not GameManager.run_data:
 		return modifier
-	var effects: Array = GameManager.run_data.narrative_state.get("pending_effects", [])
+	var effects: Array = GameManager.run_data.pending_effects
 	var remaining: Array = []
 	for eff in effects:
 		if eff.get("type") == "shop_price_modifier":
@@ -841,22 +726,7 @@ func _consume_shop_price_effects() -> float:
 				remaining.append(eff)
 		else:
 			remaining.append(eff)
-	GameManager.run_data.narrative_state["pending_effects"] = remaining
-	return modifier
-
-
-## 민심 수치에 따른 상점 가격 수정자를 반환한다.
-func _get_minshim_price_modifier() -> float:
-	if not GameManager.run_data:
-		return 1.0
-	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	var modifier: float = 1.0
-	if minshim <= 29:
-		modifier = 1.3   # +30% (민란 직전, 상인들 기피)
-	elif minshim <= 49:
-		modifier = 1.15  # +15%
-	elif minshim >= 70:
-		modifier = 0.8   # -20% (높은 민심 할인)
+	GameManager.run_data.pending_effects = remaining
 	return modifier
 
 
@@ -868,25 +738,13 @@ func _get_discount_breakdown() -> Dictionary:
 	if not GameManager.run_data:
 		return {"has_discount": false, "reasons": ""}
 
-	# (Phase 1-5: 신분 상점 할인 제거됨)
-
-	# 민심 할인/할증
-	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	if minshim >= 70:
-		reasons.append("%s %s" % [tr("MINSHIM_TOOLTIP_TITLE"), tr("SHOP_DISCOUNT_MINSHIM_HIGH")])
+	# 이벤트 효과에 의한 할인이 있으면 표시
+	if _price_modifier < 1.0:
+		reasons.append(tr("SHOP_DISCOUNT_EVENT"))
 		has_discount = true
-	elif minshim <= 29:
-		reasons.append("%s %s" % [tr("MINSHIM_TOOLTIP_TITLE"), tr("SHOP_DISCOUNT_MINSHIM_CRISIS")])
+	elif _price_modifier > 1.0:
+		reasons.append(tr("SHOP_DISCOUNT_EVENT"))
 		has_discount = true
-	elif minshim <= 49:
-		reasons.append("%s %s" % [tr("MINSHIM_TOOLTIP_TITLE"), tr("SHOP_DISCOUNT_MINSHIM_LOW")])
-		has_discount = true
-
-	# 당파 할인 — UI 숨김 처리 (Phase 1-4: 혼란 제거, 할인 로직은 유지)
-	#var faction_mod := FactionSystem.get_shop_discount(GameManager.run_data)
-	#if faction_mod < 1.0:
-	#	reasons.append("%s %s" % [tr("MAP_FACTION_NONE").split(":")[0], tr("SHOP_DISCOUNT_FACTION")])
-	#	has_discount = true
 
 	return {"has_discount": has_discount, "reasons": ", ".join(reasons)}
 
@@ -912,35 +770,3 @@ func _update_discount_badges() -> void:
 	title_label.get_parent().move_child(badge, 1)  # 타이틀 바로 아래
 
 
-## 승급 팝업 연출: 골드 플래시 + 텍스트 (2초).
-func _show_rankup_popup(new_rank: int) -> void:
-	var rank_name := JibunSystem.get_rank_name(new_rank)
-
-	# 골드 플래시 오버레이
-	var flash := ColorRect.new()
-	flash.color = Color(0.76, 0.23, 0.13, 0.35)
-	flash.anchors_preset = Control.PRESET_FULL_RECT
-	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(flash)
-
-	# 승급 텍스트
-	var popup_label := Label.new()
-	popup_label.text = tr("JIBUN_RANKUP_POPUP_FMT") % rank_name
-	popup_label.add_theme_font_size_override("font_size", 40)
-	popup_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-	popup_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	popup_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	popup_label.anchors_preset = Control.PRESET_CENTER
-	popup_label.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	popup_label.grow_vertical = Control.GROW_DIRECTION_BOTH
-	popup_label.custom_minimum_size = Vector2(400, 60)
-	popup_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(popup_label)
-
-	# 2초 후 페이드아웃
-	var tween := create_tween()
-	tween.tween_interval(1.5)
-	tween.tween_property(flash, "color:a", 0.0, 0.5)
-	tween.parallel().tween_property(popup_label, "modulate:a", 0.0, 0.5)
-	tween.tween_callback(flash.queue_free)
-	tween.tween_callback(popup_label.queue_free)

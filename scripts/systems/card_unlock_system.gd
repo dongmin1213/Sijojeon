@@ -10,8 +10,6 @@ extends RefCounted
 ## "default" — 기본 해금 (처음부터 보상에 등장)
 ## "class_clear" — 해당 직업으로 런 클리어
 ## "class_runs_3" — 해당 직업으로 3회 런
-## "sijo_total_10" — 런 통틀어 시조 10회 완성 (메타 누적)
-## "sijo_total_30" — 시조 30회 완성
 ## "ascension_3" — 어센션 3단계 클리어
 ## "ascension_5" — 어센션 5단계 클리어
 ## "boss_no_hit" — 보스에게 피해 0으로 클리어 (미구현, 플레이스홀더)
@@ -24,7 +22,7 @@ const UNLOCK_CARDS_PER_CLASS := {
 		21: "class_runs_3",
 		22: "class_clear",
 		23: "class_clear",
-		24: "sijo_total_10",
+		24: "class_clear",
 		25: "ascension_3",
 		26: "ascension_5",
 	},
@@ -33,7 +31,7 @@ const UNLOCK_CARDS_PER_CLASS := {
 		21: "class_runs_3",
 		22: "class_clear",
 		23: "class_clear",
-		24: "sijo_total_10",
+		24: "class_clear",
 		25: "ascension_3",
 		26: "ascension_5",
 	},
@@ -42,7 +40,7 @@ const UNLOCK_CARDS_PER_CLASS := {
 		21: "class_runs_3",
 		22: "class_clear",
 		23: "class_clear",
-		24: "sijo_total_10",
+		24: "class_clear",
 		25: "ascension_3",
 		26: "ascension_5",
 	},
@@ -51,7 +49,7 @@ const UNLOCK_CARDS_PER_CLASS := {
 		21: "class_runs_3",
 		22: "class_clear",
 		23: "class_clear",
-		24: "sijo_total_10",
+		24: "class_clear",
 		25: "ascension_3",
 		26: "ascension_5",
 	},
@@ -60,7 +58,7 @@ const UNLOCK_CARDS_PER_CLASS := {
 		21: "class_runs_3",
 		22: "class_clear",
 		23: "class_clear",
-		24: "sijo_total_10",
+		24: "class_clear",
 		25: "ascension_3",
 		26: "ascension_5",
 	},
@@ -69,7 +67,7 @@ const UNLOCK_CARDS_PER_CLASS := {
 		21: "class_runs_3",
 		22: "class_clear",
 		23: "class_clear",
-		24: "sijo_total_10",
+		24: "class_clear",
 		25: "ascension_3",
 		26: "ascension_5",
 	},
@@ -77,10 +75,10 @@ const UNLOCK_CARDS_PER_CLASS := {
 
 ## 공용 카드 해금 (54장 중 마지막 8장)
 const UNLOCK_CARDS_COMMON := {
-	46: "sijo_total_10",
-	47: "sijo_total_10",
-	48: "sijo_total_30",
-	49: "sijo_total_30",
+	46: "class_clear",
+	47: "class_clear",
+	48: "class_clear",
+	49: "class_clear",
 	50: "class_clear",
 	51: "class_clear",
 	52: "ascension_3",
@@ -139,7 +137,6 @@ static func check_and_unlock(victory: bool, character_id: String) -> Array[Strin
 	var char_stats: Dictionary = meta.get("character_stats", {}).get(character_id, {})
 	var char_runs: int = char_stats.get("runs", 0)
 	var char_victories: int = char_stats.get("victories", 0)
-	var total_sijo: int = meta.get("total_sijo_completions", 0)
 	var max_ascension: int = 0
 	if meta.has("ascension"):
 		max_ascension = meta["ascension"].get(character_id, 0)
@@ -156,7 +153,7 @@ static func check_and_unlock(victory: bool, character_id: String) -> Array[Strin
 			if is_card_unlocked(cid):
 				continue
 			var condition: String = class_unlocks[idx]
-			if _check_condition(condition, char_runs, char_victories, victory, total_sijo, max_ascension):
+			if _check_condition(condition, char_runs, char_victories, victory, max_ascension):
 				if unlock_card(cid):
 					newly_unlocked.append(cid)
 
@@ -169,7 +166,7 @@ static func check_and_unlock(victory: bool, character_id: String) -> Array[Strin
 		if is_card_unlocked(cid):
 			continue
 		var condition: String = UNLOCK_CARDS_COMMON[idx]
-		if _check_condition(condition, char_runs, char_victories, victory, total_sijo, max_ascension):
+		if _check_condition(condition, char_runs, char_victories, victory, max_ascension):
 			if unlock_card(cid):
 				newly_unlocked.append(cid)
 
@@ -177,7 +174,7 @@ static func check_and_unlock(victory: bool, character_id: String) -> Array[Strin
 
 
 ## 해금 조건 판정
-static func _check_condition(condition: String, runs: int, victories: int, this_victory: bool, total_sijo: int, max_asc: int) -> bool:
+static func _check_condition(condition: String, runs: int, victories: int, this_victory: bool, max_asc: int) -> bool:
 	match condition:
 		"default":
 			return true
@@ -185,10 +182,6 @@ static func _check_condition(condition: String, runs: int, victories: int, this_
 			return runs >= 3
 		"class_clear":
 			return victories >= 1 or this_victory
-		"sijo_total_10":
-			return total_sijo >= 10
-		"sijo_total_30":
-			return total_sijo >= 30
 		"ascension_3":
 			return max_asc >= 3
 		"ascension_5":
@@ -259,11 +252,3 @@ static func get_collection_data() -> Array[Dictionary]:
 				"index": i,
 			})
 	return result
-
-
-## 메타에 시조 완성 누적 수 업데이트
-static func add_sijo_completion_to_meta(count: int = 1) -> void:
-	var meta: Dictionary = SaveManager.load_meta()
-	var current: int = meta.get("total_sijo_completions", 0)
-	meta["total_sijo_completions"] = current + count
-	SaveManager.save_meta(meta)

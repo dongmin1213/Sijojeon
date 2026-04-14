@@ -42,9 +42,7 @@ const SFX_PATHS := {
 	"buff": "res://art/audio/sfx/buff.wav",
 	"debuff": "res://art/audio/sfx/debuff.wav",
 	"enemy_attack": "res://art/audio/sfx/enemy_attack.wav",
-	"sijo_slot": "res://art/audio/sfx/sijo_slot.wav",
-	"sijo_complete": "res://art/audio/sfx/sijo_complete.wav",
-	"end_turn": "res://art/audio/sfx/end_turn.wav",
+"end_turn": "res://art/audio/sfx/end_turn.wav",
 	"upgrade": "res://art/audio/sfx/upgrade.wav",
 }
 

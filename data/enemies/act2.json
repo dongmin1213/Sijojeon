@@ -1298,12 +1298,7 @@
           "intent": "attack_debuff",
           "damage": 8,
           "times": 1,
-          "effects": [
-            {
-              "type": "minshim_change",
-              "value": -3
-            }
-          ],
+          "effects": [],
           "description": {
             "ko": "7 피해 + 민심 3 하락.",
             "en": "7 damage + 3 Public Sentiment loss."
@@ -1337,10 +1332,6 @@
               "debuff": "구금",
               "stacks": 1,
               "target": "player"
-            },
-            {
-              "type": "minshim_change",
-              "value": -2
             }
           ],
           "description": {

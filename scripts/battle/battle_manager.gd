@@ -15,39 +15,16 @@ enum BattleState {
 
 const HAND_SIZE := 5
 const STARTING_QI := 3
-const DEFAULT_MAX_CLASS_RESOURCE := 10  # 클래스 고유 자원 기본 최대치
 
 var state: BattleState = BattleState.BATTLE_START
 var current_qi: int = 0
 var max_qi: int = STARTING_QI
 var turn_number: int = 0
 
-# 시조 실패 패널티 — 다음 턴에 적용
-var sijo_draw_penalty: int = 0  # 종장 미완성 → 드로우 -1
-var sijo_qi_penalty: int = 0    # 시조 슬롯 비어있음 → 기 회복 -1
-
-# 클래스 고유 자원 — 턴 간 유지, 전투 시작 시 0
-# 무관: 기력, 문관: 학식
-var current_class_resource: int = 0
-var max_class_resource: int = DEFAULT_MAX_CLASS_RESOURCE
-var has_class_resource: bool = false  # 고유 자원 보유 여부
 var character_id: String = ""  # 현재 캐릭터 클래스 ID
-var _next_card_cost_reduce: int = 0  # 다음 카드 비용 감소 (격물치지 등)
-var _next_card_power_bonus: float = 0.0  # 다음 카드 피해/방어 +% 보너스 (시조 중장 완성)
-var _cost_reduce_all_this_turn: int = 0  # 이번 턴 모든 카드 비용 감소 (축지법 등)
-var _double_token_this_turn: bool = false  # 이번 턴 토큰 생성량 2배 (천하무적진)
-var qi_gained_this_turn: int = 0  # 이번 턴 ���득한 기 추적 (기폭용)
-var resources_consumed_this_turn: int = 0  # 이번 턴 소비한 직업 자원량 (시선/절창 콤보용)
-
-# 패시브/액티브 스킬 시스템
-var cards_played_this_turn: int = 0  # 이번 턴 사용한 카드 수 (문관 패시브용)
-var active_skill_used: bool = false  # 액티브 스킬 사용 여부 (전투당 1회)
-
-# 콤보 시스템 — 같은 타입 카드 연속 사용 시 보너스
-var _combo_count: int = 0           # 현재 연속 같은 타입 수
-var _combo_last_type: String = ""   # 마지막 사용 카드 타입
-var _last_card_had_damage: bool = false  # 이전 카드가 공격이었는지 (시너지용)
-var _last_card_had_block: bool = false   # 이전 카드가 방어였는지 (시너지용)
+var _next_card_power_bonus: float = 0.0  # 다음 카드 피해/방어 +% 보너스
+var _cost_reduce_all_this_turn: int = 0  # 이번 턴 모든 카드 비용 감소
+var cards_played_this_turn: int = 0  # 이번 턴 사용한 카드 수
 
 # 카드 더미
 var draw_pile: Array[String] = []   # 드로우 파일 (card IDs)
@@ -60,9 +37,6 @@ var player_hp: int = 70
 var player_max_hp: int = 70
 var player_block: int = 0
 var enemies: Array[Dictionary] = []
-
-# 시조 시스템
-var sijo_system: SijoSystem = null
 
 # 상태이상 시스템
 var status_effects: StatusEffectManager = null
@@ -79,13 +53,7 @@ signal enemy_hp_changed(enemy_index: int, current: int, max_val: int)
 signal battle_ended(victory: bool)
 signal status_effect_changed(target: String, effect_id: String, stacks: int)
 signal dot_damage_dealt(target: String, effect_id: String, amount: int)
-signal card_combo_triggered(combo_count: int, bonus_percent: int)
-signal class_resource_changed(current: int, max_val: int)
 signal passive_triggered(skill_name: String, description: String)
-signal active_skill_available_changed(available: bool)
-signal combo_triggered(tier: int, job: String)  # 시선(1)/절창(2) 콤보 발동
-signal sijo_beat_matched(card_id: String)  # beat 일치 보너스 발동
-
 
 func _ready() -> void:
 	# StatusEffectManager 자동 생성
@@ -95,7 +63,6 @@ func _ready() -> void:
 		status_effects.effect_applied.connect(_on_effect_applied)
 		status_effects.effect_removed.connect(_on_effect_removed)
 		status_effects.effect_triggered.connect(_on_effect_triggered)
-
 
 func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, max_hp: int, qi: int, character_id: String = "") -> void:
 	if deck.is_empty():
@@ -117,39 +84,14 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	max_qi = qi
 	turn_number = 0
 	player_block = 0
-	sijo_draw_penalty = 0
-	sijo_qi_penalty = 0
 	hand.clear()
 	discard_pile.clear()
 	exhaust_pile.clear()
 
-	# 클래스 고유 자원 초기화 (6직업 전부 고유 자원 보유)
 	self.character_id = character_id
-	has_class_resource = character_id in ["mugwan", "mungwan", "dosa", "uiwon", "gungsu", "sangin"]
-	current_class_resource = 0
-	_next_card_cost_reduce = 0
 	_next_card_power_bonus = 0.0
-	match character_id:
-		"mugwan":
-			max_class_resource = 10  # 기력
-		"mungwan":
-			max_class_resource = 6   # 학식
-		"dosa":
-			max_class_resource = 8   # 영력
-		"uiwon":
-			max_class_resource = 8   # 약재
-		"gungsu":
-			max_class_resource = 8   # 흥
-		"sangin":
-			max_class_resource = 6   # 인과
-		_:
-			max_class_resource = DEFAULT_MAX_CLASS_RESOURCE
-	if has_class_resource:
-		class_resource_changed.emit(current_class_resource, max_class_resource)
 
-	# 스킬 초기화
 	cards_played_this_turn = 0
-	active_skill_used = false
 
 	# 상태이상 초기화
 	status_effects.clear_all()
@@ -194,10 +136,6 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 				enemy["move_pattern"] = first_phase["move_pattern"]
 		enemies.append(enemy)
 
-	# 시조 시스템 초기화
-	if sijo_system:
-		sijo_system.reset()
-
 	_change_state(BattleState.BATTLE_START)
 
 	# 보스 전투 시작 효과 처리 (소환, 버프, 대사 등)
@@ -220,59 +158,12 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	for i in enemies.size():
 		init_boss_puzzle(i)
 
-	# 민심 70+ → 백성 지원병 등장
-	_check_minshim_ally_support()
-
-	# 민심 30-49 → 적군 강화 (분노한 민심이 적에게 힘을 보탬)
-	_apply_low_minshim_enemy_buff()
-
-	# 이벤트 pending_effects 처리 (다음 전투 방어도 등)
-	if GameManager.run_data and GameManager.run_data.narrative_state.has("pending_effects"):
-		var pending: Array = GameManager.run_data.narrative_state["pending_effects"]
-		var remaining: Array = []
-		for eff in pending:
-			if eff is not Dictionary:
-				continue
-			match eff.get("type", ""):
-				"next_battle_block":
-					player_block += int(eff.get("block", 0))
-					block_changed.emit(player_block)
-				_:
-					remaining.append(eff)
-		if remaining.is_empty():
-			GameManager.run_data.narrative_state.erase("pending_effects")
-		else:
-			GameManager.run_data.narrative_state["pending_effects"] = remaining
-
-	# 도사 액티브: 방술 개방 — 전투 시작 시 시조 초장 자동 채움
-	if character_id == "dosa" and sijo_system:
-		sijo_system.try_fill_slot(3, "D001")  # 기공 [3]
-		active_skill_used = true
-		passive_triggered.emit(tr("PASSIVE_BANGSUL"), tr("PASSIVE_BANGSUL_DESC"))
-
 	begin_player_turn()
-
 
 func begin_player_turn() -> void:
 	turn_number += 1
-	_next_card_cost_reduce = 0  # 턴 시작 시 비용 감소 초기화
-	_cost_reduce_all_this_turn = 0  # 턴 시작 시 전체 비용 감소 초기화
-	_double_token_this_turn = false  # 턴 시작 시 토큰 2배 초기화
-	qi_gained_this_turn = 0  # 턴 시작 시 기 획득량 초기화
-	cards_played_this_turn = 0  # 턴 시작 시 카드 사용 수 초기화
-	resources_consumed_this_turn = 0  # 턴 시작 시 자원 소비량 초기화
-	_combo_count = 0             # 턴 시작 시 콤보 초기화
-	_combo_last_type = ""
-	_last_card_had_damage = false
-	_last_card_had_block = false
-
-	# 무관 패시브: 지휘통솔 — 병사 토큰 보유 시 방어도 2
-	if character_id == "mugwan":
-		var effects := status_effects.get_all_effects("player")
-		var token_stacks: int = effects.get("병사_토큰", 0)
-		if token_stacks > 0:
-			gain_block(2)
-			passive_triggered.emit(tr("PASSIVE_COMMAND"), tr("PASSIVE_COMMAND_DESC"))
+	_cost_reduce_all_this_turn = 0
+	cards_played_this_turn = 0
 
 	# 갑주(영구 방어막) 처리: 갑주가 있으면 block을 갑주 값으로 유지, 없으면 리셋
 	var dot_result := status_effects.process_turn_start("player")
@@ -284,13 +175,7 @@ func begin_player_turn() -> void:
 		player_block = 0
 	block_changed.emit(player_block)
 
-	# 시조 실패 패널티: 기 회복 감소 + 신분 레벨업 기 보너스
-	var qi_bonus := JibunSystem.get_qi_bonus(GameManager.run_data)
-	var effective_max_qi := max_qi + sijo_qi_penalty + qi_bonus
-	effective_max_qi = maxi(effective_max_qi, 1)  # 최소 1은 회복
-	current_qi = effective_max_qi
-	if sijo_qi_penalty < 0:
-		passive_triggered.emit(tr("PASSIVE_SIJO_EMPTY"), tr("PASSIVE_SIJO_EMPTY_DESC_FMT") % sijo_qi_penalty)
+	current_qi = max_qi
 	qi_changed.emit(current_qi, max_qi)
 	turn_started.emit(turn_number)
 
@@ -312,11 +197,8 @@ func begin_player_turn() -> void:
 	# 보스 퍼즐: 턴 시작 처리 (형벌 카운터, 비늘 재생 등)
 	process_boss_puzzle_turn_start()
 
-	# 카드 드로우 (냉기 등 드로우 수정자 적용 + 시조 실패 패널티 + 신분 레벨업 보너스)
-	var draw_bonus := JibunSystem.get_draw_bonus(GameManager.run_data)
-	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player") + sijo_draw_penalty + draw_bonus
-	if sijo_draw_penalty < 0:
-		passive_triggered.emit(tr("PASSIVE_SIJO_INCOMPLETE"), tr("PASSIVE_SIJO_INCOMPLETE_DESC_FMT") % sijo_draw_penalty)
+	# 카드 드로우 (냉기 등 드로우 수정자 적용)
+	var draw_count := HAND_SIZE + status_effects.get_draw_modifier("player")
 	draw_count = maxi(draw_count, 1)  # 최소 1장은 드로우
 	draw_cards(draw_count)
 
@@ -327,7 +209,6 @@ func begin_player_turn() -> void:
 			enemy_intent_shown.emit(i, intent)
 
 	_change_state(BattleState.PLAYER_ACTION)
-
 
 func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if state != BattleState.PLAYER_ACTION:
@@ -353,8 +234,6 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 		effective_cost += detention_stacks
 	if _cost_reduce_all_this_turn != 0:
 		effective_cost -= _cost_reduce_all_this_turn
-	if _next_card_cost_reduce > 0:
-		effective_cost -= _next_card_cost_reduce
 	# 모든 카드 사용에 최소 1기 소비 (0코스트 카드도 기를 소비해야 함)
 	effective_cost = maxi(effective_cost, 1)
 
@@ -362,24 +241,9 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if effective_cost > current_qi:
 		return false
 
-	# 클래스 고유 자원 확인 (무관: 기력, 문관: 학식)
-	if has_class_resource and card.stamina_cost > 0 and card.stamina_cost > current_class_resource:
-		return false
-
-	# 비용 감소 소비
-	if _next_card_cost_reduce > 0:
-		_next_card_cost_reduce = 0
-
 	# 기 소비
 	current_qi -= effective_cost
 	qi_changed.emit(current_qi, max_qi)
-
-	# 클래스 고유 자원 소비 (무관: 기력, 문관: 학식)
-	if has_class_resource and card.stamina_cost > 0:
-		current_class_resource -= card.stamina_cost
-		current_class_resource = maxi(current_class_resource, 0)
-		resources_consumed_this_turn += card.stamina_cost
-		class_resource_changed.emit(current_class_resource, max_class_resource)
 
 	# 카드 사용 SFX
 	AudioManager.play_sfx_by_key("card_play")
@@ -389,47 +253,8 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	hand.remove_at(hand_index)
 	discard_pile.append(card_id)
 
-	# 시조 슬롯 시도 — 모든 카드가 채워지며, beat 일치 시 강화 보너스
-	var beat_matched := false
-	if sijo_system:
-		beat_matched = sijo_system.try_fill_slot(card.beat, card_id)
-		if beat_matched:
-			# beat 일치 보너스: 공격/방어 +30%, 기 +1
-			_next_card_power_bonus += 0.3
-			current_qi += 1
-			qi_changed.emit(current_qi, max_qi)
-			sijo_beat_matched.emit(card_id)
-
-	# 콤보 시스템: 같은 타입 카드 연속 사용 체크
-	var card_type := card.type if card.type != "" else "attack"
-	if card_type == _combo_last_type and _combo_last_type != "":
-		_combo_count += 1
-	else:
-		_combo_count = 1
-		_combo_last_type = card_type
-
-	# 콤보 보너스 적용 (2연속: +10%, 3+연속: +20%)
-	if _combo_count >= 3:
-		_next_card_power_bonus += 0.2
-		card_combo_triggered.emit(_combo_count, 20)
-	elif _combo_count >= 2:
-		_next_card_power_bonus += 0.1
-		card_combo_triggered.emit(_combo_count, 10)
-
-	# 카드 시너지: 방어→공격 = 반격 보너스 +15%
-	if card.damage > 0 and _last_card_had_block:
-		_next_card_power_bonus += 0.15
-	# 카드 시너지: 공격→디버프 = 추가 보너스 +10%
-	var has_debuff := card.burn_stacks > 0 or card.poison_stacks > 0 or card.apply_debuff_on_resource != ""
-	if has_debuff and _last_card_had_damage:
-		_next_card_power_bonus += 0.1
-
 	# 카드 효과 적용
 	_resolve_card_effect(card, target_enemy_index)
-
-	# 시너지 추적 업데이트
-	_last_card_had_damage = card.damage > 0
-	_last_card_had_block = card.block_value > 0
 
 	# 유물 트리거: 턴당 첫 번째 카드 사용 (R007 사서)
 	if cards_played_this_turn == 0:
@@ -461,41 +286,11 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 
 	return true
 
-
 func end_player_turn() -> void:
 	if state != BattleState.PLAYER_ACTION:
 		return
 
 	_change_state(BattleState.PLAYER_TURN_END)
-
-	# 시조 패널티 판정 — 부분완성 패널티 제거됨 (ZER-259)
-	if sijo_system:
-		var filled := sijo_system.get_filled_count()
-		if filled == 0:
-			# 시조 슬롯이 아예 비어있음 → 다음 턴 기 회복 -1
-			sijo_qi_penalty = -1
-			sijo_draw_penalty = 0
-		else:
-			# 부분완성 또는 완성 → 패널티 없음
-			sijo_draw_penalty = 0
-			sijo_qi_penalty = 0
-	else:
-		sijo_draw_penalty = 0
-		sijo_qi_penalty = 0
-
-	# 도사 패시브: 천지기 — 시조 슬롯 2칸 이상이면 기 1 회복
-	if character_id == "dosa" and sijo_system:
-		if sijo_system.get_filled_count() >= 2:
-			current_qi += 1
-			qi_changed.emit(current_qi, max_qi)
-			passive_triggered.emit(tr("PASSIVE_CHEONJI"), tr("PASSIVE_CHEONJI_DESC"))
-
-	# 문관 패시브: 학식충전 — 카드 3장 이상 사용 시 학식 1 획득
-	if character_id == "mungwan" and cards_played_this_turn >= 3:
-		current_class_resource += 1
-		current_class_resource = mini(current_class_resource, max_class_resource)
-		class_resource_changed.emit(current_class_resource, max_class_resource)
-		passive_triggered.emit(tr("PASSIVE_STUDY"), tr("PASSIVE_STUDY_DESC"))
 
 	# 플레이어 턴 종료 시 디버프 기간 감소
 	status_effects.process_turn_end("player")
@@ -508,7 +303,6 @@ func end_player_turn() -> void:
 
 	# 적 턴 시작
 	execute_enemy_turn()
-
 
 func execute_enemy_turn() -> void:
 	_change_state(BattleState.ENEMY_TURN)
@@ -578,7 +372,6 @@ func execute_enemy_turn() -> void:
 	# 다음 플레이어 턴
 	begin_player_turn()
 
-
 func draw_cards(count: int) -> void:
 	var drew_any := false
 	for i in count:
@@ -593,7 +386,6 @@ func draw_cards(count: int) -> void:
 	if drew_any:
 		AudioManager.play_sfx_by_key("card_draw")
 	hand_changed.emit(hand)
-
 
 func take_damage(amount: int) -> void:
 	# 취약 적용 (받는 피해 증가)
@@ -627,7 +419,6 @@ func take_damage(amount: int) -> void:
 				battle_ended.emit(false)
 				return
 
-
 func gain_block(amount: int) -> void:
 	player_block += amount
 	block_changed.emit(player_block)
@@ -644,7 +435,6 @@ func gain_block(amount: int) -> void:
 				AudioManager.play_sfx_by_key("defeat")
 				_change_state(BattleState.BATTLE_LOSE)
 				battle_ended.emit(false)
-
 
 func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 	if enemy_index < 0 or enemy_index >= enemies.size():
@@ -697,11 +487,10 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 		# 아군 사망 시 다른 적들의 on_ally_death_effects 발동 (군관 보스 등)
 		_trigger_ally_death_effects(enemy_index)
 
-
 # --- 내부 함수 ---
 
 func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
-	# 시조 중장 완성 보너스: 다음 카드 피해/방어 +%
+	# 다음 카드 피해/방어 +% 보너스
 	var power_bonus := _next_card_power_bonus
 	if power_bonus > 0.0:
 		_next_card_power_bonus = 0.0
@@ -732,88 +521,11 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 	# 기 획득
 	if card.qi_gain > 0:
 		current_qi += card.qi_gain
-		qi_gained_this_turn += card.qi_gain
 		qi_changed.emit(current_qi, max_qi)
 
 	# 카드 드로우
 	if card.draw_count > 0:
 		draw_cards(card.draw_count)
-
-	# 고유 자원 최대치 증가 (무관 G015/G025, 문관 W011)
-	if has_class_resource and card.resource_max_increase > 0:
-		max_class_resource += card.resource_max_increase
-		class_resource_changed.emit(current_class_resource, max_class_resource)
-
-	# 클래스 고유 자원 획득 (무관: 기력, 문관: 학식)
-	if has_class_resource and card.stamina_gain > 0:
-		current_class_resource += card.stamina_gain
-		current_class_resource = mini(current_class_resource, max_class_resource)
-		class_resource_changed.emit(current_class_resource, max_class_resource)
-
-	# 문관 전용: 상소(W003) — 학식 전부 소비, 소비량×배수 피해
-	if character_id == "mungwan" and card.consume_all_resource:
-		var consumed := current_class_resource
-		current_class_resource = 0
-		resources_consumed_this_turn += consumed
-		class_resource_changed.emit(current_class_resource, max_class_resource)
-		# 유물 트리거: 학식 전소 시 (RW001 어진)
-		RelicManager.trigger_on_scholarship_exhaust(self, consumed)
-		var bonus_damage := consumed * card.resource_damage_multiplier
-		var total := maxi(bonus_damage, card.min_resource_damage)
-		if card.is_aoe:
-			for i in enemies.size():
-				if enemies[i]["current_hp"] > 0:
-					deal_damage_to_enemy(i, total)
-		else:
-			deal_damage_to_enemy(target_enemy_index, total)
-
-	# 선택적 자원 소비 + 디버프 부여 (탄핵 등: 학식이 있으면 소비하고 추가 효과 발동)
-	if has_class_resource and card.optional_resource_cost > 0 and card.apply_debuff_on_resource != "":
-		if current_class_resource >= card.optional_resource_cost:
-			current_class_resource -= card.optional_resource_cost
-			current_class_resource = maxi(current_class_resource, 0)
-			resources_consumed_this_turn += card.optional_resource_cost
-			class_resource_changed.emit(current_class_resource, max_class_resource)
-			var target_id := "enemy_%d" % target_enemy_index
-			status_effects.apply_effect(target_id, card.apply_debuff_on_resource, card.debuff_duration)
-
-	# 문관 전용: 격물치지(W007) — 다음 카드 비용 감소
-	if card.cost_reduce_next > 0:
-		_next_card_cost_reduce += card.cost_reduce_next
-
-	# 문관 전용: 피화(W010) — 시조 슬롯 조건부 학식 획득
-	if has_class_resource and card.conditional_resource_gain > 0 and sijo_system:
-		var filled_count := sijo_system.get_filled_count()
-		if filled_count >= card.conditional_resource_threshold:
-			current_class_resource += card.conditional_resource_gain
-			current_class_resource = mini(current_class_resource, max_class_resource)
-			class_resource_changed.emit(current_class_resource, max_class_resource)
-
-	# 토큰 생성 (무관: 병사 토큰)
-	if card.tokens > 0:
-		var token_amount := card.tokens
-		if _double_token_this_turn:
-			token_amount *= 2
-		status_effects.apply_effect("player", "병사_토큰", token_amount)
-
-	# 이번 턴 토큰 2배 활성화 (천하무적진 G005)
-	if card.double_token_gen:
-		_double_token_this_turn = true
-
-	# 이번 턴 모든 카드 비용 감소 (축지법 D005)
-	if card.cost_reduce_this_turn > 0:
-		_cost_reduce_all_this_turn += card.cost_reduce_this_turn
-
-	# 기폭 D009: 이번 턴 획득한 기×배수 피해
-	if card.damage_per_qi_gained > 0:
-		var qi_dmg := qi_gained_this_turn * card.damage_per_qi_gained
-		qi_dmg = maxi(qi_dmg, card.min_damage)
-		if card.is_aoe:
-			for i in enemies.size():
-				if enemies[i]["current_hp"] > 0:
-					deal_damage_to_enemy(i, qi_dmg)
-		else:
-			deal_damage_to_enemy(target_enemy_index, qi_dmg)
 
 	# 흑염 D017: 대상 화상≥2 또는 독≥2 시 추가 피해
 	if card.bonus_on_burn > 0 or card.bonus_on_poison > 0:
@@ -863,47 +575,10 @@ func _resolve_card_effect(card: CardData, target_enemy_index: int) -> void:
 		if card.vulnerable_stacks > 0:
 			var target_id := "enemy_%d" % target_enemy_index
 			status_effects.apply_effect(target_id, "취약", card.vulnerable_stacks)
-		if card.dot_multiplier > 0.0:
-			var target_id := "enemy_%d" % target_enemy_index
-			status_effects.apply_effect(target_id, "주박", 1)
-
-	# 무관 전용: 기력 기반 피해 (역전의 기세 G014, 마지막 도박 G016)
-	if has_class_resource and card.damage_per_stamina > 0:
-		var stamina_used := current_class_resource
-		if card.consume_all_stamina:
-			resources_consumed_this_turn += current_class_resource
-			current_class_resource = 0
-			class_resource_changed.emit(current_class_resource, max_class_resource)
-		var stam_dmg := stamina_used * card.damage_per_stamina
-		stam_dmg = maxi(stam_dmg, card.min_damage)
-		if card.is_aoe:
-			for i in enemies.size():
-				if enemies[i]["current_hp"] > 0:
-					deal_damage_to_enemy(i, stam_dmg)
-		else:
-			deal_damage_to_enemy(target_enemy_index, stam_dmg)
-
-	# 무관 전용: 기력당 추가 피해 (무쌍 G018 — 기본 데미지 + 기력×배수)
-	if has_class_resource and card.bonus_damage_per_stamina > 0:
-		var stamina_used := current_class_resource
-		if card.consume_all_stamina and current_class_resource > 0:
-			resources_consumed_this_turn += current_class_resource
-			current_class_resource = 0
-			class_resource_changed.emit(current_class_resource, max_class_resource)
-		var bonus_dmg := stamina_used * card.bonus_damage_per_stamina
-		if bonus_dmg > 0:
-			if card.is_aoe:
-				for i in enemies.size():
-					if enemies[i]["current_hp"] > 0:
-						deal_damage_to_enemy(i, bonus_dmg)
-			else:
-				deal_damage_to_enemy(target_enemy_index, bonus_dmg)
-
 
 func _change_state(new_state: BattleState) -> void:
 	state = new_state
 	state_changed.emit(new_state)
-
 
 func _shuffle_draw_pile() -> void:
 	for i in range(draw_pile.size() - 1, 0, -1):
@@ -912,14 +587,12 @@ func _shuffle_draw_pile() -> void:
 		draw_pile[i] = draw_pile[j]
 		draw_pile[j] = temp
 
-
 func _reshuffle_discard() -> void:
 	draw_pile.append_array(discard_pile)
 	discard_pile.clear()
 	_shuffle_draw_pile()
 	# 유물 트리거: 덱 셔플 (봉황 깃털)
 	RelicManager.trigger_on_deck_shuffle(self)
-
 
 func _get_enemy_intent(enemy_index: int) -> Dictionary:
 	if enemy_index < 0 or enemy_index >= enemies.size():
@@ -945,7 +618,6 @@ func _get_enemy_intent(enemy_index: int) -> Dictionary:
 	# sequence가 없으면 순서대로
 	var idx: int = enemy.get("move_index", 0) % moves.size()
 	return moves[idx]
-
 
 func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
 	var action_type: String = intent.get("intent", intent.get("type", "attack"))
@@ -1000,7 +672,6 @@ func _execute_enemy_action(enemy_index: int, intent: Dictionary) -> void:
 			enemies[enemy_index]["block"] += block
 			status_effects.apply_effect("player", "취약", v_stacks)
 
-
 func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
 	var base_damage: int = intent.get("damage", 0)
 	var times: int = intent.get("times", 1)
@@ -1032,7 +703,6 @@ func _execute_enemy_attack(enemy_index: int, intent: Dictionary) -> void:
 	if is_debuff_pattern and player_hp < hp_before_attack and player_hp > 0:
 		status_effects.apply_effect("player", "허점_노출", 1)
 		passive_triggered.emit(tr("PASSIVE_WEAKNESS_EXPOSED"), tr("PASSIVE_WEAKNESS_DESC"))
-
 
 func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
 	var effects: Array = intent.get("effects", [])
@@ -1069,15 +739,6 @@ func _apply_intent_effects(enemy_index: int, intent: Dictionary) -> void:
 				var resolved_target := _resolve_effect_target(target_str, enemy_target)
 				status_effects.clear_target(resolved_target)
 
-			"reset_sijo_slot":
-				# 시조 슬롯 초기화 (보스 특수 능력)
-				if sijo_system:
-					var count: int = effect.get("count", 1)
-					for _i in count:
-						sijo_system.reset_random_slot()
-					passive_triggered.emit(tr("PASSIVE_RHYTHM_BREAK"), tr("PASSIVE_RHYTHM_BREAK_FMT") % count)
-
-
 func _execute_gold_drain(enemy_index: int, intent: Dictionary) -> void:
 	# 골드 강탈: 엽전을 빼앗고, 없으면 HP 대신 손실
 	if not GameManager.run_data:
@@ -1092,11 +753,6 @@ func _execute_gold_drain(enemy_index: int, intent: Dictionary) -> void:
 			intent.get("name", "세금 강탈"),
 			"엽전 %d 강탈당했다." % drain
 		)
-		# 전투 종료 후 환급 추적
-		if not rd.narrative_state.has("gold_drained_this_run"):
-			rd.narrative_state["gold_drained_this_run"] = 0
-		rd.narrative_state["gold_drained_this_run"] = \
-			rd.narrative_state.get("gold_drained_this_run", 0) + drain
 	else:
 		var actual_drain: int = rd.gold
 		rd.gold = 0
@@ -1107,7 +763,6 @@ func _execute_gold_drain(enemy_index: int, intent: Dictionary) -> void:
 			intent.get("name", "세금 강탈"),
 			"엽전이 부족하다! HP %d 손실." % hp_fallback
 		)
-
 
 func _execute_enemy_summon(_enemy_index: int, intent: Dictionary) -> void:
 	var summon_list: Array = intent.get("summon", [])
@@ -1150,7 +805,6 @@ func _execute_enemy_summon(_enemy_index: int, intent: Dictionary) -> void:
 			var new_idx := enemies.size() - 1
 			enemy_hp_changed.emit(new_idx, summoned["current_hp"], summoned["max_hp"])
 
-
 func _resolve_effect_target(target_str: String, enemy_target: String) -> String:
 	match target_str:
 		"player":
@@ -1160,7 +814,6 @@ func _resolve_effect_target(target_str: String, enemy_target: String) -> String:
 		_:
 			return target_str
 
-
 func can_play_card(card: CardData) -> bool:
 	var effective_cost := card.cost
 	var detention_stacks := status_effects.get_stacks("player", "구금")
@@ -1168,54 +821,11 @@ func can_play_card(card: CardData) -> bool:
 		effective_cost += detention_stacks
 	if _cost_reduce_all_this_turn != 0:
 		effective_cost -= _cost_reduce_all_this_turn
-	if _next_card_cost_reduce > 0:
-		effective_cost -= _next_card_cost_reduce
 	# 모든 카드 사용에 최소 1기 소비
 	effective_cost = maxi(effective_cost, 1)
 	if effective_cost > current_qi:
 		return false
-	if has_class_resource and card.stamina_cost > 0 and card.stamina_cost > current_class_resource:
-		return false
 	return true
-
-
-## 클래스 고유 자원의 표시 이름을 반환한다.
-func get_class_resource_name() -> String:
-	match character_id:
-		"mugwan":
-			return "기력"
-		"mungwan":
-			return "학식"
-		"dosa":
-			return "영력"
-		"uiwon":
-			return "약재"
-		"gungsu":
-			return "흥"
-		"sangin":
-			return "인과"
-		_:
-			return ""
-
-
-## 클래스 고유 자원의 UI 색상을 반환한다.
-func get_class_resource_color() -> Color:
-	match character_id:
-		"mugwan":
-			return Color(0.76, 0.23, 0.13)  # 주황 (기력)
-		"mungwan":
-			return Color(0.3, 0.7, 1.0)  # 파랑 (학식)
-		"dosa":
-			return Color(0.6, 0.4, 0.9)  # 보라 (영력)
-		"uiwon":
-			return Color(0.3, 0.8, 0.5)  # 녹색 (약재)
-		"gungsu":
-			return Color(0.9, 0.5, 0.7)  # 분홍 (흥)
-		"sangin":
-			return Color(0.8, 0.7, 0.3)  # 금색 (인과)
-		_:
-			return Color.WHITE
-
 
 func _check_phase_transition(enemy_index: int) -> void:
 	var enemy := enemies[enemy_index]
@@ -1286,7 +896,6 @@ func _check_phase_transition(enemy_index: int) -> void:
 				if text != "":
 					passive_triggered.emit(tr("PASSIVE_BOSS"), text)
 
-
 func _get_current_passive(enemy: Dictionary) -> Dictionary:
 	# 현재 페이즈의 start_of_turn_passive 반환 (페이즈별 오버라이드 지원)
 	var current_phase_idx: int = enemy.get("current_phase", 0)
@@ -1299,7 +908,6 @@ func _get_current_passive(enemy: Dictionary) -> Dictionary:
 			return phase["start_of_turn_passive"]
 	# 페이즈 없으면 적 루트의 패시브
 	return enemy.get("start_of_turn_passive", {})
-
 
 func _apply_battle_start_effect(enemy_index: int, eff: Dictionary) -> void:
 	# 전투 시작 시 효과 적용 (소환, 버프, 대사)
@@ -1319,7 +927,6 @@ func _apply_battle_start_effect(enemy_index: int, eff: Dictionary) -> void:
 				if enemy_index < enemies.size():
 					boss_name = TranslationManager.trd_name(enemies[enemy_index], false)
 				passive_triggered.emit(boss_name, text)
-
 
 func _trigger_ally_death_effects(dead_index: int) -> void:
 	# 적 사망 시 다른 살아있는 적들의 on_ally_death_effects 발동
@@ -1346,66 +953,11 @@ func _trigger_ally_death_effects(dead_index: int) -> void:
 					if buff_id != "":
 						status_effects.apply_effect(enemy_target, buff_id, stacks)
 
-
-func _apply_low_minshim_enemy_buff() -> void:
-	# 민심 30-49: 적군 강화 — 적 전체에 근력(strength) +1 적용
-	# 민심 29-: 적군 대폭 강화 — 적 전체에 근력 +2, 방어도 +5
-	if not GameManager.run_data:
-		return
-	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	if minshim >= 50:
-		return
-
-	if minshim < 30:
-		# 민란 직전 — 적군 대폭 강화
-		for i in enemies.size():
-			if enemies[i]["current_hp"] <= 0:
-				continue
-			var enemy_target := "enemy_%d" % i
-			status_effects.apply_effect(enemy_target, "strength", 2)
-			enemies[i]["block"] += 5
-		passive_triggered.emit(tr("PASSIVE_MINRAN_SPIRIT"), tr("PASSIVE_MINRAN_SPIRIT_DESC"))
-	elif minshim < 50:
-		# 불안한 민심 — 적군 소폭 강화
-		for i in enemies.size():
-			if enemies[i]["current_hp"] <= 0:
-				continue
-			var enemy_target := "enemy_%d" % i
-			status_effects.apply_effect(enemy_target, "strength", 1)
-		passive_triggered.emit(tr("PASSIVE_MINSHIM_UNREST"), tr("PASSIVE_MINSHIM_UNREST_DESC"))
-
-
-func _check_minshim_ally_support() -> void:
-	# 민심 70+ → 전투 시작 시 백성 지원병 효과 (랜덤 적에게 5피해)
-	if not GameManager.run_data:
-		return
-	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	if minshim < 70:
-		return
-
-	var is_elite: bool = GameManager.run_data.current_node_type == MapData.NodeType.ELITE
-	var chance := 0.4 if is_elite else 0.2
-	if randf() < chance:
-		# 살아있는 랜덤 적에게 5피해
-		var alive_indices: Array[int] = []
-		for i in enemies.size():
-			if enemies[i]["current_hp"] > 0:
-				alive_indices.append(i)
-		if not alive_indices.is_empty():
-			var target_idx: int = alive_indices[randi() % alive_indices.size()]
-			var support_dmg := 5
-			enemies[target_idx]["current_hp"] -= support_dmg
-			enemies[target_idx]["current_hp"] = maxi(enemies[target_idx]["current_hp"], 0)
-			enemy_hp_changed.emit(target_idx, enemies[target_idx]["current_hp"], enemies[target_idx]["max_hp"])
-			passive_triggered.emit(tr("PASSIVE_PEOPLE_SUPPORT"), tr("PASSIVE_PEOPLE_SUPPORT_FMT") % support_dmg)
-
-
 func _all_enemies_dead() -> bool:
 	for enemy in enemies:
 		if enemy["current_hp"] > 0:
 			return false
 	return true
-
 
 func _is_elite_or_boss_fight() -> bool:
 	## 현재 전투가 엘리트/보스 전투인지 확인 (HP 영구 감소 조건)
@@ -1418,16 +970,13 @@ func _is_elite_or_boss_fight() -> bool:
 			return true
 	return false
 
-
 # --- 상태이상 시그널 핸들러 ---
 
 func _on_effect_applied(target: String, effect_id: String, stacks: int) -> void:
 	status_effect_changed.emit(target, effect_id, stacks)
 
-
 func _on_effect_removed(target: String, effect_id: String) -> void:
 	status_effect_changed.emit(target, effect_id, 0)
-
 
 func _on_effect_triggered(target: String, effect_id: String, value: int) -> void:
 	# 사망선고 만료: 플레이어 현재 HP의 35% 감소
@@ -1446,7 +995,6 @@ func _on_effect_triggered(target: String, effect_id: String, value: int) -> void
 				battle_ended.emit(false)
 		return
 	dot_damage_dealt.emit(target, effect_id, value)
-
 
 ## 카드 ID로 전투용 CardData를 반환한다. 강화 상태를 반영한 복사본.
 func _get_battle_card(card_id: String) -> CardData:
@@ -1476,81 +1024,6 @@ func _get_battle_card(card_id: String) -> CardData:
 	if base.vulnerable_stacks > 0:
 		card.vulnerable_stacks += 1
 	return card
-
-
-# --- 액티브 스킬 ---
-
-## 액티브 스킬 사용 가능 여부를 반환한다.
-func can_use_active_skill() -> bool:
-	if state != BattleState.PLAYER_ACTION:
-		return false
-	if active_skill_used:
-		return false
-	match character_id:
-		"dosa":
-			# 방술 개방: 전투 시작 시 자동 발동 → 수동 사용 불가
-			return false
-		"mugwan":
-			# 군령 하달: 토큰 수만큼 기 회복
-			var effects := status_effects.get_all_effects("player")
-			return effects.get("병사_토큰", 0) > 0
-		"mungwan":
-			# 경연개설: 학식 3 즉시 획득
-			return current_class_resource < max_class_resource
-		_:
-			return false
-
-
-## 액티브 스킬을 사용한다.
-func use_active_skill() -> bool:
-	if not can_use_active_skill():
-		return false
-
-	active_skill_used = true
-	active_skill_available_changed.emit(false)
-
-	match character_id:
-		"mugwan":
-			# 군령 하달: 보유 병사 토큰 수만큼 기 회복 (최대 3)
-			var effects := status_effects.get_all_effects("player")
-			var tokens: int = effects.get("병사_토큰", 0)
-			var qi_recovered := mini(tokens, 3)
-			current_qi += qi_recovered
-			qi_changed.emit(current_qi, max_qi)
-			passive_triggered.emit(tr("PASSIVE_MILITARY_ORDER"), tr("PASSIVE_MILITARY_ORDER_FMT") % [tokens, qi_recovered])
-		"mungwan":
-			# 경연개설: 학식 3 즉시 획득
-			current_class_resource += 3
-			current_class_resource = mini(current_class_resource, max_class_resource)
-			class_resource_changed.emit(current_class_resource, max_class_resource)
-			passive_triggered.emit(tr("PASSIVE_LECTURE"), tr("PASSIVE_LECTURE_DESC"))
-
-	return true
-
-
-## 액티브 스킬 이름을 반환한다.
-func get_active_skill_name() -> String:
-	match character_id:
-		"dosa":
-			return "방술 개방"
-		"mugwan":
-			return "군령 하달"
-		"mungwan":
-			return "경연개설"
-		_:
-			return ""
-
-
-## 액티브 스킬 설명을 반환한다.
-func get_active_skill_description() -> String:
-	match character_id:
-		"mugwan":
-			return "보유 병사 토큰 수만큼 기를 회복합니다. (최대 3, 전투당 1회)"
-		"mungwan":
-			return "학식을 3 즉시 획득합니다. (전투당 1회)"
-		_:
-			return ""
-
 
 # --- 보스 퍼즐 메카닉 (ZER-330) ---
 
@@ -1583,7 +1056,6 @@ func init_boss_puzzle(enemy_index: int) -> void:
 			enemy["_puzzle_debuff_immune"] = puzzle.get("debuff_immunity", true)
 			enemy["_puzzle_type"] = "loyalty_mask"
 
-
 ## 퍼즐 기반 피해 감소 — deal_damage_to_enemy에서 호출
 func _apply_puzzle_damage_reduction(enemy_index: int, damage: int) -> int:
 	if enemy_index < 0 or enemy_index >= enemies.size():
@@ -1608,7 +1080,6 @@ func _apply_puzzle_damage_reduction(enemy_index: int, damage: int) -> int:
 				return maxi(reduced, 1)
 
 	return damage
-
 
 ## 보스 퍼즐: 턴 시작 처리 — begin_player_turn에서 호출
 func process_boss_puzzle_turn_start() -> void:
@@ -1682,94 +1153,3 @@ func process_boss_puzzle_turn_start() -> void:
 						tr("PUZZLE_SCALE_STATUS_FMT") % [scales, max_scales]
 					)
 
-
-## 보스 퍼즐: 시조 완성 처리 — battle.gd의 _on_sijo_completed에서 호출
-func process_boss_puzzle_sijo_complete() -> void:
-	for i in enemies.size():
-		var enemy := enemies[i]
-		if enemy["current_hp"] <= 0:
-			continue
-		var ptype: String = enemy.get("_puzzle_type", "")
-		var puzzle: Dictionary = enemy.get("puzzle_mechanic", {})
-		var on_sijo: Dictionary = puzzle.get("on_sijo_complete", {})
-		var enemy_target := "enemy_%d" % i
-
-		match ptype:
-			"punishment_counter":
-				# 변학도: 형벌 카운터 초기화 + 취약 부여
-				if on_sijo.get("reset_counter", false):
-					enemy["_puzzle_stacks"] = 0
-				var effects: Array = on_sijo.get("apply_to_boss", [])
-				for eff in effects:
-					if eff is Dictionary and eff.get("type", "") == "apply_debuff":
-						status_effects.apply_effect(enemy_target, eff.get("debuff", ""), eff.get("stacks", 1))
-				passive_triggered.emit(
-					tr("PUZZLE_PUNISHMENT_PLEA"),
-					tr("PUZZLE_PUNISHMENT_PLEA_DESC")
-				)
-
-			"scale_barrier":
-				# 이무기: 비늘 1겹 벗기기
-				var scales: int = enemy.get("_puzzle_scales", 0)
-				if scales > 0:
-					var strip: int = on_sijo.get("strip_scales", 1)
-					enemy["_puzzle_scales"] = maxi(scales - strip, 0)
-					enemy["_puzzle_regen_timer"] = 0  # 재생 타이머 리셋
-
-					# 벗긴 비늘 수에 따른 대사
-					var dialogues: Array = on_sijo.get("dialogue_per_scale", [])
-					var stripped_idx: int = puzzle.get("max_scales", 3) - enemy["_puzzle_scales"] - 1
-					if stripped_idx >= 0 and stripped_idx < dialogues.size():
-						var dlg: Dictionary = dialogues[stripped_idx]
-						passive_triggered.emit(
-							tr("PUZZLE_SCALE_STRIP"),
-							dlg.get("ko", "")
-						)
-
-					if enemy["_puzzle_scales"] <= 0:
-						# 비늘 전부 벗김 → 취약 부여
-						var on_all: Dictionary = puzzle.get("on_all_stripped", {})
-						var effects: Array = on_all.get("apply_to_boss", [])
-						for eff in effects:
-							if eff is Dictionary and eff.get("type", "") == "apply_debuff":
-								status_effects.apply_effect(enemy_target, eff.get("debuff", ""), eff.get("stacks", 1))
-						passive_triggered.emit(
-							tr("PUZZLE_SCALE_BROKEN"),
-							tr("PUZZLE_SCALE_BROKEN_DESC")
-						)
-
-			"loyalty_mask":
-				# 역모대감: 가면 1 균열
-				var mask: int = enemy.get("_puzzle_mask", 0)
-				if mask > 0:
-					var crack: int = on_sijo.get("crack_mask", 1)
-					enemy["_puzzle_mask"] = maxi(mask - crack, 0)
-
-					# 균열에 따른 대사
-					var dialogues: Array = on_sijo.get("dialogue_per_crack", [])
-					var crack_idx: int = puzzle.get("mask_durability", 3) - enemy["_puzzle_mask"] - 1
-					if crack_idx >= 0 and crack_idx < dialogues.size():
-						var dlg: Dictionary = dialogues[crack_idx]
-						passive_triggered.emit(
-							tr("PUZZLE_MASK_CRACK"),
-							dlg.get("ko", "")
-						)
-
-					if enemy["_puzzle_mask"] <= 0:
-						# 가면 파괴 → 약화 + 취약 + 힘 절반
-						var on_shatter: Dictionary = puzzle.get("on_mask_shattered", {})
-						var effects: Array = on_shatter.get("apply_to_boss", [])
-						for eff in effects:
-							if eff is Dictionary and eff.get("type", "") == "apply_debuff":
-								status_effects.apply_effect(enemy_target, eff.get("debuff", ""), eff.get("stacks", 1))
-						# 힘 절반 감소
-						if on_shatter.get("halve_strength", false):
-							var current_str: int = status_effects.get_all_effects(enemy_target).get("strength", 0)
-							if current_str > 0:
-								var remove_str := current_str / 2
-								status_effects.apply_effect(enemy_target, "약화_strength", remove_str)
-						enemy["_puzzle_debuff_immune"] = false
-						passive_triggered.emit(
-							tr("PUZZLE_MASK_SHATTER"),
-							tr("PUZZLE_MASK_SHATTER_DESC")
-						)

@@ -146,35 +146,8 @@ func _try_load_special_event(act: int, floor_num: int, node_type: String) -> Var
 func _check_trigger_condition(condition: String) -> bool:
 	if condition == "":
 		return true
-	var rd := GameManager.run_data
-	if not rd:
-		return false
-	match condition:
-		"status_rank_ge_3":
-			return rd.jibun_rank >= 3
-		"status_rank_ge_4":
-			return rd.jibun_rank >= 4
-		"faction_climax":
-			# 어느 한 당파 미터가 100에 도달했는지 체크
-			for fid in rd.faction_pair:
-				if FactionSystem.has_climax(rd, fid):
-					return true
-			return false
-		"has_tag_amhaengosa_ally":
-			var tags: Array = rd.narrative_state.get("run_tags", [])
-			return tags.has("암행어사_동행")
-		"minshim_le_20":
-			return rd.narrative_state.get("minshim", 50) <= 20
-		"minshim_ge_70":
-			return rd.narrative_state.get("minshim", 50) >= 70
-		"minshim_ge_50":
-			return rd.narrative_state.get("minshim", 50) >= 50
-		"sisang_ge_5":
-			return SisangSystem.has_event_bonus(rd)
-		"sisang_ge_10":
-			return rd.sisang_count >= 10
-		_:
-			return true
+	# 서사/당파/민심/시상 조건은 모두 제거됨 — 항상 통과
+	return true
 
 
 ## 로케일에 맞는 텍스트를 추출한다. Dictionary면 현재 로케일 키, String이면 그대로.
@@ -240,15 +213,8 @@ func _build_ui() -> void:
 
 
 ## 조건 미충족 시 표시할 툴팁 텍스트.
-func _get_condition_tooltip(condition: String) -> String:
-	match condition:
-		"status_rank_ge_3": return tr("EVENT_COND_RANK_GE_3")
-		"status_rank_ge_4": return tr("EVENT_COND_RANK_GE_4")
-		"minshim_ge_70": return tr("EVENT_COND_MINSHIM_GE_70")
-		"minshim_ge_50": return tr("EVENT_COND_MINSHIM_GE_50")
-		"sisang_ge_5": return tr("EVENT_COND_SISANG_GE_5")
-		"sisang_ge_10": return tr("EVENT_COND_SISANG_GE_10")
-		_: return tr("EVENT_COND_DEFAULT")
+func _get_condition_tooltip(_condition: String) -> String:
+	return tr("EVENT_COND_DEFAULT")
 
 
 ## 선택지의 골드 비용을 확인하여 부족하면 true 반환.
@@ -284,13 +250,6 @@ func _on_choice_selected(choice: Dictionary) -> void:
 
 	# 메인 효과 적용
 	result_text = _apply_effect(choice, effect_type)
-
-	# 민심 30 미만: 20% 확률로 부정적 추가 효과 발생
-	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	if minshim < 30 and randf() < 0.2:
-		var penalty_hp: int = randi_range(3, 8)
-		GameManager.run_data.current_hp = maxi(GameManager.run_data.current_hp - penalty_hp, 1)
-		result_text += "\n\n" + tr("MINSHIM_UNREST_FMT") % penalty_hp
 
 	# 보너스 효과 적용
 	var bonus_type: String = str(choice.get("effect_type_bonus", ""))
@@ -402,49 +361,15 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 		# === 신규 특수 이벤트 effect_type ===
 
 		"faction_change":
-			var effect_meta: Dictionary = choice.get("effect_meta", {})
-			var faction: String = effect_meta.get("faction", "")
-			var delta: int = effect_meta.get("delta", 0)
-			# 기존 narrative_state 호환 유지
-			if not rd.narrative_state.has("faction_scores"):
-				rd.narrative_state["faction_scores"] = {"namin": 0, "noron": 0, "soron": 0, "soin": 0}
-			var scores: Dictionary = rd.narrative_state["faction_scores"]
-			if faction == "all":
-				for key in scores:
-					scores[key] = clampi(scores[key] + delta, -100, 100)
-				# FactionSystem 연동: 런 당파 쌍 모두 변경
-				for fid in rd.faction_pair:
-					FactionSystem.change_meter(rd, fid, delta)
-			elif scores.has(faction):
-				scores[faction] = clampi(scores.get(faction, 0) + delta, -100, 100)
-				# FactionSystem 연동
-				FactionSystem.change_meter(rd, faction, delta)
-			else:
-				# 복합 키 (namin_soron 등)
-				var parts := faction.split("_")
-				for p in parts:
-					if scores.has(p):
-						scores[p] = clampi(scores.get(p, 0) + delta, -100, 100)
-					FactionSystem.change_meter(rd, p, delta)
-			rd.narrative_state["faction_scores"] = scores
-			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_FACTION")))
+			# 당파 시스템 제거됨 — 결과 텍스트만 반환
+			return _get_text(choice.get("result_text", ""))
 
 		"run_tag_add":
-			var tag: String = choice.get("effect_meta", {}).get("tag", "")
-			if tag != "":
-				if not rd.narrative_state.has("run_tags"):
-					rd.narrative_state["run_tags"] = []
-				var tags: Array = rd.narrative_state["run_tags"]
-				if not tags.has(tag):
-					tags.append(tag)
-				rd.narrative_state["run_tags"] = tags
+			# run_tag 시스템 제거됨 — 결과 텍스트만 반환
 			return _get_text(choice.get("result_text", ""))
 
 		"narrative_flag_set":
-			var key: String = choice.get("effect_meta", {}).get("key", "")
-			var flag_value = choice.get("effect_meta", {}).get("value", false)
-			if key != "":
-				rd.narrative_state[key] = flag_value
+			# narrative_flag 시스템 제거됨 — 결과 텍스트만 반환
 			return _get_text(choice.get("result_text", ""))
 
 		"shop_price_discount":
@@ -482,22 +407,11 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 				"gold": meta.get("return_gold", 150),
 				"shops_remaining": meta.get("after_shops", 3)
 			})
-			var tag: String = meta.get("tag_cost", "")
-			if tag != "":
-				if not rd.narrative_state.has("run_tags"):
-					rd.narrative_state["run_tags"] = []
-				rd.narrative_state["run_tags"].append(tag)
 			return ""
 
 		"status_rank_change":
-			var meta: Dictionary = choice.get("effect_meta", {})
-			var delta: int = meta.get("delta", 0)
-			# JibunSystem과 연동 — 점수 기반 신분 변경
-			var score_delta: int = delta * 100  # 단계 변화를 점수로 환산
-			JibunSystem.add_score(rd, score_delta)
-			# 하위호환: narrative_state도 동기화
-			rd.narrative_state["status_rank"] = rd.jibun_rank
-			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_STATUS")))
+			# 신분 시스템 제거됨 — 결과 텍스트만 반환
+			return _get_text(choice.get("result_text", ""))
 
 		"card_remove_random":
 			var meta: Dictionary = choice.get("effect_meta", {})
@@ -524,13 +438,8 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			return _get_text(choice.get("result_text", tr("EVENT_RESULT_RELIC")))
 
 		"minshim_change":
-			var delta: int = int(choice.get("effect_value", 0))
-			if delta == 0:
-				var meta: Dictionary = choice.get("effect_meta", {})
-				delta = meta.get("delta", 0)
-			var current: int = rd.narrative_state.get("minshim", 50)
-			rd.narrative_state["minshim"] = clampi(current + delta, 0, 100)
-			return _get_text(choice.get("result_text", tr("EVENT_FALLBACK_MINSHIM")))
+			# 민심 시스템 제거됨 — 결과 텍스트만 반환
+			return _get_text(choice.get("result_text", ""))
 
 		"card_choice":
 			# 카드 선택 이벤트 — 풀에서 랜덤 카드 1장 덱에 추가
@@ -596,9 +505,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 func _add_pending_effect(effect: Dictionary) -> void:
 	if not GameManager.run_data:
 		return
-	if not GameManager.run_data.narrative_state.has("pending_effects"):
-		GameManager.run_data.narrative_state["pending_effects"] = []
-	GameManager.run_data.narrative_state["pending_effects"].append(effect)
+	GameManager.run_data.pending_effects.append(effect)
 
 
 ## 강제 전투를 트리거한다.
@@ -755,6 +662,8 @@ func _apply_bonus_effect(choice: Dictionary, bonus_type: String) -> String:
 		"faction_change", "run_tag_add", "narrative_flag_set", \
 		"shop_price_discount", "shop_price_penalty", "gold_invest_deferred", \
 		"status_rank_change", "relic_gain_specific", "minshim_change":
+			# faction_change, status_rank_change, minshim_change는 제거된 시스템이지만
+			# 데이터 호환을 위해 effect 핸들러 경유만 유지
 			# 보너스 meta는 effect_meta_bonus에 저장됨
 			var temp_choice := choice.duplicate()
 			temp_choice["effect_meta"] = choice.get("effect_meta_bonus", {})
@@ -842,7 +751,7 @@ func _generate_card_offers(count: int) -> Array[String]:
 func _format_card_choice_text(card: CardData) -> String:
 	var lines: Array[String] = []
 	lines.append(card.get_display_name())
-	lines.append(tr("EVENT_CARD_STAT_FMT") % [card.cost, card.beat])
+	lines.append(tr("EVENT_CARD_COST_FMT") % card.cost)
 	if card.damage > 0:
 		lines.append(tr("EVENT_CARD_DAMAGE_FMT") % [card.damage, " " + tr("SHOP_CARD_DAMAGE_AOE") if card.is_aoe else ""])
 	if card.block_value > 0:

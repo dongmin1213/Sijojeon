@@ -8,7 +8,6 @@ extends Resource
 @export var name_en: String = ""
 @export var name_hanja: String = ""
 @export var name_romanized: String = ""
-@export var beat: int = 3
 @export var cost: int = 1
 @export var type: String = ""
 @export var subtypes: Array[String] = []
@@ -29,42 +28,13 @@ extends Resource
 @export var draw_count: int = 0
 @export var qi_gain: int = 0
 @export var is_aoe: bool = false
-@export var tokens: int = 0
-@export var stamina_cost: int = 0   # 클래스 고유 자원 소비량 (무관: 기력, 문관: 학식)
-@export var stamina_gain: int = 0   # 클래스 고유 자원 획득량
-
-# 문관 전용 특수 효과
-@export var consume_all_resource: bool = false  # 학식 전량 소비 (상소)
-@export var resource_damage_multiplier: int = 0  # 소비 학식당 피해 배수
-@export var min_resource_damage: int = 0  # 최소 피해 (학식 0일 때)
-@export var cost_reduce_next: int = 0  # 다음 카드 비용 감소 (격물치지)
-@export var conditional_resource_gain: int = 0  # 조건부 자원 획득량 (피화)
-@export var conditional_resource_threshold: int = 0  # 조건 충족 기준 (시조 슬롯 수)
-@export var optional_resource_cost: int = 0  # 선택적 자원 소비 (탄핵: 학식 있으면 소비하여 추가 효과)
-@export var apply_debuff_on_resource: String = ""  # 선택적 자원 소비 시 부여할 디버프 (탄핵 등)
-@export var debuff_duration: int = 0  # 디버프 지속 턴
-
-# 도사 전용 특수 효과
-@export var damage_per_qi_gained: int = 0  # 이번 턴 획득한 기당 피해 (기폭 D009)
-@export var min_damage: int = 0  # 최소 피해 (기폭 등)
-@export var cost_reduce_this_turn: int = 0  # 이번 턴 모든 카드 비용 감소 (축지법 D005)
 @export var burn_stacks: int = 0  # 화상 부여 스택
 @export var poison_stacks: int = 0  # 독 부여 스택
 @export var bonus_on_burn: int = 0  # 대상 화상≥2 시 추가 피해 (흑염 D017)
 @export var bonus_on_poison: int = 0  # 대상 독≥2 시 추가 피해 (흑염 D017)
-@export var dot_multiplier: float = 0.0  # DoT 피해 배율 디버프 (주박 D019)
-@export var vulnerable_stacks: int = 0  # 취약 부여 스택 (주박 D019)
+@export var vulnerable_stacks: int = 0  # 취약 부여 스택
 @export var weaken_stacks: int = 0  # 약화 부여 스택 (후퇴 M003 등)
 
-# 공통 특수 효과
-@export var resource_max_increase: int = 0  # 고유 자원 최대치 증가 (G015, G025, W011)
-@export var remove_buffs: bool = false  # 적 버프 제거 (파직 W018)
-
-# 무관 전용 특수 효과
-@export var damage_per_stamina: int = 0  # 기력당 피해 (역전의 기세 G014)
-@export var consume_all_stamina: bool = false  # 기력 전량 소비 (마지막 도박 G016)
-@export var bonus_damage_per_stamina: int = 0  # 기력당 추가 피해 (무쌍 G018)
-@export var double_token_gen: bool = false  # 이번 턴 토큰 생성량 2배 (천하무적진 G005)
 
 
 static func from_dict(data: Dictionary, card_pool: String) -> CardData:
@@ -80,7 +50,6 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 	elif name_data is String:
 		card.name_ko = name_data
 
-	card.beat = data.get("beat", 3)
 	card.cost = data.get("cost", 1)
 	card.type = data.get("type", "")
 
@@ -122,50 +91,12 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.draw_count = values.get("draw", 0)
 		card.qi_gain = values.get("qi_gain", 0)
 		card.is_aoe = values.get("is_aoe", false)
-		card.tokens = values.get("tokens", 0)
-		card.stamina_cost = values.get("stamina_cost", 0)
-		card.stamina_gain = values.get("stamina_gain", 0)
-
-		# 문관 전용: 학식 관련 값도 stamina로 매핑
-		if values.has("hakshik_cost"):
-			card.stamina_cost = values.get("hakshik_cost", 0)
-		if values.has("hakshik_gain"):
-			card.stamina_gain = values.get("hakshik_gain", 0)
-
-		# 문관 전용 특수 효과
-		card.consume_all_resource = values.get("consume_all_resource", false)
-		card.resource_damage_multiplier = values.get("damage_per_hakshik", 0)
-		card.min_resource_damage = values.get("min_damage", 0)
-		card.cost_reduce_next = values.get("cost_reduce_next", 0)
-		card.conditional_resource_gain = values.get("hakshik_gain_conditional", 0)
-		card.conditional_resource_threshold = values.get("conditional_threshold", 2)
-		card.optional_resource_cost = values.get("optional_resource_cost", 0)
-		card.apply_debuff_on_resource = values.get("apply_debuff_on_resource", "")
-		card.debuff_duration = values.get("debuff_duration", 0)
-
-		# 도사 전용
-		card.damage_per_qi_gained = values.get("damage_per_qi_gained_this_turn", 0)
-		card.min_damage = values.get("min_damage", 0)
-		card.cost_reduce_this_turn = values.get("cost_reduce_this_turn", 0)
 		card.burn_stacks = values.get("burn", 0)
 		card.poison_stacks = values.get("poison", 0)
 		card.bonus_on_burn = values.get("bonus_on_burn", 0)
 		card.bonus_on_poison = values.get("bonus_on_poison", 0)
-		card.dot_multiplier = values.get("dot_multiplier", 0.0)
 		card.vulnerable_stacks = values.get("vulnerable", 0)
 		card.weaken_stacks = values.get("weaken", 0)
-
-		# 공통 특수 효과
-		card.resource_max_increase = values.get("stamina_max_increase", values.get("hakshik_max_increase", 0))
-		card.remove_buffs = values.get("remove_buffs", false)
-
-		# 무관 전용
-		card.damage_per_stamina = values.get("damage_per_stamina", 0)
-		card.consume_all_stamina = values.get("consume_all_stamina", false)
-		card.bonus_damage_per_stamina = values.get("bonus_damage_per_stamina", 0)
-		# G005 천하무적진: 토큰 2배는 subtypes에 "formation"이 있고 block+tokens가 있는 카드
-		if "token_double" in values:
-			card.double_token_gen = values["token_double"]
 
 	return card
 
@@ -207,7 +138,6 @@ func duplicate_card() -> CardData:
 	copy.name_en = name_en
 	copy.name_hanja = name_hanja
 	copy.name_romanized = name_romanized
-	copy.beat = beat
 	copy.cost = cost
 	copy.type = type
 	copy.subtypes = subtypes.duplicate()
@@ -226,32 +156,10 @@ func duplicate_card() -> CardData:
 	copy.draw_count = draw_count
 	copy.qi_gain = qi_gain
 	copy.is_aoe = is_aoe
-	copy.tokens = tokens
-	copy.stamina_cost = stamina_cost
-	copy.stamina_gain = stamina_gain
-	copy.consume_all_resource = consume_all_resource
-	copy.resource_damage_multiplier = resource_damage_multiplier
-	copy.min_resource_damage = min_resource_damage
-	copy.cost_reduce_next = cost_reduce_next
-	copy.conditional_resource_gain = conditional_resource_gain
-	copy.conditional_resource_threshold = conditional_resource_threshold
-	copy.optional_resource_cost = optional_resource_cost
-	copy.apply_debuff_on_resource = apply_debuff_on_resource
-	copy.debuff_duration = debuff_duration
-	copy.damage_per_qi_gained = damage_per_qi_gained
-	copy.min_damage = min_damage
-	copy.cost_reduce_this_turn = cost_reduce_this_turn
 	copy.burn_stacks = burn_stacks
 	copy.poison_stacks = poison_stacks
 	copy.bonus_on_burn = bonus_on_burn
 	copy.bonus_on_poison = bonus_on_poison
-	copy.dot_multiplier = dot_multiplier
 	copy.vulnerable_stacks = vulnerable_stacks
 	copy.weaken_stacks = weaken_stacks
-	copy.resource_max_increase = resource_max_increase
-	copy.remove_buffs = remove_buffs
-	copy.damage_per_stamina = damage_per_stamina
-	copy.consume_all_stamina = consume_all_stamina
-	copy.bonus_damage_per_stamina = bonus_damage_per_stamina
-	copy.double_token_gen = double_token_gen
 	return copy

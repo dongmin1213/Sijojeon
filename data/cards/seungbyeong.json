@@ -1,1264 +1,1264 @@
 {
-  "version": "0.1",
-  "type": "card_pool",
-  "class": "sangin",
-  "class_ko": "승병",
-  "category": "counter",
-  "description": "승병 전용 카드 풀. 인과 자원을 활용해 반격과 수행, 파계를 오가는 직업. 총 27장 — 인과·반격 아키타입, 수행·방어 아키타입, 파계·역전 아키타입. 원형: 사명대사, 서산대사. '버림받은 자가 나라를 지킨다.'",
-  "class_mechanic": "인과: 기(qi) 시스템을 활용. 피해를 받을 때 인과 수치 증가. 인과가 쌓이면 반격기 강화. 금강: 일정 수치의 방어도를 영구 유지. 파계: 현재 HP가 최대 HP의 40% 이하일 때 일부 카드 강화.",
-  "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
-  "archetypes": [
-    {
-      "id": "karma_counter",
-      "name_ko": "인과·반격",
-      "description": "피해를 받을수록 인과가 쌓이고, 쌓인 인과로 강력한 반격기를 사용하는 아키타입. 가시·반격 계열. S001·S002·S003·S007·S008·S009·S010·S011 중심.",
-      "key_cards": [
-        "S001",
-        "S002",
-        "S007",
-        "S009",
-        "S010"
+      "version": "0.1",
+      "type": "card_pool",
+      "class": "sangin",
+      "class_ko": "승병",
+      "category": "counter",
+      "description": "승병 전용 카드 풀. 인과 자원을 활용해 반격과 수행, 파계를 오가는 직업. 총 27장 — 인과·반격 아키타입, 수행·방어 아키타입, 파계·역전 아키타입. 원형: 사명대사, 서산대사. '버림받은 자가 나라를 지킨다.'",
+      "class_mechanic": "인과: 기(qi) 시스템을 활용. 피해를 받을 때 인과 수치 증가. 인과가 쌓이면 반격기 강화. 금강: 일정 수치의 방어도를 영구 유지. 파계: 현재 HP가 최대 HP의 40% 이하일 때 일부 카드 강화.",
+      "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
+      "archetypes": [
+            {
+                  "id": "karma_counter",
+                  "name_ko": "인과·반격",
+                  "description": "피해를 받을수록 인과가 쌓이고, 쌓인 인과로 강력한 반격기를 사용하는 아키타입. 가시·반격 계열. S001·S002·S003·S007·S008·S009·S010·S011 중심.",
+                  "key_cards": [
+                        "S001",
+                        "S002",
+                        "S007",
+                        "S009",
+                        "S010"
+                  ]
+            },
+            {
+                  "id": "meditation_defense",
+                  "name_ko": "수행·방어",
+                  "description": "참선과 염불로 방어도를 두텁게 쌓으며 체력을 회복하는 지구전형 아키타입. S003·S004·S005·S012·S013·S014·S015·S016 중심.",
+                  "key_cards": [
+                        "S003",
+                        "S004",
+                        "S005",
+                        "S013",
+                        "S015"
+                  ]
+            },
+            {
+                  "id": "breakthrough",
+                  "name_ko": "파계·역전",
+                  "description": "체력이 낮을수록 공격력이 상승하는 역전 판타지 아키타입. S006·S017·S018·S019·S020 중심. 파계 상태(HP 40% 이하)에서 카드 효과 강화.",
+                  "key_cards": [
+                        "S006",
+                        "S017",
+                        "S018",
+                        "S019",
+                        "S020"
+                  ]
+            }
+      ],
+      "cards": [
+            {
+                  "_comment": "=== 인과·반격 아키타입 ===",
+                  "id": "S001",
+                  "name": {
+                        "ko": "석장 일격",
+                        "romanized": "Seokjang Ilgyeok",
+                        "en": "Staff Strike"
+                  },
+                  "beat": 3,
+                  "cost": 1,
+                  "type": "attack",
+                  "subtypes": [
+                        "strike",
+                        "karma"
+                  ],
+                  "rarity": 1,
+                  "rarity_stars": "★☆☆☆☆",
+                  "effect": {
+                        "ko": "적에게 6 피해를 입힌다. 인과 1을 획득한다.",
+                        "en": "Deal 6 damage to an enemy. Gain 1 Karma."
+                  },
+                  "effect_upgraded": {
+                        "ko": "적에게 8 피해를 입힌다. 인과 1을 획득한다.",
+                        "en": "Deal 8 damage to an enemy. Gain 1 Karma."
+                  },
+                  "flavor_text": {
+                        "ko": "승려의 지팡이는 자비를 담고 — 적을 향할 때는 그 무게가 달라진다.",
+                        "en": "A monk's staff holds compassion — yet aimed at the enemy, its weight is altogether different."
+                  },
+                  "balance_rationale": "1코스트 기본 공격 카드. 밸런스 기준 6피해에 정확히 맞춤. 인과 1 획득으로 반격 아키타입의 자원 생성 역할. S009·S010 반격기의 연료.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S009",
+                        "S010"
+                  ],
+                  "upgrade_cost": 50,
+                  "values": {
+                        "damage": 6,
+                        "karma_gain": 1
+                  }
+            },
+            {
+                  "id": "S002",
+                  "name": {
+                        "ko": "반격의 인과",
+                        "romanized": "Bangyeok-ui Ingwa",
+                        "en": "Karmic Counter"
+                  },
+                  "beat": 4,
+                  "cost": 1,
+                  "type": "attack",
+                  "subtypes": [
+                        "counter",
+                        "karma"
+                  ],
+                  "rarity": 3,
+                  "rarity_stars": "★★★☆☆",
+                  "effect": {
+                        "ko": "적에게 4 피해를 입힌다. 이번 전투에서 받은 피해량의 20%를 추가 피해로 입힌다. (최대 10)",
+                        "en": "Deal 4 damage to an enemy. Deal additional damage equal to 20% of damage received this battle. (Maximum 10)"
+                  },
+                  "effect_upgraded": {
+                        "ko": "적에게 6 피해를 입힌다. 추가 피해 비율 30%. (최대 15)",
+                        "en": "Deal 6 damage to an enemy. Additional damage is 30% of total damage received. (Maximum 15)"
+                  },
+                  "flavor_text": {
+                        "ko": "맞을수록 더 강해진다 — 인과의 수레바퀴는 멈추지 않는다.",
+                        "en": "The more one is struck, the stronger one becomes — the wheel of karma never stops turning."
+                  },
+                  "balance_rationale": "1코스트 피해 누적 반격기. 초반엔 4피해로 약하지만 피해 축적 시 최대 14피해. 피해를 의도적으로 받는 인과 아키타입의 핵심 보상 카드.",
+                  "sijo_position": "중장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S001",
+                        "S007",
+                        "S009"
+                  ],
+                  "upgrade_cost": 75,
+                  "values": {
+                        "damage": 4,
+                        "bonus_pct_of_damage_received": 0.2,
+                        "bonus_max": 10
+                  }
+            },
+            {
+                  "id": "S003",
+                  "name": {
+                        "ko": "참선",
+                        "romanized": "Chamseon",
+                        "en": "Meditation"
+                  },
+                  "beat": 3,
+                  "cost": 0,
+                  "type": "skill",
+                  "subtypes": [
+                        "defense",
+                        "heal"
+                  ],
+                  "rarity": 2,
+                  "rarity_stars": "★★☆☆☆",
+                  "effect": {
+                        "ko": "방어도 4를 획득한다. 기 1을 획득한다.",
+                        "en": "Gain 4 Block. Gain 1 Qi."
+                  },
+                  "effect_upgraded": {
+                        "ko": "방어도 6을 획득한다. 기 1을 획득한다.",
+                        "en": "Gain 6 Block. Gain 1 Qi."
+                  },
+                  "flavor_text": {
+                        "ko": "눈을 감으면 세상이 조용해지고 — 고요 속에서 기가 차오른다.",
+                        "en": "Close your eyes and the world falls quiet — in that stillness, Qi fills up."
+                  },
+                  "balance_rationale": "0코스트 방어 + 기 회복. 방어도 4는 밸런스 기준 5보다 낮지만 기 1을 함께 제공하여 보상. 수행 아키타입의 리듬 스타터이자 인과 아키타입의 0코스트 행동.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 리듬 스타터",
+                  "class_synergy": [
+                        "S004",
+                        "S013",
+                        "S015"
+                  ],
+                  "upgrade_cost": 50,
+                  "values": {
+                        "block": 4,
+                        "qi_gain": 1
+                  }
+            },
+            {
+                  "id": "S004",
+                  "name": {
+                        "ko": "염불",
+                        "romanized": "Yeombul",
+                        "en": "Sutra Chant"
+                  },
+                  "beat": 4,
+                  "cost": 1,
+                  "type": "skill",
+                  "subtypes": [
+                        "defense",
+                        "buff"
+                  ],
+                  "rarity": 2,
+                  "rarity_stars": "★★☆☆☆",
+                  "effect": {
+                        "ko": "방어도 7을 획득한다. 이번 턴 다음 카드의 비용을 1 감소시킨다.",
+                        "en": "Gain 7 Block. Reduce the cost of the next card played this turn by 1."
+                  },
+                  "effect_upgraded": {
+                        "ko": "방어도 9를 획득한다. 이번 턴 다음 카드의 비용을 1 감소시킨다.",
+                        "en": "Gain 9 Block. Reduce the cost of the next card played this turn by 1."
+                  },
+                  "flavor_text": {
+                        "ko": "나무아미타불 — 염불 한 자락이 방패가 되고, 길이 된다.",
+                        "en": "Namu Amitabul — a single sutra becomes a shield, and a path forward."
+                  },
+                  "balance_rationale": "1코스트 방어 + 연계 버프. 방어도 7은 기준 5보다 높지만 비용 감소는 체인 효과. 수행 아키타입에서 방어도를 쌓으며 연속 카드 사용을 지원.",
+                  "sijo_position": "초장·중장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S003",
+                        "S005",
+                        "S013"
+                  ],
+                  "upgrade_cost": 75,
+                  "values": {
+                        "block": 7,
+                        "next_card_cost_reduce": 1
+                  }
+            },
+            {
+                  "id": "S005",
+                  "name": {
+                        "ko": "금강심",
+                        "romanized": "Geumgangshim",
+                        "en": "Diamond Mind"
+                  },
+                  "beat": 4,
+                  "cost": 2,
+                  "type": "skill",
+                  "subtypes": [
+                        "defense",
+                        "buff"
+                  ],
+                  "rarity": 3,
+                  "rarity_stars": "★★★☆☆",
+                  "effect": {
+                        "ko": "방어도 12를 획득한다. 다음 턴 시작 시 방어도 4를 추가로 획득한다.",
+                        "en": "Gain 12 Block. At the start of next turn, gain 4 more Block."
+                  },
+                  "effect_upgraded": {
+                        "ko": "방어도 14를 획득한다. 다음 턴 시작 시 방어도 6을 추가로 획득한다.",
+                        "en": "Gain 14 Block. At the start of next turn, gain 6 more Block."
+                  },
+                  "flavor_text": {
+                        "ko": "금강석처럼 굳은 마음에는 어떤 칼도 닿지 못한다 — 내일의 수행이 오늘의 방패가 된다.",
+                        "en": "No blade can reach a mind as hard as diamond — tomorrow's practice becomes today's shield."
+                  },
+                  "balance_rationale": "2코스트 지속 방어. 즉시 12 + 다음 턴 4 = 총 16 방어도. 2코스트 기준 10 방어도 기대치를 크게 상회하지만 분산 발동으로 피해 완화. 수행 아키타입의 핵심 방어 카드.",
+                  "sijo_position": "중장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S004",
+                        "S013",
+                        "S015"
+                  ],
+                  "upgrade_cost": 100,
+                  "values": {
+                        "block": 12,
+                        "block_next_turn": 4
+                  }
+            },
+            {
+                  "id": "S006",
+                  "name": {
+                        "ko": "파계의 칼",
+                        "romanized": "Pagye-ui Kal",
+                        "en": "Blade of Broken Vows"
+                  },
+                  "beat": 3,
+                  "cost": 1,
+                  "type": "attack",
+                  "subtypes": [
+                        "strike",
+                        "breakthrough"
+                  ],
+                  "rarity": 3,
+                  "rarity_stars": "★★★☆☆",
+                  "effect": {
+                        "ko": "적에게 6 피해를 입힌다. 파계 상태(HP 40% 이하)이면 12 피해를 입힌다.",
+                        "en": "Deal 6 damage to an enemy. If in Breakthrough state (HP 40% or below), deal 12 damage instead."
+                  },
+                  "effect_upgraded": {
+                        "ko": "적에게 8 피해를 입힌다. 파계 상태이면 16 피해를 입힌다.",
+                        "en": "Deal 8 damage to an enemy. If in Breakthrough state (HP 40% or below), deal 16 damage instead."
+                  },
+                  "flavor_text": {
+                        "ko": "계율을 버린 순간 — 승려는 전사가 된다.",
+                        "en": "The moment the vows are broken — the monk becomes a warrior."
+                  },
+                  "balance_rationale": "1코스트 조건부 이중 피해. HP 여유 시 6피해(기준 동일), 파계 시 12피해(2배). 체력 관리 역전 리스크-보상 카드. 파계 아키타입의 핵심 공격기.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S017",
+                        "S018",
+                        "S019"
+                  ],
+                  "upgrade_cost": 75,
+                  "values": {
+                        "damage": 6,
+                        "breakthrough_damage": 12
+                  }
+            },
+            {
+                  "id": "S007",
+                  "name": {
+                        "ko": "가시 호신",
+                        "romanized": "Gashi Hosin",
+                        "en": "Thorn Guard"
+                  },
+                  "beat": 3,
+                  "cost": 1,
+                  "type": "skill",
+                  "subtypes": [
+                        "defense",
+                        "thorns",
+                        "karma"
+                  ],
+                  "rarity": 2,
+                  "rarity_stars": "★★☆☆☆",
+                  "effect": {
+                        "ko": "방어도 5를 획득하고 가시 3을 획득한다. (가시: 공격받을 때 공격자에게 가시 수치만큼 피해)",
+                        "en": "Gain 5 Block and 3 Thorns. (Thorns: when attacked, deal Thorns damage back to the attacker)"
+                  },
+                  "effect_upgraded": {
+                        "ko": "방어도 7을 획득하고 가시 4를 획득한다.",
+                        "en": "Gain 7 Block and 4 Thorns."
+                  },
+                  "flavor_text": {
+                        "ko": "치면 치는 만큼 돌아온다 — 승병의 몸은 가시밭이다.",
+                        "en": "Strike, and the blow returns in kind — the monk-soldier's body is a field of thorns."
+                  },
+                  "balance_rationale": "1코스트 방어 + 가시. 방어도 5(기준 일치) + 가시 3으로 공격받는 인과 아키타입에 이중 보상 제공. 인과 수치 축적을 위해 일부러 방어를 늦추는 플레이와 시너지.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S002",
+                        "S009",
+                        "S010"
+                  ],
+                  "upgrade_cost": 50,
+                  "values": {
+                        "block": 5,
+                        "thorns": 3
+                  }
+            },
+            {
+                  "id": "S008",
+                  "name": {
+                        "ko": "인욕",
+                        "romanized": "Inyok",
+                        "en": "Endurance"
+                  },
+                  "beat": 3,
+                  "cost": 0,
+                  "type": "skill",
+                  "subtypes": [
+                        "buff",
+                        "karma"
+                  ],
+                  "rarity": 2,
+                  "rarity_stars": "★★☆☆☆",
+                  "effect": {
+                        "ko": "이번 턴 받는 피해를 2 감소시킨다. 피해를 받을 때마다 인과 1을 추가로 획득한다.",
+                        "en": "Reduce incoming damage by 2 this turn. Gain 1 additional Karma whenever you take damage this turn."
+                  },
+                  "effect_upgraded": {
+                        "ko": "이번 턴 받는 피해를 3 감소시킨다. 피해를 받을 때마다 인과 1을 추가로 획득한다.",
+                        "en": "Reduce incoming damage by 3 this turn. Gain 1 additional Karma whenever you take damage this turn."
+                  },
+                  "flavor_text": {
+                        "ko": "참는 것이 힘이다 — 모욕을 삼킨 만큼 인과가 쌓인다.",
+                        "en": "To endure is strength — the more insults swallowed, the more karma accumulates."
+                  },
+                  "balance_rationale": "0코스트 피해 감소 + 인과 가속. 인욕은 인과 아키타입의 엔진 카드. 피해 감소로 생존을 유지하면서 인과 획득 속도를 높임. 0코스트 가치 적정.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 인과 가속기",
+                  "class_synergy": [
+                        "S002",
+                        "S009",
+                        "S010"
+                  ],
+                  "upgrade_cost": 50,
+                  "values": {
+                        "damage_reduction_this_turn": 2,
+                        "karma_on_hit_bonus": 1
+                  }
+            },
+            {
+                  "id": "S009",
+                  "name": {
+                        "ko": "인과응보",
+                        "romanized": "Ingwa Eungbo",
+                        "en": "Karmic Retribution"
+                  },
+                  "beat": 4,
+                  "cost": 2,
+                  "type": "attack",
+                  "subtypes": [
+                        "counter",
+                        "karma"
+                  ],
+                  "rarity": 4,
+                  "rarity_stars": "★★★★☆",
+                  "effect": {
+                        "ko": "인과를 모두 소모한다. 소모한 인과 1당 8 피해를 입힌다. (최소 8)",
+                        "en": "Consume all Karma. Deal 8 damage per Karma consumed. (Minimum 8)"
+                  },
+                  "effect_upgraded": {
+                        "ko": "인과를 모두 소모한다. 소모한 인과 1당 10 피해를 입힌다. (최소 10)",
+                        "en": "Consume all Karma. Deal 10 damage per Karma consumed. (Minimum 10)"
+                  },
+                  "flavor_text": {
+                        "ko": "쌓인 인과는 반드시 돌아온다 — 그 무게만큼 적이 쓰러진다.",
+                        "en": "Accumulated karma always returns — the enemy falls beneath its full weight."
+                  },
+                  "balance_rationale": "2코스트 인과 소모형 폭딜. 인과 3 소모 시 24피해 — 도사 기폭(D009)과 동급. 인과 아키타입의 피니셔. 인욕(S008)·석장 일격(S001)으로 인과 3~5 축적 후 사용하는 것이 최적 루트.",
+                  "sijo_position": "종장 첫 슬롯 [3] — 인과 소모 피날레",
+                  "class_synergy": [
+                        "S001",
+                        "S007",
+                        "S008"
+                  ],
+                  "upgrade_cost": 125,
+                  "values": {
+                        "damage_per_karma": 8,
+                        "min_damage": 8,
+                        "consumes_all_karma": true
+                  }
+            },
+            {
+                  "id": "S010",
+                  "name": {
+                        "ko": "금강반격",
+                        "romanized": "Geumgang Bangyeok",
+                        "en": "Vajra Counter"
+                  },
+                  "beat": 5,
+                  "cost": 1,
+                  "type": "attack",
+                  "subtypes": [
+                        "counter",
+                        "thorns"
+                  ],
+                  "rarity": 3,
+                  "rarity_stars": "★★★☆☆",
+                  "effect": {
+                        "ko": "적에게 4 피해를 입힌다. 가시 수치만큼 추가 피해를 입힌다. 방어도 3을 획득한다.",
+                        "en": "Deal 4 damage to an enemy. Deal additional damage equal to your Thorns value. Gain 3 Block."
+                  },
+                  "effect_upgraded": {
+                        "ko": "적에게 6 피해를 입힌다. 가시 수치의 1.5배 추가 피해. 방어도 4를 획득한다.",
+                        "en": "Deal 6 damage to an enemy. Additional damage equals 1.5× your Thorns value. Gain 4 Block."
+                  },
+                  "flavor_text": {
+                        "ko": "막는 것과 치는 것이 하나다 — 금강의 일격에 방어와 공격이 합일한다.",
+                        "en": "Defending and striking are one — in the Vajra blow, block and attack become a single act."
+                  },
+                  "balance_rationale": "1코스트 방어+가시 연계 공격. 가시 호신(S007)과 콤보 시 4+3=7피해 + 방어도 3. 방어와 공격을 동시에 처리하는 인과 아키타입의 효율 카드.",
+                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S007",
+                        "S009"
+                  ],
+                  "upgrade_cost": 75,
+                  "values": {
+                        "damage": 4,
+                        "bonus_equals_thorns": true,
+                        "block": 3
+                  }
+            },
+            {
+                  "id": "S011",
+                  "name": {
+                        "ko": "석장 회전",
+                        "romanized": "Seokjang Hoejeon",
+                        "en": "Staff Spin"
+                  },
+                  "beat": 4,
+                  "cost": 2,
+                  "type": "attack",
+                  "subtypes": [
+                        "strike",
+                        "aoe",
+                        "karma"
+                  ],
+                  "rarity": 3,
+                  "rarity_stars": "★★★☆☆",
+                  "effect": {
+                        "ko": "모든 적에게 5 피해를 입힌다. 인과 2를 획득한다.",
+                        "en": "Deal 5 damage to ALL enemies. Gain 2 Karma."
+                  },
+                  "effect_upgraded": {
+                        "ko": "모든 적에게 7 피해를 입힌다. 인과 2를 획득한다.",
+                        "en": "Deal 7 damage to ALL enemies. Gain 2 Karma."
+                  },
+                  "flavor_text": {
+                        "ko": "석장을 빙그레 돌리면 — 사방의 적이 바람에 쓸리듯 쓰러진다.",
+                        "en": "Spin the staff in a great arc — enemies on all sides fall as if swept by the wind."
+                  },
+                  "balance_rationale": "2코스트 광역 공격 + 인과 생성. 5 AoE는 2코스트 AoE 중 낮지만 인과 2를 동시에 생성. 다수 적 전투에서 인과를 빠르게 쌓는 핵심 카드.",
+                  "sijo_position": "중장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S009",
+                        "S001"
+                  ],
+                  "upgrade_cost": 100,
+                  "values": {
+                        "damage": 5,
+                        "is_aoe": true,
+                        "karma_gain": 2
+                  }
+            },
+            {
+                  "_comment": "=== 수행·방어 아키타입 ===",
+                  "id": "S012",
+                  "name": {
+                        "ko": "화두",
+                        "romanized": "Hwadu",
+                        "en": "Koan"
+                  },
+                  "beat": 3,
+                  "cost": 1,
+                  "type": "skill",
+                  "subtypes": [
+                        "draw",
+                        "buff"
+                  ],
+                  "rarity": 2,
+                  "rarity_stars": "★★☆☆☆",
+                  "effect": {
+                        "ko": "카드 2장을 드로우한다. 이번 턴 방어 카드 사용 시 방어도 +2 추가.",
+                        "en": "Draw 2 cards. This turn, each Block card played grants +2 additional Block."
+                  },
+                  "effect_upgraded": {
+                        "ko": "카드 2장을 드로우한다. 이번 턴 방어 카드 사용 시 방어도 +3 추가.",
+                        "en": "Draw 2 cards. This turn, each Block card played grants +3 additional Block."
+                  },
+                  "flavor_text": {
+                        "ko": "화두 하나를 붙들면 — 모든 것이 선명해지고 길이 보인다.",
+                        "en": "Hold onto a single koan — and all things grow clear, the path becomes visible."
+                  },
+                  "balance_rationale": "1코스트 드로우 + 방어 시너지 버프. 드로우 2장은 1코스트 적정 가치. 수행 아키타입에서 방어도를 극대화하는 연계 카드. S004(염불)+화두 시 9+3=12 방어도 효율.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S003",
+                        "S004",
+                        "S005"
+                  ],
+                  "upgrade_cost": 50,
+                  "values": {
+                        "draw": 2,
+                        "block_bonus_per_block_card_this_turn": 2
+                  }
+            },
+            {
+                  "id": "S013",
+                  "name": {
+                        "ko": "수행의 경지",
+                        "romanized": "Suhaeng-ui Gyeongji",
+                        "en": "Realm of Practice"
+                  },
+                  "beat": 4,
+                  "cost": 2,
+                  "type": "skill",
+                  "subtypes": [
+                        "defense",
+                        "heal",
+                        "buff"
+                  ],
+                  "rarity": 4,
+                  "rarity_stars": "★★★★☆",
+                  "effect": {
+                        "ko": "방어도 8을 획득한다. 체력 4를 회복한다. 이번 턴 기를 소모하지 않은 카드 1장당 방어도 1을 추가로 획득한다.",
+                        "en": "Gain 8 Block. Heal 4 HP. Gain 1 additional Block for each card played without spending Qi this turn."
+                  },
+                  "effect_upgraded": {
+                        "ko": "방어도 10을 획득한다. 체력 6을 회복한다. 이번 턴 기를 소모하지 않은 카드 1장당 방어도 2를 추가로 획득한다.",
+                        "en": "Gain 10 Block. Heal 6 HP. Gain 2 additional Block for each card played without spending Qi this turn."
+                  },
+                  "flavor_text": {
+                        "ko": "수행이 깊어질수록 상처가 아무는 속도도 빨라진다 — 몸이 법에 따라 움직인다.",
+                        "en": "The deeper the practice, the faster the wounds heal — the body moves in accordance with the Dharma."
+                  },
+                  "balance_rationale": "2코스트 방어 + 체력 회복 + 조건부 방어 증가. 8방어+4회복은 2코스트 과분하지만 조건부 추가 방어는 0코스트 카드와 시너지 요구. 수행 아키타입의 지구전 핵심 카드.",
+                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S003",
+                        "S004",
+                        "S005"
+                  ],
+                  "upgrade_cost": 100,
+                  "values": {
+                        "block": 8,
+                        "heal": 4,
+                        "block_per_free_card_this_turn": 1
+                  }
+            },
+            {
+                  "id": "S014",
+                  "name": {
+                        "ko": "공즉시색",
+                        "romanized": "Gong-jeuk-si-saek",
+                        "en": "Form is Emptiness"
+                  },
+                  "beat": 5,
+                  "cost": 3,
+                  "type": "skill",
+                  "subtypes": [
+                        "defense",
+                        "aoe",
+                        "buff"
+                  ],
+                  "rarity": 5,
+                  "rarity_stars": "★★★★★",
+                  "effect": {
+                        "ko": "방어도 15를 획득한다. 모든 적에게 약화 3을 부여한다. 다음 턴 카드 1장을 추가로 드로우한다.",
+                        "en": "Gain 15 Block. Apply 3 Weaken to ALL enemies. Draw 1 additional card next turn."
+                  },
+                  "effect_upgraded": {
+                        "ko": "방어도 18을 획득한다. 모든 적에게 약화 4를 부여한다. 다음 턴 카드 2장을 추가로 드로우한다.",
+                        "en": "Gain 18 Block. Apply 4 Weaken to ALL enemies. Draw 2 additional cards next turn."
+                  },
+                  "flavor_text": {
+                        "ko": "색이 공이요, 공이 색이라 — 견고한 것도 비고, 비어있는 것도 단단하다.",
+                        "en": "Form is emptiness, emptiness is form — the solid is void, and the void is solid."
+                  },
+                  "balance_rationale": "3코스트 방어+광역 약화+드로우. 15방어+약화3+드로우1은 3코스트 최고 효율이지만 종장 슬롯 전용 카드. 수행 아키타입의 지구전 피니셔. 시조 종장 완성 시 천지기 패시브로 기 추가 회복.",
+                  "sijo_position": "종장 둘째 슬롯 [5] — 수행 지구전 피날레",
+                  "class_synergy": [
+                        "S005",
+                        "S013"
+                  ],
+                  "upgrade_cost": 150,
+                  "values": {
+                        "block": 15,
+                        "weaken_aoe": 3,
+                        "draw_next_turn": 1
+                  }
+            },
+            {
+                  "id": "S015",
+                  "name": {
+                        "ko": "해탈의 기운",
+                        "romanized": "Haetal-ui Giun",
+                        "en": "Aura of Liberation"
+                  },
+                  "beat": 4,
+                  "cost": 2,
+                  "type": "skill",
+                  "subtypes": [
+                        "heal",
+                        "buff"
+                  ],
+                  "rarity": 3,
+                  "rarity_stars": "★★★☆☆",
+                  "effect": {
+                        "ko": "체력 6을 회복한다. 기 2를 획득한다. 이번 턴 피해를 받으면 그 피해의 절반을 회복한다.",
+                        "en": "Heal 6 HP. Gain 2 Qi. If you take damage this turn, recover half of it as HP."
+                  },
+                  "effect_upgraded": {
+                        "ko": "체력 8을 회복한다. 기 2를 획득한다. 이번 턴 피해를 받으면 그 피해의 절반을 회복한다.",
+                        "en": "Heal 8 HP. Gain 2 Qi. If you take damage this turn, recover half of it as HP."
+                  },
+                  "flavor_text": {
+                        "ko": "해탈이란 아프지 않음이 아니라 — 아픔 속에서도 자유로운 것이다.",
+                        "en": "Liberation is not freedom from pain — it is freedom even within pain."
+                  },
+                  "balance_rationale": "2코스트 회복 + 기 획득 + 피해 반감. 회복 6 + 기 2는 2코스트 적정. 피해 반감은 인과 아키타입에서도 활용 가능한 하이브리드 카드. 수행 아키타입의 지속 생존력 제공.",
+                  "sijo_position": "중장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S003",
+                        "S013"
+                  ],
+                  "upgrade_cost": 100,
+                  "values": {
+                        "heal": 6,
+                        "qi_gain": 2,
+                        "damage_to_heal_ratio": 0.5
+                  }
+            },
+            {
+                  "id": "S016",
+                  "name": {
+                        "ko": "범종 울림",
+                        "romanized": "Beomjong Urrim",
+                        "en": "Temple Bell Toll"
+                  },
+                  "beat": 3,
+                  "cost": 1,
+                  "type": "skill",
+                  "subtypes": [
+                        "debuff",
+                        "aoe"
+                  ],
+                  "rarity": 2,
+                  "rarity_stars": "★★☆☆☆",
+                  "effect": {
+                        "ko": "모든 적에게 혼란 2를 부여한다. (혼란: 다음 공격 피해 2 감소, 2회 지속)",
+                        "en": "Apply 2 Confusion to ALL enemies. (Confusion: next attacks deal 2 less damage, lasts 2 hits)"
+                  },
+                  "effect_upgraded": {
+                        "ko": "모든 적에게 혼란 3을 부여한다.",
+                        "en": "Apply 3 Confusion to ALL enemies."
+                  },
+                  "flavor_text": {
+                        "ko": "범종 소리가 전장에 울려 퍼지면 — 적의 정신이 흐트러지고 손발이 느려진다.",
+                        "en": "When the temple bell rings across the battlefield — the enemy's mind scatters and their limbs slow."
+                  },
+                  "balance_rationale": "1코스트 광역 약화 계열 디버프. 혼란 2 = 적 1명당 4피해 감소(2×2). 다수 적 상황에서 효율 극대. 수행 아키타입에서 피해를 줄여 방어도 절감 효과를 간접 제공.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S004",
+                        "S005",
+                        "S013"
+                  ],
+                  "upgrade_cost": 50,
+                  "values": {
+                        "confusion": 2,
+                        "is_aoe": true
+                  }
+            },
+            {
+                  "_comment": "=== 파계·역전 아키타입 ===",
+                  "id": "S017",
+                  "name": {
+                        "ko": "분노의 일갈",
+                        "romanized": "Bunno-ui Ilgal",
+                        "en": "Furious Roar"
+                  },
+                  "beat": 3,
+                  "cost": 1,
+                  "type": "attack",
+                  "subtypes": [
+                        "strike",
+                        "breakthrough",
+                        "debuff"
+                  ],
+                  "rarity": 3,
+                  "rarity_stars": "★★★☆☆",
+                  "effect": {
+                        "ko": "적에게 6 피해를 입힌다. 파계 상태이면 적에게 약화 2를 추가로 부여한다.",
+                        "en": "Deal 6 damage to an enemy. If in Breakthrough state, also apply 2 Weaken to the enemy."
+                  },
+                  "effect_upgraded": {
+                        "ko": "적에게 8 피해를 입힌다. 파계 상태이면 약화 3을 추가로 부여한다.",
+                        "en": "Deal 8 damage to an enemy. If in Breakthrough state, also apply 3 Weaken."
+                  },
+                  "flavor_text": {
+                        "ko": "계율도, 자비도 잊은 순간의 분노 — 그 일갈 하나가 전장을 뒤흔든다.",
+                        "en": "The rage of a moment when vows and compassion are both forgotten — that single roar shakes the battlefield."
+                  },
+                  "balance_rationale": "1코스트 공격 + 파계 조건부 약화. 기본 6피해는 기준 동일. 파계 시 약화 2 = 이후 공격 50% 강화 효과. 파계 아키타입에서 피해+디버프 복합 카드.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S006",
+                        "S018",
+                        "S019"
+                  ],
+                  "upgrade_cost": 75,
+                  "values": {
+                        "damage": 6,
+                        "breakthrough_weaken": 2
+                  }
+            },
+            {
+                  "id": "S018",
+                  "name": {
+                        "ko": "배수진",
+                        "romanized": "Baesujeun",
+                        "en": "Last Stand"
+                  },
+                  "beat": 4,
+                  "cost": 2,
+                  "type": "attack",
+                  "subtypes": [
+                        "strike",
+                        "breakthrough"
+                  ],
+                  "rarity": 4,
+                  "rarity_stars": "★★★★☆",
+                  "effect": {
+                        "ko": "적에게 (최대 HP - 현재 HP)의 50%에 해당하는 피해를 입힌다. 최소 8, 최대 30.",
+                        "en": "Deal damage equal to 50% of (Max HP - Current HP). Minimum 8, maximum 30."
+                  },
+                  "effect_upgraded": {
+                        "ko": "적에게 (최대 HP - 현재 HP)의 70%에 해당하는 피해를 입힌다. 최소 10, 최대 40.",
+                        "en": "Deal damage equal to 70% of (Max HP - Current HP). Minimum 10, maximum 40."
+                  },
+                  "flavor_text": {
+                        "ko": "물러설 곳이 없으면 — 앞으로 나아가는 것만이 살 길이다.",
+                        "en": "When there is nowhere to retreat — the only path to survival is to advance."
+                  },
+                  "balance_rationale": "2코스트 결손 HP 비례 공격. HP가 가득 찬 초반엔 최소 8피해로 약하지만 HP 60 결손 시 30피해. 파계 상태(HP 40% 이하, 최대 HP 80 기준 결손 48 이상) = 24피해 이상 보장. 파계 아키타입의 주력 딜러.",
+                  "sijo_position": "중장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S006",
+                        "S017",
+                        "S019"
+                  ],
+                  "upgrade_cost": 125,
+                  "values": {
+                        "damage_pct_of_missing_hp": 0.5,
+                        "min_damage": 8,
+                        "max_damage": 30
+                  }
+            },
+            {
+                  "id": "S019",
+                  "name": {
+                        "ko": "불굴의 기세",
+                        "romanized": "Bulgul-ui Gise",
+                        "en": "Indomitable Spirit"
+                  },
+                  "beat": 3,
+                  "cost": 1,
+                  "type": "skill",
+                  "subtypes": [
+                        "buff",
+                        "breakthrough"
+                  ],
+                  "rarity": 3,
+                  "rarity_stars": "★★★☆☆",
+                  "effect": {
+                        "ko": "기 2를 획득한다. 파계 상태이면 이번 턴 모든 공격 카드 피해 +4.",
+                        "en": "Gain 2 Qi. If in Breakthrough state, all attack cards this turn deal +4 additional damage."
+                  },
+                  "effect_upgraded": {
+                        "ko": "기 3을 획득한다. 파계 상태이면 이번 턴 모든 공격 카드 피해 +6.",
+                        "en": "Gain 3 Qi. If in Breakthrough state, all attack cards this turn deal +6 additional damage."
+                  },
+                  "flavor_text": {
+                        "ko": "쓰러질 것 같을수록 기세가 오른다 — 승병의 정신은 부러질지언정 굽히지 않는다.",
+                        "en": "The closer to falling, the fiercer the spirit rises — the monk-soldier bends not, even as they may break."
+                  },
+                  "balance_rationale": "1코스트 기 회복 + 파계 공격 강화. 기 2는 1코스트 기 획득으로 적정. 파계 시 전체 공격 +4는 S006(12)·S017(10)·S018(가변)과 콤보 시 폭발적. 파계 아키타입의 행동 강화 카드.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S006",
+                        "S017",
+                        "S018"
+                  ],
+                  "upgrade_cost": 75,
+                  "values": {
+                        "qi_gain": 2,
+                        "breakthrough_all_attack_bonus": 4
+                  }
+            },
+            {
+                  "id": "S020",
+                  "name": {
+                        "ko": "사즉생",
+                        "romanized": "Sajeukssaeng",
+                        "en": "Death Becomes Life"
+                  },
+                  "beat": 5,
+                  "cost": 3,
+                  "type": "attack",
+                  "subtypes": [
+                        "strike",
+                        "breakthrough",
+                        "aoe"
+                  ],
+                  "rarity": 5,
+                  "rarity_stars": "★★★★★",
+                  "effect": {
+                        "ko": "모든 적에게 15 피해를 입힌다. 파계 상태이면 25 피해를 입히고 체력 10을 회복한다.",
+                        "en": "Deal 15 damage to ALL enemies. If in Breakthrough state, deal 25 damage and heal 10 HP."
+                  },
+                  "effect_upgraded": {
+                        "ko": "모든 적에게 18 피해를 입힌다. 파계 상태이면 32 피해를 입히고 체력 15를 회복한다.",
+                        "en": "Deal 18 damage to ALL enemies. If in Breakthrough state, deal 32 damage and heal 15 HP."
+                  },
+                  "flavor_text": {
+                        "ko": "필사즉생, 필생즉사 — 죽기를 각오한 자에게 생이 돌아온다.",
+                        "en": "Determined to die, one lives — determined to live, one dies. Only those resolved to fall shall rise."
+                  },
+                  "balance_rationale": "3코스트 파계 AoE 피니셔. 기본 15 AoE는 3코스트 기준 상위권. 파계 시 25 AoE + 체력 10 회복 = 역전 판타지의 완성. 이순신의 '필사즉생' 정신을 카드로 구현. 파계 아키타입의 클라이맥스 카드.",
+                  "sijo_position": "종장 둘째 슬롯 [5] — 파계 역전 피날레",
+                  "class_synergy": [
+                        "S006",
+                        "S017",
+                        "S018",
+                        "S019"
+                  ],
+                  "upgrade_cost": 150,
+                  "values": {
+                        "damage": 15,
+                        "is_aoe": true,
+                        "breakthrough_damage": 25,
+                        "breakthrough_heal": 10
+                  }
+            },
+            {
+                  "_comment": "=== 해금 카드 S021~S027 (unlock_condition 필드 추가) ===",
+                  "id": "S021",
+                  "name": {
+                        "ko": "사명의 불꽃",
+                        "romanized": "Samyeong-ui Bulkkot",
+                        "en": "Flame of Duty"
+                  },
+                  "beat": 4,
+                  "cost": 2,
+                  "type": "attack",
+                  "subtypes": [
+                        "strike",
+                        "karma",
+                        "dot"
+                  ],
+                  "rarity": 4,
+                  "rarity_stars": "★★★★☆",
+                  "effect": {
+                        "ko": "적에게 10 피해를 입힌다. 화상 3을 부여한다. 인과 1을 획득한다.",
+                        "en": "Deal 10 damage to an enemy. Apply 3 Burn. Gain 1 Karma."
+                  },
+                  "effect_upgraded": {
+                        "ko": "적에게 13 피해를 입힌다. 화상 4를 부여한다. 인과 2를 획득한다.",
+                        "en": "Deal 13 damage to an enemy. Apply 4 Burn. Gain 2 Karma."
+                  },
+                  "flavor_text": {
+                        "ko": "사명대사의 이름은 곧 사명이었다 — 나라를 위한 불꽃은 꺼지지 않는다.",
+                        "en": "The name Samyeong was his destiny — a flame lit for the nation never goes out."
+                  },
+                  "balance_rationale": "2코스트 공격+DoT+인과. 10피해 + 화상3(총 6피해) + 인과1. 인과·반격 + DoT 하이브리드 카드. 해금 카드로 두 아키타입을 연결하는 역할.",
+                  "sijo_position": "중장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S001",
+                        "S009",
+                        "S011"
+                  ],
+                  "upgrade_cost": 100,
+                  "unlock_condition": {
+                        "type": "boss_clear",
+                        "character": "seungbyeong",
+                        "required_count": 1,
+                        "description": "승병으로 임의 막 보스를 1회 처치한다."
+                  },
+                  "values": {
+                        "damage": 10,
+                        "burn": 3,
+                        "karma_gain": 1
+                  }
+            },
+            {
+                  "id": "S022",
+                  "name": {
+                        "ko": "서산의 지혜",
+                        "romanized": "Seosan-ui Jihye",
+                        "en": "Wisdom of Seosan"
+                  },
+                  "beat": 3,
+                  "cost": 1,
+                  "type": "skill",
+                  "subtypes": [
+                        "draw",
+                        "buff",
+                        "meditation_defense"
+                  ],
+                  "rarity": 4,
+                  "rarity_stars": "★★★★☆",
+                  "effect": {
+                        "ko": "카드 3장을 드로우한다. 방어도 3을 획득한다. 다음 카드가 방어 계열이면 추가로 카드 1장을 드로우한다.",
+                        "en": "Draw 3 cards. Gain 3 Block. If the next card played is a Block card, draw 1 additional card."
+                  },
+                  "effect_upgraded": {
+                        "ko": "카드 3장을 드로우한다. 방어도 5를 획득한다. 다음 카드가 방어 계열이면 추가로 카드 2장을 드로우한다.",
+                        "en": "Draw 3 cards. Gain 5 Block. If the next card played is a Block card, draw 2 additional cards."
+                  },
+                  "flavor_text": {
+                        "ko": "서산대사의 가르침은 넓고 깊었으니 — 알면 알수록 더 많은 길이 열렸다.",
+                        "en": "Master Seosan's teachings were vast and deep — the more one learned, the more paths opened."
+                  },
+                  "balance_rationale": "1코스트 드로우 3장 + 방어 + 연계 드로우. 1코스트로 드로우 3장은 강력하지만 해금 카드로 조건 있음. 수행 아키타입에서 핸드를 폭발적으로 늘리는 엔진 카드.",
+                  "sijo_position": "초장·중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S004",
+                        "S005",
+                        "S012"
+                  ],
+                  "upgrade_cost": 100,
+                  "unlock_condition": {
+                        "type": "boss_clear",
+                        "character": "seungbyeong",
+                        "required_count": 1,
+                        "description": "승병으로 임의 막 보스를 1회 처치한다."
+                  },
+                  "values": {
+                        "draw": 3,
+                        "block": 3,
+                        "chain_draw_if_block_card": 1
+                  }
+            },
+            {
+                  "id": "S023",
+                  "name": {
+                        "ko": "인과의 고리",
+                        "romanized": "Ingwa-ui Gori",
+                        "en": "Karmic Chain"
+                  },
+                  "beat": 4,
+                  "cost": 2,
+                  "type": "skill",
+                  "subtypes": [
+                        "buff",
+                        "karma"
+                  ],
+                  "rarity": 4,
+                  "rarity_stars": "★★★★☆",
+                  "effect": {
+                        "ko": "인과 3을 획득한다. 이번 전투에서 처음 사용하는 카드라면 인과 5를 획득한다.",
+                        "en": "Gain 3 Karma. If this is the first time you play this card in this battle, gain 5 Karma instead."
+                  },
+                  "effect_upgraded": {
+                        "ko": "인과 4를 획득한다. 이번 전투에서 처음 사용하는 카드라면 인과 7을 획득한다.",
+                        "en": "Gain 4 Karma. If this is the first time you play this card in this battle, gain 7 Karma instead."
+                  },
+                  "flavor_text": {
+                        "ko": "첫 인연이 가장 깊다 — 처음 인과의 고리를 잡는 순간이 모든 것을 결정한다.",
+                        "en": "The first connection runs deepest — the moment you first grasp the karmic chain decides everything."
+                  },
+                  "balance_rationale": "2코스트 인과 대량 획득. 첫 사용 시 인과 5는 S009(인과응보)와 콤보 시 40피해. 이후엔 인과 3으로 약화. 덱에 1장만 넣어야 하는 전략 카드. 인과 아키타입의 점화 카드.",
+                  "sijo_position": "중장 첫 슬롯 [3]",
+                  "class_synergy": [
+                        "S009",
+                        "S008"
+                  ],
+                  "upgrade_cost": 100,
+                  "unlock_condition": {
+                        "type": "act_clear",
+                        "character": "seungbyeong",
+                        "act": 2,
+                        "required_count": 1,
+                        "description": "승병으로 2막(Act 2) 보스를 처치한다."
+                  },
+                  "values": {
+                        "karma_gain": 3,
+                        "karma_gain_first_play": 5
+                  }
+            },
+            {
+                  "id": "S024",
+                  "name": {
+                        "ko": "열반",
+                        "romanized": "Yeolban",
+                        "en": "Nirvana"
+                  },
+                  "beat": 5,
+                  "cost": 3,
+                  "type": "skill",
+                  "subtypes": [
+                        "heal",
+                        "buff",
+                        "meditation_defense"
+                  ],
+                  "rarity": 5,
+                  "rarity_stars": "★★★★★",
+                  "effect": {
+                        "ko": "체력을 최대 체력의 30%만큼 회복한다. 이번 전투 동안 매 턴 종료 시 방어도 5와 체력 2를 획득한다.",
+                        "en": "Heal HP equal to 30% of your max HP. For the rest of this battle, gain 5 Block and heal 2 HP at the end of each turn."
+                  },
+                  "effect_upgraded": {
+                        "ko": "체력을 최대 체력의 40%만큼 회복한다. 이번 전투 동안 매 턴 종료 시 방어도 7과 체력 3을 획득한다.",
+                        "en": "Heal HP equal to 40% of your max HP. For the rest of this battle, gain 7 Block and heal 3 HP at the end of each turn."
+                  },
+                  "flavor_text": {
+                        "ko": "열반이란 모든 번뇌가 사라진 자리 — 그 고요함 속에서 몸과 마음이 온전해진다.",
+                        "en": "Nirvana is the place where all afflictions fall away — in that stillness, body and mind become whole."
+                  },
+                  "balance_rationale": "3코스트 지속 회복+방어 소환. 즉시 회복 30% + 매 턴 방어5+회복2. 전투가 길어질수록 가치 극대화. 수행 아키타입의 궁극 지구전 카드. 해금 전설 등급.",
+                  "sijo_position": "종장 둘째 슬롯 [5] — 수행 궁극 카드",
+                  "class_synergy": [
+                        "S005",
+                        "S013",
+                        "S015"
+                  ],
+                  "upgrade_cost": 150,
+                  "unlock_condition": {
+                        "type": "act_clear",
+                        "character": "seungbyeong",
+                        "act": 2,
+                        "required_count": 1,
+                        "description": "승병으로 2막(Act 2) 보스를 처치한다."
+                  },
+                  "values": {
+                        "heal_pct_of_max_hp": 0.3,
+                        "block_per_turn_end": 5,
+                        "heal_per_turn_end": 2
+                  }
+            },
+            {
+                  "id": "S025",
+                  "name": {
+                        "ko": "파계광풍",
+                        "romanized": "Pagye Gwangpung",
+                        "en": "Whirlwind of Broken Vows"
+                  },
+                  "beat": 5,
+                  "cost": 2,
+                  "type": "attack",
+                  "subtypes": [
+                        "strike",
+                        "breakthrough",
+                        "aoe"
+                  ],
+                  "rarity": 5,
+                  "rarity_stars": "★★★★★",
+                  "effect": {
+                        "ko": "모든 적에게 12 피해를 입힌다. 파계 상태이면 모든 적에게 약화 3과 추가 8 피해를 입힌다.",
+                        "en": "Deal 12 damage to ALL enemies. If in Breakthrough state, also apply 3 Weaken and deal 8 additional damage to ALL enemies."
+                  },
+                  "effect_upgraded": {
+                        "ko": "모든 적에게 15 피해를 입힌다. 파계 상태이면 약화 4와 추가 10 피해.",
+                        "en": "Deal 15 damage to ALL enemies. If in Breakthrough state, apply 4 Weaken and deal 10 additional damage."
+                  },
+                  "flavor_text": {
+                        "ko": "계율을 버린 승려가 전장에 서면 — 적도, 아군도, 하늘도 두려워한다.",
+                        "en": "When a monk who has cast off all vows stands on the battlefield — enemy, ally, and heaven alike tremble."
+                  },
+                  "balance_rationale": "2코스트 AoE + 파계 폭딜+디버프. 12 AoE는 2코스트 기준 강력. 파계 시 20 AoE + 약화3 = 차후 피해 50% 증폭. S019(파계 +4) 콤보 시 파계 24 AoE + 약화3. 파계 아키타입의 광역 딜러 해금 카드.",
+                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
+                  "class_synergy": [
+                        "S006",
+                        "S019",
+                        "S020"
+                  ],
+                  "upgrade_cost": 125,
+                  "unlock_condition": {
+                        "type": "total_runs_completed",
+                        "character": "seungbyeong",
+                        "count": 3,
+                        "description": "승병으로 런을 3회 완주한다."
+                  },
+                  "values": {
+                        "damage": 12,
+                        "is_aoe": true,
+                        "breakthrough_damage_bonus": 8,
+                        "breakthrough_weaken_aoe": 3
+                  }
+            },
+            {
+                  "id": "S026",
+                  "name": {
+                        "ko": "금강불괴",
+                        "romanized": "Geumgang Bulgwe",
+                        "en": "Indestructible Vajra"
+                  },
+                  "beat": 4,
+                  "cost": 3,
+                  "type": "skill",
+                  "subtypes": [
+                        "defense",
+                        "buff",
+                        "permanent"
+                  ],
+                  "rarity": 5,
+                  "rarity_stars": "★★★★★",
+                  "effect": {
+                        "ko": "방어도 20을 획득한다. 이번 전투 동안 매 턴 시작 시 방어도 4를 획득한다.",
+                        "en": "Gain 20 Block. For the rest of this battle, gain 4 Block at the start of each turn."
+                  },
+                  "effect_upgraded": {
+                        "ko": "방어도 24를 획득한다. 이번 전투 동안 매 턴 시작 시 방어도 6을 획득한다.",
+                        "en": "Gain 24 Block. For the rest of this battle, gain 6 Block at the start of each turn."
+                  },
+                  "flavor_text": {
+                        "ko": "금강불괴의 몸이란 — 어떤 칼도, 어떤 불도, 어떤 말도 꿰뚫지 못하는 경지다.",
+                        "en": "The body of Indestructible Vajra — a state no blade, no flame, no word can pierce."
+                  },
+                  "balance_rationale": "3코스트 즉시+지속 방어. 20방어 + 매 턴 4방어는 장기전에서 총 방어도 40+ 가치. 수행 아키타입의 최강 방어 해금 카드. 공즉시색(S014)과 함께 수행 빌드의 양대 축.",
+                  "sijo_position": "종장 둘째 슬롯 [5] — 수행 방어 궁극",
+                  "class_synergy": [
+                        "S005",
+                        "S013",
+                        "S014"
+                  ],
+                  "upgrade_cost": 150,
+                  "unlock_condition": {
+                        "type": "total_runs_completed",
+                        "character": "seungbyeong",
+                        "count": 3,
+                        "description": "승병으로 런을 3회 완주한다."
+                  },
+                  "values": {
+                        "block": 20,
+                        "block_per_turn_start": 4
+                  }
+            },
+            {
+                  "id": "S027",
+                  "name": {
+                        "ko": "삼세인과",
+                        "romanized": "Samse Ingwa",
+                        "en": "Karma of Three Lives"
+                  },
+                  "beat": 5,
+                  "cost": 3,
+                  "type": "attack",
+                  "subtypes": [
+                        "counter",
+                        "karma",
+                        "aoe"
+                  ],
+                  "rarity": 5,
+                  "rarity_stars": "★★★★★",
+                  "effect": {
+                        "ko": "인과를 모두 소모한다. 소모한 인과 1당 모든 적에게 5 피해를 입힌다. 이 카드로 처치한 적의 수만큼 인과 1을 획득한다.",
+                        "en": "Consume all Karma. Deal 5 damage to ALL enemies per Karma consumed. Gain 1 Karma for each enemy killed by this card."
+                  },
+                  "effect_upgraded": {
+                        "ko": "인과를 모두 소모한다. 소모한 인과 1당 모든 적에게 7 피해를 입힌다. 처치한 적의 수만큼 인과 2를 획득한다.",
+                        "en": "Consume all Karma. Deal 7 damage to ALL enemies per Karma consumed. Gain 2 Karma per enemy killed."
+                  },
+                  "flavor_text": {
+                        "ko": "전생과 현생과 내생의 인과가 이 한 순간에 수렴한다 — 그 업보의 무게로 모든 적이 쓰러진다.",
+                        "en": "The karma of past, present, and future life converges in this single moment — beneath that weight of fate, all enemies fall."
+                  },
+                  "balance_rationale": "3코스트 인과 소모 광역 피니셔. 인과 5 소모 시 모든 적에게 25피해 — S009(단일 40)의 광역 버전. 광역 처치 시 인과 재획득으로 연속 사용 가능성. 인과 아키타입의 최종 해금 전설 카드. 인과응보(S009)+삼세인과 = 인과 소모 콤보 빌드 완성.",
+                  "sijo_position": "종장 둘째 슬롯 [5] — 인과 광역 궁극 피날레",
+                  "class_synergy": [
+                        "S009",
+                        "S011",
+                        "S023"
+                  ],
+                  "upgrade_cost": 150,
+                  "unlock_condition": {
+                        "type": "boss_clear",
+                        "character": "seungbyeong",
+                        "act": 3,
+                        "required_count": 1,
+                        "description": "승병으로 최종 보스(3막)를 처치한다."
+                  },
+                  "values": {
+                        "damage_per_karma_aoe": 5,
+                        "is_aoe": true,
+                        "consumes_all_karma": true,
+                        "karma_gain_per_kill": 1
+                  }
+            }
+      ],
+      "status_conditions_defined": [
+            {
+                  "id": "인과",
+                  "ko": "인과",
+                  "en": "Karma",
+                  "description": "전투 중 누적되는 승병 전용 자원. 피해를 받거나 특정 카드 사용 시 획득. 인과응보(S009)·삼세인과(S027) 사용 시 소모. 기(qi) 시스템 활용.",
+                  "duration_type": "stacking_persistent",
+                  "visual_note": "캐릭터 주변에 황금빛 불경 문자 이펙트"
+            },
+            {
+                  "id": "파계",
+                  "ko": "파계 상태",
+                  "en": "Breakthrough State",
+                  "description": "현재 HP가 최대 HP의 40% 이하일 때 자동 활성화. 일부 카드 효과가 강화됨. HP 회복으로 40% 초과 시 비활성화.",
+                  "duration_type": "conditional_auto",
+                  "visual_note": "캐릭터 아우라가 붉게 타오르는 이펙트"
+            },
+            {
+                  "id": "가시",
+                  "ko": "가시",
+                  "en": "Thorns",
+                  "description": "공격받을 때 공격자에게 가시 수치만큼 피해를 입힌다. 승병 전용 반격 메커니즘.",
+                  "duration_type": "stacking_persistent",
+                  "visual_note": "캐릭터 주변에 가시 광환 이펙트"
+            },
+            {
+                  "id": "혼란",
+                  "ko": "혼란",
+                  "en": "Confusion",
+                  "description": "혼란 상태의 적은 공격 시 혼란 수치만큼 피해가 감소한다. 혼란 수치는 공격 1회당 1 감소.",
+                  "duration_type": "stacking_decay_on_attack",
+                  "visual_note": "적 캐릭터 머리 위에 흔들리는 물음표 이펙트"
+            }
       ]
-    },
-    {
-      "id": "meditation_defense",
-      "name_ko": "수행·방어",
-      "description": "참선과 염불로 방어도를 두텁게 쌓으며 체력을 회복하는 지구전형 아키타입. S003·S004·S005·S012·S013·S014·S015·S016 중심.",
-      "key_cards": [
-        "S003",
-        "S004",
-        "S005",
-        "S013",
-        "S015"
-      ]
-    },
-    {
-      "id": "breakthrough",
-      "name_ko": "파계·역전",
-      "description": "체력이 낮을수록 공격력이 상승하는 역전 판타지 아키타입. S006·S017·S018·S019·S020 중심. 파계 상태(HP 40% 이하)에서 카드 효과 강화.",
-      "key_cards": [
-        "S006",
-        "S017",
-        "S018",
-        "S019",
-        "S020"
-      ]
-    }
-  ],
-  "cards": [
-    {
-      "_comment": "=== 인과·반격 아키타입 ===",
-      "id": "S001",
-      "name": {
-        "ko": "석장 일격",
-        "romanized": "Seokjang Ilgyeok",
-        "en": "Staff Strike"
-      },
-      "beat": 3,
-      "cost": 1,
-      "type": "attack",
-      "subtypes": [
-        "strike",
-        "karma"
-      ],
-      "rarity": 1,
-      "rarity_stars": "★☆☆☆☆",
-      "effect": {
-        "ko": "적에게 6 피해를 입힌다. 인과 1을 획득한다.",
-        "en": "Deal 6 damage to an enemy. Gain 1 Karma."
-      },
-      "effect_upgraded": {
-        "ko": "적에게 8 피해를 입힌다. 인과 1을 획득한다.",
-        "en": "Deal 8 damage to an enemy. Gain 1 Karma."
-      },
-      "flavor_text": {
-        "ko": "승려의 지팡이는 자비를 담고 — 적을 향할 때는 그 무게가 달라진다.",
-        "en": "A monk's staff holds compassion — yet aimed at the enemy, its weight is altogether different."
-      },
-      "balance_rationale": "1코스트 기본 공격 카드. 밸런스 기준 6피해에 정확히 맞춤. 인과 1 획득으로 반격 아키타입의 자원 생성 역할. S009·S010 반격기의 연료.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S009",
-        "S010"
-      ],
-      "upgrade_cost": 50,
-      "values": {
-        "damage": 6,
-        "karma_gain": 1
-      }
-    },
-    {
-      "id": "S002",
-      "name": {
-        "ko": "반격의 인과",
-        "romanized": "Bangyeok-ui Ingwa",
-        "en": "Karmic Counter"
-      },
-      "beat": 4,
-      "cost": 1,
-      "type": "attack",
-      "subtypes": [
-        "counter",
-        "karma"
-      ],
-      "rarity": 3,
-      "rarity_stars": "★★★☆☆",
-      "effect": {
-        "ko": "적에게 4 피해를 입힌다. 이번 전투에서 받은 피해량의 20%를 추가 피해로 입힌다. (최대 10)",
-        "en": "Deal 4 damage to an enemy. Deal additional damage equal to 20% of damage received this battle. (Maximum 10)"
-      },
-      "effect_upgraded": {
-        "ko": "적에게 6 피해를 입힌다. 추가 피해 비율 30%. (최대 15)",
-        "en": "Deal 6 damage to an enemy. Additional damage is 30% of total damage received. (Maximum 15)"
-      },
-      "flavor_text": {
-        "ko": "맞을수록 더 강해진다 — 인과의 수레바퀴는 멈추지 않는다.",
-        "en": "The more one is struck, the stronger one becomes — the wheel of karma never stops turning."
-      },
-      "balance_rationale": "1코스트 피해 누적 반격기. 초반엔 4피해로 약하지만 피해 축적 시 최대 14피해. 피해를 의도적으로 받는 인과 아키타입의 핵심 보상 카드.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S001",
-        "S007",
-        "S009"
-      ],
-      "upgrade_cost": 75,
-      "values": {
-        "damage": 4,
-        "bonus_pct_of_damage_received": 0.2,
-        "bonus_max": 10
-      }
-    },
-    {
-      "id": "S003",
-      "name": {
-        "ko": "참선",
-        "romanized": "Chamseon",
-        "en": "Meditation"
-      },
-      "beat": 3,
-      "cost": 0,
-      "type": "skill",
-      "subtypes": [
-        "defense",
-        "heal"
-      ],
-      "rarity": 2,
-      "rarity_stars": "★★☆☆☆",
-      "effect": {
-        "ko": "방어도 4를 획득한다. 기 1을 획득한다.",
-        "en": "Gain 4 Block. Gain 1 Qi."
-      },
-      "effect_upgraded": {
-        "ko": "방어도 6을 획득한다. 기 1을 획득한다.",
-        "en": "Gain 6 Block. Gain 1 Qi."
-      },
-      "flavor_text": {
-        "ko": "눈을 감으면 세상이 조용해지고 — 고요 속에서 기가 차오른다.",
-        "en": "Close your eyes and the world falls quiet — in that stillness, Qi fills up."
-      },
-      "balance_rationale": "0코스트 방어 + 기 회복. 방어도 4는 밸런스 기준 5보다 낮지만 기 1을 함께 제공하여 보상. 수행 아키타입의 리듬 스타터이자 인과 아키타입의 0코스트 행동.",
-      "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 리듬 스타터",
-      "class_synergy": [
-        "S004",
-        "S013",
-        "S015"
-      ],
-      "upgrade_cost": 50,
-      "values": {
-        "block": 4,
-        "qi_gain": 1
-      }
-    },
-    {
-      "id": "S004",
-      "name": {
-        "ko": "염불",
-        "romanized": "Yeombul",
-        "en": "Sutra Chant"
-      },
-      "beat": 4,
-      "cost": 1,
-      "type": "skill",
-      "subtypes": [
-        "defense",
-        "buff"
-      ],
-      "rarity": 2,
-      "rarity_stars": "★★☆☆☆",
-      "effect": {
-        "ko": "방어도 7을 획득한다. 이번 턴 다음 카드의 비용을 1 감소시킨다.",
-        "en": "Gain 7 Block. Reduce the cost of the next card played this turn by 1."
-      },
-      "effect_upgraded": {
-        "ko": "방어도 9를 획득한다. 이번 턴 다음 카드의 비용을 1 감소시킨다.",
-        "en": "Gain 9 Block. Reduce the cost of the next card played this turn by 1."
-      },
-      "flavor_text": {
-        "ko": "나무아미타불 — 염불 한 자락이 방패가 되고, 길이 된다.",
-        "en": "Namu Amitabul — a single sutra becomes a shield, and a path forward."
-      },
-      "balance_rationale": "1코스트 방어 + 연계 버프. 방어도 7은 기준 5보다 높지만 비용 감소는 체인 효과. 수행 아키타입에서 방어도를 쌓으며 연속 카드 사용을 지원.",
-      "sijo_position": "초장·중장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S003",
-        "S005",
-        "S013"
-      ],
-      "upgrade_cost": 75,
-      "values": {
-        "block": 7,
-        "next_card_cost_reduce": 1
-      }
-    },
-    {
-      "id": "S005",
-      "name": {
-        "ko": "금강심",
-        "romanized": "Geumgangshim",
-        "en": "Diamond Mind"
-      },
-      "beat": 4,
-      "cost": 2,
-      "type": "skill",
-      "subtypes": [
-        "defense",
-        "buff"
-      ],
-      "rarity": 3,
-      "rarity_stars": "★★★☆☆",
-      "effect": {
-        "ko": "방어도 12를 획득한다. 다음 턴 시작 시 방어도 4를 추가로 획득한다.",
-        "en": "Gain 12 Block. At the start of next turn, gain 4 more Block."
-      },
-      "effect_upgraded": {
-        "ko": "방어도 14를 획득한다. 다음 턴 시작 시 방어도 6을 추가로 획득한다.",
-        "en": "Gain 14 Block. At the start of next turn, gain 6 more Block."
-      },
-      "flavor_text": {
-        "ko": "금강석처럼 굳은 마음에는 어떤 칼도 닿지 못한다 — 내일의 수행이 오늘의 방패가 된다.",
-        "en": "No blade can reach a mind as hard as diamond — tomorrow's practice becomes today's shield."
-      },
-      "balance_rationale": "2코스트 지속 방어. 즉시 12 + 다음 턴 4 = 총 16 방어도. 2코스트 기준 10 방어도 기대치를 크게 상회하지만 분산 발동으로 피해 완화. 수행 아키타입의 핵심 방어 카드.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S004",
-        "S013",
-        "S015"
-      ],
-      "upgrade_cost": 100,
-      "values": {
-        "block": 12,
-        "block_next_turn": 4
-      }
-    },
-    {
-      "id": "S006",
-      "name": {
-        "ko": "파계의 칼",
-        "romanized": "Pagye-ui Kal",
-        "en": "Blade of Broken Vows"
-      },
-      "beat": 3,
-      "cost": 1,
-      "type": "attack",
-      "subtypes": [
-        "strike",
-        "breakthrough"
-      ],
-      "rarity": 3,
-      "rarity_stars": "★★★☆☆",
-      "effect": {
-        "ko": "적에게 6 피해를 입힌다. 파계 상태(HP 40% 이하)이면 12 피해를 입힌다.",
-        "en": "Deal 6 damage to an enemy. If in Breakthrough state (HP 40% or below), deal 12 damage instead."
-      },
-      "effect_upgraded": {
-        "ko": "적에게 8 피해를 입힌다. 파계 상태이면 16 피해를 입힌다.",
-        "en": "Deal 8 damage to an enemy. If in Breakthrough state (HP 40% or below), deal 16 damage instead."
-      },
-      "flavor_text": {
-        "ko": "계율을 버린 순간 — 승려는 전사가 된다.",
-        "en": "The moment the vows are broken — the monk becomes a warrior."
-      },
-      "balance_rationale": "1코스트 조건부 이중 피해. HP 여유 시 6피해(기준 동일), 파계 시 12피해(2배). 체력 관리 역전 리스크-보상 카드. 파계 아키타입의 핵심 공격기.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S017",
-        "S018",
-        "S019"
-      ],
-      "upgrade_cost": 75,
-      "values": {
-        "damage": 6,
-        "breakthrough_damage": 12
-      }
-    },
-    {
-      "id": "S007",
-      "name": {
-        "ko": "가시 호신",
-        "romanized": "Gashi Hosin",
-        "en": "Thorn Guard"
-      },
-      "beat": 3,
-      "cost": 1,
-      "type": "skill",
-      "subtypes": [
-        "defense",
-        "thorns",
-        "karma"
-      ],
-      "rarity": 2,
-      "rarity_stars": "★★☆☆☆",
-      "effect": {
-        "ko": "방어도 5를 획득하고 가시 3을 획득한다. (가시: 공격받을 때 공격자에게 가시 수치만큼 피해)",
-        "en": "Gain 5 Block and 3 Thorns. (Thorns: when attacked, deal Thorns damage back to the attacker)"
-      },
-      "effect_upgraded": {
-        "ko": "방어도 7을 획득하고 가시 4를 획득한다.",
-        "en": "Gain 7 Block and 4 Thorns."
-      },
-      "flavor_text": {
-        "ko": "치면 치는 만큼 돌아온다 — 승병의 몸은 가시밭이다.",
-        "en": "Strike, and the blow returns in kind — the monk-soldier's body is a field of thorns."
-      },
-      "balance_rationale": "1코스트 방어 + 가시. 방어도 5(기준 일치) + 가시 3으로 공격받는 인과 아키타입에 이중 보상 제공. 인과 수치 축적을 위해 일부러 방어를 늦추는 플레이와 시너지.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S002",
-        "S009",
-        "S010"
-      ],
-      "upgrade_cost": 50,
-      "values": {
-        "block": 5,
-        "thorns": 3
-      }
-    },
-    {
-      "id": "S008",
-      "name": {
-        "ko": "인욕",
-        "romanized": "Inyok",
-        "en": "Endurance"
-      },
-      "beat": 3,
-      "cost": 0,
-      "type": "skill",
-      "subtypes": [
-        "buff",
-        "karma"
-      ],
-      "rarity": 2,
-      "rarity_stars": "★★☆☆☆",
-      "effect": {
-        "ko": "이번 턴 받는 피해를 2 감소시킨다. 피해를 받을 때마다 인과 1을 추가로 획득한다.",
-        "en": "Reduce incoming damage by 2 this turn. Gain 1 additional Karma whenever you take damage this turn."
-      },
-      "effect_upgraded": {
-        "ko": "이번 턴 받는 피해를 3 감소시킨다. 피해를 받을 때마다 인과 1을 추가로 획득한다.",
-        "en": "Reduce incoming damage by 3 this turn. Gain 1 additional Karma whenever you take damage this turn."
-      },
-      "flavor_text": {
-        "ko": "참는 것이 힘이다 — 모욕을 삼킨 만큼 인과가 쌓인다.",
-        "en": "To endure is strength — the more insults swallowed, the more karma accumulates."
-      },
-      "balance_rationale": "0코스트 피해 감소 + 인과 가속. 인욕은 인과 아키타입의 엔진 카드. 피해 감소로 생존을 유지하면서 인과 획득 속도를 높임. 0코스트 가치 적정.",
-      "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 인과 가속기",
-      "class_synergy": [
-        "S002",
-        "S009",
-        "S010"
-      ],
-      "upgrade_cost": 50,
-      "values": {
-        "damage_reduction_this_turn": 2,
-        "karma_on_hit_bonus": 1
-      }
-    },
-    {
-      "id": "S009",
-      "name": {
-        "ko": "인과응보",
-        "romanized": "Ingwa Eungbo",
-        "en": "Karmic Retribution"
-      },
-      "beat": 4,
-      "cost": 2,
-      "type": "attack",
-      "subtypes": [
-        "counter",
-        "karma"
-      ],
-      "rarity": 4,
-      "rarity_stars": "★★★★☆",
-      "effect": {
-        "ko": "인과를 모두 소모한다. 소모한 인과 1당 8 피해를 입힌다. (최소 8)",
-        "en": "Consume all Karma. Deal 8 damage per Karma consumed. (Minimum 8)"
-      },
-      "effect_upgraded": {
-        "ko": "인과를 모두 소모한다. 소모한 인과 1당 10 피해를 입힌다. (최소 10)",
-        "en": "Consume all Karma. Deal 10 damage per Karma consumed. (Minimum 10)"
-      },
-      "flavor_text": {
-        "ko": "쌓인 인과는 반드시 돌아온다 — 그 무게만큼 적이 쓰러진다.",
-        "en": "Accumulated karma always returns — the enemy falls beneath its full weight."
-      },
-      "balance_rationale": "2코스트 인과 소모형 폭딜. 인과 3 소모 시 24피해 — 도사 기폭(D009)과 동급. 인과 아키타입의 피니셔. 인욕(S008)·석장 일격(S001)으로 인과 3~5 축적 후 사용하는 것이 최적 루트.",
-      "sijo_position": "종장 첫 슬롯 [3] — 인과 소모 피날레",
-      "class_synergy": [
-        "S001",
-        "S007",
-        "S008"
-      ],
-      "upgrade_cost": 125,
-      "values": {
-        "damage_per_karma": 8,
-        "min_damage": 8,
-        "consumes_all_karma": true
-      }
-    },
-    {
-      "id": "S010",
-      "name": {
-        "ko": "금강반격",
-        "romanized": "Geumgang Bangyeok",
-        "en": "Vajra Counter"
-      },
-      "beat": 5,
-      "cost": 1,
-      "type": "attack",
-      "subtypes": [
-        "counter",
-        "thorns"
-      ],
-      "rarity": 3,
-      "rarity_stars": "★★★☆☆",
-      "effect": {
-        "ko": "적에게 4 피해를 입힌다. 가시 수치만큼 추가 피해를 입힌다. 방어도 3을 획득한다.",
-        "en": "Deal 4 damage to an enemy. Deal additional damage equal to your Thorns value. Gain 3 Block."
-      },
-      "effect_upgraded": {
-        "ko": "적에게 6 피해를 입힌다. 가시 수치의 1.5배 추가 피해. 방어도 4를 획득한다.",
-        "en": "Deal 6 damage to an enemy. Additional damage equals 1.5× your Thorns value. Gain 4 Block."
-      },
-      "flavor_text": {
-        "ko": "막는 것과 치는 것이 하나다 — 금강의 일격에 방어와 공격이 합일한다.",
-        "en": "Defending and striking are one — in the Vajra blow, block and attack become a single act."
-      },
-      "balance_rationale": "1코스트 방어+가시 연계 공격. 가시 호신(S007)과 콤보 시 4+3=7피해 + 방어도 3. 방어와 공격을 동시에 처리하는 인과 아키타입의 효율 카드.",
-      "sijo_position": "중장·종장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S007",
-        "S009"
-      ],
-      "upgrade_cost": 75,
-      "values": {
-        "damage": 4,
-        "bonus_equals_thorns": true,
-        "block": 3
-      }
-    },
-    {
-      "id": "S011",
-      "name": {
-        "ko": "석장 회전",
-        "romanized": "Seokjang Hoejeon",
-        "en": "Staff Spin"
-      },
-      "beat": 4,
-      "cost": 2,
-      "type": "attack",
-      "subtypes": [
-        "strike",
-        "aoe",
-        "karma"
-      ],
-      "rarity": 3,
-      "rarity_stars": "★★★☆☆",
-      "effect": {
-        "ko": "모든 적에게 5 피해를 입힌다. 인과 2를 획득한다.",
-        "en": "Deal 5 damage to ALL enemies. Gain 2 Karma."
-      },
-      "effect_upgraded": {
-        "ko": "모든 적에게 7 피해를 입힌다. 인과 2를 획득한다.",
-        "en": "Deal 7 damage to ALL enemies. Gain 2 Karma."
-      },
-      "flavor_text": {
-        "ko": "석장을 빙그레 돌리면 — 사방의 적이 바람에 쓸리듯 쓰러진다.",
-        "en": "Spin the staff in a great arc — enemies on all sides fall as if swept by the wind."
-      },
-      "balance_rationale": "2코스트 광역 공격 + 인과 생성. 5 AoE는 2코스트 AoE 중 낮지만 인과 2를 동시에 생성. 다수 적 전투에서 인과를 빠르게 쌓는 핵심 카드.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S009",
-        "S001"
-      ],
-      "upgrade_cost": 100,
-      "values": {
-        "damage": 5,
-        "is_aoe": true,
-        "karma_gain": 2
-      }
-    },
-    {
-      "_comment": "=== 수행·방어 아키타입 ===",
-      "id": "S012",
-      "name": {
-        "ko": "화두",
-        "romanized": "Hwadu",
-        "en": "Koan"
-      },
-      "beat": 3,
-      "cost": 1,
-      "type": "spell",
-      "subtypes": [
-        "draw",
-        "buff"
-      ],
-      "rarity": 2,
-      "rarity_stars": "★★☆☆☆",
-      "effect": {
-        "ko": "카드 2장을 드로우한다. 이번 턴 방어 카드 사용 시 방어도 +2 추가.",
-        "en": "Draw 2 cards. This turn, each Block card played grants +2 additional Block."
-      },
-      "effect_upgraded": {
-        "ko": "카드 2장을 드로우한다. 이번 턴 방어 카드 사용 시 방어도 +3 추가.",
-        "en": "Draw 2 cards. This turn, each Block card played grants +3 additional Block."
-      },
-      "flavor_text": {
-        "ko": "화두 하나를 붙들면 — 모든 것이 선명해지고 길이 보인다.",
-        "en": "Hold onto a single koan — and all things grow clear, the path becomes visible."
-      },
-      "balance_rationale": "1코스트 드로우 + 방어 시너지 버프. 드로우 2장은 1코스트 적정 가치. 수행 아키타입에서 방어도를 극대화하는 연계 카드. S004(염불)+화두 시 9+3=12 방어도 효율.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S003",
-        "S004",
-        "S005"
-      ],
-      "upgrade_cost": 50,
-      "values": {
-        "draw": 2,
-        "block_bonus_per_block_card_this_turn": 2
-      }
-    },
-    {
-      "id": "S013",
-      "name": {
-        "ko": "수행의 경지",
-        "romanized": "Suhaeng-ui Gyeongji",
-        "en": "Realm of Practice"
-      },
-      "beat": 4,
-      "cost": 2,
-      "type": "skill",
-      "subtypes": [
-        "defense",
-        "heal",
-        "buff"
-      ],
-      "rarity": 4,
-      "rarity_stars": "★★★★☆",
-      "effect": {
-        "ko": "방어도 8을 획득한다. 체력 4를 회복한다. 이번 턴 기를 소모하지 않은 카드 1장당 방어도 1을 추가로 획득한다.",
-        "en": "Gain 8 Block. Heal 4 HP. Gain 1 additional Block for each card played without spending Qi this turn."
-      },
-      "effect_upgraded": {
-        "ko": "방어도 10을 획득한다. 체력 6을 회복한다. 이번 턴 기를 소모하지 않은 카드 1장당 방어도 2를 추가로 획득한다.",
-        "en": "Gain 10 Block. Heal 6 HP. Gain 2 additional Block for each card played without spending Qi this turn."
-      },
-      "flavor_text": {
-        "ko": "수행이 깊어질수록 상처가 아무는 속도도 빨라진다 — 몸이 법에 따라 움직인다.",
-        "en": "The deeper the practice, the faster the wounds heal — the body moves in accordance with the Dharma."
-      },
-      "balance_rationale": "2코스트 방어 + 체력 회복 + 조건부 방어 증가. 8방어+4회복은 2코스트 과분하지만 조건부 추가 방어는 0코스트 카드와 시너지 요구. 수행 아키타입의 지구전 핵심 카드.",
-      "sijo_position": "중장·종장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S003",
-        "S004",
-        "S005"
-      ],
-      "upgrade_cost": 100,
-      "values": {
-        "block": 8,
-        "heal": 4,
-        "block_per_free_card_this_turn": 1
-      }
-    },
-    {
-      "id": "S014",
-      "name": {
-        "ko": "공즉시색",
-        "romanized": "Gong-jeuk-si-saek",
-        "en": "Form is Emptiness"
-      },
-      "beat": 5,
-      "cost": 3,
-      "type": "spell",
-      "subtypes": [
-        "defense",
-        "aoe",
-        "buff"
-      ],
-      "rarity": 5,
-      "rarity_stars": "★★★★★",
-      "effect": {
-        "ko": "방어도 15를 획득한다. 모든 적에게 약화 3을 부여한다. 다음 턴 카드 1장을 추가로 드로우한다.",
-        "en": "Gain 15 Block. Apply 3 Weaken to ALL enemies. Draw 1 additional card next turn."
-      },
-      "effect_upgraded": {
-        "ko": "방어도 18을 획득한다. 모든 적에게 약화 4를 부여한다. 다음 턴 카드 2장을 추가로 드로우한다.",
-        "en": "Gain 18 Block. Apply 4 Weaken to ALL enemies. Draw 2 additional cards next turn."
-      },
-      "flavor_text": {
-        "ko": "색이 공이요, 공이 색이라 — 견고한 것도 비고, 비어있는 것도 단단하다.",
-        "en": "Form is emptiness, emptiness is form — the solid is void, and the void is solid."
-      },
-      "balance_rationale": "3코스트 방어+광역 약화+드로우. 15방어+약화3+드로우1은 3코스트 최고 효율이지만 종장 슬롯 전용 카드. 수행 아키타입의 지구전 피니셔. 시조 종장 완성 시 천지기 패시브로 기 추가 회복.",
-      "sijo_position": "종장 둘째 슬롯 [5] — 수행 지구전 피날레",
-      "class_synergy": [
-        "S005",
-        "S013"
-      ],
-      "upgrade_cost": 150,
-      "values": {
-        "block": 15,
-        "weaken_aoe": 3,
-        "draw_next_turn": 1
-      }
-    },
-    {
-      "id": "S015",
-      "name": {
-        "ko": "해탈의 기운",
-        "romanized": "Haetal-ui Giun",
-        "en": "Aura of Liberation"
-      },
-      "beat": 4,
-      "cost": 2,
-      "type": "skill",
-      "subtypes": [
-        "heal",
-        "buff"
-      ],
-      "rarity": 3,
-      "rarity_stars": "★★★☆☆",
-      "effect": {
-        "ko": "체력 6을 회복한다. 기 2를 획득한다. 이번 턴 피해를 받으면 그 피해의 절반을 회복한다.",
-        "en": "Heal 6 HP. Gain 2 Qi. If you take damage this turn, recover half of it as HP."
-      },
-      "effect_upgraded": {
-        "ko": "체력 8을 회복한다. 기 2를 획득한다. 이번 턴 피해를 받으면 그 피해의 절반을 회복한다.",
-        "en": "Heal 8 HP. Gain 2 Qi. If you take damage this turn, recover half of it as HP."
-      },
-      "flavor_text": {
-        "ko": "해탈이란 아프지 않음이 아니라 — 아픔 속에서도 자유로운 것이다.",
-        "en": "Liberation is not freedom from pain — it is freedom even within pain."
-      },
-      "balance_rationale": "2코스트 회복 + 기 획득 + 피해 반감. 회복 6 + 기 2는 2코스트 적정. 피해 반감은 인과 아키타입에서도 활용 가능한 하이브리드 카드. 수행 아키타입의 지속 생존력 제공.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S003",
-        "S013"
-      ],
-      "upgrade_cost": 100,
-      "values": {
-        "heal": 6,
-        "qi_gain": 2,
-        "damage_to_heal_ratio": 0.5
-      }
-    },
-    {
-      "id": "S016",
-      "name": {
-        "ko": "범종 울림",
-        "romanized": "Beomjong Urrim",
-        "en": "Temple Bell Toll"
-      },
-      "beat": 3,
-      "cost": 1,
-      "type": "spell",
-      "subtypes": [
-        "debuff",
-        "aoe"
-      ],
-      "rarity": 2,
-      "rarity_stars": "★★☆☆☆",
-      "effect": {
-        "ko": "모든 적에게 혼란 2를 부여한다. (혼란: 다음 공격 피해 2 감소, 2회 지속)",
-        "en": "Apply 2 Confusion to ALL enemies. (Confusion: next attacks deal 2 less damage, lasts 2 hits)"
-      },
-      "effect_upgraded": {
-        "ko": "모든 적에게 혼란 3을 부여한다.",
-        "en": "Apply 3 Confusion to ALL enemies."
-      },
-      "flavor_text": {
-        "ko": "범종 소리가 전장에 울려 퍼지면 — 적의 정신이 흐트러지고 손발이 느려진다.",
-        "en": "When the temple bell rings across the battlefield — the enemy's mind scatters and their limbs slow."
-      },
-      "balance_rationale": "1코스트 광역 약화 계열 디버프. 혼란 2 = 적 1명당 4피해 감소(2×2). 다수 적 상황에서 효율 극대. 수행 아키타입에서 피해를 줄여 방어도 절감 효과를 간접 제공.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S004",
-        "S005",
-        "S013"
-      ],
-      "upgrade_cost": 50,
-      "values": {
-        "confusion": 2,
-        "is_aoe": true
-      }
-    },
-    {
-      "_comment": "=== 파계·역전 아키타입 ===",
-      "id": "S017",
-      "name": {
-        "ko": "분노의 일갈",
-        "romanized": "Bunno-ui Ilgal",
-        "en": "Furious Roar"
-      },
-      "beat": 3,
-      "cost": 1,
-      "type": "attack",
-      "subtypes": [
-        "strike",
-        "breakthrough",
-        "debuff"
-      ],
-      "rarity": 3,
-      "rarity_stars": "★★★☆☆",
-      "effect": {
-        "ko": "적에게 6 피해를 입힌다. 파계 상태이면 적에게 약화 2를 추가로 부여한다.",
-        "en": "Deal 6 damage to an enemy. If in Breakthrough state, also apply 2 Weaken to the enemy."
-      },
-      "effect_upgraded": {
-        "ko": "적에게 8 피해를 입힌다. 파계 상태이면 약화 3을 추가로 부여한다.",
-        "en": "Deal 8 damage to an enemy. If in Breakthrough state, also apply 3 Weaken."
-      },
-      "flavor_text": {
-        "ko": "계율도, 자비도 잊은 순간의 분노 — 그 일갈 하나가 전장을 뒤흔든다.",
-        "en": "The rage of a moment when vows and compassion are both forgotten — that single roar shakes the battlefield."
-      },
-      "balance_rationale": "1코스트 공격 + 파계 조건부 약화. 기본 6피해는 기준 동일. 파계 시 약화 2 = 이후 공격 50% 강화 효과. 파계 아키타입에서 피해+디버프 복합 카드.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S006",
-        "S018",
-        "S019"
-      ],
-      "upgrade_cost": 75,
-      "values": {
-        "damage": 6,
-        "breakthrough_weaken": 2
-      }
-    },
-    {
-      "id": "S018",
-      "name": {
-        "ko": "배수진",
-        "romanized": "Baesujeun",
-        "en": "Last Stand"
-      },
-      "beat": 4,
-      "cost": 2,
-      "type": "attack",
-      "subtypes": [
-        "strike",
-        "breakthrough"
-      ],
-      "rarity": 4,
-      "rarity_stars": "★★★★☆",
-      "effect": {
-        "ko": "적에게 (최대 HP - 현재 HP)의 50%에 해당하는 피해를 입힌다. 최소 8, 최대 30.",
-        "en": "Deal damage equal to 50% of (Max HP - Current HP). Minimum 8, maximum 30."
-      },
-      "effect_upgraded": {
-        "ko": "적에게 (최대 HP - 현재 HP)의 70%에 해당하는 피해를 입힌다. 최소 10, 최대 40.",
-        "en": "Deal damage equal to 70% of (Max HP - Current HP). Minimum 10, maximum 40."
-      },
-      "flavor_text": {
-        "ko": "물러설 곳이 없으면 — 앞으로 나아가는 것만이 살 길이다.",
-        "en": "When there is nowhere to retreat — the only path to survival is to advance."
-      },
-      "balance_rationale": "2코스트 결손 HP 비례 공격. HP가 가득 찬 초반엔 최소 8피해로 약하지만 HP 60 결손 시 30피해. 파계 상태(HP 40% 이하, 최대 HP 80 기준 결손 48 이상) = 24피해 이상 보장. 파계 아키타입의 주력 딜러.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S006",
-        "S017",
-        "S019"
-      ],
-      "upgrade_cost": 125,
-      "values": {
-        "damage_pct_of_missing_hp": 0.5,
-        "min_damage": 8,
-        "max_damage": 30
-      }
-    },
-    {
-      "id": "S019",
-      "name": {
-        "ko": "불굴의 기세",
-        "romanized": "Bulgul-ui Gise",
-        "en": "Indomitable Spirit"
-      },
-      "beat": 3,
-      "cost": 1,
-      "type": "skill",
-      "subtypes": [
-        "buff",
-        "breakthrough"
-      ],
-      "rarity": 3,
-      "rarity_stars": "★★★☆☆",
-      "effect": {
-        "ko": "기 2를 획득한다. 파계 상태이면 이번 턴 모든 공격 카드 피해 +4.",
-        "en": "Gain 2 Qi. If in Breakthrough state, all attack cards this turn deal +4 additional damage."
-      },
-      "effect_upgraded": {
-        "ko": "기 3을 획득한다. 파계 상태이면 이번 턴 모든 공격 카드 피해 +6.",
-        "en": "Gain 3 Qi. If in Breakthrough state, all attack cards this turn deal +6 additional damage."
-      },
-      "flavor_text": {
-        "ko": "쓰러질 것 같을수록 기세가 오른다 — 승병의 정신은 부러질지언정 굽히지 않는다.",
-        "en": "The closer to falling, the fiercer the spirit rises — the monk-soldier bends not, even as they may break."
-      },
-      "balance_rationale": "1코스트 기 회복 + 파계 공격 강화. 기 2는 1코스트 기 획득으로 적정. 파계 시 전체 공격 +4는 S006(12)·S017(10)·S018(가변)과 콤보 시 폭발적. 파계 아키타입의 행동 강화 카드.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S006",
-        "S017",
-        "S018"
-      ],
-      "upgrade_cost": 75,
-      "values": {
-        "qi_gain": 2,
-        "breakthrough_all_attack_bonus": 4
-      }
-    },
-    {
-      "id": "S020",
-      "name": {
-        "ko": "사즉생",
-        "romanized": "Sajeukssaeng",
-        "en": "Death Becomes Life"
-      },
-      "beat": 5,
-      "cost": 3,
-      "type": "attack",
-      "subtypes": [
-        "strike",
-        "breakthrough",
-        "aoe"
-      ],
-      "rarity": 5,
-      "rarity_stars": "★★★★★",
-      "effect": {
-        "ko": "모든 적에게 15 피해를 입힌다. 파계 상태이면 25 피해를 입히고 체력 10을 회복한다.",
-        "en": "Deal 15 damage to ALL enemies. If in Breakthrough state, deal 25 damage and heal 10 HP."
-      },
-      "effect_upgraded": {
-        "ko": "모든 적에게 18 피해를 입힌다. 파계 상태이면 32 피해를 입히고 체력 15를 회복한다.",
-        "en": "Deal 18 damage to ALL enemies. If in Breakthrough state, deal 32 damage and heal 15 HP."
-      },
-      "flavor_text": {
-        "ko": "필사즉생, 필생즉사 — 죽기를 각오한 자에게 생이 돌아온다.",
-        "en": "Determined to die, one lives — determined to live, one dies. Only those resolved to fall shall rise."
-      },
-      "balance_rationale": "3코스트 파계 AoE 피니셔. 기본 15 AoE는 3코스트 기준 상위권. 파계 시 25 AoE + 체력 10 회복 = 역전 판타지의 완성. 이순신의 '필사즉생' 정신을 카드로 구현. 파계 아키타입의 클라이맥스 카드.",
-      "sijo_position": "종장 둘째 슬롯 [5] — 파계 역전 피날레",
-      "class_synergy": [
-        "S006",
-        "S017",
-        "S018",
-        "S019"
-      ],
-      "upgrade_cost": 150,
-      "values": {
-        "damage": 15,
-        "is_aoe": true,
-        "breakthrough_damage": 25,
-        "breakthrough_heal": 10
-      }
-    },
-    {
-      "_comment": "=== 해금 카드 S021~S027 (unlock_condition 필드 추가) ===",
-      "id": "S021",
-      "name": {
-        "ko": "사명의 불꽃",
-        "romanized": "Samyeong-ui Bulkkot",
-        "en": "Flame of Duty"
-      },
-      "beat": 4,
-      "cost": 2,
-      "type": "attack",
-      "subtypes": [
-        "strike",
-        "karma",
-        "dot"
-      ],
-      "rarity": 4,
-      "rarity_stars": "★★★★☆",
-      "effect": {
-        "ko": "적에게 10 피해를 입힌다. 화상 3을 부여한다. 인과 1을 획득한다.",
-        "en": "Deal 10 damage to an enemy. Apply 3 Burn. Gain 1 Karma."
-      },
-      "effect_upgraded": {
-        "ko": "적에게 13 피해를 입힌다. 화상 4를 부여한다. 인과 2를 획득한다.",
-        "en": "Deal 13 damage to an enemy. Apply 4 Burn. Gain 2 Karma."
-      },
-      "flavor_text": {
-        "ko": "사명대사의 이름은 곧 사명이었다 — 나라를 위한 불꽃은 꺼지지 않는다.",
-        "en": "The name Samyeong was his destiny — a flame lit for the nation never goes out."
-      },
-      "balance_rationale": "2코스트 공격+DoT+인과. 10피해 + 화상3(총 6피해) + 인과1. 인과·반격 + DoT 하이브리드 카드. 해금 카드로 두 아키타입을 연결하는 역할.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S001",
-        "S009",
-        "S011"
-      ],
-      "upgrade_cost": 100,
-      "unlock_condition": {
-        "type": "boss_clear",
-        "character": "seungbyeong",
-        "required_count": 1,
-        "description": "승병으로 임의 막 보스를 1회 처치한다."
-      },
-      "values": {
-        "damage": 10,
-        "burn": 3,
-        "karma_gain": 1
-      }
-    },
-    {
-      "id": "S022",
-      "name": {
-        "ko": "서산의 지혜",
-        "romanized": "Seosan-ui Jihye",
-        "en": "Wisdom of Seosan"
-      },
-      "beat": 3,
-      "cost": 1,
-      "type": "spell",
-      "subtypes": [
-        "draw",
-        "buff",
-        "meditation_defense"
-      ],
-      "rarity": 4,
-      "rarity_stars": "★★★★☆",
-      "effect": {
-        "ko": "카드 3장을 드로우한다. 방어도 3을 획득한다. 다음 카드가 방어 계열이면 추가로 카드 1장을 드로우한다.",
-        "en": "Draw 3 cards. Gain 3 Block. If the next card played is a Block card, draw 1 additional card."
-      },
-      "effect_upgraded": {
-        "ko": "카드 3장을 드로우한다. 방어도 5를 획득한다. 다음 카드가 방어 계열이면 추가로 카드 2장을 드로우한다.",
-        "en": "Draw 3 cards. Gain 5 Block. If the next card played is a Block card, draw 2 additional cards."
-      },
-      "flavor_text": {
-        "ko": "서산대사의 가르침은 넓고 깊었으니 — 알면 알수록 더 많은 길이 열렸다.",
-        "en": "Master Seosan's teachings were vast and deep — the more one learned, the more paths opened."
-      },
-      "balance_rationale": "1코스트 드로우 3장 + 방어 + 연계 드로우. 1코스트로 드로우 3장은 강력하지만 해금 카드로 조건 있음. 수행 아키타입에서 핸드를 폭발적으로 늘리는 엔진 카드.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S004",
-        "S005",
-        "S012"
-      ],
-      "upgrade_cost": 100,
-      "unlock_condition": {
-        "type": "boss_clear",
-        "character": "seungbyeong",
-        "required_count": 1,
-        "description": "승병으로 임의 막 보스를 1회 처치한다."
-      },
-      "values": {
-        "draw": 3,
-        "block": 3,
-        "chain_draw_if_block_card": 1
-      }
-    },
-    {
-      "id": "S023",
-      "name": {
-        "ko": "인과의 고리",
-        "romanized": "Ingwa-ui Gori",
-        "en": "Karmic Chain"
-      },
-      "beat": 4,
-      "cost": 2,
-      "type": "skill",
-      "subtypes": [
-        "buff",
-        "karma"
-      ],
-      "rarity": 4,
-      "rarity_stars": "★★★★☆",
-      "effect": {
-        "ko": "인과 3을 획득한다. 이번 전투에서 처음 사용하는 카드라면 인과 5를 획득한다.",
-        "en": "Gain 3 Karma. If this is the first time you play this card in this battle, gain 5 Karma instead."
-      },
-      "effect_upgraded": {
-        "ko": "인과 4를 획득한다. 이번 전투에서 처음 사용하는 카드라면 인과 7을 획득한다.",
-        "en": "Gain 4 Karma. If this is the first time you play this card in this battle, gain 7 Karma instead."
-      },
-      "flavor_text": {
-        "ko": "첫 인연이 가장 깊다 — 처음 인과의 고리를 잡는 순간이 모든 것을 결정한다.",
-        "en": "The first connection runs deepest — the moment you first grasp the karmic chain decides everything."
-      },
-      "balance_rationale": "2코스트 인과 대량 획득. 첫 사용 시 인과 5는 S009(인과응보)와 콤보 시 40피해. 이후엔 인과 3으로 약화. 덱에 1장만 넣어야 하는 전략 카드. 인과 아키타입의 점화 카드.",
-      "sijo_position": "중장 첫 슬롯 [3]",
-      "class_synergy": [
-        "S009",
-        "S008"
-      ],
-      "upgrade_cost": 100,
-      "unlock_condition": {
-        "type": "act_clear",
-        "character": "seungbyeong",
-        "act": 2,
-        "required_count": 1,
-        "description": "승병으로 2막(Act 2) 보스를 처치한다."
-      },
-      "values": {
-        "karma_gain": 3,
-        "karma_gain_first_play": 5
-      }
-    },
-    {
-      "id": "S024",
-      "name": {
-        "ko": "열반",
-        "romanized": "Yeolban",
-        "en": "Nirvana"
-      },
-      "beat": 5,
-      "cost": 3,
-      "type": "skill",
-      "subtypes": [
-        "heal",
-        "buff",
-        "meditation_defense"
-      ],
-      "rarity": 5,
-      "rarity_stars": "★★★★★",
-      "effect": {
-        "ko": "체력을 최대 체력의 30%만큼 회복한다. 이번 전투 동안 매 턴 종료 시 방어도 5와 체력 2를 획득한다.",
-        "en": "Heal HP equal to 30% of your max HP. For the rest of this battle, gain 5 Block and heal 2 HP at the end of each turn."
-      },
-      "effect_upgraded": {
-        "ko": "체력을 최대 체력의 40%만큼 회복한다. 이번 전투 동안 매 턴 종료 시 방어도 7과 체력 3을 획득한다.",
-        "en": "Heal HP equal to 40% of your max HP. For the rest of this battle, gain 7 Block and heal 3 HP at the end of each turn."
-      },
-      "flavor_text": {
-        "ko": "열반이란 모든 번뇌가 사라진 자리 — 그 고요함 속에서 몸과 마음이 온전해진다.",
-        "en": "Nirvana is the place where all afflictions fall away — in that stillness, body and mind become whole."
-      },
-      "balance_rationale": "3코스트 지속 회복+방어 소환. 즉시 회복 30% + 매 턴 방어5+회복2. 전투가 길어질수록 가치 극대화. 수행 아키타입의 궁극 지구전 카드. 해금 전설 등급.",
-      "sijo_position": "종장 둘째 슬롯 [5] — 수행 궁극 카드",
-      "class_synergy": [
-        "S005",
-        "S013",
-        "S015"
-      ],
-      "upgrade_cost": 150,
-      "unlock_condition": {
-        "type": "act_clear",
-        "character": "seungbyeong",
-        "act": 2,
-        "required_count": 1,
-        "description": "승병으로 2막(Act 2) 보스를 처치한다."
-      },
-      "values": {
-        "heal_pct_of_max_hp": 0.3,
-        "block_per_turn_end": 5,
-        "heal_per_turn_end": 2
-      }
-    },
-    {
-      "id": "S025",
-      "name": {
-        "ko": "파계광풍",
-        "romanized": "Pagye Gwangpung",
-        "en": "Whirlwind of Broken Vows"
-      },
-      "beat": 5,
-      "cost": 2,
-      "type": "attack",
-      "subtypes": [
-        "strike",
-        "breakthrough",
-        "aoe"
-      ],
-      "rarity": 5,
-      "rarity_stars": "★★★★★",
-      "effect": {
-        "ko": "모든 적에게 12 피해를 입힌다. 파계 상태이면 모든 적에게 약화 3과 추가 8 피해를 입힌다.",
-        "en": "Deal 12 damage to ALL enemies. If in Breakthrough state, also apply 3 Weaken and deal 8 additional damage to ALL enemies."
-      },
-      "effect_upgraded": {
-        "ko": "모든 적에게 15 피해를 입힌다. 파계 상태이면 약화 4와 추가 10 피해.",
-        "en": "Deal 15 damage to ALL enemies. If in Breakthrough state, apply 4 Weaken and deal 10 additional damage."
-      },
-      "flavor_text": {
-        "ko": "계율을 버린 승려가 전장에 서면 — 적도, 아군도, 하늘도 두려워한다.",
-        "en": "When a monk who has cast off all vows stands on the battlefield — enemy, ally, and heaven alike tremble."
-      },
-      "balance_rationale": "2코스트 AoE + 파계 폭딜+디버프. 12 AoE는 2코스트 기준 강력. 파계 시 20 AoE + 약화3 = 차후 피해 50% 증폭. S019(파계 +4) 콤보 시 파계 24 AoE + 약화3. 파계 아키타입의 광역 딜러 해금 카드.",
-      "sijo_position": "중장·종장 둘째 슬롯 [4]",
-      "class_synergy": [
-        "S006",
-        "S019",
-        "S020"
-      ],
-      "upgrade_cost": 125,
-      "unlock_condition": {
-        "type": "total_runs_completed",
-        "character": "seungbyeong",
-        "count": 3,
-        "description": "승병으로 런을 3회 완주한다."
-      },
-      "values": {
-        "damage": 12,
-        "is_aoe": true,
-        "breakthrough_damage_bonus": 8,
-        "breakthrough_weaken_aoe": 3
-      }
-    },
-    {
-      "id": "S026",
-      "name": {
-        "ko": "금강불괴",
-        "romanized": "Geumgang Bulgwe",
-        "en": "Indestructible Vajra"
-      },
-      "beat": 4,
-      "cost": 3,
-      "type": "skill",
-      "subtypes": [
-        "defense",
-        "buff",
-        "permanent"
-      ],
-      "rarity": 5,
-      "rarity_stars": "★★★★★",
-      "effect": {
-        "ko": "방어도 20을 획득한다. 이번 전투 동안 매 턴 시작 시 방어도 4를 획득한다.",
-        "en": "Gain 20 Block. For the rest of this battle, gain 4 Block at the start of each turn."
-      },
-      "effect_upgraded": {
-        "ko": "방어도 24를 획득한다. 이번 전투 동안 매 턴 시작 시 방어도 6을 획득한다.",
-        "en": "Gain 24 Block. For the rest of this battle, gain 6 Block at the start of each turn."
-      },
-      "flavor_text": {
-        "ko": "금강불괴의 몸이란 — 어떤 칼도, 어떤 불도, 어떤 말도 꿰뚫지 못하는 경지다.",
-        "en": "The body of Indestructible Vajra — a state no blade, no flame, no word can pierce."
-      },
-      "balance_rationale": "3코스트 즉시+지속 방어. 20방어 + 매 턴 4방어는 장기전에서 총 방어도 40+ 가치. 수행 아키타입의 최강 방어 해금 카드. 공즉시색(S014)과 함께 수행 빌드의 양대 축.",
-      "sijo_position": "종장 둘째 슬롯 [5] — 수행 방어 궁극",
-      "class_synergy": [
-        "S005",
-        "S013",
-        "S014"
-      ],
-      "upgrade_cost": 150,
-      "unlock_condition": {
-        "type": "total_runs_completed",
-        "character": "seungbyeong",
-        "count": 3,
-        "description": "승병으로 런을 3회 완주한다."
-      },
-      "values": {
-        "block": 20,
-        "block_per_turn_start": 4
-      }
-    },
-    {
-      "id": "S027",
-      "name": {
-        "ko": "삼세인과",
-        "romanized": "Samse Ingwa",
-        "en": "Karma of Three Lives"
-      },
-      "beat": 5,
-      "cost": 3,
-      "type": "attack",
-      "subtypes": [
-        "counter",
-        "karma",
-        "aoe"
-      ],
-      "rarity": 5,
-      "rarity_stars": "★★★★★",
-      "effect": {
-        "ko": "인과를 모두 소모한다. 소모한 인과 1당 모든 적에게 5 피해를 입힌다. 이 카드로 처치한 적의 수만큼 인과 1을 획득한다.",
-        "en": "Consume all Karma. Deal 5 damage to ALL enemies per Karma consumed. Gain 1 Karma for each enemy killed by this card."
-      },
-      "effect_upgraded": {
-        "ko": "인과를 모두 소모한다. 소모한 인과 1당 모든 적에게 7 피해를 입힌다. 처치한 적의 수만큼 인과 2를 획득한다.",
-        "en": "Consume all Karma. Deal 7 damage to ALL enemies per Karma consumed. Gain 2 Karma per enemy killed."
-      },
-      "flavor_text": {
-        "ko": "전생과 현생과 내생의 인과가 이 한 순간에 수렴한다 — 그 업보의 무게로 모든 적이 쓰러진다.",
-        "en": "The karma of past, present, and future life converges in this single moment — beneath that weight of fate, all enemies fall."
-      },
-      "balance_rationale": "3코스트 인과 소모 광역 피니셔. 인과 5 소모 시 모든 적에게 25피해 — S009(단일 40)의 광역 버전. 광역 처치 시 인과 재획득으로 연속 사용 가능성. 인과 아키타입의 최종 해금 전설 카드. 인과응보(S009)+삼세인과 = 인과 소모 콤보 빌드 완성.",
-      "sijo_position": "종장 둘째 슬롯 [5] — 인과 광역 궁극 피날레",
-      "class_synergy": [
-        "S009",
-        "S011",
-        "S023"
-      ],
-      "upgrade_cost": 150,
-      "unlock_condition": {
-        "type": "boss_clear",
-        "character": "seungbyeong",
-        "act": 3,
-        "required_count": 1,
-        "description": "승병으로 최종 보스(3막)를 처치한다."
-      },
-      "values": {
-        "damage_per_karma_aoe": 5,
-        "is_aoe": true,
-        "consumes_all_karma": true,
-        "karma_gain_per_kill": 1
-      }
-    }
-  ],
-  "status_conditions_defined": [
-    {
-      "id": "인과",
-      "ko": "인과",
-      "en": "Karma",
-      "description": "전투 중 누적되는 승병 전용 자원. 피해를 받거나 특정 카드 사용 시 획득. 인과응보(S009)·삼세인과(S027) 사용 시 소모. 기(qi) 시스템 활용.",
-      "duration_type": "stacking_persistent",
-      "visual_note": "캐릭터 주변에 황금빛 불경 문자 이펙트"
-    },
-    {
-      "id": "파계",
-      "ko": "파계 상태",
-      "en": "Breakthrough State",
-      "description": "현재 HP가 최대 HP의 40% 이하일 때 자동 활성화. 일부 카드 효과가 강화됨. HP 회복으로 40% 초과 시 비활성화.",
-      "duration_type": "conditional_auto",
-      "visual_note": "캐릭터 아우라가 붉게 타오르는 이펙트"
-    },
-    {
-      "id": "가시",
-      "ko": "가시",
-      "en": "Thorns",
-      "description": "공격받을 때 공격자에게 가시 수치만큼 피해를 입힌다. 승병 전용 반격 메커니즘.",
-      "duration_type": "stacking_persistent",
-      "visual_note": "캐릭터 주변에 가시 광환 이펙트"
-    },
-    {
-      "id": "혼란",
-      "ko": "혼란",
-      "en": "Confusion",
-      "description": "혼란 상태의 적은 공격 시 혼란 수치만큼 피해가 감소한다. 혼란 수치는 공격 1회당 1 감소.",
-      "duration_type": "stacking_decay_on_attack",
-      "visual_note": "적 캐릭터 머리 위에 흔들리는 물음표 이펙트"
-    }
-  ]
 }

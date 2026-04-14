@@ -32,13 +32,13 @@
             "ko": "노인을 일으켜 부축하여 드린다.",
             "en": "Help the old man to his feet."
           },
-          "effect_type": "hp_gain",
-          "effect_value": 8,
           "result_text": {
             "ko": "노인이 감읍하여 호주머니에서 상처 치료약을 꺼내 주시는도다. HP 8 회복.",
             "en": "The grateful old man pulls a healing salve from his pouch. Restore 8 HP."
           },
-          "note": "선행 선택. 중간 HP 회복."
+          "note": "선행 선택. 중간 HP 회복.",
+          "effect_type": "hp_gain",
+          "effect_value": 8
         },
         {
           "id": "gold",
@@ -46,19 +46,19 @@
             "ko": "\"괜찮으시오?\" 물으며 엽전을 건넨다.",
             "en": "\"Are you alright?\" you ask, offering some coins."
           },
-          "effect_type": "gold_loss",
-          "effect_value": 15,
           "result_text": {
             "ko": "노인이 엽전을 받고 보답으로 귀한 유물 조각을 건네시는도다.",
             "en": "The old man accepts the coins and offers a precious relic fragment in return."
           },
-          "effect_type_bonus": "relic_gain",
-          "effect_value_bonus": 1,
           "result_text_full": {
             "ko": "엽전 15 소비 → 유물 1개 획득.",
             "en": "Spend 15 gold. Gain 1 relic."
           },
-          "note": "금전 소비 후 유물 획득."
+          "note": "금전 소비 후 유물 획득.",
+          "effect_type": "gold_loss",
+          "effect_value": 15,
+          "effect_type_bonus": "relic_gain",
+          "effect_value_bonus": 1
         },
         {
           "id": "ignore",
@@ -66,13 +66,13 @@
             "ko": "못 본 척 길을 재촉한다.",
             "en": "Pretend not to notice and walk past."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "노인의 원망 서린 시선이 등 뒤를 찌르는도다. 아무 일도 일어나지 않느니라.",
             "en": "You feel the old man's reproachful gaze boring into your back. Nothing happens."
           },
-          "note": "중립 결과."
+          "note": "중립 결과.",
+          "effect_type": "none",
+          "effect_value": 0
         },
         {
           "id": "recite_sijo",
@@ -80,16 +80,15 @@
             "ko": "[시상] 시조 한 수를 읊어 노인의 마음을 달래 드린다.",
             "en": "[Sisang] Recite a sijo to soothe the old man's heart."
           },
-          "trigger_condition": "sisang_ge_5",
-          "effect_type": "hp_gain",
-          "effect_value": 12,
-          "effect_type_bonus": "gold_gain",
-          "effect_value_bonus": 10,
           "result_text": {
             "ko": "노인이 눈물을 글썽이며 말한다. \"이리 아름다운 시를 읊는 젊은이라니...\" HP 12 회복, 금화 10 획득.",
             "en": "The old man tears up. \"Such a beautiful poem from one so young...\" Restore 12 HP, gain 10 gold."
           },
-          "note": "시상 5 해금 보너스 선택지. 최선의 결과."
+          "note": "시상 5 해금 보너스 선택지. 최선의 결과.",
+          "effect_type": "hp_gain",
+          "effect_value": 12,
+          "effect_type_bonus": "gold_gain",
+          "effect_value_bonus": 10
         }
       ]
     },
@@ -114,13 +113,13 @@
             "ko": "슬며시 엽전을 쥐어준다.",
             "en": "Slip them some coins and pass through."
           },
-          "effect_type": "gold_loss",
-          "effect_value": 20,
           "result_text": {
             "ko": "포졸들이 슬쩍 엽전을 소매 속에 집어넣고 길을 비켜주느니라. 엽전 20 소비.",
             "en": "The constables pocket the coins and clear the way. Spend 20 gold."
           },
-          "note": "금전 소비로 무사 통과."
+          "note": "금전 소비로 무사 통과.",
+          "effect_type": "gold_loss",
+          "effect_value": 20
         },
         {
           "id": "talk",
@@ -128,13 +127,13 @@
             "ko": "당당히 신분을 밝히고 설파한다.",
             "en": "Boldly declare your identity and try to persuade them."
           },
-          "effect_type": "hp_loss",
-          "effect_value": 5,
           "result_text": {
             "ko": "설전이 길어지더니 포졸이 곤봉을 들어 한 대 후려치는도다. HP 5 손실.",
             "en": "The argument drags on until a constable strikes you with his cudgel. Lose 5 HP."
           },
-          "note": "설득 실패. 소량 HP 손실."
+          "note": "설득 실패. 소량 HP 손실.",
+          "effect_type": "hp_loss",
+          "effect_value": 5
         },
         {
           "id": "fight",
@@ -142,19 +141,19 @@
             "ko": "포졸들을 제압하고 돌파한다.",
             "en": "Overpower the constables and pass through."
           },
-          "effect_type": "hp_loss",
-          "effect_value": 12,
           "result_text": {
             "ko": "포졸을 쓰러뜨렸으나 격투 중 부상을 입었노라. HP 12 손실. 엽전 25 획득.",
             "en": "You defeat the constables but are wounded in the fight. Lose 12 HP. Gain 25 gold."
           },
-          "effect_type_bonus": "gold_gain",
-          "effect_value_bonus": 25,
           "result_text_full": {
             "ko": "HP 12 손실 + 엽전 25 획득.",
             "en": "Lose 12 HP. Gain 25 gold."
           },
-          "note": "전투 결과. HP 손실 + 골드 획득."
+          "note": "전투 결과. HP 손실 + 골드 획득.",
+          "effect_type": "hp_loss",
+          "effect_value": 12,
+          "effect_type_bonus": "gold_gain",
+          "effect_value_bonus": 25
         },
         {
           "id": "minshim_respect",
@@ -162,14 +161,13 @@
             "ko": "[민심 70+] 백성들의 지지를 입어 포졸이 저절로 길을 비켜주느니라.",
             "en": "[Favor 70+] The constables step aside, won over by the people's support for you."
           },
-          "trigger_condition": "minshim_ge_70",
-          "effect_type": "gold_gain",
-          "effect_value": 15,
           "result_text": {
             "ko": "민심이 높으니 포졸마저 존경의 눈빛이로다. 오히려 노자를 건네주느니라. 엽전 15 획득.",
             "en": "Your high public favor commands even the constables' respect. They offer you travel money. Gain 15 gold."
           },
-          "note": "민심 70+ 전용. 무조건 이득."
+          "note": "민심 70+ 전용. 무조건 이득.",
+          "effect_type": "gold_gain",
+          "effect_value": 15
         },
         {
           "id": "sijo_charm",
@@ -177,16 +175,15 @@
             "ko": "[시상] 시조를 읊어 포졸의 마음을 녹인다.",
             "en": "[Sisang] Recite a sijo to soften the constables' hearts."
           },
-          "trigger_condition": "sisang_ge_5",
-          "effect_type": "gold_gain",
-          "effect_value": 10,
-          "effect_type_bonus": "card_gain",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "포졸들이 시조에 감탄하여 길을 비키고, 전투 비법이 적힌 서찰까지 건네느니라. 금화 10 + 카드 1장.",
             "en": "The constables are moved by your poem. They clear the way and hand you a scroll. Gold +10, Card +1."
           },
-          "note": "시상 5 해금 보너스. 골드 + 카드."
+          "note": "시상 5 해금 보너스. 골드 + 카드.",
+          "effect_type": "gold_gain",
+          "effect_value": 10,
+          "effect_type_bonus": "card_gain",
+          "effect_value_bonus": 1
         }
       ]
     },
@@ -211,13 +208,13 @@
             "ko": "원혼의 사연을 들어준다.",
             "en": "Listen to the spirit's tale."
           },
-          "effect_type": "max_hp_gain",
-          "effect_value": 5,
           "result_text": {
             "ko": "원혼의 사연을 들어주니 한이 조금 풀렸는지 은혜로 축복을 내려주는도다. 최대 HP +5.",
             "en": "As you listen, some of her sorrow lifts. In gratitude, she bestows a blessing. Max HP +5."
           },
-          "note": "최대 HP 영구 증가."
+          "note": "최대 HP 영구 증가.",
+          "effect_type": "max_hp_gain",
+          "effect_value": 5
         },
         {
           "id": "exorcise",
@@ -225,14 +222,14 @@
             "ko": "부적을 써서 원혼을 달랜다.",
             "en": "Use a talisman to pacify the spirit."
           },
-          "effect_type": "card_gain",
-          "effect_value": 1,
           "effect_card_pool": "common",
           "result_text": {
             "ko": "원혼이 감읍하며 홀연히 사라지고, 강력한 부적 카드가 남아 있느니라. 카드 1장 획득.",
             "en": "The spirit departs peacefully, leaving behind a powerful talisman card. Gain 1 card."
           },
-          "note": "특수 카드 획득. 부적(blessing) 유형."
+          "note": "특수 카드 획득. 부적(blessing) 유형.",
+          "effect_type": "card_gain",
+          "effect_value": 1
         },
         {
           "id": "flee",
@@ -240,14 +237,14 @@
             "ko": "혼비백산하여 도망친다.",
             "en": "Flee in terror."
           },
-          "effect_type": "debuff",
-          "effect_value": 1,
           "debuff_type": "약화",
           "result_text": {
             "ko": "도망치다 자빠져 다음 전투 시작 시 약화 1로 돌입하느니라.",
             "en": "You trip while fleeing. Start the next combat with 1 Weak."
           },
-          "note": "다음 전투 시작 시 약화 1 적용."
+          "note": "다음 전투 시작 시 약화 1 적용.",
+          "effect_type": "debuff",
+          "effect_value": 1
         }
       ]
     },
@@ -272,19 +269,19 @@
             "ko": "회복약을 구하여 본다. (엽전 30)",
             "en": "Buy a healing potion. (30 gold)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 30,
           "result_text": {
             "ko": "회복약이 효험이 있었도다! 엽전 30 소비, HP 15 회복.",
             "en": "The potion works! Spend 30 gold, restore 15 HP."
           },
-          "effect_type_bonus": "hp_gain",
-          "effect_value_bonus": 15,
           "result_text_full": {
             "ko": "엽전 30 소비 → HP 15 회복.",
             "en": "Spend 30 gold. Restore 15 HP."
           },
-          "note": "금전 소비 + HP 회복."
+          "note": "금전 소비 + HP 회복.",
+          "effect_type": "gold_loss",
+          "effect_value": 30,
+          "effect_type_bonus": "hp_gain",
+          "effect_value_bonus": 15
         },
         {
           "id": "buy_potion",
@@ -292,19 +289,19 @@
             "ko": "정체불명의 강장제를 구한다. (엽전 20)",
             "en": "Buy a mysterious tonic. (20 gold)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 20,
           "result_text": {
             "ko": "강장제를 들이키니 온몸에 기운이 솟구치는도다. 엽전 20 소비, 최대 HP +3.",
             "en": "The tonic invigorates you. Spend 20 gold, Max HP +3."
           },
-          "effect_type_bonus": "max_hp_gain",
-          "effect_value_bonus": 3,
           "result_text_full": {
             "ko": "엽전 20 소비 → 최대 HP +3.",
             "en": "Spend 20 gold. Max HP +3."
           },
-          "note": "저렴한 대신 최대 HP 소폭 증가."
+          "note": "저렴한 대신 최대 HP 소폭 증가.",
+          "effect_type": "gold_loss",
+          "effect_value": 20,
+          "effect_type_bonus": "max_hp_gain",
+          "effect_value_bonus": 3
         },
         {
           "id": "ignore",
@@ -312,13 +309,13 @@
             "ko": "거들떠보지 않고 지나친다.",
             "en": "Walk past without interest."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "행상인이 야유를 퍼붓는도다. 신경 쓸 것 없느니라.",
             "en": "The peddler jeers at you. You pay no mind."
           },
-          "note": "중립."
+          "note": "중립.",
+          "effect_type": "none",
+          "effect_value": 0
         },
         {
           "id": "minshim_discount",
@@ -326,16 +323,15 @@
             "ko": "[민심 70+] 약장수가 명성을 전해 듣고 특별 할인을 제안하느니라.",
             "en": "[Favor 70+] The apothecary, having heard of your renown, offers a special deal."
           },
-          "trigger_condition": "minshim_ge_70",
-          "effect_type": "hp_gain",
-          "effect_value": 20,
-          "effect_type_bonus": "max_hp_gain",
-          "effect_value_bonus": 3,
           "result_text": {
             "ko": "\"영웅에게 파는 약은 공짜지요!\" HP 20 회복, 최대 HP +3.",
             "en": "\"Medicine is free for a hero!\" Restore 20 HP, Max HP +3."
           },
-          "note": "��심 70+ 전용. 무료 대형 회복."
+          "note": "��심 70+ 전용. 무료 대형 회복.",
+          "effect_type": "hp_gain",
+          "effect_value": 20,
+          "effect_type_bonus": "max_hp_gain",
+          "effect_value_bonus": 3
         }
       ]
     },
@@ -360,13 +356,13 @@
             "ko": "정성을 다하여 절을 올린다.",
             "en": "Offer a sincere prayer."
           },
-          "effect_type": "hp_gain",
-          "effect_value": 12,
           "result_text": {
             "ko": "신령이 감응하사 몸의 기운이 회복되는도다. HP 12 회복.",
             "en": "The spirits respond, restoring your vitality. Restore 12 HP."
           },
-          "note": "HP 회복."
+          "note": "HP 회복.",
+          "effect_type": "hp_gain",
+          "effect_value": 12
         },
         {
           "id": "offer_gold",
@@ -374,22 +370,22 @@
             "ko": "제물로 엽전 10냥을 정성껏 바친다.",
             "en": "Offer 10 nyang as tribute."
           },
-          "effect_type": "gold_loss",
-          "effect_value": 10,
           "result_text": {
             "ko": "신령의 은혜로 다음 전투에 강화된 기운으로 임하게 되느니라. 엽전 10 소비, 다음 전투 시작 시 힘 2 버프.",
             "en": "The spirits' blessing strengthens you. Spend 10 gold, gain Strength 2 for the next combat."
-          },
-          "effect_type_bonus": "buff_next_combat",
-          "effect_value_bonus": {
-            "buff": "strength",
-            "stacks": 2
           },
           "result_text_full": {
             "ko": "엽전 10 소비 → 다음 전투 힘(strength) +2.",
             "en": "Spend 10 gold. Next combat: Strength +2."
           },
-          "note": "금전 소비 → 전투 버프."
+          "note": "금전 소비 → 전투 버프.",
+          "effect_type": "gold_loss",
+          "effect_value": 10,
+          "effect_type_bonus": "buff_next_combat",
+          "effect_value_bonus": {
+            "buff": "strength",
+            "stacks": 2
+          }
         },
         {
           "id": "desecrate",
@@ -397,19 +393,19 @@
             "ko": "제물 음식을 몰래 집어먹는다.",
             "en": "Eat the food offerings."
           },
-          "effect_type": "hp_gain",
-          "effect_value": 5,
           "result_text": {
             "ko": "배는 채웠으나 신령이 진노하사 저주를 내리시는도다. HP 5 회복, 최대 HP -5.",
             "en": "Your hunger is sated, but the angered spirits place a curse upon you. Restore 5 HP, Max HP -5."
           },
-          "effect_type_bonus": "max_hp_loss",
-          "effect_value_bonus": 5,
           "result_text_full": {
             "ko": "HP +5 회복 → 최대 HP -5 (영구).",
             "en": "Restore 5 HP. Max HP -5 (permanent)."
           },
-          "note": "단기 이득 + 영구 손해. 리스크 선택."
+          "note": "단기 이득 + 영구 손해. 리스크 선택.",
+          "effect_type": "hp_gain",
+          "effect_value": 5,
+          "effect_type_bonus": "max_hp_loss",
+          "effect_value_bonus": 5
         }
       ]
     },
@@ -434,7 +430,6 @@
             "ko": "소판에 슬쩍 끼어든다. (엽전 15 베팅)",
             "en": "Join the small stakes table. (Bet 15 gold)"
           },
-          "effect_type": "gold_random",
           "effect_value_win": 30,
           "effect_value_lose": -15,
           "win_chance": 0.5,
@@ -446,7 +441,8 @@
             "ko": "패가 나빴느니라. 엽전 15 소실.",
             "en": "A losing hand. Lose 15 gold."
           },
-          "note": "50% 확률로 2배 반환. 도박."
+          "note": "50% 확률로 2배 반환. 도박.",
+          "effect_type": "gold_random"
         },
         {
           "id": "gamble_big",
@@ -454,7 +450,6 @@
             "ko": "대판에 전재산을 건다. (엽전 30 베팅)",
             "en": "Go all-in at the high stakes table. (Bet 30 gold)"
           },
-          "effect_type": "gold_random",
           "effect_value_win": 75,
           "effect_value_lose": -30,
           "win_chance": 0.35,
@@ -466,7 +461,8 @@
             "ko": "빈털터리가 되었느니라. 엽전 30 소실.",
             "en": "You're cleaned out. Lose 30 gold."
           },
-          "note": "35% 확률로 2.5배 반환. 고위험 고수익."
+          "note": "35% 확률로 2.5배 반환. 고위험 고수익.",
+          "effect_type": "gold_random"
         },
         {
           "id": "walk_away",
@@ -474,13 +470,13 @@
             "ko": "구경만 하다 자리를 피한다.",
             "en": "Watch for a while, then leave."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "현명한 처사로다. 아무 일도 없었느니라.",
             "en": "A wise choice. Nothing happens."
           },
-          "note": "중립."
+          "note": "중립.",
+          "effect_type": "none",
+          "effect_value": 0
         }
       ]
     },
@@ -505,7 +501,6 @@
             "ko": "행낭을 열어 살펴본다.",
             "en": "Open the satchel."
           },
-          "effect_type": "random",
           "outcomes": [
             {
               "weight": 40,
@@ -539,7 +534,8 @@
             "ko": "행낭을 열어 내용물을 확인하느니라.",
             "en": "You open the satchel to check its contents."
           },
-          "note": "40% 금전, 35% 카드, 25% HP 손실 트랩."
+          "note": "40% 금전, 35% 카드, 25% HP 손실 트랩.",
+          "effect_type": "random"
         },
         {
           "id": "take_whole",
@@ -547,13 +543,13 @@
             "ko": "행낭째로 들고 간다.",
             "en": "Take the whole satchel."
           },
-          "effect_type": "gold_gain",
-          "effect_value": 20,
           "result_text": {
             "ko": "나중에 열어보니 잡동사니와 엽전 20냥이 섞여 있었느니라.",
             "en": "You open it later to find odds and ends mixed with 20 nyang."
           },
-          "note": "안전하지만 소량 금전."
+          "note": "안전하지만 소량 금전.",
+          "effect_type": "gold_gain",
+          "effect_value": 20
         },
         {
           "id": "ignore",
@@ -561,13 +557,13 @@
             "ko": "남의 것이니 손대지 않고 발걸음을 옮긴다.",
             "en": "It belongs to someone else. Leave it be."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "미련 없이 발걸음을 옮기느니라.",
             "en": "You walk on without a second thought."
           },
-          "note": "중립."
+          "note": "중립.",
+          "effect_type": "none",
+          "effect_value": 0
         }
       ]
     },
@@ -592,19 +588,19 @@
             "ko": "전체 치료를 청한다. (엽전 40)",
             "en": "Receive full treatment. (40 gold)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 40,
           "result_text": {
             "ko": "의원의 침술로 몸이 한결 가뿐해지는도다. 엽전 40 소비, HP 완전 회복.",
             "en": "The physician's acupuncture leaves you feeling refreshed. Spend 40 gold, fully restore HP."
           },
-          "effect_type_bonus": "hp_full_heal",
-          "effect_value_bonus": 0,
           "result_text_full": {
             "ko": "엽전 40 소비 → HP 완전 회복.",
             "en": "Spend 40 gold. Fully restore HP."
           },
-          "note": "비용이 높지만 완전 회복."
+          "note": "비용이 높지만 완전 회복.",
+          "effect_type": "gold_loss",
+          "effect_value": 40,
+          "effect_type_bonus": "hp_full_heal",
+          "effect_value_bonus": 0
         },
         {
           "id": "partial_treatment",
@@ -612,19 +608,19 @@
             "ko": "간단한 처치만 받아본다. (엽전 15)",
             "en": "Receive basic treatment. (15 gold)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 15,
           "result_text": {
             "ko": "간단한 응급처치를 받느니라. 엽전 15 소비, HP 20 회복.",
             "en": "You receive basic first aid. Spend 15 gold, restore 20 HP."
           },
-          "effect_type_bonus": "hp_gain",
-          "effect_value_bonus": 20,
           "result_text_full": {
             "ko": "엽전 15 소비 → HP 20 회복.",
             "en": "Spend 15 gold. Restore 20 HP."
           },
-          "note": "중간 비용, 중간 회복."
+          "note": "중간 비용, 중간 회복.",
+          "effect_type": "gold_loss",
+          "effect_value": 15,
+          "effect_type_bonus": "hp_gain",
+          "effect_value_bonus": 20
         },
         {
           "id": "refuse",
@@ -632,13 +628,13 @@
             "ko": "\"사양하겠소.\" 정중히 거절한다.",
             "en": "Decline politely."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "의원이 아쉬운 기색으로 고개를 끄덕이느니라.",
             "en": "The physician nods with a look of mild disappointment."
           },
-          "note": "중립."
+          "note": "중립.",
+          "effect_type": "none",
+          "effect_value": 0
         }
       ]
     },
@@ -663,17 +659,17 @@
             "ko": "무작위로 1장을 집어 든다.",
             "en": "Grab one at random."
           },
-          "effect_type": "card_gain",
-          "effect_value": 1,
-          "effect_meta": {
-            "rarity": "random",
-            "class": "any"
-          },
           "result_text": {
             "ko": "무작위 카드 1장을 덱에 추가하느니라.",
             "en": "Add 1 random card to your deck."
           },
-          "note": "무료 카드 1장 획득 (등급 무작위)."
+          "note": "무료 카드 1장 획득 (등급 무작위).",
+          "effect_type": "card_gain",
+          "effect_meta": {
+            "rarity": "random",
+            "class": "any"
+          },
+          "effect_value": 1
         },
         {
           "id": "take_common",
@@ -681,18 +677,18 @@
             "ko": "공통 카드 1장을 골라 든다.",
             "en": "Choose a common card."
           },
+          "result_text": {
+            "ko": "공통 카드 3장 중 1장을 골라 덱에 추가하느니라.",
+            "en": "Choose 1 of 3 common cards to add to your deck."
+          },
+          "note": "공통 카드 3선택 1.",
           "effect_type": "card_choice",
-          "effect_value": 1,
           "effect_meta": {
             "rarity": 1,
             "class": "common",
             "choice_count": 3
           },
-          "result_text": {
-            "ko": "공통 카드 3장 중 1장을 골라 덱에 추가하느니라.",
-            "en": "Choose 1 of 3 common cards to add to your deck."
-          },
-          "note": "공통 카드 3선택 1."
+          "effect_value": 1
         },
         {
           "id": "leave",
@@ -700,13 +696,13 @@
             "ko": "손대지 않고 발걸음을 옮긴다.",
             "en": "Leave them untouched."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "필요 없을 듯하여 그냥 지나치느니라.",
             "en": "They don't seem useful. You move on."
           },
-          "note": "중립."
+          "note": "중립.",
+          "effect_type": "none",
+          "effect_value": 0
         }
       ]
     },
@@ -731,15 +727,15 @@
             "ko": "음식을 나눠준다. (엽전 10 소비)",
             "en": "Share some food. (Spend 10 gold)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 10,
           "result_text": {
             "ko": "걸인이 눈물을 흘리며 오래된 부적 하나를 건네주느니라. 골드 10 소비, 유물 1개 획득.",
             "en": "The beggar weeps with gratitude and hands you an old talisman. Spend 10 gold, gain 1 relic."
           },
+          "note": "소비 후 유물 보상.",
+          "effect_type": "gold_loss",
+          "effect_value": 10,
           "effect_type_bonus": "relic_gain",
-          "effect_value_bonus": 1,
-          "note": "소비 후 유물 보상."
+          "effect_value_bonus": 1
         },
         {
           "id": "share_hp",
@@ -747,15 +743,15 @@
             "ko": "상처 치료약을 나눠준다. (HP 10 소비)",
             "en": "Share your healing salve. (Spend 10 HP)"
           },
-          "effect_type": "hp_loss",
-          "effect_value": 10,
           "result_text": {
             "ko": "걸인이 감읍하며 소식을 전해주느니라. HP 10 소비, 다음 전투 방어도 +10 (1회).",
             "en": "The grateful beggar shares useful information. Spend 10 HP, gain +10 Block in the next combat."
           },
+          "note": "HP 소비 → 다음 전투 방어도 +10.",
+          "effect_type": "hp_loss",
+          "effect_value": 10,
           "effect_type_bonus": "next_battle_block",
-          "effect_value_bonus": 10,
-          "note": "HP 소비 → 다음 전투 방어도 +10."
+          "effect_value_bonus": 10
         },
         {
           "id": "ignore",
@@ -763,13 +759,13 @@
             "ko": "외면하고 지나친다.",
             "en": "Look away."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "걸인의 서글픈 눈빛이 돌아서느니라.",
             "en": "The beggar's sorrowful eyes turn away."
           },
-          "note": "중립."
+          "note": "중립.",
+          "effect_type": "none",
+          "effect_value": 0
         },
         {
           "id": "minshim_help",
@@ -777,16 +773,13 @@
             "ko": "[민심 70+] 마을 사람들이 함께 나서서 걸인을 돕느니라.",
             "en": "[Favor 70+] Townsfolk rally together to help the beggar."
           },
-          "trigger_condition": "minshim_ge_70",
-          "effect_type": "hp_gain",
-          "effect_value": 10,
-          "effect_type_bonus": "minshim_change",
-          "effect_value_bonus": 5,
           "result_text": {
             "ko": "백성들의 선의가 온 고을에 퍼져나가는도다. HP 10 회복, 민심 +5.",
             "en": "The people's goodwill spreads. Restore 10 HP, Favor +5."
           },
-          "note": "민��� 70+ 전용. HP 회복 + 민심 추가 상승."
+          "note": "민��� 70+ 전용. HP 회복 + 민심 추가 상승.",
+          "effect_type": "hp_gain",
+          "effect_value": 10
         }
       ]
     },
@@ -811,13 +804,13 @@
             "ko": "건강을 소원한다.",
             "en": "Wish for health."
           },
-          "effect_type": "max_hp_gain",
-          "effect_value": 8,
           "result_text": {
             "ko": "나무의 기운이 온몸에 스며드는도다. 최대 HP +8.",
             "en": "The tree's energy seeps into your body. Max HP +8."
           },
-          "note": "최대 HP 영구 +8."
+          "note": "최대 HP 영구 +8.",
+          "effect_type": "max_hp_gain",
+          "effect_value": 8
         },
         {
           "id": "pray_power",
@@ -825,16 +818,16 @@
             "ko": "힘을 소원한다.",
             "en": "Wish for power."
           },
-          "effect_type": "relic_gain",
-          "effect_value": 1,
-          "effect_meta": {
-            "rarity": 2
-          },
           "result_text": {
             "ko": "나무 아래에서 고급 유물이 홀연히 나타나는도다. 고급 유물 획득.",
             "en": "A fine relic appears beneath the tree. Gain an uncommon relic."
           },
-          "note": "고급 등급 유물 1개 획득."
+          "note": "고급 등급 유물 1개 획득.",
+          "effect_type": "relic_gain",
+          "effect_meta": {
+            "rarity": 2
+          },
+          "effect_value": 1
         },
         {
           "id": "pray_path",
@@ -842,13 +835,13 @@
             "ko": "앞길을 소원한다.",
             "en": "Wish for guidance."
           },
-          "effect_type": "reveal_map",
-          "effect_value": 1,
           "result_text": {
             "ko": "앞으로 나아갈 길이 머릿속에 환히 떠오르느니라. 다음 2층의 맵 노드가 공개되느니라.",
             "en": "A vision of the path ahead fills your mind. The next 2 floors of map nodes are revealed."
           },
-          "note": "맵 공개 효과."
+          "note": "맵 공개 효과.",
+          "effect_type": "reveal_map",
+          "effect_value": 1
         }
       ]
     },
@@ -873,17 +866,17 @@
             "ko": "상인을 부축하여 일으켜 준다.",
             "en": "Help the merchant up."
           },
-          "effect_type": "card_choice",
-          "effect_value": 1,
-          "effect_meta": {
-            "rarity": 2,
-            "choice_count": 3
-          },
           "result_text": {
             "ko": "상인이 짐 속에서 고급 서첩 3장을 꺼내느니라. 그 중 1장을 골라 덱에 추가하시오.",
             "en": "The merchant pulls three fine scrolls from his pack. Choose 1 to add to your deck."
           },
-          "note": "고급 카드 3선택 1 (무료)."
+          "note": "고급 카드 3선택 1 (무료).",
+          "effect_type": "card_choice",
+          "effect_meta": {
+            "rarity": 2,
+            "choice_count": 3
+          },
+          "effect_value": 1
         },
         {
           "id": "buy_relic",
@@ -891,15 +884,15 @@
             "ko": "유물을 구한다. (엽전 50 소비)",
             "en": "Buy a relic. (50 gold)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 50,
           "result_text": {
             "ko": "상인이 보따리에서 귀한 물건을 꺼내느니라. 골드 50 소비, 희귀 유물 1개 획득.",
             "en": "The merchant produces a rare item from his bundle. Spend 50 gold, gain 1 rare relic."
           },
+          "note": "골드 50 소비 → 희귀 유물 획득.",
+          "effect_type": "gold_loss",
+          "effect_value": 50,
           "effect_type_bonus": "relic_gain_rarity3",
-          "effect_value_bonus": 1,
-          "note": "골드 50 소비 → 희귀 유물 획득."
+          "effect_value_bonus": 1
         },
         {
           "id": "ignore",
@@ -907,13 +900,13 @@
             "ko": "\"급한 길이오.\" 정중히 사양한다.",
             "en": "Say you're too busy and move on."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "상인이 홀로 절뚝거리며 걸어가느니라.",
             "en": "The merchant hobbles on alone."
           },
-          "note": "중립."
+          "note": "중립.",
+          "effect_type": "none",
+          "effect_value": 0
         }
       ]
     },
@@ -938,15 +931,13 @@
             "ko": "노론 편에 선다. (신분 +1, 민심 -5)",
             "en": "Side with the Noron. (Rank +1, Favor -5)"
           },
-          "effect_type": "rank_up",
-          "effect_value": 1,
-          "effect_type_bonus": "minshim_change",
-          "effect_value_bonus": -5,
           "result_text": {
             "ko": "노론의 지지를 받아 관직이 올랐으나, 남인을 지지하던 백성들의 원망을 사게 되었느니라.",
             "en": "With Noron backing, your rank rises, but the common folk who supported the Namin grow resentful."
           },
-          "note": "신분 상승 + 민심 하락. 고신분 빌드에 유리."
+          "note": "신분 상승 + 민심 하락. 고신분 빌드에 유리.",
+          "effect_type": "rank_up",
+          "effect_value": 1
         },
         {
           "id": "namin",
@@ -954,15 +945,13 @@
             "ko": "남인 편에 선다. (민심 +8, 신분 -1)",
             "en": "Side with the Namin. (Favor +8, Rank -1)"
           },
-          "effect_type": "minshim_change",
-          "effect_value": 8,
-          "effect_type_bonus": "rank_down",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "남인의 대의를 지지하니 백성들이 환호하나, 권력층에서 밀려나게 되었느니라.",
             "en": "The people cheer your support for the Namin cause, but you lose standing among the powerful."
           },
-          "note": "민심 상승 + 신분 하락. 민심 빌드에 유리."
+          "note": "민심 상승 + 신분 하락. 민심 빌드에 유리.",
+          "effect_type": "rank_down",
+          "effect_value": 1
         },
         {
           "id": "neutral",
@@ -970,14 +959,14 @@
             "ko": "양쪽 모두 물리친다.",
             "en": "Refuse both sides."
           },
-          "effect_type": "card_gain",
-          "effect_value": 1,
           "effect_card_pool": "common",
           "result_text": {
             "ko": "양비론을 펴니 양쪽 모두 실망하나, 중립의 지혜를 얻었느니라. 카드 1장 획득.",
             "en": "Both sides are disappointed by your neutrality, but you gain the wisdom of impartiality. Gain 1 card."
           },
-          "note": "안전한 중립 선택. 카드 보상."
+          "note": "안전한 중립 선택. 카드 보상.",
+          "effect_type": "card_gain",
+          "effect_value": 1
         }
       ]
     },
@@ -1002,15 +991,13 @@
             "ko": "탕평책을 적극 지지한다. (민심 +5, 금화 -10)",
             "en": "Actively support the Tangpyeong policy. (Favor +5, Gold -10)"
           },
-          "effect_type": "minshim_change",
-          "effect_value": 5,
-          "effect_type_bonus": "gold_loss",
-          "effect_value_bonus": 10,
           "result_text": {
             "ko": "임금의 신임을 얻었으나, 양당 핵심 인사들에게 뇌물을 써야 했느니라.",
             "en": "You earn the King's trust, but must bribe key figures in both factions."
           },
-          "note": "민심+금화 트레이드오프."
+          "note": "민심+금화 트레이드오프.",
+          "effect_type": "gold_loss",
+          "effect_value": 10
         },
         {
           "id": "oppose",
@@ -1018,13 +1005,13 @@
             "ko": "기존 당론을 고수한다. (신분 유지, HP -8)",
             "en": "Uphold the existing party doctrine. (Rank unchanged, HP -8)"
           },
-          "effect_type": "hp_loss",
-          "effect_value": 8,
           "result_text": {
             "ko": "당론을 지킨 대가로 반대파의 공격을 받았느니라. 허나 같은 당의 지지는 굳건하도다.",
             "en": "Holding your party line draws attacks from the opposition, but your faction's support holds firm."
           },
-          "note": "HP 손실이지만 리스크 낮은 선택."
+          "note": "HP 손실이지만 리스크 낮은 선택.",
+          "effect_type": "hp_loss",
+          "effect_value": 8
         },
         {
           "id": "scheme",
@@ -1032,15 +1019,13 @@
             "ko": "겉으로는 지지하되 뒤에서 당파를 키운다. (힘 +1, 민심 -3)",
             "en": "Publicly support it while secretly building your faction. (Strength +1, Favor -3)"
           },
-          "effect_type": "buff_next_combat",
-          "effect_value": 1,
-          "effect_type_bonus": "minshim_change",
-          "effect_value_bonus": -3,
           "result_text": {
             "ko": "양면 작전으로 힘을 키웠으나 민심이 다소 동요하느니라. 다음 전투 힘 +1.",
             "en": "Your double-dealing builds power but shakes public trust. Next combat: Strength +1."
           },
-          "note": "전투 버프 + 민심 페널티."
+          "note": "전투 버프 + 민심 페널티.",
+          "effect_type": "buff_next_combat",
+          "effect_value": 1
         }
       ]
     },
@@ -1065,15 +1050,13 @@
             "ko": "금화를 주어 가족을 돕는다. (금화 -15, 민심 +6)",
             "en": "Give gold to help the family. (Gold -15, Favor +6)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 15,
-          "effect_type_bonus": "minshim_change",
-          "effect_value_bonus": 6,
           "result_text": {
             "ko": "가족에게 금화를 건네니 주변 백성들이 감동하였도다. 민심이 크게 올랐느니라.",
             "en": "Your generosity to the family moves the surrounding people. Public favor rises greatly."
           },
-          "note": "금화 투자 → 민심 보상."
+          "note": "금화 투자 → 민심 보상.",
+          "effect_type": "gold_loss",
+          "effect_value": 15
         },
         {
           "id": "petition",
@@ -1081,15 +1064,15 @@
             "ko": "상소를 올려 구명을 청한다. (HP -10, 카드 획득)",
             "en": "Submit a petition to save him. (HP -10, gain card)"
           },
-          "effect_type": "hp_loss",
-          "effect_value": 10,
-          "effect_type_bonus": "card_gain",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "상소가 받아들여졌으나, 반대파의 보복으로 부상을 입었느니라. 감사의 표시로 비전 서첩을 얻었도다.",
             "en": "Your petition is accepted, but the opposing faction retaliates. You are wounded but receive a secret scroll in gratitude."
           },
-          "note": "HP 리스크 + 카드 보상."
+          "note": "HP 리스크 + 카드 보상.",
+          "effect_type": "hp_loss",
+          "effect_value": 10,
+          "effect_type_bonus": "card_gain",
+          "effect_value_bonus": 1
         },
         {
           "id": "ignore_dj",
@@ -1097,13 +1080,13 @@
             "ko": "정사에 관여하지 않는다.",
             "en": "Stay out of politics."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "행렬이 지나가고, 먼지만 남았느니라.",
             "en": "The procession passes, leaving only dust."
           },
-          "note": "안전한 선택."
+          "note": "안전한 선택.",
+          "effect_type": "none",
+          "effect_value": 0
         }
       ]
     },
@@ -1128,15 +1111,13 @@
             "ko": "임금께 밀고한다. (신분 +1, 민심 -3)",
             "en": "Report it to the King. (Rank +1, Favor -3)"
           },
-          "effect_type": "rank_up",
-          "effect_value": 1,
-          "effect_type_bonus": "minshim_change",
-          "effect_value_bonus": -3,
           "result_text": {
             "ko": "밀고한 공으로 승진하였으나, 밀정이라는 소문이 퍼져 민심이 떨어졌느니라.",
             "en": "Your report earns a promotion, but rumors of being an informant erode public trust."
           },
-          "note": "신분 상승의 어두운 면."
+          "note": "신분 상승의 어두운 면.",
+          "effect_type": "rank_up",
+          "effect_value": 1
         },
         {
           "id": "blackmail",
@@ -1144,15 +1125,15 @@
             "ko": "반대파를 협박하여 금화를 뜯어낸다. (금화 +25, HP -5)",
             "en": "Blackmail the rival faction. (Gold +25, HP -5)"
           },
-          "effect_type": "gold_gain",
-          "effect_value": 25,
-          "effect_type_bonus": "hp_loss",
-          "effect_value_bonus": 5,
           "result_text": {
             "ko": "금화를 얻었으나 자객의 습격을 받아 부상을 입었느니라.",
             "en": "You gain gold but are wounded by an assassin's ambush."
           },
-          "note": "고위험 고수익."
+          "note": "고위험 고수익.",
+          "effect_type": "gold_gain",
+          "effect_value": 25,
+          "effect_type_bonus": "hp_loss",
+          "effect_value_bonus": 5
         },
         {
           "id": "burn",
@@ -1160,8 +1141,6 @@
             "ko": "밀서를 불에 태운다. (민심 +3)",
             "en": "Burn the letter. (Favor +3)"
           },
-          "effect_type": "minshim_change",
-          "effect_value": 3,
           "result_text": {
             "ko": "불의와 거리를 두는 처사에 주변 사람들이 감탄하였느니라.",
             "en": "Those around you admire your refusal to dabble in intrigue."
@@ -1191,14 +1170,13 @@
             "ko": "논쟁에 참여하여 논파한다.",
             "en": "Join the debate and prevail."
           },
-          "trigger_condition": "minshim_ge_50",
-          "effect_type": "card_choice",
-          "effect_value": 3,
           "result_text": {
             "ko": "민심의 지지를 등에 업고 논쟁에서 승리하였도다! 카드 3장 중 1장 선택.",
             "en": "Backed by public favor, you win the debate! Choose 1 of 3 cards."
           },
-          "note": "민심 50 이상 조건. 카드 선택 보상."
+          "note": "민심 50 이상 조건. 카드 선택 보상.",
+          "effect_type": "card_choice",
+          "effect_value": 3
         },
         {
           "id": "mediate",
@@ -1206,15 +1184,13 @@
             "ko": "양쪽을 중재한다. (민심 +4, 기 +1 다음 전투)",
             "en": "Mediate between both sides. (Favor +4, Qi +1 next combat)"
           },
-          "effect_type": "minshim_change",
-          "effect_value": 4,
-          "effect_type_bonus": "buff_next_combat",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "중재에 성공하여 양쪽의 존경을 받았느니라.",
             "en": "Your mediation succeeds, earning respect from both sides."
           },
-          "note": "안정적 보상."
+          "note": "안정적 보상.",
+          "effect_type": "buff_next_combat",
+          "effect_value": 1
         },
         {
           "id": "walk_away",
@@ -1222,13 +1198,13 @@
             "ko": "시끄러운 곳을 피하여 물러난다.",
             "en": "Avoid the noisy commotion."
           },
-          "effect_type": "hp_gain",
-          "effect_value": 5,
           "result_text": {
             "ko": "한적한 곳에서 기력을 추스렸도다. HP 5 회복.",
             "en": "You rest in a quiet place and recover your strength. Restore 5 HP."
           },
-          "note": "HP 회복."
+          "note": "HP 회복.",
+          "effect_type": "hp_gain",
+          "effect_value": 5
         }
       ]
     },
@@ -1253,15 +1229,15 @@
             "ko": "무기 개량법을 익힌다. (금화 -12, 힘 영구 +1)",
             "en": "Learn weapon improvement techniques. (Gold -12, permanent Strength +1)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 12,
-          "effect_type_bonus": "permanent_strength",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "서양식 단련법을 익혀 공격의 위력이 영구히 상승하였도다. 힘 +1.",
             "en": "You learn Western forging methods, permanently increasing your attack power. Strength +1."
           },
-          "note": "금화→영구 공격 버프. 고효율 투자."
+          "note": "금화→영구 공격 버프. 고효율 투자.",
+          "effect_type": "gold_loss",
+          "effect_value": 12,
+          "effect_type_bonus": "permanent_strength",
+          "effect_value_bonus": 1
         },
         {
           "id": "learn_medicine",
@@ -1269,15 +1245,15 @@
             "ko": "의술을 익힌다. (금화 -8, 최대 HP +5)",
             "en": "Study medicine. (Gold -8, Max HP +5)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 8,
-          "effect_type_bonus": "max_hp_gain",
-          "effect_value_bonus": 5,
           "result_text": {
             "ko": "약초 활용법을 익혀 체력이 늘었도다. 최대 HP +5.",
             "en": "You learn herbal remedies, increasing your constitution. Max HP +5."
           },
-          "note": "금화→최대 HP. 안전한 투자."
+          "note": "금화→최대 HP. 안전한 투자.",
+          "effect_type": "gold_loss",
+          "effect_value": 8,
+          "effect_type_bonus": "max_hp_gain",
+          "effect_value_bonus": 5
         },
         {
           "id": "decline_sh",
@@ -1285,13 +1261,13 @@
             "ko": "거들떠보지 않고 지나친다.",
             "en": "Walk past without interest."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "실학자가 아쉬운 기색으로 문을 닫느니라.",
             "en": "The scholar sighs and closes the door."
           },
-          "note": "패스."
+          "note": "패스.",
+          "effect_type": "none",
+          "effect_value": 0
         }
       ]
     },
@@ -1316,15 +1292,15 @@
             "ko": "발명품을 구한다. (금화 -20, 유물 획득)",
             "en": "Purchase the invention. (Gold -20, gain relic)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 20,
-          "effect_type_bonus": "relic_gain",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "금화 20을 지불하고 기이한 발명품을 얻었느니라. 유물 1개 획득.",
             "en": "You pay 20 gold and acquire the curious device. Gain 1 relic."
           },
-          "note": "금화→유물. 고비용 고보상."
+          "note": "금화→유물. 고비용 고보상.",
+          "effect_type": "gold_loss",
+          "effect_value": 20,
+          "effect_type_bonus": "relic_gain",
+          "effect_value_bonus": 1
         },
         {
           "id": "help_test",
@@ -1332,15 +1308,15 @@
             "ko": "시험에 자원한다. (HP -8, 카드 강화 1장)",
             "en": "Volunteer to help test it. (HP -8, upgrade 1 card)"
           },
-          "effect_type": "hp_loss",
-          "effect_value": 8,
-          "effect_type_bonus": "card_upgrade",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "시험 중 부상을 입었으나, 감사의 표시로 카드 1장을 강화해 주었느니라.",
             "en": "You're injured during testing, but in gratitude, the scholar upgrades 1 of your cards."
           },
-          "note": "HP→카드 강화."
+          "note": "HP→카드 강화.",
+          "effect_type": "hp_loss",
+          "effect_value": 8,
+          "effect_type_bonus": "card_upgrade",
+          "effect_value_bonus": 1
         },
         {
           "id": "pass_sh2",
@@ -1348,13 +1324,13 @@
             "ko": "\"위험해 보이오.\" 정중히 사양한다.",
             "en": "Decline, saying it looks dangerous."
           },
-          "effect_type": "gold_gain",
-          "effect_value": 5,
           "result_text": {
             "ko": "실학자가 실망하며 위로의 엽전을 건네느니라. 금화 5 획득.",
             "en": "The disappointed scholar hands you a few consolation coins. Gain 5 gold."
           },
-          "note": "소량 금화."
+          "note": "소량 금화.",
+          "effect_type": "gold_gain",
+          "effect_value": 5
         }
       ]
     },
@@ -1379,7 +1355,6 @@
             "ko": "문제에 도전한다.",
             "en": "Attempt the problem."
           },
-          "effect_type": "random",
           "win_chance": 0.6,
           "outcomes": [
             {
@@ -1405,7 +1380,8 @@
             "ko": "60% 확률로 카드 선택, 40% 확률로 HP 손실.",
             "en": "60% chance to choose a card, 40% chance to lose HP."
           },
-          "note": "확률 기반 도전."
+          "note": "확률 기반 도전.",
+          "effect_type": "random"
         },
         {
           "id": "pay_tuition",
@@ -1413,15 +1389,15 @@
             "ko": "수업료를 내고 직접 배운다. (금화 -15, 카드 획득)",
             "en": "Pay tuition to learn directly. (Gold -15, gain card)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 15,
-          "effect_type_bonus": "card_gain",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "금화 15를 내고 실학의 기초를 배웠느니라. 카드 1장 획득.",
             "en": "You pay 15 gold and learn the fundamentals of practical scholarship. Gain 1 card."
           },
-          "note": "안전한 금화→카드."
+          "note": "안전한 금화→카드.",
+          "effect_type": "gold_loss",
+          "effect_value": 15,
+          "effect_type_bonus": "card_gain",
+          "effect_value_bonus": 1
         },
         {
           "id": "skip_sh3",
@@ -1429,13 +1405,13 @@
             "ko": "\"산학에는 관심이 없소.\"",
             "en": "No interest in mathematics."
           },
-          "effect_type": "none",
-          "effect_value": 0,
           "result_text": {
             "ko": "실학자가 한숨을 내쉬며 돌아가느니라.",
             "en": "The scholar sighs and returns to his work."
           },
-          "note": "패스."
+          "note": "패스.",
+          "effect_type": "none",
+          "effect_value": 0
         }
       ]
     },
@@ -1460,13 +1436,13 @@
             "ko": "함께 별을 관측한다. (다음 전투 취약 면역)",
             "en": "Observe the stars together. (Immune to Vulnerable next combat)"
           },
-          "effect_type": "buff_next_combat",
-          "effect_value": 1,
           "result_text": {
             "ko": "별의 위치를 파악하니 적의 움직임이 읽히는도다. 다음 전투 취약 면역.",
             "en": "Reading the stars reveals your enemies' patterns. Immune to Vulnerable in the next combat."
           },
-          "note": "디버프 방어 버프."
+          "note": "디버프 방어 버프.",
+          "effect_type": "buff_next_combat",
+          "effect_value": 1
         },
         {
           "id": "buy_chart",
@@ -1474,15 +1450,15 @@
             "ko": "천문도를 구한다. (금화 -10, 맵 노드 공개)",
             "en": "Buy a star chart. (Gold -10, reveal map nodes)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 10,
-          "effect_type_bonus": "reveal_map",
-          "effect_value_bonus": 3,
           "result_text": {
             "ko": "천문도 덕분에 앞길이 환히 보이는도다. 맵 노드 3개 공개.",
             "en": "The star chart illuminates the path ahead. 3 map nodes revealed."
           },
-          "note": "금화→맵 정보."
+          "note": "금화→맵 정보.",
+          "effect_type": "gold_loss",
+          "effect_value": 10,
+          "effect_type_bonus": "reveal_map",
+          "effect_value_bonus": 3
         },
         {
           "id": "rest",
@@ -1490,13 +1466,13 @@
             "ko": "밤하늘 아래 쉬어간다. (HP +8)",
             "en": "Rest beneath the night sky. (HP +8)"
           },
-          "effect_type": "hp_gain",
-          "effect_value": 8,
           "result_text": {
             "ko": "별빛 아래 평온히 쉬며 기력을 회복하였도다.",
             "en": "You rest peacefully under the stars, recovering your strength."
           },
-          "note": "HP 회복."
+          "note": "HP 회복.",
+          "effect_type": "hp_gain",
+          "effect_value": 8
         }
       ]
     },
@@ -1521,15 +1497,15 @@
             "ko": "비전서로 카드를 단련한다. (금화 -25, 카드 2장 강화)",
             "en": "Use secret manuals to upgrade cards. (Gold -25, upgrade 2 cards)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 25,
-          "effect_type_bonus": "card_upgrade",
-          "effect_value_bonus": 2,
           "result_text": {
             "ko": "비전서의 지식으로 카드 2장을 강화하였도다!",
             "en": "The knowledge within the manuals enhances 2 of your cards!"
           },
-          "note": "고비용 다중 강화."
+          "note": "고비용 다중 강화.",
+          "effect_type": "gold_loss",
+          "effect_value": 25,
+          "effect_type_bonus": "card_upgrade",
+          "effect_value_bonus": 2
         },
         {
           "id": "buy_book",
@@ -1537,15 +1513,15 @@
             "ko": "서적을 구한다. (금화 -10, 카드 1장 획득)",
             "en": "Buy a book. (Gold -10, gain 1 card)"
           },
-          "effect_type": "gold_loss",
-          "effect_value": 10,
-          "effect_type_bonus": "card_gain",
-          "effect_value_bonus": 1,
           "result_text": {
             "ko": "유용한 서적을 구하였느니라. 카드 1장 획득.",
             "en": "You purchase a useful text. Gain 1 card."
           },
-          "note": "기본 구매."
+          "note": "기본 구매.",
+          "effect_type": "gold_loss",
+          "effect_value": 10,
+          "effect_type_bonus": "card_gain",
+          "effect_value_bonus": 1
         },
         {
           "id": "browse",
@@ -1553,13 +1529,13 @@
             "ko": "구경만 하고 물러난다.",
             "en": "Just browse."
           },
-          "effect_type": "hp_gain",
-          "effect_value": 3,
           "result_text": {
             "ko": "서적을 읽으며 마음의 안정을 얻었도다. HP 3 회복.",
             "en": "Reading brings peace of mind. Restore 3 HP."
           },
-          "note": "소량 HP."
+          "note": "소량 HP.",
+          "effect_type": "hp_gain",
+          "effect_value": 3
         }
       ]
     }

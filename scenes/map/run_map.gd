@@ -10,7 +10,6 @@ const NODE_COLORS := {
 	MapData.NodeType.SHOP: Color(0.18, 0.31, 0.56),      # 청 (상점 — #2E5090)
 	MapData.NodeType.REST: Color(0.24, 0.67, 0.43),      # 녹색 (휴식)
 	MapData.NodeType.BOSS: Color(0.70, 0.15, 0.15),      # 진홍 (보스)
-	MapData.NodeType.GWAGEO: Color(0.76, 0.23, 0.13),   # 황 (과거시험 — #D4A017)
 }
 
 var NODE_LABELS := {
@@ -20,7 +19,6 @@ var NODE_LABELS := {
 	MapData.NodeType.SHOP: "NODE_SHOP",
 	MapData.NodeType.REST: "NODE_REST",
 	MapData.NodeType.BOSS: "NODE_BOSS",
-	MapData.NodeType.GWAGEO: "NODE_GWAGEO",
 }
 
 ## v6: 노드 아이콘 — 직관적 심볼 (Android 호환 유니코드)
@@ -31,7 +29,6 @@ const NODE_ICONS := {
 	MapData.NodeType.SHOP: "￥",
 	MapData.NodeType.REST: "♨",
 	MapData.NodeType.BOSS: "☠",
-	MapData.NodeType.GWAGEO: "📝",
 }
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
@@ -56,9 +53,6 @@ const ACT_BG_COLORS := {
 @onready var hp_label: Label = $HUD/VBoxContainer/HBoxContainer/HPLabel
 @onready var gold_label: Label = $HUD/VBoxContainer/HBoxContainer/GoldLabel
 @onready var act_label: Label = $HUD/VBoxContainer/TopRow/ActLabel
-@onready var jibun_label: Label = $HUD/VBoxContainer/SubHBox/JibunLabel
-@onready var faction_label: Label = $HUD/VBoxContainer/FactionRow/FactionLabel
-@onready var minshim_label: Label = $HUD/VBoxContainer/HBoxContainer/MinshimLabel
 
 # v8: HUD 확장/축소 상태
 var _hud_expanded: bool = false
@@ -136,26 +130,17 @@ func _finalize_pending_node() -> void:
 
 
 func _init_hud_toggle() -> void:
-	## v8: HUD 탭 시 신분/당파 정보 확장/축소
-	var hud := $HUD
-	hud.gui_input.connect(_on_hud_tapped)
-
-
-func _on_hud_tapped(event: InputEvent) -> void:
-	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
-		return
-	_hud_expanded = not _hud_expanded
-	$HUD/VBoxContainer/SubHBox.visible = _hud_expanded
-	# 당파 UI 숨김 처리 (Phase 1-4: 혼란 제거)
-	#$HUD/VBoxContainer/FactionRow.visible = _hud_expanded
-	# HUD 크기 조정 (safe area 기반)
-	var hud := $HUD
-	if _hud_expanded:
-		hud.anchor_bottom = hud.anchor_top + 0.13
-	else:
-		hud.anchor_bottom = hud.anchor_top + 0.07
-	# ScrollContainer도 HUD 하단에 맞춤
-	scroll_container.anchor_top = hud.anchor_bottom
+	## v8: HUD 탭 시 확장/축소 (신분/당파/민심 제거됨 — 확장 불필요)
+	# 제거된 서브 HUD 숨김
+	var sub_hbox := $HUD/VBoxContainer.get_node_or_null("SubHBox")
+	if sub_hbox:
+		sub_hbox.visible = false
+	var faction_row := $HUD/VBoxContainer.get_node_or_null("FactionRow")
+	if faction_row:
+		faction_row.visible = false
+	var minshim_lbl := $HUD/VBoxContainer/HBoxContainer.get_node_or_null("MinshimLabel")
+	if minshim_lbl:
+		minshim_lbl.visible = false
 
 
 func _init_relic_bar() -> void:
@@ -172,19 +157,6 @@ func _update_hud() -> void:
 	gold_label.text = tr("MAP_GOLD_FMT") % rd.gold
 	var act_name: String = MapGenerator.get_act_name(rd.current_act)
 	act_label.text = tr("MAP_ACT_FMT") % [rd.current_act, act_name]
-
-	# 신분/민심 HUD 업데이트 (당파 UI 숨김 — Phase 1-4)
-	_update_jibun_display(rd)
-	# 당파 표시 비활성화 (코드 유지, UI만 숨김)
-	#if rd.faction_pair.size() == 2:
-	#	var fa := FactionSystem.get_faction_name(rd.faction_pair[0])
-	#	var fb := FactionSystem.get_faction_name(rd.faction_pair[1])
-	#	var ma: int = rd.faction_meters.get(rd.faction_pair[0], 0)
-	#	var mb: int = rd.faction_meters.get(rd.faction_pair[1], 0)
-	#	faction_label.text = tr("MAP_FACTION_FMT") % [fa, ma, fb, mb]
-	#else:
-	#	faction_label.text = tr("MAP_FACTION_NONE")
-	_update_minshim_display(rd)
 
 	# 막별 배경색 적용
 	var bg_color: Color = ACT_BG_COLORS.get(rd.current_act, ACT_BG_COLORS[1])
@@ -379,22 +351,12 @@ func _update_node_states() -> void:
 	var available_nodes := run_map.get_available_nodes(visited)
 	_available_node_ids.clear()
 
-	# 민심 < 30: 상점 노드 50% 비활성화
-	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	var disabled_shop_ids: Array[int] = []
-	if minshim < 30:
-		disabled_shop_ids = _get_disabled_shop_nodes(run_map, visited)
-
 	for node in available_nodes:
-		if node.id in disabled_shop_ids:
-			continue  # 민란으로 폐업한 상점
 		_available_node_ids.append(node.id)
 
 	# 갈림길 잠금 해제: 선택 가능한 노드가 3개 이상이면 일부를 잠금
 	_locked_node_costs.clear()
 	_unlocked_nodes.clear()
-	for n in GameManager.run_data.narrative_state.get("unlocked_fork_nodes", []):
-		_unlocked_nodes.append(int(n))
 	if _available_node_ids.size() >= 3:
 		_calculate_locked_forks(run_map)
 
@@ -402,14 +364,6 @@ func _update_node_states() -> void:
 		var btn: Button = _node_buttons[nid]
 		var map_node: MapData.MapNode = run_map.nodes[nid]
 		var node_color: Color = NODE_COLORS.get(map_node.type, Color.WHITE)
-
-		# 민란으로 폐업한 상점 표시
-		if nid in disabled_shop_ids and nid not in visited:
-			btn.disabled = true
-			btn.text = "X"
-			btn.modulate = Color(0.35, 0.28, 0.25, 0.6)
-			btn.tooltip_text = tr("MAP_CLOSED_TOOLTIP")
-			continue
 
 		if nid in visited:
 			# v5: 방문 노드 — 어두운 톤 + 얇은 테두리
@@ -565,21 +519,6 @@ func _calculate_locked_forks(run_map: MapData.RunMap) -> void:
 	_available_node_ids.erase(lock_id)
 
 
-## 민심 < 30일 때 비활성화할 상점 노드를 결정한다 (시드 기반 50%).
-func _get_disabled_shop_nodes(run_map: MapData.RunMap, visited: Array[int]) -> Array[int]:
-	var result: Array[int] = []
-	var rng := RandomNumberGenerator.new()
-	rng.seed = GameManager.run_data.map_seed + 7777  # 결정론적 시드
-	for nid in run_map.nodes:
-		if nid in visited:
-			continue
-		var map_node: MapData.MapNode = run_map.nodes[nid]
-		if map_node.type == MapData.NodeType.SHOP:
-			if rng.randf() < 0.5:
-				result.append(nid)
-	return result
-
-
 func _on_node_pressed(node_id: int) -> void:
 	# 중복 입력 완전 차단 (씬 전환 중 추가 탭 방지)
 	if _node_selected:
@@ -593,10 +532,6 @@ func _on_node_pressed(node_id: int) -> void:
 			GameManager.run_data.gold -= cost
 			_locked_node_costs.erase(node_id)
 			_available_node_ids.append(node_id)
-			# 해제 기록 저장 (세이브 영속화)
-			if not GameManager.run_data.narrative_state.has("unlocked_fork_nodes"):
-				GameManager.run_data.narrative_state["unlocked_fork_nodes"] = []
-			GameManager.run_data.narrative_state["unlocked_fork_nodes"].append(node_id)
 			_update_node_states()
 			_update_hud()
 		return  # 해제만 하고 즉시 이동하지 않음
@@ -633,24 +568,6 @@ func _on_node_pressed(node_id: int) -> void:
 	# 자동 저장
 	GameManager.save_current_run()
 
-	# 민심 0~9 구간: 비전투 노드 이동 시 25% 확률 강제 전투 삽입
-	var minshim: int = GameManager.run_data.narrative_state.get("minshim", 50)
-	if minshim < 10 and map_node.type not in [MapData.NodeType.BATTLE, MapData.NodeType.ELITE, MapData.NodeType.BOSS]:
-		if randf() < 0.25:
-			# 원래 목적지 정보를 저장하고 강제 전투로 전환
-			GameManager.run_data.set_meta("minran_forced_original_type", map_node.type)
-			GameManager.run_data.set_meta("minran_forced_original_encounter", map_node.encounter_id)
-			GameManager.run_data.current_node_type = MapData.NodeType.BATTLE
-			# 현재 act의 일반 적 중 랜덤 선택
-			var minran_pool := DataLoader.get_regular_enemy_ids_for_act(GameManager.run_data.current_act)
-			if not minran_pool.is_empty():
-				GameManager.run_data.current_encounter_id = minran_pool[randi() % minran_pool.size()]
-			else:
-				GameManager.run_data.current_encounter_id = "E001"
-			GameManager.save_current_run()
-			GameManager.change_state(GameManager.GameState.BATTLE)
-			return
-
 	# 노드 타입에 따라 씬 전환
 	match map_node.type:
 		MapData.NodeType.BATTLE, MapData.NodeType.ELITE:
@@ -663,149 +580,5 @@ func _on_node_pressed(node_id: int) -> void:
 			GameManager.change_state(GameManager.GameState.REST)
 		MapData.NodeType.EVENT:
 			GameManager.change_state(GameManager.GameState.EVENT)
-		MapData.NodeType.GWAGEO:
-			GameManager.change_state(GameManager.GameState.GWAGEO)
 
 
-# ── 민심 표시 개선 ──────────────────────────────
-
-## 민심 구간 상태명과 색상을 반환한다.
-func _get_minshim_tier(value: int) -> Dictionary:
-	# v5: 단청 팔레트 민심 색상
-	if value >= 80:
-		return {"name": tr("MINSHIM_TIER_HIGH"), "color": Color(0.23, 0.49, 0.27)}
-	elif value >= 50:
-		return {"name": tr("MINSHIM_TIER_NORMAL"), "color": Color(0.75, 0.70, 0.65)}
-	elif value >= 30:
-		return {"name": tr("MINSHIM_TIER_UNREST"), "color": Color(0.76, 0.23, 0.13)}
-	else:
-		return {"name": tr("MINSHIM_TIER_CRISIS"), "color": Color(0.78, 0.29, 0.19)}
-
-
-## 민심 라벨 업데이트: 수치 + 구간명 + 색상.
-func _update_minshim_display(rd: RunData) -> void:
-	var minshim: int = rd.narrative_state.get("minshim", 50)
-	var tier := _get_minshim_tier(minshim)
-	minshim_label.text = tr("MAP_MINSHIM_TIER_FMT") % [minshim, tier["name"]]
-	minshim_label.add_theme_color_override("font_color", tier["color"])
-	# 툴팁: 탭/클릭 시 팝업으로 민심 효과 목록 표시
-	if not minshim_label.gui_input.is_connected(_on_minshim_tapped):
-		minshim_label.mouse_filter = Control.MOUSE_FILTER_STOP
-		minshim_label.gui_input.connect(_on_minshim_tapped)
-
-
-## 민심 라벨 탭 시 효과 목록 팝업.
-func _on_minshim_tapped(event: InputEvent) -> void:
-	if not (event is InputEventMouseButton and event.pressed):
-		return
-	var rd := GameManager.run_data
-	if rd == null:
-		return
-	var minshim: int = rd.narrative_state.get("minshim", 50)
-	var tier := _get_minshim_tier(minshim)
-
-	var text := "%s %d [%s]\n" % [tr("MINSHIM_TOOLTIP_TITLE"), minshim, tier["name"]]
-	text += "─────────────────\n"
-	text += "■ 80+: %s\n" % tr("MINSHIM_EFFECT_80")
-	text += "■ 70+: %s\n" % tr("MINSHIM_EFFECT_70")
-	text += "■ 30~49: %s\n" % tr("MINSHIM_EFFECT_30")
-	text += "■ <30: %s" % tr("MINSHIM_EFFECT_0")
-
-	var dialog := AcceptDialog.new()
-	dialog.title = tr("MINSHIM_TOOLTIP_TITLE")
-	dialog.dialog_text = text
-	add_child(dialog)
-	dialog.popup_centered()
-	dialog.confirmed.connect(dialog.queue_free)
-	dialog.canceled.connect(dialog.queue_free)
-
-
-# ── 신분 표시 개선 ──────────────────────────────
-
-## 신분 라벨 업데이트: 단계명 + 점수 + 프로그레스바.
-func _update_jibun_display(rd: RunData) -> void:
-	var rank := rd.jibun_rank
-	var score := rd.jibun_score
-	var rank_name := JibunSystem.get_rank_name(rank)
-	var next_threshold := _get_next_rank_threshold(rank)
-
-	if next_threshold > 0:
-		var progress := _make_progress_bar(score, _get_current_rank_threshold(rank), next_threshold)
-		jibun_label.text = tr("MAP_JIBUN_PROGRESS_FMT") % [rank_name, score, next_threshold, progress]
-	else:
-		# 최고 등급
-		jibun_label.text = tr("MAP_JIBUN_MAX_FMT") % [rank_name, score]
-
-	# 툴팁: 탭/클릭 시 팝업으로 신분 효과 표시
-	if not jibun_label.gui_input.is_connected(_on_jibun_tapped):
-		jibun_label.mouse_filter = Control.MOUSE_FILTER_STOP
-		jibun_label.gui_input.connect(_on_jibun_tapped)
-
-
-## 현재 등급의 진입 점수.
-func _get_current_rank_threshold(rank: int) -> int:
-	return JibunSystem.RANK_THRESHOLDS.get(rank, 0)
-
-
-## 다음 등급 진입 점수 (최고 등급이면 -1).
-func _get_next_rank_threshold(rank: int) -> int:
-	if rank >= 5:
-		return -1
-	return JibunSystem.RANK_THRESHOLDS.get(rank + 1, -1)
-
-
-## 텍스트 프로그레스바 생성 (총 6칸).
-func _make_progress_bar(score: int, current_min: int, next_threshold: int) -> String:
-	var range_size := next_threshold - current_min
-	if range_size <= 0:
-		return "██████"
-	var filled := clampi(int(6.0 * (score - current_min) / range_size), 0, 6)
-	var empty := 6 - filled
-	return "█".repeat(filled) + "░".repeat(empty)
-
-
-## 신분 라벨 탭 시 효과 팝업.
-func _on_jibun_tapped(event: InputEvent) -> void:
-	if not (event is InputEventMouseButton and event.pressed):
-		return
-	var rd := GameManager.run_data
-	if rd == null:
-		return
-	var rank := rd.jibun_rank
-	var score := rd.jibun_score
-	var rank_name := JibunSystem.get_rank_name(rank)
-
-	var text := "%s: %s (%d%s)\n" % [tr("JIBUN_TOOLTIP_CURRENT"), rank_name, score, tr("JIBUN_TOOLTIP_POINTS")]
-	text += "─────────────────\n"
-	text += "%s:\n" % tr("JIBUN_TOOLTIP_EFFECTS")
-
-	# 현재 등급의 활성 효과 누적 표시
-	if rank >= 2:
-		text += "■ %s\n" % tr("JIBUN_EFFECT_2_QI")
-		text += "■ %s\n" % tr("JIBUN_EFFECT_2_ELITE")
-	if rank >= 3:
-		text += "■ %s\n" % tr("JIBUN_EFFECT_3_DRAW")
-		text += "■ %s\n" % tr("JIBUN_EFFECT_3_GWAGEO")
-	if rank >= 4:
-		text += "■ %s\n" % tr("JIBUN_EFFECT_4_ELITE_REWARD")
-	if rank >= 5:
-		text += "■ %s\n" % tr("JIBUN_EFFECT_5_SIJO")
-	if rank <= 1:
-		text += "(아직 활성 효과 없음)\n"
-
-	# 다음 등급 정보
-	var next_threshold := _get_next_rank_threshold(rank)
-	if next_threshold > 0:
-		var next_name := JibunSystem.get_rank_name(rank + 1)
-		text += "\n%s (%s, %d%s):\n" % [tr("JIBUN_TOOLTIP_NEXT"), next_name, next_threshold, tr("JIBUN_TOOLTIP_POINTS")]
-		var reward_key: String = JibunSystem.RANK_UP_REWARD_KEYS.get(rank + 1, "")
-		if reward_key != "":
-			text += "■ %s: %s" % [tr("JIBUN_TOOLTIP_RANKUP"), tr(reward_key)]
-
-	var dialog := AcceptDialog.new()
-	dialog.title = tr("JIBUN_TOOLTIP_TITLE")
-	dialog.dialog_text = text
-	add_child(dialog)
-	dialog.popup_centered()
-	dialog.confirmed.connect(dialog.queue_free)
-	dialog.canceled.connect(dialog.queue_free)

@@ -11,9 +11,6 @@ enum TutorialStep {
 	EXPLAIN_HP_QI,          # HP/기 설명
 	EXPLAIN_HAND,           # 손패 설명
 	PLAY_FIRST_CARD,        # 첫 카드 사용 유도
-	EXPLAIN_SIJO,           # 시조 시스템 설명
-	EXPLAIN_SIJO_BEAT,      # 음보(beat) 매칭 설명
-	PLAY_SIJO_CARD,         # 시조 슬롯에 맞는 카드 사용 유도
 	EXPLAIN_DEFENSE,        # 방어 카드 설명
 	PLAY_DEFENSE_CARD,      # 방어 카드 사용 유도
 	EXPLAIN_END_TURN,       # 턴 종료 설명
@@ -30,17 +27,15 @@ var current_step: TutorialStep = TutorialStep.INTRO
 var overlay: TutorialOverlay = null
 var battle_scene: Control = null  # 전투 씬 참조
 var battle_manager: BattleManager = null
-var sijo_system: SijoSystem = null
 var _skipped: bool = false
 
 signal tutorial_completed
 signal tutorial_skipped
 
 
-func start(p_battle_scene: Control, p_battle_manager: BattleManager, p_sijo_system: SijoSystem) -> void:
+func start(p_battle_scene: Control, p_battle_manager: BattleManager) -> void:
 	battle_scene = p_battle_scene
 	battle_manager = p_battle_manager
-	sijo_system = p_sijo_system
 
 	# 오버레이 생성
 	overlay = TutorialOverlay.new()
@@ -53,7 +48,6 @@ func start(p_battle_scene: Control, p_battle_manager: BattleManager, p_sijo_syst
 	battle_manager.state_changed.connect(_on_battle_state_changed)
 	battle_manager.turn_started.connect(_on_turn_started)
 	battle_manager.battle_ended.connect(_on_battle_ended)
-	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
 
 	# 첫 단계 시작
 	current_step = TutorialStep.INTRO
@@ -94,24 +88,6 @@ func _show_current_step() -> void:
 
 		TutorialStep.PLAY_FIRST_CARD:
 			overlay.show_message(tr("TUTORIAL_MSG_PLAY_FIRST"), true)
-
-		TutorialStep.EXPLAIN_SIJO:
-			var sijo_area := battle_scene.get_node_or_null("SijoBar")
-			if sijo_area:
-				var rect := Rect2(sijo_area.global_position, sijo_area.size)
-				overlay.highlight_area(rect, tr("TUTORIAL_MSG_SIJO"), "down")
-			else:
-				overlay.show_message(tr("TUTORIAL_MSG_SIJO_SHORT"))
-
-		TutorialStep.EXPLAIN_SIJO_BEAT:
-			overlay.show_message(tr("TUTORIAL_MSG_SIJO_BEAT"))
-
-		TutorialStep.PLAY_SIJO_CARD:
-			var next_beat := sijo_system.get_next_required_beat()
-			if next_beat > 0:
-				overlay.show_message(tr("TUTORIAL_MSG_PLAY_SIJO_FMT") % next_beat, true)
-			else:
-				_advance_step()
 
 		TutorialStep.EXPLAIN_DEFENSE:
 			overlay.show_message(tr("TUTORIAL_MSG_DEFENSE"), true)
@@ -183,8 +159,6 @@ func _on_hand_changed(_new_hand: Array[String]) -> void:
 	match current_step:
 		TutorialStep.PLAY_FIRST_CARD:
 			overlay.acknowledge_action()
-		TutorialStep.PLAY_SIJO_CARD:
-			overlay.acknowledge_action()
 		TutorialStep.EXPLAIN_DEFENSE:
 			overlay.acknowledge_action()
 
@@ -207,12 +181,6 @@ func _on_battle_state_changed(new_state: BattleManager.BattleState) -> void:
 func _on_turn_started(turn: int) -> void:
 	if turn == 2 and current_step == TutorialStep.TURN2_INTRO:
 		_show_current_step()
-
-
-func _on_sijo_slot_filled(_index: int, _card_id: String, _jang_name: String, _beat_matched: bool) -> void:
-	# 시조 슬롯이 채워지면 진행
-	if current_step == TutorialStep.PLAY_SIJO_CARD:
-		overlay.acknowledge_action()
 
 
 func _on_battle_ended(victory: bool) -> void:

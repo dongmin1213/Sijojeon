@@ -16,15 +16,12 @@ signal card_zoom_requested(card_data: CardData)
 @onready var type_label: Label = $MarginContainer/VBoxContainer/TypeLabel
 @onready var effect_label: Label = $MarginContainer/VBoxContainer/EffectLabel
 @onready var rarity_bar: ColorRect = $MarginContainer/VBoxContainer/RarityBar
-@onready var sijo_indicator: Label = $MarginContainer/VBoxContainer/BeatCostRow/SijoIndicator
 
 var hand_index: int = -1
 var card_data: CardData = null
 var is_playable: bool = true
 var is_selected: bool = false
 var is_hovered: bool = false
-var sijo_match: bool = false  # 시조 슬롯과 비트 일치 여부
-
 # 드래그 관련 상태
 var is_dragging: bool = false
 var drag_start_pos: Vector2 = Vector2.ZERO
@@ -51,13 +48,14 @@ const BASE_CARD_WIDTH := 380.0
 const BASE_CARD_HEIGHT := 580.0
 const BASE_VIEWPORT_WIDTH := 1080.0
 
-# 카드 타입별 색상 — v5: 오방색 팔레트, 보라색 제거
+# 카드 타입별 색상 — StS 표준
 const TYPE_COLORS := {
-	"attack": Color(0.76, 0.23, 0.13),    # 적 (오방색 빨강 #C23B22)
-	"defense": Color(0.18, 0.31, 0.56),   # 청 (오방색 파랑 #2E5090)
-	"spell": Color(0.18, 0.31, 0.56),     # 청 (도사 — 학자의 색)
-	"movement": Color(0.23, 0.49, 0.27),  # 송록 (소나무 녹색)
-	"formation": Color(0.76, 0.23, 0.13), # 황 (오방색 노랑 #D4A017)
+	"attack": Color(0.76, 0.23, 0.13),    # 빨강
+	"skill": Color(0.18, 0.31, 0.56),     # 파랑
+	"defense": Color(0.18, 0.31, 0.56),   # 파랑 (skill 별칭)
+	"power": Color(0.23, 0.49, 0.27),     # 초록
+	"status": Color(0.4, 0.4, 0.4),       # 회색
+	"curse": Color(0.15, 0.05, 0.15),     # 검정/보라
 }
 
 # 희귀도별 색상 — v5: 오방색 기반 재질감
@@ -84,13 +82,9 @@ var _hover_stylebox: StyleBoxFlat
 var _selected_stylebox: StyleBoxFlat
 var _disabled_stylebox: StyleBoxFlat
 var _drag_stylebox: StyleBoxFlat
-var _sijo_match_stylebox: StyleBoxFlat
 
 # v6: 프레임 텍스처 캐시
 var _frame_stylebox_cache: Dictionary = {}  # rarity → StyleBoxTexture
-
-# 시조 매칭 글로우 애니메이션
-var _sijo_glow_tween: Tween = null
 
 
 func _ready() -> void:
@@ -114,11 +108,10 @@ func _ready() -> void:
 	add_child(_long_press_timer)
 
 
-func setup(data: CardData, index: int, playable: bool, matches_sijo: bool) -> void:
+func setup(data: CardData, index: int, playable: bool) -> void:
 	card_data = data
 	hand_index = index
 	is_playable = playable
-	sijo_match = matches_sijo
 
 	if not is_node_ready():
 		await ready
@@ -176,14 +169,6 @@ func _create_styleboxes() -> void:
 	_drag_stylebox.shadow_size = 14
 	_drag_stylebox.shadow_offset = Vector2(0, 4)
 
-	# 시조 비트 매칭 카드 — 금색 글로우 (초록보다 테마에 맞음)
-	_sijo_match_stylebox = StyleBoxFlat.new()
-	_sijo_match_stylebox.bg_color = Color(0.14, 0.12, 0.08)
-	_sijo_match_stylebox.border_color = Color(0.76, 0.23, 0.13, 1.0)
-	_sijo_match_stylebox.set_border_width_all(4)
-	_sijo_match_stylebox.set_corner_radius_all(14)
-	_sijo_match_stylebox.shadow_color = Color(0.76, 0.23, 0.13, 0.35)
-	_sijo_match_stylebox.shadow_size = 10
 
 
 func _apply_font_scaling(scale: float) -> void:
@@ -193,13 +178,11 @@ func _apply_font_scaling(scale: float) -> void:
 	var cost_size := AccessibilityManager.scaled_font_size(maxi(int(26 * scale), 22))
 	var type_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 22))
 	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 21))
-	var sijo_size := AccessibilityManager.scaled_font_size(maxi(int(28 * scale), 24))
 
 	card_name_label.add_theme_font_size_override("font_size", name_size)
 	beat_cost_label.add_theme_font_size_override("font_size", cost_size)
 	type_label.add_theme_font_size_override("font_size", type_size)
 	effect_label.add_theme_font_size_override("font_size", effect_size)
-	sijo_indicator.add_theme_font_size_override("font_size", sijo_size)
 
 	# 카드 내부 요소 최소 높이도 비율에 맞게 조정
 	card_name_label.custom_minimum_size.y = 52 * scale
@@ -221,21 +204,17 @@ func _update_display() -> void:
 	# 카드 일러스트 (TextureManager에서 로드, 없으면 placeholder)
 	card_art.texture = TextureManager.get_card_texture(card_data.id, card_data.type)
 
-	# 비트 + 코스트 + 기력
-	var cost_text := tr("CARD_BEAT_COST_FMT") % [card_data.beat, card_data.cost]
-	if card_data.stamina_cost > 0:
-		cost_text += tr("CARD_STAMINA_COST_FMT") % card_data.stamina_cost
-	elif card_data.stamina_gain > 0:
-		cost_text += tr("CARD_STAMINA_GAIN_FMT") % card_data.stamina_gain
-	beat_cost_label.text = cost_text
+	# 코스트
+	beat_cost_label.text = str(card_data.cost)
 
 	# 타입 표시
 	var type_names := {
 		"attack": tr("CARD_TYPE_ATTACK"),
+		"skill": tr("CARD_TYPE_DEFENSE"),
 		"defense": tr("CARD_TYPE_DEFENSE"),
-		"spell": tr("CARD_TYPE_SPELL_ALT"),
-		"movement": tr("CARD_TYPE_MOVEMENT"),
-		"formation": tr("CARD_TYPE_FORMATION"),
+		"power": tr("CARD_TYPE_POWER") if TranslationServer.get_locale() != "" else "Power",
+		"status": "Status",
+		"curse": "Curse",
 	}
 	type_label.text = type_names.get(card_data.type, card_data.type)
 	var type_color: Color = AccessibilityManager.get_type_color(card_data.type)
@@ -248,21 +227,9 @@ func _update_display() -> void:
 	var rarity_color: Color = RARITY_COLORS.get(card_data.rarity, Color(0.5, 0.5, 0.5))
 	rarity_bar.color = rarity_color
 
-	# 시조 비트 일치 표시
-	if sijo_match:
-		sijo_indicator.text = "♪"
-		sijo_indicator.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-		sijo_indicator.visible = true
-	else:
-		sijo_indicator.visible = false
 
 
 func _update_style() -> void:
-	# 기존 글로우 애니메이션 정리
-	if _sijo_glow_tween and _sijo_glow_tween.is_valid():
-		_sijo_glow_tween.kill()
-		_sijo_glow_tween = null
-
 	if not is_playable:
 		add_theme_stylebox_override("panel", _disabled_stylebox)
 		modulate = Color(0.6, 0.6, 0.6, 0.8)
@@ -275,10 +242,6 @@ func _update_style() -> void:
 	elif is_hovered:
 		add_theme_stylebox_override("panel", _hover_stylebox)
 		modulate = Color(1, 1, 1, 1)
-	elif sijo_match and is_playable:
-		add_theme_stylebox_override("panel", _sijo_match_stylebox)
-		modulate = Color(1, 1, 1, 1)
-		_start_sijo_glow()
 	else:
 		# v6: 카드 프레임 텍스처 우선 사용, 없으면 StyleBoxFlat fallback
 		var frame_sb: StyleBoxTexture = null
@@ -297,22 +260,6 @@ func _update_style() -> void:
 				typed_style.border_color = _get_type_border_color(card_data.type)
 			add_theme_stylebox_override("panel", typed_style)
 		modulate = Color(1, 1, 1, 1)
-
-
-func _start_sijo_glow() -> void:
-	## 시조 매칭 카드에 부드러운 테두리 펄스 애니메이션
-	if not is_inside_tree():
-		return
-	if _sijo_glow_tween and _sijo_glow_tween.is_valid():
-		_sijo_glow_tween.kill()
-	_sijo_glow_tween = create_tween().set_loops()
-	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 0.3, 1.0, 0.5)
-	_sijo_glow_tween.tween_method(_set_sijo_border_alpha, 1.0, 0.3, 0.5)
-
-
-func _set_sijo_border_alpha(alpha: float) -> void:
-	if _sijo_match_stylebox:
-		_sijo_match_stylebox.border_color = Color(0.76, 0.23, 0.13, alpha)
 
 
 func _make_frame_stylebox(rarity: int, tint: Color = Color.WHITE) -> StyleBoxTexture:
@@ -345,11 +292,11 @@ func _make_frame_stylebox(rarity: int, tint: Color = Color.WHITE) -> StyleBoxTex
 func _get_type_bg_color(type: String) -> Color:
 	## 카드 타입별 배경색 — v5: 오방색 흑 기반, 타입별 은은한 색조
 	match type:
-		"attack": return Color(0.16, 0.08, 0.06)    # 흑+적
-		"defense": return Color(0.06, 0.10, 0.16)   # 흑+청
-		"spell": return Color(0.06, 0.10, 0.16)     # 흑+청
-		"movement": return Color(0.06, 0.14, 0.08)  # 흑+송록
-		"formation": return Color(0.16, 0.13, 0.04) # 흑+황
+		"attack": return Color(0.16, 0.08, 0.06)
+		"skill", "defense": return Color(0.06, 0.10, 0.16)
+		"power": return Color(0.06, 0.14, 0.08)
+		"status": return Color(0.10, 0.10, 0.10)
+		"curse": return Color(0.10, 0.05, 0.10)
 		_: return Color(0.12, 0.11, 0.10)
 
 
@@ -357,10 +304,10 @@ func _get_type_border_color(type: String) -> Color:
 	## 카드 타입별 테두리색 — v5: 오방색 팔레트
 	match type:
 		"attack": return Color(0.76, 0.23, 0.13)
-		"defense": return Color(0.18, 0.31, 0.56)
-		"spell": return Color(0.18, 0.31, 0.56)
-		"movement": return Color(0.23, 0.49, 0.27)
-		"formation": return Color(0.76, 0.23, 0.13)
+		"skill", "defense": return Color(0.18, 0.31, 0.56)
+		"power": return Color(0.23, 0.49, 0.27)
+		"status": return Color(0.4, 0.4, 0.4)
+		"curse": return Color(0.15, 0.05, 0.15)
 		_: return Color(0.25, 0.23, 0.20)
 
 

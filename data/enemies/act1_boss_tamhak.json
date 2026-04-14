@@ -265,6 +265,5 @@
     "gold_bonus_from_drained": true,
     "gold_bonus_note": "강탈당한 엽전의 50% 환급."
   },
-  "minshim_on_defeat": 15,
   "balance_note": "HP 120. 패시브 골드 강탈 15/턴. 전투 길이 목표: 10~13턴. 페이즈 2 힘+2, 페이즈 3 카운트다운 3턴."
 }

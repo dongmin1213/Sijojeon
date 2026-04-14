@@ -25,7 +25,7 @@ var ACT_CUTSCENE_LINES := {
 	3: [
 		{"ko": "드디어 역모의 심장부에 다다랐도다.", "en": "At last, you have reached the heart of the treason."},
 		{"ko": "경복궁 안에 도사린 역적의 흉계가 드러나려 한다.", "en": "The treasonous plot lurking within Gyeongbokgung is about to be revealed."},
-		{"ko": "최후의 대결이 기다린다. 시조의 힘으로 정의를 세워라.", "en": "The final confrontation awaits. Establish justice with the power of sijo."},
+		{"ko": "최후의 대결이 기다린다.", "en": "The final confrontation awaits."},
 	],
 }
 
@@ -51,16 +51,10 @@ func _ready() -> void:
 	act_number_label.text = tr("ACT_TRANSITION_FMT") % act
 	act_name_label.text = act_name
 
-	# 막 설명 + 서사 텍스트 결합
+	# 막 설명
 	var desc_key: String = ACT_DESCRIPTIONS.get(act, "")
 	var desc: String = tr(desc_key) if desc_key != "" else ""
-	var narrative := _get_narrative_text_for_act(act)
-	if narrative != "":
-		desc += "\n\n" + narrative
 	act_desc_label.text = desc
-
-	# 1막 시작 시 서사 stage 초기화
-	_update_narrative_stage(act)
 
 	# 수묵화 컷신 UI 생성
 	_create_cutscene_ui()
@@ -158,9 +152,7 @@ func _play_cutscene(act: int) -> void:
 	tween.tween_interval(0.3)
 	tween.tween_property(act_desc_label, "modulate:a", 1.0, 0.6)
 
-	var narrative := _get_narrative_text_for_act(GameManager.run_data.current_act) if GameManager.run_data else ""
-	var wait_time := 2.0 if narrative == "" else 3.0
-	tween.tween_interval(wait_time)
+	tween.tween_interval(2.0)
 	tween.tween_callback(_go_to_map)
 
 
@@ -181,73 +173,8 @@ func _play_fallback_transition(act: int) -> void:
 	tween.tween_interval(0.3)
 	tween.tween_property(act_desc_label, "modulate:a", 1.0, 0.6)
 
-	var narrative := _get_narrative_text_for_act(act) if GameManager.run_data else ""
-	var wait_time := 2.0 if narrative == "" else 3.5
-	tween.tween_interval(wait_time)
+	tween.tween_interval(2.0)
 	tween.tween_callback(_go_to_map)
-
-
-## 현재 막에 맞는 서사 텍스트를 반환한다.
-func _get_narrative_text_for_act(act: int) -> String:
-	if not GameManager.run_data:
-		return ""
-	var rd := GameManager.run_data
-	var stage: int = rd.narrative_state.get("amhaengosa_stage", 0)
-
-	# 이미 표시한 서사는 스킵
-	var shown: Array = rd.narrative_state.get("shown_narrative_stages", [])
-
-	var file := FileAccess.open("res://data/narrative/amhaengosa_journey.json", FileAccess.READ)
-	if file == null:
-		return ""
-	var json := JSON.new()
-	if json.parse(file.get_as_text()) != OK:
-		file.close()
-		return ""
-	file.close()
-
-	var stages: Array = json.data.get("stages", [])
-
-	# 1막 시작 — stage 0 표시
-	if act == 1 and not shown.has(0):
-		for s in stages:
-			if s.get("stage") == 0:
-				shown.append(0)
-				rd.narrative_state["shown_narrative_stages"] = shown
-				return "— %s —\n%s" % [TranslationManager.trd(s, "title", ""), TranslationManager.trd(s, "text", "")]
-
-	# 3막 진입 — stage 3 표시
-	if act == 3 and not shown.has(3):
-		for s in stages:
-			if s.get("stage") == 3:
-				shown.append(3)
-				rd.narrative_state["shown_narrative_stages"] = shown
-				return "— %s —\n%s" % [TranslationManager.trd(s, "title", ""), TranslationManager.trd(s, "text", "")]
-
-	# stage 2 (조사 단계 진입 직후) — 2막 전환 시 표시
-	if stage >= 2 and not shown.has(2):
-		for s in stages:
-			if s.get("stage") == 2:
-				shown.append(2)
-				rd.narrative_state["shown_narrative_stages"] = shown
-				return "— %s —\n%s" % [TranslationManager.trd(s, "title", ""), TranslationManager.trd(s, "text", "")]
-
-	return ""
-
-
-## 막 전환 시 서사 stage를 업데이트한다.
-func _update_narrative_stage(act: int) -> void:
-	if not GameManager.run_data:
-		return
-	var rd := GameManager.run_data
-	# 1막 시작: stage 0 → 1 (탐문)
-	if act == 1 and rd.narrative_state.get("amhaengosa_stage", 0) == 0:
-		rd.narrative_state["amhaengosa_stage"] = 1
-	# 3막 진입: stage → 3 (처단)
-	if act == 3:
-		var current_stage: int = rd.narrative_state.get("amhaengosa_stage", 0)
-		if current_stage < 3:
-			rd.narrative_state["amhaengosa_stage"] = 3
 
 
 func _go_to_map() -> void:

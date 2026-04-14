@@ -26,23 +26,9 @@ var ascension_modifiers: Array = []  # 현재 적용 중인 수정자 목록
 
 ## 역사 사건 이벤트 — 발동된 이벤트 ID 목록 (중복 방지)
 var triggered_special_events: Array[String] = []
-## 서사 프레임 상태 (파벌 점수, 태그, 대기 효과 등)
-var narrative_state: Dictionary = {}
 
-## 신분 트랙 (Phase 3-A)
-var jibun_score: int = 0        # 누적 신분 점수 (0~999)
-var jibun_rank: int = 1         # 현재 신분 단계 (1~5)
-
-## 당파 시스템 (Phase 3-B)
-var faction_pair: Array[String] = []      # 런의 당파 대립 쌍 [faction_a, faction_b]
-var faction_meters: Dictionary = {}       # {"faction_id": int} 0~100
-
-## 시상 시스템 (Phase 2-2) — 런 전체 시조 완성 누적
-var sisang_count: int = 0  # 이번 런에서 완성한 시조 총 수
-
-## 엔딩 분기 점수 (Phase 3-4) — 이벤트 선택에 따라 누적
-var ending_scores: Dictionary = {"justice": 0, "mercy": 0, "ambition": 0}
-
+## 대기 효과 목록 (상점 할인, 다음 전투 방어도 등)
+var pending_effects: Array = []
 
 func to_dict() -> Dictionary:
 	var prev_maps_arr := []
@@ -70,13 +56,7 @@ func to_dict() -> Dictionary:
 		"ascension_level": ascension_level,
 		"ascension_modifiers": ascension_modifiers,
 		"triggered_special_events": triggered_special_events,
-		"narrative_state": narrative_state,
-		"jibun_score": jibun_score,
-		"jibun_rank": jibun_rank,
-		"faction_pair": faction_pair,
-		"faction_meters": faction_meters,
-		"sisang_count": sisang_count,
-		"ending_scores": ending_scores,
+		"pending_effects": pending_effects,
 	}
 
 
@@ -106,14 +86,5 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.ascension_level = data.get("ascension_level", 0)
 	rd.ascension_modifiers = data.get("ascension_modifiers", [])
 	rd.triggered_special_events = Array(data.get("triggered_special_events", []), TYPE_STRING, "", null)
-	rd.narrative_state = data.get("narrative_state", {})
-	rd.jibun_score = data.get("jibun_score", 0)
-	rd.jibun_rank = data.get("jibun_rank", 1)
-	var fp = data.get("faction_pair", [])
-	if fp is Array:
-		for s in fp:
-			rd.faction_pair.append(str(s))
-	rd.faction_meters = data.get("faction_meters", {})
-	rd.sisang_count = data.get("sisang_count", 0)
-	rd.ending_scores = data.get("ending_scores", {"justice": 0, "mercy": 0, "ambition": 0})
+	rd.pending_effects = data.get("pending_effects", [])
 	return rd

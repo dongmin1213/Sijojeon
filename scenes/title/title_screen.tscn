@@ -118,12 +118,6 @@ custom_minimum_size = Vector2(0, 76)
 theme_override_font_sizes/font_size = 34
 text = "UI_CONTINUE"
 
-[node name="ChronicleButton" type="Button" parent="TitlePanel/VBoxContainer"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 76)
-theme_override_font_sizes/font_size = 34
-text = "UI_CHRONICLE"
-
 [node name="SettingsButton" type="Button" parent="TitlePanel/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 76)

@@ -12,7 +12,6 @@ var _keyword_tooltip: KeywordTooltip = null  # 키워드 툴팁
 @onready var turn_label: Label = $HiddenRefs/TurnLabel
 @onready var card_hand: CardHand = $HandZone/CardHand
 @onready var enemy_container: HBoxContainer = $EnemyZone/EnemyContainer
-@onready var sijo_container: HBoxContainer = $SijoBar/SijoContainer
 @onready var _hud_end_turn_button: Button = $HiddenRefs/EndTurnButton  # 숨김 처리, 실제는 플로팅
 @onready var draw_pile_label: Label = $HiddenRefs/DrawPileLabel
 @onready var discard_pile_label: Label = $HiddenRefs/DiscardPileLabel
@@ -28,25 +27,9 @@ var _draw_pile_overlay: PanelContainer = null
 var _discard_pile_overlay: PanelContainer = null
 
 var battle_manager: BattleManager
-var sijo_system: SijoSystem
-
-# 시조 슬롯 UI 라벨
-var sijo_slot_labels: Array[Label] = []
-var _sijo_collapsed: bool = false  # 시조 슬롯 축약 상태
-var _sijo_toggle_button: Button = null
-var _sijo_summary_label: Label = null  # 축약 모드에서 진행률 표시
 
 # 플레이어 상태이상 UI 컨테이너
 var _player_status_container: HBoxContainer = null
-
-# 클래스 고유 자원 UI (무관: 기력, 문관: 학식)
-var _class_resource_label: Label = null
-
-# 액티브 스킬 버튼
-var _active_skill_button: Button = null
-
-# v11: 플레이어 캐릭터 스프라이트 (전투필드 좌측)
-var _player_sprite: TextureRect = null
 
 # 적 UI 캐시 (index → {panel, name_label, hp_label, block_label, intent_label, status_hbox})
 var _enemy_ui_cache: Dictionary = {}
@@ -59,10 +42,6 @@ var _enemy_ui_dirty: bool = false
 
 # 손패 UI 업데이트 배칭용 dirty flag (try_play_card 중 중복 rebuild 방지)
 var _hand_ui_dirty: bool = false
-
-# 시조 완성 가능 알림 라벨
-var _sijo_alert_label: Label = null
-var _sijo_alert_visible: bool = false
 
 
 func _ready() -> void:
@@ -80,10 +59,7 @@ func _ready() -> void:
 
 	# 매니저 초기화
 	battle_manager = BattleManager.new()
-	sijo_system = SijoSystem.new()
-	battle_manager.sijo_system = sijo_system
 	add_child(battle_manager)
-	add_child(sijo_system)
 
 	# 플로팅 UI 요소 생성
 	_create_floating_ui()
@@ -97,10 +73,6 @@ func _ready() -> void:
 	battle_manager.enemy_hp_changed.connect(_on_enemy_hp_changed)
 	battle_manager.enemy_intent_shown.connect(_on_enemy_intent_shown)
 	battle_manager.battle_ended.connect(_on_battle_ended)
-	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
-	sijo_system.sijo_completed.connect(_on_sijo_completed)
-	battle_manager.sijo_beat_matched.connect(_on_sijo_beat_matched)
-	battle_manager.card_combo_triggered.connect(_on_card_combo_triggered)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 
 	# CardHand 시그널 연결
@@ -110,10 +82,7 @@ func _ready() -> void:
 	# 상태이상 시그널 연결
 	battle_manager.status_effect_changed.connect(_on_status_effect_changed)
 
-	# 클래스 고유 자원 시그널 연결
-	battle_manager.class_resource_changed.connect(_on_class_resource_changed)
-
-	# 패시브/액티브 스킬 시그널 연결
+	# 패시브 스킬 시그널 연결
 	battle_manager.passive_triggered.connect(_on_passive_triggered)
 
 	# 키워드 툴팁 초기화
@@ -127,10 +96,6 @@ func _ready() -> void:
 	end_turn_button.tooltip_text = tr("TOOLTIP_END_TURN")
 	draw_pile_label.tooltip_text = tr("TOOLTIP_DRAW_PILE")
 	discard_pile_label.tooltip_text = tr("TOOLTIP_DISCARD_PILE")
-
-	# 시조 슬롯 UI 초기화 (토글 버튼 포함)
-	_init_sijo_toggle()
-	_init_sijo_slots()
 
 	# 유물 바 UI 추가
 	_init_relic_bar()
@@ -187,40 +152,9 @@ func _start_battle() -> void:
 	is_boss = (rd.current_node_type == MapData.NodeType.BOSS)
 	if is_boss:
 		RelicManager.trigger_boss_enter()
-		# 이벤트 대기 효과 — 보스 HP 변동 적용
-		var boss_mod := _consume_boss_hp_modifier()
-		if boss_mod != 1.0:
-			for e in enemy_data:
-				var orig_hp: int = e.get("hp", 100)
-				e["hp"] = maxi(int(orig_hp * boss_mod), 1)
-
-		# 민심 구간별 보스 전투 영향
-		var minshim: int = rd.narrative_state.get("minshim", 50)
-		if minshim >= 80:
-			# 민심 80~100: 보스 HP -20%, 플레이어 매 턴 HP +1 회복
-			for e in enemy_data:
-				var orig_hp: int = e.get("hp", 100)
-				e["hp"] = maxi(int(orig_hp * 0.8), 1)
-			rd.set_meta("minshim_boss_heal", true)
-		elif minshim >= 30 and minshim <= 49:
-			# 민심 30~49: 보스 HP +10%
-			for e in enemy_data:
-				var orig_hp: int = e.get("hp", 100)
-				e["hp"] = int(orig_hp * 1.1)
-		elif minshim >= 10 and minshim <= 29:
-			# 민심 10~29: 보스에 저항군 추가 페이즈 삽입
-			_inject_resistance_phase(enemy_data)
-		elif minshim < 10:
-			# 민심 0~9: 보스에 민란군 강화 페이즈 삽입
-			_inject_minran_phase(enemy_data)
-
-	# (Phase 1-5: 신분 기반 적 HP 보정 제거됨)
 
 	_prev_player_hp = rd.current_hp
 	battle_manager.start_battle(deck, enemy_data, rd.current_hp, rd.max_hp, rd.qi_per_turn, rd.character_id)
-
-	# v11: 플레이어 캐릭터 스프라이트를 전투필드 좌측에 배치
-	_setup_player_sprite(rd.character_id)
 
 	# 전투 시작 유물 트리거 (편자, 호신검, 어사마패 등)
 	RelicManager.trigger_battle_start(battle_manager)
@@ -245,13 +179,6 @@ func _start_battle() -> void:
 					if effect == "weaken":
 						battle_manager.status_effects.apply_effect("player", "약화", duration)
 
-	# 클래스 고유 자원 UI 초기화 (무관: 기력, 문관: 학식)
-	if battle_manager.has_class_resource:
-		_init_class_resource_ui()
-
-	# 액티브 스킬 버튼 초기화 (도사 제외 — 방술 개방은 자동 발동)
-	if battle_manager.character_id != "dosa":
-		_init_active_skill_button()
 
 
 func _create_deck_pill_label(font_color: Color) -> PanelContainer:
@@ -274,33 +201,6 @@ func _create_deck_pill_label(font_color: Color) -> PanelContainer:
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	pill.add_child(lbl)
 	return pill
-
-
-func _setup_player_sprite(character_id: String) -> void:
-	## v12: 플레이어 캐릭터를 전투필드 좌하단에 배치 (StS 스타일)
-	## 플레이어가 배경 위에 서 있는 느낌 — 좌측, 지면 가까이
-	if _player_sprite:
-		_player_sprite.queue_free()
-	_player_sprite = TextureRect.new()
-	_player_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_player_sprite.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	# 전투필드 좌하단: 배경 지면 위에 서 있는 위치
-	_player_sprite.anchor_left = 0.02
-	_player_sprite.anchor_top = 0.32
-	_player_sprite.anchor_right = 0.38
-	_player_sprite.anchor_bottom = 0.60
-	_player_sprite.z_index = 3
-	_player_sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	# 캐릭터 텍스처 로드 (PNG → SVG 순서로 탐색)
-	var tex_path := "res://art/characters/%s.png" % character_id
-	var tex_path_svg := "res://art/characters/%s.svg" % character_id
-	if ResourceLoader.exists(tex_path):
-		_player_sprite.texture = load(tex_path)
-	elif ResourceLoader.exists(tex_path_svg):
-		_player_sprite.texture = load(tex_path_svg)
-	else:
-		_player_sprite.texture = TextureManager.get_enemy_texture(character_id)
-	add_child(_player_sprite)
 
 
 func _create_floating_ui() -> void:
@@ -332,12 +232,12 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
-	# v12 앵커: 액션바 우측, 시조바와 같은 높이 (62-68%)
+	# v14 앵커: 액션바 우측, 시조바와 같은 높이 (55-61%)
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
 	end_turn_button.anchor_left = 0.60
 	end_turn_button.anchor_right = 0.98
-	end_turn_button.anchor_top = 0.62
-	end_turn_button.anchor_bottom = 0.68
+	end_turn_button.anchor_top = 0.55
+	end_turn_button.anchor_bottom = 0.61
 	end_turn_button.z_index = 12
 	add_child(end_turn_button)
 
@@ -352,119 +252,22 @@ func _create_floating_ui() -> void:
 	_turn_overlay_label.z_index = 15
 	add_child(_turn_overlay_label)
 
-	# v12: 드로우/버림 더미 — 핸드존 좌/우 상단 (68% 라인)
+	# v14: 드로우/버림 더미 — 핸드존 좌/우 상단 (61% 라인)
 	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.65, 0.90))
 	_draw_pile_overlay.anchor_left = 0.02
-	_draw_pile_overlay.anchor_top = 0.68
+	_draw_pile_overlay.anchor_top = 0.61
 	_draw_pile_overlay.anchor_right = 0.18
-	_draw_pile_overlay.anchor_bottom = 0.72
+	_draw_pile_overlay.anchor_bottom = 0.65
 	_draw_pile_overlay.z_index = 12
 	add_child(_draw_pile_overlay)
 
 	_discard_pile_overlay = _create_deck_pill_label(Color(0.90, 0.50, 0.40))
 	_discard_pile_overlay.anchor_left = 0.82
-	_discard_pile_overlay.anchor_top = 0.68
+	_discard_pile_overlay.anchor_top = 0.61
 	_discard_pile_overlay.anchor_right = 0.98
-	_discard_pile_overlay.anchor_bottom = 0.72
+	_discard_pile_overlay.anchor_bottom = 0.65
 	_discard_pile_overlay.z_index = 12
 	add_child(_discard_pile_overlay)
-
-
-func _init_sijo_toggle() -> void:
-	## 시조 슬롯 토글 버튼 + 요약 라벨 초기화
-	var sijo_area := $SijoBar
-	_sijo_toggle_button = Button.new()
-	_sijo_toggle_button.text = "▼"
-	_sijo_toggle_button.custom_minimum_size = Vector2(40, 40)
-	_sijo_toggle_button.add_theme_font_size_override("font_size", 18)
-	_sijo_toggle_button.pressed.connect(_on_sijo_toggle_pressed)
-	sijo_area.add_child(_sijo_toggle_button)
-	sijo_area.move_child(_sijo_toggle_button, 0)
-
-	_sijo_summary_label = Label.new()
-	_sijo_summary_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_sijo_summary_label.add_theme_font_size_override("font_size", 18)
-	_sijo_summary_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
-	_sijo_summary_label.visible = false
-	sijo_area.add_child(_sijo_summary_label)
-
-
-func _on_sijo_toggle_pressed() -> void:
-	_sijo_collapsed = not _sijo_collapsed
-	sijo_container.visible = not _sijo_collapsed
-	_sijo_summary_label.visible = _sijo_collapsed
-	_sijo_toggle_button.text = "▶" if _sijo_collapsed else "▼"
-	if _sijo_collapsed:
-		_update_sijo_summary()
-
-
-func _update_sijo_summary() -> void:
-	## 축약 모드에서 시조 진행률을 한 줄로 표시
-	if not _sijo_summary_label:
-		return
-	var filled := sijo_system.current_slot_index if sijo_system else 0
-	var total := sijo_system.pattern.size()
-	_sijo_summary_label.text = tr("BATTLE_SIJO_SUMMARY_FMT") % [filled, total]
-
-
-func _init_sijo_slots() -> void:
-	sijo_slot_labels.clear()
-	for child in sijo_container.get_children():
-		child.queue_free()
-
-	var jang_names: Array[String] = [tr("SIJO_FIRST_VERSE"), tr("SIJO_MIDDLE_VERSE"), tr("SIJO_FINAL_VERSE")]
-	var jang_symbols: Array[String] = [tr("JANG_SYMBOL_1"), tr("JANG_SYMBOL_2"), tr("JANG_SYMBOL_3")]
-	for i in sijo_system.pattern.size():
-		var slot_panel := PanelContainer.new()
-		var slot_style := StyleBoxFlat.new()
-		slot_style.bg_color = Color(0.05, 0.05, 0.04, 0.9)
-		slot_style.set_border_width_all(1)
-		slot_style.border_color = Color(0.30, 0.28, 0.25, 0.6)
-		slot_style.set_corner_radius_all(12)
-		slot_style.content_margin_left = 12
-		slot_style.content_margin_right = 12
-		slot_style.content_margin_top = 8
-		slot_style.content_margin_bottom = 8
-		# 현재 활성 슬롯 강조 — v4: 금색 테두리
-		if i == sijo_system.current_slot_index:
-			slot_style.border_color = Color(0.76, 0.23, 0.13, 0.9)
-			slot_style.shadow_color = Color(0.76, 0.23, 0.13, 0.2)
-			slot_style.shadow_size = 6
-		slot_panel.add_theme_stylebox_override("panel", slot_style)
-		slot_panel.custom_minimum_size = Vector2(140, 60)
-		slot_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-		var vbox := VBoxContainer.new()
-		vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-		vbox.add_theme_constant_override("separation", 2)
-
-		# 장 이름 + 한자 심볼 (한 줄)
-		var header := Label.new()
-		header.text = "%s %s" % [jang_symbols[i] if i < jang_symbols.size() else "", jang_names[i] if i < jang_names.size() else ""]
-		header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		header.add_theme_font_size_override("font_size", 16)
-		if i == sijo_system.current_slot_index:
-			header.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-		else:
-			header.add_theme_color_override("font_color", Color(0.55, 0.50, 0.42, 0.7))
-		vbox.add_child(header)
-
-		# beat 번호 (크게)
-		var label := Label.new()
-		label.text = "♪ %d" % sijo_system.pattern[i]
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.add_theme_font_size_override("font_size", 28)
-		if i == sijo_system.current_slot_index:
-			label.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
-		else:
-			label.add_theme_color_override("font_color", Color(0.50, 0.46, 0.40))
-		vbox.add_child(label)
-		slot_panel.add_child(vbox)
-		sijo_container.add_child(slot_panel)
-		sijo_slot_labels.append(label)
-
-	if _sijo_collapsed:
-		_update_sijo_summary()
 
 
 func _refresh_hand_ui() -> void:
@@ -480,8 +283,7 @@ func _deferred_refresh_hand_ui() -> void:
 	if not is_inside_tree():
 		return
 	_hand_ui_dirty = false
-	var sijo_beat := sijo_system.get_next_required_beat() if sijo_system else -1
-	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat, battle_manager)
+	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, battle_manager)
 
 	# 덱 정보 갱신
 	draw_pile_label.text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
@@ -491,73 +293,6 @@ func _deferred_refresh_hand_ui() -> void:
 		_draw_pile_overlay.get_child(0).text = tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
 	if _discard_pile_overlay:
 		_discard_pile_overlay.get_child(0).text = tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
-
-	# 시조 완성 가능 여부 체크
-	_check_sijo_completable()
-
-
-func _check_sijo_completable() -> void:
-	## 현재 손패로 남은 시조 슬롯을 모두 채울 수 있는지 체크
-	if not sijo_system or sijo_system.is_complete():
-		_hide_sijo_alert()
-		return
-
-	var remaining_slots := sijo_system.pattern.size() - sijo_system.current_slot_index
-	if remaining_slots <= 0:
-		_hide_sijo_alert()
-		return
-
-	# 남은 슬롯 패턴에 맞는 비트를 손패에서 찾기
-	var hand_beats: Array[int] = []
-	for card_id in battle_manager.hand:
-		var card: CardData = DataLoader.get_card(card_id)
-		if card and battle_manager.can_play_card(card):
-			hand_beats.append(card.beat)
-
-	# 순서대로 매칭 가능한지 그리디 체크
-	var available_beats := hand_beats.duplicate()
-	var can_complete := true
-	for slot_idx in range(sijo_system.current_slot_index, sijo_system.pattern.size()):
-		var needed_beat: int = sijo_system.pattern[slot_idx]
-		var found := available_beats.find(needed_beat)
-		if found == -1:
-			can_complete = false
-			break
-		available_beats.remove_at(found)
-
-	if can_complete:
-		_show_sijo_alert()
-	else:
-		_hide_sijo_alert()
-
-
-func _show_sijo_alert() -> void:
-	if _sijo_alert_visible:
-		return
-	_sijo_alert_visible = true
-
-	if not _sijo_alert_label:
-		_sijo_alert_label = Label.new()
-		_sijo_alert_label.text = tr("SIJO_ALERT")
-		_sijo_alert_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		_sijo_alert_label.add_theme_font_size_override("font_size", 22)
-		_sijo_alert_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-		_sijo_alert_label.anchors_preset = Control.PRESET_CENTER_TOP
-		_sijo_alert_label.position.y = 100
-		add_child(_sijo_alert_label)
-
-		# 펄스 애니메이션
-		var tween := create_tween().set_loops()
-		tween.tween_property(_sijo_alert_label, "modulate:a", 0.4, 0.5)
-		tween.tween_property(_sijo_alert_label, "modulate:a", 1.0, 0.5)
-	else:
-		_sijo_alert_label.visible = true
-
-
-func _hide_sijo_alert() -> void:
-	_sijo_alert_visible = false
-	if _sijo_alert_label:
-		_sijo_alert_label.visible = false
 
 
 func _mark_enemy_ui_dirty() -> void:
@@ -867,13 +602,6 @@ func _on_turn_started(turn: int) -> void:
 	# 매 턴 시작 유물 트리거 (삼족오 깃털 등)
 	RelicManager.trigger_turn_start(battle_manager)
 
-	# 민심 80+ 보스전: 매 턴 HP +1 회복
-	if GameManager.run_data and GameManager.run_data.has_meta("minshim_boss_heal"):
-		if battle_manager.player_hp < battle_manager.player_max_hp:
-			battle_manager.player_hp += 1
-			battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
-			if turn == 1:
-				battle_manager.passive_triggered.emit(tr("PASSIVE_MINSHIM_TITLE"), tr("PASSIVE_MINSHIM_DESC"))
 
 
 func _on_enemy_hp_changed(enemy_index: int, current: int, max_val: int) -> void:
@@ -938,453 +666,6 @@ func _on_end_turn_pressed() -> void:
 	battle_manager.end_player_turn()
 
 
-func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String, beat_matched: bool) -> void:
-	AudioManager.play_sfx_by_key("sijo_slot")
-	if index < sijo_slot_labels.size():
-		var card: CardData = DataLoader.get_card(card_id)
-		if card:
-			sijo_slot_labels[index].text = card.get_display_name()
-		else:
-			sijo_slot_labels[index].text = card_id
-		# beat 일치: 금색 + 패널 테두리 강조, 불일치: 회색
-		if beat_matched:
-			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-		else:
-			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
-		# 슬롯 패널 테두리 색상 업데이트
-		var slot_panel: PanelContainer = sijo_slot_labels[index].get_parent().get_parent()
-		if slot_panel is PanelContainer:
-			var style: StyleBoxFlat = slot_panel.get_theme_stylebox("panel").duplicate()
-			if beat_matched:
-				style.border_color = Color(0.96, 0.94, 0.91, 0.9)
-				style.bg_color = Color(0.18, 0.15, 0.08, 0.9)
-			else:
-				style.border_color = Color(0.5, 0.5, 0.5, 0.7)
-				style.bg_color = Color(0.1, 0.1, 0.12, 0.9)
-			slot_panel.add_theme_stylebox_override("panel", style)
-	if _sijo_collapsed:
-		_update_sijo_summary()
-
-	# 초장/중장 완성 보상 (ZER-324)
-	if index == 0:
-		# 초장 완성 → 적 전체 취약 1턴
-		_apply_chojang_reward()
-	elif index == 1:
-		# 중장 완성 → 이번 턴 핸드 비용 -1
-		_apply_jungjang_reward()
-
-	# 유물 트리거: 시조 슬롯 마일스톤 (R019 등)
-	RelicManager.trigger_on_sijo_milestone(battle_manager, index + 1)
-	# 유물 트리거: 시조 슬롯 채움 (RS105 무관의 갑주 등)
-	RelicManager.trigger_on_sijo_slot_fill(battle_manager)
-
-
-func _on_card_combo_triggered(combo_count: int, bonus_percent: int) -> void:
-	## 카드 콤보 보너스 피드백
-	var text := tr("BATTLE_COMBO_FMT") % [combo_count, bonus_percent]
-	_show_sijo_reward_popup(text)
-
-
-func _on_sijo_beat_matched(_card_id: String) -> void:
-	## beat 일치 보너스 피드백: 공격/방어 +30%, 기 +1
-	_show_sijo_reward_popup(tr("BATTLE_BEAT_MATCH_BONUS"))
-
-
-## 시조 부분 완성 보상 팝업 텍스트를 표시한다.
-func _show_sijo_reward_popup(text: String) -> void:
-	var popup := Label.new()
-	popup.text = text
-	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	popup.anchors_preset = Control.PRESET_CENTER_TOP
-	popup.position.y = 120
-	popup.add_theme_font_size_override("font_size", 24)
-	popup.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-	add_child(popup)
-	var tween := create_tween()
-	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
-	tween.tween_callback(popup.queue_free)
-
-
-## 초장 완성 보상: 적 전체 취약 1턴 (ZER-324)
-func _apply_chojang_reward() -> void:
-	for i in battle_manager.enemies.size():
-		if battle_manager.enemies[i]["current_hp"] > 0:
-			var target_id := "enemy_%d" % i
-			battle_manager.status_effects.apply_effect(target_id, "취약", 1)
-	_show_sijo_reward_popup(tr("BATTLE_CHOJANG_REWARD"))
-	battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_CHAPTER") % tr("SIJO_FIRST_VERSE"), tr("BATTLE_CHOJANG_REWARD"))
-
-
-## 중장 완성 보상: 핸드 비용 -1 (ZER-324)
-func _apply_jungjang_reward() -> void:
-	battle_manager._cost_reduce_all_this_turn += 1
-	_show_sijo_reward_popup(tr("BATTLE_JUNGJANG_REWARD"))
-	battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_CHAPTER") % tr("SIJO_MIDDLE_VERSE"), tr("BATTLE_JUNGJANG_REWARD"))
-
-
-## 레벨업 팝업 표시 (전투 승리 후 보상 씬 전환 전)
-func _show_levelup_popup(new_rank: int) -> void:
-	var popup := PanelContainer.new()
-	popup.name = "LevelUpPopup"
-
-	# 반투명 검정 배경 스타일
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.05, 0.03, 0.1, 0.92)
-	style.border_color = Color(0.76, 0.23, 0.13, 0.8)
-	style.set_border_width_all(3)
-	style.set_corner_radius_all(12)
-	style.set_content_margin_all(30)
-	popup.add_theme_stylebox_override("panel", style)
-
-	var vbox := VBoxContainer.new()
-	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	vbox.add_theme_constant_override("separation", 12)
-
-	# 승급 타이틀
-	var title_label := Label.new()
-	title_label.text = "⬆ " + tr("REWARD_RANK_UP_FMT") % JibunSystem.get_rank_name(new_rank)
-	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title_label.add_theme_font_size_override("font_size", 36)
-	title_label.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-	vbox.add_child(title_label)
-
-	# 보너스 설명
-	var desc_key: String = JibunSystem.RANK_UP_REWARD_KEYS.get(new_rank, "")
-	if desc_key != "":
-		var desc_label := Label.new()
-		desc_label.text = tr(desc_key)
-		desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		desc_label.add_theme_font_size_override("font_size", 24)
-		desc_label.add_theme_color_override("font_color", Color(0.95, 0.92, 0.82))
-		desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		vbox.add_child(desc_label)
-
-	popup.add_child(vbox)
-
-	# 화면 중앙 배치
-	popup.anchors_preset = Control.PRESET_CENTER
-	popup.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	popup.grow_vertical = Control.GROW_DIRECTION_BOTH
-	add_child(popup)
-
-	# 슬라이드+페이드 인 애니메이션
-	popup.modulate.a = 0.0
-	popup.scale = Vector2(0.8, 0.8)
-	popup.pivot_offset = popup.size / 2.0
-
-	var tween := create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.tween_property(popup, "modulate:a", 1.0, 0.3)
-	tween.parallel().tween_property(popup, "scale", Vector2(1.0, 1.0), 0.4)
-	tween.tween_interval(1.8)
-	tween.tween_property(popup, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(popup.queue_free)
-	await tween.finished
-
-
-## 시조 일격: 시조 완성 시 직업별 필살기 자동 발동 (ZER-324)
-func _apply_sijo_strike() -> void:
-	var job := battle_manager.character_id
-	var strike_name := ""
-	var strike_desc := ""
-	# 정승(5): 시조 일격 2배 배율 + 시상(10) 시조 일격 +25%
-	var mult: float = JibunSystem.get_sijo_strike_multiplier(GameManager.run_data)
-	mult *= SisangSystem.get_strike_bonus_multiplier(GameManager.run_data)
-	# 보스전 시상(15) 시조 ×2.0
-	var is_boss := GameManager.run_data and GameManager.run_data.current_node_type == MapData.NodeType.BOSS
-	if is_boss:
-		mult *= SisangSystem.get_boss_sijo_multiplier(GameManager.run_data)
-	var m := int(mult)  # 정수 배율 (스택/피해 등에 사용)
-	if m < 1:
-		m = 1
-
-	match job:
-		"mugwan":
-			# 활빈: 적 전체에 피해 8 + 취약 2
-			strike_name = tr("SIJO_STRIKE_HWALBIN")
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					battle_manager.deal_damage_to_enemy(i, 8 * m)
-					battle_manager.status_effects.apply_effect("enemy_%d" % i, "취약", 2 * m)
-			strike_desc = tr("SIJO_STRIKE_HWALBIN_DESC")
-		"mungwan":
-			# 직필: 카드 3장 드로우 + 이번 턴 비용 -1
-			strike_name = tr("SIJO_STRIKE_JIKPIL")
-			battle_manager.draw_cards(3 * m)
-			battle_manager._cost_reduce_all_this_turn += 1 * m
-			strike_desc = tr("SIJO_STRIKE_JIKPIL_DESC")
-		"dosa":
-			# 접신: 적 전체에 독 4 + 화상 4 + 기 전체 회복
-			strike_name = tr("SIJO_STRIKE_JEOPSIN")
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					var tid := "enemy_%d" % i
-					battle_manager.status_effects.apply_effect(tid, "독", 4 * m)
-					battle_manager.status_effects.apply_effect(tid, "화상", 4 * m)
-			battle_manager.current_qi = battle_manager.max_qi
-			battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-			strike_desc = tr("SIJO_STRIKE_JEOPSIN_DESC")
-		"uiwon":
-			# 제독: HP 12 회복 + 적 전체 독 제거 후 제거량만큼 피해
-			strike_name = tr("SIJO_STRIKE_JEDOK")
-			var heal_amount := 12 * m
-			battle_manager.player_hp = mini(battle_manager.player_hp + heal_amount, battle_manager.player_max_hp)
-			battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					var tid := "enemy_%d" % i
-					var poison_stacks := battle_manager.status_effects.get_stacks(tid, "독")
-					if poison_stacks > 0:
-						battle_manager.status_effects.consume_stacks(tid, "독", poison_stacks)
-						battle_manager.deal_damage_to_enemy(i, poison_stacks * 2 * m)
-			strike_desc = tr("SIJO_STRIKE_JEDOK_DESC")
-		"gungsu":
-			# 절창: 흥 전부 소비, 소비량 × 3 전체 피해
-			strike_name = tr("SIJO_STRIKE_JEOLCHANG")
-			var excitement := battle_manager.current_class_resource
-			battle_manager.current_class_resource = 0
-			battle_manager.class_resource_changed.emit(battle_manager.current_class_resource, battle_manager.max_class_resource)
-			var strike_damage := excitement * 3 * m
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					battle_manager.deal_damage_to_enemy(i, strike_damage)
-			strike_desc = tr("SIJO_STRIKE_JEOLCHANG_DESC") % [excitement, strike_damage]
-		"sangin":
-			# 파사현정: 방어 15 + 적 전체 약화 2 + 기절 1
-			strike_name = tr("SIJO_STRIKE_PASA")
-			battle_manager.gain_block(15 * m)
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					var tid := "enemy_%d" % i
-					battle_manager.status_effects.apply_effect(tid, "약화", 2 * m)
-					battle_manager.status_effects.apply_effect(tid, "기절", 1 * m)
-			strike_desc = tr("SIJO_STRIKE_PASA_DESC")
-		_:
-			# 알 수 없는 직업: 기본 전체 피해
-			strike_name = tr("SIJO_STRIKE_DEFAULT")
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					battle_manager.deal_damage_to_enemy(i, 6 * m)
-			strike_desc = tr("SIJO_STRIKE_DEFAULT_DESC")
-
-	# 수묵화 VFX + 시조 일격 텍스트
-	if vfx:
-		vfx.sijo_strike_vfx(self, strike_name)
-	AudioManager.play_sfx_by_key("sijo_complete")
-	battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_STRIKE"), strike_desc)
-
-	# 전투 종료 확인
-	if battle_manager._all_enemies_dead():
-		AudioManager.play_sfx_by_key("victory")
-		battle_manager._change_state(BattleManager.BattleState.BATTLE_WIN)
-		battle_manager.battle_ended.emit(true)
-
-
-## 시선/절창 콤보 판정. 시조 완성 시점에 직업 자원 소비량 또는 기 획득량을 확인한다.
-## 시선 (Tier 1): 자원 2+ 소비 (도사: 기 2+ 획득) → 다음 카드 코스트 -1 + 직업별 보너스
-## 절창 (Tier 2): 자원 3+ 소비 (도사: 기 3+ 획득) → 시선 보상 +100% + 직업별 강력한 보너스 (ZER-259)
-func _check_sijo_combo() -> void:
-	var consumed := battle_manager.resources_consumed_this_turn
-	var job := battle_manager.character_id
-
-	# 도사: 기(qi) 획득량으로 시선/절창 판정 (ZER-259)
-	if not battle_manager.has_class_resource:
-		var qi_gained := battle_manager.qi_gained_this_turn
-		if qi_gained < 2:
-			return
-		var tier := 1  # 시선
-		if qi_gained >= 3:
-			tier = 2  # 절창
-		battle_manager.combo_triggered.emit(tier, job)
-		if tier == 2:
-			_apply_jeolchang_reward(job)
-			if vfx:
-				vfx.combo_vfx(self, tr("COMBO_JEOLCHANG"), Color(1.0, 0.3, 0.1))
-			AudioManager.play_sfx_by_key("sijo_complete")
-		else:
-			_apply_siseon_reward(job)
-			if vfx:
-				vfx.combo_vfx(self, tr("COMBO_SISEON"), Color(0.76, 0.23, 0.13))
-			AudioManager.play_sfx_by_key("card_play")
-		return
-
-	if consumed < 2:
-		return
-
-	var tier := 1  # 시선
-	if consumed >= 3:
-		tier = 2  # 절창 (ZER-259: 5→3으로 완화)
-
-	# 콤보 시그널 발행
-	battle_manager.combo_triggered.emit(tier, job)
-
-	if tier == 2:
-		# 절창 보상
-		_apply_jeolchang_reward(job)
-		if vfx:
-			vfx.combo_vfx(self, tr("COMBO_JEOLCHANG"), Color(1.0, 0.3, 0.1))
-		AudioManager.play_sfx_by_key("sijo_complete")  # 강한 효과음 재사용
-	else:
-		# 시선 보상
-		_apply_siseon_reward(job)
-		if vfx:
-			vfx.combo_vfx(self, tr("COMBO_SISEON"), Color(0.76, 0.23, 0.13))
-		AudioManager.play_sfx_by_key("card_play")
-
-
-func _apply_siseon_reward(job: String) -> void:
-	## 시선 (Tier 1) 보상: 공통 + 직업별
-	# 공통: 다음 카드 코스트 -1
-	battle_manager._next_card_cost_reduce += 1
-	var reward_text := tr("BATTLE_SISEON_REWARD")
-
-	match job:
-		"mugwan":
-			# 무관: 기력 +2
-			battle_manager.current_class_resource = mini(
-				battle_manager.current_class_resource + 2,
-				battle_manager.max_class_resource)
-			battle_manager.class_resource_changed.emit(
-				battle_manager.current_class_resource,
-				battle_manager.max_class_resource)
-			reward_text += ", " + tr("BATTLE_SISEON_STAMINA") % 2
-		"mungwan":
-			# 문관: 카드 1장 드로우
-			battle_manager.draw_cards(1)
-			reward_text += ", " + tr("BATTLE_SISEON_CARD") % 1
-		"dosa":
-			# 도사: 기 +1 (ZER-259)
-			battle_manager.current_qi = mini(
-				battle_manager.current_qi + 1,
-				battle_manager.max_qi)
-			battle_manager.qi_changed.emit(
-				battle_manager.current_qi, battle_manager.max_qi)
-			reward_text += ", " + tr("BATTLE_SISEON_QI")
-
-	_show_sijo_reward_popup(reward_text)
-	battle_manager.passive_triggered.emit(tr("PASSIVE_SISEON"), reward_text)
-
-
-func _apply_jeolchang_reward(job: String) -> void:
-	## 절창 (Tier 2) 보상: 공통 + 직업별 강력한 보너스
-	# 공통: 시선 보상(다음 카드 -1) + 100% 추가 = 다음 카드 무료
-	battle_manager._next_card_cost_reduce += 99  # 사실상 무료
-
-	var reward_text := tr("BATTLE_JEOLCHANG_TEXT")
-	match job:
-		"mugwan":
-			# 무관: 적 전체 기절 1턴
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					var target_id := "enemy_%d" % i
-					battle_manager.status_effects.apply_effect(target_id, "기절", 1)
-			reward_text += " " + tr("BATTLE_JEOLCHANG_STUN")
-		"mungwan":
-			# 문관: 카드 2장 드로우 + 무료
-			battle_manager.draw_cards(2)
-			reward_text += " " + tr("BATTLE_JEOLCHANG_CARD_FREE") % 2
-		"dosa":
-			# 도사 절창: 모든 적에 독3+화상3 + 기 최대치 회복 (ZER-259)
-			for i in battle_manager.enemies.size():
-				if battle_manager.enemies[i]["current_hp"] > 0:
-					var target_id := "enemy_%d" % i
-					battle_manager.status_effects.apply_effect(target_id, "독", 3)
-					battle_manager.status_effects.apply_effect(target_id, "화상", 3)
-			battle_manager.current_qi = battle_manager.max_qi
-			battle_manager.qi_changed.emit(
-				battle_manager.current_qi, battle_manager.max_qi)
-			reward_text += " " + tr("BATTLE_JEOLCHANG_DOSA")
-
-	_show_sijo_reward_popup(reward_text)
-	battle_manager.passive_triggered.emit(tr("PASSIVE_JEOLCHANG"), reward_text)
-
-
-func _on_sijo_completed(final_card_id: String, all_slot_card_ids: Array, match_count: int) -> void:
-	# 전투가 이미 종료된 상태면 추가 효과 적용하지 않음
-	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
-		return
-	AudioManager.play_sfx_by_key("sijo_complete")
-	# 시조 완성 VFX — 완성에 사용된 3장 카드명으로 한시 구절 연출
-	if vfx:
-		var slot_names: Array[String] = []
-		for slot_id in all_slot_card_ids:
-			var slot_card: CardData = DataLoader.get_card(slot_id)
-			if slot_card:
-				slot_names.append(slot_card.get_display_name())
-			else:
-				slot_names.append("…")
-		vfx.sijo_complete_vfx(self, slot_names)
-
-	# beat 일치도 기반 보상 (ZER-266)
-	if match_count >= 3:
-		# 완벽 (3/3): 전체 카드 효과 ×1.5 + qi +2 + draw +1
-		battle_manager._next_card_power_bonus += 0.5
-		battle_manager.current_qi += 2
-		battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
-		battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-		var extra_draw := RelicManager.trigger_on_sijo_complete(battle_manager)
-		battle_manager.draw_cards(1 + extra_draw)
-		_show_sijo_reward_popup(tr("BATTLE_SIJO_PERFECT"))
-		battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_PERFECT_TITLE"), tr("PASSIVE_SIJO_PERFECT_DESC"))
-	elif match_count == 2:
-		# 양호 (2/3): 효과 ×1.3 + qi +1
-		battle_manager._next_card_power_bonus += 0.3
-		battle_manager.current_qi += 1
-		battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
-		battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-		RelicManager.trigger_on_sijo_complete(battle_manager)
-		_show_sijo_reward_popup(tr("BATTLE_SIJO_GOOD"))
-		battle_manager.passive_triggered.emit(tr("PASSIVE_SIJO_GOOD_TITLE"), tr("PASSIVE_SIJO_GOOD_DESC"))
-	else:
-		# 미달 (1/3 또는 0/3): 보너스 없음
-		RelicManager.trigger_on_sijo_complete(battle_manager)
-		_show_sijo_reward_popup(tr("BATTLE_SIJO_MISS"))
-
-	# 보스 퍼즐 메카닉: 시조 완성 처리 (ZER-330)
-	battle_manager.process_boss_puzzle_sijo_complete()
-
-	# 시상 누적 (Phase 2-2)
-	var sisang_result := SisangSystem.on_sijo_complete(GameManager.run_data)
-	if sisang_result.get("milestone_reached", "") != "":
-		var ms_key: String = sisang_result["milestone_reached"]
-		battle_manager.passive_triggered.emit(tr("SISANG_MILESTONE_TITLE"), tr(ms_key))
-		AudioManager.play_sfx_by_key("rank_up")
-
-	# 시선/절창 콤보 판정
-	_check_sijo_combo()
-
-	# 시조 일격: 직업별 필살기 자동 발동 (ZER-324)
-	if battle_manager.state != BattleManager.BattleState.BATTLE_WIN and battle_manager.state != BattleManager.BattleState.BATTLE_LOSE:
-		_apply_sijo_strike()
-
-	# 유물 트리거: 시조 완성 (3슬롯이므로 종장 완성으로 처리)
-	RelicManager.trigger_on_sijo_chapter_complete(battle_manager, "종장")
-
-	sijo_system.reset()
-	_init_sijo_slots()
-
-	# RS102 호패: 시조 완성 후 초장 자동 채움
-	if battle_manager.has_meta("sijo_auto_fill_chojang"):
-		battle_manager.remove_meta("sijo_auto_fill_chojang")
-		# 손패에서 beat가 맞는 카드를 찾아 초장 자동 채움
-		for card_id in battle_manager.hand:
-			var auto_card: CardData = DataLoader.get_card(card_id)
-			if auto_card and auto_card.beat == sijo_system.pattern[0] and sijo_system.current_slot_index == 0:
-				sijo_system.try_fill_slot(auto_card.beat, card_id)
-				break
-		if sijo_system.current_slot_index == 0:
-			# 손패에 적합한 카드가 없으면 가상 카드로 채움
-			sijo_system.try_fill_slot(sijo_system.pattern[0], "AUTO_FILL")
-
-
-func _on_class_resource_changed(current: int, max_val: int) -> void:
-	if _class_resource_label:
-		var name := battle_manager.get_class_resource_name()
-		_class_resource_label.text = "%s: %d/%d" % [name, current, max_val]
-	_refresh_hand_ui()
-
-
 func _init_relic_bar() -> void:
 	var relic_bar := RelicBar.new()
 	relic_bar.name = "RelicBar"
@@ -1413,47 +694,6 @@ func _on_relic_triggered(relic_id: String, description: String) -> void:
 	var tween := create_tween()
 	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
 	tween.tween_callback(popup.queue_free)
-
-
-func _init_class_resource_ui() -> void:
-	_class_resource_label = Label.new()
-	var res_name := battle_manager.get_class_resource_name()
-	_class_resource_label.text = "%s: 0/%d" % [res_name, battle_manager.max_class_resource]
-	_class_resource_label.add_theme_font_size_override("font_size", 20)
-	_class_resource_label.add_theme_color_override("font_color", battle_manager.get_class_resource_color())
-	$PlayerHUD/StatusRow.add_child(_class_resource_label)
-
-
-func _init_active_skill_button() -> void:
-	_active_skill_button = Button.new()
-	var skill_name := battle_manager.get_active_skill_name()
-	_active_skill_button.text = skill_name
-	_active_skill_button.tooltip_text = battle_manager.get_active_skill_description()
-	_active_skill_button.pressed.connect(_on_active_skill_pressed)
-	_active_skill_button.custom_minimum_size = Vector2(140, 44)
-	_active_skill_button.add_theme_font_size_override("font_size", 18)
-	# 플로팅: 턴 종료 버튼 위에 배치
-	var skill_style := StyleBoxFlat.new()
-	skill_style.bg_color = Color(0.15, 0.25, 0.45, 0.85)
-	skill_style.set_border_width_all(1)
-	skill_style.border_color = Color(0.4, 0.6, 0.9, 0.7)
-	skill_style.set_corner_radius_all(6)
-	skill_style.set_content_margin_all(6)
-	_active_skill_button.add_theme_stylebox_override("normal", skill_style)
-	_active_skill_button.add_theme_color_override("font_color", Color(0.8, 0.9, 1.0))
-	# v12: 플레이어 캐릭터 우측, 전투필드 좌측에 배치
-	_active_skill_button.anchor_left = 0.02
-	_active_skill_button.anchor_right = 0.38
-	_active_skill_button.anchor_top = 0.58
-	_active_skill_button.anchor_bottom = 0.62
-	_active_skill_button.z_index = 10
-	add_child(_active_skill_button)
-
-
-func _on_active_skill_pressed() -> void:
-	if battle_manager.use_active_skill():
-		_active_skill_button.disabled = true
-		_active_skill_button.text = tr("SKILL_USED_FMT") % battle_manager.get_active_skill_name()
 
 
 func _on_passive_triggered(skill_name: String, description: String) -> void:
@@ -1646,10 +886,6 @@ func _on_battle_ended(victory: bool) -> void:
 	card_hand.visible = false
 	$HandZone.visible = false
 
-	# 민심 보스전 회복 메타 정리
-	if GameManager.run_data and GameManager.run_data.has_meta("minshim_boss_heal"):
-		GameManager.run_data.remove_meta("minshim_boss_heal")
-
 	# 상태 효과 아이콘 캐시 정리 (메모리 누수 방지)
 	for target in _status_icon_cache:
 		for eid in _status_icon_cache[target]:
@@ -1674,20 +910,6 @@ func _on_battle_ended(victory: bool) -> void:
 		# 정예 전투 승리 유물 트리거
 		if GameManager.run_data and GameManager.run_data.current_node_type == MapData.NodeType.ELITE:
 			RelicManager.trigger_elite_victory()
-
-		# 전투 승리 시 신분 점수 부여
-		if GameManager.run_data:
-			var rank_change = JibunSystem.on_battle_victory(
-				GameManager.run_data,
-				GameManager.run_data.current_node_type
-			)
-			# 승급 발생 시 보상 정보를 메타에 저장 + 레벨업 팝업 표시
-			if rank_change is Array and rank_change[1] > rank_change[0]:
-				GameManager.run_data.set_meta("jibun_rank_up", rank_change[1])
-				await _show_levelup_popup(rank_change[1])
-
-		# 보스 처치 시 민심 변동 + 골드 환급
-		_apply_post_battle_minshim()
 
 		# 적 보상 데이터 수집 → 보상 씬으로 전달
 		var rewards := _collect_enemy_rewards()
@@ -1742,146 +964,3 @@ func _collect_enemy_rewards() -> Dictionary:
 		"relic_chance": relic_chance,
 	}
 
-
-## pending_effects에서 boss_hp_modifier를 소비하고 HP 배율을 반환한다.
-func _consume_boss_hp_modifier() -> float:
-	var modifier: float = 1.0
-	if not GameManager.run_data:
-		return modifier
-	var effects: Array = GameManager.run_data.narrative_state.get("pending_effects", [])
-	var remaining: Array = []
-	for eff in effects:
-		if eff.get("type") == "boss_hp_modifier":
-			modifier *= (1.0 + eff.get("percent", 0) / 100.0)
-		else:
-			remaining.append(eff)
-	GameManager.run_data.narrative_state["pending_effects"] = remaining
-	return modifier
-
-
-## 민심 10~29 시 보스에 "저항군" 추가 페이즈를 삽입한다.
-## 보스 HP 25% 구간에서 발동하며, 민란보다 약한 버전이다.
-func _inject_resistance_phase(enemy_data: Array[Dictionary]) -> void:
-	for enemy in enemy_data:
-		var phases: Array = enemy.get("phases", [])
-		if phases.is_empty():
-			continue
-
-		var resist_phase := {
-			"phase": phases.size() + 1,
-			"hp_threshold_label": tr("PHASE_RESIST_LABEL"),
-			"hp_threshold_min": 0,
-			"description": tr("PHASE_RESIST_DESC"),
-			"phase_trigger": {
-				"type": "hp_threshold",
-				"hp_percent": 25,
-				"on_trigger": [
-					{"type": "dialogue", "text": tr("PHASE_RESIST_DIALOGUE")},
-					{"type": "apply_buff", "buff": "strength", "stacks": 2}
-				]
-			},
-			"moves": [
-				{
-					"id": "resist_charge",
-					"name": {"ko": tr("PHASE_RESIST_CHARGE"), "en": tr("PHASE_RESIST_CHARGE")},
-					"intent": "attack",
-					"damage": 12,
-					"effects": []
-				},
-				{
-					"id": "resist_rally",
-					"name": {"ko": tr("PHASE_RESIST_RALLY"), "en": tr("PHASE_RESIST_RALLY")},
-					"intent": "defend",
-					"block": 10,
-					"effects": []
-				}
-			],
-			"move_pattern": {"type": "sequential", "sequence": [0, 1]}
-		}
-		phases.append(resist_phase)
-		enemy["phases"] = phases
-
-
-## 민심 0~9 시 보스에 "민란" 추가 페이즈를 삽입한다.
-## 마지막 페이즈로 추가되며, 보스 HP 15% 구간에서 발동한다.
-func _inject_minran_phase(enemy_data: Array[Dictionary]) -> void:
-	for enemy in enemy_data:
-		var phases: Array = enemy.get("phases", [])
-		if phases.is_empty():
-			continue  # 페이즈가 없는 적은 스킵
-
-		# 민란 페이즈 — HP 15% 이하에서 발동
-		var minran_phase := {
-			"phase": phases.size() + 1,
-			"hp_threshold_label": tr("PHASE_MINRAN_LABEL"),
-			"hp_threshold_min": 0,
-			"description": tr("PHASE_MINRAN_DESC"),
-			"phase_trigger": {
-				"type": "hp_threshold",
-				"hp_percent": 15,
-				"on_trigger": [
-					{"type": "dialogue", "text": tr("PHASE_MINRAN_DIALOGUE")},
-					{"type": "apply_buff", "buff": "strength", "stacks": 3},
-					{"type": "apply_buff", "buff": "thorns", "stacks": 3}
-				]
-			},
-			"moves": [
-				{
-					"id": "minran_charge",
-					"name": {"ko": tr("PHASE_MINRAN_CHARGE"), "en": tr("PHASE_MINRAN_CHARGE")},
-					"intent": "attack",
-					"damage": 18,
-					"effects": []
-				},
-				{
-					"id": "minran_fury",
-					"name": {"ko": tr("PHASE_MINRAN_FURY"), "en": tr("PHASE_MINRAN_FURY")},
-					"intent": "attack",
-					"damage": 12,
-					"hit_count": 2,
-					"effects": []
-				},
-				{
-					"id": "minran_barricade",
-					"name": {"ko": tr("PHASE_MINRAN_BARRICADE"), "en": tr("PHASE_MINRAN_BARRICADE")},
-					"intent": "defend",
-					"block": 15,
-					"effects": []
-				}
-			],
-			"move_pattern": {"type": "sequential", "sequence": [0, 1, 2]}
-		}
-		phases.append(minran_phase)
-		enemy["phases"] = phases
-
-
-## 전투 승리 후 적 데이터에 따라 민심 변동 + 골드 환급을 처리한다.
-func _apply_post_battle_minshim() -> void:
-	if not GameManager.run_data:
-		return
-	var rd := GameManager.run_data
-	if not rd.narrative_state.has("minshim"):
-		rd.narrative_state["minshim"] = 50
-
-	for enemy in battle_manager.enemies:
-		# minshim_on_defeat 필드가 있으면 민심 변동
-		var minshim_delta: int = enemy.get("minshim_on_defeat", 0)
-		if minshim_delta != 0:
-			var current: int = rd.narrative_state.get("minshim", 50)
-			rd.narrative_state["minshim"] = clampi(current + minshim_delta, 0, 100)
-
-		# 탐학한 수령 전용: 강탈당한 골드 50% 환급
-		var rewards: Dictionary = enemy.get("rewards", {})
-		if rewards.get("gold_bonus_from_drained", false):
-			var drained: int = rd.narrative_state.get("gold_drained_this_run", 0)
-			var bonus: int = mini(int(drained * 0.5), 60)
-			if bonus > 0:
-				rd.gold += bonus
-			# 추적 값 초기화
-			rd.narrative_state.erase("gold_drained_this_run")
-
-	# 일반 정예 적 처치 민심 +3
-	if rd.current_node_type == MapData.NodeType.ELITE:
-		var elite_delta: int = 3
-		var current: int = rd.narrative_state.get("minshim", 50)
-		rd.narrative_state["minshim"] = clampi(current + elite_delta, 0, 100)

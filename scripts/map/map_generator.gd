@@ -113,10 +113,7 @@ func generate(seed_value: int, act: int = 1) -> MapData.RunMap:
 	_ensure_node_type(run_map, MapData.NodeType.REST, 3)
 	_ensure_node_type(run_map, MapData.NodeType.EVENT, 4)
 
-	# 5. 과거시험 노드 1개 배치
-	_ensure_gwageo(run_map)
-
-	# 6. 행 규칙 적용 — 보스 직전(pre_boss) 행은 REST 보장
+	# 5. 행 규칙 적용 — 보스 직전(pre_boss) 행은 REST 보장
 	_ensure_pre_boss_rest(run_map)
 
 	return run_map
@@ -202,12 +199,6 @@ func _pick_node_type(row: int, boss_row: int, act: int) -> MapData.NodeType:
 	var act_weights: Dictionary = ACT_PHASE_WEIGHTS.get(act, ACT_PHASE_WEIGHTS[1])
 	var weights: Dictionary = act_weights.get(phase, act_weights["mid"]).duplicate()
 
-	# 신분 등급 2+(중인): 엘리트 등장률 +5%p
-	if GameManager.run_data and weights.has("ELITE"):
-		var elite_bonus: float = JibunSystem.get_elite_spawn_bonus(GameManager.run_data)
-		if elite_bonus > 0.0:
-			weights["ELITE"] += int(elite_bonus * 100.0)
-
 	var total_weight := 0
 	for w in weights.values():
 		total_weight += w
@@ -230,7 +221,6 @@ func _type_from_string(s: String) -> MapData.NodeType:
 		"SHOP": return MapData.NodeType.SHOP
 		"REST": return MapData.NodeType.REST
 		"BOSS": return MapData.NodeType.BOSS
-		"GWAGEO": return MapData.NodeType.GWAGEO
 	return MapData.NodeType.BATTLE
 
 
@@ -264,23 +254,6 @@ func _ensure_node_type(run_map: MapData.RunMap, target_type: MapData.NodeType, m
 		var pick: int = candidates[_rng.randi_range(0, candidates.size() - 1)]
 		run_map.nodes[pick].type = target_type
 		count += 1
-
-
-func _ensure_gwageo(run_map: MapData.RunMap) -> void:
-	var boss_row: int = run_map.total_rows - 1
-	var candidates: Array[int] = []
-	for r in range(2, maxi(boss_row - 1, 3)):
-		for nid in run_map.rows[r]:
-			if run_map.nodes[nid].type == MapData.NodeType.EVENT:
-				candidates.append(nid)
-	if candidates.is_empty():
-		for r in range(2, maxi(boss_row - 1, 3)):
-			for nid in run_map.rows[r]:
-				if run_map.nodes[nid].type == MapData.NodeType.BATTLE:
-					candidates.append(nid)
-	if not candidates.is_empty():
-		var pick: int = candidates[_rng.randi_range(0, candidates.size() - 1)]
-		run_map.nodes[pick].type = MapData.NodeType.GWAGEO
 
 
 ## 보스 직전 2행의 노드 중 최소 1개는 REST 보장.

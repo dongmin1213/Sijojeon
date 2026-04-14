@@ -14,7 +14,7 @@ const CardUIScene := preload("res://scenes/ui/card_ui.tscn")
 @export var fan_y_curve: float = 8.0          # 부채꼴 높이 커브 (완만)
 @export var hover_lift: float = 280.0         # 호버 시 위로 올라가는 높이 (카드 전체가 보이도록)
 @export var select_lift: float = 320.0        # 선택 시 위로 올라가는 높이
-@export var card_peek_ratio: float = 0.45     # 숨김 상태에서 보이는 카드 비율 (45% — 이름+코스트+효과 일부 가시성)
+@export var card_peek_ratio: float = 0.55     # 숨김 상태에서 보이는 카드 비율 (55% — 이름+코스트+효과 가시성 개선)
 
 # 뷰포트 기준 비율 (1080x1920 기본 해상도 기준)
 const BASE_WIDTH := 1080.0
@@ -36,8 +36,6 @@ var dragging_index: int = -1
 
 # 외부에서 참조할 상태
 var current_qi: int = 0
-var next_sijo_beat: int = -1  # 시조 시스템의 다음 필요 비트
-
 # 배치 최적화: dirty flag로 프레임당 최대 1회 재배치
 var _layout_dirty: bool = false
 
@@ -63,9 +61,8 @@ func _mark_layout_dirty() -> void:
 		set_process(true)
 
 
-func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleManager = null) -> void:
+func update_hand(hand_ids: Array[String], qi: int, bm: BattleManager = null) -> void:
 	current_qi = qi
-	next_sijo_beat = sijo_beat
 	selected_index = -1
 	hovered_index = -1
 	dragging_index = -1
@@ -89,8 +86,7 @@ func update_hand(hand_ids: Array[String], qi: int, sijo_beat: int, bm: BattleMan
 
 		var widget: CardUI = _acquire_from_pool()
 		var playable := bm.can_play_card(card) if bm else card.cost <= qi
-		var matches_sijo := (sijo_beat > 0 and card.beat == sijo_beat)
-		widget.setup(card, i, playable, matches_sijo)
+		widget.setup(card, i, playable)
 
 		widget.card_clicked.connect(_on_card_clicked)
 		widget.card_hovered.connect(_on_card_hovered)

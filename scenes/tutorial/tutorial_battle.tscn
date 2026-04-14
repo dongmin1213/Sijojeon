@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tutorial_battle_scene"]
+[gd_scene load_steps=6 format=3 uid="uid://tutorial_battle_scene"]
 
 [ext_resource type="Script" path="res://scenes/tutorial/tutorial_battle.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://card_hand_scene" path="res://scenes/ui/card_hand.tscn" id="2"]
@@ -24,23 +24,6 @@ corner_radius_bottom_right = 0
 corner_radius_bottom_left = 0
 content_margin_left = 12.0
 content_margin_right = 12.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-
-; 액션 바 — 시조+턴종료 영역, 반투명
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_action_bar"]
-bg_color = Color(0.06, 0.06, 0.06, 0.75)
-border_width_left = 0
-border_width_top = 1
-border_width_right = 0
-border_width_bottom = 0
-border_color = Color(0.76, 0.23, 0.13, 0.2)
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
-content_margin_left = 8.0
-content_margin_right = 8.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 
@@ -103,7 +86,7 @@ theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(0.23, 0.48, 0.84, 1.0)
 visible = false
 
-; ─── 전투 필드 (8-62%) — 적 우측 배치, 실제 전투와 동일 ─────
+; ─── 전투 필드 (8-55%) — v14: 카드 영역 확보를 위해 축소 ─────
 [node name="EnemyZone" type="PanelContainer" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_battlefield")
 layout_mode = 1
@@ -111,7 +94,7 @@ anchors_preset = -1
 anchor_left = 0.0
 anchor_top = 0.08
 anchor_right = 1.0
-anchor_bottom = 0.62
+anchor_bottom = 0.55
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -126,30 +109,12 @@ anchor_bottom = 0.95
 alignment = 1
 theme_override_constants/separation = 12
 
-; ─── 액션 바 (62-68%) — 시조 슬롯 좌측, 턴종료 버튼은 플로팅 ──────
-[node name="SijoBar" type="PanelContainer" parent="."]
-theme_override_styles/panel = SubResource("StyleBoxFlat_action_bar")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0
-anchor_top = 0.62
-anchor_right = 0.58
-anchor_bottom = 0.68
-grow_horizontal = 2
-grow_vertical = 2
-z_index = 8
-
-[node name="SijoContainer" type="HBoxContainer" parent="SijoBar"]
-layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 6
-
-; ─── 카드 핸드 영역 (68-100%) — 실제 전투와 동일 ──────
+; ─── 카드 핸드 영역 (61-100%) — v14: 39% 확보, 카드 잘 보이게 ──────
 [node name="HandZone" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0
-anchor_top = 0.68
+anchor_top = 0.61
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

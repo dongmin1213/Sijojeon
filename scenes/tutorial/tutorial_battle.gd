@@ -10,7 +10,6 @@ extends Control
 @onready var turn_label: Label = $HiddenRefs/TurnLabel
 @onready var card_hand: CardHand = $HandZone/CardHand
 @onready var enemy_container: HBoxContainer = $EnemyZone/EnemyContainer
-@onready var sijo_container: HBoxContainer = $SijoBar/SijoContainer
 @onready var _hud_end_turn_button: Button = $HiddenRefs/EndTurnButton
 @onready var draw_pile_label: Label = $HiddenRefs/DrawPileLabel
 @onready var discard_pile_label: Label = $HiddenRefs/DiscardPileLabel
@@ -26,14 +25,7 @@ var _draw_pile_overlay: PanelContainer = null
 var _discard_pile_overlay: PanelContainer = null
 
 var battle_manager: BattleManager
-var sijo_system: SijoSystem
 var tutorial_manager: TutorialManager
-
-# 시조 슬롯 UI 라벨
-var sijo_slot_labels: Array[Label] = []
-var _sijo_collapsed: bool = false
-var _sijo_toggle_button: Button = null
-var _sijo_summary_label: Label = null
 
 # 플레이어 상태이상 UI 컨테이너
 var _player_status_container: HBoxContainer = null
@@ -51,10 +43,7 @@ func _ready() -> void:
 
 	# 매니저 초기화
 	battle_manager = BattleManager.new()
-	sijo_system = SijoSystem.new()
-	battle_manager.sijo_system = sijo_system
 	add_child(battle_manager)
-	add_child(sijo_system)
 
 	# 플로팅 UI 요소 생성 (실제 전투와 동일한 스타일)
 	_create_floating_ui()
@@ -68,16 +57,10 @@ func _ready() -> void:
 	battle_manager.enemy_hp_changed.connect(_on_enemy_hp_changed)
 	battle_manager.enemy_intent_shown.connect(_on_enemy_intent_shown)
 	battle_manager.battle_ended.connect(_on_battle_ended)
-	sijo_system.slot_filled.connect(_on_sijo_slot_filled)
-	sijo_system.sijo_completed.connect(_on_sijo_completed)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 	card_hand.card_played.connect(_on_card_played)
 	card_hand.card_zoom_requested.connect(_on_card_zoom_requested)
 	battle_manager.status_effect_changed.connect(_on_status_effect_changed)
-
-	# 시조 슬롯 UI 초기화
-	_init_sijo_toggle()
-	_init_sijo_slots()
 
 	# 튜토리얼 전투 시작
 	_start_tutorial_battle()
@@ -133,12 +116,12 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
-	# 액션바 우측, 시조바와 같은 높이 (62-68%)
+	# v14 앵커: 액션바 우측, 시조바와 같은 높이 (55-61%)
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
 	end_turn_button.anchor_left = 0.60
 	end_turn_button.anchor_right = 0.98
-	end_turn_button.anchor_top = 0.62
-	end_turn_button.anchor_bottom = 0.68
+	end_turn_button.anchor_top = 0.55
+	end_turn_button.anchor_bottom = 0.61
 	end_turn_button.z_index = 12
 	add_child(end_turn_button)
 
@@ -153,32 +136,32 @@ func _create_floating_ui() -> void:
 	_turn_overlay_label.z_index = 15
 	add_child(_turn_overlay_label)
 
-	# 드로우/버림 더미 — 핸드존 좌/우 상단 (68% 라인)
+	# v14: 드로우/버림 더미 — 핸드존 좌/우 상단 (61% 라인)
 	_draw_pile_overlay = _create_deck_pill_label(Color(0.45, 0.65, 0.90))
 	_draw_pile_overlay.anchor_left = 0.02
-	_draw_pile_overlay.anchor_top = 0.68
+	_draw_pile_overlay.anchor_top = 0.61
 	_draw_pile_overlay.anchor_right = 0.18
-	_draw_pile_overlay.anchor_bottom = 0.72
+	_draw_pile_overlay.anchor_bottom = 0.65
 	_draw_pile_overlay.z_index = 12
 	add_child(_draw_pile_overlay)
 
 	_discard_pile_overlay = _create_deck_pill_label(Color(0.90, 0.50, 0.40))
 	_discard_pile_overlay.anchor_left = 0.82
-	_discard_pile_overlay.anchor_top = 0.68
+	_discard_pile_overlay.anchor_top = 0.61
 	_discard_pile_overlay.anchor_right = 0.98
-	_discard_pile_overlay.anchor_bottom = 0.72
+	_discard_pile_overlay.anchor_bottom = 0.65
 	_discard_pile_overlay.z_index = 12
 	add_child(_discard_pile_overlay)
 
 
 func _start_tutorial_battle() -> void:
-	# 튜토리얼용 간단한 스타터 덱 (음보 3과 4가 골고루 포함)
+	# 튜토리얼용 간단한 스타터 덱
 	var tutorial_deck: Array[String] = [
-		"M003", "M003",  # 후퇴 x2 (beat 3, 0코스트, 방어+약화)
+		"M003", "M003",  # 후퇴 x2 (0코스트, 방어+약화)
 		"D007", "D007", "D007",  # 수결 x3 (공격 카드)
-		"D001", "D001",  # 기공 x2 (beat 3)
-		"D002",          # 결인 x1 (beat 4)
-		"M005",          # 포복 x1 (beat 3)
+		"D001", "D001",  # 기공 x2
+		"D002",          # 결인 x1
+		"M005",          # 포복 x1
 	]
 
 	# 튜토리얼용 약한 적 — 불량배(E001) 데이터를 직접 구성
@@ -215,7 +198,7 @@ func _start_tutorial_battle() -> void:
 	add_child(tutorial_manager)
 	tutorial_manager.tutorial_completed.connect(_on_tutorial_completed)
 	tutorial_manager.tutorial_skipped.connect(_on_tutorial_skipped)
-	tutorial_manager.start(self, battle_manager, sijo_system)
+	tutorial_manager.start(self, battle_manager)
 
 
 func _on_tutorial_completed() -> void:
@@ -233,101 +216,8 @@ func _return_to_game() -> void:
 	GameManager.change_state(GameManager.GameState.CHARACTER_SELECT)
 
 
-# --- 시조 슬롯 UI (실제 전투와 동일한 스타일) ---
-
-func _init_sijo_toggle() -> void:
-	var sijo_area := $SijoBar
-	_sijo_toggle_button = Button.new()
-	_sijo_toggle_button.text = "▼"
-	_sijo_toggle_button.custom_minimum_size = Vector2(40, 40)
-	_sijo_toggle_button.add_theme_font_size_override("font_size", 18)
-	_sijo_toggle_button.pressed.connect(_on_sijo_toggle_pressed)
-	sijo_area.add_child(_sijo_toggle_button)
-	sijo_area.move_child(_sijo_toggle_button, 0)
-
-	_sijo_summary_label = Label.new()
-	_sijo_summary_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_sijo_summary_label.add_theme_font_size_override("font_size", 18)
-	_sijo_summary_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
-	_sijo_summary_label.visible = false
-	sijo_area.add_child(_sijo_summary_label)
-
-
-func _on_sijo_toggle_pressed() -> void:
-	_sijo_collapsed = not _sijo_collapsed
-	sijo_container.visible = not _sijo_collapsed
-	_sijo_summary_label.visible = _sijo_collapsed
-	_sijo_toggle_button.text = "▶" if _sijo_collapsed else "▼"
-	if _sijo_collapsed:
-		_update_sijo_summary()
-
-
-func _update_sijo_summary() -> void:
-	if not _sijo_summary_label:
-		return
-	var filled := sijo_system.current_slot_index if sijo_system else 0
-	var total := sijo_system.pattern.size()
-	_sijo_summary_label.text = tr("BATTLE_SIJO_SUMMARY_FMT") % [filled, total]
-
-
-func _init_sijo_slots() -> void:
-	sijo_slot_labels.clear()
-	for child in sijo_container.get_children():
-		child.queue_free()
-
-	var jang_names: Array[String] = [tr("SIJO_FIRST_VERSE"), tr("SIJO_MIDDLE_VERSE"), tr("SIJO_FINAL_VERSE")]
-	var jang_symbols: Array[String] = [tr("JANG_SYMBOL_1"), tr("JANG_SYMBOL_2"), tr("JANG_SYMBOL_3")]
-	for i in sijo_system.pattern.size():
-		var slot_panel := PanelContainer.new()
-		var slot_style := StyleBoxFlat.new()
-		slot_style.bg_color = Color(0.05, 0.05, 0.04, 0.9)
-		slot_style.set_border_width_all(1)
-		slot_style.border_color = Color(0.30, 0.28, 0.25, 0.6)
-		slot_style.set_corner_radius_all(12)
-		slot_style.content_margin_left = 12
-		slot_style.content_margin_right = 12
-		slot_style.content_margin_top = 8
-		slot_style.content_margin_bottom = 8
-		# 현재 활성 슬롯 강조 — 금색 테두리
-		if i == sijo_system.current_slot_index:
-			slot_style.border_color = Color(0.76, 0.23, 0.13, 0.9)
-			slot_style.shadow_color = Color(0.76, 0.23, 0.13, 0.2)
-			slot_style.shadow_size = 6
-		slot_panel.add_theme_stylebox_override("panel", slot_style)
-		slot_panel.custom_minimum_size = Vector2(140, 60)
-		slot_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-		var vbox := VBoxContainer.new()
-		vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-		vbox.add_theme_constant_override("separation", 2)
-
-		# 장 이름 + 심볼 (한 줄)
-		var header := Label.new()
-		header.text = "%s %s" % [jang_symbols[i] if i < jang_symbols.size() else "", jang_names[i] if i < jang_names.size() else ""]
-		header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		header.add_theme_font_size_override("font_size", 16)
-		if i == sijo_system.current_slot_index:
-			header.add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-		else:
-			header.add_theme_color_override("font_color", Color(0.50, 0.48, 0.42))
-
-		# 음보 수 + 카드 이름 표시용 라벨
-		var label := Label.new()
-		label.text = "[%d]" % sijo_system.pattern[i]
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.add_theme_font_size_override("font_size", 20)
-		label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
-
-		vbox.add_child(header)
-		vbox.add_child(label)
-		slot_panel.add_child(vbox)
-		sijo_container.add_child(slot_panel)
-		sijo_slot_labels.append(label)
-
-
 func _refresh_hand_ui() -> void:
-	var sijo_beat := sijo_system.get_next_required_beat() if sijo_system else -1
-	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, sijo_beat, battle_manager)
+	card_hand.update_hand(battle_manager.hand, battle_manager.current_qi, battle_manager)
 	# 플로팅 덱 정보 업데이트
 	var draw_text := tr("BATTLE_DRAW_PILE_FMT") % battle_manager.draw_pile.size()
 	var discard_text := tr("BATTLE_DISCARD_PILE_FMT") % battle_manager.discard_pile.size()
@@ -438,20 +328,6 @@ func _format_intent(intent: Dictionary) -> String:
 			return name_str if name_str else "???"
 
 
-func _show_sijo_reward_popup(text: String) -> void:
-	var popup := Label.new()
-	popup.text = text
-	popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	popup.anchors_preset = Control.PRESET_CENTER_TOP
-	popup.position.y = 120
-	popup.add_theme_font_size_override("font_size", 24)
-	popup.add_theme_color_override("font_color", Color(0.6, 1.0, 0.5))
-	add_child(popup)
-	var tween := create_tween()
-	tween.tween_property(popup, "modulate:a", 0.0, 1.0).set_delay(0.5)
-	tween.tween_callback(popup.queue_free)
-
-
 # --- 시그널 핸들러 ---
 
 func _on_hand_changed(_new_hand: Array[String]) -> void:
@@ -499,51 +375,6 @@ func _on_card_zoom_requested(card_data: CardData) -> void:
 func _on_end_turn_pressed() -> void:
 	AudioManager.play_sfx_by_key("end_turn")
 	battle_manager.end_player_turn()
-
-
-func _on_sijo_slot_filled(index: int, card_id: String, _jang_name: String, beat_matched: bool) -> void:
-	AudioManager.play_sfx_by_key("sijo_slot")
-	if index < sijo_slot_labels.size():
-		var card: CardData = DataLoader.get_card(card_id)
-		if card:
-			sijo_slot_labels[index].text = card.get_display_name()
-		else:
-			sijo_slot_labels[index].text = card_id
-		if beat_matched:
-			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.96, 0.94, 0.91))
-		else:
-			sijo_slot_labels[index].add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
-	if _sijo_collapsed:
-		_update_sijo_summary()
-
-	match index:
-		2:
-			battle_manager.current_qi = mini(battle_manager.current_qi + 1, battle_manager.max_qi)
-			battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-			_show_sijo_reward_popup(tr("TUTORIAL_CHOJANG_REWARD"))
-		3:
-			battle_manager.draw_cards(1)
-			_show_sijo_reward_popup(tr("TUTORIAL_JUNGJANG_REWARD"))
-
-
-func _on_sijo_completed(final_card_id: String, _all_slot_card_ids: Array) -> void:
-	if battle_manager.state == BattleManager.BattleState.BATTLE_WIN or battle_manager.state == BattleManager.BattleState.BATTLE_LOSE:
-		return
-	AudioManager.play_sfx_by_key("sijo_complete")
-	var card: CardData = battle_manager._get_battle_card(final_card_id)
-	if card:
-		var target_index := 0
-		for i in battle_manager.enemies.size():
-			if battle_manager.enemies[i]["current_hp"] > 0:
-				target_index = i
-				break
-		battle_manager._resolve_card_effect(card, target_index)
-	battle_manager.current_qi += 1
-	battle_manager.current_qi = mini(battle_manager.current_qi, battle_manager.max_qi)
-	battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-	battle_manager.draw_cards(1)
-	sijo_system.reset()
-	_init_sijo_slots()
 
 
 func _on_status_effect_changed(_target: String, _effect_id: String, _stacks: int) -> void:
