@@ -1,1147 +1,1119 @@
 {
-      "version": "0.1",
-      "type": "card_pool",
-      "class": "dosa",
-      "class_ko": "도사",
-      "category": "spell",
-      "description": "도사 전용 카드 풀. 기 조작과 도술을 활용하는 주문형 직업. 총 25장 — 기공·기 폭발 아키타입, 저주·DoT 아키타입, 소환·도술 아키타입.",
-      "class_mechanic": "기공: 기를 직접 조작하여 드로우와 버프를 얻는다. 시조 완성 시 천지기 패시브로 기 1 추가 회복. 화상: 턴 종료 시 화상 수치만큼 피해, 매 턴 1 감소. 독: 턴 종료 시 독 수치만큼 피해, 매 턴 1 감소.",
-      "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
-      "archetypes": [
-            {
-                  "id": "qi_burst",
-                  "name_ko": "기공·기 폭발",
-                  "description": "기를 추가 획득하고, 획득한 기를 소비하거나 기 획득량에 비례한 폭발 피해를 입히는 아키타입. D001·D002·D003·D008·D009·D010·D011·D012·D013 중심.",
-                  "key_cards": [
-                        "D001",
-                        "D003",
-                        "D008",
-                        "D009",
-                        "D011"
-                  ]
-            },
-            {
-                  "id": "curse_dot",
-                  "name_ko": "저주·DoT",
-                  "description": "화상·독 등 지속 피해(DoT)를 누적시켜 장기전으로 적을 소모시키는 아키타입. D004·D005·D014·D015·D016·D017·D018·D019 중심.",
-                  "key_cards": [
-                        "D004",
-                        "D014",
-                        "D017",
-                        "D018"
-                  ]
-            },
-            {
-                  "id": "summon",
-                  "name_ko": "소환·도술",
-                  "description": "도술 소환체를 불러내 전투를 간접 지원하는 아키타입. 소환체는 일정 턴 동안 지속 효과를 제공한다. D020·D021·D022·D023·D024·D025 중심.",
-                  "key_cards": [
-                        "D020",
-                        "D022",
-                        "D023",
-                        "D025"
-                  ]
-            }
-      ],
-      "cards": [
-            {
-                  "id": "D001",
-                  "name": {
-                        "ko": "기공",
-                        "romanized": "Gigong",
-                        "en": "Qigong"
-                  },
-                  "beat": 3,
-                  "cost": 0,
-                  "type": "skill",
-                  "subtypes": [
-                        "energy",
-                        "draw"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "기 2를 획득하고 카드 2장을 드로우한다.",
-                        "en": "Gain 2 Qi and draw 2 cards."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기 2를 획득하고 카드 3장을 드로우한다.",
-                        "en": "Gain 2 Qi and draw 3 cards."
-                  },
-                  "flavor_text": {
-                        "ko": "호흡을 가다듬어 기를 모은다 — 고요함 속에 힘이 충전된다.",
-                        "en": "Steady your breathing and gather Qi — in stillness, power is charged."
-                  },
-                  "balance_rationale": "0코스트 기 회복 + 드로우 2장. 후퇴(0코스트 2방어+약화)와 대등한 0코스트 가치. 기 2 회복 + 드로우 2장으로 덱 가속 역할 강화. 진언(D003) 기 획득 조건 트리거.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 리듬 스타터",
-                  "class_synergy": [
-                        "D003",
-                        "D009"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "qi_gain": 2,
-                        "draw": 2
-                  }
-            },
-            {
-                  "id": "D002",
-                  "name": {
-                        "ko": "결인",
-                        "romanized": "Gyeorin",
-                        "en": "Mudra"
-                  },
-                  "beat": 4,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "buff",
-                        "attack_buff"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "이번 턴 다음에 사용하는 공격 카드의 피해를 +4 증가시킨다. 방어도 2를 획득한다.",
-                        "en": "The next attack card you play this turn deals +4 additional damage. Gain 2 Block."
-                  },
-                  "effect_upgraded": {
-                        "ko": "다음 공격 카드 피해 +6 증가. 방어도 3을 획득한다.",
-                        "en": "Next attack card deals +6 additional damage. Gain 3 Block."
-                  },
-                  "flavor_text": {
-                        "ko": "손끝에 인을 맺으니 — 다음 술법에 힘이 실린다.",
-                        "en": "Forming a mudra at the fingertips — power flows into the next spell."
-                  },
-                  "balance_rationale": "1코스트 공격 버프. 도약(1코스트 3방어+4버프)과 유사하나 방어도가 2로 낮은 대신 도사 주문 카드와의 시너지를 위해 spell 타입. 도약의 도사 버전.",
-                  "sijo_position": "초장·중장 둘째 슬롯 [4]",
-                  "upgrade_cost": 75,
-                  "values": {
-                        "block": 2,
-                        "next_attack_bonus": 4
-                  }
-            },
-            {
-                  "id": "D003",
-                  "name": {
-                        "ko": "진언",
-                        "romanized": "Jineon",
-                        "en": "True Word"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "skill",
-                  "subtypes": [
-                        "attack",
-                        "aoe"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "모든 적에게 4 피해를 입힌다. 이번 턴 기를 획득한 적이 있으면 피해를 3 추가로 입힌다.",
-                        "en": "Deal 4 damage to ALL enemies. If you gained Qi this turn, deal 3 additional damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "모든 적에게 6 피해. 기 획득 보너스 +4 추가 피해.",
-                        "en": "Deal 6 damage to ALL enemies. Qi bonus: +4 additional damage."
-                  },
-                  "flavor_text": {
-                        "ko": "진언이 전장에 울려 퍼지면 — 도술의 파동이 적을 휩쓴다.",
-                        "en": "When the true word echoes across the battlefield — waves of sorcery sweep over the enemy."
-                  },
-                  "balance_rationale": "2코스트 광역 공격. 기본 4 AoE는 낮지만 기공(D001)과 콤보 시 7 AoE. 도사의 0코스트→2코스트 콤보를 유도하는 핵심 카드.",
-                  "sijo_position": "중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "D001",
-                        "D002"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "damage": 4,
-                        "is_aoe": true
-                  }
-            },
-            {
-                  "id": "D004",
-                  "name": {
-                        "ko": "부적",
-                        "romanized": "Bujeok",
-                        "en": "Burning Talisman"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "attack",
-                        "debuff"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "적에게 5 피해를 입힌다. 대상에게 화상 4를 부여한다. (화상: 턴 종료 시 화상 수치만큼 피해, 1 감소)",
-                        "en": "Deal 5 damage to an enemy. Apply 4 Burn to the target. (Burn: at end of turn, take damage equal to Burn stacks, then reduce by 1)"
-                  },
-                  "effect_upgraded": {
-                        "ko": "7 피해. 화상 4를 부여한다.",
-                        "en": "Deal 7 damage. Apply 4 Burn."
-                  },
-                  "flavor_text": {
-                        "ko": "불꽃이 깃든 부적을 던지면 — 도술의 화염이 적을 태운다.",
-                        "en": "Hurl a flame-imbued talisman — and the fire of sorcery consumes the enemy."
-                  },
-                  "balance_rationale": "1코스트 피해 + DoT. 즉시 5피해 + 화상3(3+2+1=6 총 추가 피해) = 총 11피해 가치. 3턴에 걸쳐 분산되므로 즉시 피해 카드보다 총량은 높지만 느림. 도사의 지구전 특성 반영.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "D003"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "damage": 5,
-                        "burn": 4
-                  }
-            },
-            {
-                  "id": "D005",
-                  "name": {
-                        "ko": "축지법",
-                        "romanized": "Chukjibeop",
-                        "en": "Earthshrink Step"
-                  },
-                  "beat": 3,
-                  "cost": 3,
-                  "type": "skill",
-                  "subtypes": [
-                        "movement",
-                        "draw"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "카드 3장을 드로우한다. 이번 턴 카드 사용 비용이 1 감소한다 (최소 0).",
-                        "en": "Draw 3 cards. Card costs are reduced by 1 this turn (minimum 0)."
-                  },
-                  "effect_upgraded": {
-                        "ko": "카드 4장을 드로우한다. 비용 감소 2.",
-                        "en": "Draw 4 cards. Cost reduction 2."
-                  },
-                  "flavor_text": {
-                        "ko": "공간을 접어 한 걸음에 천리를 건너니 — 모든 술법이 손안에 있다.",
-                        "en": "Fold space and cross a thousand leagues in a single step — all spells are within reach."
-                  },
-                  "balance_rationale": "3코스트 드로우 + 비용 감소. 3장 드로우 + 1코스트 감소는 실질 3기 투자로 3장+α 행동을 가능하게 함. 도사의 콤보 확장 피니셔. 시조 종장 완성 시 6장 드로우 + 추가 기 = 폭발적 턴.",
-                  "sijo_position": "종장 첫 슬롯 [3] — 콤보 폭발 피날레",
-                  "class_synergy": [
-                        "D001",
-                        "D004"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "draw": 3,
-                        "cost_reduce_this_turn": 1
-                  }
-            },
-            {
-                  "id": "D006",
-                  "name": {
-                        "ko": "태산붕",
-                        "romanized": "Taesanbung",
-                        "en": "Taesan Collapse"
-                  },
-                  "beat": 4,
-                  "cost": 3,
-                  "type": "attack",
-                  "subtypes": [
-                        "heavy"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "적에게 40 피해를 입힌다. 이 카드를 사용한 후, 다음 턴 기가 2 감소한다.",
-                        "en": "Deal 40 damage to an enemy. After playing this card, lose 2 Qi at the start of next turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "55 피해. 다음 턴 기 감소 없음.",
-                        "en": "Deal 55 damage. No Qi penalty next turn."
-                  },
-                  "flavor_text": {
-                        "ko": "태산이 무너지듯 — 한 번의 도술이 모든 것을 쓸어버린다.",
-                        "en": "Like the great mountain Taesan crumbling — a single spell sweeps away everything."
-                  },
-                  "balance_rationale": "3코스트 최강 단일 피해. 40피해는 전체 카드 중 최고 단일 피해. 사이드이펙트(다음 턴 기 -2)로 강력한 대가를 지불해야 함. 업그레이드 시 패널티 제거로 업그레이드 목표가치 극명. 시조 완성 시 80피해(×2) = 이론상 최대 폭발.",
-                  "sijo_position": "종장 둘째 슬롯 [4] — 도사 최강 피니셔",
-                  "class_synergy": [
-                        "D002",
-                        "D001"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "damage": 40,
-                        "next_turn_qi_penalty": 2
-                  }
-            },
-            {
-                  "id": "D007",
-                  "name": {
-                        "ko": "수결",
-                        "romanized": "Sugyeol",
-                        "en": "Hand Seal"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "attack",
-                  "subtypes": [
-                        "spell"
-                  ],
-                  "rarity": 1,
-                  "rarity_stars": "★☆☆☆☆",
-                  "effect": {
-                        "ko": "적에게 6 피해를 입힌다.",
-                        "en": "Deal 6 damage to an enemy."
-                  },
-                  "effect_upgraded": {
-                        "ko": "적에게 9 피해를 입힌다.",
-                        "en": "Deal 9 damage to an enemy."
-                  },
-                  "flavor_text": {
-                        "ko": "손가락으로 결을 맺어 기를 날린다 — 검 없이도 베는 도사의 기본기.",
-                        "en": "Form the seal with your fingers and launch Qi — the Daoist's basic art, cutting without a blade."
-                  },
-                  "balance_rationale": "1코스트 기본 공격. 베기(6피해)의 도사 버전. 도사는 물리 무기 대신 기공 발사로 공격. 완전히 동일한 효율로 클래스 간 밸런스 유지. 스타터 덱 3장 포함.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "upgrade_cost": 50,
-                  "values": {
-                        "damage": 6
-                  }
-            },
-            {
-                  "id": "D008",
-                  "name": {
-                        "ko": "대기",
-                        "romanized": "Daegi",
-                        "en": "Grand Qi"
-                  },
-                  "beat": 4,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "energy"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "기 2를 획득한다.",
-                        "en": "Gain 2 Qi."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기 3을 획득한다.",
-                        "en": "Gain 3 Qi."
-                  },
-                  "flavor_text": {
-                        "ko": "하늘의 기운을 깊이 들이마시니 — 온몸이 기로 충만해진다.",
-                        "en": "Breathe deeply of heaven's energy — the whole body fills with Qi."
-                  },
-                  "balance_rationale": "1코스트 기 2 획득. 기공(D001, 0코스트 기1+드로우1)과 비교 시 비용 1 더 들지만 기 획득량 2배. 기폭(D009) 조건 가속용. 기 기반 콤보를 한 턴 안에 완성하려 할 때 필수 충전 카드. 드로우 없음이 단점.",
-                  "sijo_position": "초장·중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "D003",
-                        "D009",
-                        "D013"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "qi_gain": 2
-                  }
-            },
-            {
-                  "id": "D009",
-                  "name": {
-                        "ko": "기폭",
-                        "romanized": "Gibok",
-                        "en": "Qi Detonation"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "energy"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "이번 턴에 획득한 기 1당 5 피해를 입힌다 (최소 8).",
-                        "en": "Deal 5 damage per Qi gained this turn (minimum 8)."
-                  },
-                  "effect_upgraded": {
-                        "ko": "이번 턴에 획득한 기 1당 6 피해를 입힌다 (최소 10).",
-                        "en": "Deal 6 damage per Qi gained this turn (minimum 10)."
-                  },
-                  "flavor_text": {
-                        "ko": "쌓인 기를 한순간에 터뜨리면 — 폭발적인 에너지가 적을 날려버린다.",
-                        "en": "Detonate all gathered Qi in an instant — an explosive blast that sends the enemy flying."
-                  },
-                  "balance_rationale": "2코스트 기 획득량 기반 공격. D001(기+1)+D008(기+2) 후 사용 시 기 3획득 = 12피해, 기 4획득 = 16피해. 기 아키타입의 핵심 딜 카드. 기를 많이 획득할수록 폭발적이지만 기 획득 없으면 기본 8피해로 손실. 2코스트 기준 평균 기대값 12~16.",
-                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "D001",
-                        "D008",
-                        "D013"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "damage_per_qi_gained_this_turn": 5,
-                        "min_damage": 8
-                  }
-            },
-            {
-                  "id": "D010",
-                  "name": {
-                        "ko": "오기",
-                        "romanized": "Ogi",
-                        "en": "Five Energies"
-                  },
-                  "beat": 3,
-                  "cost": 0,
-                  "type": "skill",
-                  "subtypes": [
-                        "energy"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "기 1을 획득한다. 이번 턴 다음에 사용하는 기공 계열 카드(energy 서브타입)의 비용을 1 감소시킨다.",
-                        "en": "Gain 1 Qi. Reduce the cost of the next energy-type card you play this turn by 1."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기 1을 획득한다. 다음 기공 계열 카드 비용 2 감소.",
-                        "en": "Gain 1 Qi. Reduce the next energy card's cost by 2."
-                  },
-                  "flavor_text": {
-                        "ko": "오행의 기운이 손끝에 모이니 — 다음 기공이 더 쉽게 흐른다.",
-                        "en": "The five elemental energies gather at your fingertips — and the next technique flows more easily."
-                  },
-                  "balance_rationale": "0코스트 기+다음 기공 카드 비용 감소. 기공(D001)과 유사하지만 드로우 대신 기공 카드 시너지. D008(대기, 1코스트) → D010 사용 후 D008 0코스트 = 2장 모두 0코스트로 기 3 획득 가능한 콤보. 기 아키타입 전용 0코스트 카드.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "D001",
-                        "D008",
-                        "D013"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "qi_gain": 1,
-                        "cost_reduce_next_energy_card": 1
-                  }
-            },
-            {
-                  "id": "D011",
-                  "name": {
-                        "ko": "천기",
-                        "romanized": "Cheongi",
-                        "en": "Celestial Qi"
-                  },
-                  "beat": 3,
-                  "cost": 3,
-                  "type": "power",
-                  "subtypes": [
-                        "energy"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "이번 전투 동안 매 턴 시작 시 기 1을 추가 획득한다.",
-                        "en": "For the rest of this combat, gain 1 additional Qi at the start of each turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "이번 전투 동안 매 턴 시작 시 기 2를 추가 획득한다.",
-                        "en": "For the rest of this combat, gain 2 additional Qi at the start of each turn."
-                  },
-                  "flavor_text": {
-                        "ko": "하늘의 기운과 하나가 되니 — 매 순간 기가 저절로 솟아난다.",
-                        "en": "Become one with the heavenly energy — and Qi arises on its own with every breath."
-                  },
-                  "balance_rationale": "3코스트 기 증가 파워. 기본 3기/턴 → 4기/턴으로 영구화. 한 전투당 최소 5턴 가정 시 5기 추가 = 5코스트 투자 대비 5회전 이상 이득. 장기전 도사의 핵심 파워. 기폭(D009)과 진언(D003)의 기 조건을 더 쉽게 충족하게 함.",
-                  "sijo_position": "초장 첫 슬롯 [3] — 초반 파워업 투자",
-                  "class_synergy": [
-                        "D003",
-                        "D009"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "bonus_qi_per_turn": 1
-                  }
-            },
-            {
-                  "id": "D012",
-                  "name": {
-                        "ko": "기류",
-                        "romanized": "Giryu",
-                        "en": "Qi Flow"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "energy",
-                        "draw"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "기 1을 획득한다. 카드 2장을 드로우한다.",
-                        "en": "Gain 1 Qi. Draw 2 cards."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기 2를 획득한다. 카드 2장을 드로우한다.",
-                        "en": "Gain 2 Qi. Draw 2 cards."
-                  },
-                  "flavor_text": {
-                        "ko": "기의 흐름을 타면 — 세상의 모든 것이 선명하게 보인다.",
-                        "en": "Ride the flow of Qi — and everything in the world becomes clear."
-                  },
-                  "balance_rationale": "1코스트 기+대량 드로우. 기공(0코스트 기1+드로우1)과 비교 시 코스트 1 소비 대신 드로우 2배. 박학다식(W008, 2코스트 학식3+드로우1)보다 코스트 낮고 드로우 더 많음. 기 아키타입에서 덱 순환 핵심 카드.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "D001",
-                        "D009"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "qi_gain": 1,
-                        "draw": 2
-                  }
-            },
-            {
-                  "id": "D013",
-                  "name": {
-                        "ko": "기집",
-                        "romanized": "Gijip",
-                        "en": "Qi Convergence"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "skill",
-                  "subtypes": [
-                        "energy"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "기 3을 획득한다.",
-                        "en": "Gain 3 Qi."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기 4를 획득한다.",
-                        "en": "Gain 4 Qi."
-                  },
-                  "flavor_text": {
-                        "ko": "사방의 기운을 한곳으로 — 최대로 집약된 기가 폭발을 기다린다.",
-                        "en": "Draw energy from all directions into one point — concentrated Qi awaits detonation."
-                  },
-                  "balance_rationale": "2코스트 기 3 획득. 대기(D008, 1코스트 기2)보다 1코스트 더 들지만 기 1 더 획득. 기폭(D009) 기 획득량 극대화 시 핵심 충전 카드. 기 3획득 후 기폭(D009) = 12피해, 기폭+진언(D003) = 19피해. 기 아키타입 2코스트 주력 충전 카드.",
-                  "sijo_position": "중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "D009",
-                        "D003"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "qi_gain": 3
-                  }
-            },
-            {
-                  "id": "D014",
-                  "name": {
-                        "ko": "독안개",
-                        "romanized": "Doganae",
-                        "en": "Poison Mist"
-                  },
-                  "beat": 4,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "debuff",
-                        "aoe"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "모든 적에게 독 2를 부여한다. (독: 턴 종료 시 독 수치만큼 피해, 1 감소)",
-                        "en": "Apply 2 Poison to ALL enemies. (Poison: at end of turn, take damage equal to Poison stacks, then reduce by 1)"
-                  },
-                  "effect_upgraded": {
-                        "ko": "모든 적에게 독 3을 부여한다.",
-                        "en": "Apply 3 Poison to ALL enemies."
-                  },
-                  "flavor_text": {
-                        "ko": "안개처럼 스며드는 독 — 눈치채지 못한 사이에 온 전장을 물들인다.",
-                        "en": "Poison that seeps like mist — before they notice, the entire battlefield is tainted."
-                  },
-                  "balance_rationale": "1코스트 광역 DoT. 독 2 = 적 1명당 2+1=3 총 피해. 다수 적 상황에서 1코스트로 전체에 독 부여 = 적 3명 시 총 9피해 가치. 단일 적에겐 3피해로 약하지만 광역 효율 극대. 저주 아키타입의 초기 세팅 카드.",
-                  "sijo_position": "초장·중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "D017",
-                        "D018",
-                        "D019"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "poison": 2,
-                        "is_aoe": true
-                  }
-            },
-            {
-                  "id": "D015",
-                  "name": {
-                        "ko": "저주",
-                        "romanized": "Jeochu",
-                        "en": "Curse"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "debuff",
-                        "dot"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "적에게 저주를 부여한다. 저주: 이번 턴 포함 3회 동안 매 턴 시작 시 3 피해를 입는다.",
-                        "en": "Apply Curse to an enemy. Curse: for 3 turns, take 3 damage at the start of each turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "저주 피해 4로 증가. 4회 지속.",
-                        "en": "Curse damage increased to 4. Lasts 4 turns."
-                  },
-                  "flavor_text": {
-                        "ko": "한번 걸린 저주는 떨칠 수 없다 — 시간이 지날수록 더 깊이 파고든다.",
-                        "en": "A curse once laid cannot be shaken — it digs deeper as time passes."
-                  },
-                  "balance_rationale": "1코스트 지속 피해 저주. 3턴×3피해=9총피해. 화상보다 발동 방식이 다르며(턴 시작 시 고정 피해), 총 피해는 비슷. 저주 아키타입의 기본 단위 DoT. 부적(D004)보다 단순하지만 턴 시작 발동으로 진언 등과 조합 시 타이밍 유리.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "D014",
-                        "D018"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "curse_damage_per_turn": 3,
-                        "curse_duration": 3
-                  }
-            },
-            {
-                  "id": "D016",
-                  "name": {
-                        "ko": "혼돈의 부적",
-                        "romanized": "Hondon Bujeok",
-                        "en": "Chaos Talisman"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "skill",
-                  "subtypes": [
-                        "debuff",
-                        "dot"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "적에게 화상 3을 부여하고 약화 2를 부여한다.",
-                        "en": "Apply 3 Burn and 2 Weaken to an enemy."
-                  },
-                  "effect_upgraded": {
-                        "ko": "화상 4. 약화 3.",
-                        "en": "Apply 4 Burn. Apply 3 Weaken."
-                  },
-                  "flavor_text": {
-                        "ko": "불과 혼돈이 뒤섞인 부적 — 적을 태우고 동시에 흔들어 놓는다.",
-                        "en": "A talisman of fire and chaos — it burns the enemy while shaking their resolve."
-                  },
-                  "balance_rationale": "2코스트 DoT+디버프 복합. 화상3(총6피해)+약화2(다음 2회 공격 25% 감소). 총 가치는 2코스트 이상이나 분산되어 즉시 피해가 없음. DoT를 쌓으면서 적의 공격도 줄이는 저주 아키타입의 중간 가격대 복합 카드.",
-                  "sijo_position": "중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "D004",
-                        "D014",
-                        "D019"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "burn": 3,
-                        "weaken": 2
-                  }
-            },
-            {
-                  "id": "D017",
-                  "name": {
-                        "ko": "흑염",
-                        "romanized": "Heukyeom",
-                        "en": "Black Flame"
-                  },
-                  "beat": 3,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "dot"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "적에게 6 피해를 입힌다. 화상이 2 이상이면 피해를 4 추가로 입힌다. 독이 2 이상이면 피해를 4 추가로 입힌다.",
-                        "en": "Deal 6 damage to an enemy. If the target has 2+ Burn, deal 4 additional damage. If the target has 2+ Poison, deal 4 additional damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "8 피해. 화상 조건 추가 +5. 독 조건 추가 +5.",
-                        "en": "Deal 8 damage. Burn bonus +5. Poison bonus +5."
-                  },
-                  "flavor_text": {
-                        "ko": "독과 불이 어우러진 흑염 — 이미 타고 있는 상처에 독불이 더해진다.",
-                        "en": "Black flame born of poison and fire — adding dark fire to wounds already burning."
-                  },
-                  "balance_rationale": "2코스트 DoT 시너지 강공격. 기본 6피해는 낮지만 화상+독 양측 조건 충족 시 14피해. DoT를 미리 세팅해야 하므로 저주 아키타입 전용. 부적(D004)+독안개(D014) 세팅 후 흑염 = 14피해 = 2코스트 최강급. 저주 빌드 피니셔.",
-                  "sijo_position": "중장·종장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "D004",
-                        "D014",
-                        "D016"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "damage": 6,
-                        "bonus_on_burn": 4,
-                        "bonus_on_poison": 4
-                  }
-            },
-            {
-                  "id": "D018",
-                  "name": {
-                        "ko": "오독",
-                        "romanized": "Odok",
-                        "en": "Five Venoms"
-                  },
-                  "beat": 4,
-                  "cost": 3,
-                  "type": "skill",
-                  "subtypes": [
-                        "debuff",
-                        "aoe",
-                        "dot"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "모든 적에게 독 4와 화상 3을 동시에 부여한다.",
-                        "en": "Apply 4 Poison and 3 Burn to ALL enemies."
-                  },
-                  "effect_upgraded": {
-                        "ko": "독 5, 화상 4.",
-                        "en": "Apply 5 Poison and 4 Burn."
-                  },
-                  "flavor_text": {
-                        "ko": "다섯 가지 독이 불꽃과 뒤섞여 — 전장 전체에 저주의 안개가 퍼진다.",
-                        "en": "Five venoms mixed with flame — a cursed mist spreads across the entire battlefield."
-                  },
-                  "balance_rationale": "3코스트 광역 최강 DoT 세팅. 독4(4+3+2+1=10피해)+화상3(3+2+1=6피해) = 단일 적당 총 16피해, 즉시 피해 없음. 다수 적 시 총 피해 극대(3명×16=48). 저주 아키타입의 3코스트 핵심 세팅 카드. 흑염(D017) 등 조건부 카드의 조건을 즉시 완전 충족.",
-                  "sijo_position": "종장 둘째 슬롯 [4] — 저주 최강 세팅",
-                  "class_synergy": [
-                        "D017",
-                        "D019"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "poison": 4,
-                        "burn": 3,
-                        "is_aoe": true
-                  }
-            },
-            {
-                  "id": "D019",
-                  "name": {
-                        "ko": "주박",
-                        "romanized": "Jubak",
-                        "en": "Binding Hex"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "debuff",
-                        "dot"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "적에게 취약 2턴을 부여한다. 이번 전투 동안, 대상의 DoT(독·화상·저주) 피해가 1.5배가 된다.",
-                        "en": "Apply 2 turns of Vulnerable to an enemy. For this combat, the target's DoT (Poison, Burn, Curse) damage is multiplied by 1.5x."
-                  },
-                  "effect_upgraded": {
-                        "ko": "취약 3턴. DoT 피해 2배.",
-                        "en": "3 turns of Vulnerable. DoT damage 2x."
-                  },
-                  "flavor_text": {
-                        "ko": "주문으로 적을 옭아매면 — 독과 불의 피해가 더욱 깊이 파고든다.",
-                        "en": "Bind the enemy with an incantation — and the pain of poison and fire cuts ever deeper."
-                  },
-                  "balance_rationale": "1코스트 취약+DoT 증폭. 취약은 카드 피해 50% 증가, DoT 증폭은 이미 부여한 독/화상 피해 1.5배. DoT 세팅(오독D018) 후 주박 = DoT 피해 2.25배(×1.5×취약1.5)로 극대화. 저주 아키타입의 증폭 카드. 취약(W002 탄핵)과 유사하나 DoT 시너지 특화.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "D014",
-                        "D018",
-                        "D017"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "vulnerable": 2,
-                        "dot_multiplier": 1.5
-                  }
-            },
-            {
-                  "id": "D020",
-                  "name": {
-                        "ko": "구미호 소환",
-                        "romanized": "Gumiho Sowhan",
-                        "en": "Summon Gumiho"
-                  },
-                  "beat": 3,
-                  "cost": 2,
-                  "type": "skill",
-                  "subtypes": [
-                        "summon"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "구미호를 소환한다. 3턴 동안 매 턴 시작 시 적에게 5 피해를 입힌다.",
-                        "en": "Summon a Gumiho. For 3 turns, deal 5 damage to an enemy at the start of each turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "4턴 동안. 매 턴 피해 7.",
-                        "en": "Lasts 4 turns. Deals 7 damage per turn."
-                  },
-                  "flavor_text": {
-                        "ko": "아홉 꼬리의 여우가 모습을 드러내면 — 전장의 기운이 뒤바뀐다.",
-                        "en": "When the nine-tailed fox reveals itself — the energy of the battlefield is turned on its head."
-                  },
-                  "balance_rationale": "2코스트 소환 DoT. 3턴×5피해=15피해. 즉시 피해는 없지만 2코스트로 15피해 기대값(1턴당 7.5피해 환산)은 상당. 소환체 형태로 다음 카드를 자유롭게 사용 가능. 소환 아키타입의 기본 소환체.",
-                  "sijo_position": "중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "D023",
-                        "D025"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "summon_damage_per_turn": 5,
-                        "summon_duration": 3
-                  }
-            },
-            {
-                  "id": "D021",
-                  "name": {
-                        "ko": "산신 기공",
-                        "romanized": "Sansin Gigong",
-                        "en": "Mountain Spirit Art"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "summon"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "적에게 10 피해를 입힌다. 산신 기공 토큰을 소환한다. 토큰: 매 턴 종료 시 기 1 회복.",
-                        "en": "Deal 10 damage to an enemy. Summon a Mountain Spirit token. Token: recover 1 Qi at end of each turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "12 피해. 토큰 매 턴 기 2 회복.",
-                        "en": "Deal 12 damage. Token recovers 2 Qi per turn."
-                  },
-                  "flavor_text": {
-                        "ko": "산신의 기운을 공격에 담으니 — 산의 숨결이 기로 돌아온다.",
-                        "en": "Channel the Mountain Spirit's power into your strike — the mountain's breath returns as Qi."
-                  },
-                  "balance_rationale": "2코스트 공격+지속 기 회복 토큰. 즉시 10피해는 2코스트 기준 적정. 산신 토큰이 매 턴 기 1을 회복하여 장기전에서 총 기 3~5 추가 = 실질 3~5코스트 투자 가치. 소환+기 아키타입 하이브리드 연결 카드.",
-                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "D001",
-                        "D011"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "damage": 10,
-                        "qi_recover_per_turn": 1
-                  }
-            },
-            {
-                  "id": "D022",
-                  "name": {
-                        "ko": "산군 강격",
-                        "romanized": "Sangun Ganggyeok",
-                        "en": "Mountain Lord Strike"
-                  },
-                  "beat": 3,
-                  "cost": 3,
-                  "type": "attack",
-                  "subtypes": [
-                        "summon"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "산군을 소환하여 적에게 22 피해를 입힌다. 소환 중인 토큰이나 소환체가 있으면 피해를 8 추가로 입힌다.",
-                        "en": "Summon the Mountain Lord to deal 22 damage to an enemy. If you have an active summon or token, deal 8 additional damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "28 피해. 소환 보너스 +12.",
-                        "en": "Deal 28 damage. Summon bonus +12."
-                  },
-                  "flavor_text": {
-                        "ko": "산군이 달려들어 으르렁대면 — 하늘도 땅도 떨린다.",
-                        "en": "When the Mountain Lord charges in with a roar — both heaven and earth tremble."
-                  },
-                  "balance_rationale": "3코스트 강공격. 기본 22피해는 3코스트 준수. 소환체 있으면 30피해로 태산붕(40)보다 낮지만 패널티 없음. 소환 아키타입의 주력 피해 딜러. D020(구미호)+D022(산군) = 5+22+8=35피해 잠재력.",
-                  "sijo_position": "종장 첫 슬롯 [3] — 소환 아키타입 피니셔",
-                  "class_synergy": [
-                        "D020",
-                        "D024"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "damage": 22,
-                        "bonus_with_summon": 8
-                  }
-            },
-            {
-                  "id": "D023",
-                  "name": {
-                        "ko": "산신 강림",
-                        "romanized": "Sansin Ganglim",
-                        "en": "Mountain Spirit Descent"
-                  },
-                  "beat": 4,
-                  "cost": 3,
-                  "type": "skill",
-                  "subtypes": [
-                        "summon",
-                        "defense"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "산신을 소환한다. 3턴 동안 매 턴 시작 시 방어도 5와 기 1을 획득한다.",
-                        "en": "Summon the Mountain Spirit. For 3 turns, gain 5 Block and 1 Qi at the start of each turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "4턴 동안. 매 턴 방어도 7과 기 2.",
-                        "en": "Lasts 4 turns. Gain 7 Block and 2 Qi per turn."
-                  },
-                  "flavor_text": {
-                        "ko": "산의 신이 내려오면 — 대지의 기운이 몸을 감싸고 하늘의 기가 흘러든다.",
-                        "en": "When the Mountain Spirit descends — the earth's energy shields the body and heaven's Qi flows in."
-                  },
-                  "balance_rationale": "3코스트 지속 방어+기 회복 소환. 3턴×(방어5+기1) = 방어15+기3. 3코스트 투자로 방어15+기3 지속 = 5코스트 이상 가치. 소환 아키타입의 방어 지원 카드. 천하무적진(G005, 3코스트 방어18+토큰)과 비슷한 포지션이나 분산 지속형.",
-                  "sijo_position": "종장 둘째 슬롯 [4] — 소환 방어 피날레",
-                  "class_synergy": [
-                        "D020",
-                        "D021",
-                        "D022"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "block_per_turn": 5,
-                        "qi_per_turn": 1,
-                        "duration": 3
-                  }
-            },
-            {
-                  "id": "D024",
-                  "name": {
-                        "ko": "허수아비",
-                        "romanized": "Heosurabi",
-                        "en": "Straw Effigy"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "summon",
-                        "defense"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "허수아비를 소환한다. 허수아비: 피해를 1회 대신 받고 소멸. 소멸 시 카드 1장을 드로우한다.",
-                        "en": "Summon a Straw Effigy. It absorbs 1 hit of damage and is destroyed. On destruction, draw 1 card."
-                  },
-                  "effect_upgraded": {
-                        "ko": "소멸 시 카드 2장 드로우.",
-                        "en": "On destruction, draw 2 cards."
-                  },
-                  "flavor_text": {
-                        "ko": "짚으로 만든 인형도 전장에선 제 역할을 다한다 — 사라지면서도 길을 남긴다.",
-                        "en": "Even a doll of straw serves its purpose on the battlefield — it leaves a path even as it vanishes."
-                  },
-                  "balance_rationale": "1코스트 소환형 방어. 병사 토큰(G001)의 도사 버전이나 소멸 시 드로우 제공으로 방향이 다름. 1코스트로 피해 완전 무효화 + 드로우 1 = 기공(D001, 기+드로우)과 유사 가치. 소환 아키타입에서 B22 소환 조건 충족 카드 겸 방어 역할.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "D022"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "decoy_hits": 1,
-                        "draw_on_death": 1
-                  }
-            },
-            {
-                  "id": "D025",
-                  "name": {
-                        "ko": "도깨비 부름",
-                        "romanized": "Dokkaebi Bureum",
-                        "en": "Summon Dokkaebi"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "summon",
-                        "aoe"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "모든 적에게 8 피해를 입힌다. 소환 중인 소환체나 토큰이 있으면 피해를 5 추가로 입힌다.",
-                        "en": "Deal 8 damage to ALL enemies. If you have an active summon or token, deal 5 additional damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "10 피해. 소환 보너스 +7.",
-                        "en": "Deal 10 damage. Summon bonus +7."
-                  },
-                  "flavor_text": {
-                        "ko": "도깨비를 불러 전장에 풀어놓으면 — 혼돈 속에서 적이 모두 쓸려나간다.",
-                        "en": "Unleash the dokkaebi onto the battlefield — amidst the chaos, all enemies are swept away."
-                  },
-                  "balance_rationale": "2코스트 소환 조건부 AoE. 기본 8 AoE는 2코스트 AoE 중 준수. 소환체 있으면 13 AoE — 진언(D003, 7 AoE 기 조건 시)보다 높지만 소환 조건 충족 필요. 소환 아키타입의 광역 딜러. 구미호(D020)+도깨비 부름 = 5+13=18 단일 피해 등가.",
-                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "D020",
-                        "D022",
-                        "D024"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "damage": 8,
-                        "is_aoe": true,
-                        "bonus_with_summon": 5
-                  }
-            },
-            {
-                  "id": "D026",
-                  "name": {
-                        "ko": "만법귀종",
-                        "romanized": "Manbeop Gwijong",
-                        "en": "All Paths Return to the Source"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "qi_burst"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "이번 턴 획득한 기당 8 피해를 입힌다. (최소 16) 예: 기 5 획득 시 40 피해!",
-                        "en": "Deal 8 damage per Qi gained this turn. (Minimum 16) Example: 5 Qi gained = 40 damage!"
-                  },
-                  "effect_upgraded": {
-                        "ko": "이번 턴 획득한 기당 10 피해. (최소 20)",
-                        "en": "Deal 10 damage per Qi gained this turn. (Minimum 20)"
-                  },
-                  "flavor_text": {
-                        "ko": "기를 모으는 것 자체가 공격이다 — 쌓인 기가 한 점으로 수렴하여 폭발한다.",
-                        "en": "The act of gathering Qi is itself the attack — accumulated energy converges to a single point and explodes."
-                  },
-                  "balance_rationale": "기폭(D009, 기×4)의 전설급 업그레이드. 기 5 획득 시 40 피해 = 3코스트 기준 STS 최고 딜 수준. 기 획득 카드(D001·D008·D010·D012·D013)와 반드시 사용해야 하므로 빌드 강제력 높음. D001(0코+기1+드1) × 5사용이면 기5=40딜.",
-                  "sijo_position": "종장 둘째 슬롯 [5] — 기 수렴 피날레",
-                  "class_synergy": [
-                        "D001",
-                        "D008",
-                        "D010",
-                        "D012",
-                        "D013"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "damage_per_qi_gained_this_turn": 8,
-                        "min_damage": 16
-                  }
-            },
-            {
-                  "id": "D027",
-                  "name": {
-                        "ko": "귀문도해",
-                        "romanized": "Gwimun Dohae",
-                        "en": "Gates of the Spirit Realm"
-                  },
-                  "beat": 4,
-                  "cost": 0,
-                  "type": "energy",
-                  "subtypes": [
-                        "qi_burst",
-                        "draw"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "기 3을 획득한다. 카드 2장을 드로우한다. (0코스트!)",
-                        "en": "Gain 3 Qi. Draw 2 cards. (Zero cost!)"
-                  },
-                  "effect_upgraded": {
-                        "ko": "기 4를 획득한다. 카드 3장을 드로우한다.",
-                        "en": "Gain 4 Qi. Draw 3 cards."
-                  },
-                  "flavor_text": {
-                        "ko": "귀문은 항상 열려있다 — 기를 끌어당기는 데 힘이 필요하지 않다.",
-                        "en": "The spirit gate is always open — drawing Qi requires no effort."
-                  },
-                  "balance_rationale": "0코스트로 기 3+드로우 2. D001(0코+기1+드1)의 3배 효율. 전설 등급. D026(기×8딜)과 콤보 시: 귀문도해 0코+기3+드2 → D026으로 24+ 피해. STS의 0코 패시브 엔진(Shiv 등)과 유사한 역할.",
-                  "sijo_position": "중장·종장 둘째 슬롯 [4] — 0코스트 기 가속기",
-                  "class_synergy": [
-                        "D026",
-                        "D001",
-                        "D009",
-                        "D010"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "qi_gain": 3,
-                        "draw": 2
-                  }
-            }
-      ],
-      "status_conditions_defined": [
-            {
-                  "id": "화상",
-                  "ko": "화상",
-                  "en": "Burn",
-                  "description": "턴 종료 시 화상 수치만큼 피해를 입는다. 매 턴 수치가 1 감소하며, 0이 되면 소멸.",
-                  "duration_type": "stacking_decay",
-                  "visual_note": "적 캐릭터에 불꽃 이펙트"
-            },
-            {
-                  "id": "독",
-                  "ko": "독",
-                  "en": "Poison",
-                  "description": "턴 종료 시 독 수치만큼 피해를 입는다. 매 턴 수치가 1 감소하며, 0이 되면 소멸.",
-                  "duration_type": "stacking_decay",
-                  "visual_note": "적 캐릭터에 초록빛 독 이펙트"
-            },
-            {
-                  "id": "저주",
-                  "ko": "저주",
-                  "en": "Curse",
-                  "description": "매 턴 시작 시 저주 피해를 입는다. 지속 시간이 끝나면 소멸.",
-                  "duration_type": "turns",
-                  "visual_note": "적 캐릭터에 보라빛 저주 이펙트"
-            }
+  "version": "0.1",
+  "type": "card_pool",
+  "class": "dosa",
+  "class_ko": "도사",
+  "category": "spell",
+  "description": "도사 전용 카드 풀. 기 조작과 도술을 활용하는 주문형 직업. 총 25장 — 기공·기 폭발 아키타입, 저주·DoT 아키타입, 소환·도술 아키타입.",
+  "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
+  "archetypes": [
+    {
+      "id": "qi_burst",
+      "name_ko": "기공·기 폭발",
+      "description": "기를 추가 획득하고, 획득한 기를 소비하거나 기 획득량에 비례한 폭발 피해를 입히는 아키타입. D001·D002·D003·D008·D009·D010·D011·D012·D013 중심.",
+      "key_cards": [
+        "D001",
+        "D003",
+        "D008",
+        "D009",
+        "D011"
       ]
+    },
+    {
+      "id": "curse_dot",
+      "name_ko": "저주·DoT",
+      "description": "화상·독 등 지속 피해(DoT)를 누적시켜 장기전으로 적을 소모시키는 아키타입. D004·D005·D014·D015·D016·D017·D018·D019 중심.",
+      "key_cards": [
+        "D004",
+        "D014",
+        "D017",
+        "D018"
+      ]
+    },
+    {
+      "id": "summon",
+      "name_ko": "소환·도술",
+      "description": "도술 소환체를 불러내 전투를 간접 지원하는 아키타입. 소환체는 일정 턴 동안 지속 효과를 제공한다. D020·D021·D022·D023·D024·D025 중심.",
+      "key_cards": [
+        "D020",
+        "D022",
+        "D023",
+        "D025"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "D001",
+      "name": {
+        "ko": "기공",
+        "romanized": "Gigong",
+        "en": "Qigong"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "skill",
+      "subtypes": [
+        "energy",
+        "draw"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "기 2를 획득하고 카드 2장을 드로우한다.",
+        "en": "Gain 2 Qi and draw 2 cards."
+      },
+      "effect_upgraded": {
+        "ko": "기 2를 획득하고 카드 3장을 드로우한다.",
+        "en": "Gain 2 Qi and draw 3 cards."
+      },
+      "flavor_text": {
+        "ko": "호흡을 가다듬어 기를 모은다 — 고요함 속에 힘이 충전된다.",
+        "en": "Steady your breathing and gather Qi — in stillness, power is charged."
+      },
+      "balance_rationale": "0코스트 기 회복 + 드로우 2장. 후퇴(0코스트 2방어+약화)와 대등한 0코스트 가치. 기 2 회복 + 드로우 2장으로 덱 가속 역할 강화. 진언(D003) 기 획득 조건 트리거.",
+      "class_synergy": [
+        "D003",
+        "D009"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "qi_gain": 2,
+        "draw": 2
+      }
+    },
+    {
+      "id": "D002",
+      "name": {
+        "ko": "결인",
+        "romanized": "Gyeorin",
+        "en": "Mudra"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "buff",
+        "attack_buff"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "이번 턴 다음에 사용하는 공격 카드의 피해를 +4 증가시킨다. 방어도 2를 획득한다.",
+        "en": "The next attack card you play this turn deals +4 additional damage. Gain 2 Block."
+      },
+      "effect_upgraded": {
+        "ko": "다음 공격 카드 피해 +6 증가. 방어도 3을 획득한다.",
+        "en": "Next attack card deals +6 additional damage. Gain 3 Block."
+      },
+      "flavor_text": {
+        "ko": "손끝에 인을 맺으니 — 다음 술법에 힘이 실린다.",
+        "en": "Forming a mudra at the fingertips — power flows into the next spell."
+      },
+      "balance_rationale": "1코스트 공격 버프. 도약(1코스트 3방어+4버프)과 유사하나 방어도가 2로 낮은 대신 도사 주문 카드와의 시너지를 위해 spell 타입. 도약의 도사 버전.",
+      "upgrade_cost": 75,
+      "values": {
+        "block": 2,
+        "next_attack_bonus": 4
+      }
+    },
+    {
+      "id": "D003",
+      "name": {
+        "ko": "진언",
+        "romanized": "Jineon",
+        "en": "True Word"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "skill",
+      "subtypes": [
+        "attack",
+        "aoe"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "모든 적에게 4 피해를 입힌다. 이번 턴 기를 획득한 적이 있으면 피해를 3 추가로 입힌다.",
+        "en": "Deal 4 damage to ALL enemies. If you gained Qi this turn, deal 3 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "모든 적에게 6 피해. 기 획득 보너스 +4 추가 피해.",
+        "en": "Deal 6 damage to ALL enemies. Qi bonus: +4 additional damage."
+      },
+      "flavor_text": {
+        "ko": "진언이 전장에 울려 퍼지면 — 도술의 파동이 적을 휩쓴다.",
+        "en": "When the true word echoes across the battlefield — waves of sorcery sweep over the enemy."
+      },
+      "balance_rationale": "2코스트 광역 공격. 기본 4 AoE는 낮지만 기공(D001)과 콤보 시 7 AoE. 도사의 0코스트→2코스트 콤보를 유도하는 핵심 카드.",
+      "class_synergy": [
+        "D001",
+        "D002"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "damage": 4,
+        "is_aoe": true
+      }
+    },
+    {
+      "id": "D004",
+      "name": {
+        "ko": "부적",
+        "romanized": "Bujeok",
+        "en": "Burning Talisman"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "attack",
+        "debuff"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "적에게 5 피해를 입힌다. 대상에게 화상 4를 부여한다. (화상: 턴 종료 시 화상 수치만큼 피해, 1 감소)",
+        "en": "Deal 5 damage to an enemy. Apply 4 Burn to the target. (Burn: at end of turn, take damage equal to Burn stacks, then reduce by 1)"
+      },
+      "effect_upgraded": {
+        "ko": "7 피해. 화상 4를 부여한다.",
+        "en": "Deal 7 damage. Apply 4 Burn."
+      },
+      "flavor_text": {
+        "ko": "불꽃이 깃든 부적을 던지면 — 도술의 화염이 적을 태운다.",
+        "en": "Hurl a flame-imbued talisman — and the fire of sorcery consumes the enemy."
+      },
+      "balance_rationale": "1코스트 피해 + DoT. 즉시 5피해 + 화상3(3+2+1=6 총 추가 피해) = 총 11피해 가치. 3턴에 걸쳐 분산되므로 즉시 피해 카드보다 총량은 높지만 느림. 도사의 지구전 특성 반영.",
+      "class_synergy": [
+        "D003"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage": 5,
+        "burn": 4
+      }
+    },
+    {
+      "id": "D005",
+      "name": {
+        "ko": "축지법",
+        "romanized": "Chukjibeop",
+        "en": "Earthshrink Step"
+      },
+      "beat": 3,
+      "cost": 3,
+      "type": "skill",
+      "subtypes": [
+        "movement",
+        "draw"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "카드 3장을 드로우한다. 이번 턴 카드 사용 비용이 1 감소한다 (최소 0).",
+        "en": "Draw 3 cards. Card costs are reduced by 1 this turn (minimum 0)."
+      },
+      "effect_upgraded": {
+        "ko": "카드 4장을 드로우한다. 비용 감소 2.",
+        "en": "Draw 4 cards. Cost reduction 2."
+      },
+      "flavor_text": {
+        "ko": "공간을 접어 한 걸음에 천리를 건너니 — 모든 술법이 손안에 있다.",
+        "en": "Fold space and cross a thousand leagues in a single step — all spells are within reach."
+      },
+      "balance_rationale": "3코스트 드로우 + 비용 감소. 3장 드로우 + 1코스트 감소는 실질 3기 투자로 3장+α 행동을 가능하게 함. 도사의 콤보 확장 피니셔. 시조 종장 완성 시 6장 드로우 + 추가 기 = 폭발적 턴.",
+      "class_synergy": [
+        "D001",
+        "D004"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "draw": 3,
+        "cost_reduce_this_turn": 1
+      }
+    },
+    {
+      "id": "D006",
+      "name": {
+        "ko": "태산붕",
+        "romanized": "Taesanbung",
+        "en": "Taesan Collapse"
+      },
+      "beat": 4,
+      "cost": 3,
+      "type": "attack",
+      "subtypes": [
+        "heavy"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "적에게 40 피해를 입힌다. 이 카드를 사용한 후, 다음 턴 기가 2 감소한다.",
+        "en": "Deal 40 damage to an enemy. After playing this card, lose 2 Qi at the start of next turn."
+      },
+      "effect_upgraded": {
+        "ko": "55 피해. 다음 턴 기 감소 없음.",
+        "en": "Deal 55 damage. No Qi penalty next turn."
+      },
+      "flavor_text": {
+        "ko": "태산이 무너지듯 — 한 번의 도술이 모든 것을 쓸어버린다.",
+        "en": "Like the great mountain Taesan crumbling — a single spell sweeps away everything."
+      },
+      "balance_rationale": "3코스트 최강 단일 피해. 40피해는 전체 카드 중 최고 단일 피해. 사이드이펙트(다음 턴 기 -2)로 강력한 대가를 지불해야 함. 업그레이드 시 패널티 제거로 업그레이드 목표가치 극명. 시조 완성 시 80피해(×2) = 이론상 최대 폭발.",
+      "class_synergy": [
+        "D002",
+        "D001"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage": 40,
+        "next_turn_qi_penalty": 2
+      }
+    },
+    {
+      "id": "D007",
+      "name": {
+        "ko": "수결",
+        "romanized": "Sugyeol",
+        "en": "Hand Seal"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": [
+        "spell"
+      ],
+      "rarity": 1,
+      "rarity_stars": "★☆☆☆☆",
+      "effect": {
+        "ko": "적에게 6 피해를 입힌다.",
+        "en": "Deal 6 damage to an enemy."
+      },
+      "effect_upgraded": {
+        "ko": "적에게 9 피해를 입힌다.",
+        "en": "Deal 9 damage to an enemy."
+      },
+      "flavor_text": {
+        "ko": "손가락으로 결을 맺어 기를 날린다 — 검 없이도 베는 도사의 기본기.",
+        "en": "Form the seal with your fingers and launch Qi — the Daoist's basic art, cutting without a blade."
+      },
+      "balance_rationale": "1코스트 기본 공격. 베기(6피해)의 도사 버전. 도사는 물리 무기 대신 기공 발사로 공격. 완전히 동일한 효율로 클래스 간 밸런스 유지. 스타터 덱 3장 포함.",
+      "upgrade_cost": 50,
+      "values": {
+        "damage": 6
+      }
+    },
+    {
+      "id": "D008",
+      "name": {
+        "ko": "대기",
+        "romanized": "Daegi",
+        "en": "Grand Qi"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "energy"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "기 2를 획득한다.",
+        "en": "Gain 2 Qi."
+      },
+      "effect_upgraded": {
+        "ko": "기 3을 획득한다.",
+        "en": "Gain 3 Qi."
+      },
+      "flavor_text": {
+        "ko": "하늘의 기운을 깊이 들이마시니 — 온몸이 기로 충만해진다.",
+        "en": "Breathe deeply of heaven's energy — the whole body fills with Qi."
+      },
+      "balance_rationale": "1코스트 기 2 획득. 기공(D001, 0코스트 기1+드로우1)과 비교 시 비용 1 더 들지만 기 획득량 2배. 기폭(D009) 조건 가속용. 기 기반 콤보를 한 턴 안에 완성하려 할 때 필수 충전 카드. 드로우 없음이 단점.",
+      "class_synergy": [
+        "D003",
+        "D009",
+        "D013"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "qi_gain": 2
+      }
+    },
+    {
+      "id": "D009",
+      "name": {
+        "ko": "기폭",
+        "romanized": "Gibok",
+        "en": "Qi Detonation"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "energy"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "이번 턴에 획득한 기 1당 5 피해를 입힌다 (최소 8).",
+        "en": "Deal 5 damage per Qi gained this turn (minimum 8)."
+      },
+      "effect_upgraded": {
+        "ko": "이번 턴에 획득한 기 1당 6 피해를 입힌다 (최소 10).",
+        "en": "Deal 6 damage per Qi gained this turn (minimum 10)."
+      },
+      "flavor_text": {
+        "ko": "쌓인 기를 한순간에 터뜨리면 — 폭발적인 에너지가 적을 날려버린다.",
+        "en": "Detonate all gathered Qi in an instant — an explosive blast that sends the enemy flying."
+      },
+      "balance_rationale": "2코스트 기 획득량 기반 공격. D001(기+1)+D008(기+2) 후 사용 시 기 3획득 = 12피해, 기 4획득 = 16피해. 기 아키타입의 핵심 딜 카드. 기를 많이 획득할수록 폭발적이지만 기 획득 없으면 기본 8피해로 손실. 2코스트 기준 평균 기대값 12~16.",
+      "class_synergy": [
+        "D001",
+        "D008",
+        "D013"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage_per_qi_gained_this_turn": 5,
+        "min_damage": 8
+      }
+    },
+    {
+      "id": "D010",
+      "name": {
+        "ko": "오기",
+        "romanized": "Ogi",
+        "en": "Five Energies"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "skill",
+      "subtypes": [
+        "energy"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "기 1을 획득한다. 이번 턴 다음에 사용하는 기공 계열 카드(energy 서브타입)의 비용을 1 감소시킨다.",
+        "en": "Gain 1 Qi. Reduce the cost of the next energy-type card you play this turn by 1."
+      },
+      "effect_upgraded": {
+        "ko": "기 1을 획득한다. 다음 기공 계열 카드 비용 2 감소.",
+        "en": "Gain 1 Qi. Reduce the next energy card's cost by 2."
+      },
+      "flavor_text": {
+        "ko": "오행의 기운이 손끝에 모이니 — 다음 기공이 더 쉽게 흐른다.",
+        "en": "The five elemental energies gather at your fingertips — and the next technique flows more easily."
+      },
+      "balance_rationale": "0코스트 기+다음 기공 카드 비용 감소. 기공(D001)과 유사하지만 드로우 대신 기공 카드 시너지. D008(대기, 1코스트) → D010 사용 후 D008 0코스트 = 2장 모두 0코스트로 기 3 획득 가능한 콤보. 기 아키타입 전용 0코스트 카드.",
+      "class_synergy": [
+        "D001",
+        "D008",
+        "D013"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "qi_gain": 1,
+        "cost_reduce_next_energy_card": 1
+      }
+    },
+    {
+      "id": "D011",
+      "name": {
+        "ko": "천기",
+        "romanized": "Cheongi",
+        "en": "Celestial Qi"
+      },
+      "beat": 3,
+      "cost": 3,
+      "type": "power",
+      "subtypes": [
+        "energy"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "이번 전투 동안 매 턴 시작 시 기 1을 추가 획득한다.",
+        "en": "For the rest of this combat, gain 1 additional Qi at the start of each turn."
+      },
+      "effect_upgraded": {
+        "ko": "이번 전투 동안 매 턴 시작 시 기 2를 추가 획득한다.",
+        "en": "For the rest of this combat, gain 2 additional Qi at the start of each turn."
+      },
+      "flavor_text": {
+        "ko": "하늘의 기운과 하나가 되니 — 매 순간 기가 저절로 솟아난다.",
+        "en": "Become one with the heavenly energy — and Qi arises on its own with every breath."
+      },
+      "balance_rationale": "3코스트 기 증가 파워. 기본 3기/턴 → 4기/턴으로 영구화. 한 전투당 최소 5턴 가정 시 5기 추가 = 5코스트 투자 대비 5회전 이상 이득. 장기전 도사의 핵심 파워. 기폭(D009)과 진언(D003)의 기 조건을 더 쉽게 충족하게 함.",
+      "class_synergy": [
+        "D003",
+        "D009"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "bonus_qi_per_turn": 1
+      }
+    },
+    {
+      "id": "D012",
+      "name": {
+        "ko": "기류",
+        "romanized": "Giryu",
+        "en": "Qi Flow"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "energy",
+        "draw"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "기 1을 획득한다. 카드 2장을 드로우한다.",
+        "en": "Gain 1 Qi. Draw 2 cards."
+      },
+      "effect_upgraded": {
+        "ko": "기 2를 획득한다. 카드 2장을 드로우한다.",
+        "en": "Gain 2 Qi. Draw 2 cards."
+      },
+      "flavor_text": {
+        "ko": "기의 흐름을 타면 — 세상의 모든 것이 선명하게 보인다.",
+        "en": "Ride the flow of Qi — and everything in the world becomes clear."
+      },
+      "balance_rationale": "1코스트 기+대량 드로우. 기공(0코스트 기1+드로우1)과 비교 시 코스트 1 소비 대신 드로우 2배. 박학다식(W008, 2코스트 학식3+드로우1)보다 코스트 낮고 드로우 더 많음. 기 아키타입에서 덱 순환 핵심 카드.",
+      "class_synergy": [
+        "D001",
+        "D009"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "qi_gain": 1,
+        "draw": 2
+      }
+    },
+    {
+      "id": "D013",
+      "name": {
+        "ko": "기집",
+        "romanized": "Gijip",
+        "en": "Qi Convergence"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "skill",
+      "subtypes": [
+        "energy"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "기 3을 획득한다.",
+        "en": "Gain 3 Qi."
+      },
+      "effect_upgraded": {
+        "ko": "기 4를 획득한다.",
+        "en": "Gain 4 Qi."
+      },
+      "flavor_text": {
+        "ko": "사방의 기운을 한곳으로 — 최대로 집약된 기가 폭발을 기다린다.",
+        "en": "Draw energy from all directions into one point — concentrated Qi awaits detonation."
+      },
+      "balance_rationale": "2코스트 기 3 획득. 대기(D008, 1코스트 기2)보다 1코스트 더 들지만 기 1 더 획득. 기폭(D009) 기 획득량 극대화 시 핵심 충전 카드. 기 3획득 후 기폭(D009) = 12피해, 기폭+진언(D003) = 19피해. 기 아키타입 2코스트 주력 충전 카드.",
+      "class_synergy": [
+        "D009",
+        "D003"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "qi_gain": 3
+      }
+    },
+    {
+      "id": "D014",
+      "name": {
+        "ko": "독안개",
+        "romanized": "Doganae",
+        "en": "Poison Mist"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "debuff",
+        "aoe"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "모든 적에게 독 2를 부여한다. (독: 턴 종료 시 독 수치만큼 피해, 1 감소)",
+        "en": "Apply 2 Poison to ALL enemies. (Poison: at end of turn, take damage equal to Poison stacks, then reduce by 1)"
+      },
+      "effect_upgraded": {
+        "ko": "모든 적에게 독 3을 부여한다.",
+        "en": "Apply 3 Poison to ALL enemies."
+      },
+      "flavor_text": {
+        "ko": "안개처럼 스며드는 독 — 눈치채지 못한 사이에 온 전장을 물들인다.",
+        "en": "Poison that seeps like mist — before they notice, the entire battlefield is tainted."
+      },
+      "balance_rationale": "1코스트 광역 DoT. 독 2 = 적 1명당 2+1=3 총 피해. 다수 적 상황에서 1코스트로 전체에 독 부여 = 적 3명 시 총 9피해 가치. 단일 적에겐 3피해로 약하지만 광역 효율 극대. 저주 아키타입의 초기 세팅 카드.",
+      "class_synergy": [
+        "D017",
+        "D018",
+        "D019"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "poison": 2,
+        "is_aoe": true
+      }
+    },
+    {
+      "id": "D015",
+      "name": {
+        "ko": "저주",
+        "romanized": "Jeochu",
+        "en": "Curse"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "debuff",
+        "dot"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "적에게 저주를 부여한다. 저주: 이번 턴 포함 3회 동안 매 턴 시작 시 3 피해를 입는다.",
+        "en": "Apply Curse to an enemy. Curse: for 3 turns, take 3 damage at the start of each turn."
+      },
+      "effect_upgraded": {
+        "ko": "저주 피해 4로 증가. 4회 지속.",
+        "en": "Curse damage increased to 4. Lasts 4 turns."
+      },
+      "flavor_text": {
+        "ko": "한번 걸린 저주는 떨칠 수 없다 — 시간이 지날수록 더 깊이 파고든다.",
+        "en": "A curse once laid cannot be shaken — it digs deeper as time passes."
+      },
+      "balance_rationale": "1코스트 지속 피해 저주. 3턴×3피해=9총피해. 화상보다 발동 방식이 다르며(턴 시작 시 고정 피해), 총 피해는 비슷. 저주 아키타입의 기본 단위 DoT. 부적(D004)보다 단순하지만 턴 시작 발동으로 진언 등과 조합 시 타이밍 유리.",
+      "class_synergy": [
+        "D014",
+        "D018"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "curse_damage_per_turn": 3,
+        "curse_duration": 3
+      }
+    },
+    {
+      "id": "D016",
+      "name": {
+        "ko": "혼돈의 부적",
+        "romanized": "Hondon Bujeok",
+        "en": "Chaos Talisman"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "skill",
+      "subtypes": [
+        "debuff",
+        "dot"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "적에게 화상 3을 부여하고 약화 2를 부여한다.",
+        "en": "Apply 3 Burn and 2 Weaken to an enemy."
+      },
+      "effect_upgraded": {
+        "ko": "화상 4. 약화 3.",
+        "en": "Apply 4 Burn. Apply 3 Weaken."
+      },
+      "flavor_text": {
+        "ko": "불과 혼돈이 뒤섞인 부적 — 적을 태우고 동시에 흔들어 놓는다.",
+        "en": "A talisman of fire and chaos — it burns the enemy while shaking their resolve."
+      },
+      "balance_rationale": "2코스트 DoT+디버프 복합. 화상3(총6피해)+약화2(다음 2회 공격 25% 감소). 총 가치는 2코스트 이상이나 분산되어 즉시 피해가 없음. DoT를 쌓으면서 적의 공격도 줄이는 저주 아키타입의 중간 가격대 복합 카드.",
+      "class_synergy": [
+        "D004",
+        "D014",
+        "D019"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "burn": 3,
+        "weaken": 2
+      }
+    },
+    {
+      "id": "D017",
+      "name": {
+        "ko": "흑염",
+        "romanized": "Heukyeom",
+        "en": "Black Flame"
+      },
+      "beat": 3,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "dot"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "적에게 6 피해를 입힌다. 화상이 2 이상이면 피해를 4 추가로 입힌다. 독이 2 이상이면 피해를 4 추가로 입힌다.",
+        "en": "Deal 6 damage to an enemy. If the target has 2+ Burn, deal 4 additional damage. If the target has 2+ Poison, deal 4 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "8 피해. 화상 조건 추가 +5. 독 조건 추가 +5.",
+        "en": "Deal 8 damage. Burn bonus +5. Poison bonus +5."
+      },
+      "flavor_text": {
+        "ko": "독과 불이 어우러진 흑염 — 이미 타고 있는 상처에 독불이 더해진다.",
+        "en": "Black flame born of poison and fire — adding dark fire to wounds already burning."
+      },
+      "balance_rationale": "2코스트 DoT 시너지 강공격. 기본 6피해는 낮지만 화상+독 양측 조건 충족 시 14피해. DoT를 미리 세팅해야 하므로 저주 아키타입 전용. 부적(D004)+독안개(D014) 세팅 후 흑염 = 14피해 = 2코스트 최강급. 저주 빌드 피니셔.",
+      "class_synergy": [
+        "D004",
+        "D014",
+        "D016"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "damage": 6,
+        "bonus_on_burn": 4,
+        "bonus_on_poison": 4
+      }
+    },
+    {
+      "id": "D018",
+      "name": {
+        "ko": "오독",
+        "romanized": "Odok",
+        "en": "Five Venoms"
+      },
+      "beat": 4,
+      "cost": 3,
+      "type": "skill",
+      "subtypes": [
+        "debuff",
+        "aoe",
+        "dot"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "모든 적에게 독 4와 화상 3을 동시에 부여한다.",
+        "en": "Apply 4 Poison and 3 Burn to ALL enemies."
+      },
+      "effect_upgraded": {
+        "ko": "독 5, 화상 4.",
+        "en": "Apply 5 Poison and 4 Burn."
+      },
+      "flavor_text": {
+        "ko": "다섯 가지 독이 불꽃과 뒤섞여 — 전장 전체에 저주의 안개가 퍼진다.",
+        "en": "Five venoms mixed with flame — a cursed mist spreads across the entire battlefield."
+      },
+      "balance_rationale": "3코스트 광역 최강 DoT 세팅. 독4(4+3+2+1=10피해)+화상3(3+2+1=6피해) = 단일 적당 총 16피해, 즉시 피해 없음. 다수 적 시 총 피해 극대(3명×16=48). 저주 아키타입의 3코스트 핵심 세팅 카드. 흑염(D017) 등 조건부 카드의 조건을 즉시 완전 충족.",
+      "class_synergy": [
+        "D017",
+        "D019"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "poison": 4,
+        "burn": 3,
+        "is_aoe": true
+      }
+    },
+    {
+      "id": "D019",
+      "name": {
+        "ko": "주박",
+        "romanized": "Jubak",
+        "en": "Binding Hex"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "debuff",
+        "dot"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "적에게 취약 2턴을 부여한다. 이번 전투 동안, 대상의 DoT(독·화상·저주) 피해가 1.5배가 된다.",
+        "en": "Apply 2 turns of Vulnerable to an enemy. For this combat, the target's DoT (Poison, Burn, Curse) damage is multiplied by 1.5x."
+      },
+      "effect_upgraded": {
+        "ko": "취약 3턴. DoT 피해 2배.",
+        "en": "3 turns of Vulnerable. DoT damage 2x."
+      },
+      "flavor_text": {
+        "ko": "주문으로 적을 옭아매면 — 독과 불의 피해가 더욱 깊이 파고든다.",
+        "en": "Bind the enemy with an incantation — and the pain of poison and fire cuts ever deeper."
+      },
+      "balance_rationale": "1코스트 취약+DoT 증폭. 취약은 카드 피해 50% 증가, DoT 증폭은 이미 부여한 독/화상 피해 1.5배. DoT 세팅(오독D018) 후 주박 = DoT 피해 2.25배(×1.5×취약1.5)로 극대화. 저주 아키타입의 증폭 카드. 취약(W002 탄핵)과 유사하나 DoT 시너지 특화.",
+      "class_synergy": [
+        "D014",
+        "D018",
+        "D017"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "vulnerable": 2,
+        "dot_multiplier": 1.5
+      }
+    },
+    {
+      "id": "D020",
+      "name": {
+        "ko": "구미호 소환",
+        "romanized": "Gumiho Sowhan",
+        "en": "Summon Gumiho"
+      },
+      "beat": 3,
+      "cost": 2,
+      "type": "skill",
+      "subtypes": [
+        "summon"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "구미호를 소환한다. 3턴 동안 매 턴 시작 시 적에게 5 피해를 입힌다.",
+        "en": "Summon a Gumiho. For 3 turns, deal 5 damage to an enemy at the start of each turn."
+      },
+      "effect_upgraded": {
+        "ko": "4턴 동안. 매 턴 피해 7.",
+        "en": "Lasts 4 turns. Deals 7 damage per turn."
+      },
+      "flavor_text": {
+        "ko": "아홉 꼬리의 여우가 모습을 드러내면 — 전장의 기운이 뒤바뀐다.",
+        "en": "When the nine-tailed fox reveals itself — the energy of the battlefield is turned on its head."
+      },
+      "balance_rationale": "2코스트 소환 DoT. 3턴×5피해=15피해. 즉시 피해는 없지만 2코스트로 15피해 기대값(1턴당 7.5피해 환산)은 상당. 소환체 형태로 다음 카드를 자유롭게 사용 가능. 소환 아키타입의 기본 소환체.",
+      "class_synergy": [
+        "D023",
+        "D025"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "summon_damage_per_turn": 5,
+        "summon_duration": 3
+      }
+    },
+    {
+      "id": "D021",
+      "name": {
+        "ko": "산신 기공",
+        "romanized": "Sansin Gigong",
+        "en": "Mountain Spirit Art"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "summon"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "적에게 10 피해를 입힌다. 산신 기공 토큰을 소환한다. 토큰: 매 턴 종료 시 기 1 회복.",
+        "en": "Deal 10 damage to an enemy. Summon a Mountain Spirit token. Token: recover 1 Qi at end of each turn."
+      },
+      "effect_upgraded": {
+        "ko": "12 피해. 토큰 매 턴 기 2 회복.",
+        "en": "Deal 12 damage. Token recovers 2 Qi per turn."
+      },
+      "flavor_text": {
+        "ko": "산신의 기운을 공격에 담으니 — 산의 숨결이 기로 돌아온다.",
+        "en": "Channel the Mountain Spirit's power into your strike — the mountain's breath returns as Qi."
+      },
+      "balance_rationale": "2코스트 공격+지속 기 회복 토큰. 즉시 10피해는 2코스트 기준 적정. 산신 토큰이 매 턴 기 1을 회복하여 장기전에서 총 기 3~5 추가 = 실질 3~5코스트 투자 가치. 소환+기 아키타입 하이브리드 연결 카드.",
+      "class_synergy": [
+        "D001",
+        "D011"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage": 10,
+        "qi_recover_per_turn": 1
+      }
+    },
+    {
+      "id": "D022",
+      "name": {
+        "ko": "산군 강격",
+        "romanized": "Sangun Ganggyeok",
+        "en": "Mountain Lord Strike"
+      },
+      "beat": 3,
+      "cost": 3,
+      "type": "attack",
+      "subtypes": [
+        "summon"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "산군을 소환하여 적에게 22 피해를 입힌다. 소환 중인 토큰이나 소환체가 있으면 피해를 8 추가로 입힌다.",
+        "en": "Summon the Mountain Lord to deal 22 damage to an enemy. If you have an active summon or token, deal 8 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "28 피해. 소환 보너스 +12.",
+        "en": "Deal 28 damage. Summon bonus +12."
+      },
+      "flavor_text": {
+        "ko": "산군이 달려들어 으르렁대면 — 하늘도 땅도 떨린다.",
+        "en": "When the Mountain Lord charges in with a roar — both heaven and earth tremble."
+      },
+      "balance_rationale": "3코스트 강공격. 기본 22피해는 3코스트 준수. 소환체 있으면 30피해로 태산붕(40)보다 낮지만 패널티 없음. 소환 아키타입의 주력 피해 딜러. D020(구미호)+D022(산군) = 5+22+8=35피해 잠재력.",
+      "class_synergy": [
+        "D020",
+        "D024"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage": 22,
+        "bonus_with_summon": 8
+      }
+    },
+    {
+      "id": "D023",
+      "name": {
+        "ko": "산신 강림",
+        "romanized": "Sansin Ganglim",
+        "en": "Mountain Spirit Descent"
+      },
+      "beat": 4,
+      "cost": 3,
+      "type": "skill",
+      "subtypes": [
+        "summon",
+        "defense"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "산신을 소환한다. 3턴 동안 매 턴 시작 시 방어도 5와 기 1을 획득한다.",
+        "en": "Summon the Mountain Spirit. For 3 turns, gain 5 Block and 1 Qi at the start of each turn."
+      },
+      "effect_upgraded": {
+        "ko": "4턴 동안. 매 턴 방어도 7과 기 2.",
+        "en": "Lasts 4 turns. Gain 7 Block and 2 Qi per turn."
+      },
+      "flavor_text": {
+        "ko": "산의 신이 내려오면 — 대지의 기운이 몸을 감싸고 하늘의 기가 흘러든다.",
+        "en": "When the Mountain Spirit descends — the earth's energy shields the body and heaven's Qi flows in."
+      },
+      "balance_rationale": "3코스트 지속 방어+기 회복 소환. 3턴×(방어5+기1) = 방어15+기3. 3코스트 투자로 방어15+기3 지속 = 5코스트 이상 가치. 소환 아키타입의 방어 지원 카드. 천하무적진(G005, 3코스트 방어18+토큰)과 비슷한 포지션이나 분산 지속형.",
+      "class_synergy": [
+        "D020",
+        "D021",
+        "D022"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "block_per_turn": 5,
+        "qi_per_turn": 1,
+        "duration": 3
+      }
+    },
+    {
+      "id": "D024",
+      "name": {
+        "ko": "허수아비",
+        "romanized": "Heosurabi",
+        "en": "Straw Effigy"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "summon",
+        "defense"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "허수아비를 소환한다. 허수아비: 피해를 1회 대신 받고 소멸. 소멸 시 카드 1장을 드로우한다.",
+        "en": "Summon a Straw Effigy. It absorbs 1 hit of damage and is destroyed. On destruction, draw 1 card."
+      },
+      "effect_upgraded": {
+        "ko": "소멸 시 카드 2장 드로우.",
+        "en": "On destruction, draw 2 cards."
+      },
+      "flavor_text": {
+        "ko": "짚으로 만든 인형도 전장에선 제 역할을 다한다 — 사라지면서도 길을 남긴다.",
+        "en": "Even a doll of straw serves its purpose on the battlefield — it leaves a path even as it vanishes."
+      },
+      "balance_rationale": "1코스트 소환형 방어. 병사 토큰(G001)의 도사 버전이나 소멸 시 드로우 제공으로 방향이 다름. 1코스트로 피해 완전 무효화 + 드로우 1 = 기공(D001, 기+드로우)과 유사 가치. 소환 아키타입에서 B22 소환 조건 충족 카드 겸 방어 역할.",
+      "class_synergy": [
+        "D022"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "decoy_hits": 1,
+        "draw_on_death": 1
+      }
+    },
+    {
+      "id": "D025",
+      "name": {
+        "ko": "도깨비 부름",
+        "romanized": "Dokkaebi Bureum",
+        "en": "Summon Dokkaebi"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "summon",
+        "aoe"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "모든 적에게 8 피해를 입힌다. 소환 중인 소환체나 토큰이 있으면 피해를 5 추가로 입힌다.",
+        "en": "Deal 8 damage to ALL enemies. If you have an active summon or token, deal 5 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "10 피해. 소환 보너스 +7.",
+        "en": "Deal 10 damage. Summon bonus +7."
+      },
+      "flavor_text": {
+        "ko": "도깨비를 불러 전장에 풀어놓으면 — 혼돈 속에서 적이 모두 쓸려나간다.",
+        "en": "Unleash the dokkaebi onto the battlefield — amidst the chaos, all enemies are swept away."
+      },
+      "balance_rationale": "2코스트 소환 조건부 AoE. 기본 8 AoE는 2코스트 AoE 중 준수. 소환체 있으면 13 AoE — 진언(D003, 7 AoE 기 조건 시)보다 높지만 소환 조건 충족 필요. 소환 아키타입의 광역 딜러. 구미호(D020)+도깨비 부름 = 5+13=18 단일 피해 등가.",
+      "class_synergy": [
+        "D020",
+        "D022",
+        "D024"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage": 8,
+        "is_aoe": true,
+        "bonus_with_summon": 5
+      }
+    },
+    {
+      "id": "D026",
+      "name": {
+        "ko": "만법귀종",
+        "romanized": "Manbeop Gwijong",
+        "en": "All Paths Return to the Source"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "qi_burst"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "이번 턴 획득한 기당 8 피해를 입힌다. (최소 16) 예: 기 5 획득 시 40 피해!",
+        "en": "Deal 8 damage per Qi gained this turn. (Minimum 16) Example: 5 Qi gained = 40 damage!"
+      },
+      "effect_upgraded": {
+        "ko": "이번 턴 획득한 기당 10 피해. (최소 20)",
+        "en": "Deal 10 damage per Qi gained this turn. (Minimum 20)"
+      },
+      "flavor_text": {
+        "ko": "기를 모으는 것 자체가 공격이다 — 쌓인 기가 한 점으로 수렴하여 폭발한다.",
+        "en": "The act of gathering Qi is itself the attack — accumulated energy converges to a single point and explodes."
+      },
+      "balance_rationale": "기폭(D009, 기×4)의 전설급 업그레이드. 기 5 획득 시 40 피해 = 3코스트 기준 STS 최고 딜 수준. 기 획득 카드(D001·D008·D010·D012·D013)와 반드시 사용해야 하므로 빌드 강제력 높음. D001(0코+기1+드1) × 5사용이면 기5=40딜.",
+      "class_synergy": [
+        "D001",
+        "D008",
+        "D010",
+        "D012",
+        "D013"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage_per_qi_gained_this_turn": 8,
+        "min_damage": 16
+      }
+    },
+    {
+      "id": "D027",
+      "name": {
+        "ko": "귀문도해",
+        "romanized": "Gwimun Dohae",
+        "en": "Gates of the Spirit Realm"
+      },
+      "beat": 4,
+      "cost": 0,
+      "type": "energy",
+      "subtypes": [
+        "qi_burst",
+        "draw"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "기 3을 획득한다. 카드 2장을 드로우한다. (0코스트!)",
+        "en": "Gain 3 Qi. Draw 2 cards. (Zero cost!)"
+      },
+      "effect_upgraded": {
+        "ko": "기 4를 획득한다. 카드 3장을 드로우한다.",
+        "en": "Gain 4 Qi. Draw 3 cards."
+      },
+      "flavor_text": {
+        "ko": "귀문은 항상 열려있다 — 기를 끌어당기는 데 힘이 필요하지 않다.",
+        "en": "The spirit gate is always open — drawing Qi requires no effort."
+      },
+      "balance_rationale": "0코스트로 기 3+드로우 2. D001(0코+기1+드1)의 3배 효율. 전설 등급. D026(기×8딜)과 콤보 시: 귀문도해 0코+기3+드2 → D026으로 24+ 피해. STS의 0코 패시브 엔진(Shiv 등)과 유사한 역할.",
+      "class_synergy": [
+        "D026",
+        "D001",
+        "D009",
+        "D010"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "qi_gain": 3,
+        "draw": 2
+      }
+    }
+  ],
+  "status_conditions_defined": [
+    {
+      "id": "화상",
+      "ko": "화상",
+      "en": "Burn",
+      "description": "턴 종료 시 화상 수치만큼 피해를 입는다. 매 턴 수치가 1 감소하며, 0이 되면 소멸.",
+      "duration_type": "stacking_decay",
+      "visual_note": "적 캐릭터에 불꽃 이펙트"
+    },
+    {
+      "id": "독",
+      "ko": "독",
+      "en": "Poison",
+      "description": "턴 종료 시 독 수치만큼 피해를 입는다. 매 턴 수치가 1 감소하며, 0이 되면 소멸.",
+      "duration_type": "stacking_decay",
+      "visual_note": "적 캐릭터에 초록빛 독 이펙트"
+    },
+    {
+      "id": "저주",
+      "ko": "저주",
+      "en": "Curse",
+      "description": "매 턴 시작 시 저주 피해를 입는다. 지속 시간이 끝나면 소멸.",
+      "duration_type": "turns",
+      "visual_note": "적 캐릭터에 보라빛 저주 이펙트"
+    }
+  ]
 }

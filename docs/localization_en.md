@@ -11,16 +11,15 @@
 ## 목차
 
 1. [번역 철학 및 원칙](#1-번역-철학-및-원칙)
-2. [시조 시스템 영문 설명](#2-시조-시스템-영문-설명)
-3. [캐릭터 및 직업](#3-캐릭터-및-직업)
-4. [카드 이름 번역표](#4-카드-이름-번역표)
-5. [유물 이름 번역표](#5-유물-이름-번역표)
-6. [적 이름 번역표](#6-적-이름-번역표)
-7. [이벤트 제목 번역표](#7-이벤트-제목-번역표)
-8. [상태이상 번역표](#8-상태이상-번역표)
-9. [UI 텍스트 번역표](#9-ui-텍스트-번역표)
-10. [언어 전환 UI 명세](#10-언어-전환-ui-명세)
-11. [레이아웃 고려사항](#11-레이아웃-고려사항)
+2. [캐릭터 및 직업](#3-캐릭터-및-직업)
+3. [카드 이름 번역표](#4-카드-이름-번역표)
+4. [유물 이름 번역표](#5-유물-이름-번역표)
+5. [적 이름 번역표](#6-적-이름-번역표)
+6. [이벤트 제목 번역표](#7-이벤트-제목-번역표)
+7. [상태이상 번역표](#8-상태이상-번역표)
+8. [UI 텍스트 번역표](#9-ui-텍스트-번역표)
+9. [언어 전환 UI 명세](#10-언어-전환-ui-명세)
+10. [레이아웃 고려사항](#11-레이아웃-고려사항)
 
 ---
 
@@ -40,99 +39,16 @@
 
 | 한국어 | 한자 | 영문 표기 | 주석 |
 |--------|------|-----------|------|
-| 기 |  | Qi | 에너지 자원. 괄호 없이 "Qi"만 사용 |
-| 시조 |  | Sijo | 고유 게임 메카닉. 항상 "Sijo" |
-| 초장 |  | First Verse | 시조 1~2번 슬롯 |
-| 중장 |  | Middle Verse | 시조 3~4번 슬롯 |
-| 종장 |  | Final Verse | 시조 5~6번 슬롯 |
-| 음보 |  | Beat | 카드 리듬 값 (3 또는 4) |
-| 도사 |  | Daoist Sorcerer | 직업명 |
-| 무관 |  | Military Officer | 직업명 |
-| 문관 |  | Scholar Official | 직업명 |
-| 기력 |  | Stamina | 무관 전용 자원 |
-| 방어도 |  | Block | 턴 내 피해 방어 수치 |
-| 약화 |  | Weakened | 다음 공격 피해 감소 상태이상 |
-| 화상 |  | Burn | 지속 화염 피해 상태이상 |
-| 독 |  | Poison | 지속 독 피해 상태이상 |
-| 부적 |  | Talisman | 유물/아이템 |
-| 도술 |  | Daoist Arts | 도사 마법 계통 |
-| 병사 토큰 |  | Soldier Token | 무관 전용 방어 토큰 |
-
----
-
-## 2. 시조 시스템 영문 설명
-
-### 2.1 인게임 튜토리얼 텍스트 (UI 표시용)
-
-```
-SIJO RHYTHM SYSTEM
-
-Each card has a Beat value: [3] or [4].
-Complete a Sijo by filling all 6 slots in order:
-
-  First Verse:  [3] → [4]
-  Middle Verse: [3] → [4]
-  Final Verse:  [3] → [4]
-
-  ★ SIJO COMPLETE! ★
-  Last card effect ×2 + Recover 1 Qi + Draw 1 card
-
-Slots carry over between turns.
-Wrong beat = slot not filled.
-```
-
-### 2.2 슬롯 UI 레이블
-
-| 한국어 | 영문 |
-|--------|------|
-| 초장 1 | First Verse I |
-| 초장 2 | First Verse II |
-| 중장 1 | Middle Verse I |
-| 중장 2 | Middle Verse II |
-| 종장 1 | Final Verse I |
-| 종장 2 | Final Verse II |
-| 시조 완성! | SIJO COMPLETE! |
-| 슬롯 초기화 | Sijo Reset |
-
-### 2.3 카드 음보 표시 텍스트
-
-| 상황 | 한국어 | 영문 |
-|------|--------|------|
-| 카드 음보 표시 | [3] 음보 | Beat [3] |
-| 슬롯 요구 음보 | 음보 4 필요 | Requires Beat 4 |
-| 음보 불일치 | 음보 불일치 | Beat Mismatch |
-| 시조 미완성 | 시조 불완성 | Sijo Incomplete |
-
-### 2.4 시조 완성 보너스 팝업
-
-```
-★ SIJO COMPLETE! ★
-- Last card effect ×2
-- Qi +1 recovered
-- Draw 1 card
-```
-
-### 2.5 앱스토어 / 글로벌 유저 설명 (긴 버전)
-
-```
-SIJO is a classical Korean verse form with three stanzas —
-each built from two rhythmic phrases.
-
-In Sijojeon, each card carries a Beat value of [3] or [4].
-Play cards in the correct beat order across the Sijo's six
-slots to complete the verse:
-
-  First Verse  [3]→[4]
-  Middle Verse [3]→[4]
-  Final Verse  [3]→[4]
-
-Complete the Sijo and the final card detonates with double
-power — plus a burst of Qi and an extra card draw.
-
-Slots persist between turns, so weave your Sijo across the
-entire combat. One wrong beat breaks the rhythm.
-Plan carefully. Strike with poetry.
-```
+| 기 | | Qi | 에너지 자원. 괄호 없이 "Qi"만 사용 |
+| 도사 | | Daoist Sorcerer | 직업명 |
+| 무관 | | Military Officer | 직업명 |
+| 문관 | | Scholar Official | 직업명 |
+| 방어도 | | Block | 턴 내 피해 방어 수치 |
+| 약화 | | Weakened | 다음 공격 피해 감소 상태이상 |
+| 화상 | | Burn | 지속 화염 피해 상태이상 |
+| 독 | | Poison | 지속 독 피해 상태이상 |
+| 부적 | | Talisman | 유물/아이템 |
+| 도술 | | Daoist Arts | 도사 마법 계통 |
 
 ---
 
@@ -142,9 +58,9 @@ Plan carefully. Strike with poetry.
 
 | 한국어 | 한자 | 영문 이름 | 영문 설명 |
 |--------|------|-----------|-----------|
-| 도사 |  | Daoist Sorcerer | Master of Qi arts and mystic spells. Amplifies energy, casts curses, and detonates Sijo with devastating force. |
-| 무관 |  | Military Officer | Commands soldiers and unleashes tactical formations. Uses Stamina to power overwhelming assaults. |
-| 문관 |  | Scholar Official | Wields the power of the written word and Confucian ritual. Weaves defensive rites and political gambits to outlast any foe. |
+| 도사 | | Daoist Sorcerer | Master of Qi arts and mystic spells. Amplifies energy, casts curses, and detonates Sijo with devastating force. |
+| 무관 | | Military Officer | Commands soldiers and unleashes tactical formations. Uses Stamina to power overwhelming assaults. |
+| 문관 | | Scholar Official | Wields the power of the written word and Confucian ritual. Weaves defensive rites and political gambits to outlast any foe. |
 
 ### 3.2 직업별 핵심 메카닉 영문 설명
 
@@ -160,14 +76,14 @@ Poison [X]: Enemy takes X damage at end of their turn, then X decreases by 1.
 ```
 Soldier Token: Absorbs one hit, then vanishes — recovering 1 Qi on death.
 Stamina: Secondary resource (max 10). Carries between turns.
-          Spend Stamina to power up attacks.
+ Spend Stamina to power up attacks.
 Formation cards generate Soldier Tokens and build Stamina.
 ```
 
 **문관 (Scholar Official)**
 ```
 Knowledge: Accumulates when Study cards are played.
-           Spend Knowledge to amplify ritual defense cards.
+ Spend Knowledge to amplify ritual defense cards.
 Ritual Protocol: Reduces damage taken this turn.
 ```
 
@@ -182,101 +98,101 @@ Ritual Protocol: Reduces damage taken this turn.
 
 | ID | 한국어 | 로마자 | 영문 이름 | 비고 |
 |----|--------|--------|-----------|------|
-| M001 | 회피 | Hoepi | Evasion | Beat [4] — 방어도 카드 |
-| M002 | 도약 | Doyak | Leap | Beat [3] — 이동 오프너 |
-| M003 | 후퇴 | Hutoe | Feigned Retreat | Beat [3] — 0코스트 약화 |
-| M004 | 측면 강타 | Eukmyeon Gangta | Flanking Strike | Beat [4] — 조건부 공격 |
-| M005 | 포복 | Pobok | Low Crawl | Beat [3] — 방어+드로우 |
+| M001 | 회피 | Hoepi | Evasion | 방어도 카드 |
+| M002 | 도약 | Doyak | Leap | 이동 오프너 |
+| M003 | 후퇴 | Hutoe | Feigned Retreat | 0코스트 약화 |
+| M004 | 측면 강타 | Eukmyeon Gangta | Flanking Strike | 조건부 공격 |
+| M005 | 포복 | Pobok | Low Crawl | 방어+드로우 |
 
 ### 4.2 도사 카드
 
 | ID | 한국어 | 로마자 | 영문 이름 | 비고 |
 |----|--------|--------|-----------|------|
-| D001 | 기공 | Gigong | Qi Cultivation | Beat [3] — 0코스트 Qi+드로우 |
-| D002 | 결인 | Gyeorin | Hand Seal | Beat [4] — 공격 버프 |
-| D003 | 진언 | Jineon | Mantra | Beat [4] — 기 획득 조건 AoE |
-| D004 | 부적 | Bujeok | Talisman Strike | Beat [3] — 공격+화상 |
-| D005 | 축지법 | Chukjibeop | Teleportation | Beat [3] — 드로우+비용감소 |
-| D006 | 태산붕 | Taesanbung | Mountain Collapse | Beat [4] — 최강 단타, 다음 턴 기 패널티 |
-| D007 | 수결 | Sugyeol | Qi Strike | Beat [3] — 기본 공격 |
-| D008 | 대기 | Daegi | Great Qi | Beat [4] — 기 2 획득 |
-| D009 | 기폭 | Gibok | Qi Explosion | Beat [4] — 기 획득량 기반 피해 |
-| D010 | 오기 | Ogi | Five Energies | Beat [3] — 0코스트 기+다음 기공 카드 비용 감소 |
-| D011 | 천기 | Cheongi | Heavenly Qi | Beat [3] — 파워: 매 턴 기 영구 증가 |
-| D012 | 기류 | Giryu | Qi Flow | Beat [3] — 기+드로우 2 |
-| D013 | 기집 | Gijip | Qi Gathering | Beat [4] — 기 3 대량 획득 |
-| D014 | 독안개 | Doganae | Poison Mist | Beat [4] — 전체 독 DoT |
-| D015 | 저주 | Jeochu | Hex | Beat [3] — 단일 저주 DoT |
-| D016 | 혼돈의 부적 | Hondon Bujeok | Chaos Talisman | Beat [4] — 화상+약화 복합 |
-| D017 | 흑염 | Heukyeom | Black Flame | Beat [3] — 화상/독 조건부 강공격 |
-| D018 | 오독 | Odok | Five Poisons | Beat [4] — 전체 독+화상 최대 세팅 |
-| D019 | 주박 | Jubak | Hex Binding | Beat [3] — 취약+DoT 증폭 |
-| D020 | 구미호 소환 | Gumiho Sowhan | Gumiho Summon | Beat [3] — 소환 DoT |
-| D021 | 청룡 기공 | Cheongnyong Gigong | Azure Dragon's Qi | Beat [4] — 공격+기 회복 토큰 |
-| D022 | 백호 강격 | Baekho Ganggyeok | White Tiger Strike | Beat [3] — 소환 조건부 강공격 |
-| D023 | 산신 강림 | Sansin Ganglim | Mountain God's Descent | Beat [4] — 소환 방어+기 회복 |
-| D024 | 허수아비 | Heosurabi | Scarecrow | Beat [3] — 소환형 방어 |
-| D025 | 도깨비 부름 | Dokkaebi Bureum | Dokkaebi's Call | Beat [4] — 소환 조건부 전체 공격 |
+| D001 | 기공 | Gigong | Qi Cultivation | 0코스트 Qi+드로우 |
+| D002 | 결인 | Gyeorin | Hand Seal | 공격 버프 |
+| D003 | 진언 | Jineon | Mantra | 기 획득 조건 AoE |
+| D004 | 부적 | Bujeok | Talisman Strike | 공격+화상 |
+| D005 | 축지법 | Chukjibeop | Teleportation | 드로우+비용감소 |
+| D006 | 태산붕 | Taesanbung | Mountain Collapse | 최강 단타, 다음 턴 기 패널티 |
+| D007 | 수결 | Sugyeol | Qi Strike | 기본 공격 |
+| D008 | 대기 | Daegi | Great Qi | 기 2 획득 |
+| D009 | 기폭 | Gibok | Qi Explosion | 기 획득량 기반 피해 |
+| D010 | 오기 | Ogi | Five Energies | 0코스트 기+다음 기공 카드 비용 감소 |
+| D011 | 천기 | Cheongi | Heavenly Qi | 파워: 매 턴 기 영구 증가 |
+| D012 | 기류 | Giryu | Qi Flow | 기+드로우 2 |
+| D013 | 기집 | Gijip | Qi Gathering | 기 3 대량 획득 |
+| D014 | 독안개 | Doganae | Poison Mist | 전체 독 DoT |
+| D015 | 저주 | Jeochu | Hex | 단일 저주 DoT |
+| D016 | 혼돈의 부적 | Hondon Bujeok | Chaos Talisman | 화상+약화 복합 |
+| D017 | 흑염 | Heukyeom | Black Flame | 화상/독 조건부 강공격 |
+| D018 | 오독 | Odok | Five Poisons | 전체 독+화상 최대 세팅 |
+| D019 | 주박 | Jubak | Hex Binding | 취약+DoT 증폭 |
+| D020 | 구미호 소환 | Gumiho Sowhan | Gumiho Summon | 소환 DoT |
+| D021 | 청룡 기공 | Cheongnyong Gigong | Azure Dragon's Qi | 공격+기 회복 토큰 |
+| D022 | 백호 강격 | Baekho Ganggyeok | White Tiger Strike | 소환 조건부 강공격 |
+| D023 | 산신 강림 | Sansin Ganglim | Mountain God's Descent | 소환 방어+기 회복 |
+| D024 | 허수아비 | Heosurabi | Scarecrow | 소환형 방어 |
+| D025 | 도깨비 부름 | Dokkaebi Bureum | Dokkaebi's Call | 소환 조건부 전체 공격 |
 
 ### 4.3 무관 카드
 
 | ID | 한국어 | 로마자 | 영문 이름 | 비고 |
 |----|--------|--------|-----------|------|
-| G001 | 진형 전환 | Jinhyeong Jeonhwan | Formation Shift | Beat [3] — 토큰 생성 |
-| G002 | 돌격 | Dolgyeok | Charge | Beat [4] — 토큰 강화 공격 |
-| G003 | 포위 | Powi | Encirclement | Beat [4] — 디버프 |
-| G004 | 학익진 | Hagikjin | Crane Wing Formation | Beat [3] — 역사적 진법 |
-| G005 | 천하무적진 | Cheonha Mujeokjin | Invincible Formation | Beat [4] — 강력 방어진 |
-| G006 | 보병 전진 | Bobyeong Jeonjin | Infantry Advance | Beat [3] — 토큰 지원 |
-| G007 | 복병 | Bokbyeong | Ambush | Beat [4] — 기습 공격 |
-| G008 | 삼군 배치 | Samgun Baechii | Three-Army Deploy | Beat [3] — 대규모 토큰 |
-| G009 | 진법 교본 | Jinbeop Gyobon | Tactics Manual | Beat [4] — 드로우+기력 |
-| G010 | 철기 돌격 | Cheolgi Dolgyeok | Iron Cavalry Charge | Beat [4] — 강공격 |
-| G011 | 연막 | Yeonmak | Smoke Screen | Beat [3] — 방어 지원 |
-| G012 | 총통 사격 | Chongtong Sagyeok | Cannon Volley | Beat [4] — 원거리 AoE |
-| G013 | 기합 | Gihap | Battle Cry | Beat [3] — 기력 충전 |
-| G014 | 역전의 기세 | Yeokjeon Gise | Tide Turner | Beat [4] — 기력 소비 버프 |
-| G015 | 불굴의 의지 | Bulgul Euiji | Unbreakable Will | Beat [3] — 기력 소비 방어 |
-| G016 | 마지막 도박 | Majimak Tobak | Last Gamble | Beat [4] — 고위험 고보상 |
-| G017 | 단신 돌격 | Dansin Dolgyeok | Solo Rush | Beat [3] — 기력 소비 공격 |
-| G018 | 무쌍 | Mussang | Peerless Strike | Beat [4] — 기력 최대 소비 |
-| G019 | 수비 대형 | Subi Daehyeong | Shield Wall | Beat [3] — 방어 대형 |
-| G020 | 찌르기 | Jjireureogi | Thrust | Beat [4] — 단순 공격 |
-| G021 | 반격 | Bangyeok | Counter | Beat [3] — 피해 후 반격 |
-| G022 | 연속 베기 | Yeonsok Baegi | Rapid Slash | Beat [4] — 다중 타격 |
-| G023 | 철벽 방어 | Cheolbyeok Bangeo | Iron Bulwark | Beat [3] — 고방어도 |
-| G024 | 격파 | Gyeokpa | Shatter | Beat [4] — 방어도 관통 |
-| G025 | 백전노장 | Baekjeon Nojang | Battle-Scarred Veteran | Beat [3] — 패시브 버프 |
+| G001 | 진형 전환 | Jinhyeong Jeonhwan | Formation Shift | 토큰 생성 |
+| G002 | 돌격 | Dolgyeok | Charge | 토큰 강화 공격 |
+| G003 | 포위 | Powi | Encirclement | 디버프 |
+| G004 | 학익진 | Hagikjin | Crane Wing Formation | 역사적 진법 |
+| G005 | 천하무적진 | Cheonha Mujeokjin | Invincible Formation | 강력 방어진 |
+| G006 | 보병 전진 | Bobyeong Jeonjin | Infantry Advance | 토큰 지원 |
+| G007 | 복병 | Bokbyeong | Ambush | 기습 공격 |
+| G008 | 삼군 배치 | Samgun Baechii | Three-Army Deploy | 대규모 토큰 |
+| G009 | 진법 교본 | Jinbeop Gyobon | Tactics Manual | 드로우+기력 |
+| G010 | 철기 돌격 | Cheolgi Dolgyeok | Iron Cavalry Charge | 강공격 |
+| G011 | 연막 | Yeonmak | Smoke Screen | 방어 지원 |
+| G012 | 총통 사격 | Chongtong Sagyeok | Cannon Volley | 원거리 AoE |
+| G013 | 기합 | Gihap | Battle Cry | 기력 충전 |
+| G014 | 역전의 기세 | Yeokjeon Gise | Tide Turner | 기력 소비 버프 |
+| G015 | 불굴의 의지 | Bulgul Euiji | Unbreakable Will | 기력 소비 방어 |
+| G016 | 마지막 도박 | Majimak Tobak | Last Gamble | 고위험 고보상 |
+| G017 | 단신 돌격 | Dansin Dolgyeok | Solo Rush | 기력 소비 공격 |
+| G018 | 무쌍 | Mussang | Peerless Strike | 기력 최대 소비 |
+| G019 | 수비 대형 | Subi Daehyeong | Shield Wall | 방어 대형 |
+| G020 | 찌르기 | Jjireureogi | Thrust | 단순 공격 |
+| G021 | 반격 | Bangyeok | Counter | 피해 후 반격 |
+| G022 | 연속 베기 | Yeonsok Baegi | Rapid Slash | 다중 타격 |
+| G023 | 철벽 방어 | Cheolbyeok Bangeo | Iron Bulwark | 고방어도 |
+| G024 | 격파 | Gyeokpa | Shatter | 방어도 관통 |
+| G025 | 백전노장 | Baekjeon Nojang | Battle-Scarred Veteran | 패시브 버프 |
 
 ### 4.4 문관 카드
 
 | ID | 한국어 | 로마자 | 영문 이름 | 비고 |
 |----|--------|--------|-----------|------|
-| W001 | 직언 | Jigeon | Bold Remonstrance | Beat [3] — 적 디버프 |
-| W002 | 탄핵 | Tanhaek | Impeachment | Beat [4] — 강력 디버프 |
-| W003 | 상소 | Sangso | Royal Petition | Beat [3] — 지연/제어 |
-| W004 | 경연 | Gyeongyeon | Royal Lecture | Beat [4] — 방어 의식 |
-| W005 | 예제 | Yeoje | Ritual Protocol | Beat [3] — 방어+지식 |
-| W006 | 독서 | Dokseo | Study | Beat [4] — 지식 획득+드로우 |
-| W007 | 격물치지 | Gyeongmul Chiji | Investigation of Things | Beat [3] — 지식 폭발 |
-| W008 | 박학다식 | Bakak Dasik | Encyclopedic Knowledge | Beat [4] — 지식 소비 강화 |
-| W009 | 행차 | Haengcha | Royal Procession | Beat [3] — 방어+학식 |
-| W010 | 피화 | Pihwa | Evasive Rhetoric | Beat [4] — 시조 조건부 방어+학식 |
-| W011 | 고언 | Goeon | Loyal Counsel | Beat [3] — 약한 공격+학식 |
-| W012 | 논박 | Nonbak | Debate | Beat [4] — 학식 소비 강공격 |
-| W013 | 논리 | Nolli | Argumentation | Beat [3] — 학식+드로우 증폭 |
-| W014 | 문집 편찬 | Munjip Pyeonjhan | Anthology | Beat [4] — 학식 최대치 확장 |
-| W015 | 왕의 윤허 | Wang-ui Yunheo | Royal Permission | Beat [3] — 학식 전소 강공격 |
-| W016 | 탄안 | Tanan | Censure | Beat [4] — 약화 부여 |
-| W017 | 모함 | Moham | Bold Scheme | Beat [3] — 약화+취약 복합 |
-| W018 | 파직 | Pajik | Dismissal | Beat [4] — 공격+파직 디버프 |
-| W019 | 간언 | Ganeon | Remonstration | Beat [3] — 드로우+취약 준비 |
-| W020 | 유배 | Yubae | Exile | Beat [4] — 버프 제거+약화 |
-| W021 | 수신 제가 | Sujin Jega | Perfect Virtue | Beat [3] — 방어+학식 |
-| W022 | 군자 | Gunja | Noble Man | Beat [4] — 학식 소비 방어 |
-| W023 | 청렴 | Cheongnyeom | Clean Governance | Beat [3] — 학식 0 조건 방어 |
-| W024 | 정도 | Jeongdo | Right Path | Beat [4] — 방어 카드 학식 패시브 |
-| W025 | 대의 | Daeui | Great Righteousness | Beat [3] — 학식+방어+드로우 복합 |
+| W001 | 직언 | Jigeon | Bold Remonstrance | 적 디버프 |
+| W002 | 탄핵 | Tanhaek | Impeachment | 강력 디버프 |
+| W003 | 상소 | Sangso | Royal Petition | 지연/제어 |
+| W004 | 경연 | Gyeongyeon | Royal Lecture | 방어 의식 |
+| W005 | 예제 | Yeoje | Ritual Protocol | 방어+지식 |
+| W006 | 독서 | Dokseo | Study | 지식 획득+드로우 |
+| W007 | 격물치지 | Gyeongmul Chiji | Investigation of Things | 지식 폭발 |
+| W008 | 박학다식 | Bakak Dasik | Encyclopedic Knowledge | 지식 소비 강화 |
+| W009 | 행차 | Haengcha | Royal Procession | 방어+학식 |
+| W010 | 피화 | Pihwa | Evasive Rhetoric | 방어+학식 |
+| W011 | 고언 | Goeon | Loyal Counsel | 약한 공격+학식 |
+| W012 | 논박 | Nonbak | Debate | 학식 소비 강공격 |
+| W013 | 논리 | Nolli | Argumentation | 학식+드로우 증폭 |
+| W014 | 문집 편찬 | Munjip Pyeonjhan | Anthology | 학식 최대치 확장 |
+| W015 | 왕의 윤허 | Wang-ui Yunheo | Royal Permission | 학식 전소 강공격 |
+| W016 | 탄안 | Tanan | Censure | 약화 부여 |
+| W017 | 모함 | Moham | Bold Scheme | 약화+취약 복합 |
+| W018 | 파직 | Pajik | Dismissal | 공격+파직 디버프 |
+| W019 | 간언 | Ganeon | Remonstration | 드로우+취약 준비 |
+| W020 | 유배 | Yubae | Exile | 버프 제거+약화 |
+| W021 | 수신 제가 | Sujin Jega | Perfect Virtue | 방어+학식 |
+| W022 | 군자 | Gunja | Noble Man | 학식 소비 방어 |
+| W023 | 청렴 | Cheongnyeom | Clean Governance | 학식 0 조건 방어 |
+| W024 | 정도 | Jeongdo | Right Path | 방어 카드 학식 패시브 |
+| W025 | 대의 | Daeui | Great Righteousness | 학식+방어+드로우 복합 |
 
 ---
 
@@ -315,9 +231,7 @@ Ritual Protocol: Reduces damage taken this turn.
 | RS001 | 부적 낭 | Bujeok Nang | Talisman Pouch | Uncommon | Add 1 random Talisman card to hand at combat start. |
 | RS002 | 마패 | Mapae | Royal Warrant | Uncommon | Auto-summon 1 Soldier Token at combat start. |
 | RS003 | 필연 | Pilyeon | Destiny | Uncommon | Gain 2 Scholarship at combat start. |
-| RS004 | 시조집 | Sijojip | Sijo Anthology | Uncommon | After completing a Sijo, carry over 1 Qi to the next turn. |
-| RS005 | 장단 북 | Jangdan Buk | Rhythm Drum | Uncommon | Recover 1 Qi each time you play a Wildcard (M011/M012). |
-| RM001 | 병서 | Byeongseo | Military Manual | Rare | Gain 1 extra Stamina each time you play a Formation card. (Officer only.) |
+| | RM001 | 병서 | Byeongseo | Military Manual | Rare | Gain 1 extra Stamina each time you play a Formation card. (Officer only.) |
 | RW001 | 어진 | Eojin | Royal Portrait | Rare | Recover 5% max HP each time you fully spend Scholarship. (Scholar only.) |
 | RD001 | 선단 | Seondan | Immortal's Cinnabar | Rare | Gain 1 extra Qi each time you play a Spell card. (Sorcerer only.) |
 | RD002 | 음양패 | Eumyang-pae | Yin-Yang Token | Rare | Draw 1 card each time a summoned token dies. (Sorcerer only.) |
@@ -436,15 +350,15 @@ Ritual Protocol: Reduces damage taken this turn.
 
 | 한국어 | 한자 | 영문 이름 | 영문 설명 |
 |--------|------|-----------|-----------|
-| 약화 |  | Weakened | Next attack deals 25% less damage. Expires after 1 use. |
-| 화상 |  | Burn [X] | Take X damage at end of turn. X decreases by 1 each turn. |
-| 독 |  | Poison [X] | Take X damage at end of turn. X decreases by 1 each turn. |
-| 방어도 |  | Block | Absorbs incoming damage this turn. Lost at start of your turn. |
+| 약화 | | Weakened | Next attack deals 25% less damage. Expires after 1 use. |
+| 화상 | | Burn [X] | Take X damage at end of turn. X decreases by 1 each turn. |
+| 독 | | Poison [X] | Take X damage at end of turn. X decreases by 1 each turn. |
+| 방어도 | | Block | Absorbs incoming damage this turn. Lost at start of your turn. |
 | 버프 | — | Buff | Positive status effect with a duration. |
 | 디버프 | — | Debuff | Negative status effect applied to enemies. |
 | 기 회복 | — | Qi +X | Recover X Qi immediately. |
 | 병사 토큰 | — | Soldier Token | Absorbs 1 hit, then vanishes. Recover 1 Qi on death. |
-| 기력 |  | Stamina | Mugwan resource. Carries between turns. Max 10. |
+| 기력 | | Stamina | Mugwan resource. Carries between turns. Max 10. |
 
 ---
 
@@ -543,12 +457,12 @@ Ritual Protocol: Reduces damage taken this turn.
 
 ```
 [Settings]
-  Language / 언어
-  ┌─────────────────────────────┐
-  │  ● 한국어 (Korean)          │
-  │  ○ English                  │
-  └─────────────────────────────┘
-  [확인 / Confirm]
+ Language / 언어
+ ┌─────────────────────────────┐
+ │ ● 한국어 (Korean) │
+ │ ○ English │
+ └─────────────────────────────┘
+ [확인 / Confirm]
 ```
 
 - 언어 전환은 즉시 적용 (재시작 불필요)
@@ -559,9 +473,9 @@ Ritual Protocol: Reduces damage taken this turn.
 
 ```
 joseon-deckbuilder/
-  locale/
-    en.json    ← 영어 (생성 완료 ✓)
-    ko.json    ← 한국어 (기본, 미생성)
+ locale/
+ en.json ← 영어 (생성 완료 ✓)
+ ko.json ← 한국어 (기본, 미생성)
 ```
 
 > **✅ locale/en.json 생성 완료** (2026-04-02, ZER-110)
@@ -571,17 +485,17 @@ joseon-deckbuilder/
 
 ```json
 {
-  "_meta": { "language": "en", "version": "0.1" },
-  "classes": { "dosa": {...}, "mugwan": {...}, "mungwan": {...} },
-  "sijo": { "system_name": "...", "slots": {...}, "labels": {...} },
-  "resources": { "qi": {...}, "stamina": {...}, "scholarship": {...} },
-  "status_conditions": { "burn": {...}, "poison": {...}, ... },
-  "ui": { "main_menu": {...}, "hud": {...}, "combat": {...}, ... },
-  "cards": { "M001": { "name": "...", "effect": "...", "effect_upgraded": "..." }, ... },
-  "relics": { "R001": { "name": "...", "effect": "..." }, ... },
-  "enemies": { "act_1": { "regular": {...}, "elite": {...}, "bosses": {...} }, ... },
-  "events": { "EVT_A1_001": { "title": "..." }, ... },
-  "game": { "title": "Sijojeon", "acts": {...} }
+ "_meta": { "language": "en", "version": "0.1" },
+ "classes": { "dosa": {...}, "mugwan": {...}, "mungwan": {...} },
+"labels": {...} },
+ "resources": { "qi": {...}, "stamina": {...}, "scholarship": {...} },
+ "status_conditions": { "burn": {...}, "poison": {...}, ... },
+ "ui": { "main_menu": {...}, "hud": {...}, "combat": {...}, ... },
+ "cards": { "M001": { "name": "...", "effect": "...", "effect_upgraded": "..." }, ... },
+ "relics": { "R001": { "name": "...", "effect": "..." }, ... },
+ "enemies": { "act_1": { "regular": {...}, "elite": {...}, "bosses": {...} }, ... },
+ "events": { "EVT_A1_001": { "title": "..." }, ... },
+ "game": { "title": "Sijojeon", "acts": {...} }
 }
 ```
 
@@ -610,7 +524,6 @@ joseon-deckbuilder/
 
 - 도깨비: **Dokkaebi** *(Trickster Goblin)* — 첫 등장 시만 병기
 - 이무기: **Imugi** *(Serpent Wyrm)* — 첫 등장 시만 병기
-- 시조: **Sijo** — 병기 불필요 (튜토리얼에서 설명)
 - 동의보감: **Dongui Bogam** *(Traditional Medical Encyclopedia)* — 유물 설명에 병기
 - 만파식적: **Manpasikjeok** *(Mystical Flute of Legend)* — 유물 설명에 병기
 

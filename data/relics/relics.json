@@ -1,7 +1,7 @@
 {
   "version": "0.1",
   "type": "relic_pool",
-  "description": "시조전 유물 풀 — 런 중 획득하는 영구 수동 효과 아이템 15종. 일반 3종, 고급 6종(직업 전용 포함), 희귀 4종, 전설 2종.",
+  "description": "유물 풀 — 런 중 획득하는 영구 수동 효과 아이템. 일반·고급·희귀·전설 등급.",
   "balance_ref": "ZER-12 (GDD 밸런스 기초). 기준: 무관 HP 80, 턴 AP 3, 1막 기준 공격 6/방어 6.",
   "rarity_table": {
     "1_common": {
@@ -802,37 +802,6 @@
       }
     },
     {
-      "id": "R019",
-      "name": {
-        "ko": "도끼 부적",
-        "romanized": "Dokki Bujeok",
-        "en": "Axe Talisman"
-      },
-      "rarity": 1,
-      "class_restriction": null,
-      "trigger": "sijo_milestone_2",
-      "effect": {
-        "ko": "시조 초장(2슬롯)을 완성할 때마다 기 1을 추가 회복한다. (기존 부분 완성 보상에 누적)",
-        "en": "Recover 1 additional Qi whenever the Sijo first verse (2 slots) is completed. (Stacks with existing partial completion rewards)"
-      },
-      "effect_description": {
-        "ko": "초장 완성 시 기 추가 +1",
-        "en": "Qi +1 on first verse completion."
-      },
-      "flavor_text": {
-        "ko": "부적의 도끼 문양이 리듬을 탄다 — 초장을 닫을 때 힘이 더해진다.",
-        "en": "The axe symbol on the talisman rides the rhythm — power surges when the first verse closes."
-      },
-      "balance_rationale": "일반 유물. ZER-101 부분 완성 보상(초장→기 1)에 추가로 기 1을 주므로 초장 완성 시 총 기 2 회복. 시조 완성 빈도가 높을수록 가치 급증. 시조 시너지 유물 도입 첫 예시.",
-      "obtain_from": [
-        "event",
-        "shop"
-      ],
-      "values": {
-        "extra_qi_on_sijo_chojang": 1
-      }
-    },
-    {
       "id": "R020",
       "name": {
         "ko": "금강석",
@@ -927,38 +896,6 @@
       }
     },
     {
-      "id": "R023",
-      "name": {
-        "ko": "달빛 거울",
-        "romanized": "Dalbich Geoul",
-        "en": "Moonlight Mirror"
-      },
-      "rarity": 2,
-      "class_restriction": null,
-      "trigger": "sijo_complete",
-      "effect": {
-        "ko": "시조를 완성할 때마다 드로우 카드 수가 1장 추가된다. (기존 드로우 1장 → 2장)",
-        "en": "Whenever a Sijo is completed, draw 1 additional card. (Draw 1 becomes Draw 2)"
-      },
-      "effect_description": {
-        "ko": "시조 완성 드로우 +1 (1 → 2)",
-        "en": "Sijo completion draw +1 (1 to 2)."
-      },
-      "flavor_text": {
-        "ko": "달빛이 거울에 담기듯 — 시조가 완성되면 패가 더 풍성해진다.",
-        "en": "As moonlight fills a mirror — when a Sijo is completed, your hand grows richer."
-      },
-      "balance_rationale": "고급 시조 시너지 유물. 시조 완성 드로우를 2장으로 증가. 덱 순환과 시조 완성 빈도 모두 향상. 강하지만 시조 완성 전제 조건이 있어 고급 등급 적절.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "extra_draw_on_sijo_complete": 1
-      }
-    },
-    {
       "id": "R024",
       "name": {
         "ko": "혈맹 계약서",
@@ -1020,38 +957,6 @@
       "values": {
         "strength_per_battle": 1,
         "max_qi_per_battle": 1
-      }
-    },
-    {
-      "id": "R026",
-      "name": {
-        "ko": "천문도",
-        "romanized": "Cheonmundo",
-        "en": "Star Chart"
-      },
-      "rarity": 3,
-      "class_restriction": null,
-      "trigger": "sijo_complete",
-      "effect": {
-        "ko": "시조 완성 시 마지막 카드 효과가 2배 대신 2.5배가 된다.",
-        "en": "When a Sijo is completed, the last card's effect becomes 2.5x instead of 2x."
-      },
-      "effect_description": {
-        "ko": "시조 완성 효과 배율 2배 → 2.5배",
-        "en": "Sijo completion multiplier 2x to 2.5x."
-      },
-      "flavor_text": {
-        "ko": "별자리를 읽듯 시조를 이해하면 — 하늘의 뜻이 힘이 된다.",
-        "en": "Understand Sijo as you read the stars — the will of heaven becomes power."
-      },
-      "balance_rationale": "희귀 시조 시너지 유물. 2배 → 2.5배 효과 증폭. 태산붕(기본 40피해)이 완성 시 100피해가 됨. 고비용 고피해 카드(D006, G018 등)를 종장에 배치하는 전략 극대화.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "sijo_complete_multiplier": 2.5
       }
     },
     {
@@ -1246,38 +1151,6 @@
       }
     },
     {
-      "id": "RS004",
-      "name": {
-        "ko": "시조집",
-        "romanized": "Sijojip",
-        "en": "Sijo Anthology"
-      },
-      "rarity": 2,
-      "class_restriction": null,
-      "trigger": "sijo_complete",
-      "effect": {
-        "ko": "시조를 완성한 턴 이후, 다음 턴에 기 1을 이월 허용한다. (최대 이월 1기, 기존 이월 없음 규칙에 예외)",
-        "en": "After completing a Sijo, carry over 1 Qi to the next turn. (Max 1 Qi carryover, exception to the no-carryover rule)"
-      },
-      "effect_description": {
-        "ko": "시조 완성 다음 턴 기 1 이월",
-        "en": "Carry over 1 Qi after Sijo completion."
-      },
-      "flavor_text": {
-        "ko": "시조를 완성한 자의 호흡은 끊기지 않는다 — 그 기운이 다음 줄로 이어진다.",
-        "en": "The breath of one who completes a Sijo never breaks — that energy carries into the next verse."
-      },
-      "balance_rationale": "고급 시조 시너지 유물. 시조 완성 턴의 남은 기 최대 1기를 다음 턴으로 이월. 기본 기 이월 없음 규칙의 유일한 예외. 시조 완성을 더 계획적으로 만드는 전략 심화 유물.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "qi_carryover_after_sijo": 1
-      }
-    },
-    {
       "id": "RS005",
       "name": {
         "ko": "장단 북",
@@ -1370,39 +1243,6 @@
       }
     },
     {
-      "id": "RB003",
-      "name": {
-        "ko": "역적 대감의 관인",
-        "romanized": "Yeokjeok Daegam Gwanin",
-        "en": "Rebel Lord's Official Seal"
-      },
-      "rarity": 4,
-      "class_restriction": null,
-      "trigger": "sijo_complete",
-      "effect": {
-        "ko": "시조를 완성할 때 마지막 카드 효과 배율이 2배 대신 3배가 된다. (R026 천문도와 중복 적용 불가, 최대 3배)",
-        "en": "When a Sijo is completed, the last card's effect multiplier becomes 3x instead of 2x. (Does not stack with R026 Star Chart, max 3x)"
-      },
-      "effect_description": {
-        "ko": "시조 완성 효과 배율 2배 → 3배 (최대, R026와 중복 불가)",
-        "en": "Sijo completion multiplier 2x to 3x (max, does not stack with R026)."
-      },
-      "flavor_text": {
-        "ko": "역적이 훔친 왕의 권위 — 시조가 완성될 때 그 모든 것이 폭발한다.",
-        "en": "The royal authority stolen by a traitor — when a Sijo is completed, everything erupts."
-      },
-      "balance_rationale": "전설 유물. 3막 보스 보상. 시조 완성 배율 3배. 태산붕(40피해)→120피해. 가장 강력한 시조 유물이나 획득 조건(3막 보스)으로 후반부 보상. R026과 중복 방지 규칙으로 과도한 증폭 차단.",
-      "obtain_from": [
-        "boss"
-      ],
-      "values": {
-        "sijo_complete_multiplier": 3.0,
-        "conflicts_with": [
-          "R026"
-        ]
-      }
-    },
-    {
       "id": "RELIC_WANGMYEONG_PAE",
       "name": {
         "ko": "왕명패",
@@ -1431,70 +1271,6 @@
       "values": {}
     },
     {
-      "id": "RS101",
-      "name": {
-        "ko": "옥피리",
-        "romanized": "Okpiri",
-        "en": "Jade Flute"
-      },
-      "rarity": 3,
-      "class_restriction": null,
-      "trigger": "sijo_complete",
-      "effect": {
-        "ko": "시조 완성 시 직업 자원 3 이상이면 적 전체에 피해 5.",
-        "en": "On Sijo completion, if class resource is 3 or more, deal 5 damage to all enemies."
-      },
-      "effect_description": {
-        "ko": "시조 완성 + 자원 3+ → 적 전체 5피해",
-        "en": "Sijo completion + resource 3+ = 5 AoE damage."
-      },
-      "flavor_text": {
-        "ko": "옥으로 깎은 피리. 시조가 완성되면 그 멜로디에 적이 흔들린다.",
-        "en": "A flute carved from jade. When a Sijo is completed, its melody shakes the enemy."
-      },
-      "balance_rationale": "시조 완성 + 자원 관리 이중 조건. 직업 자원 활용 유도. 희귀 등급 적합.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "aoe_damage_on_sijo_if_resource_ge": 5,
-        "resource_threshold": 3
-      }
-    },
-    {
-      "id": "RS102",
-      "name": {
-        "ko": "호패",
-        "romanized": "Hopae",
-        "en": "Identity Tag"
-      },
-      "rarity": 2,
-      "class_restriction": null,
-      "trigger": "sijo_complete",
-      "effect": {
-        "ko": "시조 완성 후 초장 2슬롯이 자동으로 채워진 상태로 재시작된다.",
-        "en": "After Sijo completion, the first verse 2 slots are automatically filled on restart."
-      },
-      "effect_description": {
-        "ko": "시조 완성 후 초장 자동 채움",
-        "en": "Auto-fill first verse after Sijo completion."
-      },
-      "flavor_text": {
-        "ko": "신분증명의 나무 패. 이미 지은 시의 운율이 이어진다.",
-        "en": "A wooden identity tag. The rhythm of a poem already composed carries on."
-      },
-      "balance_rationale": "시조 완성 사이클 가속. 6슬롯 → 실질 4슬롯만 채우면 됨. 고급 등급 적합.",
-      "obtain_from": [
-        "elite_reward",
-        "event"
-      ],
-      "values": {
-        "auto_fill_chojang_on_sijo_complete": true
-      }
-    },
-    {
       "id": "RS103",
       "name": {
         "ko": "연적",
@@ -1505,216 +1281,24 @@
       "class_restriction": "선비",
       "trigger": "on_resource_spend",
       "effect": {
-        "ko": "학식을 소비할 때 시조 슬롯을 추가로 1칸 채운다. (선비 전용)",
-        "en": "Fill 1 additional Sijo slot when spending Scholarship. (Scholar only)"
+        "ko": "학식을 소비할 때 (선비 전용)",
+        "en": "Fill 1 additional (Scholar only)"
       },
       "effect_description": {
-        "ko": "학식 소비 시 시조 슬롯 +1 (선비 전용)",
-        "en": "Sijo slot +1 on Scholarship spend (Scholar only)."
+        "ko": "학식 소비 시",
+        "en": ""
       },
       "flavor_text": {
         "ko": "먹물을 담는 작은 그릇. 학식이 흐르면 시조도 따라 흐른다.",
         "en": "A small vessel for ink. When scholarship flows, so does the Sijo."
       },
-      "balance_rationale": "선비 전용 시너지. 학식 소비 카드를 쓰면 시조 진행도 가속. 고급 등급 적합.",
+      "balance_rationale": "선비 전용 시너지. 학식 소비 카드를 쓰면 고급 등급 적합.",
       "obtain_from": [
         "elite_reward",
         "event",
         "shop"
       ],
-      "values": {
-        "extra_sijo_fill_on_resource_spend": 1
-      }
-    },
-    {
-      "id": "RS104",
-      "name": {
-        "ko": "청사 붓",
-        "romanized": "Cheongsa But",
-        "en": "Azure Silk Brush"
-      },
-      "rarity": 2,
-      "class_restriction": null,
-      "trigger": "sijo_chapter_complete",
-      "effect": {
-        "ko": "시조 초장 완성 시 카드 1장을 추가로 드로우한다.",
-        "en": "Draw 1 additional card when the Sijo first verse is completed."
-      },
-      "effect_description": {
-        "ko": "초장 완성 시 카드 드로우 +1",
-        "en": "Draw +1 on first verse completion."
-      },
-      "flavor_text": {
-        "ko": "청사 비단을 감은 명필의 붓. 첫 구절이 완성되면 영감이 밀려온다.",
-        "en": "A master calligrapher's brush wrapped in azure silk. When the first verse is complete, inspiration floods in."
-      },
-      "balance_rationale": "초장만 완성해도 보상. 시조 시작 유인. 고급 등급 적합.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "draw_on_chojang_complete": 1
-      }
-    },
-    {
-      "id": "RS105",
-      "name": {
-        "ko": "의적의 갑주",
-        "romanized": "Mugwan Gapju",
-        "en": "Warrior's Armor"
-      },
-      "rarity": 2,
-      "class_restriction": "의적",
-      "trigger": "sijo_slot_fill",
-      "effect": {
-        "ko": "시조 슬롯을 채울 때마다 방어도 3을 획득한다. (의적 전용)",
-        "en": "Gain 3 Block each time a Sijo slot is filled. (Warrior only)"
-      },
-      "effect_description": {
-        "ko": "시조 슬롯 채움 시 방어도 +3 (의적 전용)",
-        "en": "Block +3 on Sijo slot fill (Warrior only)."
-      },
-      "flavor_text": {
-        "ko": "시를 읊조리며 갑옷을 고쳐 입는다. 무인의 시는 곧 방어다.",
-        "en": "Reciting poetry while adjusting armor. A warrior's poem is defense itself."
-      },
-      "balance_rationale": "시조 6슬롯 × 방어도 3 = 최대 18 방어도. 의적 전용 시조 시너지. 고급 등급 적합.",
-      "obtain_from": [
-        "elite_reward",
-        "shop"
-      ],
-      "values": {
-        "block_on_sijo_fill": 3
-      }
-    },
-    {
-      "id": "RS106",
-      "name": {
-        "ko": "오얏나무 가지",
-        "romanized": "Oyat Namu Gaji",
-        "en": "Plum Tree Branch"
-      },
-      "rarity": 2,
-      "class_restriction": null,
-      "trigger": "sijo_chapter_complete",
-      "effect": {
-        "ko": "시조 중장 완성 시 다음에 사용하는 공격 카드의 피해가 3 증가한다.",
-        "en": "When the Sijo second verse is completed, the next attack card deals 3 additional damage."
-      },
-      "effect_description": {
-        "ko": "중장 완성 시 다음 공격 피해 +3",
-        "en": "Attack damage +3 on second verse completion."
-      },
-      "flavor_text": {
-        "ko": "이 씨 왕가의 나무. 중장의 전환이 힘을 불러온다.",
-        "en": "The tree of the Yi royal family. The turning of the second verse summons strength."
-      },
-      "balance_rationale": "중장 완성 조건부 피해 보너스. 고급 등급 적합.",
-      "obtain_from": [
-        "elite_reward",
-        "event"
-      ],
-      "values": {
-        "strength_on_jungjang_complete": 3
-      }
-    },
-    {
-      "id": "RS107",
-      "name": {
-        "ko": "해시계 조각",
-        "romanized": "Haesigye Jogak",
-        "en": "Sundial Fragment"
-      },
-      "rarity": 2,
-      "class_restriction": null,
-      "trigger": "sijo_chapter_complete",
-      "effect": {
-        "ko": "시조 종장 완성 시 기 2를 회복한다.",
-        "en": "Recover 2 Qi when the Sijo final verse is completed."
-      },
-      "effect_description": {
-        "ko": "종장 완성 시 기 +2",
-        "en": "Qi +2 on final verse completion."
-      },
-      "flavor_text": {
-        "ko": "깨진 해시계의 조각. 마지막 구절에 시간이 멈추는 듯하다.",
-        "en": "A fragment of a broken sundial. Time seems to stop at the final verse."
-      },
-      "balance_rationale": "종장 완성 = 전체 완성 직전. 기 회복으로 마무리 카드 사용 지원. 고급 등급 적합.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "qi_on_jongjang_complete": 2
-      }
-    },
-    {
-      "id": "RS108",
-      "name": {
-        "ko": "사군자 족자",
-        "romanized": "Sagunja Jokja",
-        "en": "Four Gentlemen Scroll"
-      },
-      "rarity": 3,
-      "class_restriction": null,
-      "trigger": "sijo_complete",
-      "effect": {
-        "ko": "시조 완성 시 랜덤 적 1체에 약화 2를 적용한다.",
-        "en": "On Sijo completion, apply 2 Weaken to a random enemy."
-      },
-      "effect_description": {
-        "ko": "시조 완성 시 적 1체 약화 2",
-        "en": "Weaken 2 to 1 enemy on Sijo completion."
-      },
-      "flavor_text": {
-        "ko": "매화·난초·국화·대나무가 그려진 족자. 군자의 시조는 적의 기세를 꺾는다.",
-        "en": "A scroll depicting plum blossom, orchid, chrysanthemum, and bamboo. A gentleman's Sijo breaks the enemy's spirit."
-      },
-      "balance_rationale": "시조 완성 보너스 디버프. 희귀 등급 적합.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "weaken_on_sijo_complete": 2
-      }
-    },
-    {
-      "id": "RS109",
-      "name": {
-        "ko": "무당의 부적",
-        "romanized": "Dosa Bujeok",
-        "en": "Taoist's Talisman"
-      },
-      "rarity": 2,
-      "class_restriction": "dosa",
-      "trigger": "sijo_complete",
-      "effect": {
-        "ko": "시조 완성 시 적 전체에 독 2를 적용한다. (무당 전용)",
-        "en": "On Sijo completion, apply 2 Poison to all enemies. (Taoist only)"
-      },
-      "effect_description": {
-        "ko": "시조 완성 시 적 전체 독 2 (무당 전용)",
-        "en": "Poison 2 to all enemies on Sijo completion (Taoist only)."
-      },
-      "flavor_text": {
-        "ko": "무당이 직접 써넣은 부적. 시조의 힘이 주문을 증폭시킨다.",
-        "en": "A talisman inscribed by the Taoist himself. The power of Sijo amplifies the spell."
-      },
-      "balance_rationale": "무당 전용 시조 시너지. 독 빌드와 시너지. 고급 등급 적합.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "poison_all_on_sijo_complete": 2
-      }
+      "values": {}
     }
   ],
   "status_conditions_referenced": [

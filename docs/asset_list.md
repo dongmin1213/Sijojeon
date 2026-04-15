@@ -160,13 +160,13 @@
 ## 에셋 명명 규칙
 
 ```
-art/cards/{card_id}.png       — 카드 일러스트 (예: art/cards/M001.png)
-art/enemies/{enemy_id}.png    — 적 스프라이트 (예: art/enemies/E001.png)
-art/characters/{class}.png    — 캐릭터 초상화
-art/relics/{relic_id}.png     — 유물 아이콘
-art/ui/icons/{icon_name}.png  — UI 아이콘
-art/backgrounds/{bg_id}.png   — 배경 이미지
-art/events/{event_id}.png     — 이벤트 삽화
+art/cards/{card_id}.png — 카드 일러스트 (예: art/cards/M001.png)
+art/enemies/{enemy_id}.png — 적 스프라이트 (예: art/enemies/E001.png)
+art/characters/{class}.png — 캐릭터 초상화
+art/relics/{relic_id}.png — 유물 아이콘
+art/ui/icons/{icon_name}.png — UI 아이콘
+art/backgrounds/{bg_id}.png — 배경 이미지
+art/events/{event_id}.png — 이벤트 삽화
 ```
 
 TextureManager가 자동으로 위 경로에서 PNG → SVG 순서로 탐색하며, 없으면 placeholder를 생성한다.

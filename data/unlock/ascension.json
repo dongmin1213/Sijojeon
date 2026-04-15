@@ -40,7 +40,6 @@
       "en": "The bitter resentment of one who starved to death locked inside a rice chest — a curse no one can undo."
     },
     "balance_rationale": "저주 카드. 0코스트이지만 사용 시 자해 5. 손에 들어오면 반드시 플레이해야 하는 상황에서 패널티. 어센션 3단계 이상에서 시작 덱에 포함. 카드 제거 불가로 런 내내 부담.",
-    "sijo_position": "초장 첫 슬롯 [3] — 하지만 절대 먼저 사용하면 안 됨",
     "upgrade_cost": 0,
     "values": {
       "self_damage": 5

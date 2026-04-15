@@ -2,7 +2,7 @@
   "version": "0.2",
   "type": "boss",
   "act": 3,
-  "balance_ref": "ZER-330. 플레이어 기준: HP 20~40, 덱 18~24장, 턴당 피해 18~24, 방어도 12~16. 보스 목표 전투 길이: 15~18턴. 시조 완성 3회 필수.",
+  "balance_ref": "ZER-330. 플레이어 기준: HP 20~40, 덱 18~24장, 턴당 피해 18~24, 방어도 12~16. 보스 목표 전투 길이: 15~18턴..",
   "id": "B_ACT3_FINAL",
   "name": {
     "ko": "역모대감",
@@ -10,8 +10,8 @@
     "en": "The Treasonous Lord"
   },
   "description": {
-    "ko": "왕위를 노리는 역모의 주모자. 충신의 가면을 쓰고 조정을 농단해 왔다. 가면을 쓴 동안 진정한 피해를 줄 수 없다. 시조를 세 번 완성하여 가면을 벗겨야 한다.",
-    "en": "The mastermind of treason who covets the throne. Has manipulated the court while wearing the mask of loyalty. Cannot be truly harmed while masked. Complete three sijo to shatter the mask."
+    "ko": "왕위를 노리는 역모의 주모자. 충신의 가면을 쓰고 조정을 농단해 왔다. 가면을 쓴 동안 진정한 피해를 줄 수 없다.",
+    "en": "The mastermind of treason who covets the throne. Has manipulated the court while wearing the mask of loyalty. Cannot be truly harmed while masked."
   },
   "hp": 195,
   "flavor": "\"충신이 무엇인지 보여주마. 이 나라의 진정한 주인은 나니라.\"",
@@ -22,29 +22,12 @@
       "en": "Mask of Loyalty"
     },
     "description": {
-      "ko": "가면 내구도 3. 가면이 있는 동안 받는 피해 40% 감소 + 디버프 면역. 시조 완성 1회당 가면 1 균열. 가면 파괴 시 역모대감 약화 3 + 취약 3 + 힘 절반 감소.",
-      "en": "Mask durability 3. While masked: 40% damage reduction + debuff immunity. Each sijo completion cracks mask by 1. When shattered: 3 Weak + 3 Vulnerable + halve Strength."
+      "ko": "가면 내구도 3. 가면이 있는 동안 받는 피해 40% 감소 + 디버프 면역. 가면 1 균열. 가면 파괴 시 역모대감 약화 3 + 취약 3 + 힘 절반 감소.",
+      "en": "Mask durability 3. While masked: 40% damage reduction + debuff immunity. When shattered: 3 Weak + 3 Vulnerable + halve Strength."
     },
     "mask_durability": 3,
     "damage_reduction_percent": 40,
     "debuff_immunity": true,
-    "on_sijo_complete": {
-      "crack_mask": 1,
-      "dialogue_per_crack": [
-        {
-          "ko": "\"흠... 대단한 문재로구나. 하나 그것으로는 부족하다.\"",
-          "en": "\"Hmm... impressive literary talent. But it is not enough.\""
-        },
-        {
-          "ko": "\"뭐... 뭐냐! 가면에 금이...! 이럴 수가!\"",
-          "en": "\"Wh-what?! A crack in the mask...! Impossible!\""
-        },
-        {
-          "ko": "\"안 돼! 가면이... 깨진다!\"",
-          "en": "\"No! The mask... is breaking!\""
-        }
-      ]
-    },
     "on_mask_shattered": {
       "apply_to_boss": [
         {
@@ -141,21 +124,21 @@
           }
         },
         {
-          "id": "sijo_disrupt",
+          "id": "qi_disrupt",
           "name": {
-            "ko": "시조 방해",
+            "ko": "",
             "en": "Sijo Disruption"
           },
           "intent": "special",
           "effects": [
             {
-              "type": "reset_sijo_slot",
+              "type": "apply_chill",
               "count": 1
             }
           ],
           "description": {
-            "ko": "시조 슬롯 1개 초기화.",
-            "en": "Reset 1 sijo slot."
+            "ko": "",
+            "en": ""
           }
         }
       ],
@@ -167,7 +150,7 @@
           "hidden_blade",
           "call_to_arms",
           "hidden_blade",
-          "sijo_disrupt",
+          "qi_disrupt",
           "noble_shield"
         ]
       }
@@ -177,7 +160,7 @@
       "phase_label": "본색",
       "hp_threshold_label": "60% → 30%",
       "hp_threshold_min": 59,
-      "description": "가면이 흔들리며 본색을 드러내기 시작. 공격성 급상승, 시조 방해 빈도 증가.",
+      "description": "가면이 흔들리며 본색을 드러내기 시작. 공격성 급상승,",
       "phase_trigger": {
         "type": "hp_threshold",
         "hp_percent": 60,
@@ -252,21 +235,21 @@
           }
         },
         {
-          "id": "sijo_shatter",
+          "id": "qi_shatter",
           "name": {
-            "ko": "시조 파괴",
+            "ko": "",
             "en": "Sijo Shatter"
           },
           "intent": "special",
           "effects": [
             {
-              "type": "reset_sijo_slot",
+              "type": "apply_chill",
               "count": 2
             }
           ],
           "description": {
-            "ko": "시조 슬롯 2개 초기화.",
-            "en": "Reset 2 sijo slots."
+            "ko": "",
+            "en": ""
           }
         },
         {
@@ -301,7 +284,7 @@
           "treason_strike",
           "poison_court",
           "double_blade",
-          "sijo_shatter",
+          "qi_shatter",
           "treason_strike",
           "power_seize",
           "double_blade"
@@ -393,13 +376,13 @@
               "target": "player"
             },
             {
-              "type": "reset_sijo_slot",
+              "type": "apply_chill",
               "count": 2
             }
           ],
           "description": {
-            "ko": "약화 3 + 취약 2 + 시조 슬롯 2개 초기화.",
-            "en": "3 Weak + 2 Vulnerable + reset 2 sijo slots."
+            "ko": "약화 3 + 취약 2 +",
+            "en": "3 Weak + 2 Vulnerable +"
           }
         }
       ],
@@ -425,13 +408,13 @@
       {
         "id": "broken_mask",
         "name": "깨진 충신 가면",
-        "description": "전투 시작 시 받는 피해 15% 감소 (3턴). 시조 완성 시 해제되며 힘 3 획득.",
+        "description": "전투 시작 시 받는 피해 15% 감소 (3턴). 해제되며 힘 3 획득.",
         "type": "rare_relic"
       },
       {
         "id": "royal_decree_scroll",
         "name": "왕명 두루마리",
-        "description": "전투 시작 시 적 전체에 약화 1. 시조 완성 시 적 전체에 추가 약화 1.",
+        "description": "전투 시작 시 적 전체에 약화 1. 적 전체에 추가 약화 1.",
         "type": "rare_relic"
       }
     ]

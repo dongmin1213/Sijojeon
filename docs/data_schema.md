@@ -24,14 +24,14 @@
 
 ```json
 {
-  "version": "0.2",
-  "type": "card_pool",
-  "class": "mugwan",
-  "class_ko": "의적",
-  "category": "attack",
-  "description": "...",
-  "balance_ref": "...",
-  "cards": [ /* Card[] */ ]
+ "version": "0.2",
+ "type": "card_pool",
+ "class": "mugwan",
+ "class_ko": "의적",
+ "category": "attack",
+ "description": "...",
+ "balance_ref": "...",
+ "cards": [ /* Card[] */ ]
 }
 ```
 
@@ -84,14 +84,14 @@
 
 ```json
 {
-  "version": "0.1",
-  "type": "enemy_pool",
-  "act": 1,
-  "act_name": { "ko": "한양", "description": "..." },
-  "balance_ref": "...",
-  "balance_targets": { /* 밸런스 기준 수치 */ },
-  "regular_enemies": [ /* Enemy[] */ ],
-  "elite_enemies": [ /* Enemy[] */ ]
+ "version": "0.1",
+ "type": "enemy_pool",
+ "act": 1,
+ "act_name": { "ko": "한양", "description": "..." },
+ "balance_ref": "...",
+ "balance_targets": { /* 밸런스 기준 수치 */ },
+ "regular_enemies": [ /* Enemy[] */ ],
+ "elite_enemies": [ /* Enemy[] */ ]
 }
 ```
 
@@ -125,14 +125,14 @@
 
 ```json
 {
-  "id": "BOSS_ACT1",
-  "name": { "ko": "판서 이무령" },
-  "total_hp": 115,
-  "phases": [
-    { "phase": 1, "hp_threshold": 115, "moves": [...] },
-    { "phase": 2, "hp_threshold": 70, "moves": [...] },
-    { "phase": 3, "hp_threshold": 30, "moves": [...] }
-  ]
+ "id": "BOSS_ACT1",
+ "name": { "ko": "판서 이무령" },
+ "total_hp": 115,
+ "phases": [
+ { "phase": 1, "hp_threshold": 115, "moves": [...] },
+ { "phase": 2, "hp_threshold": 70, "moves": [...] },
+ { "phase": 3, "hp_threshold": 30, "moves": [...] }
+ ]
 }
 ```
 
@@ -144,11 +144,11 @@
 
 ```json
 {
-  "version": "0.1",
-  "type": "relic_pool",
-  "description": "...",
-  "rarity_table": { /* 등급별 드롭 가중치 */ },
-  "relics": [ /* Relic[] */ ]
+ "version": "0.1",
+ "type": "relic_pool",
+ "description": "...",
+ "rarity_table": { /* 등급별 드롭 가중치 */ },
+ "relics": [ /* Relic[] */ ]
 }
 ```
 
@@ -244,18 +244,18 @@
 
 ```json
 {
-  "shop": {
-    "card_prices": {
-      "common":   { "base_price": 75,  "price_range": {"min": 50,  "max": 100} },
-      "uncommon": { "base_price": 110, "price_range": {"min": 85,  "max": 135} },
-      "rare":     { "base_price": 150, "price_range": {"min": 120, "max": 180} }
-    },
-    "card_removal_price": {
-      "base_price": 75,
-      "increment": 25
-    },
-    "relic_prices": { /* 등급별 유물 가격 */ }
-  }
+ "shop": {
+ "card_prices": {
+ "common": { "base_price": 75, "price_range": {"min": 50, "max": 100} },
+ "uncommon": { "base_price": 110, "price_range": {"min": 85, "max": 135} },
+ "rare": { "base_price": 150, "price_range": {"min": 120, "max": 180} }
+ },
+ "card_removal_price": {
+ "base_price": 75,
+ "increment": 25
+ },
+ "relic_prices": { /* 등급별 유물 가격 */ }
+ }
 }
 ```
 
@@ -267,12 +267,12 @@
 - `balance_ref` 필드는 관련 태스크 ID를 참조한다.
 - 다국어 이름은 `{ko, romanized}` 구조를 사용한다.
 - ID 체계:
-  - 공통 카드: `C001~`, `M001~`
-  - 무당 카드: `D001~`
-  - 의적 카드: `G001~`
-  - 선비 카드: `W001~`
-  - 일반 적: `E001~`
-  - 정예 적: `EL001~`
-  - 보스: `BOSS_ACT{n}`
-  - 유물: `R001~`
-  - 업적: `ACH_*`
+ - 공통 카드: `C001~`, `M001~`
+ - 무당 카드: `D001~`
+ - 의적 카드: `G001~`
+ - 선비 카드: `W001~`
+ - 일반 적: `E001~`
+ - 정예 적: `EL001~`
+ - 보스: `BOSS_ACT{n}`
+ - 유물: `R001~`
+ - 업적: `ACH_*`

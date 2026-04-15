@@ -26,31 +26,6 @@
       "mechanic": "Scholarship (학식): Accumulates up to 6 (expandable). Consumed to empower spells, attacks, and defenses."
     }
   },
-  "sijo": {
-    "system_name": "Sijo Rhythm System",
-    "tutorial": "Each card has a Beat value: [3] or [4].\nComplete a Sijo by filling all 6 slots in order:\n\n  First Verse:  [3] → [4]\n  Middle Verse: [3] → [4]\n  Final Verse:  [3] → [4]\n\n  ★ SIJO COMPLETE! ★\n  Last card effect ×2 + Recover 1 Qi + Draw 1 card\n\nSlots carry over between turns.\nWrong beat = slot not filled.",
-    "slots": {
-      "first_verse_1": "First Verse I",
-      "first_verse_2": "First Verse II",
-      "middle_verse_1": "Middle Verse I",
-      "middle_verse_2": "Middle Verse II",
-      "final_verse_1": "Final Verse I",
-      "final_verse_2": "Final Verse II"
-    },
-    "labels": {
-      "complete": "SIJO COMPLETE!",
-      "reset": "Sijo Reset",
-      "beat_3": "Beat [3]",
-      "beat_4": "Beat [4]",
-      "beat_wild": "Beat [WILD]",
-      "slot_3": "[3] Slot",
-      "slot_4": "[4] Slot",
-      "bonus_effect": "Last card effect ×2",
-      "bonus_qi": "+1 Qi",
-      "bonus_draw": "+1 Draw",
-      "slots_filled": "{n}/6 slots filled"
-    }
-  },
   "resources": {
     "qi": {
       "name": "Qi",
@@ -147,7 +122,6 @@
       "enemy_turn": "Enemy Turn",
       "victory": "Victory!",
       "defeat": "Defeated...",
-      "sijo_complete": "SIJO COMPLETE!",
       "intent_attack": "Attack",
       "intent_defend": "Defend",
       "intent_buff": "Buff",
@@ -1205,8 +1179,7 @@
       "score": "Score",
       "turns": "Turns",
       "cards_played": "Cards Played",
-      "damage_dealt": "Damage Dealt",
-      "sijo_completions": "Sijo Completions"
+      "damage_dealt": "Damage Dealt"
     }
   }
 }

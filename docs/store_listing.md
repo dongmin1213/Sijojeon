@@ -23,7 +23,7 @@
 
 ### 짧은 설명 (80자 이내)
 ```
-조선을 배경으로 한 덱빌딩 로그라이크. 시조 리듬으로 카드를 조합해 요괴를 물리쳐라!
+조선을 배경으로 한 덱빌딩 로그라이크. 카드를 조합해 요괴를 물리쳐라!
 ```
 
 ### 긴 설명 (4000자 이내)
@@ -32,12 +32,6 @@
 
 시조전은 조선시대를 배경으로 한 덱빌딩 로그라이크 카드 게임입니다.
 런마다 새롭게 덱을 구성하고, 도깨비·구미호·이무기와 같은 전설 속 요괴를 상대하세요.
-
-🎴 시조 리듬 시스템
-조선의 전통 시가 '시조'를 전투에 접목한 독창적인 시스템!
-초장·중장·종장의 리듬(3-4-3-4-3-4)에 맞춰 카드를 내면 시조가 완성됩니다.
-시조 완성 → 마지막 카드 효과 2배 + 기 회복 + 추가 드로우!
-패턴을 완성하는 순간의 짜릿함이 전투를 더욱 즐겁게 만듭니다.
 
 🀄 매 런마다 완전히 다른 덱
 가챠 없음. 런마다 리셋. 순수한 덱빌딩의 재미!
@@ -81,13 +75,6 @@ Build a new deck every run, battle goblins (dokkaebi), nine-tailed foxes (gumiho
 
 🎴 The Sijo Rhythm System — A Truly Unique Mechanic
 Sijo is a classic Korean poetic form with a strict 3-4-3-4-3-4 syllable rhythm.
-In Sijojeon, each card carries a beat value [3] or [4].
-Play cards in the correct Sijo rhythm across the six slots (초장-중장-종장) to trigger a Sijo Completion:
-
-✨ Last card effect x2 + Ki recovery + bonus card draw!
-
-The thrill of landing a Sijo combo mid-battle is unlike anything else.
-
 🀄 Pure Deckbuilding — No Gacha, Ever
 Every run starts fresh. 100+ cards and relics (charms) to combine.
 No pay-to-win. No gacha pulls. Just strategy.
@@ -120,8 +107,8 @@ Free to play. No gacha. Pure strategy.
 
 | # | 권장 장면 | 핵심 전달 메시지 |
 |---|-----------|-----------------|
-| 1 | **전투 화면** — 시조 슬롯 6칸이 보이는 전형적인 전투 장면 | 시조 리듬 시스템 |
-| 2 | **시조 완성 연출** — "시조 완성!" 효과 및 폭발 데미지 | 핵심 재미 요소 |
+| 1 | **전투 화면** —
+| 2 | **
 | 3 | **카드 선택/보상 화면** — 런 중 카드 획득 장면 | 덱빌딩 요소 |
 | 4 | **맵 화면** — 노드맵 분기 탐색 장면 | 로그라이크 구조 |
 | 5 | **직업 선택 화면** — 도사/무관 등 직업 소개 | 다양한 직업 |
@@ -160,7 +147,7 @@ Free to play. No gacha. Pure strategy.
 **길이**: 30초~2분 권장
 **권장 구성**:
 1. (0~5초) 타이틀 + 세계관 소개 (조선, 요괴)
-2. (5~20초) 시조 리듬 시스템 플레이 데모
+2. (5~20초)
 3. (20~40초) 직업/보스/맵 다양성 몽타주
 4. (40~50초) 게임 타이틀 + 출시 정보
 

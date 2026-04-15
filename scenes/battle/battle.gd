@@ -232,7 +232,7 @@ func _create_floating_ui() -> void:
 	end_turn_button.add_theme_stylebox_override("pressed", btn_pressed)
 	end_turn_button.add_theme_color_override("font_color", Color(0.98, 0.94, 0.86))
 	end_turn_button.add_theme_color_override("font_hover_color", Color(1.0, 0.98, 0.90))
-	# v14 앵커: 액션바 우측, 시조바와 같은 높이 (55-61%)
+	# v14 앵커: 액션바 우측 (55-61%)
 	end_turn_button.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
 	end_turn_button.anchor_left = 0.60
 	end_turn_button.anchor_right = 0.98

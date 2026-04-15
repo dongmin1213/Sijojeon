@@ -2,7 +2,7 @@
 
 > 최종 업데이트: 2026-04-15
 > 순수 Slay the Spire 클론으로 구조 단순화
-> 삭제된 파일: sijo_system.gd, faction_system.gd, jibun_system.gd, sisang_system.gd, gwageo_scorer.gd, gwageo_minigame.tscn, chronicle.tscn, amhaengosa_journey.json, endings.json
+> 삭제된 파일: faction_system.gd, jibun_system.gd, sisang_system.gd, gwageo_scorer.gd, gwageo_minigame.tscn, amhaengosa_journey.json, endings.json
 
 ---
 
@@ -10,14 +10,14 @@
 
 ```
 타이틀 화면
-    -> 캐릭터 선택
-           -> 맵 탐색 (RunData 주도)
-                  |-> 전투 (BattleManager)
-                  |-> 이벤트 (선택지 텍스트)
-                  |-> 상점 (골드 지출)
-                  |-> 휴식 (HP 회복 / 카드 강화)
-                  |-> 막 전환 (ActTransition)
-                  -> 런 결과 (RunResult)
+ -> 캐릭터 선택
+ -> 맵 탐색 (RunData 주도)
+ |-> 전투 (BattleManager)
+ |-> 이벤트 (선택지 텍스트)
+ |-> 상점 (골드 지출)
+ |-> 휴식 (HP 회복 / 카드 강화)
+ |-> 막 전환 (ActTransition)
+ -> 런 결과 (RunResult)
 ```
 
 **GameManager** 오토로드가 상태 머신으로 씬 전환을 주도한다.
@@ -42,9 +42,9 @@
 
 ```gdscript
 enum GameState {
-    TITLE, CHARACTER_SELECT,
-    MAP, BATTLE, EVENT, SHOP, REST, REWARD,
-    ACT_TRANSITION, RUN_OVER, RUN_WIN,
+ TITLE, CHARACTER_SELECT,
+ MAP, BATTLE, EVENT, SHOP, REST, REWARD,
+ ACT_TRANSITION, RUN_OVER, RUN_WIN,
 }
 ```
 
@@ -70,13 +70,13 @@ enum GameState {
 
 ```
 BATTLE_START
-    -> PLAYER_TURN_START (카드 드로우, 에너지 충전)
-           -> PLAYER_ACTION (카드 플레이 대기)
-                  -> PLAYER_TURN_END (버린 패 처리)
-                         -> ENEMY_TURN (적 AI 행동)
-                                -> PLAYER_TURN_START (루프)
-                                       |-> BATTLE_WIN
-                                       -> BATTLE_LOSE
+ -> PLAYER_TURN_START (카드 드로우, 에너지 충전)
+ -> PLAYER_ACTION (카드 플레이 대기)
+ -> PLAYER_TURN_END (버린 패 처리)
+ -> ENEMY_TURN (적 AI 행동)
+ -> PLAYER_TURN_START (루프)
+ |-> BATTLE_WIN
+ -> BATTLE_LOSE
 ```
 
 ### 3.2 StatusEffectManager (`scripts/battle/status_effect_manager.gd`)
@@ -111,16 +111,16 @@ BATTLE_START
 한 런의 상태 전체를 담는 `Resource`.
 
 ```gdscript
-@export var character_id: String       # 직업 ID
-@export var current_hp / max_hp: int   # HP
-@export var gold: int                  # 골드 (시작: 99)
-@export var energy_per_turn: int       # 턴당 에너지
-@export var current_act: int           # 현재 막 (1~3)
-@export var deck: Array[String]        # 카드 ID 목록
-@export var relics: Array[String]      # 유물 ID 목록
-@export var upgraded_cards: Array[String]  # 강화된 카드 ID
-var run_map: MapData.RunMap            # 현재 맵
-var previous_maps: Array              # 이전 막 맵 보존
+@export var character_id: String # 직업 ID
+@export var current_hp / max_hp: int # HP
+@export var gold: int # 골드 (시작: 99)
+@export var energy_per_turn: int # 턴당 에너지
+@export var current_act: int # 현재 막 (1~3)
+@export var deck: Array[String] # 카드 ID 목록
+@export var relics: Array[String] # 유물 ID 목록
+@export var upgraded_cards: Array[String] # 강화된 카드 ID
+var run_map: MapData.RunMap # 현재 맵
+var previous_maps: Array # 이전 막 맵 보존
 ```
 
 ---
@@ -153,11 +153,11 @@ var previous_maps: Array              # 이전 막 맵 보존
 
 ```
 data/*.json
-    -- DataLoader (오토로드, 캐시)
-           |-- BattleManager.card_data  -> 카드 효과 계산
-           |-- BattleManager.enemy_data -> 적 AI 스케줄
-           |-- RelicManager.get_relic   -> 유물 효과 트리거
-           -- EventScene.load_event    -> 이벤트 텍스트/선택지
+ -- DataLoader (오토로드, 캐시)
+ |-- BattleManager.card_data -> 카드 효과 계산
+ |-- BattleManager.enemy_data -> 적 AI 스케줄
+ |-- RelicManager.get_relic -> 유물 효과 트리거
+ -- EventScene.load_event -> 이벤트 텍스트/선택지
 ```
 
 ---
@@ -192,18 +192,18 @@ data/*.json
 
 ```
 GameManager
-  |-- RunData (상태 보관)
-  |-- SaveManager (저장/로드)
-  -- DataLoader (데이터 접근)
+ |-- RunData (상태 보관)
+ |-- SaveManager (저장/로드)
+ -- DataLoader (데이터 접근)
 
 BattleManager
-  |-- StatusEffectManager
-  |-- RelicManager (효과 트리거)
-  -- DataLoader (카드/적 데이터)
+ |-- StatusEffectManager
+ |-- RelicManager (효과 트리거)
+ -- DataLoader (카드/적 데이터)
 
 CharacterSelect
-  -- DataLoader (직업 정보, 해금 조건)
+ -- DataLoader (직업 정보, 해금 조건)
 
 AchievementManager
-  -- SaveManager (메타 통계)
+ -- SaveManager (메타 통계)
 ```

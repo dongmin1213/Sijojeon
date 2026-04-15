@@ -5,7 +5,6 @@
   "class_ko": "의녀",
   "category": "healing",
   "description": "의녀 전용 카드 풀. 약재 자원으로 HP 회복과 독 DoT를 운용하는 지구전형 직업. 원형: 대장금·허준. 총 27장 — 약재·회복 아키타입, 독·DoT 아키타입, 처방·하이브리드 아키타입.",
-  "class_mechanic": "약재: 기(qi)와 동일한 기본 자원 체계 활용. 약재를 소비하여 회복 효과를 강화하거나 독을 부여할 때 배수를 증폭한다. 독: 턴 종료 시 독 수치만큼 피해, 매 턴 1 감소. 처방: 회복 카드와 독 카드를 혼합 사용할 때 발동하는 조건부 보너스.",
   "balance_ref": "기준: 1코스트 6피해, 1코스트 5방어도, 기(약재) 3/턴.",
   "archetypes": [
     {
@@ -76,7 +75,6 @@
         "en": "Press the meridian points to circulate Qi — life returns, and the body grows light."
       },
       "balance_rationale": "1코스트 회복+방어 복합. HP 4회복 + 방어3 = 방어 2장 가치에 근접. 수호(1코스트 5방어)보다 방어는 낮지만 회복이 붙어 생존력 보완. 회복 아키타입의 기본 1코스트 입장 카드.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H003",
         "H009"
@@ -115,7 +113,6 @@
         "en": "A single spoonful of jade elixir can rouse the dying — precious as it is, so too is its virtue."
       },
       "balance_rationale": "2코스트 대량 회복. 2코스트 주력 회복 카드. 기본 10HP 회복은 2코스트 적정값. 위기 상황(30% HP 미만) 추가 회복으로 역전 가능성 제공. 회복 아키타입의 핵심 2코스트.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
       "class_synergy": [
         "H001",
         "H009",
@@ -156,7 +153,6 @@
         "en": "Not a single root of licorice is wasted — its sweet, gentle taste harmonizes the body."
       },
       "balance_rationale": "0코스트 소량 회복+드로우. 기공(D001, 0코+기2+드2)보다 약하지만 회복을 제공. 0코스트로 턴 중 패 순환 + HP 유지. 회복 아키타입에서 덱 가속 + 생존 유지 역할. 침술(H001)과 세트로 사용.",
-      "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 회복 스타터",
       "class_synergy": [
         "H001",
         "H005"
@@ -196,7 +192,6 @@
         "en": "There is an order to medicine — first the decoction, then the next remedy finds its strength."
       },
       "balance_rationale": "1코스트 회복+다음 회복 카드 강화. 결인(D002, 다음 공격 +4)의 회복 버전. 1코 회복 카드를 2연속 사용할 때 총 HP 6+3+3=10+ 회복 가능. 회복 아키타입에서 콤보 강화 카드 역할.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H001",
         "H002",
@@ -237,7 +232,6 @@
         "en": "Press a warm compress against the wound — endure through the night, and by morning strength returns."
       },
       "balance_rationale": "1코스트 즉시 방어 + 지연 회복. 방어5 = 수호와 동일 + 다음 턴 HP3 회복이 추가. 즉각 회복이 아닌 지연 회복으로 전투 지속 시 효율 상승. 방어와 회복을 모두 필요로 하는 회복 아키타입 전용.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H001",
         "H004"
@@ -277,7 +271,6 @@
         "en": "A needle can carry poison too — pain has a way of coming later."
       },
       "balance_rationale": "1코스트 즉시 피해+독 부여. 즉시 3피해+독3(3+2+1=6) = 총 9피해. 부적(D004, 1코스트 5피해+화상4=총14)보다 낮지만 독 아키타입의 초기 세팅용 저렴한 입장 카드. 독 빌드에서 취약·증폭 카드와 연계 필요.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H013",
         "H016"
@@ -317,7 +310,6 @@
         "en": "One who knows medicine knows poison — once it seeps in, it grows within the body."
       },
       "balance_rationale": "2코스트 강 독 부여. 즉시 5피해+독6(21총피해)+조건부 독3 추가(+6피해). 독이 미리 쌓인 경우 독9(45피해)에 근접. 독 빌드의 2코스트 핵심 세팅 카드. 독침(H006) → 독살 연계 시 독 9 이상 누적 가능.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
       "class_synergy": [
         "H006",
         "H013",
@@ -359,7 +351,6 @@
         "en": "Only one who knows poison can undo it — where the uinyeo's hand touches, suffering fades."
       },
       "balance_rationale": "0코스트 디버프 정화+소량 회복. 적의 독·화상·약화 모두 제거라는 강력한 효과이나 0코스트 무료 카드. HP 1 회복은 상징적. 독 빌드에서 적의 반격 독을 제거할 때 유용. 의녀의 정체성(해독사)을 반영하는 유틸리티 카드.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H001",
         "H003"
@@ -398,7 +389,6 @@
         "en": "Healing arts are not a single prescription — they are the heart that tends the body with constancy."
       },
       "balance_rationale": "2코스트 지속 회복 파워. 천기(D011, 2코스트 기 1/턴)의 회복 버전. 5턴 전투 가정 시 HP 10 회복 = 2코스트 대비 높은 총 효율. 장기전으로 갈수록 이득. 회복 아키타입의 핵심 파워. 경옥고(H002)와 함께 회복 엔진 구성.",
-      "sijo_position": "초장 첫 슬롯 [3] — 초반 파워업 투자",
       "class_synergy": [
         "H001",
         "H002",
@@ -438,7 +428,6 @@
         "en": "Enter the apothecary and a hundred herbs await — the choice is half the cure."
       },
       "balance_rationale": "1코스트 약재+드로우. 기류(D012, 1코스트 기1+드2)의 의녀 버전. 약재는 처방 아키타입의 조건 자원으로 활용. 회복+독 하이브리드 빌드에서 덱 순환과 자원 확보 동시 처리. 처방 아키타입의 핵심 지원 카드.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H020",
         "H022",
@@ -479,7 +468,6 @@
         "en": "Regulate the breath and the mind stills — and the body begins to tend itself."
       },
       "balance_rationale": "1코스트 방어+조건부 회복. 기본 4방어도는 낮지만 회복 카드 이후 사용 시 방어4+회복4=총 2코스트 가치. 감초탕(H003)이나 침술(H001) 이후 호흡법 순서로 콤보 유도. 회복 아키타입의 2번째 연계 카드.",
-      "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "class_synergy": [
         "H001",
         "H003",
@@ -520,7 +508,6 @@
         "en": "Even the smoke of burning herbs can become poison — unseen, it is all the more fearsome."
       },
       "balance_rationale": "1코스트 광역 독 부여. 독안개(D014, 1코스트 전체 독2)와 동일한 포지션. 다수 적 상황에서 1코스트로 전체 독 세팅. 독 빌드의 광역 세팅 기본 카드. 독살(H007)과 주독(H016)의 사전 세팅 역할.",
-      "sijo_position": "초장·중장 둘째 슬롯 [4]",
       "class_synergy": [
         "H007",
         "H013",
@@ -561,7 +548,6 @@
         "en": "Once poison spreads through the body — every pain that follows feels twice as sharp."
       },
       "balance_rationale": "1코스트 취약+독 증폭. 주박(D019)의 의녀 버전(독 특화). 취약으로 카드 피해 50% 증가 + 독 피해 1.5배로 독 빌드 총 피해 극대화. 독무(H012)+독기 = 독 2×1.5=3 실질 독. 독 빌드 증폭 핵심 카드.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H007",
         "H012",
@@ -603,7 +589,6 @@
         "en": "In small amounts monkshood root is medicine; in excess it is poison — in this land, there is no separate poison."
       },
       "balance_rationale": "2코스트 독+약화 복합. 혼돈의 부적(D016, 2코스트 화상3+약화2)의 독 버전. 독3(6피해)+약화2(다음 2회 공격 25% 감소). 총 가치는 2코스트 이상이나 지연 피해. 독 빌드에서 적 공격 억제+독 세팅 겸용 카드.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
       "class_synergy": [
         "H007",
         "H013",
@@ -643,7 +628,6 @@
         "en": "Scatter arsenic powder — a body already weakened cannot endure any further."
       },
       "balance_rationale": "2코스트 독 조건부 강공격. 기본 6피해는 낮지만 독 3 이상 시 11피해. 흑염(D017)의 독 단일 버전. 독 세팅(독무H012+독침H006) 후 비상 = 11피해 = 2코스트 최강급 단일. 독 빌드 피니셔 카드.",
-      "sijo_position": "중장·종장 첫 슬롯 [3]",
       "class_synergy": [
         "H006",
         "H007",
@@ -685,7 +669,6 @@
         "en": "Poison floods the entire battlefield — there is nowhere to flee."
       },
       "balance_rationale": "3코스트 광역 최강 독 세팅. 오독(D018)의 독 특화 버전. 독5(15피해)+보유 적 독3 추가(+6피해) = 단일 적 최대 21피해. 다수 적 시 전체 세팅 완료. 독기(H013) 세팅 후 주독 = 독 8×1.5=12 실질 독. 독 빌드 3코스트 핵심.",
-      "sijo_position": "종장 둘째 슬롯 [4] — 독 최강 세팅",
       "class_synergy": [
         "H013",
         "H015",
@@ -726,7 +709,6 @@
         "en": "Detonate all accumulated poison at once — no body of iron can endure it."
       },
       "balance_rationale": "2코스트 독 즉발 피해. 독 수치를 즉각 피해로 전환. 독 빌드의 피니셔 패턴: 독무(H012)+독살(H007)+독기(H013) → 독10+ 세팅 → 독파 10+피해 즉발. 단 독을 소멸시키므로 타이밍이 중요. 독 빌드에서 축적→폭발 사이클 완성.",
-      "sijo_position": "종장 첫 슬롯 [3] — 독 폭발 피니셔",
       "class_synergy": [
         "H007",
         "H013",
@@ -767,7 +749,6 @@
         "en": "Moxibustion drives heat inward — opening the meridians and soothing the wound."
       },
       "balance_rationale": "1코스트 회복+소량 피해 감소. HP 3 회복+다음 2피해 각1 감소. 방어 카드보다 약하지만 회복을 포함. 처방 아키타입에서 '회복 카드 사용' 조건을 충족시키는 저렴한 회복 카드. 침술(H001)보다 방어는 없지만 비용 대비 유연성 높음.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H004",
         "H011",
@@ -808,7 +789,6 @@
         "en": "Once the poison aura is released — the entire battlefield is slowly dyed with its color."
       },
       "balance_rationale": "3코스트 지속 광역 독 파워. 천기(D011)의 독 버전. 5턴 전투 시 전체에 독 2×5=10 누적(각 감소 고려 약 8~10 실질). 다수 적 시 극대. 독기(H013)와 콤보 시 지속 독 ×1.5배. 독 빌드의 3코스트 엔진 파워.",
-      "sijo_position": "초장 첫 슬롯 [3] — 독 빌드 엔진 투자",
       "class_synergy": [
         "H013",
         "H016",
@@ -849,7 +829,6 @@
         "en": "Medicine and poison grow from the same root — only the hand that wields them determines their purpose."
       },
       "balance_rationale": "2코스트 회복+독+드로우 복합. 처방 조건 충족 시 HP5+독4+드로우2 = 3코스트 이상 가치. 처방 아키타입의 대표 카드. 회복(감초탕/침술)+독(독침)+처방 연계로 처방 조건 달성. 하이브리드 빌드의 핵심 2코스트.",
-      "sijo_position": "종장 둘째 슬롯 [4] — 처방 아키타입 피니셔",
       "class_synergy": [
         "H003",
         "H006",
@@ -893,7 +872,6 @@
         "en": "A single clarifying heart pill clears the mind — and the path ahead comes back into view."
       },
       "balance_rationale": "0코스트 회복+드로우. 귀문도해(D027, 0코스트 기3+드2)의 회복 버전. 0코스트 HP3+드로우2 = 감초탕(0코스트 HP2+드1)의 두 배 효율. 전설급 효율이나 해금 카드로 제한. 회복 빌드 0코스트 엔진.",
-      "sijo_position": "중장·종장 둘째 슬롯 [4] — 0코스트 회복 가속기",
       "class_synergy": [
         "H009",
         "H011",
@@ -936,7 +914,6 @@
         "en": "A decoction drunk to expel poison — healing for oneself, poison for the enemy."
       },
       "balance_rationale": "1코스트 광역 독+처방 조건 강화. 기본 독무(H012)보다 1독 많고, 처방 조건 시 독5 AoE = 2코스트 주독(H016) 수준에 근접. 처방 아키타입에서 회복 카드 사용 후 연계 필수 카드. 하이브리드 빌드의 1코스트 독 세팅 카드.",
-      "sijo_position": "초장·중장 첫 슬롯 [3]",
       "class_synergy": [
         "H001",
         "H003",
@@ -979,7 +956,6 @@
         "en": "Wherever the uinyeo's hand touches — vitality returns and warmth spreads."
       },
       "balance_rationale": "2코스트 회복+드로우+영구 회복 버프. HP 8+드1+이후 회복 +2 = 2코스트 대비 높은 가치. 경옥고(H002, 2코스트 HP10)와 비슷하나 영구 회복 강화가 붙어 장기전에서 더 유리. 회복 빌드의 2코스트 핵심 해금 카드.",
-      "sijo_position": "중장 둘째 슬롯 [4]",
       "class_synergy": [
         "H002",
         "H009",
@@ -1022,7 +998,6 @@
         "en": "A decoction brewed from five poisonous herbs — simply drinking it causes the body to crumble."
       },
       "balance_rationale": "3코스트 광역 독+약화. 오독(D018, 3코스트 독4+화상3 AoE)의 의녀 버전. 독5(15피해)+약화2(다음 2회 공격 25% 감소) AoE. 독기(H013)+오독탕 = 독5×1.5=7.5 실질+약화. 독 빌드 3코스트 최강 광역 세팅. 해금 전설.",
-      "sijo_position": "종장 둘째 슬롯 [4] — 독 광역 최강 세팅",
       "class_synergy": [
         "H013",
         "H016",
@@ -1050,37 +1025,33 @@
       "subtypes": [
         "heal",
         "dot",
-        "hybrid",
-        "sijo"
+        "hybrid"
       ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
         "ko": "HP 3을 회복한다. 적에게 독 3을 부여한다. 이번 시조 라인(초·중·종장)을 완성하면 회복과 독을 각 2 추가로 받는다.",
-        "en": "Heal 3 HP. Apply 3 Poison to an enemy. If you complete a sijo line (stanza) this turn, gain +2 heal and +2 Poison."
+        "en": "Heal 3 HP. Apply 3 Poison to an enemy. If you play 3+ cards this turn, bonus heal and Poison."
       },
       "effect_upgraded": {
-        "ko": "HP 4 회복. 독 4 부여. 시조 완성 시 +3 회복, +3 독.",
-        "en": "Heal 4 HP. Apply 4 Poison. On sijo completion: +3 heal, +3 Poison."
+        "ko": "HP 4 회복. 독 4 부여.",
+        "en": "Heal 4 HP. Apply 4 Poison. On playing 3+ cards: "
       },
       "flavor_text": {
         "ko": "시 한 수에 치유도 담고 독도 담는다 — 글자마다 생사가 갈린다.",
         "en": "A single verse carries both healing and poison — life and death hang on every word."
       },
-      "balance_rationale": "1코스트 시조 연동 처방. 시조 완성 시 HP5+독5 = 2코스트 경옥고+독침 이상 가치를 1코스트로. 시조 시스템과 의녀 처방 아키타입을 연결하는 고유 카드. 처방 빌드에서 시조 완성 보상 극대화.",
-      "sijo_position": "초장·중장·종장 임의 슬롯 [5] — 시조 완성 연동 처방",
+      "balance_rationale": "1코스트 시조 연동 처방. 시조 시스템과 의녀 처방 아키타입을 연결하는 고유 카드. 처방 빌드에서",
       "class_synergy": [
         "H010",
         "H020",
         "H022"
       ],
       "upgrade_cost": 100,
-      "unlock_condition": "sijo_total_10",
+      "unlock_condition": "runs_completed_10",
       "values": {
         "heal": 3,
-        "poison": 3,
-        "sijo_bonus_heal": 2,
-        "sijo_bonus_poison": 2
+        "poison": 3
       }
     },
     {
@@ -1113,7 +1084,6 @@
         "en": "Even within the palace she saves the outcast — and turns the poison in powerful hearts back upon them."
       },
       "balance_rationale": "3코스트 지속 회복+독 복합 파워. 의술(H009, 2코스트 HP2/턴)+독기운(H019, 3코스트 독2/턴)을 하나의 카드로 압축. 5턴 전투 시 HP10+독10(누적 약 5~8 실질). 처방 아키타입의 3코스트 엔진. 의녀의 원형 캐릭터 '대장금' 이름을 딴 전설 카드.",
-      "sijo_position": "초장 첫 슬롯 [3] — 처방 아키타입 최강 엔진",
       "class_synergy": [
         "H009",
         "H019",
@@ -1158,7 +1128,6 @@
         "en": "The Dongui Bogam holds every remedy in the world — before that knowledge, neither illness nor poison holds fear."
       },
       "balance_rationale": "2코스트 처방 수렴 피니셔. 만법귀종(D026, 기×8딜)의 처방 버전. 회복 3장+독 3장 사용 시 HP9+독9 = 총 3코스트 이상 가치. 최소 HP5+독5는 보장하여 단독으로도 준수. 처방 빌드의 종장 완성 피니셔. 허준/대장금 원형의 '보감' 이름을 딴 최고급 해금 전설.",
-      "sijo_position": "종장 둘째 슬롯 [5] — 처방 수렴 피날레",
       "class_synergy": [
         "H020",
         "H022",

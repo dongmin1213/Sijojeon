@@ -9,14 +9,14 @@
         "ko": "시조의 변주",
         "description": {
           "ko": "낡은 시조 악보 한 장이 담장 틈에 끼어 있도다. 펼쳐보니 평소와는 다른 구성의 시조가 적혀 있느니라. \"규칙을 바꾸면 노래가 달라지리라.\"",
-          "en": "An old sijo score is wedged in a crack in the wall. Unfolding it reveals a sijo with an unusual structure. \"Change the rules, and the song changes.\""
+          "en": "An old poem score is wedged in a crack in the wall. Unfolding it reveals a poem with an unusual structure. \"Change the rules, and the song changes.\""
         },
-        "loc_key": "event_title_sijo_variation",
+        "loc_key": "event_title_combat_training",
         "en": "Variations of the Sijo"
       },
       "flavor_text": {
         "ko": "\"정해진 형식이 있어야 시조인가, 아니면 마음이 담기면 그것이 곧 시조이겠느냐.\"",
-        "en": "\"Must a sijo follow a fixed form, or does the heart's intent make it a sijo?\""
+        "en": "\"Must combat follow a fixed form, or does intent shape the battle?\""
       },
       "type": "common",
       "special": false,
@@ -37,10 +37,10 @@
         {
           "id": "slot_modify",
           "text": {
-            "ko": "악보의 구성을 받아들인다. (시조 슬롯 영구 변경)",
-            "en": "Accept the score's arrangement. (Permanently modify sijo slot)"
+            "ko": "악보의 구성을 받아들인다. (",
+            "en": "Accept the score's arrangement. (Permanently modify"
           },
-          "effect_type": "sijo_slot_modify",
+          "effect_type": "combat_rhythm_modify",
           "effect_meta": {
             "slot_index": 0,
             "slot_type": "joeum_slot",
@@ -50,7 +50,7 @@
           "effect_value": 0,
           "result_text": {
             "ko": "낡은 악보의 구성을 받아들였느니라. 이제 시조의 첫 자리에 어떤 장의 카드든 놓을 수 있도다. 형식보다 흐름이 중한 법이니라.",
-            "en": "You adopt the old score's arrangement. Now any verse card can be placed in the first sijo slot. Flow matters more than form."
+            "en": "You adopt the old score's arrangement. Now any verse card can be placed in the first Flow matters more than form."
           },
           "result_title": "이음새 슬롯 획득",
           "note": "유연한 시조 배치로 덱 회전율 향상. 특히 특정 장 카드가 치우친 덱에서 강력. 직업 무관계로 모든 캐릭터에게 유용. Slay the Spire의 채널 수정 유물과 유사한 컨셉."
@@ -59,9 +59,9 @@
           "id": "length_shorten",
           "text": {
             "ko": "짧고 빠르게 읊는다. (시조 2장으로 단축)",
-            "en": "Sing it short and fast. (Shorten sijo to 2 verses)"
+            "en": "Sing it short and fast. (Speed up combat rhythm)"
           },
-          "effect_type": "sijo_length_change",
+          "effect_type": "combat_rhythm_change",
           "effect_meta": {
             "new_length": 2,
             "reward_multiplier": 0.7,
@@ -73,7 +73,7 @@
           "effect_value": 0,
           "result_text": {
             "ko": "시조를 두 장으로 줄였느니라. 완성 횟수가 늘어날수록 총량은 비슷해지리라. 빠른 콤보와 유물 누적을 노리는 것이니라.",
-            "en": "You shorten the sijo to two verses. As completions add up, the total yield evens out. Aim for rapid combos and relic stacking."
+            "en": "You adopt a faster combat rhythm. Rapid combos and relic stacking become the focus."
           },
           "result_title": "시조 단축",
           "note": "완성 보너스 -30%는 숫자로 보면 약해보이지만 완성 빈도가 2배면 완성 보상 총합은 1.4배(2×0.7=1.4). 단, 유물 '사군자 족자'(3회 완성마다 희귀 카드)와 콤보하면 극강. 템포 빌드에 필수 선택지."
@@ -166,25 +166,21 @@
           "effect_meta": {
             "passive_id": "gangjik_mungwan",
             "display_name": "강직한 문관",
-            "effect_on_sijo_complete": {
-              "hp_restore": 3,
-              "description": "시조 완성 시마다 HP 3 회복"
-            },
             "penalty_effect": "card_effect_reduce",
             "penalty_meta": {
               "target": "학식_소비_카드",
               "reduce_percent": 10,
               "description": "학식을 소비하는 카드의 효과가 10% 감소"
             },
-            "display_text": "시조 완성 시 HP +3 / 학식 소비 카드 효과 -10%"
+            "display_text": ""
           },
           "effect_value": 0,
           "result_text": {
-            "ko": "학문을 뒤로 하고 민심을 택하였느니라. 시조를 완성할 때마다 백성의 기운이 몸을 회복시키는도다. 다만 학문의 예리함은 다소 무뎌졌느니라.",
-            "en": "You set aside scholarship for the people's sake. Each sijo completion restores your body with the people's energy. However, your scholarly acuity has dulled somewhat."
+            "ko": "학문을 뒤로 하고 민심을 택하였느니라. 다만 학문의 예리함은 다소 무뎌졌느니라.",
+            "en": "You set aside scholarship for the people's sake. Each However, your scholarly acuity has dulled somewhat."
           },
           "result_title": "강직한 문관",
-          "note": "문관의 지속 HP 회복으로 생존력 강화. 시조 완성 빈도 높은 템포 빌드에 특히 강함. 학식 소비 카드 -10%는 수치가 작아 체감이 낮지만 게임 후반 큰 피해 카드에선 영향. 방어 지향 문관 빌드 경로."
+          "note": "문관의 지속 HP 회복으로 생존력 강화. 학식 소비 카드 -10%는 수치가 작아 체감이 낮지만 게임 후반 큰 피해 카드에선 영향. 방어 지향 문관 빌드 경로."
         },
         {
           "id": "dosa_sesogin",
@@ -237,9 +233,9 @@
         "ko": "시조 특화 수련",
         "description": {
           "ko": "깊은 산속 암자에서 백발의 노인이 시조를 읊고 계시도다. 그 소리에는 보통 시조와는 다른 깊이가 담겨 있느니라. 노인은 그대를 보시더니 수련을 제안하시느니라.",
-          "en": "Deep in the mountains, a white-haired elder recites sijo in a hermitage. His voice carries a depth unlike any ordinary sijo. Seeing you, he offers to train you."
+          "en": "Deep in the mountains, a white-haired elder practices ancient combat arts in a hermitage. Seeing you, he offers to train you."
         },
-        "loc_key": "event_title_sijo_training",
+        "loc_key": "event_title_combat_training",
         "en": "Sijo Mastery Training"
       },
       "flavor_text": {
@@ -267,19 +263,19 @@
             "ko": "혹독한 수련을 받아들인다.",
             "en": "Accept the grueling training."
           },
-          "effect_type": "sijo_reward_multiplier",
+          "effect_type": "combat_reward_multiplier",
           "effect_meta": {
             "multiplier": 2.0,
-            "description": "시조 완성 보상 영구 2배 (기력/학식/기 보너스, 콤보 보상 포함)",
-            "tooltip": "시조를 완성할 때 얻는 모든 자원 보너스가 2배가 됩니다."
+            "description": "",
+            "tooltip": ""
           },
           "effect_value": 2,
           "effect_type_bonus": "relic_gain_specific",
           "effect_meta_bonus": {
             "relic_id": "hopae",
             "relic_name": "호패",
-            "description": "유물 '호패' 즉시 획득 (직업 자원이 최대치의 50% 이상이면 턴 종료 시 시조 진행도 유지)",
-            "tooltip": "호패: 직업 자원 50% 이상 보유 시 시조 진행이 초기화되지 않습니다."
+            "description": "유물 '호패' 즉시 획득 (직업 자원이 최대치의 50% 이상이면 턴 종료 시",
+            "tooltip": "호패: 직업 자원 50% 이상 보유 시"
           },
           "effect_value_bonus": 1,
           "effect_type_2": "job_resource_max_reduce",
@@ -293,15 +289,15 @@
           "effect_type_3": "passive_damage_on_incomplete",
           "effect_meta_3": {
             "damage": 2,
-            "trigger": "turn_end_sijo_incomplete",
+            "trigger": "turn_end_penalty",
             "description": "시조 미완성 시 매 턴 종료 후 HP 2 손실",
-            "tooltip": "시조를 완성하지 못한 채 턴이 끝나면 HP 2를 잃습니다.",
+            "tooltip": "",
             "display_name": "수련의 대가"
           },
           "effect_value_3": 2,
           "result_text": {
-            "ko": "혹독한 수련이 시작되었느니라. 시조를 완성할 때마다 두 배의 기운이 솟구치고, 호패까지 얻었도다. 허나 자원의 그릇이 작아졌고, 시조를 완성하지 못한 채 시간을 보내면 몸이 상하느니라.",
-            "en": "The grueling training begins. Each sijo completion now surges with double the energy, and you receive a hopae badge. However, your resource capacity has shrunk, and failing to complete a sijo before the turn ends damages your body."
+            "ko": "혹독한 수련이 시작되었느니라. 허나 자원의 그릇이 작아졌고,",
+            "en": "The grueling training begins. Each However, your resource capacity has shrunk, and failing to play enough cards before the turn ends damages your body."
           },
           "result_title": "시조 특화 수련 완료",
           "note": "고위험 고보상 선택지. 완성 보상 2배+호패는 시조 빠른 완성 빌드에서 폭발적. 하지만 자원 최대치 -30%+턴 종료 피해 2는 시조 미완성 보유가 치명적. 최적 시너지: 시조 단축(EVT_SIJO_VARIATION B선택) + 본 이벤트 = 2장 시조 빠른 완성으로 HP 손실 최소화."
@@ -314,7 +310,7 @@
           },
           "effect_type": "card_gain_choice",
           "effect_meta": {
-            "card_pool": "sijo_type",
+            "card_pool": "any",
             "count": 1,
             "description": "시조 관련 카드 1장을 선택 획득 (희귀 이하)",
             "tooltip": "시조 계열 카드 중 1장을 골라 덱에 추가합니다."
@@ -322,7 +318,7 @@
           "effect_value": 1,
           "result_text": {
             "ko": "멀찌감치서 수련을 지켜보며 한 수 배웠느니라. 덱에 시조 관련 카드를 1장 추가할 수 있도다.",
-            "en": "Watching from a distance, you learn a thing or two. You may add 1 sijo-related card to your deck."
+            "en": "Watching from a distance, you learn a thing or two. You may add 1 special card to your deck."
           },
           "result_title": "관찰자",
           "note": "절충 선택지. 리스크 없이 소형 보상. 현재 빌드가 주요 이벤트에 맞지 않거나 HP가 낮을 때 선택."
@@ -340,28 +336,17 @@
             "en": "You bow respectfully to the elder and turn away. You weren't ready to pay the price of training."
           },
           "result_title": "",
-          "note": "완전 거절. 안전 통과. HP가 낮거나 시조 완성 빌드가 아닐 때 최선의 선택."
+          "note": "완전 거절. 안전 통과. HP가 낮거나"
         }
       ]
     }
   ],
   "balance_notes": {
-    "EVT_SIJO_VARIATION": {
-      "slot_modify": "유연성 향상 — 특정 장 카드 편중 덱에서 30% 이상 효율 향상 기대. 단 균형 덱에선 체감 미미.",
-      "length_shorten": "완성 보상 총합 이론치: 2×0.7=1.4배. 유물 '사군자 족자'와 조합 시 희귀 카드 획득 2배.",
-      "design_intent": "두 선택지 모두 플레이어를 다른 방향의 최적화로 유도. 슬롯 수정=유연성, 길이 단축=템포. 게임 후반부 덱 정체성을 확정짓는 분기점."
-    },
     "EVT_JOB_CONFLICT": {
       "mugwan_munmuwi": "학식 3은 연적(유물) 없이도 시조 단축에 기여. 카드 제거 선택권을 주어 부정적 느낌 최소화.",
       "mungwan_gangjik": "HP 회복은 초당 아닌 이벤트 기반으로 예측 가능. 학식 소비 카드 -10%는 고뎀 카드(예상 100 데미지)에서 10 손실 — 인지 가능 수준으로 조정.",
       "dosa_sesogin": "기 생성 -25%는 기 관련 시스템 전체에 영향. 도사 후기 스케일에서 체감 큼. 기력 3 획득은 즉각적 전투력 향상으로 보상 명확.",
       "design_intent": "직업 교차 빌드 탐험. 순수 직업 vs 하이브리드 선택의 갈림길. 각 페널티는 직업 정체성의 반대급부로 설계."
-    },
-    "EVT_SIJO_TRAINING": {
-      "accept_training": "보상: 시조 완성 보상 2배 + 호패 (실질적으로 4배 수준). 페널티: 자원 최대 -30% + 턴 피해 2. 시조 미완성 전투가 5턴이면 HP 10 손실. 강보스전에서 부담 큼. 시조 빠른 완성 빌드(이음새 슬롯 또는 단축 시조)와 조합 필수.",
-      "synergy_chain": "EVT_SIJO_VARIATION(길이 단축) + EVT_SIJO_TRAINING(accept) = 2장 시조를 턴당 완성 가능하면 HP 손실 0 + 보상 2배 + 호패. 이것이 빌드 완성형.",
-      "trigger_condition": "Act 2 이후, weight 0.4 = 약 40% 확률로 등장. 너무 흔하면 강제 선택 느낌, 너무 희귀하면 빌드 시너지 달성 불가.",
-      "design_intent": "Slay the Spire의 저주 카드/병 이벤트처럼 '알면서도 선택하는 리스크'. 절창 빌드 완성의 마지막 조각."
     }
   }
 }

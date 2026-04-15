@@ -69,10 +69,10 @@
           "effect_value": 25
         },
         {
-          "id": "sijo_inspire",
+          "id": "poem_inspire",
           "text": {
             "ko": "[시상] 시조로 충신의 용기를 북돋운다.",
-            "en": "[Sisang] Inspire the loyalist's courage with a sijo."
+            "en": "[Sisang] Inspire the loyalist's courage with a poem."
           },
           "effect_value_bonus_2": 1,
           "result_text": {

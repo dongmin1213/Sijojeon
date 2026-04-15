@@ -75,10 +75,10 @@
           "effect_value": 0
         },
         {
-          "id": "recite_sijo",
+          "id": "recite_poem",
           "text": {
             "ko": "[시상] 시조 한 수를 읊어 노인의 마음을 달래 드린다.",
-            "en": "[Sisang] Recite a sijo to soothe the old man's heart."
+            "en": "[Sisang] Recite a poem to soothe the old man's heart."
           },
           "result_text": {
             "ko": "노인이 눈물을 글썽이며 말한다. \"이리 아름다운 시를 읊는 젊은이라니...\" HP 12 회복, 금화 10 획득.",
@@ -170,10 +170,10 @@
           "effect_value": 15
         },
         {
-          "id": "sijo_charm",
+          "id": "poem_charm",
           "text": {
             "ko": "[시상] 시조를 읊어 포졸의 마음을 녹인다.",
-            "en": "[Sisang] Recite a sijo to soften the constables' hearts."
+            "en": "[Sisang] Recite a poem to soften the constables' hearts."
           },
           "result_text": {
             "ko": "포졸들이 시조에 감탄하여 길을 비키고, 전투 비법이 적힌 서찰까지 건네느니라. 금화 10 + 카드 1장.",

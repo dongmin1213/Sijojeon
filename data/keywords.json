@@ -212,32 +212,6 @@
       "color": "#4D99FF"
     },
     {
-      "id": "beat",
-      "name": {
-        "ko": "음보",
-        "en": "Beat"
-      },
-      "category": "mechanic",
-      "description": {
-        "ko": "카드가 가진 리듬 값(3 또는 4)입니다. 시조 슬롯의 다음 패턴과 일치하면 슬롯이 채워집니다.",
-        "en": "A card's rhythm value (3 or 4). If it matches the next Sijo slot pattern, the slot is filled."
-      },
-      "color": "#FFD966"
-    },
-    {
-      "id": "sijo",
-      "name": {
-        "ko": "시조",
-        "en": "Sijo"
-      },
-      "category": "mechanic",
-      "description": {
-        "ko": "6슬롯 리듬 시스템 [3,4,3,4,3,4]. 카드의 음보가 일치하면 슬롯이 채워집니다.\n• 초장 완성(3/6): +1\n• 중장 완성(4/6): 카드 1장 드로우\n• 시조 완성(6/6): 마지막 카드 효과 ×2 + +1 + 카드 드로우",
-        "en": "6-slot rhythm system [3,4,3,4,3,4]. Cards whose Beat matches fill the slots.\n- First verse complete (3/6): Qi +1\n- Second verse complete (4/6): Draw 1 card\n- Sijo complete (6/6): Last card effect x2 + Qi +1 + Draw card"
-      },
-      "color": "#FFD966"
-    },
-    {
       "id": "giryeok",
       "name": {
         "ko": "기력",

@@ -10,8 +10,8 @@
     "en": "Imugi"
   },
   "description": {
-    "ko": "천 년을 기다려 용이 되려는 거대한 이무기. 비늘로 온몸을 감싼 채 지리산 깊은 곳에 서린다. 비늘을 벗기지 않으면 진정한 피해를 줄 수 없다. 시조의 힘으로 비늘을 벗겨야 한다.",
-    "en": "A great serpent that has waited a thousand years to ascend. Wrapped in scales deep in Jirisan. Cannot be truly harmed until its scales are stripped — only the power of sijo can breach them."
+    "ko": "천 년을 기다려 용이 되려는 거대한 이무기. 비늘로 온몸을 감싼 채 지리산 깊은 곳에 서린다. 비늘을 벗기지 않으면 진정한 피해를 줄 수 없다.",
+    "en": "A great serpent that has waited a thousand years to ascend. Wrapped in scales deep in Jirisan. Cannot be truly harmed until its scales are stripped —"
   },
   "hp": 160,
   "flavor": "\"천 년을 기다렸다... 용이 되는 것을 막을 자는 없느니라!\"",
@@ -22,28 +22,11 @@
       "en": "Scale Barrier"
     },
     "description": {
-      "ko": "비늘 3겹 보유. 비늘이 있는 동안 받는 피해 50% 감소. 시조 완성 1회당 비늘 1겹 벗김. 비늘 0이 되면 취약 2턴 + 받는 피해 정상화.",
-      "en": "3 layers of scales. While scales remain, takes 50% reduced damage. Each sijo completion strips 1 layer. At 0 scales, becomes Vulnerable for 2 turns."
+      "ko": "비늘 3겹 보유. 비늘이 있는 동안 받는 피해 50% 감소. 비늘 1겹 벗김. 비늘 0이 되면 취약 2턴 + 받는 피해 정상화.",
+      "en": "3 layers of scales. While scales remain, takes 50% reduced damage. At 0 scales, becomes Vulnerable for 2 turns."
     },
     "max_scales": 3,
     "damage_reduction_percent": 50,
-    "on_sijo_complete": {
-      "strip_scales": 1,
-      "dialogue_per_scale": [
-        {
-          "ko": "\"크르르... 비늘이... 감히!\"",
-          "en": "\"Grr... my scales... how dare you!\""
-        },
-        {
-          "ko": "\"으아아! 살갗이 드러나다니!\"",
-          "en": "\"Aaargh! My flesh is exposed!\""
-        },
-        {
-          "ko": "\"안 돼! 서기가... 빛을 잃는다!\"",
-          "en": "\"No! My aura... is losing its light!\""
-        }
-      ]
-    },
     "on_all_stripped": {
       "apply_to_boss": [
         {
@@ -177,7 +160,7 @@
       "phase_label": "승천 시도",
       "hp_threshold_label": "55% → 25%",
       "hp_threshold_min": 40,
-      "description": "서기가 강해지며 공격력 상승. 시조 슬롯 방해 시작.",
+      "description": "서기가 강해지며 공격력 상승.",
       "phase_trigger": {
         "type": "hp_threshold",
         "hp_percent": 55,
@@ -220,7 +203,7 @@
           "times": 1,
           "effects": [
             {
-              "type": "reset_sijo_slot",
+              "type": "apply_chill",
               "count": 1
             },
             {
@@ -231,8 +214,8 @@
             }
           ],
           "description": {
-            "ko": "10 피해 + 시조 슬롯 1개 초기화 + 냉기 1.",
-            "en": "10 damage + reset 1 sijo slot + 1 Chill."
+            "ko": "10 피해 + + 냉기 1.",
+            "en": "10 damage + + 1 Chill."
           }
         },
         {
@@ -392,13 +375,13 @@
       {
         "id": "dragon_scale",
         "name": "이무기의 역린",
-        "description": "전투 시작 시 방어도 8 획득. 시조 완성 시 추가 방어도 5.",
+        "description": "전투 시작 시 방어도 8 획득. 추가 방어도 5.",
         "type": "rare_relic"
       },
       {
         "id": "imugi_jewel",
         "name": "이무기의 내단",
-        "description": "시조 완성 시 적 전체에 피해 6. 시조 일격 피해 +25%.",
+        "description": "적 전체에 피해 6.",
         "type": "rare_relic"
       }
     ]

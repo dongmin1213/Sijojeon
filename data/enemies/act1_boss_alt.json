@@ -11,12 +11,11 @@
     "en": "Grand Shaman Cheonryeong"
   },
   "description": {
-    "ko": "한양 외곽 신령 마을의 대무당. EL003 무당의 상위 형태. 강력한 소환과 저주, 시조 리듬을 방해하는 특수 패턴을 보유한다.",
-    "en": "Grand shaman of a spirit village on the outskirts of Hanyang. An advanced form of the Shaman. Possesses powerful summons, curses, and a unique pattern that disrupts Sijo rhythm."
+    "ko": "한양 외곽 신령 마을의 대무당. EL003 무당의 상위 형태. 강력한 소환과 저주, 하는 특수 패턴을 보유한다.",
+    "en": "Grand shaman of a spirit village on the outskirts of Hanyang. An advanced form of the Shaman. Possesses powerful summons, curses, and a unique pattern that disrupts"
   },
   "hp": 120,
   "flavor": "\"신령이 너를 인정하지 않는다. 여기서 돌아가라.\"",
-  "unique_mechanic": "리듬 방해: 매 3턴마다 플레이어의 시조 슬롯 1개를 초기화한다. (슬롯 채워진 상태에서 진행 중이면 가장 최근 슬롯 초기화)",
   "phases": [
     {
       "phase": 1,
@@ -46,8 +45,8 @@
             }
           ],
           "description": {
-            "ko": "독 5 + 취약 2. 시조 리듬 방해 시작.",
-            "en": "5 Poison + 2 Vulnerable. Begins disrupting Sijo rhythm."
+            "ko": "독 5 + 취약 2. 시작.",
+            "en": "5 Poison + 2 Vulnerable. Begins disrupting"
           }
         },
         {
@@ -106,13 +105,13 @@
           "intent": "special",
           "effects": [
             {
-              "type": "reset_sijo_slot",
+              "type": "apply_chill",
               "count": 1,
-              "note": "플레이어 시조 슬롯 1개 초기화"
+              "note": "플레이어"
             }
           ],
           "description": {
-            "ko": "플레이어의 시조 진행 슬롯 1개를 초기화한다. (ZER-101 시조 시스템 연동)",
+            "ko": "플레이어의 (ZER-101 시조 시스템 연동)",
             "en": "Resets 1 of the player's Sijo progress slots."
           }
         },
@@ -206,14 +205,14 @@
           "intent": "special",
           "effects": [
             {
-              "type": "reset_sijo_slot",
+              "type": "apply_chill",
               "count": 2,
-              "note": "플레이어 시조 슬롯 2개 초기화"
+              "note": "플레이어"
             }
           ],
           "description": {
-            "ko": "시조 슬롯 2개 초기화. 시조 완성 방해.",
-            "en": "Resets 2 Sijo slots. Prevents Sijo completion."
+            "ko": "방해.",
+            "en": "Resets 2 Prevents"
           }
         }
       ],
@@ -292,5 +291,5 @@
     "relic_chance": 1.0,
     "special_note": "전설 등급 유물 드롭 가능"
   },
-  "balance_note": "HP 120, 3페이즈. 고유 메카닉: 리듬 끊기(시조 슬롯 초기화). 시조 완성 타이밍을 방해하므로 와일드카드(M011/M012) 사용 권장. 소환 압박+DoT+리듬 방해 3가지 동시 관리 필요."
+  "balance_note": "HP 120, 3페이즈. 고유 메카닉: 리듬 끊기(). 타이밍을 방해하므로 와일드카드(M011/M012) 사용 권장. 소환 압박+DoT+리듬 방해 3가지 동시 관리 필요."
 }

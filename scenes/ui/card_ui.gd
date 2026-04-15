@@ -12,7 +12,7 @@ signal card_zoom_requested(card_data: CardData)
 
 @onready var card_name_label: Label = $MarginContainer/VBoxContainer/CardNameLabel
 @onready var card_art: TextureRect = $MarginContainer/VBoxContainer/CardArt
-@onready var beat_cost_label: Label = $MarginContainer/VBoxContainer/BeatCostRow/BeatCostLabel
+@onready var cost_label: Label = $MarginContainer/VBoxContainer/CostRow/CostLabel
 @onready var type_label: Label = $MarginContainer/VBoxContainer/TypeLabel
 @onready var effect_label: Label = $MarginContainer/VBoxContainer/EffectLabel
 @onready var rarity_bar: ColorRect = $MarginContainer/VBoxContainer/RarityBar
@@ -180,7 +180,7 @@ func _apply_font_scaling(scale: float) -> void:
 	var effect_size := AccessibilityManager.scaled_font_size(maxi(int(24 * scale), 21))
 
 	card_name_label.add_theme_font_size_override("font_size", name_size)
-	beat_cost_label.add_theme_font_size_override("font_size", cost_size)
+	cost_label.add_theme_font_size_override("font_size", cost_size)
 	type_label.add_theme_font_size_override("font_size", type_size)
 	effect_label.add_theme_font_size_override("font_size", effect_size)
 
@@ -205,7 +205,7 @@ func _update_display() -> void:
 	card_art.texture = TextureManager.get_card_texture(card_data.id, card_data.type)
 
 	# 코스트
-	beat_cost_label.text = str(card_data.cost)
+	cost_label.text = str(card_data.cost)
 
 	# 타입 표시
 	var type_names := {

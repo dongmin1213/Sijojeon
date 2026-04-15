@@ -380,15 +380,6 @@ A mysterious Korean Joseon-era forest path at night for a random encounter scene
 A Korean Joseon-era treasure room or reward alcove. An open Korean wooden chest (궤) overflowing with scrolls, Korean brass coins (엽전), talismans (부적), and a glowing sword. Warm golden light emanates from within. Korean hanji paper sliding doors frame the scene. Korean dancheong painted wooden beams overhead. Rich warm gold, amber, and deep brown tones with volumetric light rays. Korean traditional interior — NOT Chinese. Leave space for card selection UI. Portrait 1080x1920.
 ```
 
-### bg_gwageo — 과거시험 배경
-
-```
-[배경 프리픽스]
-A Korean Joseon-era civil service examination hall (과거 시험장). Rows of low wooden desks with ink, brushes, and hanji paper under a large open-air Korean pavilion with gray giwa tile roof and dancheong painted eaves. Korean examiners in samo hats observe from an elevated platform. Korean paper lanterns hang overhead for evening lighting. Tension and formality in the atmosphere. Cool indigo, warm gold, and stone gray tones. Korean examination aesthetic — NOT Chinese imperial exam. Leave center space for minigame UI. Portrait 1080x1920.
-```
-
----
-
 ## 7. 유물 아이콘
 
 ### R001 — 편자
@@ -454,11 +445,11 @@ A Korean red ginseng root (홍삼) in dark reddish-brown. Earthy organic form wi
 3. **첫 결과물이 완벽하지 않으면 대화형으로 2~4턴 수정 요청** — "머리를 더 크게", "몸을 더 짧게" 등
 4. 생성된 이미지 PNG 다운로드
 5. **배경 제거 (rembg)**:
-   ```
-   cd C:\rembg
-   venv\Scripts\python process.py [이미지파일 또는 폴더]
-   ```
-   또는 `run.bat` 위에 이미지/폴더를 드래그 앤 드롭
+ ```
+ cd C:\rembg
+ venv\Scripts\python process.py [이미지파일 또는 폴더]
+ ```
+ 또는 `run.bat` 위에 이미지/폴더를 드래그 앤 드롭
 6. `_done.png` (투명 배경 + 크롭) → `art/` 폴더의 해당 경로에 저장
 7. **스타일 일관성**: 첫 번째 결과물을 참조 이미지로 업로드하여 후속 생성에 활용
 

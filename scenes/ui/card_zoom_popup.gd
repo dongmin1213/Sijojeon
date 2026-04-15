@@ -190,7 +190,7 @@ func _find_keywords_in_card() -> Array[Dictionary]:
 	var all_kw := KeywordTooltip.get_all_keywords()
 
 	# 카드 속성 기반 키워드 자동 추가
-	var auto_keywords: Array[String] = ["beat", "qi"]  # 모든 카드에 기본 표시
+	var auto_keywords: Array[String] = ["qi"]  # 모든 카드에 기본 표시
 
 	if _card_data.damage > 0 and _card_data.is_aoe:
 		auto_keywords.append("aoe")

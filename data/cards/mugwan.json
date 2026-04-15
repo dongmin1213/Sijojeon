@@ -1,1120 +1,1092 @@
 {
-      "version": "0.1",
-      "type": "card_pool",
-      "class": "mugwan",
-      "class_ko": "무관",
-      "category": "formation",
-      "description": "무관 전용 카드 풀. 진형 조작과 병사 토큰을 활용하는 군사형 직업. 총 25장 — 진형·토큰 아키타입, 기력 폭딜 아키타입, 방패·연타 아키타입. G026·G027 전설 카드 2종 추가 (ZER-214 재미 개선).",
-      "class_mechanic": "병사 토큰( Token): 피해를 1회 대신 받고 소멸. 소멸 시 기 1 회복. 진형 전환으로 생성. 기력: 무관 전용 보조 자원, 최대 10, 턴 간 유지. 기력 소비 시 공격 강화.",
-      "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
-      "archetypes": [
-            {
-                  "id": "formation",
-                  "name_ko": "진형·병사 토큰",
-                  "description": "진형 카드로 병사 토큰을 생성하고, 토큰 보유 수에 따라 강화되는 공격 카드로 폭딜하는 아키타입. G001·G002·G004·G005·G006·G007·G008·G009·G010·G011·G012 중심.",
-                  "key_cards": [
-                        "G001",
-                        "G002",
-                        "G004",
-                        "G005",
-                        "G008",
-                        "G010"
-                  ]
-            },
-            {
-                  "id": "stamina_burst",
-                  "name_ko": "기력 폭딜",
-                  "description": "기력을 최대한 쌓아 기력 소비형 카드로 한 턴에 폭발적인 피해를 입히는 아키타입. G013·G014·G015·G016·G017·G018 중심.",
-                  "key_cards": [
-                        "G013",
-                        "G015",
-                        "G016",
-                        "G018"
-                  ]
-            },
-            {
-                  "id": "shield_strike",
-                  "name_ko": "방패·연타",
-                  "description": "방어도를 쌓으면서 연속 공격으로 안정적으로 처리하는 아키타입. G019·G020·G021·G022·G023·G024 중심.",
-                  "key_cards": [
-                        "G019",
-                        "G021",
-                        "G022",
-                        "G023"
-                  ]
-            }
-      ],
-      "cards": [
-            {
-                  "id": "G001",
-                  "name": {
-                        "ko": "진형 전환",
-                        "romanized": "Jinhyeong Jeonhwan",
-                        "en": "Formation Shift"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "token"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "병사 토큰 1개를 생성한다. 기력 2 획득. 병사 토큰: 피해를 1회 대신 받고 소멸. 소멸 시 기 1 회복.",
-                        "en": "Create 1 Soldier Token. Gain 2 Stamina. Soldier Token: absorbs 1 hit of damage and is destroyed. On destruction, recover 1 Qi."
-                  },
-                  "effect_upgraded": {
-                        "ko": "병사 토큰 2개를 생성한다. 기력 3 획득.",
-                        "en": "Create 2 Soldier Tokens. Gain 3 Stamina."
-                  },
-                  "flavor_text": {
-                        "ko": "한 발 앞에 병사를 세워 — 나를 향한 칼끝을 막아낸다.",
-                        "en": "Station a soldier one step ahead — to block the blade aimed at you."
-                  },
-                  "balance_rationale": "1코스트 토큰 생성. 1코스트로 피해 완전 무효화 + 기 회복은 강력하나, 무관 덱에서 진형 시너지 카드들과의 조합을 전제로 설계. 업그레이드 후 2토큰은 2코스트 카드 상당.",
-                  "sijo_position": "중장 첫 슬롯 [3] — 진형 준비 단계",
-                  "class_synergy": [
-                        "G002",
-                        "G004"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "tokens": 1,
-                        "stamina_gain": 2
-                  }
-            },
-            {
-                  "id": "G002",
-                  "name": {
-                        "ko": "돌격",
-                        "romanized": "Dolgyeok",
-                        "en": "Charge"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "formation"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "기력 2 소비. 적에게 10 피해를 입힌다. 병사 토큰이 1개 이상 있으면 피해를 5 추가로 입힌다.",
-                        "en": "Spend 2 Stamina. Deal 10 damage to an enemy. If you have 1 or more Soldier Tokens, deal 5 additional damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력 2 소비. 14 피해. 병사 토큰 보너스 피해 +7.",
-                        "en": "Spend 2 Stamina. Deal 14 damage. Soldier Token bonus +7."
-                  },
-                  "flavor_text": {
-                        "ko": "병사들을 앞세운 일제 돌격 — 진형이 살아있을 때 가장 강하다.",
-                        "en": "A unified charge with soldiers at the vanguard — strongest when the formation holds."
-                  },
-                  "balance_rationale": "2코스트 공격. 기본 10피해는 2코스트 기준 적정(ZER-116: 12→10 하향). 토큰 보너스 +5로 최대 15피해. 도약 콤보 시 최대 19피해(기존 21). G001과 1+2코스트 콤보(3기 소비). 진형 덱 핵심 피니셔.",
-                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "G001"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "damage": 10,
-                        "stamina_cost": 2
-                  }
-            },
-            {
-                  "id": "G003",
-                  "name": {
-                        "ko": "포위",
-                        "romanized": "Powi",
-                        "en": "Encirclement"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "skill",
-                  "subtypes": [
-                        "formation",
-                        "debuff"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "모든 적에게 포위됨(됨) 상태를 2턴 부여한다. 기력 1 획득. 포위됨: 공격 피해 25% 감소.",
-                        "en": "Apply Encircled status to ALL enemies for 2 turns. Gain 1 Stamina. Encircled: attack damage reduced by 25%."
-                  },
-                  "effect_upgraded": {
-                        "ko": "포위됨 지속 시간 3턴. 기력 2 획득.",
-                        "en": "Encircled duration 3 turns. Gain 2 Stamina."
-                  },
-                  "flavor_text": {
-                        "ko": "사방을 막으면 적은 힘을 잃는다 — 포위된 자는 싸우기 전에 이미 진다.",
-                        "en": "Block all sides and the enemy loses strength — the encircled are defeated before the fight begins."
-                  },
-                  "balance_rationale": "2코스트 광역 디버프. 적 전체의 피해를 2턴간 25% 감소. 다수 적 전투에서 극강. 약화(단일 25%, 1회)의 광역 지속형 버전.",
-                  "sijo_position": "중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "G004"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "stamina_gain": 1
-                  }
-            },
-            {
-                  "id": "G004",
-                  "name": {
-                        "ko": "학익진",
-                        "romanized": "Hagikjin",
-                        "en": "Crane Wing Formation"
-                  },
-                  "beat": 4,
-                  "cost": 3,
-                  "type": "attack",
-                  "subtypes": [
-                        "formation",
-                        "aoe"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "기력 3 소비. 모든 적에게 8 피해를 입힌다. 보유한 병사 토큰 1개당 모든 적에게 피해를 3 추가로 입힌다.",
-                        "en": "Spend 3 Stamina. Deal 8 damage to ALL enemies. For each Soldier Token you have, deal 3 additional damage to ALL enemies."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력 3 소비. 모든 적에게 11 피해. 토큰당 +4 추가 피해.",
-                        "en": "Spend 3 Stamina. Deal 11 damage to ALL enemies. +4 per token."
-                  },
-                  "flavor_text": {
-                        "ko": "학의 날개처럼 양익을 펼쳐 — 한 번의 진격으로 전장을 쓸어버린다.",
-                        "en": "Spread both wings like a crane — a single advance sweeps the entire battlefield."
-                  },
-                  "balance_rationale": "3코스트 광역 공격. 토큰 2개 시 14 AoE, 3개 시 17 AoE — 진형 빌드 피니셔. 시조 종장 완성 시 최대 28(2토큰 기준) AoE 폭발.",
-                  "sijo_position": "종장 둘째 슬롯 [4] — 진형 완성 피날레",
-                  "class_synergy": [
-                        "G001",
-                        "G003"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "damage": 8,
-                        "is_aoe": true,
-                        "stamina_cost": 3
-                  }
-            },
-            {
-                  "id": "G005",
-                  "name": {
-                        "ko": "천하무적진",
-                        "romanized": "Cheonha Mujeokjin",
-                        "en": "Invincible Formation"
-                  },
-                  "beat": 3,
-                  "cost": 3,
-                  "type": "skill",
-                  "subtypes": [
-                        "defense",
-                        "token"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "방어도 18을 획득한다. 병사 토큰 2개를 생성한다. 기력 2 획득. 이번 턴 병사 토큰 생성량이 2배가 된다.",
-                        "en": "Gain 18 Block. Create 2 Soldier Tokens. Gain 2 Stamina. Token creation is doubled this turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "방어도 24를 획득한다. 병사 토큰 3개를 생성한다. 기력 3 획득.",
-                        "en": "Gain 24 Block. Create 3 Soldier Tokens. Gain 3 Stamina."
-                  },
-                  "flavor_text": {
-                        "ko": "진형은 완벽하다 — 어떤 적도 이 철옹성을 뚫을 수 없다.",
-                        "en": "The formation is flawless — no enemy can breach this iron fortress."
-                  },
-                  "balance_rationale": "[ZER-56 조정] 기력 획득 3→2. 기존: 3코스트 사용 후 기력 3 획득 = 사실상 0코스트로 18방어도+2토큰 획득 — 과도. 조정 후: 순수 1기 비용 발생, 실질 가치 균형 회복.",
-                  "sijo_position": "종장 첫 슬롯 [3] — 방어 완성 피날레",
-                  "class_synergy": [
-                        "G001",
-                        "G004"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "block": 18,
-                        "tokens": 2,
-                        "stamina_gain": 2
-                  }
-            },
-            {
-                  "id": "G006",
-                  "name": {
-                        "ko": "보병 전진",
-                        "romanized": "Bobyeong Jeonjin",
-                        "en": "Infantry Advance"
-                  },
-                  "beat": 3,
-                  "cost": 0,
-                  "type": "skill",
-                  "subtypes": [
-                        "token"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "기력 2를 획득한다.",
-                        "en": "Gain 2 Stamina."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력 3을 획득한다.",
-                        "en": "Gain 3 Stamina."
-                  },
-                  "flavor_text": {
-                        "ko": "보병 하나씩 앞으로 — 작은 전진이 모여 대진형을 이룬다.",
-                        "en": "One soldier at a time, forward — small advances build into a grand formation."
-                  },
-                  "balance_rationale": "0코스트 기력 충전. 기공(도사 D001)의 무관 버전으로 기 대신 기력을 충전. 0코스트이므로 시조 슬롯을 소비하면서 기력 엔진 역할. 진형·기력 아키타입 모두에서 핵심 0코스트 자원 공급원. 덱 20장 기준 최대 2장 권장.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 기력 충전",
-                  "class_synergy": [
-                        "G002",
-                        "G010",
-                        "G014"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "stamina_gain": 2
-                  }
-            },
-            {
-                  "id": "G007",
-                  "name": {
-                        "ko": "복병",
-                        "romanized": "Bokbyeong",
-                        "en": "Ambush"
-                  },
-                  "beat": 4,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "token",
-                        "defense"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "병사 토큰 1개를 생성한다. 방어도 3을 획득한다.",
-                        "en": "Create 1 Soldier Token. Gain 3 Block."
-                  },
-                  "effect_upgraded": {
-                        "ko": "병사 토큰 1개를 생성한다. 방어도 5를 획득한다.",
-                        "en": "Create 1 Soldier Token. Gain 5 Block."
-                  },
-                  "flavor_text": {
-                        "ko": "매복한 병사는 적의 허를 찌른다 — 나타나기 전부터 전투는 이미 시작되었다.",
-                        "en": "An ambushed soldier strikes at the enemy's blind spot — the battle begins before they even appear."
-                  },
-                  "balance_rationale": "1코스트 토큰+방어. 진형 전환(G001, 토큰1+기력2)보다 기력이 없는 대신 즉각 방어도 3 제공. 방패·진형 혼합 빌드를 위한 유연한 1코스트 카드. [4] 음보로 G001과 슬롯 경쟁 없이 병용 가능.",
-                  "sijo_position": "초장·중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "G002",
-                        "G004"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "tokens": 1,
-                        "block": 3
-                  }
-            },
-            {
-                  "id": "G008",
-                  "name": {
-                        "ko": "삼군 배치",
-                        "romanized": "Samgun Baechii",
-                        "en": "Triple Army Deploy"
-                  },
-                  "beat": 3,
-                  "cost": 2,
-                  "type": "skill",
-                  "subtypes": [
-                        "token"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "병사 토큰 3개를 생성한다.",
-                        "en": "Create 3 Soldier Tokens."
-                  },
-                  "effect_upgraded": {
-                        "ko": "병사 토큰 4개를 생성한다.",
-                        "en": "Create 4 Soldier Tokens."
-                  },
-                  "flavor_text": {
-                        "ko": "전·후·측면 모두에 병사를 배치하니 — 어느 방향으로 공격해도 방패가 된다.",
-                        "en": "Deploy soldiers on front, rear, and flank — shields in every direction against any attack."
-                  },
-                  "balance_rationale": "2코스트 토큰 3개 생성. 순수 토큰 생성에 특화. 학익진(G004)에서 토큰 3개 = AoE +9, 즉 총 17 AoE 폭발 세팅. 기력을 얻지 않으므로 순수 진형 아키타입의 전용 투자 카드. 2코스트 기준 3토큰 = 향후 15~18피해 세팅 가치.",
-                  "sijo_position": "중장 첫 슬롯 [3] — 토큰 대량 생성",
-                  "class_synergy": [
-                        "G004",
-                        "G005"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "tokens": 3
-                  }
-            },
-            {
-                  "id": "G009",
-                  "name": {
-                        "ko": "진법 교본",
-                        "romanized": "Jinbeop Gyobon",
-                        "en": "Tactics Manual"
-                  },
-                  "beat": 4,
-                  "cost": 1,
-                  "type": "power",
-                  "subtypes": [
-                        "formation"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "이번 전투 동안, 진형 카드를 사용할 때마다 기력을 1 추가 획득한다.",
-                        "en": "For the rest of this combat, gain 1 additional Stamina whenever you play a formation card."
-                  },
-                  "effect_upgraded": {
-                        "ko": "이번 전투 동안, 진형 카드를 사용할 때마다 기력을 2 추가 획득한다.",
-                        "en": "For the rest of this combat, gain 2 additional Stamina per formation card."
-                  },
-                  "flavor_text": {
-                        "ko": "병법서를 꿰뚫으면 진형 하나하나가 살아 움직인다 — 지식이 기력이 된다.",
-                        "en": "Master the art of war and every formation comes alive — knowledge becomes stamina."
-                  },
-                  "balance_rationale": "1코스트 파워(영구 패시브). 진형 카드 시 기력 +1은 한 전투에서 진형 카드를 5장 이상 사용 시 G015보다 효율적. 진형+기력 하이브리드 빌드를 설계 가능하게 하는 연결 카드. 단독으로는 약하지만 덱 전체 시너지 극대화.",
-                  "sijo_position": "초장 둘째 슬롯 [4] — 초반 투자",
-                  "class_synergy": [
-                        "G001",
-                        "G006",
-                        "G007",
-                        "G008"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "stamina_per_formation": 1
-                  }
-            },
-            {
-                  "id": "G010",
-                  "name": {
-                        "ko": "철기 돌격",
-                        "romanized": "Cheolgi Dolgyeok",
-                        "en": "Cavalry Charge"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "formation"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "기력 3을 소비한다. 적에게 18 피해를 입힌다. 병사 토큰이 있으면 피해를 4 추가로 입힌다.",
-                        "en": "Spend 3 Stamina. Deal 18 damage to an enemy. If you have Soldier Tokens, deal 4 additional damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력 3을 소비한다. 23 피해. 토큰 보너스 +6.",
-                        "en": "Spend 3 Stamina. Deal 23 damage. Token bonus +6."
-                  },
-                  "flavor_text": {
-                        "ko": "철갑을 두른 기병대가 한 줄기 창처럼 적진을 관통한다.",
-                        "en": "Armored cavalry pierce through the enemy lines like a lance."
-                  },
-                  "balance_rationale": "2코스트 기력 소비형 강공격. 기력 3 소비 후 18피해는 2코스트 최강 수준. 돌격(G002, 기력2+12피해)보다 기력 1 더 필요하지만 피해 6 더 높음. 진형+기력 하이브리드 빌드의 핵심 피니셔. 병행 시 토큰 보너스로 최대 22피해.",
-                  "sijo_position": "종장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "G001",
-                        "G006",
-                        "G013"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "damage": 18,
-                        "stamina_cost": 3
-                  }
-            },
-            {
-                  "id": "G011",
-                  "name": {
-                        "ko": "연막",
-                        "romanized": "Yeonmak",
-                        "en": "Smoke Screen"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "defense"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "방어도 6을 획득한다. 다음 턴 시작 시 기력 2를 획득한다.",
-                        "en": "Gain 6 Block. Gain 2 Stamina at the start of next turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "방어도 8을 획득한다. 다음 턴 시작 시 기력 3을 획득한다.",
-                        "en": "Gain 8 Block. Gain 3 Stamina at the start of next turn."
-                  },
-                  "flavor_text": {
-                        "ko": "연막으로 전장을 가리면 — 적은 방향을 잃고 우리는 다음 진형을 준비한다.",
-                        "en": "Shroud the battlefield in smoke — the enemy loses direction while we prepare the next formation."
-                  },
-                  "balance_rationale": "1코스트 방어+지연 기력. 즉시 방어도 6(수호 5 대비 +1)과 다음 턴 기력 2 예약. 이번 턴 기력을 소비한 후에도 다음 턴 기력을 보장해 기력 소비형 빌드의 지속력 확보. 방패·기력 혼합 빌드 연결 카드.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "G010",
-                        "G013",
-                        "G014"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "block": 6,
-                        "stamina_gain_next_turn": 2
-                  }
-            },
-            {
-                  "id": "G012",
-                  "name": {
-                        "ko": "총통 사격",
-                        "romanized": "Chongtong Sagyeok",
-                        "en": "Cannon Barrage"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "aoe",
-                        "formation"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "모든 적에게 6 피해를 입힌다. 병사 토큰이 있으면 모든 적에게 피해를 3 추가로 입힌다.",
-                        "en": "Deal 6 damage to ALL enemies. If you have Soldier Tokens, deal 3 additional damage to ALL enemies."
-                  },
-                  "effect_upgraded": {
-                        "ko": "모든 적에게 8 피해를 입힌다. 토큰 보너스 +5.",
-                        "en": "Deal 8 damage to ALL enemies. Token bonus +5."
-                  },
-                  "flavor_text": {
-                        "ko": "전열에 세운 총통이 불을 뿜으면 — 적의 진형이 한순간에 무너진다.",
-                        "en": "When the cannons at the front line open fire — the enemy formation crumbles in an instant."
-                  },
-                  "balance_rationale": "2코스트 AoE+토큰 조건. 학익진(G004, 3코스트 AoE8+토큰배수)보다 저렴하지만 단순. 토큰 없이도 6 AoE로 실용적. 진형 아키타입의 중간 가격대 광역 카드 공백 메움.",
-                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "G001",
-                        "G008"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "damage": 6,
-                        "is_aoe": true
-                  }
-            },
-            {
-                  "id": "G013",
-                  "name": {
-                        "ko": "기합",
-                        "romanized": "Gihap",
-                        "en": "Spirit Shout"
-                  },
-                  "beat": 3,
-                  "cost": 0,
-                  "type": "skill",
-                  "subtypes": [
-                        "stamina"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "기력 3을 획득한다.",
-                        "en": "Gain 3 Stamina."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력 4를 획득한다.",
-                        "en": "Gain 4 Stamina."
-                  },
-                  "flavor_text": {
-                        "ko": "단전에서 솟구치는 기합 한 소리 — 전신에 기력이 솟아난다.",
-                        "en": "A battle cry from the core — stamina surges through every limb."
-                  },
-                  "balance_rationale": "0코스트 기력 충전. 기공(D001)의 무관 기력 버전. 기력 3은 기력 소비형 카드(G010 기력3, G016 기력전소)의 연료. 0코스트로 시조 슬롯을 차지하지만 기 소비 없음. 기력 폭딜 아키타입의 필수 0코스트 충전 카드.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3] — 무료 기력 충전",
-                  "class_synergy": [
-                        "G010",
-                        "G014",
-                        "G016",
-                        "G018"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "stamina_gain": 3
-                  }
-            },
-            {
-                  "id": "G014",
-                  "name": {
-                        "ko": "역전의 기세",
-                        "romanized": "Yeokjeon Gise",
-                        "en": "Momentum"
-                  },
-                  "beat": 4,
-                  "cost": 1,
-                  "type": "attack",
-                  "subtypes": [
-                        "stamina"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "현재 기력 1당 피해 2를 입힌다 (최소 6, 기력 소비하지 않음).",
-                        "en": "Deal 2 damage per current Stamina (minimum 6, does not consume Stamina)."
-                  },
-                  "effect_upgraded": {
-                        "ko": "현재 기력 1당 피해 3을 입힌다 (최소 8, 기력 소비하지 않음).",
-                        "en": "Deal 3 damage per current Stamina (minimum 8, does not consume Stamina)."
-                  },
-                  "flavor_text": {
-                        "ko": "불리한 상황일수록 더 강해지는 무관의 기세 — 기력이 남아 있는 한 포기란 없다.",
-                        "en": "The more dire the battle, the stronger the officer's drive — as long as stamina remains, there is no surrender."
-                  },
-                  "balance_rationale": "1코스트 기력 참조형 공격(소비 없음). 기력 4 시 8피해, 기력 8 시 16피해. 기력을 소비하지 않으므로 기력 소비 카드와 경쟁하지 않음. 기력 폭딜 아키타입에서 기력이 높을수록 강력해지는 스케일링 카드.",
-                  "sijo_position": "초장·중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "G013",
-                        "G015",
-                        "G006"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "damage_per_stamina": 2,
-                        "min_damage": 6
-                  }
-            },
-            {
-                  "id": "G015",
-                  "name": {
-                        "ko": "불굴의 의지",
-                        "romanized": "Bulgul Euiji",
-                        "en": "Indomitable Will"
-                  },
-                  "beat": 3,
-                  "cost": 2,
-                  "type": "power",
-                  "subtypes": [
-                        "stamina"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "기력 최대치를 5 증가시킨다 (이번 전투 영구). 기력 3을 획득한다.",
-                        "en": "Increase Stamina maximum by 5 (permanent for this combat). Gain 3 Stamina."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력 최대치를 7 증가시킨다 (이번 전투 영구). 기력 5를 획득한다.",
-                        "en": "Increase Stamina maximum by 7 (permanent). Gain 5 Stamina."
-                  },
-                  "flavor_text": {
-                        "ko": "전장에서 단련된 의지는 기력의 한계를 부순다 — 더 많이, 더 강하게.",
-                        "en": "A will forged on the battlefield shatters the limits of stamina — more, and stronger."
-                  },
-                  "balance_rationale": "2코스트 기력 최대치 확장+즉시 충전. 기본 최대치 10에서 15로 확장, 기력 소비형 카드들의 연속 사용 가능. 전투 중반 설치 카드로서 2코스트 투자 가치가 높음. 기력 폭딜 빌드의 핵심 파워.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3] — 중반 투자",
-                  "class_synergy": [
-                        "G010",
-                        "G016",
-                        "G018"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "stamina_max_increase": 5,
-                        "stamina_gain": 3
-                  }
-            },
-            {
-                  "id": "G016",
-                  "name": {
-                        "ko": "마지막 도박",
-                        "romanized": "Majimak Tobak",
-                        "en": "Final Gambit"
-                  },
-                  "beat": 4,
-                  "cost": 0,
-                  "type": "attack",
-                  "subtypes": [
-                        "stamina"
-                  ],
-                  "rarity": 4,
-                  "rarity_stars": "★★★★☆",
-                  "effect": {
-                        "ko": "기력을 전부 소비한다. 소비한 기력 1당 적에게 2 피해를 입힌다 (최소 0).",
-                        "en": "Consume all Stamina. Deal 2 damage per Stamina consumed (minimum 0)."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력을 전부 소비한다. 소비한 기력 1당 3 피해를 입힌다.",
-                        "en": "Consume all Stamina. Deal 3 damage per Stamina consumed."
-                  },
-                  "flavor_text": {
-                        "ko": "남은 모든 기력을 한 방에 쏟아붓는다 — 이기거나 지거나, 후회는 없다.",
-                        "en": "Pour every last drop of stamina into one strike — win or lose, no regrets."
-                  },
-                  "balance_rationale": "0코스트 기력 전소 공격. 상소(W003, 3코스트 학식 전소)의 무관 버전. 0코스트이므로 마지막 카드로 사용 시 강력. 기력 6 시 18피해, 기력 10 시 30피해. 기력 폭딜 아키타입의 궁극 피니셔. 단, 기력이 남아야 해 전술적 기력 관리 필요.",
-                  "sijo_position": "종장 둘째 슬롯 [4] — 기력 전소 피날레",
-                  "class_synergy": [
-                        "G013",
-                        "G015"
-                  ],
-                  "upgrade_cost": 100,
-                  "values": {
-                        "damage_per_stamina": 2,
-                        "consume_all_stamina": true
-                  }
-            },
-            {
-                  "id": "G017",
-                  "name": {
-                        "ko": "단신 돌격",
-                        "romanized": "Dansin Dolgyeok",
-                        "en": "Solo Charge"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "attack",
-                  "subtypes": [
-                        "stamina"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "적에게 6 피해를 입힌다. 기력 2를 소비하면 피해가 4 증가한다.",
-                        "en": "Deal 6 damage to an enemy. Optionally spend 2 Stamina to deal 4 additional damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "적에게 8 피해를 입힌다. 기력 2 소비 시 피해 +6.",
-                        "en": "Deal 8 damage. Spend 2 Stamina for +6 additional damage."
-                  },
-                  "flavor_text": {
-                        "ko": "혼자서도 적진을 뚫는다 — 기력만 있다면 열 명의 장수보다 강하다.",
-                        "en": "Alone, you breach the enemy lines — with stamina to spare, stronger than ten generals."
-                  },
-                  "balance_rationale": "1코스트 선택적 기력 소비 공격. 기력 없으면 직언과 동일(6피해). 기력 2 소비 시 10피해 — 2코스트 기준 적정. 기력 소비 여부를 선택할 수 있어 유연. 기력 아키타입과 표준 덱 모두에서 활용 가능.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "G013",
-                        "G006"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "damage": 6,
-                        "optional_stamina_cost": 2,
-                        "bonus_damage": 4
-                  }
-            },
-            {
-                  "id": "G018",
-                  "name": {
-                        "ko": "무쌍",
-                        "romanized": "Mussang",
-                        "en": "Peerless"
-                  },
-                  "beat": 4,
-                  "cost": 3,
-                  "type": "attack",
-                  "subtypes": [
-                        "stamina"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "적에게 20 피해를 입힌다. 기력 1당 피해를 3 추가로 입힌다 (기력 전부 소비).",
-                        "en": "Deal 20 damage to an enemy. Deal 3 additional damage per Stamina (consumes all Stamina)."
-                  },
-                  "effect_upgraded": {
-                        "ko": "25 피해. 기력 1당 +4 추가 피해.",
-                        "en": "Deal 25 damage. +4 additional damage per Stamina."
-                  },
-                  "flavor_text": {
-                        "ko": "세상에 둘도 없는 일격 — 기력을 남기지 말고 쏟아부어라.",
-                        "en": "A strike without equal in this world — hold nothing back, spend every ounce of stamina."
-                  },
-                  "balance_rationale": "3코스트 기력 전소+기본 피해 강공격. 기력 0: 20피해, 기력 5: 40피해, 기력 10: 60피해. 태산붕(D007, 3코스트 40피해 사이드이펙트)의 무관 버전. 기력을 많이 쌓을수록 폭발적. 기력 폭딜 빌드의 최종 피니셔.",
-                  "sijo_position": "종장 둘째 슬롯 [4] — 기력 폭딜 피날레",
-                  "class_synergy": [
-                        "G013",
-                        "G015",
-                        "G016"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "damage": 20,
-                        "bonus_damage_per_stamina": 3,
-                        "consume_all_stamina": true
-                  }
-            },
-            {
-                  "id": "G019",
-                  "name": {
-                        "ko": "수비 대형",
-                        "romanized": "Subi Daehyeong",
-                        "en": "Defensive Formation"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "defense",
-                  "subtypes": [],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "방어도 8을 획득한다.",
-                        "en": "Gain 8 Block."
-                  },
-                  "effect_upgraded": {
-                        "ko": "방어도 11을 획득한다.",
-                        "en": "Gain 11 Block."
-                  },
-                  "flavor_text": {
-                        "ko": "방패를 앞세운 대형은 어떤 공격도 막아낸다 — 기본에 충실한 것이 최선.",
-                        "en": "A formation with shields at the front stops any attack — mastering the basics is best."
-                  },
-                  "balance_rationale": "1코스트 순수 방어. 수호(5방어도)보다 3 높은 8방어도로 방패 아키타입 주력. 부가 효과 없이 방어도만 높아 단순하지만 안정적. 방패 덱의 핵심 기본 카드. 업그레이드 시 11방어도로 2코스트 방어 카드에 준하는 수준.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "upgrade_cost": 50,
-                  "values": {
-                        "block": 8
-                  }
-            },
-            {
-                  "id": "G020",
-                  "name": {
-                        "ko": "찌르기",
-                        "romanized": "Jjireureogi",
-                        "en": "Thrust"
-                  },
-                  "beat": 4,
-                  "cost": 1,
-                  "type": "attack",
-                  "subtypes": [],
-                  "rarity": 1,
-                  "rarity_stars": "★☆☆☆☆",
-                  "effect": {
-                        "ko": "적에게 6 피해를 입힌다.",
-                        "en": "Deal 6 damage to an enemy."
-                  },
-                  "effect_upgraded": {
-                        "ko": "적에게 9 피해를 입힌다.",
-                        "en": "Deal 9 damage to an enemy."
-                  },
-                  "flavor_text": {
-                        "ko": "최단 거리로 적의 급소를 찌른다 — 복잡한 진법이 필요 없는 무관의 기본기.",
-                        "en": "The shortest distance to the enemy's vital point — no complex tactics needed for an officer's basic art."
-                  },
-                  "balance_rationale": "1코스트 기본 공격. 베기·직언·수결(각 6피해)과 동일한 효율. 무관 스타터 덱에서 직언 역할의 클래스별 버전. [4] 음보로 베기([3] 음보로 추정)와 시조 슬롯 차별화.",
-                  "sijo_position": "초장·중장 둘째 슬롯 [4]",
-                  "upgrade_cost": 50,
-                  "values": {
-                        "damage": 6
-                  }
-            },
-            {
-                  "id": "G021",
-                  "name": {
-                        "ko": "반격",
-                        "romanized": "Bangyeok",
-                        "en": "Retaliation"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "defense",
-                  "subtypes": [
-                        "reaction"
-                  ],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "방어도 5를 획득한다. 다음으로 받는 피해 1회에 대해 3 피해로 반격한다.",
-                        "en": "Gain 5 Block. Retaliate for 3 damage the next time you take damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "방어도 7을 획득한다. 반격 피해 5.",
-                        "en": "Gain 7 Block. Retaliate for 5 damage."
-                  },
-                  "flavor_text": {
-                        "ko": "막는 동시에 치는 것 — 방어가 곧 공격이 된다.",
-                        "en": "Block and strike at once — defense itself becomes the attack."
-                  },
-                  "balance_rationale": "1코스트 방어+반격. 수호(5방어도)와 동일한 방어도에 반격 3 추가. 반격 3은 소박하지만 방어 중 지속적으로 피해를 입히는 방패 아키타입의 특색 카드. 연타형 적에게 특히 유효.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "G019",
-                        "G023"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "block": 5,
-                        "retaliate_damage": 3
-                  }
-            },
-            {
-                  "id": "G022",
-                  "name": {
-                        "ko": "연속 베기",
-                        "romanized": "Yeonsok Baegi",
-                        "en": "Repeated Slash"
-                  },
-                  "beat": 4,
-                  "cost": 1,
-                  "type": "attack",
-                  "subtypes": [
-                        "multi_hit"
-                  ],
-                  "rarity": 2,
-                  "rarity_stars": "★★☆☆☆",
-                  "effect": {
-                        "ko": "적에게 4 피해를 2회 입힌다 (총 8 피해).",
-                        "en": "Deal 4 damage to an enemy 2 times (8 total)."
-                  },
-                  "effect_upgraded": {
-                        "ko": "4 피해를 3회 입힌다 (총 12 피해).",
-                        "en": "Deal 4 damage 3 times (12 total)."
-                  },
-                  "flavor_text": {
-                        "ko": "한 번으로 부족하면 두 번, 두 번도 부족하면 더 — 연속된 칼끝이 방어를 무너뜨린다.",
-                        "en": "If one strike is not enough, strike twice, if twice is not enough, strike more — relentless blades break any defense."
-                  },
-                  "balance_rationale": "1코스트 다중타격. 직언(6피해, 1타)보다 총피해 2 더 높지만 2타 분산. 독 상태의 적이나 반격 유물 활성화에 유리. 연타 특성으로 방어도를 분산 돌파하는 전술 활용 가능.",
-                  "sijo_position": "초장·중장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "G021"
-                  ],
-                  "upgrade_cost": 50,
-                  "values": {
-                        "damage_per_hit": 4,
-                        "hits": 2
-                  }
-            },
-            {
-                  "id": "G023",
-                  "name": {
-                        "ko": "철벽 방어",
-                        "romanized": "Cheolbyeok Bangeo",
-                        "en": "Iron Wall Defense"
-                  },
-                  "beat": 3,
-                  "cost": 2,
-                  "type": "defense",
-                  "subtypes": [],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "방어도 14를 획득한다.",
-                        "en": "Gain 14 Block."
-                  },
-                  "effect_upgraded": {
-                        "ko": "방어도 18을 획득한다.",
-                        "en": "Gain 18 Block."
-                  },
-                  "flavor_text": {
-                        "ko": "철옹성처럼 굳건한 방어 — 어떤 공격도 이 철벽을 부수지 못한다.",
-                        "en": "An iron wall, unyielding — no attack can break through this bastion."
-                  },
-                  "balance_rationale": "2코스트 순수 방어 최고치. 예제(W005, 2코스트 10방어+학식2)보다 방어도 4 높지만 부가 효과 없음. 방패 아키타입의 안정적인 2코스트 방어 주력 카드. 보스전처럼 피해를 최소화해야 할 때 특히 가치.",
-                  "sijo_position": "초장·중장 첫 슬롯 [3]",
-                  "class_synergy": [
-                        "G019",
-                        "G021"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "block": 14
-                  }
-            },
-            {
-                  "id": "G024",
-                  "name": {
-                        "ko": "격파",
-                        "romanized": "Gyeokpa",
-                        "en": "Shatter"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [],
-                  "rarity": 3,
-                  "rarity_stars": "★★★☆☆",
-                  "effect": {
-                        "ko": "적에게 12 피해를 입힌다. 대상이 취약 상태라면 피해가 8 추가된다.",
-                        "en": "Deal 12 damage to an enemy. If the target is Vulnerable, deal 8 additional damage."
-                  },
-                  "effect_upgraded": {
-                        "ko": "16 피해. 취약 상태 추가 피해 +12.",
-                        "en": "Deal 16 damage. Vulnerable bonus +12."
-                  },
-                  "flavor_text": {
-                        "ko": "틈이 보이면 모든 힘을 그 한 점에 집중시킨다 — 열린 곳에 전력을 다해 쏟아붓는다.",
-                        "en": "When you see an opening, concentrate all your force on that single point — pour everything into the gap."
-                  },
-                  "balance_rationale": "2코스트 조건부 강공격. 기본 12피해는 2코스트 적정. 취약 상태 적에게 20피해로 탄핵(W002)+격파 콤보나 포위(G003) 후 공격 극대화. 범용성을 가지면서 시너지 빌드에서도 강한 중간 카드.",
-                  "sijo_position": "중장·종장 둘째 슬롯 [4]",
-                  "class_synergy": [
-                        "G003"
-                  ],
-                  "upgrade_cost": 75,
-                  "values": {
-                        "damage": 12,
-                        "bonus_on_vulnerable": 8
-                  }
-            },
-            {
-                  "id": "G025",
-                  "name": {
-                        "ko": "백전노장",
-                        "romanized": "Baekjeon Nojang",
-                        "en": "Battle-Hardened Veteran"
-                  },
-                  "beat": 3,
-                  "cost": 3,
-                  "type": "power",
-                  "subtypes": [
-                        "token"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "기력 최대치를 3 증가시킨다. 이번 전투 동안, 병사 토큰이 소멸할 때마다 카드 1장을 드로우한다.",
-                        "en": "Increase Stamina maximum by 3. For the rest of this combat, draw 1 card whenever a Soldier Token is destroyed."
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력 최대치를 5 증가시킨다. 토큰 소멸 시 카드 1장 드로우 + 기력 1 추가 획득.",
-                        "en": "Increase Stamina maximum by 5. On Token destruction, draw 1 card + gain 1 additional Stamina."
-                  },
-                  "flavor_text": {
-                        "ko": "백 번의 전투를 살아남은 노장 — 병사들의 희생이 더 강한 힘을 만든다.",
-                        "en": "A veteran of a hundred battles — the sacrifice of soldiers forges even greater strength."
-                  },
-                  "balance_rationale": "3코스트 파워. 기력 최대치 확장(진형+기력 하이브리드 지원) + 토큰 소멸 시 드로우(진형 아키타입 덱 가속). 두 아키타입을 동시에 지원하는 고가치 파워 카드. 토큰 3개 소멸 시 드로우 3 = 3코스트 축지법 수준의 드로우 가치.",
-                  "sijo_position": "종장 첫 슬롯 [3] — 후반 파워업",
-                  "class_synergy": [
-                        "G001",
-                        "G008",
-                        "G013",
-                        "G015"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "stamina_max_increase": 3,
-                        "draw_on_token_death": 1
-                  }
-            },
-            {
-                  "id": "G026",
-                  "name": {
-                        "ko": "천마무쌍",
-                        "romanized": "Cheonma Musang",
-                        "en": "Peerless Warhorse Strike"
-                  },
-                  "beat": 4,
-                  "cost": 2,
-                  "type": "attack",
-                  "subtypes": [
-                        "stamina_burst"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "기력을 전부 소비한다. 소비한 기력당 8 피해를 입힌다. (최소 16, 기력 10이면 80 피해!)",
-                        "en": "Consume ALL Stamina. Deal 8 damage per Stamina consumed. (Minimum 16; with 10 Stamina: 80 damage!)"
-                  },
-                  "effect_upgraded": {
-                        "ko": "기력을 전부 소비한다. 소비한 기력당 10 피해를 입힌다. (최소 20)",
-                        "en": "Consume ALL Stamina. Deal 10 damage per Stamina consumed. (Minimum 20)"
-                  },
-                  "flavor_text": {
-                        "ko": "기력이 극에 달하면 — 천하를 가르는 한 방이 나온다.",
-                        "en": "When stamina reaches its peak — a single blow cleaves the heavens."
-                  },
-                  "balance_rationale": "기력 폭딜 빌드의 최종 카드. 기력 10 보유 시 80 피해로 STS Bludgeon(32)·Whirlwind급. 기력 소비형이라 고기력 유지가 선결조건 — 빌드 강요 기능. 최소 피해 16은 3코스트 기준 적정.",
-                  "sijo_position": "종장 둘째 슬롯 [5] — 기력 절정 마무리",
-                  "class_synergy": [
-                        "G013",
-                        "G015",
-                        "G016",
-                        "G018"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "damage_per_stamina": 8,
-                        "consume_all_stamina": true,
-                        "min_damage": 16
-                  }
-            },
-            {
-                  "id": "G027",
-                  "name": {
-                        "ko": "철벽대진",
-                        "romanized": "Cheolbyeok Daejin",
-                        "en": "Iron Wall Grand Formation"
-                  },
-                  "beat": 3,
-                  "cost": 1,
-                  "type": "skill",
-                  "subtypes": [
-                        "defense",
-                        "token"
-                  ],
-                  "rarity": 5,
-                  "rarity_stars": "★★★★★",
-                  "effect": {
-                        "ko": "병사 토큰 3개를 생성한다. 기력 3을 획득한다. 이번 턴 토큰 생성량이 2배가 된다.",
-                        "en": "Create 3 Soldier Tokens. Gain 3 Stamina. Token generation is doubled this turn."
-                  },
-                  "effect_upgraded": {
-                        "ko": "병사 토큰 4개 생성. 기력 4 획득. 이번 턴 토큰 생성량 2배.",
-                        "en": "Create 4 Soldier Tokens. Gain 4 Stamina. Token generation doubled this turn."
-                  },
-                  "flavor_text": {
-                        "ko": "진형을 완성하면 — 병사들이 쏟아져 나오고 기력이 솟구친다.",
-                        "en": "When the formation is complete — soldiers pour forth and stamina surges."
-                  },
-                  "balance_rationale": "1코스트로 토큰 3+기력 3+토큰 2배. 기존 토큰 생성 카드(G001 토큰1, G004 AoE요구)보다 강력. 진형·기력 빌드 융합 카드. 다음 G013(기력→피해)나 G026(기력 전소)과 연계 시 폭발적.",
-                  "sijo_position": "초장 첫 슬롯 [3] — 진형 빌드 오프너",
-                  "class_synergy": [
-                        "G013",
-                        "G026",
-                        "G001",
-                        "G005"
-                  ],
-                  "upgrade_cost": 150,
-                  "values": {
-                        "tokens": 3,
-                        "stamina_gain": 3,
-                        "token_double": true
-                  }
-            }
-      ],
-      "status_conditions_defined": [
-            {
-                  "id": "포위됨",
-                  "ko": "포위됨",
-                  "en": "Surrounded",
-                  "description": "이 상태의 적은 공격 피해가 25% 감소한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
-                  "duration_type": "turns",
-                  "visual_note": "적 캐릭터 주변에 포위 링 이펙트"
-            },
-            {
-                  "id": "병사_토큰",
-                  "ko": "병사 토큰",
-                  "en": "Soldier Token",
-                  "description": "플레이어 대신 피해를 1회 받고 소멸. 소멸 시 기 1 회복. 중첩 가능 — 각 토큰이 순서대로 피해를 흡수.",
-                  "duration_type": "hit_based",
-                  "visual_note": "플레이어 옆에 소형 병사 토큰 아이콘 표시"
-            }
+  "version": "0.1",
+  "type": "card_pool",
+  "class": "mugwan",
+  "class_ko": "무관",
+  "category": "formation",
+  "description": "무관 전용 카드 풀. 진형 조작과 병사 토큰을 활용하는 군사형 직업. 총 25장 — 진형·토큰 아키타입, 기력 폭딜 아키타입, 방패·연타 아키타입. G026·G027 전설 카드 2종 추가 (ZER-214 재미 개선).",
+  "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
+  "archetypes": [
+    {
+      "id": "formation",
+      "name_ko": "진형·병사 토큰",
+      "description": "진형 카드로 병사 토큰을 생성하고, 토큰 보유 수에 따라 강화되는 공격 카드로 폭딜하는 아키타입. G001·G002·G004·G005·G006·G007·G008·G009·G010·G011·G012 중심.",
+      "key_cards": [
+        "G001",
+        "G002",
+        "G004",
+        "G005",
+        "G008",
+        "G010"
       ]
+    },
+    {
+      "id": "stamina_burst",
+      "name_ko": "기력 폭딜",
+      "description": "기력을 최대한 쌓아 기력 소비형 카드로 한 턴에 폭발적인 피해를 입히는 아키타입. G013·G014·G015·G016·G017·G018 중심.",
+      "key_cards": [
+        "G013",
+        "G015",
+        "G016",
+        "G018"
+      ]
+    },
+    {
+      "id": "shield_strike",
+      "name_ko": "방패·연타",
+      "description": "방어도를 쌓으면서 연속 공격으로 안정적으로 처리하는 아키타입. G019·G020·G021·G022·G023·G024 중심.",
+      "key_cards": [
+        "G019",
+        "G021",
+        "G022",
+        "G023"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "G001",
+      "name": {
+        "ko": "진형 전환",
+        "romanized": "Jinhyeong Jeonhwan",
+        "en": "Formation Shift"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "token"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "병사 토큰 1개를 생성한다. 기력 2 획득. 병사 토큰: 피해를 1회 대신 받고 소멸. 소멸 시 기 1 회복.",
+        "en": "Create 1 Soldier Token. Gain 2 Stamina. Soldier Token: absorbs 1 hit of damage and is destroyed. On destruction, recover 1 Qi."
+      },
+      "effect_upgraded": {
+        "ko": "병사 토큰 2개를 생성한다. 기력 3 획득.",
+        "en": "Create 2 Soldier Tokens. Gain 3 Stamina."
+      },
+      "flavor_text": {
+        "ko": "한 발 앞에 병사를 세워 — 나를 향한 칼끝을 막아낸다.",
+        "en": "Station a soldier one step ahead — to block the blade aimed at you."
+      },
+      "balance_rationale": "1코스트 토큰 생성. 1코스트로 피해 완전 무효화 + 기 회복은 강력하나, 무관 덱에서 진형 시너지 카드들과의 조합을 전제로 설계. 업그레이드 후 2토큰은 2코스트 카드 상당.",
+      "class_synergy": [
+        "G002",
+        "G004"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "tokens": 1,
+        "stamina_gain": 2
+      }
+    },
+    {
+      "id": "G002",
+      "name": {
+        "ko": "돌격",
+        "romanized": "Dolgyeok",
+        "en": "Charge"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "formation"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "기력 2 소비. 적에게 10 피해를 입힌다. 병사 토큰이 1개 이상 있으면 피해를 5 추가로 입힌다.",
+        "en": "Spend 2 Stamina. Deal 10 damage to an enemy. If you have 1 or more Soldier Tokens, deal 5 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "기력 2 소비. 14 피해. 병사 토큰 보너스 피해 +7.",
+        "en": "Spend 2 Stamina. Deal 14 damage. Soldier Token bonus +7."
+      },
+      "flavor_text": {
+        "ko": "병사들을 앞세운 일제 돌격 — 진형이 살아있을 때 가장 강하다.",
+        "en": "A unified charge with soldiers at the vanguard — strongest when the formation holds."
+      },
+      "balance_rationale": "2코스트 공격. 기본 10피해는 2코스트 기준 적정(ZER-116: 12→10 하향). 토큰 보너스 +5로 최대 15피해. 도약 콤보 시 최대 19피해(기존 21). G001과 1+2코스트 콤보(3기 소비). 진형 덱 핵심 피니셔.",
+      "class_synergy": [
+        "G001"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "damage": 10,
+        "stamina_cost": 2
+      }
+    },
+    {
+      "id": "G003",
+      "name": {
+        "ko": "포위",
+        "romanized": "Powi",
+        "en": "Encirclement"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "skill",
+      "subtypes": [
+        "formation",
+        "debuff"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "모든 적에게 포위됨(됨) 상태를 2턴 부여한다. 기력 1 획득. 포위됨: 공격 피해 25% 감소.",
+        "en": "Apply Encircled status to ALL enemies for 2 turns. Gain 1 Stamina. Encircled: attack damage reduced by 25%."
+      },
+      "effect_upgraded": {
+        "ko": "포위됨 지속 시간 3턴. 기력 2 획득.",
+        "en": "Encircled duration 3 turns. Gain 2 Stamina."
+      },
+      "flavor_text": {
+        "ko": "사방을 막으면 적은 힘을 잃는다 — 포위된 자는 싸우기 전에 이미 진다.",
+        "en": "Block all sides and the enemy loses strength — the encircled are defeated before the fight begins."
+      },
+      "balance_rationale": "2코스트 광역 디버프. 적 전체의 피해를 2턴간 25% 감소. 다수 적 전투에서 극강. 약화(단일 25%, 1회)의 광역 지속형 버전.",
+      "class_synergy": [
+        "G004"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "stamina_gain": 1
+      }
+    },
+    {
+      "id": "G004",
+      "name": {
+        "ko": "학익진",
+        "romanized": "Hagikjin",
+        "en": "Crane Wing Formation"
+      },
+      "beat": 4,
+      "cost": 3,
+      "type": "attack",
+      "subtypes": [
+        "formation",
+        "aoe"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "기력 3 소비. 모든 적에게 8 피해를 입힌다. 보유한 병사 토큰 1개당 모든 적에게 피해를 3 추가로 입힌다.",
+        "en": "Spend 3 Stamina. Deal 8 damage to ALL enemies. For each Soldier Token you have, deal 3 additional damage to ALL enemies."
+      },
+      "effect_upgraded": {
+        "ko": "기력 3 소비. 모든 적에게 11 피해. 토큰당 +4 추가 피해.",
+        "en": "Spend 3 Stamina. Deal 11 damage to ALL enemies. +4 per token."
+      },
+      "flavor_text": {
+        "ko": "학의 날개처럼 양익을 펼쳐 — 한 번의 진격으로 전장을 쓸어버린다.",
+        "en": "Spread both wings like a crane — a single advance sweeps the entire battlefield."
+      },
+      "balance_rationale": "3코스트 광역 공격. 토큰 2개 시 14 AoE, 3개 시 17 AoE — 진형 빌드 피니셔. 시조 종장 완성 시 최대 28(2토큰 기준) AoE 폭발.",
+      "class_synergy": [
+        "G001",
+        "G003"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage": 8,
+        "is_aoe": true,
+        "stamina_cost": 3
+      }
+    },
+    {
+      "id": "G005",
+      "name": {
+        "ko": "천하무적진",
+        "romanized": "Cheonha Mujeokjin",
+        "en": "Invincible Formation"
+      },
+      "beat": 3,
+      "cost": 3,
+      "type": "skill",
+      "subtypes": [
+        "defense",
+        "token"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "방어도 18을 획득한다. 병사 토큰 2개를 생성한다. 기력 2 획득. 이번 턴 병사 토큰 생성량이 2배가 된다.",
+        "en": "Gain 18 Block. Create 2 Soldier Tokens. Gain 2 Stamina. Token creation is doubled this turn."
+      },
+      "effect_upgraded": {
+        "ko": "방어도 24를 획득한다. 병사 토큰 3개를 생성한다. 기력 3 획득.",
+        "en": "Gain 24 Block. Create 3 Soldier Tokens. Gain 3 Stamina."
+      },
+      "flavor_text": {
+        "ko": "진형은 완벽하다 — 어떤 적도 이 철옹성을 뚫을 수 없다.",
+        "en": "The formation is flawless — no enemy can breach this iron fortress."
+      },
+      "balance_rationale": "[ZER-56 조정] 기력 획득 3→2. 기존: 3코스트 사용 후 기력 3 획득 = 사실상 0코스트로 18방어도+2토큰 획득 — 과도. 조정 후: 순수 1기 비용 발생, 실질 가치 균형 회복.",
+      "class_synergy": [
+        "G001",
+        "G004"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "block": 18,
+        "tokens": 2,
+        "stamina_gain": 2
+      }
+    },
+    {
+      "id": "G006",
+      "name": {
+        "ko": "보병 전진",
+        "romanized": "Bobyeong Jeonjin",
+        "en": "Infantry Advance"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "skill",
+      "subtypes": [
+        "token"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "기력 2를 획득한다.",
+        "en": "Gain 2 Stamina."
+      },
+      "effect_upgraded": {
+        "ko": "기력 3을 획득한다.",
+        "en": "Gain 3 Stamina."
+      },
+      "flavor_text": {
+        "ko": "보병 하나씩 앞으로 — 작은 전진이 모여 대진형을 이룬다.",
+        "en": "One soldier at a time, forward — small advances build into a grand formation."
+      },
+      "balance_rationale": "0코스트 기력 충전. 기공(도사 D001)의 무관 버전으로 기 대신 기력을 충전. 0코스트이므로 시조 슬롯을 소비하면서 기력 엔진 역할. 진형·기력 아키타입 모두에서 핵심 0코스트 자원 공급원. 덱 20장 기준 최대 2장 권장.",
+      "class_synergy": [
+        "G002",
+        "G010",
+        "G014"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "stamina_gain": 2
+      }
+    },
+    {
+      "id": "G007",
+      "name": {
+        "ko": "복병",
+        "romanized": "Bokbyeong",
+        "en": "Ambush"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "token",
+        "defense"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "병사 토큰 1개를 생성한다. 방어도 3을 획득한다.",
+        "en": "Create 1 Soldier Token. Gain 3 Block."
+      },
+      "effect_upgraded": {
+        "ko": "병사 토큰 1개를 생성한다. 방어도 5를 획득한다.",
+        "en": "Create 1 Soldier Token. Gain 5 Block."
+      },
+      "flavor_text": {
+        "ko": "매복한 병사는 적의 허를 찌른다 — 나타나기 전부터 전투는 이미 시작되었다.",
+        "en": "An ambushed soldier strikes at the enemy's blind spot — the battle begins before they even appear."
+      },
+      "balance_rationale": "1코스트 토큰+방어. 진형 전환(G001, 토큰1+기력2)보다 기력이 없는 대신 즉각 방어도 3 제공. 방패·진형 혼합 빌드를 위한 유연한 1코스트 카드. [4] 음보로 G001과 슬롯 경쟁 없이 병용 가능.",
+      "class_synergy": [
+        "G002",
+        "G004"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "tokens": 1,
+        "block": 3
+      }
+    },
+    {
+      "id": "G008",
+      "name": {
+        "ko": "삼군 배치",
+        "romanized": "Samgun Baechii",
+        "en": "Triple Army Deploy"
+      },
+      "beat": 3,
+      "cost": 2,
+      "type": "skill",
+      "subtypes": [
+        "token"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "병사 토큰 3개를 생성한다.",
+        "en": "Create 3 Soldier Tokens."
+      },
+      "effect_upgraded": {
+        "ko": "병사 토큰 4개를 생성한다.",
+        "en": "Create 4 Soldier Tokens."
+      },
+      "flavor_text": {
+        "ko": "전·후·측면 모두에 병사를 배치하니 — 어느 방향으로 공격해도 방패가 된다.",
+        "en": "Deploy soldiers on front, rear, and flank — shields in every direction against any attack."
+      },
+      "balance_rationale": "2코스트 토큰 3개 생성. 순수 토큰 생성에 특화. 학익진(G004)에서 토큰 3개 = AoE +9, 즉 총 17 AoE 폭발 세팅. 기력을 얻지 않으므로 순수 진형 아키타입의 전용 투자 카드. 2코스트 기준 3토큰 = 향후 15~18피해 세팅 가치.",
+      "class_synergy": [
+        "G004",
+        "G005"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "tokens": 3
+      }
+    },
+    {
+      "id": "G009",
+      "name": {
+        "ko": "진법 교본",
+        "romanized": "Jinbeop Gyobon",
+        "en": "Tactics Manual"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "power",
+      "subtypes": [
+        "formation"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "이번 전투 동안, 진형 카드를 사용할 때마다 기력을 1 추가 획득한다.",
+        "en": "For the rest of this combat, gain 1 additional Stamina whenever you play a formation card."
+      },
+      "effect_upgraded": {
+        "ko": "이번 전투 동안, 진형 카드를 사용할 때마다 기력을 2 추가 획득한다.",
+        "en": "For the rest of this combat, gain 2 additional Stamina per formation card."
+      },
+      "flavor_text": {
+        "ko": "병법서를 꿰뚫으면 진형 하나하나가 살아 움직인다 — 지식이 기력이 된다.",
+        "en": "Master the art of war and every formation comes alive — knowledge becomes stamina."
+      },
+      "balance_rationale": "1코스트 파워(영구 패시브). 진형 카드 시 기력 +1은 한 전투에서 진형 카드를 5장 이상 사용 시 G015보다 효율적. 진형+기력 하이브리드 빌드를 설계 가능하게 하는 연결 카드. 단독으로는 약하지만 덱 전체 시너지 극대화.",
+      "class_synergy": [
+        "G001",
+        "G006",
+        "G007",
+        "G008"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "stamina_per_formation": 1
+      }
+    },
+    {
+      "id": "G010",
+      "name": {
+        "ko": "철기 돌격",
+        "romanized": "Cheolgi Dolgyeok",
+        "en": "Cavalry Charge"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "formation"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "기력 3을 소비한다. 적에게 18 피해를 입힌다. 병사 토큰이 있으면 피해를 4 추가로 입힌다.",
+        "en": "Spend 3 Stamina. Deal 18 damage to an enemy. If you have Soldier Tokens, deal 4 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "기력 3을 소비한다. 23 피해. 토큰 보너스 +6.",
+        "en": "Spend 3 Stamina. Deal 23 damage. Token bonus +6."
+      },
+      "flavor_text": {
+        "ko": "철갑을 두른 기병대가 한 줄기 창처럼 적진을 관통한다.",
+        "en": "Armored cavalry pierce through the enemy lines like a lance."
+      },
+      "balance_rationale": "2코스트 기력 소비형 강공격. 기력 3 소비 후 18피해는 2코스트 최강 수준. 돌격(G002, 기력2+12피해)보다 기력 1 더 필요하지만 피해 6 더 높음. 진형+기력 하이브리드 빌드의 핵심 피니셔. 병행 시 토큰 보너스로 최대 22피해.",
+      "class_synergy": [
+        "G001",
+        "G006",
+        "G013"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage": 18,
+        "stamina_cost": 3
+      }
+    },
+    {
+      "id": "G011",
+      "name": {
+        "ko": "연막",
+        "romanized": "Yeonmak",
+        "en": "Smoke Screen"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "defense"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "방어도 6을 획득한다. 다음 턴 시작 시 기력 2를 획득한다.",
+        "en": "Gain 6 Block. Gain 2 Stamina at the start of next turn."
+      },
+      "effect_upgraded": {
+        "ko": "방어도 8을 획득한다. 다음 턴 시작 시 기력 3을 획득한다.",
+        "en": "Gain 8 Block. Gain 3 Stamina at the start of next turn."
+      },
+      "flavor_text": {
+        "ko": "연막으로 전장을 가리면 — 적은 방향을 잃고 우리는 다음 진형을 준비한다.",
+        "en": "Shroud the battlefield in smoke — the enemy loses direction while we prepare the next formation."
+      },
+      "balance_rationale": "1코스트 방어+지연 기력. 즉시 방어도 6(수호 5 대비 +1)과 다음 턴 기력 2 예약. 이번 턴 기력을 소비한 후에도 다음 턴 기력을 보장해 기력 소비형 빌드의 지속력 확보. 방패·기력 혼합 빌드 연결 카드.",
+      "class_synergy": [
+        "G010",
+        "G013",
+        "G014"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "block": 6,
+        "stamina_gain_next_turn": 2
+      }
+    },
+    {
+      "id": "G012",
+      "name": {
+        "ko": "총통 사격",
+        "romanized": "Chongtong Sagyeok",
+        "en": "Cannon Barrage"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "aoe",
+        "formation"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "모든 적에게 6 피해를 입힌다. 병사 토큰이 있으면 모든 적에게 피해를 3 추가로 입힌다.",
+        "en": "Deal 6 damage to ALL enemies. If you have Soldier Tokens, deal 3 additional damage to ALL enemies."
+      },
+      "effect_upgraded": {
+        "ko": "모든 적에게 8 피해를 입힌다. 토큰 보너스 +5.",
+        "en": "Deal 8 damage to ALL enemies. Token bonus +5."
+      },
+      "flavor_text": {
+        "ko": "전열에 세운 총통이 불을 뿜으면 — 적의 진형이 한순간에 무너진다.",
+        "en": "When the cannons at the front line open fire — the enemy formation crumbles in an instant."
+      },
+      "balance_rationale": "2코스트 AoE+토큰 조건. 학익진(G004, 3코스트 AoE8+토큰배수)보다 저렴하지만 단순. 토큰 없이도 6 AoE로 실용적. 진형 아키타입의 중간 가격대 광역 카드 공백 메움.",
+      "class_synergy": [
+        "G001",
+        "G008"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "damage": 6,
+        "is_aoe": true
+      }
+    },
+    {
+      "id": "G013",
+      "name": {
+        "ko": "기합",
+        "romanized": "Gihap",
+        "en": "Spirit Shout"
+      },
+      "beat": 3,
+      "cost": 0,
+      "type": "skill",
+      "subtypes": [
+        "stamina"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "기력 3을 획득한다.",
+        "en": "Gain 3 Stamina."
+      },
+      "effect_upgraded": {
+        "ko": "기력 4를 획득한다.",
+        "en": "Gain 4 Stamina."
+      },
+      "flavor_text": {
+        "ko": "단전에서 솟구치는 기합 한 소리 — 전신에 기력이 솟아난다.",
+        "en": "A battle cry from the core — stamina surges through every limb."
+      },
+      "balance_rationale": "0코스트 기력 충전. 기공(D001)의 무관 기력 버전. 기력 3은 기력 소비형 카드(G010 기력3, G016 기력전소)의 연료. 0코스트로 시조 슬롯을 차지하지만 기 소비 없음. 기력 폭딜 아키타입의 필수 0코스트 충전 카드.",
+      "class_synergy": [
+        "G010",
+        "G014",
+        "G016",
+        "G018"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "stamina_gain": 3
+      }
+    },
+    {
+      "id": "G014",
+      "name": {
+        "ko": "역전의 기세",
+        "romanized": "Yeokjeon Gise",
+        "en": "Momentum"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": [
+        "stamina"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "현재 기력 1당 피해 2를 입힌다 (최소 6, 기력 소비하지 않음).",
+        "en": "Deal 2 damage per current Stamina (minimum 6, does not consume Stamina)."
+      },
+      "effect_upgraded": {
+        "ko": "현재 기력 1당 피해 3을 입힌다 (최소 8, 기력 소비하지 않음).",
+        "en": "Deal 3 damage per current Stamina (minimum 8, does not consume Stamina)."
+      },
+      "flavor_text": {
+        "ko": "불리한 상황일수록 더 강해지는 무관의 기세 — 기력이 남아 있는 한 포기란 없다.",
+        "en": "The more dire the battle, the stronger the officer's drive — as long as stamina remains, there is no surrender."
+      },
+      "balance_rationale": "1코스트 기력 참조형 공격(소비 없음). 기력 4 시 8피해, 기력 8 시 16피해. 기력을 소비하지 않으므로 기력 소비 카드와 경쟁하지 않음. 기력 폭딜 아키타입에서 기력이 높을수록 강력해지는 스케일링 카드.",
+      "class_synergy": [
+        "G013",
+        "G015",
+        "G006"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "damage_per_stamina": 2,
+        "min_damage": 6
+      }
+    },
+    {
+      "id": "G015",
+      "name": {
+        "ko": "불굴의 의지",
+        "romanized": "Bulgul Euiji",
+        "en": "Indomitable Will"
+      },
+      "beat": 3,
+      "cost": 2,
+      "type": "power",
+      "subtypes": [
+        "stamina"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "기력 최대치를 5 증가시킨다 (이번 전투 영구). 기력 3을 획득한다.",
+        "en": "Increase Stamina maximum by 5 (permanent for this combat). Gain 3 Stamina."
+      },
+      "effect_upgraded": {
+        "ko": "기력 최대치를 7 증가시킨다 (이번 전투 영구). 기력 5를 획득한다.",
+        "en": "Increase Stamina maximum by 7 (permanent). Gain 5 Stamina."
+      },
+      "flavor_text": {
+        "ko": "전장에서 단련된 의지는 기력의 한계를 부순다 — 더 많이, 더 강하게.",
+        "en": "A will forged on the battlefield shatters the limits of stamina — more, and stronger."
+      },
+      "balance_rationale": "2코스트 기력 최대치 확장+즉시 충전. 기본 최대치 10에서 15로 확장, 기력 소비형 카드들의 연속 사용 가능. 전투 중반 설치 카드로서 2코스트 투자 가치가 높음. 기력 폭딜 빌드의 핵심 파워.",
+      "class_synergy": [
+        "G010",
+        "G016",
+        "G018"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "stamina_max_increase": 5,
+        "stamina_gain": 3
+      }
+    },
+    {
+      "id": "G016",
+      "name": {
+        "ko": "마지막 도박",
+        "romanized": "Majimak Tobak",
+        "en": "Final Gambit"
+      },
+      "beat": 4,
+      "cost": 0,
+      "type": "attack",
+      "subtypes": [
+        "stamina"
+      ],
+      "rarity": 4,
+      "rarity_stars": "★★★★☆",
+      "effect": {
+        "ko": "기력을 전부 소비한다. 소비한 기력 1당 적에게 2 피해를 입힌다 (최소 0).",
+        "en": "Consume all Stamina. Deal 2 damage per Stamina consumed (minimum 0)."
+      },
+      "effect_upgraded": {
+        "ko": "기력을 전부 소비한다. 소비한 기력 1당 3 피해를 입힌다.",
+        "en": "Consume all Stamina. Deal 3 damage per Stamina consumed."
+      },
+      "flavor_text": {
+        "ko": "남은 모든 기력을 한 방에 쏟아붓는다 — 이기거나 지거나, 후회는 없다.",
+        "en": "Pour every last drop of stamina into one strike — win or lose, no regrets."
+      },
+      "balance_rationale": "0코스트 기력 전소 공격. 상소(W003, 3코스트 학식 전소)의 무관 버전. 0코스트이므로 마지막 카드로 사용 시 강력. 기력 6 시 18피해, 기력 10 시 30피해. 기력 폭딜 아키타입의 궁극 피니셔. 단, 기력이 남아야 해 전술적 기력 관리 필요.",
+      "class_synergy": [
+        "G013",
+        "G015"
+      ],
+      "upgrade_cost": 100,
+      "values": {
+        "damage_per_stamina": 2,
+        "consume_all_stamina": true
+      }
+    },
+    {
+      "id": "G017",
+      "name": {
+        "ko": "단신 돌격",
+        "romanized": "Dansin Dolgyeok",
+        "en": "Solo Charge"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": [
+        "stamina"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "적에게 6 피해를 입힌다. 기력 2를 소비하면 피해가 4 증가한다.",
+        "en": "Deal 6 damage to an enemy. Optionally spend 2 Stamina to deal 4 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "적에게 8 피해를 입힌다. 기력 2 소비 시 피해 +6.",
+        "en": "Deal 8 damage. Spend 2 Stamina for +6 additional damage."
+      },
+      "flavor_text": {
+        "ko": "혼자서도 적진을 뚫는다 — 기력만 있다면 열 명의 장수보다 강하다.",
+        "en": "Alone, you breach the enemy lines — with stamina to spare, stronger than ten generals."
+      },
+      "balance_rationale": "1코스트 선택적 기력 소비 공격. 기력 없으면 직언과 동일(6피해). 기력 2 소비 시 10피해 — 2코스트 기준 적정. 기력 소비 여부를 선택할 수 있어 유연. 기력 아키타입과 표준 덱 모두에서 활용 가능.",
+      "class_synergy": [
+        "G013",
+        "G006"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "damage": 6,
+        "optional_stamina_cost": 2,
+        "bonus_damage": 4
+      }
+    },
+    {
+      "id": "G018",
+      "name": {
+        "ko": "무쌍",
+        "romanized": "Mussang",
+        "en": "Peerless"
+      },
+      "beat": 4,
+      "cost": 3,
+      "type": "attack",
+      "subtypes": [
+        "stamina"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "적에게 20 피해를 입힌다. 기력 1당 피해를 3 추가로 입힌다 (기력 전부 소비).",
+        "en": "Deal 20 damage to an enemy. Deal 3 additional damage per Stamina (consumes all Stamina)."
+      },
+      "effect_upgraded": {
+        "ko": "25 피해. 기력 1당 +4 추가 피해.",
+        "en": "Deal 25 damage. +4 additional damage per Stamina."
+      },
+      "flavor_text": {
+        "ko": "세상에 둘도 없는 일격 — 기력을 남기지 말고 쏟아부어라.",
+        "en": "A strike without equal in this world — hold nothing back, spend every ounce of stamina."
+      },
+      "balance_rationale": "3코스트 기력 전소+기본 피해 강공격. 기력 0: 20피해, 기력 5: 40피해, 기력 10: 60피해. 태산붕(D007, 3코스트 40피해 사이드이펙트)의 무관 버전. 기력을 많이 쌓을수록 폭발적. 기력 폭딜 빌드의 최종 피니셔.",
+      "class_synergy": [
+        "G013",
+        "G015",
+        "G016"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage": 20,
+        "bonus_damage_per_stamina": 3,
+        "consume_all_stamina": true
+      }
+    },
+    {
+      "id": "G019",
+      "name": {
+        "ko": "수비 대형",
+        "romanized": "Subi Daehyeong",
+        "en": "Defensive Formation"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "defense",
+      "subtypes": [],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "방어도 8을 획득한다.",
+        "en": "Gain 8 Block."
+      },
+      "effect_upgraded": {
+        "ko": "방어도 11을 획득한다.",
+        "en": "Gain 11 Block."
+      },
+      "flavor_text": {
+        "ko": "방패를 앞세운 대형은 어떤 공격도 막아낸다 — 기본에 충실한 것이 최선.",
+        "en": "A formation with shields at the front stops any attack — mastering the basics is best."
+      },
+      "balance_rationale": "1코스트 순수 방어. 수호(5방어도)보다 3 높은 8방어도로 방패 아키타입 주력. 부가 효과 없이 방어도만 높아 단순하지만 안정적. 방패 덱의 핵심 기본 카드. 업그레이드 시 11방어도로 2코스트 방어 카드에 준하는 수준.",
+      "upgrade_cost": 50,
+      "values": {
+        "block": 8
+      }
+    },
+    {
+      "id": "G020",
+      "name": {
+        "ko": "찌르기",
+        "romanized": "Jjireureogi",
+        "en": "Thrust"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": [],
+      "rarity": 1,
+      "rarity_stars": "★☆☆☆☆",
+      "effect": {
+        "ko": "적에게 6 피해를 입힌다.",
+        "en": "Deal 6 damage to an enemy."
+      },
+      "effect_upgraded": {
+        "ko": "적에게 9 피해를 입힌다.",
+        "en": "Deal 9 damage to an enemy."
+      },
+      "flavor_text": {
+        "ko": "최단 거리로 적의 급소를 찌른다 — 복잡한 진법이 필요 없는 무관의 기본기.",
+        "en": "The shortest distance to the enemy's vital point — no complex tactics needed for an officer's basic art."
+      },
+      "balance_rationale": "1코스트 기본 공격. 베기·직언·수결(각 6피해)과 동일한 효율. 무관 스타터 덱에서 직언 역할의 클래스별 버전. [4] 음보로 베기([3] 음보로 추정)와 시조 슬롯 차별화.",
+      "upgrade_cost": 50,
+      "values": {
+        "damage": 6
+      }
+    },
+    {
+      "id": "G021",
+      "name": {
+        "ko": "반격",
+        "romanized": "Bangyeok",
+        "en": "Retaliation"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "defense",
+      "subtypes": [
+        "reaction"
+      ],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "방어도 5를 획득한다. 다음으로 받는 피해 1회에 대해 3 피해로 반격한다.",
+        "en": "Gain 5 Block. Retaliate for 3 damage the next time you take damage."
+      },
+      "effect_upgraded": {
+        "ko": "방어도 7을 획득한다. 반격 피해 5.",
+        "en": "Gain 7 Block. Retaliate for 5 damage."
+      },
+      "flavor_text": {
+        "ko": "막는 동시에 치는 것 — 방어가 곧 공격이 된다.",
+        "en": "Block and strike at once — defense itself becomes the attack."
+      },
+      "balance_rationale": "1코스트 방어+반격. 수호(5방어도)와 동일한 방어도에 반격 3 추가. 반격 3은 소박하지만 방어 중 지속적으로 피해를 입히는 방패 아키타입의 특색 카드. 연타형 적에게 특히 유효.",
+      "class_synergy": [
+        "G019",
+        "G023"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "block": 5,
+        "retaliate_damage": 3
+      }
+    },
+    {
+      "id": "G022",
+      "name": {
+        "ko": "연속 베기",
+        "romanized": "Yeonsok Baegi",
+        "en": "Repeated Slash"
+      },
+      "beat": 4,
+      "cost": 1,
+      "type": "attack",
+      "subtypes": [
+        "multi_hit"
+      ],
+      "rarity": 2,
+      "rarity_stars": "★★☆☆☆",
+      "effect": {
+        "ko": "적에게 4 피해를 2회 입힌다 (총 8 피해).",
+        "en": "Deal 4 damage to an enemy 2 times (8 total)."
+      },
+      "effect_upgraded": {
+        "ko": "4 피해를 3회 입힌다 (총 12 피해).",
+        "en": "Deal 4 damage 3 times (12 total)."
+      },
+      "flavor_text": {
+        "ko": "한 번으로 부족하면 두 번, 두 번도 부족하면 더 — 연속된 칼끝이 방어를 무너뜨린다.",
+        "en": "If one strike is not enough, strike twice, if twice is not enough, strike more — relentless blades break any defense."
+      },
+      "balance_rationale": "1코스트 다중타격. 직언(6피해, 1타)보다 총피해 2 더 높지만 2타 분산. 독 상태의 적이나 반격 유물 활성화에 유리. 연타 특성으로 방어도를 분산 돌파하는 전술 활용 가능.",
+      "class_synergy": [
+        "G021"
+      ],
+      "upgrade_cost": 50,
+      "values": {
+        "damage_per_hit": 4,
+        "hits": 2
+      }
+    },
+    {
+      "id": "G023",
+      "name": {
+        "ko": "철벽 방어",
+        "romanized": "Cheolbyeok Bangeo",
+        "en": "Iron Wall Defense"
+      },
+      "beat": 3,
+      "cost": 2,
+      "type": "defense",
+      "subtypes": [],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "방어도 14를 획득한다.",
+        "en": "Gain 14 Block."
+      },
+      "effect_upgraded": {
+        "ko": "방어도 18을 획득한다.",
+        "en": "Gain 18 Block."
+      },
+      "flavor_text": {
+        "ko": "철옹성처럼 굳건한 방어 — 어떤 공격도 이 철벽을 부수지 못한다.",
+        "en": "An iron wall, unyielding — no attack can break through this bastion."
+      },
+      "balance_rationale": "2코스트 순수 방어 최고치. 예제(W005, 2코스트 10방어+학식2)보다 방어도 4 높지만 부가 효과 없음. 방패 아키타입의 안정적인 2코스트 방어 주력 카드. 보스전처럼 피해를 최소화해야 할 때 특히 가치.",
+      "class_synergy": [
+        "G019",
+        "G021"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "block": 14
+      }
+    },
+    {
+      "id": "G024",
+      "name": {
+        "ko": "격파",
+        "romanized": "Gyeokpa",
+        "en": "Shatter"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [],
+      "rarity": 3,
+      "rarity_stars": "★★★☆☆",
+      "effect": {
+        "ko": "적에게 12 피해를 입힌다. 대상이 취약 상태라면 피해가 8 추가된다.",
+        "en": "Deal 12 damage to an enemy. If the target is Vulnerable, deal 8 additional damage."
+      },
+      "effect_upgraded": {
+        "ko": "16 피해. 취약 상태 추가 피해 +12.",
+        "en": "Deal 16 damage. Vulnerable bonus +12."
+      },
+      "flavor_text": {
+        "ko": "틈이 보이면 모든 힘을 그 한 점에 집중시킨다 — 열린 곳에 전력을 다해 쏟아붓는다.",
+        "en": "When you see an opening, concentrate all your force on that single point — pour everything into the gap."
+      },
+      "balance_rationale": "2코스트 조건부 강공격. 기본 12피해는 2코스트 적정. 취약 상태 적에게 20피해로 탄핵(W002)+격파 콤보나 포위(G003) 후 공격 극대화. 범용성을 가지면서 시너지 빌드에서도 강한 중간 카드.",
+      "class_synergy": [
+        "G003"
+      ],
+      "upgrade_cost": 75,
+      "values": {
+        "damage": 12,
+        "bonus_on_vulnerable": 8
+      }
+    },
+    {
+      "id": "G025",
+      "name": {
+        "ko": "백전노장",
+        "romanized": "Baekjeon Nojang",
+        "en": "Battle-Hardened Veteran"
+      },
+      "beat": 3,
+      "cost": 3,
+      "type": "power",
+      "subtypes": [
+        "token"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "기력 최대치를 3 증가시킨다. 이번 전투 동안, 병사 토큰이 소멸할 때마다 카드 1장을 드로우한다.",
+        "en": "Increase Stamina maximum by 3. For the rest of this combat, draw 1 card whenever a Soldier Token is destroyed."
+      },
+      "effect_upgraded": {
+        "ko": "기력 최대치를 5 증가시킨다. 토큰 소멸 시 카드 1장 드로우 + 기력 1 추가 획득.",
+        "en": "Increase Stamina maximum by 5. On Token destruction, draw 1 card + gain 1 additional Stamina."
+      },
+      "flavor_text": {
+        "ko": "백 번의 전투를 살아남은 노장 — 병사들의 희생이 더 강한 힘을 만든다.",
+        "en": "A veteran of a hundred battles — the sacrifice of soldiers forges even greater strength."
+      },
+      "balance_rationale": "3코스트 파워. 기력 최대치 확장(진형+기력 하이브리드 지원) + 토큰 소멸 시 드로우(진형 아키타입 덱 가속). 두 아키타입을 동시에 지원하는 고가치 파워 카드. 토큰 3개 소멸 시 드로우 3 = 3코스트 축지법 수준의 드로우 가치.",
+      "class_synergy": [
+        "G001",
+        "G008",
+        "G013",
+        "G015"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "stamina_max_increase": 3,
+        "draw_on_token_death": 1
+      }
+    },
+    {
+      "id": "G026",
+      "name": {
+        "ko": "천마무쌍",
+        "romanized": "Cheonma Musang",
+        "en": "Peerless Warhorse Strike"
+      },
+      "beat": 4,
+      "cost": 2,
+      "type": "attack",
+      "subtypes": [
+        "stamina_burst"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "기력을 전부 소비한다. 소비한 기력당 8 피해를 입힌다. (최소 16, 기력 10이면 80 피해!)",
+        "en": "Consume ALL Stamina. Deal 8 damage per Stamina consumed. (Minimum 16; with 10 Stamina: 80 damage!)"
+      },
+      "effect_upgraded": {
+        "ko": "기력을 전부 소비한다. 소비한 기력당 10 피해를 입힌다. (최소 20)",
+        "en": "Consume ALL Stamina. Deal 10 damage per Stamina consumed. (Minimum 20)"
+      },
+      "flavor_text": {
+        "ko": "기력이 극에 달하면 — 천하를 가르는 한 방이 나온다.",
+        "en": "When stamina reaches its peak — a single blow cleaves the heavens."
+      },
+      "balance_rationale": "기력 폭딜 빌드의 최종 카드. 기력 10 보유 시 80 피해로 STS Bludgeon(32)·Whirlwind급. 기력 소비형이라 고기력 유지가 선결조건 — 빌드 강요 기능. 최소 피해 16은 3코스트 기준 적정.",
+      "class_synergy": [
+        "G013",
+        "G015",
+        "G016",
+        "G018"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "damage_per_stamina": 8,
+        "consume_all_stamina": true,
+        "min_damage": 16
+      }
+    },
+    {
+      "id": "G027",
+      "name": {
+        "ko": "철벽대진",
+        "romanized": "Cheolbyeok Daejin",
+        "en": "Iron Wall Grand Formation"
+      },
+      "beat": 3,
+      "cost": 1,
+      "type": "skill",
+      "subtypes": [
+        "defense",
+        "token"
+      ],
+      "rarity": 5,
+      "rarity_stars": "★★★★★",
+      "effect": {
+        "ko": "병사 토큰 3개를 생성한다. 기력 3을 획득한다. 이번 턴 토큰 생성량이 2배가 된다.",
+        "en": "Create 3 Soldier Tokens. Gain 3 Stamina. Token generation is doubled this turn."
+      },
+      "effect_upgraded": {
+        "ko": "병사 토큰 4개 생성. 기력 4 획득. 이번 턴 토큰 생성량 2배.",
+        "en": "Create 4 Soldier Tokens. Gain 4 Stamina. Token generation doubled this turn."
+      },
+      "flavor_text": {
+        "ko": "진형을 완성하면 — 병사들이 쏟아져 나오고 기력이 솟구친다.",
+        "en": "When the formation is complete — soldiers pour forth and stamina surges."
+      },
+      "balance_rationale": "1코스트로 토큰 3+기력 3+토큰 2배. 기존 토큰 생성 카드(G001 토큰1, G004 AoE요구)보다 강력. 진형·기력 빌드 융합 카드. 다음 G013(기력→피해)나 G026(기력 전소)과 연계 시 폭발적.",
+      "class_synergy": [
+        "G013",
+        "G026",
+        "G001",
+        "G005"
+      ],
+      "upgrade_cost": 150,
+      "values": {
+        "tokens": 3,
+        "stamina_gain": 3,
+        "token_double": true
+      }
+    }
+  ],
+  "status_conditions_defined": [
+    {
+      "id": "포위됨",
+      "ko": "포위됨",
+      "en": "Surrounded",
+      "description": "이 상태의 적은 공격 피해가 25% 감소한다. 턴마다 남은 지속 시간이 1 감소하며, 0이 되면 소멸.",
+      "duration_type": "turns",
+      "visual_note": "적 캐릭터 주변에 포위 링 이펙트"
+    },
+    {
+      "id": "병사_토큰",
+      "ko": "병사 토큰",
+      "en": "Soldier Token",
+      "description": "플레이어 대신 피해를 1회 받고 소멸. 소멸 시 기 1 회복. 중첩 가능 — 각 토큰이 순서대로 피해를 흡수.",
+      "duration_type": "hit_based",
+      "visual_note": "플레이어 옆에 소형 병사 토큰 아이콘 표시"
+    }
+  ]
 }

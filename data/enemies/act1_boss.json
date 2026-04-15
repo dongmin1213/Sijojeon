@@ -10,8 +10,8 @@
     "en": "Magistrate Byeon"
   },
   "description": {
-    "ko": "남원부사 변학도. 춘향을 옥에 가두고 형벌을 내리는 탐관오리. 형장을 앞세워 복종을 강요하며, 매질의 공포로 백성을 지배한다. 시조를 읊어 간청해야만 형벌을 멈출 수 있다.",
-    "en": "Magistrate Byeon of Namwon. A corrupt official who imprisons Chunhyang and orders punishments. Rules through fear of the rod. Only a sijo plea can stay the punishment."
+    "ko": "남원부사 변학도. 춘향을 옥에 가두고 형벌을 내리는 탐관오리. 형장을 앞세워 복종을 강요하며, 매질의 공포로 백성을 지배한다.",
+    "en": "Magistrate Byeon of Namwon. A corrupt official who imprisons Chunhyang and orders punishments. Rules through fear of the rod. "
   },
   "hp": 115,
   "flavor": "\"관장의 명이 곧 법이니라! 이 년을 당장 곤장 쳐라!\"",
@@ -22,8 +22,8 @@
       "en": "Punishment Counter"
     },
     "description": {
-      "ko": "매 턴 형벌 +1 누적. 5에 도달하면 '곤장 집행'으로 전체 HP 30% 피해. 시조 완성 시 형벌 초기화 + 변학도 취약 2턴.",
-      "en": "Punishment +1 each turn. At 5, executes Rod Punishment for 30% max HP damage. Sijo completion resets counter + applies Vulnerable 2."
+      "ko": "매 턴 형벌 +1 누적. 5에 도달하면 '곤장 집행'으로 전체 HP 30% 피해. 형벌 초기화 + 변학도 취약 2턴.",
+      "en": "Punishment +1 each turn. At 5, executes Rod Punishment for 30% max HP damage."
     },
     "max_stacks": 5,
     "on_max": {
@@ -31,20 +31,6 @@
       "dialogue": {
         "ko": "\"곤장 서른 대! 아직도 항거하겠느냐!\"",
         "en": "\"Thirty strikes of the rod! Will you still resist?\""
-      }
-    },
-    "on_sijo_complete": {
-      "reset_counter": true,
-      "apply_to_boss": [
-        {
-          "type": "apply_debuff",
-          "debuff": "취약",
-          "stacks": 2
-        }
-      ],
-      "dialogue": {
-        "ko": "\"무... 무엇이냐! 감히 시조를 읊어 본관을 거스르다니!\"",
-        "en": "\"Wh-what?! How dare you recite a sijo to defy this magistrate!\""
       }
     }
   },
@@ -393,7 +379,7 @@
       {
         "id": "chunhyang_hairpin",
         "name": "춘향의 비녀",
-        "description": "시조 완성 시 추가로 HP 5 회복.",
+        "description": "추가로 HP 5 회복.",
         "type": "rare_relic"
       }
     ]

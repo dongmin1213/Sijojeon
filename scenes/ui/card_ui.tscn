@@ -39,12 +39,12 @@ custom_minimum_size = Vector2(0, 4)
 color = Color(0.5, 0.5, 0.5, 1)
 
 ; ─── 코스트 행 ───────────────────────────────────────────────────────
-[node name="BeatCostRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="CostRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 10
 
-[node name="BeatCostLabel" type="Label" parent="MarginContainer/VBoxContainer/BeatCostRow"]
+[node name="CostLabel" type="Label" parent="MarginContainer/VBoxContainer/CostRow"]
 layout_mode = 2
 text = "1"
 horizontal_alignment = 1

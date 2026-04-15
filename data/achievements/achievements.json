@@ -579,7 +579,7 @@
         "beat": 1,
         "cost": 0,
         "rarity": 3,
-        "effect_code": "gain_qi2_draw1_if_sijo10",
+        "effect_code": "gain_qi2_draw1_if_runs10",
         "unlock_source": "achievement"
       }
     },
@@ -637,10 +637,10 @@
         "type": "relic",
         "id": "R_ACH_004",
         "name_ko": "선기옥형",
-        "description_ko": "시조 완성 시마다 화상 또는 독 중 더 높은 수치가 적에게 1 추가된다.",
+        "description_ko": "",
         "flavor_ko": "하늘의 기운을 측정하는 천문기기. 도사가 시조를 완성할 때마다 우주가 반응한다.",
-        "trigger": "sijo_complete",
-        "effect_code": "apply_burn_or_poison_1_on_sijo",
+        "trigger": "turn_end",
+        "effect_code": "apply_burn_or_poison_1_on_turn_end",
         "rarity": 3,
         "class_restriction": "dosa"
       }

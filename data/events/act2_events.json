@@ -86,10 +86,10 @@
           "effect_value": 0
         },
         {
-          "id": "sijo_exchange",
+          "id": "poem_exchange",
           "text": {
             "ko": "[시상] 시조를 읊어 승려와 시로써 교감한다.",
-            "en": "[Sisang] Share a sijo with the monk, bonding through poetry."
+            "en": "[Sisang] Share wisdom with the monk, bonding through poetry."
           },
           "result_text": {
             "ko": "승려가 시조에 화답하시며 비전의 깨달음을 전하시는도다. 최대 HP +5, 카드 1장 강화.",
