@@ -322,11 +322,7 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if card.type == "spell" or "spell" in card.subtypes:
 		RelicManager.trigger_on_spell_card_play(self)
 
-	# 유물 트리거: 와일드카드 사용 (RS005 장단 북)
-	if "wildcard" in card.subtypes:
-		RelicManager.trigger_on_wildcard_play(self)
-
-	# 카드 사용 수 추적 (문관 패시브용)
+	# 카드 사용 수 추적
 	cards_played_this_turn += 1
 
 	# 손패 변경 시그널 발행 (UI 갱신 트리거)
@@ -536,8 +532,6 @@ func deal_damage_to_enemy(enemy_index: int, amount: int) -> void:
 		# 적 사망 시 유물 트리거 (R018 등)
 		RelicManager.trigger_on_enemy_kill(self)
 		# 소환된 적 사망 시 유물 트리거 (RD002 음양패)
-		if enemy.get("_is_summoned", false):
-			RelicManager.trigger_on_summon_token_death(self)
 		# 아군 사망 시 다른 적들의 on_ally_death_effects 발동 (군관 보스 등)
 		_trigger_ally_death_effects(enemy_index)
 

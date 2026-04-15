@@ -119,6 +119,7 @@ func _ready() -> void:
 	_generate_shop_relics()
 	_display_shop_cards()
 	_display_shop_relics()
+	_display_shop_potions()
 	_update_gold_display()
 	_update_remove_section()
 	_update_upgrade_section()
@@ -769,4 +770,106 @@ func _update_discount_badges() -> void:
 	title_label.get_parent().add_child(badge)
 	title_label.get_parent().move_child(badge, 1)  # 타이틀 바로 아래
 
+
+# ─── 포션 상점 ────────────────────────────────────────────────────────────
+
+var shop_potions: Array[Dictionary] = []
+
+
+func _display_shop_potions() -> void:
+	## 상점에 포션 3종을 표시한다.
+	if shop_potions.is_empty():
+		_generate_shop_potions()
+
+	var shop_panel := $ShopPanel/VBoxContainer as VBoxContainer
+	if not shop_panel:
+		return
+
+	# 기존 포션 섹션 제거
+	var old_section := shop_panel.get_node_or_null("PotionSection")
+	if old_section:
+		old_section.queue_free()
+		await get_tree().process_frame
+
+	var section := VBoxContainer.new()
+	section.name = "PotionSection"
+
+	var header := Label.new()
+	header.text = tr("SHOP_POTION_HEADER")
+	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	header.add_theme_font_size_override("font_size", 26)
+	header.add_theme_color_override("font_color", Color(0.3, 0.8, 0.5))
+	section.add_child(header)
+
+	for i in shop_potions.size():
+		var entry: Dictionary = shop_potions[i]
+		if entry.get("sold", false):
+			continue
+		var pot_data: Dictionary = DataLoader.get_potion(entry["potion_id"])
+		if pot_data.is_empty():
+			continue
+
+		var btn := Button.new()
+		var pot_name: String = pot_data.get("name", {}).get("ko", entry["potion_id"])
+		var pot_effect: String = pot_data.get("effect", {}).get("ko", "")
+		var price: int = entry.get("price", 50)
+		btn.text = "%s — %s (%d 금화)" % [pot_name, pot_effect, price]
+		btn.add_theme_font_size_override("font_size", 20)
+		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		btn.custom_minimum_size = Vector2(0, 60)
+
+		var can_buy := GameManager.run_data.gold >= price
+		# 포션 슬롯 꽉 찼는지 확인
+		var has_slot := false
+		for p in GameManager.run_data.potions:
+			if p == "":
+				has_slot = true
+				break
+		btn.disabled = not can_buy or not has_slot
+		btn.pressed.connect(_on_buy_potion.bind(i))
+		section.add_child(btn)
+
+	shop_panel.add_child(section)
+
+
+func _generate_shop_potions() -> void:
+	shop_potions.clear()
+	for _i in 3:
+		var pot_id := DataLoader.get_random_potion()
+		if pot_id == "":
+			continue
+		var pot_data: Dictionary = DataLoader.get_potion(pot_id)
+		var base_price: int = 50
+		match pot_data.get("rarity", "common"):
+			"uncommon":
+				base_price = 75
+			"rare":
+				base_price = 100
+		shop_potions.append({"potion_id": pot_id, "price": base_price, "sold": false})
+
+
+func _on_buy_potion(index: int) -> void:
+	if index < 0 or index >= shop_potions.size():
+		return
+	var entry: Dictionary = shop_potions[index]
+	if entry.get("sold", false):
+		return
+	var price: int = entry.get("price", 50)
+	if GameManager.run_data.gold < price:
+		return
+	# 빈 슬롯 찾기
+	var slot_index := -1
+	for i in GameManager.run_data.potions.size():
+		if GameManager.run_data.potions[i] == "":
+			slot_index = i
+			break
+	if slot_index < 0:
+		return
+
+	GameManager.run_data.gold -= price
+	GameManager.run_data.potions[slot_index] = entry["potion_id"]
+	shop_potions[index]["sold"] = true
+	AudioManager.play_sfx("coin")
+	_display_shop_potions()
+	_update_gold_display()
 

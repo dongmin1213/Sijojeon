@@ -34,6 +34,7 @@ func _ready() -> void:
 
 	_load_rewards()
 	_apply_gold()
+	_try_potion_drop()
 	_try_relic_reward()
 	_generate_card_offers()
 	_display_card_offers()
@@ -47,6 +48,35 @@ func _load_rewards() -> void:
 		reward_gold = rewards.get("gold", 0)
 		# card_chance는 항상 카드 선택 제공 (Slay the Spire 스타일)
 		# relic_chance는 향후 확장
+
+
+func _try_potion_drop() -> void:
+	## 전투 후 확률적으로 포션을 드롭한다.
+	if GameManager.run_data == null:
+		return
+	# 빈 슬롯이 있는지 확인
+	var has_slot := false
+	for p in GameManager.run_data.potions:
+		if p == "":
+			has_slot = true
+			break
+	if not has_slot:
+		return
+	# 드롭 확률 (일반 40%, 정예 60%, 보스 100%)
+	var drop_chance := 0.4
+	if GameManager.run_data.current_node_type == MapData.NodeType.ELITE:
+		drop_chance = 0.6
+	elif GameManager.run_data.current_node_type == MapData.NodeType.BOSS:
+		drop_chance = 1.0
+	if randf() > drop_chance:
+		return
+	var potion_id := DataLoader.get_random_potion()
+	if potion_id == "":
+		return
+	for i in GameManager.run_data.potions.size():
+		if GameManager.run_data.potions[i] == "":
+			GameManager.run_data.potions[i] = potion_id
+			break
 
 
 func _try_relic_reward() -> void:

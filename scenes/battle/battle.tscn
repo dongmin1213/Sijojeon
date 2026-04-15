@@ -127,6 +127,36 @@ z_index = 5
 layout_mode = 2
 clip_contents = false
 
+; ─── 포션 슬롯 (좌하단 55-61%) ─────────────────────────────────────────────
+[node name="PotionBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.55
+anchor_right = 0.35
+anchor_bottom = 0.61
+alignment = 0
+theme_override_constants/separation = 8
+z_index = 10
+
+[node name="PotionSlot0" type="Button" parent="PotionBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 44)
+text = "[빈]"
+theme_override_font_sizes/font_size = 16
+
+[node name="PotionSlot1" type="Button" parent="PotionBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 44)
+text = "[빈]"
+theme_override_font_sizes/font_size = 16
+
+[node name="PotionSlot2" type="Button" parent="PotionBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 44)
+text = "[빈]"
+theme_override_font_sizes/font_size = 16
+
 ; ─── 숨겨진 참조 노드 (코드 호환성) ────────────────────────────────────────
 [node name="HiddenRefs" type="Control" parent="."]
 visible = false

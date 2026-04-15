@@ -93,6 +93,7 @@ func _load_all_cards() -> void:
 		"res://data/cards/uinyeo.json",
 		"res://data/cards/gisaeng.json",
 		"res://data/cards/seungbyeong.json",
+		"res://data/cards/curses.json",
 	]
 	for path in card_files:
 		_load_card_file(path)

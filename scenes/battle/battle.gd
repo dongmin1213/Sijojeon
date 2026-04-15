@@ -75,6 +75,9 @@ func _ready() -> void:
 	battle_manager.battle_ended.connect(_on_battle_ended)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 
+	# 포션 슬롯 UI 초기화
+	_init_potion_ui()
+
 	# CardHand 시그널 연결
 	card_hand.card_played.connect(_on_card_played)
 	card_hand.card_zoom_requested.connect(_on_card_zoom_requested)
@@ -963,4 +966,50 @@ func _collect_enemy_rewards() -> Dictionary:
 		"card_chance": card_chance,
 		"relic_chance": relic_chance,
 	}
+
+
+func _init_potion_ui() -> void:
+	## 포션 슬롯 버튼 초기화 및 시그널 연결
+	var potion_bar := get_node_or_null("PotionBar")
+	if not potion_bar:
+		return
+	for i in 3:
+		var slot := potion_bar.get_node_or_null("PotionSlot%d" % i)
+		if slot and slot is Button:
+			slot.pressed.connect(_on_potion_slot_pressed.bind(i))
+	_refresh_potion_ui()
+
+
+func _refresh_potion_ui() -> void:
+	## 포션 슬롯 UI를 현재 인벤토리 상태에 맞게 갱신
+	var potion_bar := get_node_or_null("PotionBar")
+	if not potion_bar or GameManager.run_data == null:
+		return
+	var potions: Array = GameManager.run_data.potions
+	for i in 3:
+		var slot := potion_bar.get_node_or_null("PotionSlot%d" % i) as Button
+		if not slot:
+			continue
+		if i < potions.size() and potions[i] != "":
+			var pot_data: Dictionary = DataLoader.get_potion(potions[i])
+			var pot_name: String = ""
+			var name_data = pot_data.get("name", {})
+			if name_data is Dictionary:
+				pot_name = name_data.get("ko", potions[i])
+			else:
+				pot_name = str(name_data)
+			slot.text = pot_name
+			slot.disabled = false
+			slot.tooltip_text = str(pot_data.get("effect", {}).get("ko", ""))
+		else:
+			slot.text = tr("POTION_EMPTY")
+			slot.disabled = true
+			slot.tooltip_text = ""
+
+
+func _on_potion_slot_pressed(slot_index: int) -> void:
+	## 포션 슬롯 터치 시 포션 사용
+	if battle_manager.use_potion(slot_index):
+		_refresh_potion_ui()
+		AudioManager.play_sfx("buff")
 

@@ -120,8 +120,15 @@ func start_new_run(character_id: String, ascension_level: int = 0, navigate_to_m
 		run_data.deck = ["C001", "C001", "C001", "C001", "C002", "C002", "C002", "C003", "C003", "C004"]
 
 	# 시작 유물
-	if skills_data and skills_data.has("starting_relic"):
-		run_data.relics.append(skills_data["starting_relic"])
+	var char_stats: Dictionary = DataLoader._character_stats.get(character_id, {})
+	var starting_relic: String = char_stats.get("starting_relic", "")
+	if starting_relic != "":
+		run_data.relics.append(starting_relic)
+
+	# 포션 슬롯 초기화
+	run_data.potions.clear()
+	for _i in run_data.max_potion_slots:
+		run_data.potions.append("")
 
 	# 어센션 수정자 적용
 	if ascension_level > 0:

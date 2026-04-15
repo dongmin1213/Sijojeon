@@ -503,3 +503,7 @@ PUZZLE_SCALE_REGEN_FMT,비늘이 다시 자라났다! 비늘 %d,Scales have regr
 PUZZLE_MASK_CRACK,가면 균열!,Mask Cracked!
 PUZZLE_MASK_SHATTER,가면 파괴!,Mask Shattered!
 PUZZLE_MASK_SHATTER_DESC,충신 가면이 산산조각! 역모대감이 약화되었다!,The loyal mask shattered! The Treasonous Lord is weakened!
+POTION_EMPTY,[빈],[Empty]
+SHOP_POTION_HEADER,약방 (포션),Apothecary (Potions)
+REWARD_BOSS_RELIC,보스 유물 선택 (1개 선택),Choose a Boss Relic (pick 1)
+CARD_ZOOM_TYPE_COMBAT,전투,Combat

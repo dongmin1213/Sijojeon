@@ -164,26 +164,8 @@ func _build_character_list() -> void:
 		var class_ko: String = char_entry.get("class_ko", fallback.get("class_ko", char_id))
 		var class_hanja: String = fallback.get("class_hanja", "")
 
-		var starting_relic_name := ""
-		var starting_relic_effect := ""
-		if char_entry.has("starting_relic"):
-			starting_relic_name = TranslationManager.trd_name(char_entry["starting_relic"])
-			starting_relic_effect = TranslationManager.trd(char_entry["starting_relic"], "effect", "")
-
-		var passive_name := ""
-		var passive_desc := ""
-		if skills.has("passive"):
-			passive_name = TranslationManager.trd(skills, "passive", "")
-			var passive_data = skills.get("passive", {})
-			if passive_data is Dictionary:
-				passive_desc = TranslationManager.trd(passive_data, "description", "")
-
-		var active_name := ""
-		var active_desc := ""
-		if skills.has("active_skill") and skills["active_skill"].has("name"):
-			var skill_name_data: Dictionary = skills["active_skill"]["name"]
-			active_name = TranslationManager.trd(skills["active_skill"], "name", "")
-			active_desc = TranslationManager.trd(skill_name_data, "description", "")
+		var description: String = char_entry.get("description_ko", "")
+		var archetype: String = char_entry.get("archetype", "")
 
 		_character_list.append({
 			"id": char_id,
@@ -192,16 +174,16 @@ func _build_character_list() -> void:
 			"qi": skills.get("base_qi", 3),
 			"unlocked": unlocked,
 			"unlock_description": _get_unlock_description(char_id),
-			"class_resource_name": class_resource_name,
-			"class_resource_max": class_resource_max,
-			"starting_relic_name": starting_relic_name,
-			"starting_relic_effect": starting_relic_effect,
-			"passive_name": passive_name,
-			"passive_desc": passive_desc,
-			"active_name": active_name,
-			"active_desc": active_desc,
-			"fantasy_desc": fantasy_desc,
-			"build_hint": build_hint,
+			"class_resource_name": "",
+			"class_resource_max": 0,
+			"starting_relic_name": "",
+			"starting_relic_effect": "",
+			"passive_name": "",
+			"passive_desc": "",
+			"active_name": "",
+			"active_desc": "",
+			"fantasy_desc": description,
+			"build_hint": archetype,
 		})
 
 	if _character_list.is_empty():
