@@ -1,0 +1,13 @@
+{
+  "version": "0.1",
+  "type": "character_stats",
+  "description": "캐릭터별 기본 스탯 (HP, 기/턴). special_skills.json 대체.",
+  "characters": {
+    "mugwan": {"class_ko": "의적", "hp": 80, "qi_per_turn": 3},
+    "mungwan": {"class_ko": "선비", "hp": 70, "qi_per_turn": 3},
+    "dosa": {"class_ko": "무당", "hp": 75, "qi_per_turn": 3},
+    "uiwon": {"class_ko": "의녀", "hp": 70, "qi_per_turn": 3},
+    "gungsu": {"class_ko": "기생", "hp": 70, "qi_per_turn": 3},
+    "sangin": {"class_ko": "승병", "hp": 75, "qi_per_turn": 3}
+  }
+}

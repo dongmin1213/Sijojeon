@@ -10,8 +10,8 @@ var _enemies: Dictionary = {}
 var _relics: Dictionary = {}
 # 희귀도별 드롭 가중치
 var _relic_rarity_table: Dictionary = {}
-# 캐릭터 스킬 데이터
-var _skills_data: Dictionary = {}
+# 캐릭터 스탯 데이터
+var _character_stats: Dictionary = {}
 # 카드 풀별 아키타입 데이터 (class → Array[Dictionary])
 var _archetypes: Dictionary = {}
 # 어센션 시스템 데이터
@@ -210,23 +210,19 @@ func _load_relics() -> void:
 
 
 func _load_skills() -> void:
-	var path := "res://data/skills/special_skills.json"
+	var path := "res://data/characters/stats.json"
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
-		push_warning("DataLoader: 스킬 파일 열기 실패 — %s (에러: %d)" % [path, FileAccess.get_open_error()])
+		push_warning("DataLoader: 캐릭터 스탯 파일 열기 실패 — %s" % path)
 		return
 	var json := JSON.new()
 	var err := json.parse(file.get_as_text())
 	file.close()
 	if err != OK:
-		push_warning("DataLoader: 스킬 JSON 파싱 실패 — %s" % path)
+		push_warning("DataLoader: 캐릭터 스탯 JSON 파싱 실패 — %s" % path)
 		return
 	if json.data is Dictionary:
-		_skills_data = json.data
-	else:
-		push_warning("DataLoader: 스킬 데이터가 Dictionary가 아님 — %s" % path)
-	if _skills_data.is_empty():
-		push_warning("DataLoader: _skills_data 비어있음 — 캐릭터 선택 화면에 영향")
+		_character_stats = json.data.get("characters", {})
 
 
 # --- 공개 API ---
@@ -381,17 +377,10 @@ func _load_ascension() -> void:
 
 
 func get_character_skills(character_id: String) -> Dictionary:
-	if not _skills_data.has("character_special_skills"):
+	var stats: Dictionary = _character_stats.get(character_id, {})
+	if stats.is_empty():
 		return {}
-	for entry in _skills_data["character_special_skills"]:
-		if entry.get("class_id", "") == character_id:
-			var hp_data: Dictionary = _skills_data.get("core_systems", {}).get("hp", {}).get("base_hp_by_class", {}).get(character_id, {})
-			var energy_data: Dictionary = _skills_data.get("core_systems", {}).get("energy", {})
-			return {
-				"base_hp": hp_data.get("hp", 70),
-				"base_qi": energy_data.get("base_energy_per_turn", 3),
-				"starting_relic": entry.get("starting_relic", {}).get("id", ""),
-				"passive": entry.get("passive_name", {}),
-				"active_skill": entry.get("active_skill", {}),
-			}
-	return {}
+	return {
+		"base_hp": stats.get("hp", 70),
+		"base_qi": stats.get("qi_per_turn", 3),
+	}

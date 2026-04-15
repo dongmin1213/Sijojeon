@@ -404,42 +404,6 @@ func trigger_on_lethal_damage(battle_manager: BattleManager) -> bool:
 	return false
 
 
-func trigger_on_formation_card_play(battle_manager: BattleManager) -> void:
-	## 진형 카드 사용 시 발동하는 유물 효과를 처리한다.
-	for relic_id in get_owned_relics():
-		var relic := DataLoader.get_relic(relic_id)
-		if relic.is_empty():
-			continue
-		var trigger: String = relic.get("trigger", "")
-		var values: Dictionary = relic.get("values", {})
-
-		if trigger == "on_formation_card_play":
-			pass
-
-
-func trigger_on_scholarship_exhaust(battle_manager: BattleManager, consumed: int) -> void:
-	## 학식 전소 시 발동하는 유물 효과를 처리한다.
-	if consumed <= 0:
-		return
-	for relic_id in get_owned_relics():
-		var relic := DataLoader.get_relic(relic_id)
-		if relic.is_empty():
-			continue
-		var trigger: String = relic.get("trigger", "")
-		var values: Dictionary = relic.get("values", {})
-
-		if trigger == "on_scholarship_exhaust":
-			# RW001 어진: HP 최대치의 5% 회복
-			if values.has("hp_percent_on_scholarship_exhaust"):
-				var percent: int = values["hp_percent_on_scholarship_exhaust"]
-				var heal: int = battle_manager.player_max_hp * percent / 100
-				heal = maxi(heal, 1)
-				battle_manager.player_hp += heal
-				battle_manager.player_hp = mini(battle_manager.player_hp, battle_manager.player_max_hp)
-				battle_manager.hp_changed.emit(battle_manager.player_hp, battle_manager.player_max_hp)
-				relic_triggered.emit(relic_id, tr("RELIC_STUDY_BURN_HEAL_FMT") % [heal, percent])
-
-
 func trigger_on_spell_card_play(battle_manager: BattleManager) -> void:
 	## 주문 카드 사용 시 발동하는 유물 효과를 처리한다.
 	for relic_id in get_owned_relics():
@@ -456,40 +420,6 @@ func trigger_on_spell_card_play(battle_manager: BattleManager) -> void:
 				battle_manager.current_qi += amount
 				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
 				relic_triggered.emit(relic_id, tr("RELIC_SPELL_QI_FMT") % amount)
-
-
-func trigger_on_summon_token_death(battle_manager: BattleManager) -> void:
-	## 소환 토큰 소멸 시 발동하는 유물 효과를 처리한다.
-	for relic_id in get_owned_relics():
-		var relic := DataLoader.get_relic(relic_id)
-		if relic.is_empty():
-			continue
-		var trigger: String = relic.get("trigger", "")
-		var values: Dictionary = relic.get("values", {})
-
-		if trigger == "on_summon_token_death":
-			# RD002 음양패: 카드 1장 드로우
-			if values.has("draw_on_summon_death"):
-				battle_manager.draw_cards(values["draw_on_summon_death"])
-				relic_triggered.emit(relic_id, tr("RELIC_SUMMON_DEATH_DRAW_FMT") % values["draw_on_summon_death"])
-
-
-func trigger_on_wildcard_play(battle_manager: BattleManager) -> void:
-	## 와일드카드 사용 시 발동하는 유물 효과를 처리한다.
-	for relic_id in get_owned_relics():
-		var relic := DataLoader.get_relic(relic_id)
-		if relic.is_empty():
-			continue
-		var trigger: String = relic.get("trigger", "")
-		var values: Dictionary = relic.get("values", {})
-
-		if trigger == "on_wildcard_play":
-			# RS005 장단 북: 기 +1
-			if values.has("qi_on_wildcard"):
-				var amount: int = values["qi_on_wildcard"]
-				battle_manager.current_qi += amount
-				battle_manager.qi_changed.emit(battle_manager.current_qi, battle_manager.max_qi)
-				relic_triggered.emit(relic_id, tr("RELIC_WILDCARD_QI_FMT") % amount)
 
 
 func reset_run_state() -> void:

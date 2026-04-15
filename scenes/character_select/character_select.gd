@@ -156,28 +156,13 @@ func _build_character_list() -> void:
 		var skills: Dictionary = DataLoader.get_character_skills(char_id)
 		var unlocked := _is_character_unlocked(char_id)
 
-		# special_skills.json에서 상세 정보 추출
+		# 캐릭터 스탯 조회
 		var char_entry := _find_skill_entry(char_id)
 
-		# fallback: 스킬 데이터가 없으면 기본 이름 사용
+		# fallback: 데이터가 없으면 기본 이름 사용
 		var fallback: Dictionary = CHARACTER_FALLBACK.get(char_id, {})
 		var class_ko: String = char_entry.get("class_ko", fallback.get("class_ko", char_id))
-		var class_hanja: String = char_entry.get("class_hanja", fallback.get("class_hanja", ""))
-
-		var class_resource_name := ""
-		var class_resource_max := 0
-		if char_entry.has("class_resource"):
-			var res_id: String = char_entry["class_resource"].get("id", "")
-			class_resource_name = _translate_resource_name(res_id)
-			class_resource_max = char_entry["class_resource"].get("max", 0)
-
-		var fantasy_desc := ""
-		if char_entry.has("fantasy_desc"):
-			fantasy_desc = TranslationManager.trd(char_entry, "fantasy_desc", "")
-
-		var build_hint := ""
-		if char_entry.has("build_hint"):
-			build_hint = TranslationManager.trd(char_entry, "build_hint", "")
+		var class_hanja: String = fallback.get("class_hanja", "")
 
 		var starting_relic_name := ""
 		var starting_relic_effect := ""
@@ -224,14 +209,8 @@ func _build_character_list() -> void:
 
 
 func _find_skill_entry(character_id: String) -> Dictionary:
-	## DataLoader 내부 _skills_data에서 캐릭터 항목을 찾는다.
-	var skills_data: Dictionary = DataLoader._skills_data
-	if not skills_data.has("character_special_skills"):
-		return {}
-	for entry in skills_data["character_special_skills"]:
-		if entry.get("class_id", "") == character_id:
-			return entry
-	return {}
+	## 캐릭터 스탯 데이터를 반환한다.
+	return DataLoader._character_stats.get(character_id, {})
 
 
 func _build_character_cards() -> void:
