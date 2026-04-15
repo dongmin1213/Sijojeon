@@ -77,7 +77,7 @@
       ],
       "upgrade_cost": 75,
       "values": {
-        "tokens": 1
+        "block": 5
       }
     },
     {
@@ -147,7 +147,9 @@
         "G004"
       ],
       "upgrade_cost": 100,
-      "values": {}
+      "values": {
+        "block": 10
+      }
     },
     {
       "id": "G004",
@@ -221,8 +223,7 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "block": 18,
-        "tokens": 2
+        "block": 18
       }
     },
     {
@@ -258,7 +259,9 @@
         "G014"
       ],
       "upgrade_cost": 50,
-      "values": {}
+      "values": {
+        "block": 3
+      }
     },
     {
       "id": "G007",
@@ -294,7 +297,6 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "tokens": 1,
         "block": 3
       }
     },
@@ -331,7 +333,7 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "tokens": 3
+        "block": 10
       }
     },
     {
@@ -516,7 +518,9 @@
         "G018"
       ],
       "upgrade_cost": 50,
-      "values": {}
+      "values": {
+        "block": 3
+      }
     },
     {
       "id": "G014",
@@ -552,7 +556,7 @@
       ],
       "upgrade_cost": 75,
       "values": {
-        "min_damage": 6
+        "damage": 6
       }
     },
     {
@@ -622,7 +626,9 @@
         "G015"
       ],
       "upgrade_cost": 100,
-      "values": {}
+      "values": {
+        "damage": 4
+      }
     },
     {
       "id": "G017",
@@ -827,8 +833,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "damage_per_hit": 4,
-        "hits": 2
+        "damage": 8
       }
     },
     {
@@ -933,9 +938,7 @@
         "G015"
       ],
       "upgrade_cost": 150,
-      "values": {
-        "draw_on_token_death": 1
-      }
+      "values": {}
     },
     {
       "id": "G026",
@@ -972,7 +975,7 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "min_damage": 16
+        "damage": 16
       }
     },
     {
@@ -1011,8 +1014,7 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "tokens": 3,
-        "token_double": true
+        "block": 5
       }
     }
   ],

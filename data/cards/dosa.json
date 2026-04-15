@@ -368,8 +368,7 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "damage_per_qi_gained_this_turn": 5,
-        "min_damage": 8
+        "damage": 5
       }
     },
     {
@@ -442,9 +441,7 @@
         "D009"
       ],
       "upgrade_cost": 150,
-      "values": {
-        "bonus_qi_per_turn": 1
-      }
+      "values": {}
     },
     {
       "id": "D012",
@@ -593,8 +590,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "curse_damage_per_turn": 3,
-        "curse_duration": 3
+        "poison": 3
       }
     },
     {
@@ -787,8 +783,7 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "summon_damage_per_turn": 5,
-        "summon_duration": 3
+        "damage": 5
       }
     },
     {
@@ -900,9 +895,7 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "block_per_turn": 5,
-        "qi_per_turn": 1,
-        "duration": 3
+        "block": 10
       }
     },
     {
@@ -938,8 +931,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "decoy_hits": 1,
-        "draw_on_death": 1
+        "block": 8
       }
     },
     {
@@ -1018,8 +1010,7 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "damage_per_qi_gained_this_turn": 8,
-        "min_damage": 16
+        "damage": 8
       }
     },
     {

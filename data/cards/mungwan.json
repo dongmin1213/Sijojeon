@@ -157,10 +157,8 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "damage_per_hakshik": 4,
-        "min_damage": 6,
         "is_aoe": true,
-        "consume_all_resource": true
+        "damage": 6
       }
     },
     {
@@ -192,8 +190,7 @@
       "balance_rationale": "1코스트 방어. 수호(5방어도)와 동일한 방어도에 지식 1 추가. 방어하면서 지식을 축적하는 핵심 루프 카드.",
       "upgrade_cost": 50,
       "values": {
-        "block": 6,
-        "hakshik_gain": 1
+        "block": 6
       }
     },
     {
@@ -225,8 +222,7 @@
       "balance_rationale": "2코스트 방어. 순수 방어 카드 중 2코스트 기준 최고치(10방어도). 지식 2 추가로 경연 2번 대비 방어도 1 추가 + 지식 동일(2).",
       "upgrade_cost": 75,
       "values": {
-        "block": 10,
-        "hakshik_gain": 2
+        "block": 10
       }
     },
     {
@@ -259,7 +255,6 @@
       "balance_rationale": "0코스트 지식 적립 + 드로우. 기공의 문관 버전. 0코스트라는 점에서 기 비용 없이",
       "upgrade_cost": 50,
       "values": {
-        "hakshik_gain": 2,
         "draw": 1
       }
     },
@@ -297,8 +292,7 @@
       ],
       "upgrade_cost": 75,
       "values": {
-        "hakshik_gain": 2,
-        "cost_reduce_next": 1
+        "draw": 1
       }
     },
     {
@@ -335,7 +329,6 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "hakshik_gain": 3,
         "draw": 1
       }
     },
@@ -369,8 +362,7 @@
       "balance_rationale": "1코스트 이동 카드. 방어도 3은 수호(5)보다 낮지만 지식 1 추가. 시 [3] 슬롯 채우며 방어+지식을 동시에 처리하는 범용 이동 카드.",
       "upgrade_cost": 50,
       "values": {
-        "block": 3,
-        "hakshik_gain": 1
+        "block": 3
       }
     },
     {
@@ -445,8 +437,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "damage": 4,
-        "hakshik_gain": 1
+        "damage": 4
       }
     },
     {
@@ -521,8 +512,7 @@
       ],
       "upgrade_cost": 75,
       "values": {
-        "hakshik_gain": 3,
-        "draw_bonus_this_turn": 1
+        "draw": 2
       }
     },
     {
@@ -557,10 +547,7 @@
         "W008"
       ],
       "upgrade_cost": 150,
-      "values": {
-        "hakshik_max_increase": 2,
-        "hakshik_gain": 2
-      }
+      "values": {}
     },
     {
       "id": "W015",
@@ -597,9 +584,7 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "damage_per_hakshik": 6,
-        "min_damage": 10,
-        "consume_all_resource": true
+        "damage": 10
       }
     },
     {
@@ -824,8 +809,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "block": 3,
-        "hakshik_gain": 1
+        "block": 3
       }
     },
     {
@@ -939,9 +923,7 @@
         "W003"
       ],
       "upgrade_cost": 100,
-      "values": {
-        "hakshik_per_defense_card": 1
-      }
+      "values": {}
     },
     {
       "id": "W025",
@@ -979,7 +961,6 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "hakshik_gain": 3,
         "block": 8,
         "draw": 2
       }
@@ -1060,11 +1041,7 @@
         "W013"
       ],
       "upgrade_cost": 150,
-      "values": {
-        "hakshik_max_increase": 4,
-        "hakshik_gain": 4,
-        "cost_reduce_this_turn": 2
-      }
+      "values": {}
     }
   ],
   "status_conditions_defined": [

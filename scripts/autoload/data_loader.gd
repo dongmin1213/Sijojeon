@@ -14,6 +14,8 @@ var _relic_rarity_table: Dictionary = {}
 var _character_stats: Dictionary = {}
 # 카드 풀별 아키타입 데이터 (class → Array[Dictionary])
 var _archetypes: Dictionary = {}
+# 포션 데이터
+var _potions: Dictionary = {}
 # 어센션 시스템 데이터
 var _ascension_data: Dictionary = {}
 
@@ -76,6 +78,7 @@ func _ready() -> void:
 	_load_all_enemies()
 	_load_relics()
 	_load_skills()
+	_load_potions()
 	_load_ascension()
 
 
@@ -223,6 +226,39 @@ func _load_skills() -> void:
 		return
 	if json.data is Dictionary:
 		_character_stats = json.data.get("characters", {})
+
+
+func _load_potions() -> void:
+	var path := "res://data/potions/potions.json"
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		push_warning("DataLoader: 포션 파일 열기 실패 — %s" % path)
+		return
+	var json := JSON.new()
+	var err := json.parse(file.get_as_text())
+	file.close()
+	if err != OK:
+		push_warning("DataLoader: 포션 JSON 파싱 실패 — %s" % path)
+		return
+	if json.data is Dictionary:
+		for pot in json.data.get("potions", []):
+			if pot is Dictionary and pot.has("id"):
+				_potions[pot["id"]] = pot
+
+
+func get_potion(potion_id: String) -> Dictionary:
+	return _potions.get(potion_id, {})
+
+
+func get_all_potions() -> Dictionary:
+	return _potions
+
+
+func get_random_potion() -> String:
+	if _potions.is_empty():
+		return ""
+	var ids: Array = _potions.keys()
+	return ids[randi() % ids.size()]
 
 
 # --- 공개 API ---

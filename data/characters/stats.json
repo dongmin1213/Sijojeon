@@ -1,13 +1,73 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "type": "character_stats",
-  "description": "캐릭터별 기본 스탯 (HP, 기/턴). special_skills.json 대체.",
+  "description": "캐릭터별 기본 스탯 및 고유 메카닉. StS 캐릭터 설계 기준.",
   "characters": {
-    "mugwan": {"class_ko": "의적", "hp": 80, "qi_per_turn": 3},
-    "mungwan": {"class_ko": "선비", "hp": 70, "qi_per_turn": 3},
-    "dosa": {"class_ko": "무당", "hp": 75, "qi_per_turn": 3},
-    "uiwon": {"class_ko": "의녀", "hp": 70, "qi_per_turn": 3},
-    "gungsu": {"class_ko": "기생", "hp": 70, "qi_per_turn": 3},
-    "sangin": {"class_ko": "승병", "hp": 75, "qi_per_turn": 3}
+    "mugwan": {
+      "class_ko": "의적",
+      "class_en": "Outlaw",
+      "hp": 80,
+      "qi_per_turn": 3,
+      "starting_relic": "R001",
+      "archetype": "strength_burst",
+      "description_ko": "높은 HP와 공격력. 힘 버프를 쌓아 폭딜하는 직관적 캐릭터.",
+      "description_en": "High HP and damage. Stacks Strength for burst damage.",
+      "playstyle": "Ironclad-style. Self-heal, Strength scaling, Exhaust synergy."
+    },
+    "mungwan": {
+      "class_ko": "선비",
+      "class_en": "Scholar",
+      "hp": 70,
+      "qi_per_turn": 3,
+      "starting_relic": "R002",
+      "archetype": "control_debuff",
+      "description_ko": "약화·취약 디버프와 광역 공격. 적을 제압하는 전략가.",
+      "description_en": "Weak/Vulnerable debuffs and AoE. Controls the battlefield.",
+      "playstyle": "Silent-style. Poison, Weak stacking, card draw engine."
+    },
+    "dosa": {
+      "class_ko": "무당",
+      "class_en": "Shaman",
+      "hp": 75,
+      "qi_per_turn": 3,
+      "starting_relic": "R003",
+      "archetype": "dot_burn",
+      "description_ko": "화상·독 DoT와 저주로 적을 서서히 태우는 술법사.",
+      "description_en": "Burns and poisons enemies with DoT and curses.",
+      "playstyle": "DoT specialist. Burn/Poison stacking, indirect damage."
+    },
+    "uiwon": {
+      "class_ko": "의녀",
+      "class_en": "Healer",
+      "hp": 70,
+      "qi_per_turn": 3,
+      "starting_relic": "R004",
+      "archetype": "sustain_poison",
+      "description_ko": "자가 회복과 독을 겸비한 지구전 전문가.",
+      "description_en": "Self-healing and Poison. Outlasts enemies through sustain.",
+      "playstyle": "Sustain/Poison hybrid. HP recovery, long fights."
+    },
+    "gungsu": {
+      "class_ko": "기생",
+      "class_en": "Entertainer",
+      "hp": 70,
+      "qi_per_turn": 3,
+      "starting_relic": "R005",
+      "archetype": "combo_draw",
+      "description_ko": "다중 타격과 카드 드로우. 한 턴에 많은 카드를 쏟아내는 콤보형.",
+      "description_en": "Multi-hit and card draw. Plays many cards per turn.",
+      "playstyle": "Shiv/multi-hit style. Card draw engine, 0-cost cards."
+    },
+    "sangin": {
+      "class_ko": "승병",
+      "class_en": "Warrior Monk",
+      "hp": 75,
+      "qi_per_turn": 3,
+      "starting_relic": "R006",
+      "archetype": "defense_counter",
+      "description_ko": "높은 방어도와 반격. 수비하며 적을 압도하는 탱커.",
+      "description_en": "High Block and counterattacks. Defends and overwhelms.",
+      "playstyle": "Barricade/Body Slam style. Block retention, counter damage."
+    }
   }
 }

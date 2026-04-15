@@ -583,10 +583,7 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "damage_equals_heung": true,
-        "min_damage": 4,
-        "max_damage": 20,
-        "heung_consume": 2
+        "damage": 4
       }
     },
     {
@@ -738,11 +735,7 @@
         "GI017"
       ],
       "upgrade_cost": 150,
-      "values": {
-        "heung_per_turn_bonus": 2,
-        "cost_reduce_threshold": 5,
-        "is_permanent": true
-      }
+      "values": {}
     },
     {
       "id": "GI019",
@@ -1012,12 +1005,7 @@
         "description": "기생으로 고난도 5 이상으로 런을 완료한다.",
         "description_en": "Complete a run as Gisaeng at Ascension 5 or higher."
       },
-      "values": {
-        "heung_per_card_played": 1,
-        "heal_per_turn_at_max_heung": 2,
-        "heal_heung_threshold": 10,
-        "is_permanent": true
-      }
+      "values": {}
     },
     {
       "id": "GI025",

@@ -54,6 +54,62 @@ signal battle_ended(victory: bool)
 signal status_effect_changed(target: String, effect_id: String, stacks: int)
 signal dot_damage_dealt(target: String, effect_id: String, amount: int)
 signal passive_triggered(skill_name: String, description: String)
+signal potion_used(potion_id: String)
+
+
+func use_potion(slot_index: int, target_enemy_index: int = 0) -> bool:
+	## 포션 슬롯에서 포션을 사용한다. 전투 중 언제든 사용 가능 (턴 소비 없음).
+	if state != BattleState.PLAYER_ACTION:
+		return false
+	if GameManager.run_data == null:
+		return false
+	var potions: Array = GameManager.run_data.potions
+	if slot_index < 0 or slot_index >= potions.size():
+		return false
+	var potion_id: String = potions[slot_index]
+	if potion_id.is_empty():
+		return false
+
+	var potion_data: Dictionary = DataLoader.get_potion(potion_id)
+	if potion_data.is_empty():
+		push_warning("BattleManager.use_potion: 포션 데이터 없음 — %s" % potion_id)
+		return false
+
+	var values: Dictionary = potion_data.get("values", {})
+	var target: String = potion_data.get("target", "self")
+
+	# 효과 적용
+	if values.has("heal"):
+		player_hp = mini(player_hp + int(values["heal"]), player_max_hp)
+		hp_changed.emit(player_hp, player_max_hp)
+	if values.has("damage"):
+		if target == "all_enemies":
+			for i in enemies.size():
+				deal_damage_to_enemy(i, int(values["damage"]))
+		else:
+			deal_damage_to_enemy(target_enemy_index, int(values["damage"]))
+	if values.has("block"):
+		gain_block(int(values["block"]))
+	if values.has("strength"):
+		status_effects.apply_effect("player", "strength", int(values["strength"]))
+	if values.has("dexterity"):
+		status_effects.apply_effect("player", "dexterity", int(values["dexterity"]))
+	if values.has("qi"):
+		current_qi += int(values["qi"])
+		qi_changed.emit(current_qi, max_qi)
+	if values.has("draw"):
+		draw_cards(int(values["draw"]))
+	if values.has("poison"):
+		status_effects.apply_effect("enemy_%d" % target_enemy_index, "독", int(values["poison"]))
+	if values.has("weaken"):
+		status_effects.apply_effect("enemy_%d" % target_enemy_index, "약화", int(values["weaken"]))
+	if values.has("vulnerable"):
+		status_effects.apply_effect("enemy_%d" % target_enemy_index, "취약", int(values["vulnerable"]))
+
+	# 슬롯 비우기
+	potions[slot_index] = ""
+	potion_used.emit(potion_id)
+	return true
 
 func _ready() -> void:
 	# StatusEffectManager 자동 생성

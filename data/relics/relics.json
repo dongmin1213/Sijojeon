@@ -563,10 +563,10 @@
       },
       "rarity": 2,
       "class_restriction": "의적",
-      "trigger": "battle_start",
+      "trigger": "on_battle_start",
       "effect": {
-        "ko": "전투 시작 시 1개를 자동으로 생성한다.",
-        "en": "Automatically create 1 at the start of combat."
+        "ko": "전투 시작 시 방어도 5를 획득한다.",
+        "en": "Gain 5 Block at the start of combat."
       },
       "effect_description": {
         "ko": "전투 시작 시 1개 생성 (의적 전용, 시작 유물)",
@@ -581,7 +581,7 @@
         "starting_relic"
       ],
       "values": {
-        "tokens": 1
+        "block": 5
       }
     },
     {
@@ -1023,38 +1023,6 @@
       }
     },
     {
-      "id": "RW001",
-      "name": {
-        "ko": "어진",
-        "romanized": "Eojin",
-        "en": "Royal Portrait"
-      },
-      "rarity": 2,
-      "class_restriction": "선비",
-      "trigger": "on_scholarship_exhaust",
-      "effect": {
-        "ko": "지식을 전소할 때마다 HP 최대치의 5%를 회복한다. (선비 전용)",
-        "en": "Restore 5% of max HP whenever Scholarship is fully spent. (Scholar only)"
-      },
-      "effect_description": {
-        "ko": "지식 전소 시 HP 최대치 5% 회복 (선비 전용)",
-        "en": "Restore 5% max HP on Scholarship exhaust (Scholar only)."
-      },
-      "flavor_text": {
-        "ko": "왕의 초상을 곁에 두고 충성을 다한다 — 지식을 쏟아낼 때 몸이 회복된다.",
-        "en": "Keeping the royal portrait close, serving with loyalty — when knowledge pours forth, the body recovers."
-      },
-      "balance_rationale": "선비 전용 고급 유물. 문관 HP 65 기준 지식 전소(상소/왕의 윤허) 시 HP 3 회복. 지식 폭발 빌드에서 매 번 지식을 전소하면 전투마다 3~5회 회복 가능.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "hp_percent_on_scholarship_exhaust": 5
-      }
-    },
-    {
       "id": "RD001",
       "name": {
         "ko": "선단",
@@ -1084,38 +1052,6 @@
       ],
       "values": {
         "extra_qi_on_spell_card": 1
-      }
-    },
-    {
-      "id": "RD002",
-      "name": {
-        "ko": "음양패",
-        "romanized": "Eumyang-pae",
-        "en": "Yin-Yang Tablet"
-      },
-      "rarity": 2,
-      "class_restriction": "무당",
-      "trigger": "on_summon_token_death",
-      "effect": {
-        "ko": "소환한 토큰이 소멸할 때마다 카드 1장을 드로우한다. (무당 전용)",
-        "en": "Draw 1 card whenever a summoned token is destroyed. (Taoist only)"
-      },
-      "effect_description": {
-        "ko": "소환 토큰 소멸 시 드로우 +1 (무당 전용)",
-        "en": "Draw +1 on summon token death (Taoist only)."
-      },
-      "flavor_text": {
-        "ko": "음이 사라지면 양이 생기고 — 소환이 끊어지는 순간 새로운 패가 들어온다.",
-        "en": "When yin fades, yang rises — the moment a summon perishes, new cards arrive."
-      },
-      "balance_rationale": "무당 전용 고급 유물. D024 허수아비(소환: 소멸 시 드로우1→드로우2), D020 구미호(매 턴 5피해→소멸 시 드로우1). 소환·도술 아키타입 핵심 드로우 엔진.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "draw_on_summon_death": 1
       }
     },
     {

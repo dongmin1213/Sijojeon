@@ -696,7 +696,7 @@
       "balance_rationale": "2코스트 카드 회수. 덱 순환이 아닌 사용한 카드 재활용. 콤보 피스(업그레이드 공격 카드, 절창 등) 재회수나 버티기 재사용에 전략적 가치. 2코스트로 기 효율 낮지만 후반 결정적 역할 가능.",
       "upgrade_cost": 75,
       "values": {
-        "recover_from_discard": 2
+        "block": 10
       }
     },
     {
@@ -794,9 +794,7 @@
       "balance_rationale": "2코스트 방어도→피해 전환. 방어도 16이면 8피해(약함), 방어도 40이면 20피해(강함). 버티기(M010, 2코스트 15방어도)+역습 콤보: 총 4코스트 15방어+7피해. 방어 중심 빌드에 화력 출구 제공. 상한(20/25)으로 폭발적 스케일링 억제.",
       "upgrade_cost": 100,
       "values": {
-        "damage_half_of_block": true,
-        "damage_min": 8,
-        "damage_max": 20
+        "damage": 8
       }
     },
     {
@@ -1259,7 +1257,9 @@
       },
       "balance_rationale": "1코스트 +5. 전투 중 조작의 기본 카드. 은 보스전·이벤트에 누적 영향하므로 전투 중 투자 가치 있음. 안정적 빌드의 기반.",
       "upgrade_cost": 50,
-      "values": {}
+      "values": {
+        "block": 5
+      }
     },
     {
       "id": "M039",
@@ -1324,9 +1324,7 @@
       "balance_rationale": "1코스트 조건부 효과. 고=공격 버프(영구 힘), 저=방어 보충. 시스템을 전투에 직접 연동. 어떤 이든 가치 있으나 빌드 방향에 따라 관리 동기 부여.",
       "upgrade_cost": 75,
       "values": {
-        "strength_if_high_rank": 2,
-        "block_if_low_rank": 6,
-        "rank_threshold": 3
+        "block": 5
       }
     },
     {
@@ -1393,8 +1391,8 @@
       "balance_rationale": "2코스트 소멸. +8과 소멸 패널티로 1회용이나 레어리티 4로 획득 제한.",
       "upgrade_cost": 100,
       "values": {
-        "rank_up": 1,
-        "exhaust": true
+        "exhaust": true,
+        "block": 10
       }
     },
     {
@@ -1459,7 +1457,9 @@
       },
       "balance_rationale": "1코스트. 상태에 따라 효과 분기. 고=영구 공방 버프, 저=기 보충(자해 디버프 포함). 관리에 전투적 보상을 직접 연결. 어느 이든 활용 가능하나 고이 압도적으로 유리.",
       "upgrade_cost": 75,
-      "values": {}
+      "values": {
+        "block": 5
+      }
     },
     {
       "id": "M045",
@@ -1594,9 +1594,8 @@
       "balance_rationale": "1코스트 출혈4(기본) 또는 출혈7(독 조건). 출혈은 방어도 획득 시 추가 피해라 적 방어 턴에도 효과적. 저주→사혈 콤보로 독+출혈 이중 DoT. 방어형 적에게 특히 강력.",
       "upgrade_cost": 75,
       "values": {
-        "bleed": 4,
-        "bleed_bonus_if_poisoned": 3,
-        "poison_threshold": 3
+        "damage": 6,
+        "poison": 4
       }
     },
     {
@@ -1629,8 +1628,8 @@
       "balance_rationale": "2코스트 종장 전용. 독10 기준 20피해+독5로 감소. 독 스태킹 후 피니셔. 절창(피해), 영감(자원) 과 함께 세 번째 종장 피니셔 옵션. 독 빌드 전용이라 덱 구성 의존도 높음.",
       "upgrade_cost": 100,
       "values": {
-        "damage_poison_multiplier": 2,
-        "poison_reduce_half": true
+        "damage": 12,
+        "poison": 3
       }
     },
     {

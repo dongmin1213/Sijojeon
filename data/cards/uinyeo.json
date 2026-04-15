@@ -118,8 +118,7 @@
       ],
       "upgrade_cost": 75,
       "values": {
-        "heal": 10,
-        "bonus_heal_on_low_hp": 2
+        "block": 10
       }
     },
     {
@@ -195,8 +194,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "heal": 3,
-        "next_heal_bonus": 3
+        "block": 5
       }
     },
     {
@@ -349,8 +347,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "cleanse_self_debuffs": true,
-        "heal": 1
+        "block": 3
       }
     },
     {
@@ -386,9 +383,7 @@
         "H010"
       ],
       "upgrade_cost": 100,
-      "values": {
-        "heal_per_turn": 2
-      }
+      "values": {}
     },
     {
       "id": "H010",
@@ -698,8 +693,7 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "damage_equals_poison_stacks": true,
-        "remove_poison": true
+        "damage": 12
       }
     },
     {
@@ -737,9 +731,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "heal": 3,
-        "damage_reduction_next_hits": 2,
-        "reduction_amount": 1
+        "block": 5
       }
     },
     {
@@ -775,9 +767,7 @@
         "H017"
       ],
       "upgrade_cost": 150,
-      "values": {
-        "poison_per_turn_aoe": 2
-      }
+      "values": {}
     },
     {
       "id": "H020",
@@ -1065,10 +1055,7 @@
       ],
       "upgrade_cost": 150,
       "unlock_condition": "ascension_3",
-      "values": {
-        "heal_per_turn": 2,
-        "poison_per_turn_aoe": 2
-      }
+      "values": {}
     },
     {
       "id": "H027",
@@ -1109,10 +1096,7 @@
       "upgrade_cost": 150,
       "unlock_condition": "ascension_5",
       "values": {
-        "heal_per_heal_card_played": 3,
-        "poison_per_poison_card_played": 3,
-        "min_heal": 5,
-        "min_poison": 5
+        "damage": 12
       }
     }
   ],

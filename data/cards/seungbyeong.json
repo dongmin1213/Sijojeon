@@ -354,8 +354,7 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "damage_reduction_this_turn": 2,
-        "karma_on_hit_bonus": 1
+        "block": 3
       }
     },
     {
@@ -393,9 +392,7 @@
       ],
       "upgrade_cost": 125,
       "values": {
-        "damage_per_karma": 8,
-        "min_damage": 8,
-        "consumes_all_karma": true
+        "damage": 8
       }
     },
     {
@@ -671,8 +668,8 @@
       ],
       "upgrade_cost": 50,
       "values": {
-        "confusion": 2,
-        "is_aoe": true
+        "is_aoe": true,
+        "block": 5
       }
     },
     {
@@ -751,9 +748,7 @@
       ],
       "upgrade_cost": 125,
       "values": {
-        "damage_pct_of_missing_hp": 0.5,
-        "min_damage": 8,
-        "max_damage": 30
+        "damage": 8
       }
     },
     {
@@ -973,7 +968,7 @@
         "description": "승병으로 2막(Act 2) 보스를 처치한다."
       },
       "values": {
-        "karma_gain_first_play": 5
+        "block": 10
       }
     },
     {
@@ -1019,9 +1014,7 @@
         "description": "승병으로 2막(Act 2) 보스를 처치한다."
       },
       "values": {
-        "heal_pct_of_max_hp": 0.3,
-        "block_per_turn_end": 5,
-        "heal_per_turn_end": 2
+        "block": 15
       }
     },
     {
@@ -1161,10 +1154,8 @@
         "description": "승병으로 최종 보스(3막)를 처치한다."
       },
       "values": {
-        "damage_per_karma_aoe": 5,
         "is_aoe": true,
-        "consumes_all_karma": true,
-        "karma_gain_per_kill": 1
+        "damage": 20
       }
     }
   ],
