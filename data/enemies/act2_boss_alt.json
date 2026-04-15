@@ -134,7 +134,7 @@
       },
       "moves": [
         {
-          "id": "transformation",
+          "id": "transcombat",
           "name": {
             "ko": "변신",
             "en": "Shapeshifting"
@@ -195,10 +195,10 @@
       "move_pattern": {
         "type": "sequential",
         "sequence": [
-          "transformation",
+          "transcombat",
           "soul_harvest",
           "curse_barrage",
-          "transformation",
+          "transcombat",
           "soul_harvest"
         ]
       }

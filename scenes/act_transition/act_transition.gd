@@ -18,7 +18,7 @@ var ACT_CUTSCENE_LINES := {
 		{"ko": "왕명을 받들어, 백성의 눈물을 닦아줄 자 — 그대뿐이로다.", "en": "By royal decree, only you can wipe the tears of the people."},
 	],
 	2: [
-		{"ko": "한양을 벗어나니 산하가 험하고 민심이 흉흉하다.", "en": "Beyond Hanyang, the mountains are steep and the people restless."},
+		{"ko": "한양을 벗어나니 산하가 험하고 이 흉흉하다.", "en": "Beyond Hanyang, the mountains are steep and the people restless."},
 		{"ko": "지리산 깊은 곳에서 기이한 기운이 솟아오른다.", "en": "A strange energy rises from deep within Jirisan."},
 		{"ko": "이곳의 진상을 밝히지 않으면 나라가 위태로우리라.", "en": "If the truth here is not uncovered, the kingdom falls."},
 	],

@@ -86,11 +86,6 @@ CHARACTER_SHAMAN,무당,Shaman
 CHARACTER_ARCHER,기생,Gisaeng
 CHARACTER_MERCHANT,승병,Seungbyeong
 RESOURCE_QI,기,Qi
-RESOURCE_STAMINA,기력,Stamina
-RESOURCE_SCHOLARSHIP,학식,Scholarship
-RESOURCE_SPIRIT,영력,Spirit Power
-RESOURCE_HEUNG,흥,Heung
-RESOURCE_CAUSE,인과,Karma
 STATUS_BURN,화상,Burn
 STATUS_POISON,독,Poison
 STATUS_CURSE,저주,Curse
@@ -98,12 +93,8 @@ STATUS_WEAKEN,약화,Weakened
 STATUS_VULNERABLE,취약,Vulnerable
 STATUS_STRENGTH,힘,Strength
 STATUS_REGEN,재생,Regen
-MINSHIM_TITLE,민심,Public Sentiment
-JIBUN_TITLE,신분,Social Status
-GWAGEO_TITLE,과거시험,Civil Exam
 UI_CHARACTER_SELECT,캐릭터 선택,Character Select
 UI_START,시작,Start
-UI_CHRONICLE,연대기,Chronicle
 UI_CONTINUE_BUTTON,계속,Continue
 UI_MAIN_MENU,메인 메뉴,Main Menu
 UI_RETRY,다시 도전,Retry
@@ -118,14 +109,9 @@ SHOP_REMOVE_CARD_BUTTON,카드 제거 (75 금화),Remove Card (75 Gold)
 SHOP_REMOVE_CARD_INFO,덱에서 카드 1장을 영구 제거합니다,Permanently remove 1 card from your deck
 SHOP_UPGRADE_CARD,카드 강화 (50 금화),Upgrade Card (50 Gold)
 SHOP_UPGRADE_CARD_INFO,덱의 카드 1장을 강화합니다,Upgrade 1 card in your deck
-SHOP_BUY_MINSHIM,민심 매수 (100 금화 → 민심 +10),Buy Sentiment (100 Gold → Sentiment +10)
-SHOP_MARKET_OPEN,시장 개방 (25 금화 → 민심 +8),Open Market (25 Gold → Sentiment +8)
-SHOP_BRIBE,청탁 (60 금화 → 신분 +20),Bribery (60 Gold → Status +20)
 SHOP_RATIONS,군량미 비축 (30 금화 → 방어도 +8),Stockpile Rations (30 Gold → Block +8)
 SHOP_RELICS,유물 판매,Relics for Sale
 SHOP_LEAVE,상점 나가기,Leave Shop
-GWAGEO_SUBMIT,제출,Submit
-GWAGEO_BRIBE,뇌물 50냥 (합격 보장),Bribe 50 Gold (Guaranteed Pass)
 COMBO_SISEON,시선!,Siseon!
 COMBO_JEOLCHANG,절창!,Jeolchang!
 STATUS_STUN,기절,Stunned
@@ -145,48 +131,11 @@ SHOP_REMOVE_COST_FMT,카드 제거 (%d 금화),Remove Card (%d Gold)
 SHOP_GOLD_DISPLAY,보유 금화: %d,Gold: %d
 SHOP_REFRESH_FMT,새로고침 (%d 금화),Refresh (%d Gold)
 SHOP_UPGRADE_COST_FMT,카드 강화 (%d 금화),Upgrade Card (%d Gold)
-SHOP_MINSHIM_BUY_FMT,민심 매수 (%d 금화 → 민심 +%d) [현재: %d],Buy Sentiment (%d Gold → Sentiment +%d) [Current: %d]
-SHOP_MINSHIM_MAX,민심 최대 (100),Sentiment Max (100)
-SHOP_MARKET_OPEN_FMT,시장 개방 (%d 금화 → 민심 +%d) [현재: %d],Open Market (%d Gold → Sentiment +%d) [Current: %d]
-SHOP_BRIBE_FMT,청탁 (%d 금화 → 신분 +%d) [%s / %d점],Bribery (%d Gold → Status +%d) [%s / %d pts]
 SHOP_RATIONS_FMT,군량미 비축 (%d 금화 → 다음 전투 방어도 +%d),Stockpile Rations (%d Gold → Next Battle Block +%d)
 SHOP_RELIC_PRICE_FMT,%s\n%s\n\n%d 금화,%s\n%s\n\n%d Gold
-GWAGEO_BACK,돌아가기,Go Back
-GWAGEO_EXAMINER_FMT,시험관: %s,Examiner: %s
-GWAGEO_PHASE_CHOJANG,초장 — 아래에서 카드 %d장을 눌러 선택하세요,First Verse — Select %d cards below
-GWAGEO_PHASE_JUNGJANG,중장 — 카드 %d장을 눌러 선택하세요,Middle Verse — Select %d cards
-GWAGEO_PHASE_JONGJANG,종장 — 카드 %d장을 눌러 선택하세요,Final Verse — Select %d cards
-GWAGEO_HINT_CHOJANG,▶ 공격·방어·기술을 골고루 넣으면 높은 점수!,▶ Mix Attack/Defense/Skill for high score!
-GWAGEO_HINT_JUNGJANG,▶ 초장 카드와 키워드가 겹칠수록 높은 점수!,▶ Overlap keywords with First Verse for high score!
-GWAGEO_HINT_JONGJANG,▶ 피해량이 높은 카드를 골라 마무리!,▶ Pick high damage cards to finish!
-GWAGEO_SELECT_FMT,선택: %d/%d,Selected: %d/%d
-GWAGEO_RESULT_TITLE,채점 결과,Scoring Result
-GWAGEO_SCORE_FMT,점수: %d / 100,Score: %d / 100
-GWAGEO_GRADE_FMT,등급: %s,Grade: %s
-GWAGEO_AMHAENGOSA_NOTE,(암행어사 시험관: 엽전 손실 없음),(Royal Inspector Examiner: No Gold Loss)
-GWAGEO_JANGWON,장원 급제! 전설 카드를 획득합니다.,Top Honors! Acquire a legendary card.
-GWAGEO_JANGWON_RELIC,암행어사의 추천장 — 유물 획득!,Royal Inspector's Letter — Relic acquired!
-GWAGEO_GEUPJE_FMT,급제! 희귀 카드 %d장 획득.,Passed with Honors! %d rare cards acquired.
-GWAGEO_HAPGYEOK_FMT,합격. 카드 %d장 획득.,Passed. %d cards acquired.
-GWAGEO_NAKBANG_LOSS,낙방... 엽전 30 손실.,Failed... Lost 30 Gold.
-GWAGEO_NAKBANG_SAFE,낙방... 하지만 암행어사가 지켜보고 있었다.,Failed... But the Royal Inspector was watching.
-GWAGEO_BRIBE_TITLE,뇌물 수수,Bribery
-GWAGEO_BRIBE_RESULT_FMT,"뇌물로 합격을 샀다.
-엽전 -50 민심 -20
 카드 %d장 획득.","Bought a pass with bribery.
 Gold -50 Sentiment -20
 %d cards acquired."
-GWAGEO_STATUS_HP,HP: %d/%d,HP: %d/%d
-GWAGEO_STATUS_GOLD,엽전: %d,Gold: %d
-GWAGEO_STATUS_JIBUN,신분: %s,Status: %s
-GWAGEO_CARD_TYPE_ATTACK,[공격],[Attack]
-GWAGEO_CARD_TYPE_DEFENSE,[방어],[Defense]
-GWAGEO_CARD_TYPE_SPELL,[주문],[Spell]
-GWAGEO_CARD_TYPE_MOVEMENT,[이동],[Movement]
-GWAGEO_CARD_TYPE_FORMATION,[진형],[Formation]
-GWAGEO_CARD_INFO_FMT,%s %s  비용:%d,%s %s  Cost:%d
-GWAGEO_CARD_DAMAGE_FMT,피해:%d%s,Damage:%d%s
-GWAGEO_CARD_BLOCK_FMT,방어:%d,Block:%d
 CHARSEL_START_FMT,시작: %s,Start: %s
 CHARSEL_CLASS_RESOURCE_FMT,전용 자원: %s (최대 %d),Class Resource: %s (Max %d)
 CHARSEL_PASSIVE_PREFIX,▶ 패시브: ,▶ Passive:
@@ -241,17 +190,6 @@ EVENT_BACK,돌아가기,Go Back
 EVENT_CHOICE_DEFAULT,선택,Choose
 EVENT_GOLD_FMT,엽전: %d,Gold: %d
 EVENT_CARD_SELECT_HEADER,카드를 선택하세요 (1장),Choose a card (1)
-CHRONICLE_TITLE,연대기,Chronicle
-CHRONICLE_OVERALL,전체 진행률,Overall Progress
-CHRONICLE_TOTAL_RUNS,총 도전 횟수,Total Runs
-CHRONICLE_VICTORIES,승리,Victories
-CHRONICLE_DEFEATS,패배,Defeats
-CHRONICLE_WIN_RATE,승률,Win Rate
-CHRONICLE_CHARACTER_RECORDS,캐릭터별 기록,Character Records
-CHRONICLE_RUNS_FMT,도전: %d회,Runs: %d
-CHRONICLE_WINS_FMT,승리: %d회,Wins: %d
-CHRONICLE_CLEARED,★ 클리어,★ Cleared
-CHRONICLE_ACHIEVEMENT_FMT,업적 (%d/%d),Achievements (%d/%d)
 REST_HEAL_RESULT_FMT,휴식을 취해 HP %d 회복. (%d/%d),Rested and recovered %d HP. (%d/%d)
 REST_UPGRADE_SELECT,강화할 카드를 선택하세요.,Select a card to upgrade.
 REST_NO_UPGRADE,(강화 효과 없음),(No upgrade effect)
@@ -260,15 +198,7 @@ REST_CAMPFIRE,모닥불 앞에서 잠시 쉬어간다.,Rest by the campfire for 
 REST_STATUS_GOLD_FMT,엽전: %d,Gold: %d
 MAP_GOLD_FMT,금화: %d,Gold: %d
 MAP_ACT_FMT,%d막 — %s,Act %d — %s
-MAP_JIBUN_FMT,신분: %s,Status: %s
-MAP_FACTION_FMT,%s:%d vs %s:%d,%s:%d vs %s:%d
-MAP_FACTION_NONE,당파: --,Faction: --
-MAP_MINSHIM_FMT,민심: %d,Sentiment: %d
-MAP_MINSHIM_TIER_FMT,민심: %d [%s],Sentiment: %d [%s]
-MAP_JIBUN_PROGRESS_FMT,신분: %s %d/%d %s,Status: %s %d/%d %s
-MAP_JIBUN_MAX_FMT,신분: %s (%d),Status: %s (%d)
 MAP_CLOSED,폐업,Closed
-MAP_CLOSED_TOOLTIP,민심 부족으로 상점이 문을 닫았습니다,Shop closed due to low public sentiment
 MAP_FORK_COST_FMT,[%d금화],[%d Gold]
 MAP_FORK_UNLOCK_TOOLTIP,%d 금화를 지불하면 이 경로를 해제합니다,Pay %d Gold to unlock this path
 RESULT_VICTORY,승리,Victory
@@ -308,7 +238,6 @@ CARD_ZOOM_TYPE_ATTACK,공격,Attack
 CARD_ZOOM_TYPE_DEFENSE,방어,Defense
 CARD_ZOOM_TYPE_SPELL,주술,Sorcery
 CARD_ZOOM_TYPE_MOVEMENT,이동,Movement
-CARD_ZOOM_TYPE_FORMATION,진형,Formation
 CARD_ZOOM_STAT_QI_BEAT,기: %d | 음보: %d,Qi: %d  |  Beat: %d
 CARD_ZOOM_DAMAGE,피해: %d,Damage: %d
 CARD_ZOOM_BLOCK,방어: %d,Block: %d
@@ -324,7 +253,6 @@ ACT_TRANSITION_FMT,제 %d 막,Act %d
 REWARD_CARD_STAT_FMT,비용: %d기 · 음보: [%d],Cost: %d Qi · Beat: [%d]
 REWARD_CARD_DRAW_FMT,드로우 +%d,Draw +%d
 REWARD_CARD_QI_FMT,기 +%d,Qi +%d
-REWARD_CARD_TOKEN_FMT,토큰 +%d,Token +%d
 REWARD_CARD_BURN_FMT,화상 %d,Burn %d
 REWARD_CARD_POISON_FMT,독 %d,Poison %d
 REWARD_CARD_WEAKEN_FMT,약화 %d,Weakened %d
@@ -345,7 +273,6 @@ EVENT_CARD_BLOCK_FMT,방어: %d,Block: %d
 EVENT_RESULT_RELIC,유물 획득!,Relic acquired!
 EVENT_RESULT_CARD,카드 획득.,Card acquired.
 BATTLE_SISEON_REWARD,시선! 다음 카드 비용 -1,Siseon! Next card cost -1
-BATTLE_SISEON_STAMINA,기력 +%d,Stamina +%d
 BATTLE_SISEON_CARD,카드 +%d,Card +%d
 BATTLE_JEOLCHANG_TEXT,절창!,Jeolchang!
 BATTLE_JEOLCHANG_STUN,적 전체 기절!,All enemies stunned!
@@ -367,15 +294,12 @@ SIJO_STRIKE_JEOLCHANG_DESC,흥 %d 소비 → 전체 피해 %d,Consume %d excitem
 SIJO_STRIKE_PASA,파사현정,Pasahyeonjeong
 SIJO_STRIKE_PASA_DESC,방어 15 + 적 전체 약화 2 + 기절 1,Block 15 + all enemies Weaken 2 + Stun 1
 SIJO_STRIKE_DEFAULT_DESC,적 전체 피해 6,All enemies 6 damage
-BATTLE_CHOJANG_COMPLETE_STAMINA,초장 완성! 기력 +1,First Verse! Stamina +1
-BATTLE_CHOJANG_COMPLETE_SCHOLAR,초장 완성! 학식 +1,First Verse! Scholarship +1
+BATTLE_CHOJANG_COMPLETE_SCHOLAR,초장 완성! 기 +1,First Verse! Scholarship +1
 BATTLE_CHOJANG_COMPLETE,초장 완성!,First Verse!
-BATTLE_JUNGJANG_COMPLETE_STAMINA,중장 완성! 기력 +1,Middle Verse! Stamina +1
-BATTLE_JUNGJANG_COMPLETE_SCHOLAR,중장 완성! 학식 +1,Middle Verse! Scholarship +1
+BATTLE_JUNGJANG_COMPLETE_SCHOLAR,중장 완성! 기 +1,Middle Verse! Scholarship +1
 BATTLE_JUNGJANG_COMPLETE_QI,중장 완성! 기 +1,Middle Verse! Qi +1
 BATTLE_JUNGJANG_COMPLETE,중장 완성!,Middle Verse!
-BATTLE_JONGJANG_COMPLETE_STAMINA,종장 완성! 기력 +3,Final Verse! Stamina +3
-BATTLE_JONGJANG_COMPLETE_SCHOLAR,종장 완성! 학식 +2,Final Verse! Scholarship +2
+BATTLE_JONGJANG_COMPLETE_SCHOLAR,종장 완성! 기 +2,Final Verse! Scholarship +2
 BATTLE_JONGJANG_COMPLETE_QI_FREE,종장 완성! 기 +1 다음 주문 무료!,Final Verse! Qi +1 next spell free!
 BATTLE_JUNGJANG_COMPLETE_POWER,중장 완성! 기 +1 다음 카드 위력 +30%,Middle Verse! Qi +1 Next card power +30%
 BATTLE_JONGJANG_COMPLETE_POWER,종장 완성! 기 +2 카드 드로우 + 적 취약!,Final Verse! Qi +2 Draw + Enemies Vulnerable!
@@ -387,8 +311,6 @@ TOOLTIP_BLOCK,방어도 — 적의 공격 피해를 대신 받습니다. 턴이 
 TOOLTIP_END_TURN,턴을 종료하고 적이 행동합니다,End your turn and let enemies act
 TOOLTIP_DRAW_PILE,뽑을 카드 더미 — 여기서 카드를 뽑습니다,Draw pile — Cards are drawn from here
 TOOLTIP_DISCARD_PILE,버린 카드 더미 — 뽑을 카드가 없으면 섞여서 다시 뽑기 더미가 됩니다,"Discard pile — When draw pile is empty, these are shuffled back"
-PASSIVE_MINSHIM_TITLE,백성의 축복,Blessing of the People
-PASSIVE_MINSHIM_DESC,높은 민심으로 매 턴 HP +1 회복,High public trust restores HP +1 each turn
 PASSIVE_SISEON,시선,Siseon
 PASSIVE_JEOLCHANG,절창,Jeolchang
 ACT_DESC_1,"왕조의 수도, 한양.\n거리에는 불온한 기운이 감돌고 있다.","The royal capital, Hanyang.\nAn ominous atmosphere pervades the streets."
@@ -406,80 +328,27 @@ NODE_EVENT,이벤트,Event
 NODE_SHOP,상점,Shop
 NODE_REST,휴식,Rest
 NODE_BOSS,보스,Boss
-NODE_GWAGEO,과거,Gwageo
 SKILL_USED_FMT,%s (사용됨),%s (Used)
 PASSIVE_TRIGGER_FMT,[패시브] %s: %s,[Passive] %s: %s
 CHARSEL_STAT_FMT,HP: %d | 기: %d,HP: %d | Qi: %d
 CHARSEL_STAT_UNKNOWN,HP: ?? | 기: ??,HP: ?? | Qi: ??
 TOOLTIP_GOLD_INSUFFICIENT,엽전이 부족합니다,Not enough gold
-MINSHIM_UNREST_FMT,[민심 불안] 불만을 품은 백성이 돌을 던졌다! HP -%d,[Unrest] Disgruntled people threw stones! HP -%d
 EVENT_CONSCIOUSNESS,\n...의식이 아득해진다.,\n...Consciousness fades.
 EVENT_DEFAULT_TITLE,사건,Event
 CARD_BEAT_COST_FMT,[%d] %d기,[%d] %d Qi
-CARD_STAMINA_COST_FMT, %d력, %d Stamina
-CARD_STAMINA_GAIN_FMT, +%d력, +%d Stamina
 CARD_TYPE_SPELL_ALT,주술,Sorcery
 CARD_TYPE_MOVEMENT,이동,Movement
-CARD_TYPE_FORMATION,진형,Formation
 REWARD_CARD_DMG_FMT,⚔ 피해 %d,⚔ Damage %d
 REWARD_CARD_DMG_AOE, (전체), (All)
 REWARD_CARD_BLOCK_FMT,🛡 방어 %d,🛡 Block %d
-GWAGEO_EXAMINER_DEFAULT,학자,Scholar
 UI_CLOSE_DIALOG,닫기,Close
-JIBUN_RANK_0,천민,Cheonmin
-JIBUN_RANK_1,상민,Sangmin
-JIBUN_RANK_2,중인,Jungin
-JIBUN_RANK_3,양반,Yangban
-JIBUN_RANK_4,당상관,Dangsanggwan
-JIBUN_RANK_5,판서/정승,Panseo/Jeongseung
-JIBUN_RANKUP_1,상민 승급: 덱에서 카드 1장을 강화할 수 있습니다!,Sangmin promotion: Upgrade 1 card in your deck!
-JIBUN_RANKUP_2,중인 승급: 턴당 기 +1!,Jungin promotion: +1 Qi per turn!
-JIBUN_RANKUP_3,양반 승급: 턴당 드로우 +1!,Yangban promotion: +1 draw per turn!
-JIBUN_RANKUP_4,당상관 승급: 엘리트 전투 보상 2배!,Dangsanggwan promotion: Elite battle rewards x2!
 ACT_NAME_1,한양,Hanyang
 ACT_NAME_2,지리산,Jirisan
 ACT_NAME_3,경복궁,Gyeongbokgung
-FACTION_NORON,노론,Noron (Old Doctrine)
-FACTION_SORON,소론,Soron (Young Doctrine)
-FACTION_NAMIN,남인,Namin (Southerners)
-FACTION_SEOIN,서인,Seoin (Westerners)
-FACTION_DONGIN,동인,Dongin (Easterners)
-FACTION_BUGIN,북인,Bugin (Northerners)
 UNLOCK_DEFAULT,기본 해금,Unlocked by default
 UNLOCK_MUGWAN_ACT1,의적으로 1막 보스 처치,Defeat Act 1 boss with Uijeok
 UNLOCK_TOTAL_RUNS_3,총 3회 런 완료,Complete 3 total runs
-MINSHIM_TIER_HIGH,민심 높음,High Sentiment
-MINSHIM_TIER_NORMAL,보통,Normal
-MINSHIM_TIER_UNREST,불안,Unrest
-MINSHIM_TIER_CRISIS,민란 위기,Uprising Risk
-MINSHIM_TOOLTIP_TITLE,민심,Sentiment
-MINSHIM_EFFECT_80,전투 시작 시 백성이 적 1명에게 5 피해,Citizens deal 5 damage to 1 enemy at battle start
-MINSHIM_EFFECT_70,상점 가격 -20%,Shop prices -20%
-MINSHIM_EFFECT_30,상점 +15%/ 적 근력 +1,Shop +15%/ Enemy strength +1
-MINSHIM_EFFECT_0,상점 +30%/ 적 근력 +2/ 방어도 +5,Shop +30%/ Enemy strength +2/ Block +5
-JIBUN_TOOLTIP_TITLE,신분 정보,Status Info
-JIBUN_TOOLTIP_CURRENT,현재,Current
-JIBUN_TOOLTIP_POINTS,점,pts
-JIBUN_TOOLTIP_EFFECTS,현재 효과,Current Effects
-JIBUN_TOOLTIP_NEXT,다음 단계,Next Rank
-JIBUN_TOOLTIP_RANKUP,승급 보상,Rank-Up Reward
-JIBUN_EFFECT_2_QI,턴당 기 +1,+1 Qi per turn
-JIBUN_EFFECT_2_ELITE,엘리트 등장률 +5%,Elite spawn rate +5%
-JIBUN_EFFECT_3_DRAW,턴당 드로우 +1,+1 draw per turn
-JIBUN_EFFECT_3_GWAGEO,과거시험 접근 가능,Civil exam access
-JIBUN_EFFECT_4_ELITE_REWARD,엘리트 전투 보상 2배,Elite battle rewards x2
-SISANG_MILESTONE_TITLE,시상 마일스톤,Sisang Milestone
-SISANG_MILESTONE_5,시상 5 달성! 이벤트 추가 선택지 해금,Sisang 5 reached! Bonus event choices unlocked
-SISANG_MILESTONE_20,시상 20 달성! 어사출두 해금!,Sisang 20 reached! Eosa Chuldu unlocked!
-SISANG_LABEL_FMT,시상: %d,Sisang: %d
-SISANG_NEXT_FMT,다음 마일스톤까지 %d,Next milestone in %d
-JIBUN_RANKUP_POPUP_FMT,%s(으)로 승급!,Promoted to %s!
 SHOP_DISCOUNT_BADGE_FMT,[%s %s],[ %s %s]
-SHOP_DISCOUNT_JIBUN,-15%,-15%
-SHOP_DISCOUNT_MINSHIM_HIGH,-20%,-20%
-SHOP_DISCOUNT_MINSHIM_LOW,+15%,+15%
-SHOP_DISCOUNT_MINSHIM_CRISIS,+30%,+30%
-SHOP_DISCOUNT_FACTION,-10%,-10%
 SHOP_ORIGINAL_PRICE_FMT,원가: %d,Was: %d
 SHOP_DISCOUNT_REASON_FMT,(%s),(%s)
 BATTLE_COMBO_FMT,%d연속! +%d%%,%dx Combo! +%d%%
@@ -498,26 +367,18 @@ TUTORIAL_MSG_ENEMY_TURN,"적의 턴입니다!\n\n적은 표시된 의도대로 �
 TUTORIAL_MSG_TURN2,"잘하셨습니다! 2턴이 시작되었습니다.\n\n이제부터 자유롭게 전투를 진행하세요.\n카드를 전략적으로 사용하여 적을 물리쳐보세요!","Well done! Turn 2 has begun.\n\nFight freely from here.\nUse your cards strategically to defeat enemies!"
 TUTORIAL_MSG_REWARD,"축하합니다! 첫 전투에서 승리했습니다!\n\n전투 후에는 보상으로 금화와 새 카드를 획득할 수 있습니다.\n강력한 카드를 선택하여 덱을 강화하세요.","Congratulations! You won your first battle!\n\nAfter combat, you earn gold and new cards as rewards.\nChoose powerful cards to strengthen your deck."
 TUTORIAL_MSG_DECKBUILDING,"덱빌딩 팁:\n\n• 카드를 많이 넣으면 핵심 카드를 뽑기 어려워집니다\n• 상점에서 불필요한 카드를 제거할 수 있습니다\n\n이제 본격적인 모험을 시작하세요!","Deckbuilding Tips:\n\n• Too many cards makes it hard to draw key cards\n• Remove unwanted cards at the shop\n\nNow begin your adventure!"
-EVENT_COND_RANK_GE_3,신분이 양반(3등급) 이상이어야 합니다,Requires Yangban (Rank 3) or higher
-EVENT_COND_RANK_GE_4,신분이 당상관(4등급) 이상이어야 합니다,Requires Dangsanggwan (Rank 4) or higher
-EVENT_COND_MINSHIM_GE_70,민심이 70 이상이어야 합니다,Requires Sentiment 70 or higher
-EVENT_COND_MINSHIM_GE_50,민심이 50 이상이어야 합니다,Requires Sentiment 50 or higher
 RESULT_CARDS_UNLOCKED,새 카드 해금!,New Cards Unlocked!
 RESULT_CARD_UNLOCKED_DESC,다음 런부터 보상에 등장,Available in rewards from next run
-EVENT_COND_SISANG_GE_10,시상 10 이상 필요,Requires Sisang 10+
 EVENT_COND_DEFAULT,조건 미충족,Condition not met
 EVENT_FALLBACK_NOTHING,아무 일도 일어나지 않았다.,Nothing happened.
 EVENT_FALLBACK_HP_GAIN_FMT,HP %d 회복.,HP restored by %d.
 EVENT_FALLBACK_HP_LOSS_FMT,HP %d 손실.,HP lost by %d.
 EVENT_FALLBACK_HP_FULL,HP 완전 회복!,HP fully restored!
 EVENT_FALLBACK_DEBUFF,다음 전투에 버프가 적용된다.,A buff will apply in the next battle.
-EVENT_FALLBACK_FACTION,당파 호감도가 변했다.,Faction affinity changed.
 EVENT_FALLBACK_SHOP_DISCOUNT,상점 가격이 변동된다.,Shop prices have changed.
 EVENT_FALLBACK_SHOP_PENALTY,상점 가격이 올랐다.,Shop prices increased.
 EVENT_FALLBACK_BOSS_WEAKEN,다음 보스가 약해진다.,The next boss is weakened.
-EVENT_FALLBACK_STATUS,신분이 변했다.,Social status changed.
 EVENT_FALLBACK_CARD_VANISH,카드가 사라졌다.,A card disappeared.
-EVENT_FALLBACK_MINSHIM,민심이 변했다.,Public sentiment changed.
 EVENT_FALLBACK_CARD_GAIN,카드를 획득했다.,Card acquired.
 EVENT_FALLBACK_CARD_REMOVE,카드 1장을 제거했다.,Removed 1 card.
 EVENT_FALLBACK_CARD_UPGRADE,카드 1장을 강화했다.,Upgraded 1 card.
@@ -536,7 +397,6 @@ SE_NAME_CHILL,냉기,Chill
 SE_NAME_DEATH_COUNTDOWN,사망선고,Death Sentence
 SE_NAME_THORNS,가시,Thorns
 SE_NAME_ARMOR,갑주,Armor
-SE_NAME_SOLDIER_TOKEN,병사,Soldier
 SE_NAME_DETENTION,구금,Detention
 SE_NAME_SHACKLE,주박,Shackle
 SE_NAME_WEAKNESS_EXPOSED,허점 노출,Weakness Exposed
@@ -553,7 +413,6 @@ SE_DESC_DEATH_COUNTDOWN,N턴 후 HP 50% 감소,HP reduced by 50% after N turns
 SE_DESC_STRENGTH,공격 피해 +N,Attack damage +N
 SE_DESC_THORNS,피격 시 공격자에게 3 피해 반사,Reflects 3 damage to attacker when hit
 SE_DESC_ARMOR,턴 시작 시 사라지지 않는 방어막,Persistent block that doesn't expire at turn start
-SE_DESC_SOLDIER_TOKEN,의적 진형 토큰. 스택 수만큼 패시브/액티브 효과 적용,Uijeok formation token. Effects scale with stack count
 SE_DESC_DETENTION,카드 사용 비용 +1. 지정 턴 수 후 해제,Card cost +1. Removed after set turns
 SE_DESC_SHACKLE,받는 DoT 피해 1.5배,DoT damage taken x1.5
 SE_DESC_STUN,행동 불가. 턴 종료 시 해제,Cannot act. Removed at end of turn
@@ -562,11 +421,11 @@ SE_DESC_EXPLOSION,N턴 후 30~40 폭발 피해,30-40 explosion damage after N tu
 SE_DESC_COUNTER,피격 시 받은 피해의 30%를 공격자에게 반사,Reflects 30% of damage taken back to attacker
 PASSIVE_BANGSUL,방술 개방,Sorcery Unlock
 PASSIVE_COMMAND,지휘통솔,Command
-PASSIVE_COMMAND_DESC,병사 토큰 보유 → 방어도 +2,Soldier tokens → Block +2
+PASSIVE_COMMAND_DESC, 보유 → 방어도 +2,Soldier tokens → Block +2
 PASSIVE_SIJO_INCOMPLETE_DESC_FMT,종장 미완성 → 드로우 %d,Final verse incomplete → Draw %d
 PASSIVE_CHEONJI,천지기,Heaven-Earth Qi
-PASSIVE_STUDY,학식충전,Study Charge
-PASSIVE_STUDY_DESC,카드 3장 이상 사용 → 학식 +1,3+ cards played → Scholarship +1
+PASSIVE_STUDY,기충전,Study Charge
+PASSIVE_STUDY_DESC,카드 3장 이상 사용 → 기 +1,3+ cards played → Scholarship +1
 PASSIVE_STUN_ENEMY_FMT,적 %s 기절 — 행동 불가!,Enemy %s stunned — cannot act!
 PASSIVE_PERM_DAMAGE,영구 손상,Permanent Damage
 PASSIVE_PERM_DAMAGE_DESC,미방어 대피해로 최대 HP -2!,Unblocked heavy damage: Max HP -2!
@@ -580,12 +439,9 @@ PASSIVE_SIJO_PERFECT_DESC,beat 3/3 → 효과 ×1.5 + 기 +2 + 드로우 +1,beat
 PASSIVE_SIJO_GOOD_DESC,beat 2/3 → 효과 ×1.3 + 기 +1,beat 2/3 → Effect x1.3 + Qi +1
 RELIC_POISON_SELF_FMT,전투 시작 독 %d 자해,Battle start: Self-poison %d
 RELIC_BLOCK_FMT,방어도 +%d,Block +%d
-RELIC_SPIRIT_POWER_FMT,영력 +%d,Spirit Power +%d
-RELIC_SCHOLARSHIP_FMT,학식 +%d,Scholarship +%d
 RELIC_VULN_ENEMY_FMT,적에게 취약 %d 부여,Apply Vulnerable %d to enemy
 RELIC_CURE_POISON,독 제거,Poison removed
 RELIC_STRENGTH_FMT,힘 +%d,Strength +%d
-RELIC_SOLDIER_TOKEN_FMT,병사 토큰 +%d,Soldier Token +%d
 RELIC_ARROWS_FMT,흥 +%d,Heung +%d
 RELIC_TURN_AP_FMT,턴 시작 AP +%d,Turn start AP +%d
 RELIC_TURN_BLOCK_FMT,턴 시작 방어도 +%d,Turn start Block +%d
@@ -598,11 +454,9 @@ RELIC_FIRST_CARD_DRAW_FMT,첫 카드 드로우 +%d,First card draw +%d
 RELIC_POISON_STACK_FMT,독 스택 +%d,Poison stack +%d
 RELIC_BOSS_BLOCK_FMT,보스 전투 방어도 +%d,Boss battle Block +%d
 RELIC_DEATH_PREVENT_FMT,즉사 방지! HP 1로 생존 (%d/%d회),Death prevented! Survive at HP 1 (%d/%d)
-RELIC_FORMATION_STAMINA_FMT,진형 카드 기력 +%d,Formation card Stamina +%d
-RELIC_STUDY_BURN_HEAL_FMT,학식 전소 HP +%d (%d%%),Scholarship consumed: HP +%d (%d%%)
+RELIC_STUDY_BURN_HEAL_FMT,기 전소 HP +%d (%d%%),Scholarship consumed: HP +%d (%d%%)
 RELIC_SPELL_QI_FMT,주문 카드 기 +%d,Spell card Qi +%d
 RELIC_SUMMON_DEATH_DRAW_FMT,소환 소멸 드로우 +%d,Summon death draw +%d
-RELIC_WILDCARD_QI_FMT,와일드카드 기 +%d,Wildcard Qi +%d
 RELIC_QI_FMT,기 +%d,Qi +%d
 RELIC_CHOJANG_QI_FMT,초장 완성 기 +%d,First verse Qi +%d
 RELIC_OKPIRI_FMT,옥피리 — 적 전체 %d 피해,Jade Flute — %d damage to all enemies
@@ -631,15 +485,11 @@ JANG_SYMBOL_2,이,II
 JANG_SYMBOL_3,삼,III
 PASSIVE_BOSS,보스,Boss
 PASSIVE_MINRAN_SPIRIT,민란의 기운,Uprising Spirit
-PASSIVE_MINRAN_SPIRIT_DESC,"민심이 매우 낮아 적이 대폭 강화되었다! 근력 +2, 방어도 +5","Very low sentiment — enemies greatly empowered! Strength +2, Block +5"
-PASSIVE_MINSHIM_UNREST,민심 불안,Sentiment Unrest
-PASSIVE_MINSHIM_UNREST_DESC,민심이 낮아 적이 강화되었다! 근력 +1,Low sentiment — enemies empowered! Strength +1
 PASSIVE_PEOPLE_SUPPORT,백성 지원,People's Support
-PASSIVE_PEOPLE_SUPPORT_FMT,민심이 높아 백성이 돕는다! 적에게 %d 피해.,High sentiment — people help! %d damage to enemy.
 PASSIVE_MILITARY_ORDER,군령 하달,Military Order
 PASSIVE_MILITARY_ORDER_FMT,토큰 %d개 → 기 +%d,Tokens %d → Qi +%d
 PASSIVE_LECTURE,경연개설,Royal Lecture
-PASSIVE_LECTURE_DESC,학식 +3,Scholarship +3
+PASSIVE_LECTURE_DESC,기 +3,Scholarship +3
 PUZZLE_PUNISHMENT_NAME,형벌 카운터,Punishment Counter
 PUZZLE_PUNISHMENT_STACK_FMT,형벌 %d / %d — 최대 시 곤장 집행!,Punishment %d / %d — Rod execution at max!
 PUZZLE_PUNISHMENT_EXEC,곤장 집행!,Rod Punishment!

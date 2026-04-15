@@ -146,7 +146,7 @@ func _try_load_special_event(act: int, floor_num: int, node_type: String) -> Var
 func _check_trigger_condition(condition: String) -> bool:
 	if condition == "":
 		return true
-	# 서사/당파/민심/시상 조건은 모두 제거됨 — 항상 통과
+	# 조건 검사 (항상 통과)
 	return true
 
 
@@ -361,7 +361,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 		# === 신규 특수 이벤트 effect_type ===
 
 		"faction_change":
-			# 당파 시스템 제거됨 — 결과 텍스트만 반환
+			#  시스템 제거됨 — 결과 텍스트만 반환
 			return _get_text(choice.get("result_text", ""))
 
 		"run_tag_add":
@@ -410,7 +410,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			return ""
 
 		"status_rank_change":
-			# 신분 시스템 제거됨 — 결과 텍스트만 반환
+			#  시스템 제거됨 — 결과 텍스트만 반환
 			return _get_text(choice.get("result_text", ""))
 
 		"card_remove_random":
@@ -438,7 +438,7 @@ func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 			return _get_text(choice.get("result_text", tr("EVENT_RESULT_RELIC")))
 
 		"minshim_change":
-			# 민심 시스템 제거됨 — 결과 텍스트만 반환
+			#  시스템 제거됨 — 결과 텍스트만 반환
 			return _get_text(choice.get("result_text", ""))
 
 		"card_choice":

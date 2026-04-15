@@ -122,7 +122,7 @@ func _default_colors() -> Dictionary:
 		"defense": Color(0.18, 0.31, 0.56),   # 청 (#2E5090)
 		"spell": Color(0.18, 0.31, 0.56),     # 청 (도사)
 		"movement": Color(0.23, 0.49, 0.27),  # 송록
-		"formation": Color(0.76, 0.23, 0.13), # 황 (#D4A017)
+		"combat": Color(0.76, 0.23, 0.13), # 황 (#D4A017)
 	}
 
 
@@ -133,7 +133,7 @@ func _protanopia_colors() -> Dictionary:
 		"defense": Color(0.2, 0.4, 0.9),   # 파랑
 		"spell": Color(0.1, 0.5, 0.7),     # 틸 (보라 제거)
 		"movement": Color(0.1, 0.7, 0.9),  # 시안
-		"formation": Color(0.96, 0.94, 0.91), # 노랑
+		"combat": Color(0.96, 0.94, 0.91), # 노랑
 	}
 
 
@@ -144,7 +144,7 @@ func _tritanopia_colors() -> Dictionary:
 		"defense": Color(0.3, 0.8, 0.4),   # 초록
 		"spell": Color(0.8, 0.3, 0.6),     # 분홍
 		"movement": Color(0.2, 0.6, 0.5),  # 틸
-		"formation": Color(0.9, 0.5, 0.2), # 주황
+		"combat": Color(0.9, 0.5, 0.2), # 주황
 	}
 
 

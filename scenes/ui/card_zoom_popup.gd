@@ -99,7 +99,7 @@ func _build_ui() -> void:
 	# 타입 + 희귀도
 	var type_names := {
 		"attack": tr("CARD_ZOOM_TYPE_ATTACK"), "defense": tr("CARD_ZOOM_TYPE_DEFENSE"), "spell": tr("CARD_ZOOM_TYPE_SPELL"),
-		"movement": tr("CARD_ZOOM_TYPE_MOVEMENT"), "formation": tr("CARD_ZOOM_TYPE_FORMATION"),
+		"movement": tr("CARD_ZOOM_TYPE_MOVEMENT"), "combat": tr("CARD_ZOOM_TYPE_COMBAT"),
 	}
 	var type_label := Label.new()
 	type_label.text = type_names.get(_card_data.type, _card_data.type)

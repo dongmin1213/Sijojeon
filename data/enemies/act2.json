@@ -252,7 +252,7 @@
         "en": "Temple Warrior Monk"
       },
       "description": {
-        "ko": "지리산 절에서 무예를 닦은 승려 병사. 수비와 반격을 동시에 구사하며, 인내심이 강하다.",
+        "ko": "지리산 절에서 무예를 닦은 승려 병. 수비와 반격을 동시에 구사하며, 인내심이 강하다.",
         "en": "A warrior monk who trained at a Jirisan temple. Combines defense with counterattacks, possessing great endurance."
       },
       "hp": {
@@ -1041,7 +1041,7 @@
     {
       "id": "E210",
       "name": {
-        "ko": "당파 자객",
+        "ko": "자객",
         "romanized": "Dangpa Jagaek",
         "en": "Faction Assassin"
       },
@@ -1281,7 +1281,7 @@
         "en": "Corrupt Magistrate"
       },
       "description": {
-        "ko": "뇌물로 배를 채운 탐관. 민심을 직접 하락시킨다.",
+        "ko": "뇌물로 배를 채운 탐관. 을 직접 하락시킨다.",
         "en": "A corrupt magistrate fattened by bribes. Directly lowers public sentiment."
       },
       "hp": {
@@ -1300,7 +1300,7 @@
           "times": 1,
           "effects": [],
           "description": {
-            "ko": "7 피해 + 민심 3 하락.",
+            "ko": "7 피해 + 3 하락.",
             "en": "7 damage + 3 Public Sentiment loss."
           }
         },
@@ -1335,7 +1335,7 @@
             }
           ],
           "description": {
-            "ko": "구금 1 + 민심 2 하락.",
+            "ko": "구금 1 + 2 하락.",
             "en": "1 Detain + 2 Public Sentiment loss."
           }
         },
@@ -1373,7 +1373,7 @@
         "card_chance": 0.3,
         "relic_chance": 0.05
       },
-      "balance_note": "민심 압박형. 수탈과 위조 교지로 민심 지속 하락. 빠르게 처치하지 않으면 민심 대폭 감소."
+      "balance_note": "압박형. 수탈과 위조 교지로 지속 하락. 빠르게 처치하지 않으면 대폭 감소."
     },
     {
       "id": "E213",

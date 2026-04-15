@@ -67,7 +67,7 @@
         "en": "Create 2 . Gain 3 Qi."
       },
       "flavor_text": {
-        "ko": "한 발 앞에 병사를 세워 — 나를 향한 칼끝을 막아낸다.",
+        "ko": "한 발 앞에 병를 세워 — 나를 향한 칼끝을 막아낸다.",
         "en": "Station a soldier one step ahead — to block the blade aimed at you."
       },
       "balance_rationale": "1코스트 토큰 생성. 1코스트로 피해 완전 무효화 + 기 회복은 강력하나, 무관 덱에서 전략 시너지 카드들과의 조합을 전제로 설계. 업그레이드 후 2토큰은 2코스트 카드 상당.",
@@ -103,7 +103,7 @@
         "en": "Spend 2 Qi. Deal 14 damage. bonus +7."
       },
       "flavor_text": {
-        "ko": "병사들을 앞세운 일제 돌격 — 전략이 살아있을 때 가장 강하다.",
+        "ko": "병들을 앞세운 일제 돌격 — 전략이 살아있을 때 가장 강하다.",
         "en": "A unified charge with soldiers at the vanguard — strongest when the combat tacticsholds."
       },
       "balance_rationale": "2코스트 공격. 기본 10피해는 2코스트 기준 적정(ZER-116: 12→10 하향). 토큰 보너스 +5로 최대 15피해. 도약 콤보 시 최대 19피해(기존 21). G001과 1+2코스트 콤보(3기 소비). 전략 덱 핵심 피니셔.",
@@ -284,7 +284,7 @@
         "en": "Create 1 . Gain 5 Block."
       },
       "flavor_text": {
-        "ko": "매복한 병사는 적의 허를 찌른다 — 나타나기 전부터 전투는 이미 시작되었다.",
+        "ko": "매복한 병는 적의 허를 찌른다 — 나타나기 전부터 전투는 이미 시작되었다.",
         "en": "An ambushed soldier strikes at the enemy's blind spot — the battle begins before they even appear."
       },
       "balance_rationale": "1코스트 토큰+방어. 전투 전략(G001, 토큰1+기2)보다 기가 없는 대신 즉각 방어도 3 제공. 방패·전략 혼합 빌드를 위한 유연한 1코스트 카드. 로 G001과 슬롯 경쟁 없이 병용 가능.",
@@ -321,7 +321,7 @@
         "en": "Create 4 ."
       },
       "flavor_text": {
-        "ko": "전·후·측면 모두에 병사를 배치하니 — 어느 방향으로 공격해도 방패가 된다.",
+        "ko": "전·후·측면 모두에 병를 배치하니 — 어느 방향으로 공격해도 방패가 된다.",
         "en": "Deploy soldiers on front, rear, and flank — shields in every direction against any attack."
       },
       "balance_rationale": "2코스트 토큰 3개 생성. 순수 토큰 생성에 특화. 학익진(G004)에서 토큰 3개 = AoE +9, 즉 총 17 AoE 폭발 세팅. 기를 얻지 않으므로 순수 전략 아키타입의 전용 투자 카드. 2코스트 기준 3토큰 = 향후 15~18피해 세팅 가치.",
@@ -922,7 +922,7 @@
         "en": "Increase Qi maximum by 5. On Token destruction, draw 1 card + gain 1 additional Qi."
       },
       "flavor_text": {
-        "ko": "백 번의 전투를 살아남은 노장 — 병사들의 희생이 더 강한 힘을 만든다.",
+        "ko": "백 번의 전투를 살아남은 노장 — 병들의 희생이 더 강한 힘을 만든다.",
         "en": "A veteran of a hundred battles — the sacrifice of soldiers forges even greater strength."
       },
       "balance_rationale": "3코스트 파워. 기 최대치 확장(전략+기 하이브리드 지원) + 토큰 소멸 시 드로우(전략 아키타입 덱 가속). 두 아키타입을 동시에 지원하는 고가치 파워 카드. 토큰 3개 소멸 시 드로우 3 = 3코스트 축지법 수준의 드로우 가치.",
@@ -999,7 +999,7 @@
         "en": "Create 4 . Gain 4 Qi. Token generation doubled this turn."
       },
       "flavor_text": {
-        "ko": "전략을 완성하면 — 병사들이 쏟아져 나오고 기가 솟구친다.",
+        "ko": "전략을 완성하면 — 병들이 쏟아져 나오고 기가 솟구친다.",
         "en": "When the combat tacticsis complete — soldiers pour forth and Qi surges."
       },
       "balance_rationale": "1코스트로 토큰 3+기 3+토큰 2배. 기존 토큰 생성 카드(G001 토큰1, G004 AoE요구)보다 강력. 전략·기 빌드 융합 카드. 다음 G013(기→피해)나 G026(기 전소)과 연계 시 폭발적.",

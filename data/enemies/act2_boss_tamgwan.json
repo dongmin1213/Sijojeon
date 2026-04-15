@@ -112,13 +112,13 @@
                 "enemy_id": "E_DANGPA_FOLLOWER",
                 "count": 1,
                 "hp_override": 30,
-                "name_override": "당파 추종자"
+                "name_override": "추종자"
               },
               {
                 "enemy_id": "E_DANGPA_FOLLOWER",
                 "count": 1,
                 "hp_override": 30,
-                "name_override": "당파 추종자"
+                "name_override": "추종자"
               }
             ]
           },
@@ -139,7 +139,7 @@
       "phase": 2,
       "hp_threshold_label": "65% → 30%",
       "hp_threshold_min": 53,
-      "description": "당파 호출. 추종자를 불러들이고 강력한 연합 공격.",
+      "description": "호출. 추종자를 불러들이고 강력한 연합 공격.",
       "moves": [
         {
           "id": "coordinated_assault",
@@ -158,7 +158,7 @@
         {
           "id": "faction_shield",
           "name": {
-            "ko": "당파 방패",
+            "ko": "방패",
             "en": "Faction Shield"
           },
           "intent": "defend_buff",

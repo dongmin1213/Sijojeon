@@ -81,21 +81,21 @@
             "ko": "\"백성을 위하는 마음이 부처의 자비와 같소이다.\" HP 완전 회복!",
             "en": "\"Your compassion for the people rivals the Buddha's mercy.\" Fully restore HP!"
           },
-          "note": "민심 70+ 전용. 완전 회복.",
+          "note": "70+ 전용. 완전 회복.",
           "effect_type": "hp_full_heal",
           "effect_value": 0
         },
         {
           "id": "poem_exchange",
           "text": {
-            "ko": "[시상]",
+            "ko": "",
             "en": "[Sisang] Share wisdom with the monk, bonding through poetry."
           },
           "result_text": {
             "ko": "승려가 최대 HP +5, 카드 1장 강화.",
             "en": "The monk responds with a verse of his own and shares a secret insight. Max HP +5, upgrade 1 card."
           },
-          "note": "시상 5 해금 보너스. 최대HP + 카드 강화.",
+          "note": "5 해금 보너스. 최대HP + 카드 강화.",
           "effect_type": "max_hp_gain",
           "effect_value": 5,
           "effect_type_bonus": "card_upgrade",
@@ -166,14 +166,14 @@
         {
           "id": "minshim_surrender",
           "text": {
-            "ko": "[민심 70+] ��적들이 명성을 듣고 스스로 물러난다.",
+            "ko": "[ 70+] ��적들이 명성을 듣고 스스로 물러난다.",
             "en": "[Favor 70+] The bandits, having heard of your fame, retreat on their own."
           },
           "result_text": {
             "ko": "\"저분이 바로 그 영웅이란다. 건드리면 큰일 난다!\" 산적이 두고 간 보물에서 엽전 30 획득.",
             "en": "\"That's the hero everyone speaks of. Cross them and you'll regret it!\" Gain 30 gold from the loot they left behind."
           },
-          "note": "민심 70+ 전용. 전투 회피 + 보상.",
+          "note": "70+ 전용. 전투 회피 + 보상.",
           "effect_type": "gold_gain",
           "effect_value": 30
         }
@@ -690,28 +690,28 @@
         {
           "id": "assist",
           "text": {
-            "ko": "암행어사를 돕는다. (민심 +10, 금화 -5)",
+            "ko": "암행어사를 돕는다. ( +10, 금화 -5)",
             "en": "Help the Royal Inspector. (Favor +10, Gold -5)"
           },
           "result_text": {
-            "ko": "부패 관리를 몰아내니 백성들이 열광하는도다! 민심이 크게 올랐느니라.",
+            "ko": "부패 관리를 몰아내니 백성들이 열광하는도다! 이 크게 올랐느니라.",
             "en": "Driving out the corrupt officials sends the people into celebration! Public favor rises greatly."
           },
-          "note": "민심 대폭 상승. 금화 소량 소비.",
+          "note": "대폭 상승. 금화 소량 소비.",
           "effect_type": "gold_loss",
           "effect_value": 5
         },
         {
           "id": "expose",
           "text": {
-            "ko": "숨겨진 비리 증거를 제출한다. (민심 +6, 신분 -1)",
+            "ko": "숨겨진 비리 증거를 제출한다. ( +6, -1)",
             "en": "Submit hidden evidence of corruption. (Favor +6, Rank -1)"
           },
           "result_text": {
             "ko": "증거 덕분에 더 많은 관리가 처벌받았느니라. 허나 권력층에서 밀려나게 되었도다.",
             "en": "Your evidence brings down more officials, but you lose standing among the powerful."
           },
-          "note": "민심 상승 + 신분 하락.",
+          "note": "",
           "effect_type": "rank_down",
           "effect_value": 1
         },
@@ -749,39 +749,39 @@
         {
           "id": "return_grain",
           "text": {
-            "ko": "곡식을 백성에게 돌려준다. (민심 +12, HP 전체 회복)",
+            "ko": "곡식을 백성에게 돌려준다. ( +12, HP 전체 회복)",
             "en": "Return the grain to the people. (Favor +12, fully restore HP)"
           },
           "result_text": {
             "ko": "백성들이 감격의 눈물을 흘리느니라. 감사의 보답으로 치료와 음식을 대접받았도다.",
             "en": "The people weep tears of joy. In gratitude, they treat your wounds and offer a feast."
           },
-          "note": "최대 보상. 민심+HP 완전 회복.",
+          "note": "최대 보상. +HP 완전 회복.",
           "effect_type": "hp_full_heal",
           "effect_value": 0
         },
         {
           "id": "take_some",
           "text": {
-            "ko": "일부를 가져간다. (금화 +30, 민심 -5)",
+            "ko": "일부를 가져간다. (금화 +30, -5)",
             "en": "Take some for yourself. (Gold +30, Favor -5)"
           },
           "result_text": {
-            "ko": "곡식 일부를 팔아 금화를 벌었으나, 소문이 나서 민심이 떨어졌느니라.",
+            "ko": "곡식 일부를 팔아 금화를 벌었으나, 소문이 나서 이 떨어졌느니라.",
             "en": "You sell some grain for gold, but word spreads and public favor drops."
           },
-          "note": "금화 대량 획득 + 민심 페널티.",
+          "note": "금화 대량 획득 + 페널티.",
           "effect_type": "gold_gain",
           "effect_value": 30
         },
         {
           "id": "report_only",
           "text": {
-            "ko": "관아에 보고만 올린다. (민심 +3)",
+            "ko": "관아에 보고만 올린다. ( +3)",
             "en": "Just report it to the magistrate. (Favor +3)"
           },
           "result_text": {
-            "ko": "관아에서 처리하겠다 하느니라. 민심이 소폭 올랐도다.",
+            "ko": "관아에서 처리하겠다 하느니라. 이 소폭 올랐도다.",
             "en": "The magistrate says they'll handle it. Public favor rises slightly."
           },
           "note": "안전한 소량 보상."
@@ -806,39 +806,39 @@
         {
           "id": "accept_bribe",
           "text": {
-            "ko": "뇌물을 받는다. (금화 +20, 민심 -8)",
+            "ko": "뇌물을 받는다. (금화 +20, -8)",
             "en": "Accept the bribe. (Gold +20, Favor -8)"
           },
           "result_text": {
-            "ko": "금화를 받았으나 소문이 퍼져 민심이 크게 떨어졌느니라.",
+            "ko": "금화를 받았으나 소문이 퍼져 이 크게 떨어졌느니라.",
             "en": "You take the gold, but rumors spread and public favor drops significantly."
           },
-          "note": "금화 vs 민심 트레이드오프.",
+          "note": "금화 vs 트레이드오프.",
           "effect_type": "gold_gain",
           "effect_value": 20
         },
         {
           "id": "refuse_report",
           "text": {
-            "ko": "단호히 거절하고 고발한다. (민심 +8, 카드 획득)",
+            "ko": "단호히 거절하고 고발한다. ( +8, 카드 획득)",
             "en": "Refuse and report him. (Favor +8, gain card)"
           },
           "result_text": {
             "ko": "정의로운 행동에 백성들이 감동하였도다. 마을 장로가 비전서를 선물하느니라.",
             "en": "The people are moved by your righteous act. A village elder gifts you a secret scroll."
           },
-          "note": "민심 + 카드. 정의 루트.",
+          "note": "+ 카드. 정의 루트.",
           "effect_type": "card_gain",
           "effect_value": 1
         },
         {
           "id": "negotiate",
           "text": {
-            "ko": "자진 사퇴를 권한다. (민심 +4, 금화 +10)",
+            "ko": "자진 사퇴를 권한다. ( +4, 금화 +10)",
             "en": "Suggest he resign voluntarily. (Favor +4, Gold +10)"
           },
           "result_text": {
-            "ko": "현감이 자진 사퇴하며 위로금을 건네느니라. 민심도 소폭 올랐도다.",
+            "ko": "현감이 자진 사퇴하며 위로금을 건네느니라. 도 소폭 올랐도다.",
             "en": "The magistrate resigns and offers a parting sum. Public favor also rises slightly."
           },
           "note": "절충안. 양쪽 소량 보상.",
@@ -865,14 +865,14 @@
         {
           "id": "free_prisoner",
           "text": {
-            "ko": "증거를 모아 석방시킨다. (민심 +7, HP -6)",
+            "ko": "증거를 모아 석방시킨다. ( +7, HP -6)",
             "en": "Gather evidence to free him. (Favor +7, HP -6)"
           },
           "result_text": {
             "ko": "석방에 성공하였으나 관리의 보복으로 부상을 입었느니라. 백성들의 지지를 얻었도다.",
             "en": "You succeed in freeing him, but the official retaliates. The people rally behind you."
           },
-          "note": "HP 리스크 + 민심.",
+          "note": "HP 리스크 + .",
           "effect_type": "hp_loss",
           "effect_value": 6
         },
@@ -900,7 +900,7 @@
             "ko": "죄수의 원망스러운 눈빛이 마음에 걸리는도다. 주변 백성들도 실망하였느니라.",
             "en": "The prisoner's reproachful gaze haunts you. The surrounding people are disappointed."
           },
-          "note": "민심 소폭 하락."
+          "note": "소폭 하락."
         }
       ]
     },
@@ -922,11 +922,11 @@
         {
           "id": "use_mapat",
           "text": {
-            "ko": "마패를 내세워 부패를 척결한다. (민심 +10, 신분 +1, 소멸)",
+            "ko": "마패를 내세워 부패를 척결한다. ( +10, +1, 소멸)",
             "en": "Use the badge to root out corruption. (Favor +10, Rank +1, badge consumed)"
           },
           "result_text": {
-            "ko": "마패를 내세워 고을의 부패를 척결하였도다! 민심이 크게 오르고 신분도 올랐느니라.",
+            "ko": "마패를 내세워 고을의 부패를 척결하였도다! 이 크게 오르고 도 올랐느니라.",
             "en": "You wield the badge to purge corruption from the county! Public favor and your rank both rise."
           },
           "note": "최대 보상. 1회 이벤트.",
@@ -950,14 +950,14 @@
         {
           "id": "return_mapat",
           "text": {
-            "ko": "주인에게 돌려드린다. (카드 강화 1장, 민심 +3)",
+            "ko": "주인에게 돌려드린다. (카드 강화 1장, +3)",
             "en": "Return it to its owner. (Upgrade 1 card, Favor +3)"
           },
           "result_text": {
-            "ko": "어사가 감읍하시며 비전을 전수해주시느니라. 카드 1장 강화 + 민심 소폭 상승.",
+            "ko": "어사가 감읍하시며 비전을 전수해주시느니라. 카드 1장 강화 + 소폭 상승.",
             "en": "The Inspector thanks you and shares a secret technique. Upgrade 1 card, Favor rises slightly."
           },
-          "note": "카드 강화 + 소량 민심.",
+          "note": "카드 강화 + 소량 .",
           "effect_type": "card_upgrade",
           "effect_value": 1
         }

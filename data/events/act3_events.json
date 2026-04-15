@@ -71,7 +71,7 @@
         {
           "id": "poem_inspire",
           "text": {
-            "ko": "[시상]",
+            "ko": "",
             "en": "[Sisang] Inspire the loyalist's courage with a poem."
           },
           "effect_value_bonus_2": 1,
@@ -79,7 +79,7 @@
             "ko": "관리가 감격하여 밀서와 함께 비장의 유물을 건네느니라. 다음 전투 힘 +5, 유물 1개.",
             "en": "The official, deeply moved, offers the letter and a hidden relic. Next combat: Strength +5, Relic +1."
           },
-          "note": "시상 5 해금 보너스. 강화된 전투 버프 + 유물.",
+          "note": "5 해금 보너스. 강화된 전투 버프 + 유물.",
           "effect_type": "buff_next_combat",
           "effect_type_bonus": "relic_gain",
           "effect_value_bonus": {
@@ -629,7 +629,7 @@
         {
           "id": "help_carry",
           "text": {
-            "ko": "짐을 옮겨준다. (금화 +8, 민심 +2)",
+            "ko": "짐을 옮겨준다. (금화 +8, +2)",
             "en": "Help carry the load. (Gold +8, Favor +2)"
           },
           "result_text": {
@@ -743,14 +743,14 @@
         {
           "id": "smuggle",
           "text": {
-            "ko": "밀무역에 참여한다. (금화 +40, HP -10, 민심 -5)",
+            "ko": "밀무역에 참여한다. (금화 +40, HP -10, -5)",
             "en": "Participate in smuggling. (Gold +40, HP -10, Favor -5)"
           },
           "result_text": {
             "ko": "밀무역으로 큰 돈을 벌었으나, 관군에게 쫓기다 부상을 입었느니라. 소문도 퍼졌도다.",
             "en": "Smuggling earns big money, but soldiers wound you in pursuit. Word spreads."
           },
-          "note": "최대 금화. HP+민심 리스크.",
+          "note": "최대 금화. HP+ 리스크.",
           "effect_type": "gold_gain",
           "effect_value": 40,
           "effect_type_bonus": "hp_loss",
@@ -759,7 +759,7 @@
         {
           "id": "legal_trade",
           "text": {
-            "ko": "합법적 교역만 한다. (금화 +15, 민심 +3)",
+            "ko": "합법적 교역만 한다. (금화 +15, +3)",
             "en": "Trade legally only. (Gold +15, Favor +3)"
           },
           "result_text": {
@@ -773,14 +773,14 @@
         {
           "id": "report_smuggle",
           "text": {
-            "ko": "밀무역을 관아에 고발한다. (민심 +8)",
+            "ko": "밀무역을 관아에 고발한다. ( +8)",
             "en": "Report the smuggling to the authorities. (Favor +8)"
           },
           "result_text": {
-            "ko": "밀무역을 고발하니 백성들이 환호하는도다. 민심이 크게 올랐느니라.",
+            "ko": "밀무역을 고발하니 백성들이 환호하는도다. 이 크게 올랐느니라.",
             "en": "Reporting the smuggling earns cheers from the people. Public favor rises greatly."
           },
-          "note": "민심 루트."
+          "note": "루트."
         }
       ]
     },
@@ -870,14 +870,14 @@
         {
           "id": "bust_gambling",
           "text": {
-            "ko": "도박판을 엎는다. (민심 +4, HP -5)",
+            "ko": "도박판을 엎는다. ( +4, HP -5)",
             "en": "Overturn the gambling table. (Favor +4, HP -5)"
           },
           "result_text": {
             "ko": "도박꾼들에게 맞았지만 백성들이 감사해한다.",
             "en": "The gamblers rough you up, but the people are grateful."
           },
-          "note": "민심 + HP 손실.",
+          "note": "+ HP 손실.",
           "effect_type": "hp_loss",
           "effect_value": 5
         }

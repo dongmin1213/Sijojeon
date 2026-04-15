@@ -148,7 +148,7 @@
         {
           "id": "show_status",
           "text": {
-            "ko": "[신분 양반(3) 이상 전용] 신분패를 내보인다.",
+            "ko": "[ 양반(3) 이상 전용] 패를 내보인다.",
             "en": "[Rank Yangban (3) or higher] Show your credentials."
           },
           "result_text": {
@@ -316,7 +316,7 @@
             "en": "Inform on him. (Betray your mentor)"
           },
           "result_text": {
-            "ko": "신분이 2단계 도약하였느니라. 그러나 배신자라는 꼬리표가 붙게 되는도다. 이후 NPC들의 반응이 달라지리라.",
+            "ko": "이 2단계 도약하였느니라. 그러나 배신자라는 꼬리표가 붙게 되는도다. 이후 NPC들의 반응이 달라지리라.",
             "en": "Your rank jumps 2 levels. However, you are branded a traitor. NPCs will react differently to you."
           },
           "effect_type": "run_tag_add",
@@ -360,7 +360,7 @@
             "en": "Force your way through."
           },
           "result_text": {
-            "ko": "백성들과 싸워 돌파하였느니라. 승리해도 기쁘지 않도다. HP 25 손실. 민심이 더 떨어졌느니라.",
+            "ko": "백성들과 싸워 돌파하였느니라. 승리해도 기쁘지 않도다. HP 25 손실. 이 더 떨어졌느니라.",
             "en": "You fight through the crowd. Even in victory, there is no joy. Lose 25 HP. Public favor drops further."
           },
           "effect_type": "hp_loss",
@@ -373,7 +373,7 @@
             "en": "Kneel and beg forgiveness."
           },
           "result_text": {
-            "ko": "백성들이 분노를 삭이며 길을 비켜주느니라. HP 20 손실. 민심이 크게 회복되었도다.",
+            "ko": "백성들이 분노를 삭이며 길을 비켜주느니라. HP 20 손실. 이 크게 회복되었도다.",
             "en": "The people's anger subsides and they make way. Lose 20 HP. Public favor recovers greatly."
           },
           "effect_type": "hp_loss",
@@ -386,7 +386,7 @@
             "en": "Distribute coins to the people. (60 gold)"
           },
           "result_text": {
-            "ko": "백성들이 엽전을 받고 자리를 비켜주느니라. 엽전 60 소비. 민심이 크게 회복되었도다.",
+            "ko": "백성들이 엽전을 받고 자리를 비켜주느니라. 엽전 60 소비. 이 크게 회복되었도다.",
             "en": "The people accept the coins and clear the way. Spend 60 gold. Public favor recovers greatly."
           },
           "effect_type": "gold_loss",
@@ -424,11 +424,11 @@
         {
           "id": "side_with_faction",
           "text": {
-            "ko": "내 당파의 손을 들어준다.",
+            "ko": "내 의 손을 들어준다.",
             "en": "Support my own faction."
           },
           "result_text": {
-            "ko": "내 당파의 유물을 획득하였도다. 라이벌 당파의 자객이 공격해 오느니라!",
+            "ko": "내 의 유물을 획득하였도다. 라이벌 의 자객이 공격해 오느니라!",
             "en": "You acquire your faction's relic. An assassin from the rival faction attacks!"
           },
           "effect_type": "relic_gain",
@@ -445,11 +445,11 @@
         {
           "id": "royal_order",
           "text": {
-            "ko": "[신분 당상관(4) 이상] 왕명으로 양측을 진정시킨다.",
+            "ko": "[ 당상관(4) 이상] 왕명으로 양측을 진정시킨다.",
             "en": "[Rank Dangsanggwan (4) or higher] Calm both sides by royal decree."
           },
           "result_text": {
-            "ko": "왕명으로 양측을 진정시켰느니라. 양측 당파 미터 -50. 조정의 중립 유물을 획득하였도다.",
+            "ko": "왕명으로 양측을 진정시켰느니라. 양측 미터 -50. 조정의 중립 유물을 획득하였도다.",
             "en": "By royal decree, you pacify both factions. Both faction meters -50. Gain a neutral court relic."
           },
           "effect_type": "relic_gain",
@@ -462,7 +462,7 @@
             "en": "Flee."
           },
           "result_text": {
-            "ko": "양측 당파 미터 -30. 민심이 떨어졌느니라. 현재 챕터의 남은 이벤트가 전투로 교체되는도다.",
+            "ko": "양측 미터 -30. 이 떨어졌느니라. 현재 챕터의 남은 이벤트가 전투로 교체되는도다.",
             "en": "Both faction meters -30. Public favor drops. Remaining events in this chapter are replaced with combat."
           }
         }

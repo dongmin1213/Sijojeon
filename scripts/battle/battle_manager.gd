@@ -260,9 +260,7 @@ func try_play_card(hand_index: int, target_enemy_index: int = 0) -> bool:
 	if cards_played_this_turn == 0:
 		RelicManager.trigger_on_first_card_play_per_turn(self)
 
-	# 유물 트리거: 진형 카드 사용 (RM001 병서)
-	if card.type == "formation" or "formation" in card.subtypes:
-		RelicManager.trigger_on_formation_card_play(self)
+	# 유물 트리거: 전투 카드 사용 (RM001 병서)
 
 	# 유물 트리거: 주문 카드 사용 (RD001 선단)
 	if card.type == "spell" or "spell" in card.subtypes:

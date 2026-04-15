@@ -84,7 +84,7 @@ func _ready() -> void:
 	rations_button.pressed.connect(_on_rations_pressed)
 	leave_button.pressed.connect(_on_leave_pressed)
 
-	# 제거된 시스템 버튼 숨김 (민심/청탁)
+	# 제거된 시스템 버튼 숨김 (/청탁)
 	var minshim_btn := get_node_or_null(_C + "/ExtraSection/MinshimButton")
 	if minshim_btn:
 		minshim_btn.visible = false
@@ -623,7 +623,7 @@ func _generate_shop_relics() -> void:
 			continue
 		var rarity: int = relic_data.get("rarity", 1)
 		var base_price: int = RELIC_PRICES.get(rarity, 150)
-		# 가격 변동 적용 (민심/이벤트 할인)
+		# 가격 변동 적용 (/이벤트 할인)
 		var price := maxi(int(base_price * _price_modifier), 10)
 		shop_relics.append({"relic_id": relic_id, "price": price, "sold": false})
 

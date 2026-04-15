@@ -901,7 +901,7 @@
     {
       "id": "M028",
       "name": {
-        "ko": "시상",
+        "ko": "",
         "romanized": "Sisang",
         "en": "Poetic Inspiration"
       },
@@ -1246,18 +1246,18 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "민심을 5 증가시킨다.",
+        "ko": "을 5 증가시킨다.",
         "en": "Increase Public Favor by 5."
       },
       "effect_upgraded": {
-        "ko": "민심을 8 증가시킨다.",
+        "ko": "을 8 증가시킨다.",
         "en": "Increase Public Favor by 8."
       },
       "flavor_text": {
-        "ko": "백성의 마음을 움직이는 한마디 — 민심이 곧 힘이다.",
+        "ko": "백성의 마음을 움직이는 한마디 — 이 곧 힘이다.",
         "en": "A single word that stirs the hearts of the people — public favor is true power."
       },
-      "balance_rationale": "1코스트 민심+5. 전투 중 민심 조작의 기본 카드. 민심은 보스전·이벤트에 누적 영향하므로 전투 중 투자 가치 있음. 안정적 민심 빌드의 기반.",
+      "balance_rationale": "1코스트 +5. 전투 중 조작의 기본 카드. 은 보스전·이벤트에 누적 영향하므로 전투 중 투자 가치 있음. 안정적 빌드의 기반.",
       "upgrade_cost": 50,
       "values": {}
     },
@@ -1277,18 +1277,18 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "민심을 3 증가시킨다. 적에게 약화 2를 부여한다.",
+        "ko": "을 3 증가시킨다. 적에게 약화 2를 부여한다.",
         "en": "Increase Public Favor by 3. Apply 2 Weaken to an enemy."
       },
       "effect_upgraded": {
-        "ko": "민심을 5 증가시킨다. 약화 3을 부여한다.",
+        "ko": "을 5 증가시킨다. 약화 3을 부여한다.",
         "en": "Increase Public Favor by 5. Apply 3 Weaken."
       },
       "flavor_text": {
         "ko": "적도 결국은 사람이다 — 달래면 칼끝이 무뎌진다.",
         "en": "Even the enemy is human in the end — soothe them and their blade grows dull."
       },
-      "balance_rationale": "1코스트 민심+3 + 약화2. 선동(민심+5)보다 민심 효과 낮지만 전투 유틸리티(약화2) 추가. 민심 빌드와 디버프 빌드의 교차점.",
+      "balance_rationale": "1코스트 +3 + 약화2. 선동(+5)보다 효과 낮지만 전투 유틸리티(약화2) 추가. 빌드와 디버프 빌드의 교차점.",
       "upgrade_cost": 75,
       "values": {
         "weaken": 2
@@ -1310,7 +1310,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "현재 신분이 3품 이상이면 힘 2를 획득한다. 6품 이하이면 방어도 6을 획득한다.",
+        "ko": "현재 이 3품 이상이면 힘 2를 획득한다. 6품 이하이면 방어도 6을 획득한다.",
         "en": "If your current rank is 3rd or higher, gain 2 Strength. If 6th or lower, gain 6 Block."
       },
       "effect_upgraded": {
@@ -1321,7 +1321,7 @@
         "ko": "높은 자리에서 나오는 위엄은 — 칼보다 무겁다.",
         "en": "The authority that comes from high station — weighs heavier than any blade."
       },
-      "balance_rationale": "1코스트 신분 조건부 효과. 고신분=공격 버프(영구 힘), 저신분=방어 보충. 신분 시스템을 전투에 직접 연동. 어떤 신분이든 가치 있으나 빌드 방향에 따라 신분 관리 동기 부여.",
+      "balance_rationale": "1코스트 조건부 효과. 고=공격 버프(영구 힘), 저=방어 보충. 시스템을 전투에 직접 연동. 어떤 이든 가치 있으나 빌드 방향에 따라 관리 동기 부여.",
       "upgrade_cost": 75,
       "values": {
         "strength_if_high_rank": 2,
@@ -1379,18 +1379,18 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "민심을 8 증가시킨다. 신분을 1단계 올린다. 이 카드는 소멸한다.",
+        "ko": "을 8 증가시킨다. 을 1단계 올린다. 이 카드는 소멸한다.",
         "en": "Increase Public Favor by 8. Raise your rank by 1 tier. This card is Exhausted."
       },
       "effect_upgraded": {
-        "ko": "민심을 12 증가시킨다. 신분을 1단계 올린다. 이 카드는 소멸한다.",
+        "ko": "을 12 증가시킨다. 을 1단계 올린다. 이 카드는 소멸한다.",
         "en": "Increase Public Favor by 12. Raise rank by 1 tier. This card is Exhausted."
       },
       "flavor_text": {
         "ko": "백성의 지지를 받으면 — 자연스레 자리가 높아진다.",
         "en": "With the people's support — your station rises naturally."
       },
-      "balance_rationale": "2코스트 소멸. 민심+8과 신분 승급 동시 획득. 소멸 패널티로 1회용이나 신분 승급의 즉각적 전투 보상(위엄·M040 등)과 런 전체 효과를 고려하면 강력. 레어리티 4로 획득 제한.",
+      "balance_rationale": "2코스트 소멸. +8과 소멸 패널티로 1회용이나 레어리티 4로 획득 제한.",
       "upgrade_cost": 100,
       "values": {
         "rank_up": 1,
@@ -1413,18 +1413,18 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "민심을 2 증가시킨다. 카드 1장을 드로우한다.",
+        "ko": "을 2 증가시킨다. 카드 1장을 드로우한다.",
         "en": "Increase Public Favor by 2. Draw 1 card."
       },
       "effect_upgraded": {
-        "ko": "민심을 4 증가시킨다. 카드 1장을 드로우한다.",
+        "ko": "을 4 증가시킨다. 카드 1장을 드로우한다.",
         "en": "Increase Public Favor by 4. Draw 1 card."
       },
       "flavor_text": {
-        "ko": "임금에게 올리는 직언 — 민심을 대변하면 모두가 귀 기울인다.",
+        "ko": "임금에게 올리는 직언 — 을 대변하면 모두가 귀 기울인다.",
         "en": "A forthright word to the king — speaking for the people, all ears turn to listen."
       },
-      "balance_rationale": "0코스트 민심+2 + 드로우1. 눈치(0코스트 드로우2)보다 드로우 1 적으나 민심 보너스. 민심 빌드에서 덱 순환을 방해하지 않는 무료 민심 획득 수단.",
+      "balance_rationale": "0코스트 +2 + 드로우1. 눈치(0코스트 드로우2)보다 드로우 1 적으나 보너스. 빌드에서 덱 순환을 방해하지 않는 무료 획득 수단.",
       "upgrade_cost": 50,
       "values": {
         "draw": 1
@@ -1446,27 +1446,20 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "현재 민심이 60 이상이면 힘 1과 갑주 3을 획득한다. 민심이 30 미만이면 취약 1을 받지만 기 2를 획득한다.",
+        "ko": "현재 이 60 이상이면 힘 1과 갑주 3을 획득한다. 이 30 미만이면 취약 1을 받지만 기 2를 획득한다.",
         "en": "If Public Favor is 60 or more, gain 1 Strength and 3 Armor. If below 30, receive 1 Vulnerable but gain 2 Qi."
       },
       "effect_upgraded": {
-        "ko": "민심 60 이상: 힘 2 + 갑주 5. 민심 30 미만: 취약 1 + 기 3.",
+        "ko": "60 이상: 힘 2 + 갑주 5. 30 미만: 취약 1 + 기 3.",
         "en": "Favor 60+: 2 Strength + 5 Armor. Favor below 30: 1 Vulnerable + 3 Qi."
       },
       "flavor_text": {
-        "ko": "관직을 받으면 힘이 생기고 — 민심이 낮으면 자리가 흔들린다.",
+        "ko": "관직을 받으면 힘이 생기고 — 이 낮으면 자리가 흔들린다.",
         "en": "An appointment grants power — but low public favor shakes your position."
       },
-      "balance_rationale": "1코스트. 민심 상태에 따라 효과 분기. 고민심=영구 공방 버프, 저민심=기 보충(자해 디버프 포함). 민심 관리에 전투적 보상을 직접 연결. 어느 민심이든 활용 가능하나 고민심이 압도적으로 유리.",
+      "balance_rationale": "1코스트. 상태에 따라 효과 분기. 고=영구 공방 버프, 저=기 보충(자해 디버프 포함). 관리에 전투적 보상을 직접 연결. 어느 이든 활용 가능하나 고이 압도적으로 유리.",
       "upgrade_cost": 75,
-      "values": {
-        "strength_if_minshim_high": 1,
-        "armor_if_minshim_high": 3,
-        "minshim_high_threshold": 60,
-        "qi_if_minshim_low": 2,
-        "vulnerable_if_minshim_low": 1,
-        "minshim_low_threshold": 30
-      }
+      "values": {}
     },
     {
       "id": "M045",
@@ -1725,18 +1718,18 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "금화 8을 소비한다. 힘 2를 획득하고 방어도 6을 획득한다. 민심을 3 감소시킨다.",
+        "ko": "금화 8을 소비한다. 힘 2를 획득하고 방어도 6을 획득한다. 을 3 감소시킨다.",
         "en": "Spend 8 Gold. Gain 2 Strength and 6 Block. Decrease Public Favor by 3."
       },
       "effect_upgraded": {
-        "ko": "금화 8 소비. 힘 3 + 방어도 8. 민심 3 감소.",
+        "ko": "금화 8 소비. 힘 3 + 방어도 8. 3 감소.",
         "en": "Spend 8 Gold. 3 Strength + 8 Block. Public Favor -3."
       },
       "flavor_text": {
-        "ko": "관직을 돈으로 사면 — 힘은 얻지만 민심은 잃는다.",
+        "ko": "관직을 돈으로 사면 — 힘은 얻지만 은 잃는다.",
         "en": "Buy an office with gold — power is gained, but the people's hearts are lost."
       },
-      "balance_rationale": "1코스트 + 금화8. 힘2(영구)+방어6 = 매우 강력. 민심-3 페널티로 밸런스. 금화+민심 트레이드오프. 민심을 신경 쓰지 않는 빌드에서 극강. 민심 빌드와 역시너지.",
+      "balance_rationale": "1코스트 + 금화8. 힘2(영구)+방어6 = 매우 강력. -3 페널티로 밸런스. 금화+ 트레이드오프. 을 신경 쓰지 않는 빌드에서 극강. 빌드와 역시너지.",
       "upgrade_cost": 75,
       "values": {
         "gold_cost": 8,

@@ -43,7 +43,7 @@ const CARD_TYPE_COLORS := {
 	"defense": Color(0.14, 0.24, 0.44),
 	"spell": Color(0.14, 0.24, 0.44),
 	"movement": Color(0.12, 0.5, 0.3),
-	"formation": Color(0.60, 0.45, 0.07),
+	"combat": Color(0.60, 0.45, 0.07),
 }
 
 ## 캐시 (path → Texture2D)

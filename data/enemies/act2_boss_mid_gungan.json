@@ -10,7 +10,7 @@
     "en": "Military Officer"
   },
   "description": {
-    "ko": "군역을 면제해주는 대가로 포은을 강요하는 부패한 무관. 자신의 병사들이 쓰러지면 오히려 더 결사적으로 싸운다.",
+    "ko": "군역을 면제해주는 대가로 포은을 강요하는 부패한 무관. 자신의 병들이 쓰러지면 오히려 더 결사적으로 싸운다.",
     "en": "A corrupt military officer who demands cloth-tax in exchange for military service exemption. Fights even more desperately when his soldiers fall."
   },
   "flavor": "\"군역을 대신할 포은 300냥을 내라.\"",
@@ -23,26 +23,26 @@
           "enemy_id": "E_BYEONGSA",
           "count": 1,
           "hp_override": 22,
-          "name_override": "병사 갑"
+          "name_override": "병 갑"
         },
         {
           "enemy_id": "E_BYEONGSA",
           "count": 1,
           "hp_override": 22,
-          "name_override": "병사 을"
+          "name_override": "병 을"
         }
       ]
     },
     {
       "type": "dialogue",
-      "text": "감히 포은을 내지 않겠다는 것이냐! 병사들아, 잡아라!"
+      "text": "감히 포은을 내지 않겠다는 것이냐! 병들아, 잡아라!"
     }
   ],
   "on_ally_death_effects": [
     {
       "type": "gain_block",
       "value": 18,
-      "description": "부하 병사가 쓰러질 때마다 군관이 방어도 18 획득."
+      "description": "부하 병가 쓰러질 때마다 군관이 방어도 18 획득."
     },
     {
       "type": "apply_buff",
@@ -56,7 +56,7 @@
       "phase": 1,
       "hp_threshold_label": "100% → 50%",
       "hp_threshold_min": 48,
-      "description": "지휘 모드. 병사를 전면에 내세우고 자신은 방어에 집중.",
+      "description": "지휘 모드. 병를 전면에 내세우고 자신은 방어에 집중.",
       "moves": [
         {
           "id": "command_strike",
@@ -101,7 +101,7 @@
             }
           ],
           "description": {
-            "ko": "병사 1명 추가 소환.",
+            "ko": "병 1명 추가 소환.",
             "en": "Summons 1 additional soldier."
           }
         },
@@ -155,7 +155,7 @@
           },
           {
             "type": "dialogue",
-            "text": "병사 따위 없어도 된다! 내 손으로 직접 처단하겠다!"
+            "text": "병 따위 없어도 된다! 내 손으로 직접 처단하겠다!"
           }
         ]
       }
@@ -233,5 +233,5 @@
       "max": 75
     }
   },
-  "balance_note": "HP 95. 전투 시작 시 병사 2명(HP 22). 병사 사망 시 군관 방어도 18 + 힘 1 추가. 전투 길이 목표: 10~14턴."
+  "balance_note": "HP 95. 전투 시작 시 병 2명(HP 22). 병 사망 시 군관 방어도 18 + 힘 1 추가. 전투 길이 목표: 10~14턴."
 }

@@ -16,28 +16,20 @@
     "mugwan": {
       "name": "Military Officer",
       "short": "Officer",
-      "description": "A seasoned warrior commanding formations and soldier tokens. Excels at burst damage through Stamina.",
-      "mechanic": "Soldier Token: Absorbs 1 hit then vanishes, recovering 1 Qi on death. Stamina (max 10) carries between turns and powers up attacks."
+      "description": "A seasoned warrior commanding combat tacticss and allies. Excels at burst damage through Qi.",
+      "mechanic": "ally: Absorbs 1 hit then vanishes, recovering 1 Qi on death. Qi (max 10) carries between turns and powers up attacks."
     },
     "mungwan": {
       "name": "Scholar Official",
       "short": "Scholar",
-      "description": "A learned official wielding knowledge as a weapon. Accumulates Scholarship to unleash powerful techniques.",
-      "mechanic": "Scholarship (학식): Accumulates up to 6 (expandable). Consumed to empower spells, attacks, and defenses."
+      "description": "A learned official wielding knowledge as a weapon. Accumulates knowledge to unleash powerful techniques.",
+      "mechanic": "Each class uses Qi (energy) to play cards."
     }
   },
   "resources": {
     "qi": {
       "name": "Qi",
       "desc": "Energy resource. Recovered each turn (base 3/turn). Used to play cards."
-    },
-    "stamina": {
-      "name": "Stamina",
-      "desc": "Military Officer resource. Max 10, persists between turns. Consumed for powerful attacks."
-    },
-    "scholarship": {
-      "name": "Scholarship",
-      "desc": "Scholar Official resource. Max 6 (expandable). Consumed to empower techniques."
     },
     "hp": {
       "name": "HP",
@@ -155,7 +147,7 @@
       "title": "Rest Site",
       "rest": "Rest (Recover 30% HP)",
       "smith": "Smith (Upgrade a card)",
-      "study": "Study (Gain Scholarship +2)",
+      "study": "Study (Gain knowledge +2)",
       "leave": "Leave"
     },
     "card_reward": {
@@ -413,115 +405,115 @@
       "flavor": "Unleash a Dokkaebi upon the battlefield — chaos sweeps every foe away."
     },
     "G001": {
-      "name": "Formation Shift",
-      "effect": "Summon 1 Soldier Token. Gain 2 Stamina. Soldier Token: absorbs 1 hit then vanishes; on death, recover 1 Qi.",
-      "effect_upgraded": "Summon 2 Soldier Tokens. Gain 3 Stamina.",
+      "name": "Battle Stance",
+      "effect": "Summon 1 ally. Gain 2 Qi. ally: absorbs 1 hit then vanishes; on death, recover 1 Qi.",
+      "effect_upgraded": "Summon 2 allys. Gain 3 Qi.",
       "flavor": "Post a soldier ahead — deflect the blade aimed at you."
     },
     "G002": {
       "name": "Charge",
-      "effect": "Spend 2 Stamina. Deal 10 damage. If you have 1+ Soldier Token, deal 5 more.",
+      "effect": "Spend 2 Qi. Deal 10 damage. If you have 1+ ally, deal 5 more.",
       "effect_upgraded": "Deal 13 damage. Token bonus becomes +7.",
       "flavor": "Break through the line at full force — nothing stands in the path of the charge."
     },
     "G003": {
       "name": "Encirclement",
-      "effect": "Apply Surrounded (2 turns) to ALL enemies. Gain 1 Stamina. (Surrounded: attack damage -25%.)",
-      "effect_upgraded": "Surrounded lasts 3 turns. Gain 2 Stamina.",
+      "effect": "Apply Surrounded (2 turns) to ALL enemies. Gain 1 Qi. (Surrounded: attack damage -25%.)",
+      "effect_upgraded": "Surrounded lasts 3 turns. Gain 2 Qi.",
       "flavor": "Enclose them from all sides — the trapped enemy cannot fight at full strength."
     },
     "G004": {
-      "name": "Crane Wing Formation",
-      "effect": "Spend 3 Stamina. Deal 8 damage to ALL enemies. Deal 3 more per Soldier Token you control.",
+      "name": "Crane Wing Strike",
+      "effect": "Spend 3 Qi. Deal 8 damage to ALL enemies. Deal 3 more per ally you control.",
       "effect_upgraded": "Deal 10 base. Token bonus becomes +4.",
-      "flavor": "Wings spread wide — the formation crushes every foe in its embrace."
+      "flavor": "Wings spread wide — the combat tactics crushes every foe in its embrace."
     },
     "G005": {
-      "name": "Invincible Formation",
-      "effect": "Gain 18 Block. Summon 2 Soldier Tokens. Gain 2 Stamina. Token summons are doubled this turn.",
-      "effect_upgraded": "Gain 22 Block. Summon 4 Tokens. Gain 3 Stamina.",
-      "flavor": "The formation that conquered the realm — an impenetrable wall of shields and spears."
+      "name": "Iron Bulwark",
+      "effect": "Gain 18 Block. Summon 2 allys. Gain 2 Qi. Token summons are doubled this turn.",
+      "effect_upgraded": "Gain 22 Block. Summon 4 Tokens. Gain 3 Qi.",
+      "flavor": "The combat tactics that conquered the realm — an impenetrable wall of shields and spears."
     },
     "G006": {
       "name": "Infantry Advance",
-      "effect": "Gain 2 Stamina.",
-      "effect_upgraded": "Gain 3 Stamina. Draw 1 card.",
+      "effect": "Gain 2 Qi.",
+      "effect_upgraded": "Gain 3 Qi. Draw 1 card.",
       "flavor": "Infantry presses forward — pace by pace, the battle tilts our way."
     },
     "G007": {
       "name": "Ambush",
-      "effect": "Summon 1 Soldier Token. Gain 3 Block.",
-      "effect_upgraded": "Summon 1 Soldier Token. Gain 5 Block.",
+      "effect": "Summon 1 ally. Gain 3 Block.",
+      "effect_upgraded": "Summon 1 ally. Gain 5 Block.",
       "flavor": "Strike from the shadows — a hidden soldier buys precious time."
     },
     "G008": {
       "name": "Three-Army Deployment",
-      "effect": "Summon 3 Soldier Tokens.",
-      "effect_upgraded": "Summon 4 Soldier Tokens.",
+      "effect": "Summon 3 allys.",
+      "effect_upgraded": "Summon 4 allys.",
       "flavor": "Three armies in position — the battlefield belongs to us."
     },
     "G009": {
       "name": "Tactical Manual",
-      "effect": "For this combat, gain 1 extra Stamina each time you play a Formation card.",
-      "effect_upgraded": "Gain 2 extra Stamina per Formation card.",
-      "flavor": "The manual holds all formations — mastery turns every move into advantage."
+      "effect": "For this combat, gain 1 extra Qi each time you play a Combat Tactics card.",
+      "effect_upgraded": "Gain 2 extra Qi per Combat Tactics card.",
+      "flavor": "The manual holds all combat tacticss — mastery turns every move into advantage."
     },
     "G010": {
       "name": "Iron Cavalry Charge",
-      "effect": "Spend 3 Stamina. Deal 18 damage. If you have a Soldier Token, deal 4 more.",
+      "effect": "Spend 3 Qi. Deal 18 damage. If you have a ally, deal 4 more.",
       "effect_upgraded": "Deal 22 damage. Token bonus becomes +6.",
       "flavor": "Iron-clad cavalry thunders forward — the enemy has nowhere to run."
     },
     "G011": {
       "name": "Camp",
-      "effect": "Gain 6 Block. At the start of next turn, gain 2 Stamina.",
-      "effect_upgraded": "Gain 8 Block. Gain 3 Stamina next turn.",
+      "effect": "Gain 6 Block. At the start of next turn, gain 2 Qi.",
+      "effect_upgraded": "Gain 8 Block. Gain 3 Qi next turn.",
       "flavor": "Set up camp and hold the line — tomorrow the charge renews."
     },
     "G012": {
       "name": "Cannon Fire",
-      "effect": "Deal 6 damage to ALL enemies. If you have a Soldier Token, deal 3 more to all.",
+      "effect": "Deal 6 damage to ALL enemies. If you have a ally, deal 3 more to all.",
       "effect_upgraded": "Deal 8 base. Token bonus becomes +4.",
       "flavor": "The cannon roars — thunder shakes the field."
     },
     "G013": {
       "name": "Battle Cry",
-      "effect": "Gain 4 Stamina.",
-      "effect_upgraded": "Gain 5 Stamina. Draw 1 card.",
+      "effect": "Gain 4 Qi.",
+      "effect_upgraded": "Gain 5 Qi. Draw 1 card.",
       "flavor": "One mighty shout — the entire army's morale ignites."
     },
     "G014": {
       "name": "Reversal",
-      "effect": "Deal 2 damage per current Stamina (min 6). Does not consume Stamina.",
-      "effect_upgraded": "Deal 3 per Stamina (min 8).",
+      "effect": "Deal 2 damage per current Qi (min 6). Does not consume Qi.",
+      "effect_upgraded": "Deal 3 per Qi (min 8).",
       "flavor": "Turn desperation into fury — the harder the press, the fiercer the counter."
     },
     "G015": {
       "name": "Indomitable Will",
-      "effect": "Increase max Stamina by 5 for this combat. Gain 3 Stamina.",
-      "effect_upgraded": "Max Stamina +7. Gain 4 Stamina.",
+      "effect": "Increase max Qi by 5 for this combat. Gain 3 Qi.",
+      "effect_upgraded": "Max Qi +7. Gain 4 Qi.",
       "flavor": "An unbreakable will knows no limit — the body exceeds its own boundaries."
     },
     "G016": {
       "name": "Last Stand",
-      "effect": "Spend ALL Stamina. Deal 3 damage per Stamina spent (min 0).",
-      "effect_upgraded": "Deal 4 damage per Stamina spent.",
+      "effect": "Spend ALL Qi. Deal 3 damage per Qi spent (min 0).",
+      "effect_upgraded": "Deal 4 damage per Qi spent.",
       "flavor": "Everything — pour it all into this one moment."
     },
     "G017": {
       "name": "Solo Charge",
-      "effect": "Deal 6 damage. Optionally spend 2 Stamina to deal 4 more.",
-      "effect_upgraded": "Deal 8 base. Stamina bonus becomes +6.",
+      "effect": "Deal 6 damage. Optionally spend 2 Qi to deal 4 more.",
+      "effect_upgraded": "Deal 8 base. Qi bonus becomes +6.",
       "flavor": "A lone warrior charges the enemy line — and the line breaks."
     },
     "G018": {
       "name": "Peerless",
-      "effect": "Deal 20 damage. Spend ALL Stamina; deal 4 more per Stamina spent.",
-      "effect_upgraded": "Deal 25 base. Bonus per Stamina becomes 5.",
+      "effect": "Deal 20 damage. Spend ALL Qi; deal 4 more per Qi spent.",
+      "effect_upgraded": "Deal 25 base. Bonus per Qi becomes 5.",
       "flavor": "Unmatched under heaven — one strike shatters all."
     },
     "G019": {
-      "name": "Defensive Formation",
+      "name": "Defensive Combat Tactics",
       "effect": "Gain 8 Block.",
       "effect_upgraded": "Gain 12 Block.",
       "flavor": "Shield wall locked — no gap for the enemy to exploit."
@@ -558,8 +550,8 @@
     },
     "G025": {
       "name": "Veteran General",
-      "effect": "Increase max Stamina by 3. For this combat, draw 1 card whenever a Soldier Token dies.",
-      "effect_upgraded": "Max Stamina +5. Draw 2 cards per Token death.",
+      "effect": "Increase max Qi by 3. For this combat, draw 1 card whenever a ally dies.",
+      "effect_upgraded": "Max Qi +5. Draw 2 cards per Token death.",
       "flavor": "A hundred battles, a hundred victories — every fallen soldier teaches a lesson."
     },
     "W001": {
@@ -570,86 +562,86 @@
     },
     "W002": {
       "name": "Impeachment",
-      "effect": "Deal 10 damage. Optionally spend 1 Scholarship to apply 2 Vulnerable. (Vulnerable: take 50% more damage.)",
+      "effect": "Deal 10 damage. Optionally spend 1 knowledge to apply 2 Vulnerable. (Vulnerable: take 50% more damage.)",
       "effect_upgraded": "Deal 13 damage. Vulnerable becomes 3.",
       "flavor": "The scroll of impeachment lands — the accused staggers under the weight of truth."
     },
     "W003": {
       "name": "Petition",
-      "effect": "Spend ALL Scholarship. Deal Scholarship×3 damage to ALL enemies (min 6).",
-      "effect_upgraded": "Deal Scholarship×4 per enemy (min 8).",
+      "effect": "Spend ALL knowledge. Deal knowledge×3 damage to ALL enemies (min 6).",
+      "effect_upgraded": "Deal knowledge×4 per enemy (min 8).",
       "flavor": "Ten thousand voices behind a single petition — the pressure is irresistible."
     },
     "W004": {
       "name": "Royal Lecture",
-      "effect": "Gain 5 Block. Gain 1 Scholarship.",
-      "effect_upgraded": "Gain 7 Block. Gain 2 Scholarship.",
+      "effect": "Gain 5 Block. Gain 1 knowledge.",
+      "effect_upgraded": "Gain 7 Block. Gain 2 knowledge.",
       "flavor": "Enlighten the court — knowledge fortifies as much as armor."
     },
     "W005": {
       "name": "Royal Edict",
-      "effect": "Gain 10 Block. Gain 2 Scholarship.",
-      "effect_upgraded": "Gain 13 Block. Gain 3 Scholarship.",
+      "effect": "Gain 10 Block. Gain 2 knowledge.",
+      "effect_upgraded": "Gain 13 Block. Gain 3 knowledge.",
       "flavor": "The edict carries royal authority — all must yield before the command."
     },
     "W006": {
       "name": "Study",
-      "effect": "Gain 1 Scholarship. Draw 1 card.",
-      "effect_upgraded": "Gain 2 Scholarship. Draw 1 card.",
+      "effect": "Gain 1 knowledge. Draw 1 card.",
+      "effect_upgraded": "Gain 2 knowledge. Draw 1 card.",
       "flavor": "A scholar never ceases learning — each page read sharpens the mind further."
     },
     "W007": {
       "name": "Investigation",
-      "effect": "Gain 2 Scholarship. The next card you play this turn costs 1 less (min 0).",
-      "effect_upgraded": "Gain 3 Scholarship. Next card costs 1 less.",
+      "effect": "Gain 2 knowledge. The next card you play this turn costs 1 less (min 0).",
+      "effect_upgraded": "Gain 3 knowledge. Next card costs 1 less.",
       "flavor": "Investigate thoroughly — insight unlocks paths hidden to others."
     },
     "W008": {
-      "name": "Scholarship",
-      "effect": "Gain 3 Scholarship. Draw 1 card.",
-      "effect_upgraded": "Gain 4 Scholarship. Draw 2 cards.",
+      "name": "knowledge",
+      "effect": "Gain 3 knowledge. Draw 1 card.",
+      "effect_upgraded": "Gain 4 knowledge. Draw 2 cards.",
       "flavor": "Broad learning across all disciplines — a scholar's arsenal knows no bounds."
     },
     "W009": {
       "name": "Royal Procession",
-      "effect": "Gain 3 Block. Gain 1 Scholarship.",
-      "effect_upgraded": "Gain 5 Block. Gain 2 Scholarship.",
+      "effect": "Gain 3 Block. Gain 1 knowledge.",
+      "effect_upgraded": "Gain 5 Block. Gain 2 knowledge.",
       "flavor": "The royal entourage moves with ceremony and purpose — order itself becomes a shield."
     },
     "W010": {
       "name": "Evasive Rhetoric",
-      "effect": "Gain 5 Block. If 3+ Sijo slots are filled this turn, gain 2 more Scholarship.",
-      "effect_upgraded": "Gain 7 Block. Scholarship bonus becomes 3.",
+      "effect": "Gain 5 Block. If 3+ Sijo slots are filled this turn, gain 2 more knowledge.",
+      "effect_upgraded": "Gain 7 Block. knowledge bonus becomes 3.",
       "flavor": "Deflect with words, deflect with motion — rhetoric and footwork are one."
     },
     "W011": {
       "name": "Loyal Counsel",
-      "effect": "Deal 4 damage. Gain 1 Scholarship.",
-      "effect_upgraded": "Deal 6 damage. Gain 2 Scholarship.",
+      "effect": "Deal 4 damage. Gain 1 knowledge.",
+      "effect_upgraded": "Deal 6 damage. Gain 2 knowledge.",
       "flavor": "Earnest advice may sting — but the kingdom stands stronger for it."
     },
     "W012": {
       "name": "Debate",
-      "effect": "Deal 8 damage. Optionally spend 1 Scholarship to deal 6 more.",
-      "effect_upgraded": "Deal 10 base. Scholarship bonus becomes +8.",
+      "effect": "Deal 8 damage. Optionally spend 1 knowledge to deal 6 more.",
+      "effect_upgraded": "Deal 10 base. knowledge bonus becomes +8.",
       "flavor": "Crush the argument — and with it, the opponent."
     },
     "W013": {
       "name": "Argumentation",
-      "effect": "Gain 3 Scholarship. Draw effects are increased by 1 this turn.",
-      "effect_upgraded": "Gain 4 Scholarship. Draw +2 this turn.",
+      "effect": "Gain 3 knowledge. Draw effects are increased by 1 this turn.",
+      "effect_upgraded": "Gain 4 knowledge. Draw +2 this turn.",
       "flavor": "An airtight argument — logic itself becomes a weapon."
     },
     "W014": {
       "name": "Anthology",
-      "effect": "For this combat, increase max Scholarship by 2 (up to 8). Gain 2 Scholarship.",
-      "effect_upgraded": "Max Scholarship +3 (up to 9). Gain 3 Scholarship.",
+      "effect": "For this combat, increase max knowledge by 2 (up to 8). Gain 2 knowledge.",
+      "effect_upgraded": "Max knowledge +3 (up to 9). Gain 3 knowledge.",
       "flavor": "Volumes of wisdom bound together — the compiled knowledge of generations."
     },
     "W015": {
       "name": "Royal Permission",
-      "effect": "Spend ALL Scholarship. Deal Scholarship×5 damage to one target (min 10).",
-      "effect_upgraded": "Deal Scholarship×6 (min 12).",
+      "effect": "Spend ALL knowledge. Deal knowledge×5 damage to one target (min 10).",
+      "effect_upgraded": "Deal knowledge×6 (min 12).",
       "flavor": "Royal authority unleashed — a single word from the throne ends all defiance."
     },
     "W016": {
@@ -684,32 +676,32 @@
     },
     "W021": {
       "name": "Perfect Virtue",
-      "effect": "Gain 3 Block. Gain 1 Scholarship.",
-      "effect_upgraded": "Gain 5 Block. Gain 2 Scholarship.",
+      "effect": "Gain 3 Block. Gain 1 knowledge.",
+      "effect_upgraded": "Gain 5 Block. Gain 2 knowledge.",
       "flavor": "The virtuous scholar stands unmoved — righteousness itself is armor."
     },
     "W022": {
       "name": "Noble Man",
-      "effect": "Gain 12 Block. Optionally spend 1 Scholarship to gain 6 more Block.",
-      "effect_upgraded": "Gain 14 Block. Scholarship bonus becomes +8.",
+      "effect": "Gain 12 Block. Optionally spend 1 knowledge to gain 6 more Block.",
+      "effect_upgraded": "Gain 14 Block. knowledge bonus becomes +8.",
       "flavor": "A true noble man faces any storm without flinching."
     },
     "W023": {
       "name": "Clean Governance",
-      "effect": "Gain 5 Block. If your current Scholarship is 0, gain 3 more Block.",
-      "effect_upgraded": "Gain 7 Block. Zero-Scholarship bonus becomes +4.",
+      "effect": "Gain 5 Block. If your current knowledge is 0, gain 3 more Block.",
+      "effect_upgraded": "Gain 7 Block. Zero-knowledge bonus becomes +4.",
       "flavor": "Incorruptible governance — clear as dawn, strong as stone."
     },
     "W024": {
       "name": "Right Path",
-      "effect": "For this combat, gain 1 Scholarship each time you play a Defense card.",
-      "effect_upgraded": "Gain 2 Scholarship per Defense card.",
+      "effect": "For this combat, gain 1 knowledge each time you play a Defense card.",
+      "effect_upgraded": "Gain 2 knowledge per Defense card.",
       "flavor": "The righteous path turns every act of defense into a lesson learned."
     },
     "W025": {
       "name": "Great Righteousness",
-      "effect": "Gain 3 Scholarship. Gain 8 Block. Draw 2 cards.",
-      "effect_upgraded": "Gain 4 Scholarship. Gain 10 Block. Draw 3 cards.",
+      "effect": "Gain 3 knowledge. Gain 8 Block. Draw 2 cards.",
+      "effect_upgraded": "Gain 4 knowledge. Gain 10 Block. Draw 3 cards.",
       "flavor": "Great righteousness needs no justification — it speaks for itself in might and virtue."
     }
   },
@@ -736,7 +728,7 @@
     },
     "R006": {
       "name": "Bodyguard Sword",
-      "effect": "At the start of combat, max Stamina increases by 1 for this combat."
+      "effect": "At the start of combat, max Qi increases by 1 for this combat."
     },
     "R007": {
       "name": "Four Books",
@@ -780,11 +772,11 @@
     },
     "RS002": {
       "name": "Royal Warrant",
-      "effect": "Automatically summon 1 Soldier Token at the start of combat."
+      "effect": "Automatically summon 1 ally at the start of combat."
     },
     "RS003": {
       "name": "Destiny",
-      "effect": "Gain 2 Scholarship at the start of combat."
+      "effect": "Gain 2 knowledge at the start of combat."
     },
     "R016": {
       "name": "Herb Bundle",
@@ -823,7 +815,7 @@
       "effect": "Gain 15 extra gold after defeating an Elite."
     },
     "R025": {
-      "name": "Five Elements Formation",
+      "name": "Five Elements Combat Tactics",
       "effect": "At the start of combat, gain Strength +1 and max Qi +1 for this combat. Resets after combat."
     },
     "R026": {
@@ -840,11 +832,11 @@
     },
     "RM001": {
       "name": "Military Manual",
-      "effect": "Gain 1 extra Stamina each time you play a Formation card."
+      "effect": "Gain 1 extra Qi each time you play a Combat Tactics card."
     },
     "RW001": {
       "name": "Royal Portrait",
-      "effect": "Recover 5% of max HP each time you fully spend your Scholarship. (Scholar only.)"
+      "effect": "Recover 5% of max HP each time you fully spend your knowledge. (Scholar only.)"
     },
     "RD001": {
       "name": "Immortal's Cinnabar",
