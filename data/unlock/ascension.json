@@ -1,7 +1,7 @@
 {
   "version": "0.1",
   "type": "ascension_system",
-  "description": "시조전 귀신 단계( ) — 10단계 난이도 시스템. StS 어센션 참조. 이전 단계 클리어 시 다음 단계 해금. 각 단계는 이전 단계의 수정자를 누적 적용한다.",
+  "description": "시조전 귀신 단계 — 10단계 난이도 시스템. StS 어센션 참조. 이전 단계 클리어 시 다음 단계 해금. 각 단계는 이전 단계의 수정자를 누적 적용한다.",
   "balance_ref": "ZER-100 (어센션/난이도 시스템). 모바일 솔로 플레이 기준 설계.",
   "system_name": {
     "ko": "귀신 단계",
@@ -20,7 +20,6 @@
       "romanized": "Dweju",
       "en": "Rice Chest"
     },
-    "beat": 3,
     "cost": 0,
     "type": "curse",
     "subtypes": [

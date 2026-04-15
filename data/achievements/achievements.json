@@ -157,8 +157,8 @@
       "unlock_reward": {
         "type": "card_back",
         "id": "BACK_GOLD",
-        "name_ko": "황금 시조",
-        "description_ko": "황금빛 시조 무늬 카드 뒷면"
+        "name_ko": "황금 문양",
+        "description_ko": "황금빛 전통 문양 카드 뒷면"
       }
     },
     {
@@ -346,7 +346,6 @@
         "description_ko": "피해 12를 입힌다. 이번 턴 카드를 2장 이상 사용했다면 피해 +8.",
         "flavor_ko": "말 위에서 익힌 돌격술. 전장을 누빈 자만이 쓸 수 있다.",
         "class": "mugwan",
-        "beat": 2,
         "cost": 2,
         "rarity": 3,
         "effect_code": "attack_12_plus8_if_2cards_played",
@@ -461,7 +460,6 @@
         "description_ko": "덱을 섞고 카드 3장을 뽑는다. 다음 카드 비용이 0이 된다.",
         "flavor_ko": "왕에게 올린 글 한 장이 국운을 바꾼다. 문관의 붓은 칼보다 강하다.",
         "class": "mungwan",
-        "beat": 3,
         "cost": 1,
         "rarity": 3,
         "effect_code": "shuffle_draw3_zero_cost_next",
@@ -573,10 +571,9 @@
         "type": "skill",
         "id": "D_ACH_001",
         "name_ko": "천지현황",
-        "description_ko": "기 2를 획득한다. 이번 런에서 시조를 10회 이상 완성했다면 카드 1장을 뽑는다.",
+        "description_ko": "기 2를 획득한다. 이번 런에서",
         "flavor_ko": "천지의 이치를 깨달은 도사만이 읽을 수 있는 주문. 하늘은 검고 땅은 누르다.",
         "class": "dosa",
-        "beat": 1,
         "cost": 0,
         "rarity": 3,
         "effect_code": "gain_qi2_draw1_if_runs10",
@@ -638,7 +635,7 @@
         "id": "R_ACH_004",
         "name_ko": "선기옥형",
         "description_ko": "",
-        "flavor_ko": "하늘의 기운을 측정하는 천문기기. 도사가 시조를 완성할 때마다 우주가 반응한다.",
+        "flavor_ko": "하늘의 기운을 측정하는 천문기기. 도사가",
         "trigger": "turn_end",
         "effect_code": "apply_burn_or_poison_1_on_turn_end",
         "rarity": 3,

@@ -52,7 +52,6 @@
         "romanized": "Chupa",
         "en": "Seductive Glance"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -91,7 +90,6 @@
         "romanized": "Hyangnang",
         "en": "Scented Pouch"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -130,7 +128,6 @@
         "romanized": "Gaine Baengmyeong",
         "en": "Fate of the Beauty"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -171,7 +168,6 @@
         "romanized": "Chumsawi",
         "en": "Dance Step"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -210,7 +206,6 @@
         "romanized": "Buchaechum",
         "en": "Fan Dance"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -251,7 +246,6 @@
         "romanized": "Geomu",
         "en": "Sword Dance"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -291,7 +285,6 @@
         "romanized": "Sogochum",
         "en": "Hand Drum Dance"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -324,7 +317,6 @@
         "romanized": "Maehok-ui Siseon",
         "en": "Bewitching Gaze"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -365,7 +357,6 @@
         "romanized": "Jeolse Gain",
         "en": "Peerless Beauty"
       },
-      "beat": 3,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -406,7 +397,6 @@
         "romanized": "Yoyeom",
         "en": "Allure"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -445,7 +435,6 @@
         "romanized": "Honmi",
         "en": "Stupor"
       },
-      "beat": 5,
       "cost": 3,
       "type": "skill",
       "subtypes": [
@@ -486,7 +475,6 @@
         "romanized": "Pansori",
         "en": "Pansori"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -527,7 +515,6 @@
         "romanized": "Gayageum",
         "en": "Gayageum"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -568,7 +555,6 @@
         "romanized": "Heunge Gyeowo",
         "en": "Lost in Rhythm"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -610,7 +596,6 @@
         "romanized": "Pungyu",
         "en": "Pungyu"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -649,7 +634,6 @@
         "romanized": "Daeheung",
         "en": "Grand Heung"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -685,11 +669,10 @@
     {
       "id": "GI017",
       "name": {
-        "ko": "시조창",
+        "ko": "가객의 노래",
         "romanized": "Sijochang",
         "en": "Sijo Song"
       },
-      "beat": 3,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -707,7 +690,7 @@
         "en": "Draw 4 cards. The next card costs 2 less."
       },
       "flavor_text": {
-        "ko": "시조 한 수를 읊으면 — 마음이 열려 손이 먼저 움직이더이다.",
+        "ko": "",
         "en": "Focus the mind — and the hand moves on its own."
       },
       "balance_rationale": "2코스트 드로우3+다음 카드 비용1 감소. 축지법(도사 D005, 3코+드3+비용감소1)의 경량화 버전. 1코스트 저렴한 대신 드로우 효과와 비용 감소 범위가 작음. 풍류 아키타입 핸드 확장.",
@@ -729,7 +712,6 @@
         "romanized": "Heungtaryeong",
         "en": "Heung Ballad"
       },
-      "beat": 3,
       "cost": 3,
       "type": "power",
       "subtypes": [
@@ -769,7 +751,6 @@
         "romanized": "Hoesimgok",
         "en": "Song of Contrition"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -810,7 +791,6 @@
         "romanized": "Haeeohwa",
         "en": "Flower That Speaks"
       },
-      "beat": 5,
       "cost": 3,
       "type": "skill",
       "subtypes": [
@@ -852,7 +832,6 @@
         "romanized": "Hwang Jini-ui Norae",
         "en": "Song of Hwang Jini"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -901,7 +880,6 @@
         "romanized": "Chunhyang-ui Jeolgae",
         "en": "Chunhyang's Loyalty"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -948,7 +926,6 @@
         "romanized": "Cheonha Jeeil Gamu",
         "en": "Greatest Dance Under Heaven"
       },
-      "beat": 5,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -1000,7 +977,6 @@
         "romanized": "Gibang Pungyu",
         "en": "Salon Pungyu"
       },
-      "beat": 4,
       "cost": 2,
       "type": "power",
       "subtypes": [
@@ -1050,7 +1026,6 @@
         "romanized": "Samhyeon Yukgak",
         "en": "Six-instrument Ensemble"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1101,7 +1076,6 @@
         "romanized": "Ilmu",
         "en": "Ilmu — Court Ritual Dance"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -1150,7 +1124,6 @@
         "romanized": "Cheonnyeonhwa",
         "en": "Flower of a Thousand Years"
       },
-      "beat": 5,
       "cost": 0,
       "type": "skill",
       "subtypes": [

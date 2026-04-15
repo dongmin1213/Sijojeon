@@ -61,7 +61,6 @@
         "romanized": "Jigeon",
         "en": "Candid Speech"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -94,7 +93,6 @@
         "romanized": "Tanhaek",
         "en": "Impeachment"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -133,7 +131,6 @@
         "romanized": "Sangso",
         "en": "Royal Petition"
       },
-      "beat": 4,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -173,7 +170,6 @@
         "romanized": "Gyeongyeon",
         "en": "Royal Lecture"
       },
-      "beat": 3,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -207,7 +203,6 @@
         "romanized": "Yeoje",
         "en": "Rites & Decorum"
       },
-      "beat": 4,
       "cost": 2,
       "type": "defense",
       "subtypes": [
@@ -241,7 +236,6 @@
         "romanized": "Dokseo",
         "en": "Reading"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -276,7 +270,6 @@
         "romanized": "Gyeongmul Chiji",
         "en": "Investigation of Things"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -315,7 +308,6 @@
         "romanized": "Bakak Dasik",
         "en": "Broad Learning"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -354,7 +346,6 @@
         "romanized": "Haengcha",
         "en": "Royal Procession"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -375,7 +366,7 @@
         "ko": "관복을 갖춰 입고 거리를 행차하니 — 위세가 적을 위축시키고 학문이 몸을 지킨다.",
         "en": "March in full court dress through the streets — your authority intimidates the enemy while learning guards the body."
       },
-      "balance_rationale": "1코스트 이동 카드. 방어도 3은 수호(5)보다 낮지만 학식 1 추가. 시조 [3] 슬롯 채우며 방어+학식을 동시에 처리하는 범용 이동 카드.",
+      "balance_rationale": "1코스트 이동 카드. 방어도 3은 수호(5)보다 낮지만 학식 1 추가. 시 [3] 슬롯 채우며 방어+학식을 동시에 처리하는 범용 이동 카드.",
       "upgrade_cost": 50,
       "values": {
         "block": 3,
@@ -389,7 +380,6 @@
         "romanized": "Pihwa",
         "en": "Avoid Disaster"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -403,7 +393,7 @@
         "en": "Gain 5 Block. If 3 or more"
       },
       "effect_upgraded": {
-        "ko": "방어도 7을 획득한다. 시조 3칸 이상 시 학식 3 추가 획득.",
+        "ko": "방어도 7을 획득한다.",
         "en": "Gain 7 Block. If 3+"
       },
       "flavor_text": {
@@ -429,7 +419,6 @@
         "romanized": "Goeon",
         "en": "Bitter Counsel"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -467,7 +456,6 @@
         "romanized": "Nonbak",
         "en": "Rebuttal"
       },
-      "beat": 3,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -506,7 +494,6 @@
         "romanized": "Nolli",
         "en": "Logic"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -545,7 +532,6 @@
         "romanized": "Munjip Pyeonjhan",
         "en": "Anthology Compilation"
       },
-      "beat": 3,
       "cost": 3,
       "type": "power",
       "subtypes": [
@@ -583,7 +569,6 @@
         "romanized": "Wang-ui Yunheo",
         "en": "Royal Sanction"
       },
-      "beat": 4,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -624,7 +609,6 @@
         "romanized": "Tanan",
         "en": "Suppression"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -661,7 +645,6 @@
         "romanized": "Moham",
         "en": "False Accusation"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -700,7 +683,6 @@
         "romanized": "Pajik",
         "en": "Dismissal"
       },
-      "beat": 3,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -739,7 +721,6 @@
         "romanized": "Ganeon",
         "en": "Admonition"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -778,7 +759,6 @@
         "romanized": "Yubae",
         "en": "Exile"
       },
-      "beat": 4,
       "cost": 3,
       "type": "skill",
       "subtypes": [
@@ -817,7 +797,6 @@
         "romanized": "Sujin Jega",
         "en": "Self-Cultivation"
       },
-      "beat": 3,
       "cost": 0,
       "type": "defense",
       "subtypes": [
@@ -856,7 +835,6 @@
         "romanized": "Gunja",
         "en": "Noble Scholar"
       },
-      "beat": 4,
       "cost": 2,
       "type": "defense",
       "subtypes": [
@@ -896,7 +874,6 @@
         "romanized": "Cheongnyeom",
         "en": "Integrity"
       },
-      "beat": 3,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -935,7 +912,6 @@
         "romanized": "Jeongdo",
         "en": "Righteous Path"
       },
-      "beat": 3,
       "cost": 2,
       "type": "power",
       "subtypes": [
@@ -974,7 +950,6 @@
         "romanized": "Daeui",
         "en": "Greater Duty"
       },
-      "beat": 4,
       "cost": 3,
       "type": "skill",
       "subtypes": [
@@ -1016,7 +991,6 @@
         "romanized": "Sangsomun Gongse",
         "en": "Memorial Offensive"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -1058,7 +1032,6 @@
         "romanized": "Wang-ui Chikseo",
         "en": "Royal Edict"
       },
-      "beat": 3,
       "cost": 3,
       "type": "buff",
       "subtypes": [

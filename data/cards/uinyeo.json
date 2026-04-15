@@ -53,7 +53,6 @@
         "romanized": "Chimsul",
         "en": "Acupuncture"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -92,7 +91,6 @@
         "romanized": "Gyeong'ok-go",
         "en": "Jade Elixir"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -131,7 +129,6 @@
         "romanized": "Gamchotang",
         "en": "Licorice Decoction"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -170,7 +167,6 @@
         "romanized": "Yakbangmun",
         "en": "Prescription Scroll"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -210,7 +206,6 @@
         "romanized": "Jjimjil",
         "en": "Hot Compress"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -249,7 +244,6 @@
         "romanized": "Dokchim",
         "en": "Poison Needle"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -288,7 +282,6 @@
         "romanized": "Doksal",
         "en": "Poisoning"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -329,7 +322,6 @@
         "romanized": "Haedok",
         "en": "Detoxify"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -368,7 +360,6 @@
         "romanized": "Uisul",
         "en": "Healing Arts"
       },
-      "beat": 4,
       "cost": 2,
       "type": "power",
       "subtypes": [
@@ -406,7 +397,6 @@
         "romanized": "Yakbang",
         "en": "Apothecary"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -446,7 +436,6 @@
         "romanized": "Hoheupbeop",
         "en": "Breathing Technique"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -486,7 +475,6 @@
         "romanized": "Dongmu",
         "en": "Poison Mist"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -526,7 +514,6 @@
         "romanized": "Dokgi",
         "en": "Toxic Miasma"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -567,7 +554,6 @@
         "romanized": "Buja",
         "en": "Monkshood Root"
       },
-      "beat": 3,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -607,7 +593,6 @@
         "romanized": "Bisang",
         "en": "Arsenic Powder"
       },
-      "beat": 3,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -647,7 +632,6 @@
         "romanized": "Judok",
         "en": "Venom Injection"
       },
-      "beat": 4,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -688,7 +672,6 @@
         "romanized": "Dokpa",
         "en": "Poison Burst"
       },
-      "beat": 3,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -727,7 +710,6 @@
         "romanized": "Tteum",
         "en": "Moxibustion"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -768,7 +750,6 @@
         "romanized": "Dokgieun",
         "en": "Poison Aura"
       },
-      "beat": 3,
       "cost": 3,
       "type": "power",
       "subtypes": [
@@ -806,7 +787,6 @@
         "romanized": "Cheobbang",
         "en": "Prescription"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -850,7 +830,6 @@
         "romanized": "Cheongsimhwan",
         "en": "Clarifying Heart Pill"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -891,7 +870,6 @@
         "romanized": "Sadoktang",
         "en": "Purging Poison Decoction"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -934,7 +912,6 @@
         "romanized": "Uinyeo Songil",
         "en": "Uinyeo's Touch"
       },
-      "beat": 3,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -976,7 +953,6 @@
         "romanized": "Odoktang",
         "en": "Five Venom Brew"
       },
-      "beat": 4,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -1015,11 +991,10 @@
     {
       "id": "H025",
       "name": {
-        "ko": "시조 처방",
+        "ko": "처방전",
         "romanized": "Sijo Cheobbang",
         "en": "Verse Prescription"
       },
-      "beat": 5,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1030,18 +1005,18 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "HP 3을 회복한다. 적에게 독 3을 부여한다. 이번 시조 라인(초·중·종장)을 완성하면 회복과 독을 각 2 추가로 받는다.",
+        "ko": "HP 3을 회복한다. 적에게 독 3을 부여한다.",
         "en": "Heal 3 HP. Apply 3 Poison to an enemy. If you play 3+ cards this turn, bonus heal and Poison."
       },
       "effect_upgraded": {
         "ko": "HP 4 회복. 독 4 부여.",
-        "en": "Heal 4 HP. Apply 4 Poison. On playing 3+ cards: "
+        "en": "Heal 4 HP. Apply 4 Poison. On playing 3+ cards:"
       },
       "flavor_text": {
         "ko": "시 한 수에 치유도 담고 독도 담는다 — 글자마다 생사가 갈린다.",
         "en": "A single verse carries both healing and poison — life and death hang on every word."
       },
-      "balance_rationale": "1코스트 시조 연동 처방. 시조 시스템과 의녀 처방 아키타입을 연결하는 고유 카드. 처방 빌드에서",
+      "balance_rationale": "1코스트 처방 빌드에서",
       "class_synergy": [
         "H010",
         "H020",
@@ -1061,7 +1036,6 @@
         "romanized": "Daejanggeun",
         "en": "Jewel in the Palace"
       },
-      "beat": 4,
       "cost": 3,
       "type": "power",
       "subtypes": [
@@ -1104,7 +1078,6 @@
         "romanized": "Dong'uibogam",
         "en": "Dongui Bogam"
       },
-      "beat": 5,
       "cost": 2,
       "type": "attack",
       "subtypes": [

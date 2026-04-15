@@ -88,11 +88,11 @@
         {
           "id": "poem_exchange",
           "text": {
-            "ko": "[시상] 시조를 읊어 승려와 시로써 교감한다.",
+            "ko": "[시상]",
             "en": "[Sisang] Share wisdom with the monk, bonding through poetry."
           },
           "result_text": {
-            "ko": "승려가 시조에 화답하시며 비전의 깨달음을 전하시는도다. 최대 HP +5, 카드 1장 강화.",
+            "ko": "승려가 최대 HP +5, 카드 1장 강화.",
             "en": "The monk responds with a verse of his own and shares a secret insight. Max HP +5, upgrade 1 card."
           },
           "note": "시상 5 해금 보너스. 최대HP + 카드 강화.",

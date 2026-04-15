@@ -71,7 +71,7 @@
         {
           "id": "poem_inspire",
           "text": {
-            "ko": "[시상] 시조로 충신의 용기를 북돋운다.",
+            "ko": "[시상]",
             "en": "[Sisang] Inspire the loyalist's courage with a poem."
           },
           "effect_value_bonus_2": 1,
@@ -100,8 +100,8 @@
         "en": "The Court Lady's Plea"
       },
       "flavor_text": {
-        "ko": "\"제발 숨겨주시옵소서... 그자들이 오고 있사옵니다.\"",
-        "en": "\"Please, hide me... They're coming.\""
+        "ko": "\"제발 숨겨주시옵소서.. 그자들이 오고 있사옵니다.\"",
+        "en": "\"Please, hide me.. They're coming.\""
       },
       "choices": [
         {

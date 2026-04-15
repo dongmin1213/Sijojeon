@@ -2,7 +2,7 @@
   "version": "0.2",
   "type": "boss",
   "act": 3,
-  "balance_ref": "ZER-330. 플레이어 기준: HP 20~40, 덱 18~24장, 턴당 피해 18~24, 방어도 12~16. 보스 목표 전투 길이: 15~18턴..",
+  "balance_ref": "ZER-330. 플레이어 기준: HP 20~40, 덱 18~24장, 턴당 피해 18~24, 방어도 12~16. 보스 목표 전투 길이: 15~18턴.",
   "id": "B_ACT3_FINAL",
   "name": {
     "ko": "역모대감",
@@ -43,8 +43,8 @@
       ],
       "halve_strength": true,
       "dialogue": {
-        "ko": "\"크아아아! 이 가면 없이는... 나는... 나는 아무것도 아니란 말이냐!\"",
-        "en": "\"AAAARGH! Without this mask... am I... am I nothing?!\""
+        "ko": "\"크아아아! 이 가면 없이는.. 나는.. 나는 아무것도 아니란 말이냐!\"",
+        "en": "\"AAAARGH! Without this mask.. am I.. am I nothing?!\""
       }
     }
   },
@@ -314,7 +314,7 @@
           },
           {
             "type": "dialogue",
-            "text": "\"이 나라를 가져갈 수 없다면... 모두 불태우겠다!\""
+            "text": "\"이 나라를 가져갈 수 없다면.. 모두 불태우겠다!\""
           }
         ]
       },

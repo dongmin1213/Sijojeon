@@ -1161,8 +1161,8 @@
       "class_restriction": null,
       "trigger": "on_wildcard_play",
       "effect": {
-        "ko": "와일드카드(beat 0, M011/M012)를 사용할 때마다 기 1을 즉시 회복한다.",
-        "en": "Recover 1 Qi immediately whenever you play a Wildcard (beat 0, M011/M012)."
+        "ko": "와일드카드(, M011/M012)를 사용할 때마다 기 1을 즉시 회복한다.",
+        "en": "Recover 1 Qi immediately whenever you play a Wildcard (, M011/M012)."
       },
       "effect_description": {
         "ko": "와일드카드 사용 시 기 +1",
@@ -1289,7 +1289,7 @@
         "en": ""
       },
       "flavor_text": {
-        "ko": "먹물을 담는 작은 그릇. 학식이 흐르면 시조도 따라 흐른다.",
+        "ko": "먹물을 담는 작은 그릇. 학식이 흐르면 시도 따라 흐른다.",
         "en": "A small vessel for ink. When scholarship flows, so does the Sijo."
       },
       "balance_rationale": "선비 전용 시너지. 학식 소비 카드를 쓰면 고급 등급 적합.",

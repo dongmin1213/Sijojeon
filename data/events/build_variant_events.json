@@ -6,16 +6,16 @@
     {
       "id": "EVT_SIJO_VARIATION",
       "title": {
-        "ko": "시조의 변주",
+        "ko": "",
         "description": {
-          "ko": "낡은 시조 악보 한 장이 담장 틈에 끼어 있도다. 펼쳐보니 평소와는 다른 구성의 시조가 적혀 있느니라. \"규칙을 바꾸면 노래가 달라지리라.\"",
+          "ko": "낡은 시 악보 한 장이 담장 틈에 끼어 있도다. 펼쳐보니 평소와는 다른 구성의 \"규칙을 바꾸면 노래가 달라지리라.\"",
           "en": "An old poem score is wedged in a crack in the wall. Unfolding it reveals a poem with an unusual structure. \"Change the rules, and the song changes.\""
         },
         "loc_key": "event_title_combat_training",
         "en": "Variations of the Sijo"
       },
       "flavor_text": {
-        "ko": "\"정해진 형식이 있어야 시조인가, 아니면 마음이 담기면 그것이 곧 시조이겠느냐.\"",
+        "ko": "\"정해진 형식이 있어야 시인가, 아니면 마음이 담기면 그것이 곧 시이겠느냐.\"",
         "en": "\"Must combat follow a fixed form, or does intent shape the battle?\""
       },
       "type": "common",
@@ -49,16 +49,16 @@
           },
           "effect_value": 0,
           "result_text": {
-            "ko": "낡은 악보의 구성을 받아들였느니라. 이제 시조의 첫 자리에 어떤 장의 카드든 놓을 수 있도다. 형식보다 흐름이 중한 법이니라.",
+            "ko": "낡은 악보의 구성을 받아들였느니라. 이제 형식보다 흐름이 중한 법이니라.",
             "en": "You adopt the old score's arrangement. Now any verse card can be placed in the first Flow matters more than form."
           },
           "result_title": "이음새 슬롯 획득",
-          "note": "유연한 시조 배치로 덱 회전율 향상. 특히 특정 장 카드가 치우친 덱에서 강력. 직업 무관계로 모든 캐릭터에게 유용. Slay the Spire의 채널 수정 유물과 유사한 컨셉."
+          "note": "유연한 시 배치로 덱 회전율 향상. 특히 특정 장 카드가 치우친 덱에서 강력. 직업 무관계로 모든 캐릭터에게 유용. Slay the Spire의 채널 수정 유물과 유사한 컨셉."
         },
         {
           "id": "length_shorten",
           "text": {
-            "ko": "짧고 빠르게 읊는다. (시조 2장으로 단축)",
+            "ko": "짧고 빠르게 읊는다. (",
             "en": "Sing it short and fast. (Speed up combat rhythm)"
           },
           "effect_type": "combat_rhythm_change",
@@ -66,16 +66,16 @@
             "new_length": 2,
             "reward_multiplier": 0.7,
             "completion_speed_multiplier": 2.0,
-            "description": "3장→2장 시조로 영구 변경. 완성 보너스 -30%이지만 완성 속도 2배.",
+            "description": "3장→2장 완성 보너스 -30%이지만 완성 속도 2배.",
             "removed_slot": "jongjiang",
-            "tooltip": "시조가 2장(초장+중장)으로 짧아집니다. 완성은 빠르지만 보너스는 줄어듭니다."
+            "tooltip": "완성은 빠르지만 보너스는 줄어듭니다."
           },
           "effect_value": 0,
           "result_text": {
-            "ko": "시조를 두 장으로 줄였느니라. 완성 횟수가 늘어날수록 총량은 비슷해지리라. 빠른 콤보와 유물 누적을 노리는 것이니라.",
+            "ko": "완성 횟수가 늘어날수록 총량은 비슷해지리라. 빠른 콤보와 유물 누적을 노리는 것이니라.",
             "en": "You adopt a faster combat rhythm. Rapid combos and relic stacking become the focus."
           },
-          "result_title": "시조 단축",
+          "result_title": "",
           "note": "완성 보너스 -30%는 숫자로 보면 약해보이지만 완성 빈도가 2배면 완성 보상 총합은 1.4배(2×0.7=1.4). 단, 유물 '사군자 족자'(3회 완성마다 희귀 카드)와 콤보하면 극강. 템포 빌드에 필수 선택지."
         },
         {
@@ -153,7 +153,7 @@
             "en": "You trade swordsmanship for scholarship. You can now build learning, but your warrior's edge has dulled. Remove 1 warrior card from your deck."
           },
           "result_title": "문무쌍전",
-          "note": "무관 빌드에서 문관 하이브리드 루트 열림. 학식 최대 3은 연적(유물)과 조합 시 시조 단축 효과. 무관 전용 카드 제거는 덱 정제 역할도 겸함. 리스크-리워드 균형: 카드 1장 손실이지만 자원 다양성 2배."
+          "note": "무관 빌드에서 문관 하이브리드 루트 열림. 학식 최대 3은 연적(유물)과 조합 시 무관 전용 카드 제거는 덱 정제 역할도 겸함. 리스크-리워드 균형: 카드 1장 손실이지만 자원 다양성 2배."
         },
         {
           "id": "mungwan_gangjik",
@@ -230,9 +230,9 @@
     {
       "id": "EVT_SIJO_TRAINING",
       "title": {
-        "ko": "시조 특화 수련",
+        "ko": "",
         "description": {
-          "ko": "깊은 산속 암자에서 백발의 노인이 시조를 읊고 계시도다. 그 소리에는 보통 시조와는 다른 깊이가 담겨 있느니라. 노인은 그대를 보시더니 수련을 제안하시느니라.",
+          "ko": "깊은 산속 암자에서 백발의 노인이 그 소리에는 보통 시와는 다른 깊이가 담겨 있느니라. 노인은 그대를 보시더니 수련을 제안하시느니라.",
           "en": "Deep in the mountains, a white-haired elder practices ancient combat arts in a hermitage. Seeing you, he offers to train you."
         },
         "loc_key": "event_title_combat_training",
@@ -290,7 +290,7 @@
           "effect_meta_3": {
             "damage": 2,
             "trigger": "turn_end_penalty",
-            "description": "시조 미완성 시 매 턴 종료 후 HP 2 손실",
+            "description": "",
             "tooltip": "",
             "display_name": "수련의 대가"
           },
@@ -299,8 +299,8 @@
             "ko": "혹독한 수련이 시작되었느니라. 허나 자원의 그릇이 작아졌고,",
             "en": "The grueling training begins. Each However, your resource capacity has shrunk, and failing to play enough cards before the turn ends damages your body."
           },
-          "result_title": "시조 특화 수련 완료",
-          "note": "고위험 고보상 선택지. 완성 보상 2배+호패는 시조 빠른 완성 빌드에서 폭발적. 하지만 자원 최대치 -30%+턴 종료 피해 2는 시조 미완성 보유가 치명적. 최적 시너지: 시조 단축(EVT_SIJO_VARIATION B선택) + 본 이벤트 = 2장 시조 빠른 완성으로 HP 손실 최소화."
+          "result_title": "",
+          "note": "고위험 고보상 선택지. 완성 보상 2배+호패는 시 빠른 완성 빌드에서 폭발적. 하지만 자원 최대치 -30%+턴 종료 피해 2는 최적 시너지:"
         },
         {
           "id": "observe_only",
@@ -312,12 +312,12 @@
           "effect_meta": {
             "card_pool": "any",
             "count": 1,
-            "description": "시조 관련 카드 1장을 선택 획득 (희귀 이하)",
-            "tooltip": "시조 계열 카드 중 1장을 골라 덱에 추가합니다."
+            "description": "특수 카드 1장을 선택 획득 (희귀 이하)",
+            "tooltip": "특수 카드 중 1장을 골라 덱에 추가합니다."
           },
           "effect_value": 1,
           "result_text": {
-            "ko": "멀찌감치서 수련을 지켜보며 한 수 배웠느니라. 덱에 시조 관련 카드를 1장 추가할 수 있도다.",
+            "ko": "멀찌감치서 수련을 지켜보며 한 수 배웠느니라. 덱에 특수 카드를 1장 추가할 수 있도다.",
             "en": "Watching from a distance, you learn a thing or two. You may add 1 special card to your deck."
           },
           "result_title": "관찰자",
@@ -343,7 +343,7 @@
   ],
   "balance_notes": {
     "EVT_JOB_CONFLICT": {
-      "mugwan_munmuwi": "학식 3은 연적(유물) 없이도 시조 단축에 기여. 카드 제거 선택권을 주어 부정적 느낌 최소화.",
+      "mugwan_munmuwi": "학식 3은 연적(유물) 없이도 카드 제거 선택권을 주어 부정적 느낌 최소화.",
       "mungwan_gangjik": "HP 회복은 초당 아닌 이벤트 기반으로 예측 가능. 학식 소비 카드 -10%는 고뎀 카드(예상 100 데미지)에서 10 손실 — 인지 가능 수준으로 조정.",
       "dosa_sesogin": "기 생성 -25%는 기 관련 시스템 전체에 영향. 도사 후기 스케일에서 체감 큼. 기력 3 획득은 즉각적 전투력 향상으로 보상 명확.",
       "design_intent": "직업 교차 빌드 탐험. 순수 직업 vs 하이브리드 선택의 갈림길. 각 페널티는 직업 정체성의 반대급부로 설계."

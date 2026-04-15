@@ -4,7 +4,7 @@
   "class": "common",
   "category": "movement",
   "description": "공통 카드 풀 — 이동/회피/지원 24종 + 시문 5종 + 무예 8종 + 책략 7종 + 술법 5종 + 외교 5종. 총 54장 (ZER-244).",
-  "balance_ref": "ZER-94 (카드 풀 확대), ZER-101 (시조 접근성 개선), ZER-233 (12→24), ZER-244 (24→54 확장). 기준: 1코스트 공격 6피해(베기), 1코스트 방어 5방어도(수호). 기 기본 3/턴. beat:5 = 종장 둘째 슬롯 전용.",
+  "balance_ref": "ZER-94 (카드 풀 확대), ZER-101 ( 기준: 1코스트 공격 6피해(베기), 1코스트 방어 5방어도(수호). 기 기본 3/턴. = 종장 둘째 슬롯 전용.",
   "cards": [
     {
       "id": "M001",
@@ -13,7 +13,6 @@
         "romanized": "Hoepi",
         "en": "Evasion"
       },
-      "beat": 4,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -46,7 +45,6 @@
         "romanized": "Doyak",
         "en": "Leap"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -67,7 +65,7 @@
         "ko": "땅을 박차고 솟구쳐 — 올라가는 순간, 적은 나의 칼끝을 잃는다.",
         "en": "Kick off the ground and soar — in that rising moment, the enemy loses sight of your blade."
       },
-      "balance_rationale": "1코스트로 방어(3) + 공격버프(+4) 이중 효과. 이동→공격 연계의 핵심 카드. 시조 포지션상 초장 [3]에서 리듬 오프너 역할.",
+      "balance_rationale": "1코스트로 방어(3) + 공격버프(+4) 이중 효과. 이동→공격 연계의 핵심 카드.",
       "upgrade_cost": 75,
       "values": {
         "block": 3,
@@ -81,7 +79,6 @@
         "romanized": "Hutoe",
         "en": "Retreat"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -116,7 +113,6 @@
         "romanized": "Eukmyeon Gangta",
         "en": "Flank Strike"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -149,7 +145,6 @@
         "romanized": "Pobok",
         "en": "Crawl"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -184,7 +179,6 @@
         "romanized": "Seongje Gonggyeok",
         "en": "Preemptive Strike"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -204,7 +198,7 @@
         "ko": "먼저 치는 자가 이긴다 — 선수를 잡으면 전장의 흐름이 바뀐다.",
         "en": "The one who strikes first wins — seize the initiative and the tide of battle shifts."
       },
-      "balance_rationale": "1코스트 기본 공격(7피해)으로 직언(6피해)보다 1 높음. 공통 카드의 공격 옵션 추가. [4] 음보로 [3] 음보 기본 공격과 업그레이드 시 10피해 = 2코스트 카드에 준하는 성능.",
+      "balance_rationale": "1코스트 기본 공격(7피해)으로 직언(6피해)보다 1 높음. 공통 카드의 공격 옵션 추가. 로 기본 공격과 업그레이드 시 10피해 = 2코스트 카드에 준하는 성능.",
       "upgrade_cost": 50,
       "values": {
         "damage": 7
@@ -217,7 +211,6 @@
         "romanized": "Bangeo Jase",
         "en": "Defensive Stance"
       },
-      "beat": 4,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -237,7 +230,7 @@
         "ko": "자세를 낮추고 방패를 높이면 — 어떤 공격도 뚫을 수 없다.",
         "en": "Lower your stance and raise your shield — no attack can break through."
       },
-      "balance_rationale": "1코스트 방어(6)로 수호(5)보다 1 높음. 공통 카드의 방어 옵션 강화. [4] 음보로 [3] 음보 방어 카드와 업그레이드 시 9방어도 = 2코스트 방어 카드에 근접.",
+      "balance_rationale": "1코스트 방어(6)로 수호(5)보다 1 높음. 공통 카드의 방어 옵션 강화. 로 방어 카드와 업그레이드 시 9방어도 = 2코스트 방어 카드에 근접.",
       "upgrade_cost": 50,
       "values": {
         "block": 6
@@ -250,7 +243,6 @@
         "romanized": "Nunchi",
         "en": "Nunchi"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -283,7 +275,6 @@
         "romanized": "Gihoe Poche",
         "en": "Seize the Moment"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -318,7 +309,6 @@
         "romanized": "Beotigi",
         "en": "Endure"
       },
-      "beat": 3,
       "cost": 2,
       "type": "defense",
       "subtypes": [
@@ -351,7 +341,6 @@
         "romanized": "Heung",
         "en": "Excitement"
       },
-      "beat": 0,
       "beat_note": "와일드 — 어느",
       "cost": 1,
       "type": "skill",
@@ -362,7 +351,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "기 2를 획득한다. 카드 2장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "ko": "기 2를 획득한다. 카드 2장을 드로우한다. 이 카드는 현재",
         "en": "Gain 2 Qi. Draw 2 cards. This card can be placed in any"
       },
       "effect_upgraded": {
@@ -387,7 +376,6 @@
         "romanized": "Yeobaek",
         "en": "Empty Space"
       },
-      "beat": 0,
       "beat_note": "와일드 — 어느",
       "cost": 0,
       "type": "defense",
@@ -398,7 +386,7 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "방어도 4를 획득한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "ko": "방어도 4를 획득한다. 이 카드는 현재",
         "en": "Gain 4 Block. This card can be placed in any"
       },
       "effect_upgraded": {
@@ -406,7 +394,7 @@
         "en": "Gain 6 Block. Can be placed in any slot."
       },
       "flavor_text": {
-        "ko": "빈 공간도 시의 일부다 — 여백을 채울 줄 아는 자가 시조를 완성한다.",
+        "ko": "빈 공간도 시의 일부다 — 여백을 채울 줄 아는 자가",
         "en": "Empty space is part of the poem — one who knows how to fill the gaps completes the Sijo."
       },
       "balance_rationale": "0코스트 방어 4 + 와일드 슬롯. 0코스트 카드는 덱당 최대 1장 권장.",
@@ -422,7 +410,6 @@
         "romanized": "Nangseong",
         "en": "Recitation"
       },
-      "beat": 5,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -442,7 +429,7 @@
         "ko": "목청을 높여 시를 낭송하면 — 리듬이 몸을 감싸 어떤 타격도 막아낸다.",
         "en": "Raise your voice and recite the verse — the rhythm wraps around you, deflecting any blow."
       },
-      "balance_rationale": "1코스트 beat:5 방어도 7. 종장 [5] 슬롯 전용으로 슬롯 희소성 보상 (+1 방어도). 업그레이드 시 10방어도는 2코스트급. 종장에서 방어를 마무리하는 빌드의 핵심 카드.",
+      "balance_rationale": "1코스트 방어도 7. 종장 [5] 슬롯 전용으로 슬롯 희소성 보상 (+1 방어도). 업그레이드 시 10방어도는 2코스트급. 종장에서 방어를 마무리하는 빌드의 핵심 카드.",
       "upgrade_cost": 50,
       "values": {
         "block": 7
@@ -455,14 +442,13 @@
         "romanized": "Jeolchang",
         "en": "Masterpiece"
       },
-      "beat": 5,
       "cost": 2,
       "type": "attack",
       "subtypes": [],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "적에게 13 피해를 입힌다. 이번 턴에 시조 1줄을 완성했다면 피해를 7 추가로 입힌다.",
+        "ko": "적에게 13 피해를 입힌다.",
         "en": "Deal 13 damage to an enemy. If you completed a Sijo line this turn, deal 7 additional damage."
       },
       "effect_upgraded": {
@@ -473,7 +459,7 @@
         "ko": "마지막 구절을 노래로 맺으며 — 하늘을 찌르는 기세로 적을 베어낸다.",
         "en": "Closing the final verse in song — striking down the enemy with sky-piercing force."
       },
-      "balance_rationale": "2코스트 13피해(기준: 12피해 +1 보정). 업그레이드 시 28피해는 게임 최고 수준 단일 피해. beat:5 희소성과",
+      "balance_rationale": "2코스트 13피해(기준: 12피해 +1 보정). 업그레이드 시 28피해는 게임 최고 수준 단일 피해. 희소성과",
       "upgrade_cost": 100,
       "values": {
         "damage": 13
@@ -486,7 +472,6 @@
         "romanized": "Yeoun",
         "en": "Lingering Echo"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -496,7 +481,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "카드 1장을 드로우한다. 이번 턴에 시조 1줄을 완성했다면 기 2를 획득한다.",
+        "ko": "카드 1장을 드로우한다.",
         "en": "Draw 1 card. If you completed a Sijo line this turn, gain 2 Qi."
       },
       "effect_upgraded": {
@@ -520,7 +505,6 @@
         "romanized": "Eumjo Joyul",
         "en": "Tonal Shift"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -540,7 +524,7 @@
         "ko": "맞지 않는 박자를 버리고 — 새로운 가락을 찾는다.",
         "en": "Cast aside the wrong rhythm — and find a new melody."
       },
-      "balance_rationale": "1코스트 -1+2 = 순수 드로우 +1. 패 품질 향상 및 beat 불일치 카드 처리. StS Acrobatics(0코스트 -1+3)보다 1기 비쌉니다만, beat:3 슬롯을 자연스럽게 채워 불필요한 공통/직업 카드를 솎아내는 덱 압축 수단.",
+      "balance_rationale": "1코스트 -1+2 = 순수 드로우 +1. 패 품질 향상 및 StS Acrobatics(0코스트 -1+3)보다 1기 비쌉니다만, 슬롯을 자연스럽게 채워 불필요한 공통/직업 카드를 솎아내는 덱 압축 수단.",
       "upgrade_cost": 50,
       "values": {
         "discard": 1,
@@ -554,7 +538,6 @@
         "romanized": "Hwadap",
         "en": "Harmonize"
       },
-      "beat": 4,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -567,14 +550,14 @@
         "en": "Gain 4 Block. If the previous card played had a beat of 3, gain 5 additional Block."
       },
       "effect_upgraded": {
-        "ko": "방어도 5를 획득한다. 직전 카드 beat:3이면 방어도 7 추가.",
-        "en": "Gain 5 Block. If previous card was beat 3, gain 7 additional Block."
+        "ko": "방어도 5를 획득한다. 직전 카드 이면 방어도 7 추가.",
+        "en": "Gain 5 Block. If previous card was , gain 7 additional Block."
       },
       "flavor_text": {
         "ko": "앞의 구절이 낮으면 뒤의 구절은 높아진다 — 장단이 맞을 때 방어가 완성된다.",
         "en": "When a low verse leads, the next one rises high — when the rhythm aligns, the defense is complete."
       },
-      "balance_rationale": "1코스트 기본 4방어도. [3]→[4] 연속 배치(시조 자연 순서)를 충족하면 9방어도. 무조건 9방어도를 주지 않아 덱 구성 전략 필요. 업그레이드 시 최대 12방어도.",
+      "balance_rationale": "1코스트 기본 4방어도. (시 자연 순서)를 충족하면 9방어도. 무조건 9방어도를 주지 않아 덱 구성 전략 필요. 업그레이드 시 최대 12방어도.",
       "upgrade_cost": 75,
       "values": {
         "block": 4,
@@ -588,7 +571,6 @@
         "romanized": "Gyeoryeon",
         "en": "Fateful Bond"
       },
-      "beat": 0,
       "beat_note": "와일드 — 어느",
       "cost": 1,
       "type": "skill",
@@ -600,7 +582,7 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "기 1을 획득하고 카드 1장을 드로우한다. 이 카드는 현재 시조의 어느 슬롯에나 배치할 수 있다.",
+        "ko": "기 1을 획득하고 카드 1장을 드로우한다. 이 카드는 현재",
         "en": "Gain 1 Qi and draw 1 card. This card can be placed in any"
       },
       "effect_upgraded": {
@@ -611,7 +593,7 @@
         "ko": "인연이 맺어지는 곳엔 — 기와 흐름이 자연스레 따라온다.",
         "en": "Where bonds are forged — Qi and flow follow naturally."
       },
-      "balance_rationale": "1코스트 와일드. 흥(1코스트 드로우1)보다 기 회복 추가 제공. 세 번째 와일드카드로 beat 불일치 해소 + 자원 생성 겸용. 흥·여백이 이미 있는 경우 교체 우선순위를 두는 덱 구성 판단 필요.",
+      "balance_rationale": "1코스트 와일드. 흥(1코스트 드로우1)보다 기 회복 추가 제공. 세 번째 와일드카드로 흥·여백이 이미 있는 경우 교체 우선순위를 두는 덱 구성 판단 필요.",
       "upgrade_cost": 75,
       "values": {
         "qi_gain": 1,
@@ -625,7 +607,6 @@
         "romanized": "Myeongsang",
         "en": "Meditation"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -658,7 +639,6 @@
         "romanized": "Jipjung",
         "en": "Focus"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -693,7 +673,6 @@
         "romanized": "Gaengsaeng",
         "en": "Revival"
       },
-      "beat": 3,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -727,7 +706,6 @@
         "romanized": "Dokkong",
         "en": "Devotion"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -763,7 +741,6 @@
         "romanized": "Dojeon",
         "en": "Challenge"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [],
@@ -795,7 +772,6 @@
         "romanized": "Yeogeup",
         "en": "Counterattack"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -830,7 +806,6 @@
         "romanized": "Eumjolim",
         "en": "Murmur"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -850,7 +825,7 @@
         "ko": "나지막이 읊조리면 — 시의 흐름 속에서 기가 피어오른다.",
         "en": "Murmur softly — and Qi blooms from within the flow of verse."
       },
-      "balance_rationale": "0코스트 기 1. 0코스트 + beat:3으로",
+      "balance_rationale": "0코스트 기 1. 0코스트 + 으로",
       "upgrade_cost": 50,
       "values": {
         "qi_gain": 1
@@ -863,7 +838,6 @@
         "romanized": "Unryul",
         "en": "Cadence"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -883,7 +857,7 @@
         "ko": "운율이 맞지 않을 때 — 더 넓게 찾으면 맞는 가락이 보인다.",
         "en": "When the rhythm falters — search wider, and the right melody appears."
       },
-      "balance_rationale": "1코스트 드로우 2. beat 불일치 보정으로 눈치(0코스트 드로우2)보다 1 비싸지만 조건부 +1 드로우로 가치 보상. 시조 중심 덱의 핵심 유틸리티.",
+      "balance_rationale": "1코스트 드로우 2.",
       "upgrade_cost": 75,
       "values": {
         "draw": 2,
@@ -897,7 +871,6 @@
         "romanized": "Toego",
         "en": "Revision"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -932,7 +905,6 @@
         "romanized": "Sisang",
         "en": "Poetic Inspiration"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -941,18 +913,18 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기 2를 획득한다. 이번 턴에 시조 1줄(초장 또는 중장)을 완성하면 카드 1장을 드로우한다.",
+        "ko": "기 2를 획득한다.",
         "en": "Gain 2 Qi. If you complete a Sijo line (first or second) this turn, draw 1 card."
       },
       "effect_upgraded": {
-        "ko": "기 3을 획득한다. 시조 1줄 완성 시 카드 2장 드로우.",
+        "ko": "기 3을 획득한다.",
         "en": "Gain 3 Qi. Draw 2 cards on Sijo line completion."
       },
       "flavor_text": {
         "ko": "시가 떠오르면 — 몸에 기가 차오르고 머리가 맑아진다.",
         "en": "When a poem comes to mind — Qi fills the body and the mind clears."
       },
-      "balance_rationale": "1코스트 기 2 = 명상과 동일하나 beat:4. 명상(beat:3)과",
+      "balance_rationale": "1코스트 기 2 = 명상과 동일하나 . 명상과",
       "upgrade_cost": 50,
       "values": {
         "qi_gain": 2
@@ -965,7 +937,6 @@
         "romanized": "Yeonggam",
         "en": "Divine Inspiration"
       },
-      "beat": 5,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -975,7 +946,7 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "기 1을 획득하고 카드 1장을 드로우한다. 이번 턴 시조를 완성하면 기 3을 추가 획득하고 카드 2장을 추가 드로우한다.",
+        "ko": "기 1을 획득하고 카드 1장을 드로우한다. 이번 턴",
         "en": "Gain 1 Qi and draw 1 card. If you complete a Sijo this turn, gain 3 additional Qi and draw 2 additional cards."
       },
       "effect_upgraded": {
@@ -986,7 +957,7 @@
         "ko": "하늘에서 내려온 영감이 — 종장을 완성하고 모든 것을 열어젖힌다.",
         "en": "Inspiration descends from the heavens — completing the final verse and opening all possibilities."
       },
-      "balance_rationale": "1코스트 beat:5 종장 전용. 기본 효과는 약하나 절창(M014)이 피해 피니셔라면 영감은 자원 폭발 피니셔. beat:5 희소성으로 밸런스.",
+      "balance_rationale": "1코스트 종장 전용. 기본 효과는 약하나 절창(M014)이 피해 피니셔라면 영감은 자원 폭발 피니셔. 희소성으로 밸런스.",
       "upgrade_cost": 100,
       "values": {
         "qi_gain": 1,
@@ -1000,7 +971,6 @@
         "romanized": "Yeonta",
         "en": "Flurry"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -1034,7 +1004,6 @@
         "romanized": "Jilpungcham",
         "en": "Gale Slash"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -1068,7 +1037,6 @@
         "romanized": "Gyeonje",
         "en": "Harass"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -1102,7 +1070,6 @@
         "romanized": "Momnollim",
         "en": "Footwork"
       },
-      "beat": 4,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -1138,7 +1105,6 @@
         "romanized": "Seungbusu",
         "en": "Decisive Blow"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -1172,7 +1138,6 @@
         "romanized": "Talgi",
         "en": "Sap"
       },
-      "beat": 3,
       "cost": 0,
       "type": "attack",
       "subtypes": [
@@ -1206,7 +1171,6 @@
         "romanized": "Bangyeokse",
         "en": "Riposte Stance"
       },
-      "beat": 4,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -1240,7 +1204,6 @@
         "romanized": "Ilseom",
         "en": "Flash"
       },
-      "beat": 5,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -1260,7 +1223,7 @@
         "ko": "빛이 번쩍하면 — 모든 것이 끝나 있다.",
         "en": "A flash of light — and everything is already over."
       },
-      "balance_rationale": "2코스트 beat:5 종장 전용. 기본 15피해(2코스트 적정). 공격 3장 후 사용 시 소멸+30피해(게임 최고 단일 피해). 소멸 패널티로 반복 사용 불가. 절창(M014)의 공격 특화 대안.",
+      "balance_rationale": "2코스트 종장 전용. 기본 15피해(2코스트 적정). 공격 3장 후 사용 시 소멸+30피해(게임 최고 단일 피해). 소멸 패널티로 반복 사용 불가. 절창(M014)의 공격 특화 대안.",
       "upgrade_cost": 100,
       "values": {
         "damage": 15,
@@ -1275,7 +1238,6 @@
         "romanized": "Seondong",
         "en": "Agitation"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1306,7 +1268,6 @@
         "romanized": "Hoeyu",
         "en": "Appeasement"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1340,7 +1301,6 @@
         "romanized": "Wieom",
         "en": "Authority"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1376,7 +1336,6 @@
         "romanized": "Moryak",
         "en": "Stratagem"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1411,7 +1370,6 @@
         "romanized": "Seryeok Hwakjang",
         "en": "Expand Influence"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -1446,7 +1404,6 @@
         "romanized": "Ganeon",
         "en": "Remonstrance"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -1480,7 +1437,6 @@
         "romanized": "Chaekbong",
         "en": "Investiture"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1519,7 +1475,6 @@
         "romanized": "Jeoju",
         "en": "Hex"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -1554,7 +1509,6 @@
         "romanized": "Bujeok",
         "en": "Talisman"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1589,7 +1543,6 @@
         "romanized": "Yeokbyeong",
         "en": "Plague"
       },
-      "beat": 3,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -1625,7 +1578,6 @@
         "romanized": "Sahyeol",
         "en": "Bloodletting"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -1661,7 +1613,6 @@
         "romanized": "Doksal",
         "en": "Lethal Poison"
       },
-      "beat": 5,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -1682,7 +1633,7 @@
         "ko": "축적된 독을 한순간에 터뜨린다 — 죽음이 한꺼번에 찾아온다.",
         "en": "Detonate all the accumulated poison at once — death arrives all at once."
       },
-      "balance_rationale": "2코스트 beat:5 종장 전용. 독10 기준 20피해+독5로 감소. 독 스태킹 후 피니셔. 절창(피해), 영감(자원) 과 함께 세 번째 종장 피니셔 옵션. 독 빌드 전용이라 덱 구성 의존도 높음.",
+      "balance_rationale": "2코스트 종장 전용. 독10 기준 20피해+독5로 감소. 독 스태킹 후 피니셔. 절창(피해), 영감(자원) 과 함께 세 번째 종장 피니셔 옵션. 독 빌드 전용이라 덱 구성 의존도 높음.",
       "upgrade_cost": 100,
       "values": {
         "damage_poison_multiplier": 2,
@@ -1696,7 +1647,6 @@
         "romanized": "Noemul",
         "en": "Bribery"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -1732,7 +1682,6 @@
         "romanized": "Yongbyeong",
         "en": "Mercenary"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -1767,7 +1716,6 @@
         "romanized": "Maegwan Maejik",
         "en": "Selling Offices"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1803,7 +1751,6 @@
         "romanized": "Jogong",
         "en": "Tribute"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -1838,7 +1785,6 @@
         "romanized": "Gyoyeok",
         "en": "Trade"
       },
-      "beat": 4,
       "cost": 0,
       "type": "skill",
       "subtypes": [

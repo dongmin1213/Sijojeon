@@ -51,7 +51,6 @@
         "romanized": "Jinhyeong Jeonhwan",
         "en": "Formation Shift"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -89,7 +88,6 @@
         "romanized": "Dolgyeok",
         "en": "Charge"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -126,7 +124,6 @@
         "romanized": "Powi",
         "en": "Encirclement"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -163,7 +160,6 @@
         "romanized": "Hagikjin",
         "en": "Crane Wing Formation"
       },
-      "beat": 4,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -184,7 +180,7 @@
         "ko": "학의 날개처럼 양익을 펼쳐 — 한 번의 진격으로 전장을 쓸어버린다.",
         "en": "Spread both wings like a crane — a single advance sweeps the entire battlefield."
       },
-      "balance_rationale": "3코스트 광역 공격. 토큰 2개 시 14 AoE, 3개 시 17 AoE — 진형 빌드 피니셔. 시조 종장 완성 시 최대 28(2토큰 기준) AoE 폭발.",
+      "balance_rationale": "3코스트 광역 공격. 토큰 2개 시 14 AoE, 3개 시 17 AoE — 진형 빌드 피니셔.",
       "class_synergy": [
         "G001",
         "G003"
@@ -203,7 +199,6 @@
         "romanized": "Cheonha Mujeokjin",
         "en": "Invincible Formation"
       },
-      "beat": 3,
       "cost": 3,
       "type": "skill",
       "subtypes": [
@@ -243,7 +238,6 @@
         "romanized": "Bobyeong Jeonjin",
         "en": "Infantry Advance"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -263,7 +257,7 @@
         "ko": "보병 하나씩 앞으로 — 작은 전진이 모여 대진형을 이룬다.",
         "en": "One soldier at a time, forward — small advances build into a grand formation."
       },
-      "balance_rationale": "0코스트 기력 충전. 기공(도사 D001)의 무관 버전으로 기 대신 기력을 충전. 0코스트이므로 시조 슬롯을 소비하면서 기력 엔진 역할. 진형·기력 아키타입 모두에서 핵심 0코스트 자원 공급원. 덱 20장 기준 최대 2장 권장.",
+      "balance_rationale": "0코스트 기력 충전. 기공(도사 D001)의 무관 버전으로 기 대신 기력을 충전. 0코스트이므로 진형·기력 아키타입 모두에서 핵심 0코스트 자원 공급원. 덱 20장 기준 최대 2장 권장.",
       "class_synergy": [
         "G002",
         "G010",
@@ -281,7 +275,6 @@
         "romanized": "Bokbyeong",
         "en": "Ambush"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -302,7 +295,7 @@
         "ko": "매복한 병사는 적의 허를 찌른다 — 나타나기 전부터 전투는 이미 시작되었다.",
         "en": "An ambushed soldier strikes at the enemy's blind spot — the battle begins before they even appear."
       },
-      "balance_rationale": "1코스트 토큰+방어. 진형 전환(G001, 토큰1+기력2)보다 기력이 없는 대신 즉각 방어도 3 제공. 방패·진형 혼합 빌드를 위한 유연한 1코스트 카드. [4] 음보로 G001과 슬롯 경쟁 없이 병용 가능.",
+      "balance_rationale": "1코스트 토큰+방어. 진형 전환(G001, 토큰1+기력2)보다 기력이 없는 대신 즉각 방어도 3 제공. 방패·진형 혼합 빌드를 위한 유연한 1코스트 카드. 로 G001과 슬롯 경쟁 없이 병용 가능.",
       "class_synergy": [
         "G002",
         "G004"
@@ -320,7 +313,6 @@
         "romanized": "Samgun Baechii",
         "en": "Triple Army Deploy"
       },
-      "beat": 3,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -357,7 +349,6 @@
         "romanized": "Jinbeop Gyobon",
         "en": "Tactics Manual"
       },
-      "beat": 4,
       "cost": 1,
       "type": "power",
       "subtypes": [
@@ -396,7 +387,6 @@
         "romanized": "Cheolgi Dolgyeok",
         "en": "Cavalry Charge"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -435,7 +425,6 @@
         "romanized": "Yeonmak",
         "en": "Smoke Screen"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -474,7 +463,6 @@
         "romanized": "Chongtong Sagyeok",
         "en": "Cannon Barrage"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -513,7 +501,6 @@
         "romanized": "Gihap",
         "en": "Spirit Shout"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -533,7 +520,7 @@
         "ko": "단전에서 솟구치는 기합 한 소리 — 전신에 기력이 솟아난다.",
         "en": "A battle cry from the core — stamina surges through every limb."
       },
-      "balance_rationale": "0코스트 기력 충전. 기공(D001)의 무관 기력 버전. 기력 3은 기력 소비형 카드(G010 기력3, G016 기력전소)의 연료. 0코스트로 시조 슬롯을 차지하지만 기 소비 없음. 기력 폭딜 아키타입의 필수 0코스트 충전 카드.",
+      "balance_rationale": "0코스트 기력 충전. 기공(D001)의 무관 기력 버전. 기력 3은 기력 소비형 카드(G010 기력3, G016 기력전소)의 연료. 0코스트로 기력 폭딜 아키타입의 필수 0코스트 충전 카드.",
       "class_synergy": [
         "G010",
         "G014",
@@ -552,7 +539,6 @@
         "romanized": "Yeokjeon Gise",
         "en": "Momentum"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -591,7 +577,6 @@
         "romanized": "Bulgul Euiji",
         "en": "Indomitable Will"
       },
-      "beat": 3,
       "cost": 2,
       "type": "power",
       "subtypes": [
@@ -630,7 +615,6 @@
         "romanized": "Majimak Tobak",
         "en": "Final Gambit"
       },
-      "beat": 4,
       "cost": 0,
       "type": "attack",
       "subtypes": [
@@ -668,7 +652,6 @@
         "romanized": "Dansin Dolgyeok",
         "en": "Solo Charge"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -707,7 +690,6 @@
         "romanized": "Mussang",
         "en": "Peerless"
       },
-      "beat": 4,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -747,7 +729,6 @@
         "romanized": "Subi Daehyeong",
         "en": "Defensive Formation"
       },
-      "beat": 3,
       "cost": 1,
       "type": "defense",
       "subtypes": [],
@@ -778,7 +759,6 @@
         "romanized": "Jjireureogi",
         "en": "Thrust"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [],
@@ -796,7 +776,7 @@
         "ko": "최단 거리로 적의 급소를 찌른다 — 복잡한 진법이 필요 없는 무관의 기본기.",
         "en": "The shortest distance to the enemy's vital point — no complex tactics needed for an officer's basic art."
       },
-      "balance_rationale": "1코스트 기본 공격. 베기·직언·수결(각 6피해)과 동일한 효율. 무관 스타터 덱에서 직언 역할의 클래스별 버전. [4] 음보로 베기([3] 음보로 추정)와 시조 슬롯 차별화.",
+      "balance_rationale": "1코스트 기본 공격. 베기·직언·수결(각 6피해)과 동일한 효율. 무관 스타터 덱에서 직언 역할의 클래스별 버전. 로 베기(로 추정)와",
       "upgrade_cost": 50,
       "values": {
         "damage": 6
@@ -809,7 +789,6 @@
         "romanized": "Bangyeok",
         "en": "Retaliation"
       },
-      "beat": 3,
       "cost": 1,
       "type": "defense",
       "subtypes": [
@@ -847,7 +826,6 @@
         "romanized": "Yeonsok Baegi",
         "en": "Repeated Slash"
       },
-      "beat": 4,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -884,7 +862,6 @@
         "romanized": "Cheolbyeok Bangeo",
         "en": "Iron Wall Defense"
       },
-      "beat": 3,
       "cost": 2,
       "type": "defense",
       "subtypes": [],
@@ -919,7 +896,6 @@
         "romanized": "Gyeokpa",
         "en": "Shatter"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [],
@@ -954,7 +930,6 @@
         "romanized": "Baekjeon Nojang",
         "en": "Battle-Hardened Veteran"
       },
-      "beat": 3,
       "cost": 3,
       "type": "power",
       "subtypes": [
@@ -994,7 +969,6 @@
         "romanized": "Cheonma Musang",
         "en": "Peerless Warhorse Strike"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -1035,7 +1009,6 @@
         "romanized": "Cheolbyeok Daejin",
         "en": "Iron Wall Grand Formation"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [

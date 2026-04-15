@@ -245,7 +245,7 @@
       },
       "category": "mechanic",
       "description": {
-        "ko": "도사 전용 능력. 전투 시작 시 시조 초장 2칸을 자동으로 채웁니다.",
+        "ko": "도사 전용 능력. 전투 시작 시",
         "en": "Taoist exclusive ability. At battle start, automatically fills the first 2 Sijo slots."
       },
       "color": "#CC66FF"

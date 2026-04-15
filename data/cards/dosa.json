@@ -50,7 +50,6 @@
         "romanized": "Gigong",
         "en": "Qigong"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -89,7 +88,6 @@
         "romanized": "Gyeorin",
         "en": "Mudra"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -124,7 +122,6 @@
         "romanized": "Jineon",
         "en": "True Word"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -163,7 +160,6 @@
         "romanized": "Bujeok",
         "en": "Burning Talisman"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -201,7 +197,6 @@
         "romanized": "Chukjibeop",
         "en": "Earthshrink Step"
       },
-      "beat": 3,
       "cost": 3,
       "type": "skill",
       "subtypes": [
@@ -222,7 +217,7 @@
         "ko": "공간을 접어 한 걸음에 천리를 건너니 — 모든 술법이 손안에 있다.",
         "en": "Fold space and cross a thousand leagues in a single step — all spells are within reach."
       },
-      "balance_rationale": "3코스트 드로우 + 비용 감소. 3장 드로우 + 1코스트 감소는 실질 3기 투자로 3장+α 행동을 가능하게 함. 도사의 콤보 확장 피니셔. 시조 종장 완성 시 6장 드로우 + 추가 기 = 폭발적 턴.",
+      "balance_rationale": "3코스트 드로우 + 비용 감소. 3장 드로우 + 1코스트 감소는 실질 3기 투자로 3장+α 행동을 가능하게 함. 도사의 콤보 확장 피니셔.",
       "class_synergy": [
         "D001",
         "D004"
@@ -240,7 +235,6 @@
         "romanized": "Taesanbung",
         "en": "Taesan Collapse"
       },
-      "beat": 4,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -260,7 +254,7 @@
         "ko": "태산이 무너지듯 — 한 번의 도술이 모든 것을 쓸어버린다.",
         "en": "Like the great mountain Taesan crumbling — a single spell sweeps away everything."
       },
-      "balance_rationale": "3코스트 최강 단일 피해. 40피해는 전체 카드 중 최고 단일 피해. 사이드이펙트(다음 턴 기 -2)로 강력한 대가를 지불해야 함. 업그레이드 시 패널티 제거로 업그레이드 목표가치 극명. 시조 완성 시 80피해(×2) = 이론상 최대 폭발.",
+      "balance_rationale": "3코스트 최강 단일 피해. 40피해는 전체 카드 중 최고 단일 피해. 사이드이펙트(다음 턴 기 -2)로 강력한 대가를 지불해야 함. 업그레이드 시 패널티 제거로 업그레이드 목표가치 극명.",
       "class_synergy": [
         "D002",
         "D001"
@@ -278,7 +272,6 @@
         "romanized": "Sugyeol",
         "en": "Hand Seal"
       },
-      "beat": 3,
       "cost": 1,
       "type": "attack",
       "subtypes": [
@@ -311,7 +304,6 @@
         "romanized": "Daegi",
         "en": "Grand Qi"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -349,7 +341,6 @@
         "romanized": "Gibok",
         "en": "Qi Detonation"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -388,7 +379,6 @@
         "romanized": "Ogi",
         "en": "Five Energies"
       },
-      "beat": 3,
       "cost": 0,
       "type": "skill",
       "subtypes": [
@@ -427,7 +417,6 @@
         "romanized": "Cheongi",
         "en": "Celestial Qi"
       },
-      "beat": 3,
       "cost": 3,
       "type": "power",
       "subtypes": [
@@ -464,7 +453,6 @@
         "romanized": "Giryu",
         "en": "Qi Flow"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -503,7 +491,6 @@
         "romanized": "Gijip",
         "en": "Qi Convergence"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -540,7 +527,6 @@
         "romanized": "Doganae",
         "en": "Poison Mist"
       },
-      "beat": 4,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -580,7 +566,6 @@
         "romanized": "Jeochu",
         "en": "Curse"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -619,7 +604,6 @@
         "romanized": "Hondon Bujeok",
         "en": "Chaos Talisman"
       },
-      "beat": 4,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -659,7 +643,6 @@
         "romanized": "Heukyeom",
         "en": "Black Flame"
       },
-      "beat": 3,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -699,7 +682,6 @@
         "romanized": "Odok",
         "en": "Five Venoms"
       },
-      "beat": 4,
       "cost": 3,
       "type": "skill",
       "subtypes": [
@@ -740,7 +722,6 @@
         "romanized": "Jubak",
         "en": "Binding Hex"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -780,7 +761,6 @@
         "romanized": "Gumiho Sowhan",
         "en": "Summon Gumiho"
       },
-      "beat": 3,
       "cost": 2,
       "type": "skill",
       "subtypes": [
@@ -818,7 +798,6 @@
         "romanized": "Sansin Gigong",
         "en": "Mountain Spirit Art"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -856,7 +835,6 @@
         "romanized": "Sangun Ganggyeok",
         "en": "Mountain Lord Strike"
       },
-      "beat": 3,
       "cost": 3,
       "type": "attack",
       "subtypes": [
@@ -894,7 +872,6 @@
         "romanized": "Sansin Ganglim",
         "en": "Mountain Spirit Descent"
       },
-      "beat": 4,
       "cost": 3,
       "type": "skill",
       "subtypes": [
@@ -935,7 +912,6 @@
         "romanized": "Heosurabi",
         "en": "Straw Effigy"
       },
-      "beat": 3,
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -973,7 +949,6 @@
         "romanized": "Dokkaebi Bureum",
         "en": "Summon Dokkaebi"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -1014,7 +989,6 @@
         "romanized": "Manbeop Gwijong",
         "en": "All Paths Return to the Source"
       },
-      "beat": 4,
       "cost": 2,
       "type": "attack",
       "subtypes": [
@@ -1055,7 +1029,6 @@
         "romanized": "Gwimun Dohae",
         "en": "Gates of the Spirit Realm"
       },
-      "beat": 4,
       "cost": 0,
       "type": "energy",
       "subtypes": [

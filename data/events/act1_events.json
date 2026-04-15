@@ -77,12 +77,12 @@
         {
           "id": "recite_poem",
           "text": {
-            "ko": "[시상] 시조 한 수를 읊어 노인의 마음을 달래 드린다.",
+            "ko": "[시상]",
             "en": "[Sisang] Recite a poem to soothe the old man's heart."
           },
           "result_text": {
-            "ko": "노인이 눈물을 글썽이며 말한다. \"이리 아름다운 시를 읊는 젊은이라니...\" HP 12 회복, 금화 10 획득.",
-            "en": "The old man tears up. \"Such a beautiful poem from one so young...\" Restore 12 HP, gain 10 gold."
+            "ko": "노인이 눈물을 글썽이며 말한다. \"이리 아름다운 시를 읊는 젊은이라니..\" HP 12 회복, 금화 10 획득.",
+            "en": "The old man tears up. \"Such a beautiful poem from one so young..\" Restore 12 HP, gain 10 gold."
           },
           "note": "시상 5 해금 보너스 선택지. 최선의 결과.",
           "effect_type": "hp_gain",
@@ -172,11 +172,11 @@
         {
           "id": "poem_charm",
           "text": {
-            "ko": "[시상] 시조를 읊어 포졸의 마음을 녹인다.",
+            "ko": "[시상]",
             "en": "[Sisang] Recite a poem to soften the constables' hearts."
           },
           "result_text": {
-            "ko": "포졸들이 시조에 감탄하여 길을 비키고, 전투 비법이 적힌 서찰까지 건네느니라. 금화 10 + 카드 1장.",
+            "ko": "포졸들이 금화 10 + 카드 1장.",
             "en": "The constables are moved by your poem. They clear the way and hand you a scroll. Gold +10, Card +1."
           },
           "note": "시상 5 해금 보너스. 골드 + 카드.",
@@ -198,8 +198,8 @@
         "en": "The Wronged Spirit"
       },
       "flavor_text": {
-        "ko": "\"...억울하옵니다. 소녀를 도와주시옵소서.\"",
-        "en": "\"...Such injustice. Please, help me.\""
+        "ko": "\"..억울하옵니다. 소녀를 도와주시옵소서.\"",
+        "en": "\"..Such injustice. Please, help me.\""
       },
       "choices": [
         {
@@ -578,8 +578,8 @@
         "en": "The Street Physician"
       },
       "flavor_text": {
-        "ko": "\"명의라면 모르겠거니와, 이 정도 실력으로...\"",
-        "en": "\"If he were a master healer, maybe, but with this level of skill...\""
+        "ko": "\"명의라면 모르겠거니와, 이 정도 실력으로..\"",
+        "en": "\"If he were a master healer, maybe, but with this level of skill..\""
       },
       "choices": [
         {
@@ -711,8 +711,8 @@
       "title": {
         "ko": "굶주린 걸인",
         "description": {
-          "ko": "뼈만 앙상한 걸인이 음식을 구걸하고 있도다. \"제발... 며칠째 굶었사옵니다.\"",
-          "en": "An emaciated beggar pleads for food. \"Please... I haven't eaten in days.\""
+          "ko": "뼈만 앙상한 걸인이 음식을 구걸하고 있도다. \"제발.. 며칠째 굶었사옵니다.\"",
+          "en": "An emaciated beggar pleads for food. \"Please.. I haven't eaten in days.\""
         },
         "en": "The Starving Beggar"
       },
@@ -850,8 +850,8 @@
       "title": {
         "ko": "떠돌이 상인",
         "description": {
-          "ko": "행상 짐을 진 상인이 길을 걷다 발을 접질렸도다. \"아이고! 발목을 삐었소이다...\"",
-          "en": "A traveling merchant stumbles and sprains his ankle. \"Aigo! My ankle...\""
+          "ko": "행상 짐을 진 상인이 길을 걷다 발을 접질렸도다. \"아이고! 발목을 삐었소이다..\"",
+          "en": "A traveling merchant stumbles and sprains his ankle. \"Aigo! My ankle..\""
         },
         "en": "The Wandering Merchant"
       },

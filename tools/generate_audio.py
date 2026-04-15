@@ -351,7 +351,7 @@ def generate_enemy_attack() -> list[float]:
 
 
 def generate_sijo_slot() -> list[float]:
-    """시조 슬롯 배치 효과음 - 맑은 종소리."""
+    """시 슬롯 배치 효과음 - 맑은 종소리."""
     n = int(SAMPLE_RATE * 0.2)
     result = []
     for i in range(n):
@@ -364,7 +364,7 @@ def generate_sijo_slot() -> list[float]:
 
 
 def generate_sijo_complete() -> list[float]:
-    """시조 완성 효과음 - 화려한 팡파르."""
+    """시 완성 효과음 - 화려한 팡파르."""
     notes = [PENTATONIC[2], PENTATONIC[4], PENTATONIC_HIGH[0], PENTATONIC_HIGH[0]]
     parts = []
     for i, freq in enumerate(notes):

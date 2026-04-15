@@ -491,22 +491,19 @@ TUTORIAL_MSG_HP_QI_SHORT,"HP: 체력이 0이면 패배\n기: 카드 사용 비�
 TUTORIAL_MSG_HAND,"이것이 당신의 손패입니다.\n\n카드를 클릭하거나 위로 드래그하여 사용할 수 있습니다.\n각 카드에는 비용(기)과 음보가 표시됩니다.","This is your hand.\n\nClick or drag up to play cards.\nEach card shows its cost (Qi) and beat."
 TUTORIAL_MSG_HAND_SHORT,손패의 카드를 클릭하거나 드래그하여 사용합니다.,Click or drag cards from your hand to play them.
 TUTORIAL_MSG_PLAY_FIRST,"이제 카드를 한 장 사용해보세요!\n\n카드를 클릭한 후 적을 클릭하거나,\n카드를 위로 드래그하면 됩니다.","Try playing a card!\n\nClick a card then click the enemy,\nor drag the card upward."
-TUTORIAL_MSG_SIJO_BEAT,"시조 보상:\n\n• 초장 완성 (3/6): 기 +1 회복\n• 중장 완성 (4/6): 카드 1장 추가 드로우\n• 시조 완성 (6/6): 마지막 카드 효과 2배 + 기 +1 + 카드 드로우!\n\n손패에서 음보가 일치하는 카드는 밝게 표시됩니다.","Sijo Rewards:\n\n• First verse (3/6): Qi +1\n• Middle verse (4/6): Draw 1 card\n• Sijo complete (6/6): Last card effect x2 + Qi +1 + Draw!\n\nCards with matching beats are highlighted in your hand."
-TUTORIAL_MSG_PLAY_SIJO_FMT,"다음 시조 슬롯에 필요한 음보는 [%d]입니다.\n\n음보가 일치하는 카드를 사용해보세요!\n(일치하는 카드는 밝게 표시됩니다)","The next sijo slot needs beat [%d].\n\nTry playing a card with a matching beat!\n(Matching cards are highlighted)"
 TUTORIAL_MSG_DEFENSE,"방어 카드를 사용하면 방어도를 얻습니다.\n\n방어도는 적의 공격 피해를 흡수합니다.\n단, 방어도는 매 턴 초기화되므로 적의 공격 전에 사용하세요!","Defense cards grant Block.\n\nBlock absorbs enemy attack damage.\nBlock resets each turn, so use it before enemy attacks!"
 TUTORIAL_MSG_END_TURN,"카드를 다 사용했으면 '턴 종료' 버튼을 눌러주세요.\n\n남은 기가 있어도 턴을 종료할 수 있습니다.\n전략적으로 기를 아끼는 것도 중요합니다!","Press 'End Turn' when you're done playing cards.\n\nYou can end your turn even with remaining Qi.\nSaving Qi strategically can be important!"
 TUTORIAL_MSG_END_TURN_SHORT,턴 종료 버튼을 눌러 적에게 턴을 넘기세요.,Press End Turn to pass the turn to enemies.
 TUTORIAL_MSG_ENEMY_TURN,"적의 턴입니다!\n\n적은 표시된 의도대로 행동합니다.\n공격을 받으면 방어도부터 소모되고, 남은 피해가 HP를 깎습니다.","Enemy turn!\n\nEnemies act according to their displayed intent.\nBlock absorbs damage first, then remaining damage hits HP."
-TUTORIAL_MSG_TURN2,"잘하셨습니다! 2턴이 시작되었습니다.\n\n이제부터 자유롭게 전투를 진행하세요.\n시조 슬롯을 채우며 적을 물리쳐보세요!","Well done! Turn 2 has begun.\n\nFight freely from here.\nFill sijo slots while defeating enemies!"
+TUTORIAL_MSG_TURN2,"잘하셨습니다! 2턴이 시작되었습니다.\n\n이제부터 자유롭게 전투를 진행하세요.\n카드를 전략적으로 사용하여 적을 물리쳐보세요!","Well done! Turn 2 has begun.\n\nFight freely from here.\nUse your cards strategically to defeat enemies!"
 TUTORIAL_MSG_REWARD,"축하합니다! 첫 전투에서 승리했습니다!\n\n전투 후에는 보상으로 금화와 새 카드를 획득할 수 있습니다.\n강력한 카드를 선택하여 덱을 강화하세요.","Congratulations! You won your first battle!\n\nAfter combat, you earn gold and new cards as rewards.\nChoose powerful cards to strengthen your deck."
-TUTORIAL_MSG_DECKBUILDING,"덱빌딩 팁:\n\n• 카드를 많이 넣으면 핵심 카드를 뽑기 어려워집니다\n• 상점에서 불필요한 카드를 제거할 수 있습니다\n• 시조 패턴에 맞는 음보(3,4) 비율을 고려하세요\n\n이제 본격적인 모험을 시작하세요!","Deckbuilding Tips:\n\n• Too many cards makes it hard to draw key cards\n• Remove unwanted cards at the shop\n• Consider the beat (3,4) ratio for sijo patterns\n\nNow begin your adventure!"
+TUTORIAL_MSG_DECKBUILDING,"덱빌딩 팁:\n\n• 카드를 많이 넣으면 핵심 카드를 뽑기 어려워집니다\n• 상점에서 불필요한 카드를 제거할 수 있습니다\n\n이제 본격적인 모험을 시작하세요!","Deckbuilding Tips:\n\n• Too many cards makes it hard to draw key cards\n• Remove unwanted cards at the shop\n\nNow begin your adventure!"
 EVENT_COND_RANK_GE_3,신분이 양반(3등급) 이상이어야 합니다,Requires Yangban (Rank 3) or higher
 EVENT_COND_RANK_GE_4,신분이 당상관(4등급) 이상이어야 합니다,Requires Dangsanggwan (Rank 4) or higher
 EVENT_COND_MINSHIM_GE_70,민심이 70 이상이어야 합니다,Requires Sentiment 70 or higher
 EVENT_COND_MINSHIM_GE_50,민심이 50 이상이어야 합니다,Requires Sentiment 50 or higher
 RESULT_CARDS_UNLOCKED,새 카드 해금!,New Cards Unlocked!
 RESULT_CARD_UNLOCKED_DESC,다음 런부터 보상에 등장,Available in rewards from next run
-EVENT_COND_SISANG_GE_5,시상 5 이상 필요 (시조를 더 지으세요),Requires Sisang 5+ (complete more sijo)
 EVENT_COND_SISANG_GE_10,시상 10 이상 필요,Requires Sisang 10+
 EVENT_COND_DEFAULT,조건 미충족,Condition not met
 EVENT_FALLBACK_NOTHING,아무 일도 일어나지 않았다.,Nothing happened.
@@ -564,15 +561,10 @@ SE_DESC_WEAKNESS_EXPOSED,다음 턴 받는 피해 ×1.5. 미방어 시 부여,Da
 SE_DESC_EXPLOSION,N턴 후 30~40 폭발 피해,30-40 explosion damage after N turns
 SE_DESC_COUNTER,피격 시 받은 피해의 30%를 공격자에게 반사,Reflects 30% of damage taken back to attacker
 PASSIVE_BANGSUL,방술 개방,Sorcery Unlock
-PASSIVE_BANGSUL_DESC,시조 초장 자동 채움: 기공,Auto-fill sijo first verse: Qigong
 PASSIVE_COMMAND,지휘통솔,Command
 PASSIVE_COMMAND_DESC,병사 토큰 보유 → 방어도 +2,Soldier tokens → Block +2
-PASSIVE_SIJO_EMPTY,시조 공백,Sijo Empty
-PASSIVE_SIJO_EMPTY_DESC_FMT,시조 슬롯 비어있음 → 기 회복 %d,Empty sijo slots → Qi recovery %d
-PASSIVE_SIJO_INCOMPLETE,시조 미완,Sijo Incomplete
 PASSIVE_SIJO_INCOMPLETE_DESC_FMT,종장 미완성 → 드로우 %d,Final verse incomplete → Draw %d
 PASSIVE_CHEONJI,천지기,Heaven-Earth Qi
-PASSIVE_CHEONJI_DESC,시조 슬롯 2칸 이상 → 기 +1,2+ sijo slots → Qi +1
 PASSIVE_STUDY,학식충전,Study Charge
 PASSIVE_STUDY_DESC,카드 3장 이상 사용 → 학식 +1,3+ cards played → Scholarship +1
 PASSIVE_STUN_ENEMY_FMT,적 %s 기절 — 행동 불가!,Enemy %s stunned — cannot act!
@@ -584,10 +576,7 @@ PASSIVE_CARD_COST_FMT,모든 카드 비용 +%d,All card costs +%d
 PASSIVE_WEAKNESS_EXPOSED,허점 노출,Weakness Exposed
 PASSIVE_WEAKNESS_DESC,미방어 피해 → 다음 턴 받는 피해 ×1.5!,Unblocked damage → Next turn damage taken x1.5!
 PASSIVE_RHYTHM_BREAK,리듬 끊기,Rhythm Break
-PASSIVE_RHYTHM_BREAK_FMT,시조 슬롯 %d개 초기화,%d sijo slots reset
-PASSIVE_SIJO_PERFECT_TITLE,시조 완벽,Perfect Sijo
 PASSIVE_SIJO_PERFECT_DESC,beat 3/3 → 효과 ×1.5 + 기 +2 + 드로우 +1,beat 3/3 → Effect x1.5 + Qi +2 + Draw +1
-PASSIVE_SIJO_GOOD_TITLE,시조 양호,Good Sijo
 PASSIVE_SIJO_GOOD_DESC,beat 2/3 → 효과 ×1.3 + 기 +1,beat 2/3 → Effect x1.3 + Qi +1
 RELIC_POISON_SELF_FMT,전투 시작 독 %d 자해,Battle start: Self-poison %d
 RELIC_BLOCK_FMT,방어도 +%d,Block +%d
@@ -616,9 +605,7 @@ RELIC_SUMMON_DEATH_DRAW_FMT,소환 소멸 드로우 +%d,Summon death draw +%d
 RELIC_WILDCARD_QI_FMT,와일드카드 기 +%d,Wildcard Qi +%d
 RELIC_QI_FMT,기 +%d,Qi +%d
 RELIC_CHOJANG_QI_FMT,초장 완성 기 +%d,First verse Qi +%d
-RELIC_SIJO_DRAW_FMT,시조 완성 드로우 +%d,Sijo complete draw +%d
 RELIC_OKPIRI_FMT,옥피리 — 적 전체 %d 피해,Jade Flute — %d damage to all enemies
-RELIC_HOPAE,호패 — 다음 시조 초장 자동 채움,Hopae — Auto-fill next sijo first verse
 RELIC_SCROLL_WEAKEN_FMT,사군자 족자 — 적 약화 %d,Four Gentlemen Scroll — Enemy weakened %d
 RELIC_TALISMAN_POISON_FMT,무당의 부적 — 적 전체 독 %d,Mudang's Talisman — All enemies poison %d
 RELIC_BRUSH_DRAW_FMT,청사 붓 — 초장 완성 드로우 +%d,Blue Brush — First verse draw +%d
@@ -657,10 +644,7 @@ PUZZLE_PUNISHMENT_NAME,형벌 카운터,Punishment Counter
 PUZZLE_PUNISHMENT_STACK_FMT,형벌 %d / %d — 최대 시 곤장 집행!,Punishment %d / %d — Rod execution at max!
 PUZZLE_PUNISHMENT_EXEC,곤장 집행!,Rod Punishment!
 PUZZLE_PUNISHMENT_EXEC_FMT,곤장 집행! %d 피해!,Rod execution! %d damage!
-PUZZLE_PUNISHMENT_PLEA,시조 간청,Sijo Plea
-PUZZLE_PUNISHMENT_PLEA_DESC,시조로 간청하여 형벌을 멈추었다!,The sijo plea stayed the punishment!
 PUZZLE_SCALE_NAME,비늘 방어막,Scale Barrier
-PUZZLE_SCALE_STATUS_FMT,비늘 %d / %d — 시조로 비늘을 벗겨라!,Scales %d / %d — Strip with sijo!
 PUZZLE_SCALE_STRIP,비늘 벗김!,Scale Stripped!
 PUZZLE_SCALE_BROKEN,비늘 파괴!,Scales Destroyed!
 PUZZLE_SCALE_BROKEN_DESC,모든 비늘이 벗겨졌다! 이무기가 취약해졌다!,All scales stripped! Imugi is vulnerable!
