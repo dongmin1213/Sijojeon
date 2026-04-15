@@ -287,6 +287,9 @@ func _apply_numbered_effects(choice: Dictionary) -> void:
 func _apply_effect(choice: Dictionary, effect_type: String) -> String:
 	var value: int = int(choice.get("effect_value", 0))
 	var rd := GameManager.run_data
+	if rd == null:
+		push_warning("Event._apply_effect: run_data null")
+		return ""
 
 	match effect_type:
 		"hp_gain":
