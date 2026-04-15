@@ -1770,7 +1770,7 @@
         "card_chance": 0.65,
         "relic_chance": 0.35
       },
-      "ai_pattern": "구금으로 플레이어의 기력 효율을 떨어뜨리고 포졸 소환으로 다수 전선을 강요한다. HP 절반 이하에서 final_verdict로 출혈+강타 압박.",
+      "ai_pattern": "구금으로 플레이어의 기 효율을 떨어뜨리고 포졸 소환으로 다수 전선을 강요한다. HP 절반 이하에서 final_verdict로 출혈+강타 압박.",
       "balance_note": "구금(비용+1, 3턴)은 기 3 기준 실질 사용 가능 카드 수를 1~2장 감소. 포졸 소환(HP 18×2)으로 추가 피해원. investigator_shield(방어14+힘2) 후 royal_decree(14+2=16) + final_verdict(18+2=20+출혈4) 조합이 치명적.",
       "type": "elite"
     },

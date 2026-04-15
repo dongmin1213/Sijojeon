@@ -130,17 +130,7 @@ func _finalize_pending_node() -> void:
 
 
 func _init_hud_toggle() -> void:
-	## v8: HUD 탭 시 확장/축소 (신분/당파/민심 제거됨 — 확장 불필요)
-	# 제거된 서브 HUD 숨김
-	var sub_hbox := $HUD/VBoxContainer.get_node_or_null("SubHBox")
-	if sub_hbox:
-		sub_hbox.visible = false
-	var faction_row := $HUD/VBoxContainer.get_node_or_null("FactionRow")
-	if faction_row:
-		faction_row.visible = false
-	var minshim_lbl := $HUD/VBoxContainer/HBoxContainer.get_node_or_null("MinshimLabel")
-	if minshim_lbl:
-		minshim_lbl.visible = false
+	pass
 
 
 func _init_relic_bar() -> void:

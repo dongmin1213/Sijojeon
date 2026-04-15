@@ -196,7 +196,7 @@
             "en": "Punish the merchant. (Triggers combat)"
           },
           "result_text": {
-            "ko": "대상인과 그 부하들이 무기를 드는도다. 기필코 이겨야 하느니라. 승리하면 이번 상점에서 카드 1장을 무료로 가져갈 수 있도다.",
+            "ko": "대상기 그 부하들이 무기를 드는도다. 기필코 이겨야 하느니라. 승리하면 이번 상점에서 카드 1장을 무료로 가져갈 수 있도다.",
             "en": "The merchant and his men draw weapons. You must prevail. Victory grants 1 free card from the next shop."
           },
           "effect_type": "forced_combat_with_reward",

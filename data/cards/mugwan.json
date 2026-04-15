@@ -3,14 +3,14 @@
   "type": "card_pool",
   "class": "mugwan",
   "class_ko": "무관",
-  "category": "formation",
-  "description": "무관 전용 카드 풀. 진형 조작과 병사 토큰을 활용하는 군사형 직업. 총 25장 — 진형·토큰 아키타입, 기력 폭딜 아키타입, 방패·연타 아키타입. G026·G027 전설 카드 2종 추가 (ZER-214 재미 개선).",
+  "category": "combat tactics",
+  "description": "무관 전용 카드 풀. 전투 전략과 을 활용하는 군사형 직업. 총 25장 — 전략·토큰 아키타입, 기 폭딜 아키타입, 방패·연타 아키타입. G026·G027 전설 카드 2종 추가 (ZER-214 재미 개선).",
   "balance_ref": "ZER-94 (카드 풀 확대). 기준: 1코스트 6피해, 1코스트 5방어도, 기 3/턴.",
   "archetypes": [
     {
-      "id": "formation",
-      "name_ko": "진형·병사 토큰",
-      "description": "진형 카드로 병사 토큰을 생성하고, 토큰 보유 수에 따라 강화되는 공격 카드로 폭딜하는 아키타입. G001·G002·G004·G005·G006·G007·G008·G009·G010·G011·G012 중심.",
+      "id": "combat tactics",
+      "name_ko": "전략·",
+      "description": "전투 전략로 을 생성하고, 토큰 보유 수에 따라 강화되는 공격 카드로 폭딜하는 아키타입. G001·G002·G004·G005·G006·G007·G008·G009·G010·G011·G012 중심.",
       "key_cards": [
         "G001",
         "G002",
@@ -21,9 +21,9 @@
       ]
     },
     {
-      "id": "stamina_burst",
-      "name_ko": "기력 폭딜",
-      "description": "기력을 최대한 쌓아 기력 소비형 카드로 한 턴에 폭발적인 피해를 입히는 아키타입. G013·G014·G015·G016·G017·G018 중심.",
+      "id": "power_burst",
+      "name_ko": "기 폭딜",
+      "description": "기를 최대한 쌓아 기 소비형 카드로 한 턴에 폭발적인 피해를 입히는 아키타입. G013·G014·G015·G016·G017·G018 중심.",
       "key_cards": [
         "G013",
         "G015",
@@ -47,9 +47,9 @@
     {
       "id": "G001",
       "name": {
-        "ko": "진형 전환",
+        "ko": "전투 전략",
         "romanized": "Jinhyeong Jeonhwan",
-        "en": "Formation Shift"
+        "en": "combat tactics"
       },
       "cost": 1,
       "type": "skill",
@@ -59,26 +59,25 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "병사 토큰 1개를 생성한다. 기력 2 획득. 병사 토큰: 피해를 1회 대신 받고 소멸. 소멸 시 기 1 회복.",
-        "en": "Create 1 Soldier Token. Gain 2 Stamina. Soldier Token: absorbs 1 hit of damage and is destroyed. On destruction, recover 1 Qi."
+        "ko": "1개를 생성한다. 기 2 획득. : 피해를 1회 대신 받고 소멸. 소멸 시 기 1 회복.",
+        "en": "Create 1 . Gain 2 Qi. : absorbs 1 hit of damage and is destroyed. On destruction, recover 1 Qi."
       },
       "effect_upgraded": {
-        "ko": "병사 토큰 2개를 생성한다. 기력 3 획득.",
-        "en": "Create 2 Soldier Tokens. Gain 3 Stamina."
+        "ko": "2개를 생성한다. 기 3 획득.",
+        "en": "Create 2 . Gain 3 Qi."
       },
       "flavor_text": {
         "ko": "한 발 앞에 병사를 세워 — 나를 향한 칼끝을 막아낸다.",
         "en": "Station a soldier one step ahead — to block the blade aimed at you."
       },
-      "balance_rationale": "1코스트 토큰 생성. 1코스트로 피해 완전 무효화 + 기 회복은 강력하나, 무관 덱에서 진형 시너지 카드들과의 조합을 전제로 설계. 업그레이드 후 2토큰은 2코스트 카드 상당.",
+      "balance_rationale": "1코스트 토큰 생성. 1코스트로 피해 완전 무효화 + 기 회복은 강력하나, 무관 덱에서 전략 시너지 카드들과의 조합을 전제로 설계. 업그레이드 후 2토큰은 2코스트 카드 상당.",
       "class_synergy": [
         "G002",
         "G004"
       ],
       "upgrade_cost": 75,
       "values": {
-        "tokens": 1,
-        "stamina_gain": 2
+        "tokens": 1
       }
     },
     {
@@ -91,30 +90,29 @@
       "cost": 2,
       "type": "attack",
       "subtypes": [
-        "formation"
+        "combat tactics"
       ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "기력 2 소비. 적에게 10 피해를 입힌다. 병사 토큰이 1개 이상 있으면 피해를 5 추가로 입힌다.",
-        "en": "Spend 2 Stamina. Deal 10 damage to an enemy. If you have 1 or more Soldier Tokens, deal 5 additional damage."
+        "ko": "기 2 소비. 적에게 10 피해를 입힌다. 이 1개 이상 있으면 피해를 5 추가로 입힌다.",
+        "en": "Spend 2 Qi. Deal 10 damage to an enemy. If you have 1 or more , deal 5 additional damage."
       },
       "effect_upgraded": {
-        "ko": "기력 2 소비. 14 피해. 병사 토큰 보너스 피해 +7.",
-        "en": "Spend 2 Stamina. Deal 14 damage. Soldier Token bonus +7."
+        "ko": "기 2 소비. 14 피해. 보너스 피해 +7.",
+        "en": "Spend 2 Qi. Deal 14 damage. bonus +7."
       },
       "flavor_text": {
-        "ko": "병사들을 앞세운 일제 돌격 — 진형이 살아있을 때 가장 강하다.",
-        "en": "A unified charge with soldiers at the vanguard — strongest when the formation holds."
+        "ko": "병사들을 앞세운 일제 돌격 — 전략이 살아있을 때 가장 강하다.",
+        "en": "A unified charge with soldiers at the vanguard — strongest when the combat tacticsholds."
       },
-      "balance_rationale": "2코스트 공격. 기본 10피해는 2코스트 기준 적정(ZER-116: 12→10 하향). 토큰 보너스 +5로 최대 15피해. 도약 콤보 시 최대 19피해(기존 21). G001과 1+2코스트 콤보(3기 소비). 진형 덱 핵심 피니셔.",
+      "balance_rationale": "2코스트 공격. 기본 10피해는 2코스트 기준 적정(ZER-116: 12→10 하향). 토큰 보너스 +5로 최대 15피해. 도약 콤보 시 최대 19피해(기존 21). G001과 1+2코스트 콤보(3기 소비). 전략 덱 핵심 피니셔.",
       "class_synergy": [
         "G001"
       ],
       "upgrade_cost": 75,
       "values": {
-        "damage": 10,
-        "stamina_cost": 2
+        "damage": 10
       }
     },
     {
@@ -127,18 +125,18 @@
       "cost": 2,
       "type": "skill",
       "subtypes": [
-        "formation",
+        "combat tactics",
         "debuff"
       ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "모든 적에게 포위됨(됨) 상태를 2턴 부여한다. 기력 1 획득. 포위됨: 공격 피해 25% 감소.",
-        "en": "Apply Encircled status to ALL enemies for 2 turns. Gain 1 Stamina. Encircled: attack damage reduced by 25%."
+        "ko": "모든 적에게 포위됨(됨) 상태를 2턴 부여한다. 기 1 획득. 포위됨: 공격 피해 25% 감소.",
+        "en": "Apply Encircled status to ALL enemies for 2 turns. Gain 1 Qi. Encircled: attack damage reduced by 25%."
       },
       "effect_upgraded": {
-        "ko": "포위됨 지속 시간 3턴. 기력 2 획득.",
-        "en": "Encircled duration 3 turns. Gain 2 Stamina."
+        "ko": "포위됨 지속 시간 3턴. 기 2 획득.",
+        "en": "Encircled duration 3 turns. Gain 2 Qi."
       },
       "flavor_text": {
         "ko": "사방을 막으면 적은 힘을 잃는다 — 포위된 자는 싸우기 전에 이미 진다.",
@@ -149,38 +147,36 @@
         "G004"
       ],
       "upgrade_cost": 100,
-      "values": {
-        "stamina_gain": 1
-      }
+      "values": {}
     },
     {
       "id": "G004",
       "name": {
         "ko": "학익진",
         "romanized": "Hagikjin",
-        "en": "Crane Wing Formation"
+        "en": "Crane Wing combat tactics"
       },
       "cost": 3,
       "type": "attack",
       "subtypes": [
-        "formation",
+        "combat tactics",
         "aoe"
       ],
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "기력 3 소비. 모든 적에게 8 피해를 입힌다. 보유한 병사 토큰 1개당 모든 적에게 피해를 3 추가로 입힌다.",
-        "en": "Spend 3 Stamina. Deal 8 damage to ALL enemies. For each Soldier Token you have, deal 3 additional damage to ALL enemies."
+        "ko": "기 3 소비. 모든 적에게 8 피해를 입힌다. 보유한 1개당 모든 적에게 피해를 3 추가로 입힌다.",
+        "en": "Spend 3 Qi. Deal 8 damage to ALL enemies. For each you have, deal 3 additional damage to ALL enemies."
       },
       "effect_upgraded": {
-        "ko": "기력 3 소비. 모든 적에게 11 피해. 토큰당 +4 추가 피해.",
-        "en": "Spend 3 Stamina. Deal 11 damage to ALL enemies. +4 per token."
+        "ko": "기 3 소비. 모든 적에게 11 피해. 토큰당 +4 추가 피해.",
+        "en": "Spend 3 Qi. Deal 11 damage to ALL enemies. +4 per token."
       },
       "flavor_text": {
         "ko": "학의 날개처럼 양익을 펼쳐 — 한 번의 진격으로 전장을 쓸어버린다.",
         "en": "Spread both wings like a crane — a single advance sweeps the entire battlefield."
       },
-      "balance_rationale": "3코스트 광역 공격. 토큰 2개 시 14 AoE, 3개 시 17 AoE — 진형 빌드 피니셔.",
+      "balance_rationale": "3코스트 광역 공격. 토큰 2개 시 14 AoE, 3개 시 17 AoE — 전투 전략 피니셔.",
       "class_synergy": [
         "G001",
         "G003"
@@ -188,8 +184,7 @@
       "upgrade_cost": 150,
       "values": {
         "damage": 8,
-        "is_aoe": true,
-        "stamina_cost": 3
+        "is_aoe": true
       }
     },
     {
@@ -197,7 +192,7 @@
       "name": {
         "ko": "천하무적진",
         "romanized": "Cheonha Mujeokjin",
-        "en": "Invincible Formation"
+        "en": "Invincible combat tactics"
       },
       "cost": 3,
       "type": "skill",
@@ -208,18 +203,18 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "방어도 18을 획득한다. 병사 토큰 2개를 생성한다. 기력 2 획득. 이번 턴 병사 토큰 생성량이 2배가 된다.",
-        "en": "Gain 18 Block. Create 2 Soldier Tokens. Gain 2 Stamina. Token creation is doubled this turn."
+        "ko": "방어도 18을 획득한다. 2개를 생성한다. 기 2 획득. 이번 턴 생성량이 2배가 된다.",
+        "en": "Gain 18 Block. Create 2 . Gain 2 Qi. Token creation is doubled this turn."
       },
       "effect_upgraded": {
-        "ko": "방어도 24를 획득한다. 병사 토큰 3개를 생성한다. 기력 3 획득.",
-        "en": "Gain 24 Block. Create 3 Soldier Tokens. Gain 3 Stamina."
+        "ko": "방어도 24를 획득한다. 3개를 생성한다. 기 3 획득.",
+        "en": "Gain 24 Block. Create 3 . Gain 3 Qi."
       },
       "flavor_text": {
-        "ko": "진형은 완벽하다 — 어떤 적도 이 철옹성을 뚫을 수 없다.",
-        "en": "The formation is flawless — no enemy can breach this iron fortress."
+        "ko": "전략은 완벽하다 — 어떤 적도 이 철옹성을 뚫을 수 없다.",
+        "en": "The combat tacticsis flawless — no enemy can breach this iron fortress."
       },
-      "balance_rationale": "[ZER-56 조정] 기력 획득 3→2. 기존: 3코스트 사용 후 기력 3 획득 = 사실상 0코스트로 18방어도+2토큰 획득 — 과도. 조정 후: 순수 1기 비용 발생, 실질 가치 균형 회복.",
+      "balance_rationale": "[ZER-56 조정] 기 획득 3→2. 기존: 3코스트 사용 후 기 3 획득 = 사실상 0코스트로 18방어도+2토큰 획득 — 과도. 조정 후: 순수 1기 비용 발생, 실질 가치 균형 회복.",
       "class_synergy": [
         "G001",
         "G004"
@@ -227,8 +222,7 @@
       "upgrade_cost": 150,
       "values": {
         "block": 18,
-        "tokens": 2,
-        "stamina_gain": 2
+        "tokens": 2
       }
     },
     {
@@ -246,27 +240,25 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기력 2를 획득한다.",
-        "en": "Gain 2 Stamina."
+        "ko": "기 2를 획득한다.",
+        "en": "Gain 2 Qi."
       },
       "effect_upgraded": {
-        "ko": "기력 3을 획득한다.",
-        "en": "Gain 3 Stamina."
+        "ko": "기 3을 획득한다.",
+        "en": "Gain 3 Qi."
       },
       "flavor_text": {
-        "ko": "보병 하나씩 앞으로 — 작은 전진이 모여 대진형을 이룬다.",
-        "en": "One soldier at a time, forward — small advances build into a grand formation."
+        "ko": "보병 하나씩 앞으로 — 작은 전진이 모여 대전략을 이룬다.",
+        "en": "One soldier at a time, forward — small advances build into a grand combat tactics."
       },
-      "balance_rationale": "0코스트 기력 충전. 기공(도사 D001)의 무관 버전으로 기 대신 기력을 충전. 0코스트이므로 진형·기력 아키타입 모두에서 핵심 0코스트 자원 공급원. 덱 20장 기준 최대 2장 권장.",
+      "balance_rationale": "0코스트 기 충전. 기공(도사 D001)의 무관 버전으로 기 대신 기를 충전. 0코스트이므로 전략·기 아키타입 모두에서 핵심 0코스트 자원 공급원. 덱 20장 기준 최대 2장 권장.",
       "class_synergy": [
         "G002",
         "G010",
         "G014"
       ],
       "upgrade_cost": 50,
-      "values": {
-        "stamina_gain": 2
-      }
+      "values": {}
     },
     {
       "id": "G007",
@@ -284,18 +276,18 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "병사 토큰 1개를 생성한다. 방어도 3을 획득한다.",
-        "en": "Create 1 Soldier Token. Gain 3 Block."
+        "ko": "1개를 생성한다. 방어도 3을 획득한다.",
+        "en": "Create 1 . Gain 3 Block."
       },
       "effect_upgraded": {
-        "ko": "병사 토큰 1개를 생성한다. 방어도 5를 획득한다.",
-        "en": "Create 1 Soldier Token. Gain 5 Block."
+        "ko": "1개를 생성한다. 방어도 5를 획득한다.",
+        "en": "Create 1 . Gain 5 Block."
       },
       "flavor_text": {
         "ko": "매복한 병사는 적의 허를 찌른다 — 나타나기 전부터 전투는 이미 시작되었다.",
         "en": "An ambushed soldier strikes at the enemy's blind spot — the battle begins before they even appear."
       },
-      "balance_rationale": "1코스트 토큰+방어. 진형 전환(G001, 토큰1+기력2)보다 기력이 없는 대신 즉각 방어도 3 제공. 방패·진형 혼합 빌드를 위한 유연한 1코스트 카드. 로 G001과 슬롯 경쟁 없이 병용 가능.",
+      "balance_rationale": "1코스트 토큰+방어. 전투 전략(G001, 토큰1+기2)보다 기가 없는 대신 즉각 방어도 3 제공. 방패·전략 혼합 빌드를 위한 유연한 1코스트 카드. 로 G001과 슬롯 경쟁 없이 병용 가능.",
       "class_synergy": [
         "G002",
         "G004"
@@ -321,18 +313,18 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "병사 토큰 3개를 생성한다.",
-        "en": "Create 3 Soldier Tokens."
+        "ko": "3개를 생성한다.",
+        "en": "Create 3 ."
       },
       "effect_upgraded": {
-        "ko": "병사 토큰 4개를 생성한다.",
-        "en": "Create 4 Soldier Tokens."
+        "ko": "4개를 생성한다.",
+        "en": "Create 4 ."
       },
       "flavor_text": {
         "ko": "전·후·측면 모두에 병사를 배치하니 — 어느 방향으로 공격해도 방패가 된다.",
         "en": "Deploy soldiers on front, rear, and flank — shields in every direction against any attack."
       },
-      "balance_rationale": "2코스트 토큰 3개 생성. 순수 토큰 생성에 특화. 학익진(G004)에서 토큰 3개 = AoE +9, 즉 총 17 AoE 폭발 세팅. 기력을 얻지 않으므로 순수 진형 아키타입의 전용 투자 카드. 2코스트 기준 3토큰 = 향후 15~18피해 세팅 가치.",
+      "balance_rationale": "2코스트 토큰 3개 생성. 순수 토큰 생성에 특화. 학익진(G004)에서 토큰 3개 = AoE +9, 즉 총 17 AoE 폭발 세팅. 기를 얻지 않으므로 순수 전략 아키타입의 전용 투자 카드. 2코스트 기준 3토큰 = 향후 15~18피해 세팅 가치.",
       "class_synergy": [
         "G004",
         "G005"
@@ -352,23 +344,23 @@
       "cost": 1,
       "type": "power",
       "subtypes": [
-        "formation"
+        "combat tactics"
       ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "이번 전투 동안, 진형 카드를 사용할 때마다 기력을 1 추가 획득한다.",
-        "en": "For the rest of this combat, gain 1 additional Stamina whenever you play a formation card."
+        "ko": "이번 전투 동안, 전투 전략를 사용할 때마다 기를 1 추가 획득한다.",
+        "en": "For the rest of this combat, gain 1 additional Qi whenever you play a combat tactics."
       },
       "effect_upgraded": {
-        "ko": "이번 전투 동안, 진형 카드를 사용할 때마다 기력을 2 추가 획득한다.",
-        "en": "For the rest of this combat, gain 2 additional Stamina per formation card."
+        "ko": "이번 전투 동안, 전투 전략를 사용할 때마다 기를 2 추가 획득한다.",
+        "en": "For the rest of this combat, gain 2 additional Qi per combat tactics."
       },
       "flavor_text": {
-        "ko": "병법서를 꿰뚫으면 진형 하나하나가 살아 움직인다 — 지식이 기력이 된다.",
-        "en": "Master the art of war and every formation comes alive — knowledge becomes stamina."
+        "ko": "병법서를 꿰뚫으면 전략 하나하나가 살아 움직인다 — 지식이 기가 된다.",
+        "en": "Master the art of war and every combat tacticscomes alive — knowledge becomes Qi."
       },
-      "balance_rationale": "1코스트 파워(영구 패시브). 진형 카드 시 기력 +1은 한 전투에서 진형 카드를 5장 이상 사용 시 G015보다 효율적. 진형+기력 하이브리드 빌드를 설계 가능하게 하는 연결 카드. 단독으로는 약하지만 덱 전체 시너지 극대화.",
+      "balance_rationale": "1코스트 파워(영구 패시브). 전투 전략 시 기 +1은 한 전투에서 전투 전략를 5장 이상 사용 시 G015보다 효율적. 전략+기 하이브리드 빌드를 설계 가능하게 하는 연결 카드. 단독으로는 약하지만 덱 전체 시너지 극대화.",
       "class_synergy": [
         "G001",
         "G006",
@@ -376,9 +368,7 @@
         "G008"
       ],
       "upgrade_cost": 100,
-      "values": {
-        "stamina_per_formation": 1
-      }
+      "values": {}
     },
     {
       "id": "G010",
@@ -390,23 +380,23 @@
       "cost": 2,
       "type": "attack",
       "subtypes": [
-        "formation"
+        "combat tactics"
       ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "기력 3을 소비한다. 적에게 18 피해를 입힌다. 병사 토큰이 있으면 피해를 4 추가로 입힌다.",
-        "en": "Spend 3 Stamina. Deal 18 damage to an enemy. If you have Soldier Tokens, deal 4 additional damage."
+        "ko": "기 3을 소비한다. 적에게 18 피해를 입힌다. 이 있으면 피해를 4 추가로 입힌다.",
+        "en": "Spend 3 Qi. Deal 18 damage to an enemy. If you have , deal 4 additional damage."
       },
       "effect_upgraded": {
-        "ko": "기력 3을 소비한다. 23 피해. 토큰 보너스 +6.",
-        "en": "Spend 3 Stamina. Deal 23 damage. Token bonus +6."
+        "ko": "기 3을 소비한다. 23 피해. 토큰 보너스 +6.",
+        "en": "Spend 3 Qi. Deal 23 damage. Token bonus +6."
       },
       "flavor_text": {
         "ko": "철갑을 두른 기병대가 한 줄기 창처럼 적진을 관통한다.",
         "en": "Armored cavalry pierce through the enemy lines like a lance."
       },
-      "balance_rationale": "2코스트 기력 소비형 강공격. 기력 3 소비 후 18피해는 2코스트 최강 수준. 돌격(G002, 기력2+12피해)보다 기력 1 더 필요하지만 피해 6 더 높음. 진형+기력 하이브리드 빌드의 핵심 피니셔. 병행 시 토큰 보너스로 최대 22피해.",
+      "balance_rationale": "2코스트 기 소비형 강공격. 기 3 소비 후 18피해는 2코스트 최강 수준. 돌격(G002, 기2+12피해)보다 기 1 더 필요하지만 피해 6 더 높음. 전략+기 하이브리드 빌드의 핵심 피니셔. 병행 시 토큰 보너스로 최대 22피해.",
       "class_synergy": [
         "G001",
         "G006",
@@ -414,8 +404,7 @@
       ],
       "upgrade_cost": 100,
       "values": {
-        "damage": 18,
-        "stamina_cost": 3
+        "damage": 18
       }
     },
     {
@@ -433,18 +422,18 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "방어도 6을 획득한다. 다음 턴 시작 시 기력 2를 획득한다.",
-        "en": "Gain 6 Block. Gain 2 Stamina at the start of next turn."
+        "ko": "방어도 6을 획득한다. 다음 턴 시작 시 기 2를 획득한다.",
+        "en": "Gain 6 Block. Gain 2 Qi at the start of next turn."
       },
       "effect_upgraded": {
-        "ko": "방어도 8을 획득한다. 다음 턴 시작 시 기력 3을 획득한다.",
-        "en": "Gain 8 Block. Gain 3 Stamina at the start of next turn."
+        "ko": "방어도 8을 획득한다. 다음 턴 시작 시 기 3을 획득한다.",
+        "en": "Gain 8 Block. Gain 3 Qi at the start of next turn."
       },
       "flavor_text": {
-        "ko": "연막으로 전장을 가리면 — 적은 방향을 잃고 우리는 다음 진형을 준비한다.",
-        "en": "Shroud the battlefield in smoke — the enemy loses direction while we prepare the next formation."
+        "ko": "연막으로 전장을 가리면 — 적은 방향을 잃고 우리는 다음 전략을 준비한다.",
+        "en": "Shroud the battlefield in smoke — the enemy loses direction while we prepare the next combat tactics."
       },
-      "balance_rationale": "1코스트 방어+지연 기력. 즉시 방어도 6(수호 5 대비 +1)과 다음 턴 기력 2 예약. 이번 턴 기력을 소비한 후에도 다음 턴 기력을 보장해 기력 소비형 빌드의 지속력 확보. 방패·기력 혼합 빌드 연결 카드.",
+      "balance_rationale": "1코스트 방어+지연 기. 즉시 방어도 6(수호 5 대비 +1)과 다음 턴 기 2 예약. 이번 턴 기를 소비한 후에도 다음 턴 기를 보장해 기 소비형 빌드의 지속력 확보. 방패·기 혼합 빌드 연결 카드.",
       "class_synergy": [
         "G010",
         "G013",
@@ -452,8 +441,7 @@
       ],
       "upgrade_cost": 75,
       "values": {
-        "block": 6,
-        "stamina_gain_next_turn": 2
+        "block": 6
       }
     },
     {
@@ -467,23 +455,23 @@
       "type": "attack",
       "subtypes": [
         "aoe",
-        "formation"
+        "combat tactics"
       ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "모든 적에게 6 피해를 입힌다. 병사 토큰이 있으면 모든 적에게 피해를 3 추가로 입힌다.",
-        "en": "Deal 6 damage to ALL enemies. If you have Soldier Tokens, deal 3 additional damage to ALL enemies."
+        "ko": "모든 적에게 6 피해를 입힌다. 이 있으면 모든 적에게 피해를 3 추가로 입힌다.",
+        "en": "Deal 6 damage to ALL enemies. If you have , deal 3 additional damage to ALL enemies."
       },
       "effect_upgraded": {
         "ko": "모든 적에게 8 피해를 입힌다. 토큰 보너스 +5.",
         "en": "Deal 8 damage to ALL enemies. Token bonus +5."
       },
       "flavor_text": {
-        "ko": "전열에 세운 총통이 불을 뿜으면 — 적의 진형이 한순간에 무너진다.",
-        "en": "When the cannons at the front line open fire — the enemy formation crumbles in an instant."
+        "ko": "전열에 세운 총통이 불을 뿜으면 — 적의 전략이 한순간에 무너진다.",
+        "en": "When the cannons at the front line open fire — the enemy combat tacticscrumbles in an instant."
       },
-      "balance_rationale": "2코스트 AoE+토큰 조건. 학익진(G004, 3코스트 AoE8+토큰배수)보다 저렴하지만 단순. 토큰 없이도 6 AoE로 실용적. 진형 아키타입의 중간 가격대 광역 카드 공백 메움.",
+      "balance_rationale": "2코스트 AoE+토큰 조건. 학익진(G004, 3코스트 AoE8+토큰배수)보다 저렴하지만 단순. 토큰 없이도 6 AoE로 실용적. 전략 아키타입의 중간 가격대 광역 카드 공백 메움.",
       "class_synergy": [
         "G001",
         "G008"
@@ -504,23 +492,23 @@
       "cost": 0,
       "type": "skill",
       "subtypes": [
-        "stamina"
+        "Qi"
       ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "기력 3을 획득한다.",
-        "en": "Gain 3 Stamina."
+        "ko": "기 3을 획득한다.",
+        "en": "Gain 3 Qi."
       },
       "effect_upgraded": {
-        "ko": "기력 4를 획득한다.",
-        "en": "Gain 4 Stamina."
+        "ko": "기 4를 획득한다.",
+        "en": "Gain 4 Qi."
       },
       "flavor_text": {
-        "ko": "단전에서 솟구치는 기합 한 소리 — 전신에 기력이 솟아난다.",
-        "en": "A battle cry from the core — stamina surges through every limb."
+        "ko": "단전에서 솟구치는 기합 한 소리 — 전신에 기가 솟아난다.",
+        "en": "A battle cry from the core — Qi surges through every limb."
       },
-      "balance_rationale": "0코스트 기력 충전. 기공(D001)의 무관 기력 버전. 기력 3은 기력 소비형 카드(G010 기력3, G016 기력전소)의 연료. 0코스트로 기력 폭딜 아키타입의 필수 0코스트 충전 카드.",
+      "balance_rationale": "0코스트 기 충전. 기공(D001)의 무관 기 버전. 기 3은 기 소비형 카드(G010 기3, G016 기전소)의 연료. 0코스트로 기 폭딜 아키타입의 필수 0코스트 충전 카드.",
       "class_synergy": [
         "G010",
         "G014",
@@ -528,9 +516,7 @@
         "G018"
       ],
       "upgrade_cost": 50,
-      "values": {
-        "stamina_gain": 3
-      }
+      "values": {}
     },
     {
       "id": "G014",
@@ -542,23 +528,23 @@
       "cost": 1,
       "type": "attack",
       "subtypes": [
-        "stamina"
+        "Qi"
       ],
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "현재 기력 1당 피해 2를 입힌다 (최소 6, 기력 소비하지 않음).",
-        "en": "Deal 2 damage per current Stamina (minimum 6, does not consume Stamina)."
+        "ko": "현재 기 1당 피해 2를 입힌다 (최소 6, 기 소비하지 않음).",
+        "en": "Deal 2 damage per current Qi (minimum 6, does not consume Qi)."
       },
       "effect_upgraded": {
-        "ko": "현재 기력 1당 피해 3을 입힌다 (최소 8, 기력 소비하지 않음).",
-        "en": "Deal 3 damage per current Stamina (minimum 8, does not consume Stamina)."
+        "ko": "현재 기 1당 피해 3을 입힌다 (최소 8, 기 소비하지 않음).",
+        "en": "Deal 3 damage per current Qi (minimum 8, does not consume Qi)."
       },
       "flavor_text": {
-        "ko": "불리한 상황일수록 더 강해지는 무관의 기세 — 기력이 남아 있는 한 포기란 없다.",
-        "en": "The more dire the battle, the stronger the officer's drive — as long as stamina remains, there is no surrender."
+        "ko": "불리한 상황일수록 더 강해지는 무관의 기세 — 기가 남아 있는 한 포기란 없다.",
+        "en": "The more dire the battle, the stronger the officer's drive — as long as Qi remains, there is no surrender."
       },
-      "balance_rationale": "1코스트 기력 참조형 공격(소비 없음). 기력 4 시 8피해, 기력 8 시 16피해. 기력을 소비하지 않으므로 기력 소비 카드와 경쟁하지 않음. 기력 폭딜 아키타입에서 기력이 높을수록 강력해지는 스케일링 카드.",
+      "balance_rationale": "1코스트 기 참조형 공격(소비 없음). 기 4 시 8피해, 기 8 시 16피해. 기를 소비하지 않으므로 기 소비 카드와 경쟁하지 않음. 기 폭딜 아키타입에서 기가 높을수록 강력해지는 스케일링 카드.",
       "class_synergy": [
         "G013",
         "G015",
@@ -566,7 +552,6 @@
       ],
       "upgrade_cost": 75,
       "values": {
-        "damage_per_stamina": 2,
         "min_damage": 6
       }
     },
@@ -580,33 +565,30 @@
       "cost": 2,
       "type": "power",
       "subtypes": [
-        "stamina"
+        "Qi"
       ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "기력 최대치를 5 증가시킨다 (이번 전투 영구). 기력 3을 획득한다.",
-        "en": "Increase Stamina maximum by 5 (permanent for this combat). Gain 3 Stamina."
+        "ko": "기 최대치를 5 증가시킨다 (이번 전투 영구). 기 3을 획득한다.",
+        "en": "Increase Qi maximum by 5 (permanent for this combat). Gain 3 Qi."
       },
       "effect_upgraded": {
-        "ko": "기력 최대치를 7 증가시킨다 (이번 전투 영구). 기력 5를 획득한다.",
-        "en": "Increase Stamina maximum by 7 (permanent). Gain 5 Stamina."
+        "ko": "기 최대치를 7 증가시킨다 (이번 전투 영구). 기 5를 획득한다.",
+        "en": "Increase Qi maximum by 7 (permanent). Gain 5 Qi."
       },
       "flavor_text": {
-        "ko": "전장에서 단련된 의지는 기력의 한계를 부순다 — 더 많이, 더 강하게.",
-        "en": "A will forged on the battlefield shatters the limits of stamina — more, and stronger."
+        "ko": "전장에서 단련된 의지는 기의 한계를 부순다 — 더 많이, 더 강하게.",
+        "en": "A will forged on the battlefield shatters the limits of Qi — more, and stronger."
       },
-      "balance_rationale": "2코스트 기력 최대치 확장+즉시 충전. 기본 최대치 10에서 15로 확장, 기력 소비형 카드들의 연속 사용 가능. 전투 중반 설치 카드로서 2코스트 투자 가치가 높음. 기력 폭딜 빌드의 핵심 파워.",
+      "balance_rationale": "2코스트 기 최대치 확장+즉시 충전. 기본 최대치 10에서 15로 확장, 기 소비형 카드들의 연속 사용 가능. 전투 중반 설치 카드로서 2코스트 투자 가치가 높음. 기 폭딜 빌드의 핵심 파워.",
       "class_synergy": [
         "G010",
         "G016",
         "G018"
       ],
       "upgrade_cost": 100,
-      "values": {
-        "stamina_max_increase": 5,
-        "stamina_gain": 3
-      }
+      "values": {}
     },
     {
       "id": "G016",
@@ -618,32 +600,29 @@
       "cost": 0,
       "type": "attack",
       "subtypes": [
-        "stamina"
+        "Qi"
       ],
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "기력을 전부 소비한다. 소비한 기력 1당 적에게 2 피해를 입힌다 (최소 0).",
-        "en": "Consume all Stamina. Deal 2 damage per Stamina consumed (minimum 0)."
+        "ko": "기를 전부 소비한다. 소비한 기 1당 적에게 2 피해를 입힌다 (최소 0).",
+        "en": "Consume all Qi. Deal 2 damage per Qi consumed (minimum 0)."
       },
       "effect_upgraded": {
-        "ko": "기력을 전부 소비한다. 소비한 기력 1당 3 피해를 입힌다.",
-        "en": "Consume all Stamina. Deal 3 damage per Stamina consumed."
+        "ko": "기를 전부 소비한다. 소비한 기 1당 3 피해를 입힌다.",
+        "en": "Consume all Qi. Deal 3 damage per Qi consumed."
       },
       "flavor_text": {
-        "ko": "남은 모든 기력을 한 방에 쏟아붓는다 — 이기거나 지거나, 후회는 없다.",
-        "en": "Pour every last drop of stamina into one strike — win or lose, no regrets."
+        "ko": "남은 모든 기를 한 방에 쏟아붓는다 — 이기거나 지거나, 후회는 없다.",
+        "en": "Pour every last drop of Qi into one strike — win or lose, no regrets."
       },
-      "balance_rationale": "0코스트 기력 전소 공격. 상소(W003, 3코스트 학식 전소)의 무관 버전. 0코스트이므로 마지막 카드로 사용 시 강력. 기력 6 시 18피해, 기력 10 시 30피해. 기력 폭딜 아키타입의 궁극 피니셔. 단, 기력이 남아야 해 전술적 기력 관리 필요.",
+      "balance_rationale": "0코스트 기 전소 공격. 상소(W003, 3코스트 지식 전소)의 무관 버전. 0코스트이므로 마지막 카드로 사용 시 강력. 기 6 시 18피해, 기 10 시 30피해. 기 폭딜 아키타입의 궁극 피니셔. 단, 기가 남아야 해 전술적 기 관리 필요.",
       "class_synergy": [
         "G013",
         "G015"
       ],
       "upgrade_cost": 100,
-      "values": {
-        "damage_per_stamina": 2,
-        "consume_all_stamina": true
-      }
+      "values": {}
     },
     {
       "id": "G017",
@@ -655,23 +634,23 @@
       "cost": 1,
       "type": "attack",
       "subtypes": [
-        "stamina"
+        "Qi"
       ],
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "적에게 6 피해를 입힌다. 기력 2를 소비하면 피해가 4 증가한다.",
-        "en": "Deal 6 damage to an enemy. Optionally spend 2 Stamina to deal 4 additional damage."
+        "ko": "적에게 6 피해를 입힌다. 기 2를 소비하면 피해가 4 증가한다.",
+        "en": "Deal 6 damage to an enemy. Optionally spend 2 Qi to deal 4 additional damage."
       },
       "effect_upgraded": {
-        "ko": "적에게 8 피해를 입힌다. 기력 2 소비 시 피해 +6.",
-        "en": "Deal 8 damage. Spend 2 Stamina for +6 additional damage."
+        "ko": "적에게 8 피해를 입힌다. 기 2 소비 시 피해 +6.",
+        "en": "Deal 8 damage. Spend 2 Qi for +6 additional damage."
       },
       "flavor_text": {
-        "ko": "혼자서도 적진을 뚫는다 — 기력만 있다면 열 명의 장수보다 강하다.",
-        "en": "Alone, you breach the enemy lines — with stamina to spare, stronger than ten generals."
+        "ko": "혼자서도 적진을 뚫는다 — 기만 있다면 열 명의 장수보다 강하다.",
+        "en": "Alone, you breach the enemy lines — with Qi to spare, stronger than ten generals."
       },
-      "balance_rationale": "1코스트 선택적 기력 소비 공격. 기력 없으면 직언과 동일(6피해). 기력 2 소비 시 10피해 — 2코스트 기준 적정. 기력 소비 여부를 선택할 수 있어 유연. 기력 아키타입과 표준 덱 모두에서 활용 가능.",
+      "balance_rationale": "1코스트 선택적 기 소비 공격. 기 없으면 직언과 동일(6피해). 기 2 소비 시 10피해 — 2코스트 기준 적정. 기 소비 여부를 선택할 수 있어 유연. 기 아키타입과 표준 덱 모두에서 활용 가능.",
       "class_synergy": [
         "G013",
         "G006"
@@ -679,7 +658,6 @@
       "upgrade_cost": 50,
       "values": {
         "damage": 6,
-        "optional_stamina_cost": 2,
         "bonus_damage": 4
       }
     },
@@ -693,23 +671,23 @@
       "cost": 3,
       "type": "attack",
       "subtypes": [
-        "stamina"
+        "Qi"
       ],
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "적에게 20 피해를 입힌다. 기력 1당 피해를 3 추가로 입힌다 (기력 전부 소비).",
-        "en": "Deal 20 damage to an enemy. Deal 3 additional damage per Stamina (consumes all Stamina)."
+        "ko": "적에게 20 피해를 입힌다. 기 1당 피해를 3 추가로 입힌다 (기 전부 소비).",
+        "en": "Deal 20 damage to an enemy. Deal 3 additional damage per Qi (consumes all Qi)."
       },
       "effect_upgraded": {
-        "ko": "25 피해. 기력 1당 +4 추가 피해.",
-        "en": "Deal 25 damage. +4 additional damage per Stamina."
+        "ko": "25 피해. 기 1당 +4 추가 피해.",
+        "en": "Deal 25 damage. +4 additional damage per Qi."
       },
       "flavor_text": {
-        "ko": "세상에 둘도 없는 일격 — 기력을 남기지 말고 쏟아부어라.",
-        "en": "A strike without equal in this world — hold nothing back, spend every ounce of stamina."
+        "ko": "세상에 둘도 없는 일격 — 기를 남기지 말고 쏟아부어라.",
+        "en": "A strike without equal in this world — hold nothing back, spend every ounce of Qi."
       },
-      "balance_rationale": "3코스트 기력 전소+기본 피해 강공격. 기력 0: 20피해, 기력 5: 40피해, 기력 10: 60피해. 태산붕(D007, 3코스트 40피해 사이드이펙트)의 무관 버전. 기력을 많이 쌓을수록 폭발적. 기력 폭딜 빌드의 최종 피니셔.",
+      "balance_rationale": "3코스트 기 전소+기본 피해 강공격. 기 0: 20피해, 기 5: 40피해, 기 10: 60피해. 태산붕(D007, 3코스트 40피해 사이드이펙트)의 무관 버전. 기를 많이 쌓을수록 폭발적. 기 폭딜 빌드의 최종 피니셔.",
       "class_synergy": [
         "G013",
         "G015",
@@ -717,9 +695,7 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "damage": 20,
-        "bonus_damage_per_stamina": 3,
-        "consume_all_stamina": true
+        "damage": 20
       }
     },
     {
@@ -727,7 +703,7 @@
       "name": {
         "ko": "수비 대형",
         "romanized": "Subi Daehyeong",
-        "en": "Defensive Formation"
+        "en": "Defensive combat tactics"
       },
       "cost": 1,
       "type": "defense",
@@ -744,7 +720,7 @@
       },
       "flavor_text": {
         "ko": "방패를 앞세운 대형은 어떤 공격도 막아낸다 — 기본에 충실한 것이 최선.",
-        "en": "A formation with shields at the front stops any attack — mastering the basics is best."
+        "en": "A combat tacticswith shields at the front stops any attack — mastering the basics is best."
       },
       "balance_rationale": "1코스트 순수 방어. 수호(5방어도)보다 3 높은 8방어도로 방패 아키타입 주력. 부가 효과 없이 방어도만 높아 단순하지만 안정적. 방패 덱의 핵심 기본 카드. 업그레이드 시 11방어도로 2코스트 방어 카드에 준하는 수준.",
       "upgrade_cost": 50,
@@ -879,7 +855,7 @@
         "ko": "철옹성처럼 굳건한 방어 — 어떤 공격도 이 철벽을 부수지 못한다.",
         "en": "An iron wall, unyielding — no attack can break through this bastion."
       },
-      "balance_rationale": "2코스트 순수 방어 최고치. 예제(W005, 2코스트 10방어+학식2)보다 방어도 4 높지만 부가 효과 없음. 방패 아키타입의 안정적인 2코스트 방어 주력 카드. 보스전처럼 피해를 최소화해야 할 때 특히 가치.",
+      "balance_rationale": "2코스트 순수 방어 최고치. 예제(W005, 2코스트 10방어+지식2)보다 방어도 4 높지만 부가 효과 없음. 방패 아키타입의 안정적인 2코스트 방어 주력 카드. 보스전처럼 피해를 최소화해야 할 때 특히 가치.",
       "class_synergy": [
         "G019",
         "G021"
@@ -938,18 +914,18 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "기력 최대치를 3 증가시킨다. 이번 전투 동안, 병사 토큰이 소멸할 때마다 카드 1장을 드로우한다.",
-        "en": "Increase Stamina maximum by 3. For the rest of this combat, draw 1 card whenever a Soldier Token is destroyed."
+        "ko": "기 최대치를 3 증가시킨다. 이번 전투 동안, 이 소멸할 때마다 카드 1장을 드로우한다.",
+        "en": "Increase Qi maximum by 3. For the rest of this combat, draw 1 card whenever a is destroyed."
       },
       "effect_upgraded": {
-        "ko": "기력 최대치를 5 증가시킨다. 토큰 소멸 시 카드 1장 드로우 + 기력 1 추가 획득.",
-        "en": "Increase Stamina maximum by 5. On Token destruction, draw 1 card + gain 1 additional Stamina."
+        "ko": "기 최대치를 5 증가시킨다. 토큰 소멸 시 카드 1장 드로우 + 기 1 추가 획득.",
+        "en": "Increase Qi maximum by 5. On Token destruction, draw 1 card + gain 1 additional Qi."
       },
       "flavor_text": {
         "ko": "백 번의 전투를 살아남은 노장 — 병사들의 희생이 더 강한 힘을 만든다.",
         "en": "A veteran of a hundred battles — the sacrifice of soldiers forges even greater strength."
       },
-      "balance_rationale": "3코스트 파워. 기력 최대치 확장(진형+기력 하이브리드 지원) + 토큰 소멸 시 드로우(진형 아키타입 덱 가속). 두 아키타입을 동시에 지원하는 고가치 파워 카드. 토큰 3개 소멸 시 드로우 3 = 3코스트 축지법 수준의 드로우 가치.",
+      "balance_rationale": "3코스트 파워. 기 최대치 확장(전략+기 하이브리드 지원) + 토큰 소멸 시 드로우(전략 아키타입 덱 가속). 두 아키타입을 동시에 지원하는 고가치 파워 카드. 토큰 3개 소멸 시 드로우 3 = 3코스트 축지법 수준의 드로우 가치.",
       "class_synergy": [
         "G001",
         "G008",
@@ -958,7 +934,6 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "stamina_max_increase": 3,
         "draw_on_token_death": 1
       }
     },
@@ -972,23 +947,23 @@
       "cost": 2,
       "type": "attack",
       "subtypes": [
-        "stamina_burst"
+        "power_burst"
       ],
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "기력을 전부 소비한다. 소비한 기력당 8 피해를 입힌다. (최소 16, 기력 10이면 80 피해!)",
-        "en": "Consume ALL Stamina. Deal 8 damage per Stamina consumed. (Minimum 16; with 10 Stamina: 80 damage!)"
+        "ko": "기를 전부 소비한다. 소비한 기당 8 피해를 입힌다. (최소 16, 기 10이면 80 피해!)",
+        "en": "Consume ALL Qi. Deal 8 damage per Qi consumed. (Minimum 16; with 10 Qi: 80 damage!)"
       },
       "effect_upgraded": {
-        "ko": "기력을 전부 소비한다. 소비한 기력당 10 피해를 입힌다. (최소 20)",
-        "en": "Consume ALL Stamina. Deal 10 damage per Stamina consumed. (Minimum 20)"
+        "ko": "기를 전부 소비한다. 소비한 기당 10 피해를 입힌다. (최소 20)",
+        "en": "Consume ALL Qi. Deal 10 damage per Qi consumed. (Minimum 20)"
       },
       "flavor_text": {
-        "ko": "기력이 극에 달하면 — 천하를 가르는 한 방이 나온다.",
-        "en": "When stamina reaches its peak — a single blow cleaves the heavens."
+        "ko": "기가 극에 달하면 — 천하를 가르는 한 방이 나온다.",
+        "en": "When Qi reaches its peak — a single blow cleaves the heavens."
       },
-      "balance_rationale": "기력 폭딜 빌드의 최종 카드. 기력 10 보유 시 80 피해로 STS Bludgeon(32)·Whirlwind급. 기력 소비형이라 고기력 유지가 선결조건 — 빌드 강요 기능. 최소 피해 16은 3코스트 기준 적정.",
+      "balance_rationale": "기 폭딜 빌드의 최종 카드. 기 10 보유 시 80 피해로 STS Bludgeon(32)·Whirlwind급. 기 소비형이라 고기 유지가 선결조건 — 빌드 강요 기능. 최소 피해 16은 3코스트 기준 적정.",
       "class_synergy": [
         "G013",
         "G015",
@@ -997,8 +972,6 @@
       ],
       "upgrade_cost": 150,
       "values": {
-        "damage_per_stamina": 8,
-        "consume_all_stamina": true,
         "min_damage": 16
       }
     },
@@ -1007,7 +980,7 @@
       "name": {
         "ko": "철벽대진",
         "romanized": "Cheolbyeok Daejin",
-        "en": "Iron Wall Grand Formation"
+        "en": "Iron Wall Grand combat tactics"
       },
       "cost": 1,
       "type": "skill",
@@ -1018,18 +991,18 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "병사 토큰 3개를 생성한다. 기력 3을 획득한다. 이번 턴 토큰 생성량이 2배가 된다.",
-        "en": "Create 3 Soldier Tokens. Gain 3 Stamina. Token generation is doubled this turn."
+        "ko": "3개를 생성한다. 기 3을 획득한다. 이번 턴 토큰 생성량이 2배가 된다.",
+        "en": "Create 3 . Gain 3 Qi. Token generation is doubled this turn."
       },
       "effect_upgraded": {
-        "ko": "병사 토큰 4개 생성. 기력 4 획득. 이번 턴 토큰 생성량 2배.",
-        "en": "Create 4 Soldier Tokens. Gain 4 Stamina. Token generation doubled this turn."
+        "ko": "4개 생성. 기 4 획득. 이번 턴 토큰 생성량 2배.",
+        "en": "Create 4 . Gain 4 Qi. Token generation doubled this turn."
       },
       "flavor_text": {
-        "ko": "진형을 완성하면 — 병사들이 쏟아져 나오고 기력이 솟구친다.",
-        "en": "When the formation is complete — soldiers pour forth and stamina surges."
+        "ko": "전략을 완성하면 — 병사들이 쏟아져 나오고 기가 솟구친다.",
+        "en": "When the combat tacticsis complete — soldiers pour forth and Qi surges."
       },
-      "balance_rationale": "1코스트로 토큰 3+기력 3+토큰 2배. 기존 토큰 생성 카드(G001 토큰1, G004 AoE요구)보다 강력. 진형·기력 빌드 융합 카드. 다음 G013(기력→피해)나 G026(기력 전소)과 연계 시 폭발적.",
+      "balance_rationale": "1코스트로 토큰 3+기 3+토큰 2배. 기존 토큰 생성 카드(G001 토큰1, G004 AoE요구)보다 강력. 전략·기 빌드 융합 카드. 다음 G013(기→피해)나 G026(기 전소)과 연계 시 폭발적.",
       "class_synergy": [
         "G013",
         "G026",
@@ -1039,7 +1012,6 @@
       "upgrade_cost": 150,
       "values": {
         "tokens": 3,
-        "stamina_gain": 3,
         "token_double": true
       }
     }
@@ -1054,12 +1026,12 @@
       "visual_note": "적 캐릭터 주변에 포위 링 이펙트"
     },
     {
-      "id": "병사_토큰",
-      "ko": "병사 토큰",
-      "en": "Soldier Token",
+      "id": "",
+      "ko": "",
+      "en": "",
       "description": "플레이어 대신 피해를 1회 받고 소멸. 소멸 시 기 1 회복. 중첩 가능 — 각 토큰이 순서대로 피해를 흡수.",
       "duration_type": "hit_based",
-      "visual_note": "플레이어 옆에 소형 병사 토큰 아이콘 표시"
+      "visual_note": "플레이어 옆에 소형 아이콘 표시"
     }
   ]
 }

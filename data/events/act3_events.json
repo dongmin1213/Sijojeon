@@ -162,13 +162,13 @@
       "title": {
         "ko": "어의의 치료실",
         "description": {
-          "ko": "궁궐 한쪽에 어의의 치료실이 아직 남아 있도다. 약재가 풍부하니라.",
+          "ko": "궁궐 한쪽에 어의의 치료실이 아직 남아 있도다. 자원이 풍부하니라.",
           "en": "The Royal Physician's clinic still stands in a corner of the palace. Medicinal supplies are plentiful."
         },
         "en": "The Royal Physician's Clinic"
       },
       "flavor_text": {
-        "ko": "\"아직 쓸 수 있는 약재가 남아있소이다.\"",
+        "ko": "\"아직 쓸 수 있는 자원이 남아있소이다.\"",
         "en": "\"There are still usable medicines here.\""
       },
       "choices": [
@@ -205,11 +205,11 @@
         {
           "id": "steal",
           "text": {
-            "ko": "약재를 슬쩍 훔쳐 달아난다.",
+            "ko": "자원을 슬쩍 훔쳐 달아난다.",
             "en": "Steal the medicines and flee."
           },
           "result_text": {
-            "ko": "약재로 자가 치료하였느니라. HP 25 회복.",
+            "ko": "자원로 자가 치료하였느니라. HP 25 회복.",
             "en": "You treat yourself with the stolen medicines. Restore 25 HP."
           },
           "effect_type": "hp_gain",
@@ -617,7 +617,7 @@
             "en": "Buy sundries. (Gold -8, HP +10)"
           },
           "result_text": {
-            "ko": "약재와 음식을 구하였느니라. HP 10 회복.",
+            "ko": "자원와 음식을 구하였느니라. HP 10 회복.",
             "en": "You buy medicines and food. Restore 10 HP."
           },
           "note": "금화→HP.",
@@ -886,9 +886,9 @@
     {
       "id": "EVT_SG_005",
       "title": {
-        "ko": "약재상의 비약",
+        "ko": "자원상의 비약",
         "description": {
-          "ko": "약재상이 특별한 비약을 판매하고 있다. 효과가 대단하다고 자랑하지만 부작용도 있을 수 있다.",
+          "ko": "자원상이 특별한 비약을 판매하고 있다. 효과가 대단하다고 자랑하지만 부작용도 있을 수 있다.",
           "en": "An herbalist sells a special elixir, boasting of its incredible effects — though side effects are possible."
         },
         "en": "The Herbalist's Elixir"
@@ -943,7 +943,7 @@
               "effect_type": "hp_gain",
               "effect_value": 15,
               "text": {
-                "ko": "흥정에 성공! 약재상이 감탄하며 약재를 공짜로 준다. HP 15 회복.",
+                "ko": "흥정에 성공! 자원상이 감탄하며 자원을 공짜로 준다. HP 15 회복.",
                 "en": "Bargaining succeeds! The impressed herbalist gives you medicine for free. Restore 15 HP."
               }
             },
@@ -952,7 +952,7 @@
               "effect_type": "hp_loss",
               "effect_value": 5,
               "text": {
-                "ko": "흥정에 실패. 화난 약재상이 던진 약병에 맞았다. HP 5 손실.",
+                "ko": "흥정에 실패. 화난 자원상이 던진 약병에 맞았다. HP 5 손실.",
                 "en": "Bargaining fails. The angry herbalist throws a bottle at you. Lose 5 HP."
               }
             }

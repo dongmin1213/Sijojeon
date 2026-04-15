@@ -198,7 +198,7 @@
         "en": "HP +8 on elite victory."
       },
       "flavor_text": {
-        "ko": "조선 최고의 약재. 기운이 빠진 몸에 한 모금이면 생기가 돈다.",
+        "ko": "조선 최고의 자원. 기운이 빠진 몸에 한 모금이면 생기가 돈다.",
         "en": "The finest medicine in Joseon. A single sip revives a weary body."
       },
       "balance_rationale": "정예 전투(막당 1~2회)에서만 발동. 런 전체 약 4회 × 8 = 32 HP. 총 HP 대비 ~40% 수준의 '총 회복량'. 일반 회복 이벤트(휴식처 30%)보다 낮아 일반 등급 적합.",
@@ -221,8 +221,8 @@
       "class_restriction": "의적",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 이번 전투 동안 기력 최대치가 1 증가한다. (턴당 AP 4)",
-        "en": "At the start of combat, max Stamina is increased by 1 for this fight. (4 AP per turn)"
+        "ko": "전투 시작 시 이번 전투 동안 기 최대치가 1 증가한다. (턴당 AP 4)",
+        "en": "At the start of combat, max Qi is increased by 1 for this fight. (4 AP per turn)"
       },
       "effect_description": {
         "ko": "매 전투 AP 최대치 +1 (의적 전용)",
@@ -263,7 +263,7 @@
         "ko": "대학·논어·맹자·중용. 넘기는 손이 빠를수록 지식이 쌓인다.",
         "en": "Great Learning, Analects, Mencius, Doctrine of the Mean. The faster you turn the pages, the more knowledge accumulates."
       },
-      "balance_rationale": "턴당 +1 드로우 = 사실상 시작 핸드 6장. 학식 누적 전략(콤보) 특성상 많은 카드가 필요한 문관에게 최적. 단, 첫 카드를 낭비할 유인이 생겨 의사결정 복잡도 증가.",
+      "balance_rationale": "턴당 +1 드로우 = 사실상 시작 핸드 6장. 지식 누적 전략(콤보) 특성상 많은 카드가 필요한 문관에게 최적. 단, 첫 카드를 낭비할 유인이 생겨 의사결정 복잡도 증가.",
       "obtain_from": [
         "elite_reward",
         "event"
@@ -314,18 +314,18 @@
       "class_restriction": "무당",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 영력을 2 추가 획득한다.",
+        "ko": "전투 시작 시 기를 2 추가 획득한다.",
         "en": "Gain 2 additional Spirit Power at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 영력 +2 (무당 전용)",
+        "ko": "전투 시작 기 +2 (무당 전용)",
         "en": "Spirit Power +2 at battle start (Shaman only)."
       },
       "flavor_text": {
         "ko": "소리를 낼수록 귀신이 더 가까이 온다.",
         "en": "The louder it rings, the closer the spirits draw near."
       },
-      "balance_rationale": "영력 2 = 소환 카드 1~2회 추가 사용 가능. 초반 소환 전략을 앞당겨 전투 첫 번째 사이클을 강화. 영력 자원 의존성이 높은 무당에게 핵심 유물.",
+      "balance_rationale": "기 2 = 소환 카드 1~2회 추가 사용 가능. 초반 소환 전략을 앞당겨 전투 첫 번째 사이클을 강화. 기 자원 의존성이 높은 무당에게 핵심 유물.",
       "obtain_from": [
         "elite_reward",
         "event"
@@ -515,7 +515,7 @@
         "ko": "세발 까마귀의 깃털에는 태양의 기운이 깃들어 있다. 하지만 태양은 모든 것을 태운다.",
         "en": "The three-legged crow's feather holds the power of the sun. But the sun burns everything."
       },
-      "balance_rationale": "전설 등급. AP +1/턴은 약 30~50% 행동력 증가 — 매우 강력. 저주 카드 2장(무기력, 오물)은 핸드 오염 및 드로우 낭비를 유발. '카드 제거' 전략 또는 저주 내성 카드와의 시너지를 요구하는 고위험-고보상 설계.",
+      "balance_rationale": "전설 등급. AP +1/턴은 약 30~50% 행동력 증가 — 매우 강력. 저주 카드 2장(무기, 오물)은 핸드 오염 및 드로우 낭비를 유발. '카드 제거' 전략 또는 저주 내성 카드와의 시너지를 요구하는 고위험-고보상 설계.",
       "obtain_from": [
         "boss_reward"
       ],
@@ -535,18 +535,18 @@
       "class_restriction": "무당",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 영력 2를 획득한다.",
+        "ko": "전투 시작 시 기 2를 획득한다.",
         "en": "Gain 2 Spirit Power at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 시 영력 +2 (무당 전용, 시작 유물)",
+        "ko": "전투 시작 시 기 +2 (무당 전용, 시작 유물)",
         "en": "Spirit Power +2 at battle start (Shaman only, starting relic)."
       },
       "flavor_text": {
         "ko": "방울 소리에 신령이 내려앉는다 — 무당의 전투는 여기서 시작된다.",
         "en": "Spirits descend at the sound of these bells — the shaman's battle begins here."
       },
-      "balance_rationale": "무당 시작 유물. 첫 턴부터 영력 2로 시작. 저주·소환 카드의 영력 조건을 즉시 충족 가능. 영력 기반 콤보 진입 장벽 완화.",
+      "balance_rationale": "무당 시작 유물. 첫 턴부터 기 2로 시작. 저주·소환 카드의 기 조건을 즉시 충족 가능. 기 기반 콤보 진입 장벽 완화.",
       "obtain_from": [
         "starting_relic"
       ],
@@ -565,12 +565,12 @@
       "class_restriction": "의적",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 병사 토큰 1개를 자동으로 생성한다.",
-        "en": "Automatically create 1 Soldier Token at the start of combat."
+        "ko": "전투 시작 시 1개를 자동으로 생성한다.",
+        "en": "Automatically create 1 at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 시 병사 토큰 1개 생성 (의적 전용, 시작 유물)",
-        "en": "Create 1 Soldier Token at battle start (Bandit only, starting relic)."
+        "ko": "전투 시작 시 1개 생성 (의적 전용, 시작 유물)",
+        "en": "Create 1 at battle start (Bandit only, starting relic)."
       },
       "flavor_text": {
         "ko": "활빈당의 표식이 새겨진 두건 — 쓰는 순간 동료들이 뒤를 따른다.",
@@ -595,18 +595,18 @@
       "class_restriction": "선비",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 학식 2를 획득한다.",
+        "ko": "전투 시작 시 지식 2를 획득한다.",
         "en": "Gain 2 Scholarship at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 시 학식 +2 (선비 전용, 시작 유물)",
+        "ko": "전투 시작 시 지식 +2 (선비 전용, 시작 유물)",
         "en": "Scholarship +2 at battle start (Scholar only, starting relic)."
       },
       "flavor_text": {
-        "ko": "먹물이 마르지 않는 벼루 — 선비의 학식은 전장에서도 빛난다.",
+        "ko": "먹물이 마르지 않는 벼루 — 선비의 지식은 전장에서도 빛난다.",
         "en": "An inkstone that never dries — a scholar's wisdom shines even on the battlefield."
       },
-      "balance_rationale": "선비 시작 유물. 첫 턴부터 학식 2로 시작. 탄핵(학식 1 소비) 즉시 사용 가능. 독서 1장이면 학식 3으로 상소 준비 완료.",
+      "balance_rationale": "선비 시작 유물. 첫 턴부터 지식 2로 시작. 탄핵(지식 1 소비) 즉시 사용 가능. 독서 1장이면 지식 3으로 상소 준비 완료.",
       "obtain_from": [
         "starting_relic"
       ],
@@ -625,18 +625,18 @@
       "class_restriction": "의녀",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 약재 2를 획득한다.",
+        "ko": "전투 시작 시 자원 2를 획득한다.",
         "en": "Gain 2 Herbs at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 시 약재 +2 (의녀 전용, 시작 유물)",
+        "ko": "전투 시작 시 자원 +2 (의녀 전용, 시작 유물)",
         "en": "Herbs +2 at battle start (Healer only, starting relic)."
       },
       "flavor_text": {
         "ko": "갖은 약초가 든 주머니 — 의녀의 손길이 닿으면 독도 약이 된다.",
         "en": "A pouch filled with various herbs — in the healer's hands, even poison becomes medicine."
       },
-      "balance_rationale": "의녀 시작 유물. 첫 턴부터 약재 2로 시작. 회복·해독 카드의 약재 조건을 즉시 충족 가능. 독 DoT와 HP 관리 전략의 진입 장벽 완화.",
+      "balance_rationale": "의녀 시작 유물. 첫 턴부터 자원 2로 시작. 회복·해독 카드의 자원 조건을 즉시 충족 가능. 독 DoT와 HP 관리 전략의 진입 장벽 완화.",
       "obtain_from": [
         "starting_relic"
       ],
@@ -655,7 +655,7 @@
       "class_restriction": "기생",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 흥 2를 획득한다.",
+        "ko": "전투 시작 시 기 2를 획득한다.",
         "en": "Gain 2 Excitement at the start of combat."
       },
       "effect_description": {
@@ -666,7 +666,7 @@
         "ko": "비파 한 곡조에 전장의 기운이 달라진다 — 기생의 무대는 어디든 펼쳐진다.",
         "en": "A single pipa melody shifts the battlefield's energy — the entertainer's stage is wherever she stands."
       },
-      "balance_rationale": "기생 시작 유물. 첫 턴부터 흥 2로 시작. 준비 턴 없이 폭발 딜 카드의 흥 조건 즉시 활용 가능. 타이밍 집중형 플레이의 초반 리듬 확보.",
+      "balance_rationale": "기생 시작 유물. 첫 턴부터 기 2로 시작. 준비 턴 없이 폭발 딜 카드의 흥 조건 즉시 활용 가능. 타이밍 집중형 플레이의 초반 리듬 확보.",
       "obtain_from": [
         "starting_relic"
       ],
@@ -685,18 +685,18 @@
       "class_restriction": "승병",
       "trigger": "battle_start",
       "effect": {
-        "ko": "전투 시작 시 인과 1을 획득하고 방어도 3을 얻는다.",
+        "ko": "전투 시작 시 기 1을 획득하고 방어도 3을 얻는다.",
         "en": "Gain 1 Karma and 3 Block at the start of combat."
       },
       "effect_description": {
-        "ko": "전투 시작 시 인과 +1, 방어도 +3 (승병 전용, 시작 유물)",
+        "ko": "전투 시작 시 기 +1, 방어도 +3 (승병 전용, 시작 유물)",
         "en": "Karma +1, Block +3 at battle start (Warrior Monk only, starting relic)."
       },
       "flavor_text": {
-        "ko": "목탁 소리가 울릴 때마다 인과의 수레바퀴가 돌아간다 — 승병의 길은 수행과 전투가 하나다.",
+        "ko": "목탁 소리가 울릴 때마다 기의 수레바퀴가 돌아간다 — 승병의 길은 수행과 전투가 하나다.",
         "en": "With each strike of the moktak, the wheel of karma turns — for the warrior monk, training and battle are one."
       },
-      "balance_rationale": "승병 시작 유물. 인과 1 + 방어도 3으로 수비적 시작. 승병의 경제 기반 조건부 강력 카드를 위한 인과 축적 시작점. 방어도는 느린 시작을 보완.",
+      "balance_rationale": "승병 시작 유물. 기 1 + 방어도 3으로 수비적 시작. 승병의 경제 기반 조건부 강력 카드를 위한 기 축적 시작점. 방어도는 느린 시작을 보완.",
       "obtain_from": [
         "starting_relic"
       ],
@@ -708,7 +708,7 @@
     {
       "id": "R016",
       "name": {
-        "ko": "약재 꾸러미",
+        "ko": "자원 꾸러미",
         "romanized": "Yakmae Kkurumi",
         "en": "Herbal Bundle"
       },
@@ -931,7 +931,7 @@
       "name": {
         "ko": "오행진",
         "romanized": "Ohaengjin",
-        "en": "Five Elements Formation"
+        "en": "Five Elements combat tactics"
       },
       "rarity": 3,
       "class_restriction": null,
@@ -946,7 +946,7 @@
       },
       "flavor_text": {
         "ko": "오행의 진을 펼쳐 기운을 모은다 — 전장마다 다시 태어난다.",
-        "en": "Deploy the Five Elements formation to gather energy — reborn on every battlefield."
+        "en": "Deploy the Five Elements combat tacticsto gather energy — reborn on every battlefield."
       },
       "balance_rationale": "희귀 유물. 전투 시작 힘+1은 모든 공격 +1피해(6피해→7피해 +16%). 기 최대+1로 3기→4기 기반 콤보 가능. 두 효과 모두 전투 내 한시적이라 영구 버프보다 약함.",
       "obtain_from": [
@@ -1023,38 +1023,6 @@
       }
     },
     {
-      "id": "RM001",
-      "name": {
-        "ko": "병서",
-        "romanized": "Byeongseo",
-        "en": "Art of War"
-      },
-      "rarity": 2,
-      "class_restriction": "의적",
-      "trigger": "on_formation_card_play",
-      "effect": {
-        "ko": "진형 카드를 사용할 때마다 기력을 1 추가 획득한다.",
-        "en": "Gain 1 additional Stamina whenever you play a Formation card."
-      },
-      "effect_description": {
-        "ko": "진형 카드 사용 시 기력 +1 추가 (의적 전용)",
-        "en": "Stamina +1 on Formation card play (Warrior only)."
-      },
-      "flavor_text": {
-        "ko": "손자의 병법을 이어받아 — 진형을 치를 때마다 기운이 더 솟는다.",
-        "en": "Inheriting Sun Tzu's strategies — energy surges with every formation deployed."
-      },
-      "balance_rationale": "의적 전용 고급 유물. G001 진형 전환(기력+2)→진형 전환+1=기력+3으로 강화. 진형·토큰 아키타입 핵심 가속. 기력 폭딜 아키타입과도 시너지.",
-      "obtain_from": [
-        "elite_reward",
-        "event",
-        "shop"
-      ],
-      "values": {
-        "extra_stamina_on_formation_card": 1
-      }
-    },
-    {
       "id": "RW001",
       "name": {
         "ko": "어진",
@@ -1065,18 +1033,18 @@
       "class_restriction": "선비",
       "trigger": "on_scholarship_exhaust",
       "effect": {
-        "ko": "학식을 전소할 때마다 HP 최대치의 5%를 회복한다. (선비 전용)",
+        "ko": "지식을 전소할 때마다 HP 최대치의 5%를 회복한다. (선비 전용)",
         "en": "Restore 5% of max HP whenever Scholarship is fully spent. (Scholar only)"
       },
       "effect_description": {
-        "ko": "학식 전소 시 HP 최대치 5% 회복 (선비 전용)",
+        "ko": "지식 전소 시 HP 최대치 5% 회복 (선비 전용)",
         "en": "Restore 5% max HP on Scholarship exhaust (Scholar only)."
       },
       "flavor_text": {
         "ko": "왕의 초상을 곁에 두고 충성을 다한다 — 지식을 쏟아낼 때 몸이 회복된다.",
         "en": "Keeping the royal portrait close, serving with loyalty — when knowledge pours forth, the body recovers."
       },
-      "balance_rationale": "선비 전용 고급 유물. 문관 HP 65 기준 학식 전소(상소/왕의 윤허) 시 HP 3 회복. 학식 폭발 빌드에서 매 번 학식을 전소하면 전투마다 3~5회 회복 가능.",
+      "balance_rationale": "선비 전용 고급 유물. 문관 HP 65 기준 지식 전소(상소/왕의 윤허) 시 HP 3 회복. 지식 폭발 빌드에서 매 번 지식을 전소하면 전투마다 3~5회 회복 가능.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1281,18 +1249,18 @@
       "class_restriction": "선비",
       "trigger": "on_resource_spend",
       "effect": {
-        "ko": "학식을 소비할 때 (선비 전용)",
+        "ko": "지식을 소비할 때 (선비 전용)",
         "en": "Fill 1 additional (Scholar only)"
       },
       "effect_description": {
-        "ko": "학식 소비 시",
+        "ko": "지식 소비 시",
         "en": ""
       },
       "flavor_text": {
-        "ko": "먹물을 담는 작은 그릇. 학식이 흐르면 시도 따라 흐른다.",
+        "ko": "먹물을 담는 작은 그릇. 지식이 흐르면 시도 따라 흐른다.",
         "en": "A small vessel for ink. When scholarship flows, so does the Sijo."
       },
-      "balance_rationale": "선비 전용 시너지. 학식 소비 카드를 쓰면 고급 등급 적합.",
+      "balance_rationale": "선비 전용 시너지. 지식 소비 카드를 쓰면 고급 등급 적합.",
       "obtain_from": [
         "elite_reward",
         "event",
@@ -1317,12 +1285,12 @@
       {
         "id": "CURSE_001",
         "name": {
-          "ko": "무기력",
+          "ko": "무기",
           "romanized": "Mugiryeok",
           "en": "Lethargy"
         },
         "effect": {
-          "ko": "사용 불가. 핸드에 있는 동안 기력(AP) 회복량이 1 감소한다.",
+          "ko": "사용 불가. 핸드에 있는 동안 기(AP) 회복량이 1 감소한다.",
           "en": "Unplayable. While in hand, Qi recovery is reduced by 1."
         },
         "type": "curse"

@@ -147,19 +147,6 @@
       "color": "#8033B3"
     },
     {
-      "id": "병사_토큰",
-      "name": {
-        "ko": "병사 토큰",
-        "en": "Soldier Token"
-      },
-      "category": "status_effect",
-      "description": {
-        "ko": "무관 전용. 진형 카드로 생성됩니다. 턴 시작 시 보유하면 방어도 +2를 얻습니다.",
-        "en": "Warrior exclusive. Created by Formation cards. Gain +2 Block at the start of each turn while held."
-      },
-      "color": "#E6B333"
-    },
-    {
       "id": "death_mark",
       "name": {
         "ko": "사망표식",
@@ -214,25 +201,25 @@
     {
       "id": "giryeok",
       "name": {
-        "ko": "기력",
-        "en": "Stamina"
+        "ko": "기",
+        "en": "Qi"
       },
       "category": "mechanic",
       "description": {
-        "ko": "무관 전용 자원. 최대 10. 특정 카드 사용 시 소비/획득되며, 기력을 소비하여 강력한 효과를 발동합니다.",
-        "en": "Warrior exclusive resource. Max 10. Gained/spent by specific cards; spend Stamina to trigger powerful effects."
+        "ko": "무관 전용 자원. 최대 10. 특정 카드 사용 시 소비/획득되며, 기를 소비하여 강력한 효과를 발동합니다.",
+        "en": "Warrior exclusive resource. Max 10. Gained/spent by specific cards; spend Qi to trigger powerful effects."
       },
       "color": "#FF6633"
     },
     {
       "id": "haksik",
       "name": {
-        "ko": "학식",
+        "ko": "지식",
         "en": "Scholarship"
       },
       "category": "mechanic",
       "description": {
-        "ko": "문관 전용 자원. 최대 6. 카드 사용 시 축적되며, 학식을 소비하여 효과를 증폭합니다.",
+        "ko": "문관 전용 자원. 최대 6. 카드 사용 시 축적되며, 지식을 소비하여 효과를 증폭합니다.",
         "en": "Scholar exclusive resource. Max 6. Accumulated by playing cards; spend Scholarship to amplify effects."
       },
       "color": "#6699FF"

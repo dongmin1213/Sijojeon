@@ -540,7 +540,7 @@ func _on_hand_changed(_new_hand: Array[String]) -> void:
 func _on_qi_changed(current: int, max_val: int) -> void:
 	# v9: 기를 간결한 오브 스타일로 표시
 	qi_label.text = tr("BATTLE_QI_FMT") % [current, max_val]
-	# 기력 부족 시 색상 변경
+	# 기(Qi) 부족 시 색상 변경
 	if current == 0:
 		qi_label.add_theme_color_override("font_color", Color(0.5, 0.4, 0.2, 0.7))
 	else:

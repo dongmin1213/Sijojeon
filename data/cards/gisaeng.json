@@ -99,11 +99,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "흥 2를 획득한다. 카드 1장을 드로우한다.",
+        "ko": "기 2를 획득한다. 카드 1장을 드로우한다.",
         "en": "Gain 2 Heung. Draw 1 card."
       },
       "effect_upgraded": {
-        "ko": "흥 2를 획득한다. 카드 2장을 드로우한다.",
+        "ko": "기 2를 획득한다. 카드 2장을 드로우한다.",
         "en": "Gain 2 Heung. Draw 2 cards."
       },
       "flavor_text": {
@@ -215,11 +215,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "적에게 2 피해를 4번 입힌다. 흥 1을 획득한다.",
+        "ko": "적에게 2 피해를 4번 입힌다. 기 1을 획득한다.",
         "en": "Deal 2 damage 4 times to an enemy. Gain 1 Heung."
       },
       "effect_upgraded": {
-        "ko": "적에게 3 피해를 4번 입힌다. 흥 2를 획득한다.",
+        "ko": "적에게 3 피해를 4번 입힌다. 기 2를 획득한다.",
         "en": "Deal 3 damage 4 times to an enemy. Gain 2 Heung."
       },
       "flavor_text": {
@@ -405,11 +405,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "적에게 매혹 1을 부여한다. 흥 1을 획득한다.",
+        "ko": "적에게 매혹 1을 부여한다. 기 1을 획득한다.",
         "en": "Apply 1 Charm to an enemy. Gain 1 Heung."
       },
       "effect_upgraded": {
-        "ko": "매혹 2를 부여한다. 흥 1을 획득한다.",
+        "ko": "매혹 2를 부여한다. 기 1을 획득한다.",
         "en": "Apply 2 Charm to an enemy. Gain 1 Heung."
       },
       "flavor_text": {
@@ -524,11 +524,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "이번 턴 다음에 사용하는 가무(dance) 카드의 피해를 +4 증가시킨다. 흥 1을 획득한다.",
+        "ko": "이번 턴 다음에 사용하는 가무(dance) 카드의 피해를 +4 증가시킨다. 기 1을 획득한다.",
         "en": "The next dance card you play this turn deals +4 additional damage. Gain 1 Heung."
       },
       "effect_upgraded": {
-        "ko": "다음 가무 카드 피해 +6 증가. 흥 2를 획득한다.",
+        "ko": "다음 가무 카드 피해 +6 증가. 기 2를 획득한다.",
         "en": "Next dance card deals +6 additional damage. Gain 2 Heung."
       },
       "flavor_text": {
@@ -564,18 +564,18 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "현재 흥 수치만큼 적에게 피해를 입힌다. (최소 4, 최대 20) 흥 2를 소비한다.",
+        "ko": "현재 흥 수치만큼 적에게 피해를 입힌다. (최소 4, 최대 20) 기 2를 소비한다.",
         "en": "Deal damage to an enemy equal to your current Heung (minimum 4, maximum 20). Consume 2 Heung."
       },
       "effect_upgraded": {
-        "ko": "현재 흥 수치×1.5만큼 피해를 입힌다. (최소 6, 최대 24) 흥 2를 소비한다.",
+        "ko": "현재 흥 수치×1.5만큼 피해를 입힌다. (최소 6, 최대 24) 기 2를 소비한다.",
         "en": "Deal damage equal to Heung × 1.5 (minimum 6, maximum 24). Consume 2 Heung."
       },
       "flavor_text": {
         "ko": "흥이 오르면 오를수록 — 몸이 날카로워지고 타격이 묵직해진다.",
         "en": "The higher her spirit soars — the sharper her body becomes, the heavier each blow."
       },
-      "balance_rationale": "2코스트 흥 기반 피해. 흥 8 보유 시 8피해(기준 미달)이지만 흥 10이면 10피해. 흥 소비로 자원 순환 유도. 가무+풍류 하이브리드 카드. 흥 6이상에서 본전.",
+      "balance_rationale": "2코스트 흥 기반 피해. 기 8 보유 시 8피해(기준 미달)이지만 기 10이면 10피해. 흥 소비로 자원 순환 유도. 가무+풍류 하이브리드 카드. 기 6이상에서 본전.",
       "class_synergy": [
         "GI002",
         "GI013",
@@ -605,18 +605,18 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "흥 3을 획득한다.",
+        "ko": "기 3을 획득한다.",
         "en": "Gain 3 Heung."
       },
       "effect_upgraded": {
-        "ko": "흥 4를 획득한다.",
+        "ko": "기 4를 획득한다.",
         "en": "Gain 4 Heung."
       },
       "flavor_text": {
         "ko": "가락 하나 흥얼거렸을 뿐인데 — 온 방 안에 흥이 돌았다.",
         "en": "She hummed but a single note — and the whole room was filled with joy."
       },
-      "balance_rationale": "0코스트 흥 3 획득. 기공(도사 D001)의 기생 버전. 0코스트로 흥 3은 기준(흥 3/턴) 충족. 풍류 아키타입의 핵심 엔진. 흥에 겨워(G014)·대흥(G016)의 연료.",
+      "balance_rationale": "0코스트 기 3 획득. 기공(도사 D001)의 기생 버전. 0코스트로 기 3은 기준(기 3/턴) 충족. 풍류 아키타입의 핵심 엔진. 흥에 겨워(G014)·대흥(G016)의 연료.",
       "class_synergy": [
         "GI016",
         "GI018",
@@ -643,11 +643,11 @@
       "rarity": 2,
       "rarity_stars": "★★☆☆☆",
       "effect": {
-        "ko": "흥 2를 획득한다. 방어도 3을 획득한다.",
+        "ko": "기 2를 획득한다. 방어도 3을 획득한다.",
         "en": "Gain 2 Heung. Gain 3 Block."
       },
       "effect_upgraded": {
-        "ko": "흥 3을 획득한다. 방어도 4를 획득한다.",
+        "ko": "기 3을 획득한다. 방어도 4를 획득한다.",
         "en": "Gain 3 Heung. Gain 4 Block."
       },
       "flavor_text": {
@@ -720,18 +720,18 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "매 턴 시작 시 흥 2를 추가로 획득한다 (이번 전투 지속). 흥 5 이상 보유 시 모든 카드의 비용이 1 감소한다 (이번 전투).",
+        "ko": "매 턴 시작 시 기 2를 추가로 획득한다 (이번 전투 지속). 기 5 이상 보유 시 모든 카드의 비용이 1 감소한다 (이번 전투).",
         "en": "At the start of each turn, gain 2 additional Heung (this battle). While you have 5 or more Heung, all cards cost 1 less (this battle)."
       },
       "effect_upgraded": {
-        "ko": "매 턴 흥 3 추가 획득. 흥 4 이상 보유 시 비용 감소 조건 완화.",
+        "ko": "매 턴 기 3 추가 획득. 기 4 이상 보유 시 비용 감소 조건 완화.",
         "en": "Gain 3 additional Heung at start of each turn. Cost reduction triggers at 4 or more Heung."
       },
       "flavor_text": {
         "ko": "흥이 한번 오르면 멈출 수가 없으니 — 오늘 밤 가락이 끝날 줄 모르겠구나.",
         "en": "Once the spirit rises it cannot be stopped — it seems the music will not end tonight."
       },
-      "balance_rationale": "3코스트 영구 흥 가속+비용 감소 조건. 천기(도사 D011) 패시브 유형. 흥 5 유지 시 모든 카드 1코스트 감소 = 실질 3~5기 절약/턴. 풍류 아키타입 최강 패시브. 흥 관리가 전략의 핵심.",
+      "balance_rationale": "3코스트 영구 흥 가속+비용 감소 조건. 천기(도사 D011) 패시브 유형. 기 5 유지 시 모든 카드 1코스트 감소 = 실질 3~5기 절약/턴. 풍류 아키타입 최강 패시브. 흥 관리가 전략의 핵심.",
       "class_synergy": [
         "GI015",
         "GI016",
@@ -760,11 +760,11 @@
       "rarity": 3,
       "rarity_stars": "★★★☆☆",
       "effect": {
-        "ko": "체력 4를 회복한다. 흥 1을 획득한다. 카드 1장을 드로우한다.",
+        "ko": "체력 4를 회복한다. 기 1을 획득한다. 카드 1장을 드로우한다.",
         "en": "Restore 4 HP. Gain 1 Heung. Draw 1 card."
       },
       "effect_upgraded": {
-        "ko": "체력 6을 회복한다. 흥 2를 획득한다. 카드 1장을 드로우한다.",
+        "ko": "체력 6을 회복한다. 기 2를 획득한다. 카드 1장을 드로우한다.",
         "en": "Restore 6 HP. Gain 2 Heung. Draw 1 card."
       },
       "flavor_text": {
@@ -841,11 +841,11 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "모든 적에게 매혹 3을 부여한다. 흥 3을 획득한다. 카드 2장을 드로우한다.",
+        "ko": "모든 적에게 매혹 3을 부여한다. 기 3을 획득한다. 카드 2장을 드로우한다.",
         "en": "Apply 3 Charm to ALL enemies. Gain 3 Heung. Draw 2 cards."
       },
       "effect_upgraded": {
-        "ko": "모든 적에게 매혹 4를 부여한다. 흥 4를 획득한다. 카드 3장을 드로우한다.",
+        "ko": "모든 적에게 매혹 4를 부여한다. 기 4를 획득한다. 카드 3장을 드로우한다.",
         "en": "Apply 4 Charm to ALL enemies. Gain 4 Heung. Draw 3 cards."
       },
       "flavor_text": {
@@ -986,18 +986,18 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "이번 전투 동안, 카드를 사용할 때마다 흥 1을 추가로 획득한다. 흥 10 이상 보유 시 체력 2를 회복한다.",
+        "ko": "이번 전투 동안, 카드를 사용할 때마다 기 1을 추가로 획득한다. 기 10 이상 보유 시 체력 2를 회복한다.",
         "en": "For this battle, gain 1 additional Heung each time you play a card. While you have 10 or more Heung, restore 2 HP each turn."
       },
       "effect_upgraded": {
-        "ko": "카드 사용 시 흥 1 추가 획득 (지속). 흥 8 이상 보유 시 체력 2 회복.",
+        "ko": "카드 사용 시 기 1 추가 획득 (지속). 기 8 이상 보유 시 체력 2 회복.",
         "en": "Gain 1 additional Heung per card played (persists). HP recovery triggers at 8+ Heung."
       },
       "flavor_text": {
         "ko": "기방에서의 풍류는 멈추지 않으니 — 가락이 이어지는 한 힘도 이어지더라.",
         "en": "The pungyu of the salon never ceases — while the music continues, so does the strength."
       },
-      "balance_rationale": "해금 카드. 2코스트 패시브 흥 생성기. 카드당 흥 1이면 1턴에 카드 4~5장 사용 시 흥 4~5 추가. 흥 10 유지 시 회복 2/턴으로 지구전 생존력 강화. 풍류 아키타입 중반 엔진.",
+      "balance_rationale": "해금 카드. 2코스트 패시브 흥 생성기. 카드당 기 1이면 1턴에 카드 4~5장 사용 시 기 4~5 추가. 기 10 유지 시 회복 2/턴으로 지구전 생존력 강화. 풍류 아키타입 중반 엔진.",
       "class_synergy": [
         "GI015",
         "GI016",
@@ -1036,15 +1036,15 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "모든 적에게 3 피해를 입힌다. 모든 적에게 약화 1을 부여한다. 흥 2를 획득한다.",
+        "ko": "모든 적에게 3 피해를 입힌다. 모든 적에게 약화 1을 부여한다. 기 2를 획득한다.",
         "en": "Deal 3 damage to ALL enemies. Apply 1 Weak to ALL enemies. Gain 2 Heung."
       },
       "effect_upgraded": {
-        "ko": "모든 적에게 4 피해와 약화 2를 부여한다. 흥 3을 획득한다.",
+        "ko": "모든 적에게 4 피해와 약화 2를 부여한다. 기 3을 획득한다.",
         "en": "Deal 4 damage and apply 2 Weak to ALL enemies. Gain 3 Heung."
       },
       "flavor_text": {
-        "ko": "여섯 악기가 한 소리로 어우러지면 — 듣는 자의 기력이 절로 꺾이더이다.",
+        "ko": "여섯 악기가 한 소리로 어우러지면 — 듣는 자의 기가 절로 꺾이더이다.",
         "en": "When six instruments blend into one sound — the listener's strength is broken without a blow."
       },
       "balance_rationale": "해금 카드. 1코스트 광역 약화+피해+흥 획득. 1코스트 기준 단일 6피해 대비 광역 3피해+약화+흥은 유틸리티 가치로 보상. 가무·풍류 두 아키타입 공통 카드.",
@@ -1134,15 +1134,15 @@
       "rarity": 5,
       "rarity_stars": "★★★★★",
       "effect": {
-        "ko": "흥 4를 획득한다. 카드 2장을 드로우한다. 적에게 매혹 2를 부여한다. (0코스트!)",
+        "ko": "기 4를 획득한다. 카드 2장을 드로우한다. 적에게 매혹 2를 부여한다. (0코스트!)",
         "en": "Gain 4 Heung. Draw 2 cards. Apply 2 Charm to an enemy. (Zero cost!)"
       },
       "effect_upgraded": {
-        "ko": "흥 5를 획득한다. 카드 3장을 드로우한다. 매혹 3을 부여한다.",
+        "ko": "기 5를 획득한다. 카드 3장을 드로우한다. 매혹 3을 부여한다.",
         "en": "Gain 5 Heung. Draw 3 cards. Apply 3 Charm to an enemy."
       },
       "flavor_text": {
-        "ko": "천 년을 피어 있을 꽃 한 송이가 — 세상을 뒤흔드는 데 기력이 필요하랴.",
+        "ko": "천 년을 피어 있을 꽃 한 송이가 — 세상을 뒤흔드는 데 기가 필요하랴.",
         "en": "A flower that blooms for a thousand years — why would it need effort to shake the world?"
       },
       "balance_rationale": "해금 전설 카드. 0코스트 흥4+드로우2+매혹2. 귀문도해(도사 D027, 0코+기3+드2)의 기생 강화 버전. 세 아키타입 모두 전진시키는 0코스트 만능 엔진. 전설 등급 정당. G020·G014·G011과 콤보 시 폭발적.",

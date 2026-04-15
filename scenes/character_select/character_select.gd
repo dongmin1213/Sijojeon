@@ -119,12 +119,7 @@ func _is_character_unlocked(character_id: String) -> bool:
 
 ## 리소스 ID(한국어) → 번역키 매핑
 const RESOURCE_KEY_MAP := {
-	"기력": "RESOURCE_STAMINA",
-	"학식": "RESOURCE_SCHOLARSHIP",
 	"기": "RESOURCE_QI",
-	"영력": "RESOURCE_SPIRIT",
-	"흥": "RESOURCE_HEUNG",
-	"인과": "RESOURCE_CAUSE",
 }
 
 func _translate_resource_name(res_id: String) -> String:

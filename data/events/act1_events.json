@@ -253,7 +253,7 @@
       "title": {
         "ko": "수상한 약장수",
         "description": {
-          "ko": "알록달록한 약재를 늘어놓은 행상인이 노점을 펼쳐놓았도다. \"좋은 약 있소이다!\"",
+          "ko": "알록달록한 자원을 늘어놓은 행상인이 노점을 펼쳐놓았도다. \"좋은 약 있소이다!\"",
           "en": "A peddler has laid out colorful medicines at a street stall. \"Fine remedies for sale!\""
         },
         "en": "The Shady Apothecary"
@@ -1199,7 +1199,7 @@
             "en": "Avoid the noisy commotion."
           },
           "result_text": {
-            "ko": "한적한 곳에서 기력을 추스렸도다. HP 5 회복.",
+            "ko": "한적한 곳에서 기를 추스렸도다. HP 5 회복.",
             "en": "You rest in a quiet place and recover your strength. Restore 5 HP."
           },
           "note": "HP 회복.",
@@ -1467,7 +1467,7 @@
             "en": "Rest beneath the night sky. (HP +8)"
           },
           "result_text": {
-            "ko": "별빛 아래 평온히 쉬며 기력을 회복하였도다.",
+            "ko": "별빛 아래 평온히 쉬며 기를 회복하였도다.",
             "en": "You rest peacefully under the stars, recovering your strength."
           },
           "note": "HP 회복.",
