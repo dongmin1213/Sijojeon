@@ -12,6 +12,8 @@ extends Resource
 @export var current_floor: int = 0
 @export var deck: Array[String] = []
 @export var relics: Array[String] = []
+@export var potions: Array[String] = []  # 포션 인벤토리 (최대 3슬롯, "" = 빈 슬롯)
+@export var max_potion_slots: int = 3
 @export var card_removals_count: int = 0
 @export var upgraded_cards: Array[String] = []  # 강화된 카드 ID 목록
 @export var map_seed: int = 0
@@ -44,6 +46,8 @@ func to_dict() -> Dictionary:
 		"current_floor": current_floor,
 		"deck": deck,
 		"relics": relics,
+		"potions": potions,
+		"max_potion_slots": max_potion_slots,
 		"card_removals_count": card_removals_count,
 		"upgraded_cards": upgraded_cards,
 		"map_seed": map_seed,
@@ -71,6 +75,8 @@ static func from_dict(data: Dictionary) -> RunData:
 	rd.current_floor = data.get("current_floor", 0)
 	rd.deck = Array(data.get("deck", []), TYPE_STRING, "", null)
 	rd.relics = Array(data.get("relics", []), TYPE_STRING, "", null)
+	rd.potions = Array(data.get("potions", []), TYPE_STRING, "", null)
+	rd.max_potion_slots = data.get("max_potion_slots", 3)
 	rd.card_removals_count = data.get("card_removals_count", 0)
 	rd.upgraded_cards = Array(data.get("upgraded_cards", []), TYPE_STRING, "", null)
 	rd.map_seed = data.get("map_seed", 0)

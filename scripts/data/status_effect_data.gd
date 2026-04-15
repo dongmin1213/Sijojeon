@@ -124,3 +124,45 @@ static func _init_registry() -> void:
 		"반격", TranslationServer.translate("SE_NAME_COUNTER"), "🔄", Color(0.8, 0.4, 0.1), EffectType.BUFF,
 		TranslationServer.translate("SE_DESC_COUNTER"), false, true
 	)
+
+	# --- StS 핵심 상태이상 (누락분 추가) ---
+	_registry["dexterity"] = StatusEffectData.new(
+		"dexterity", "민첩", "🏃", Color(0.3, 0.9, 0.3), EffectType.BUFF,
+		"민첩 수치만큼 방어도 카드 사용 시 추가 방어도를 획득한다.", false, true
+	)
+	_registry["허약"] = StatusEffectData.new(
+		"허약", "허약", "🦴", Color(0.6, 0.5, 0.3), EffectType.DEBUFF,
+		"허약 상태에서는 방어도 카드의 방어도가 25% 감소한다.", true, false
+	)
+	_registry["artifact"] = StatusEffectData.new(
+		"artifact", "신물", "✨", Color(1.0, 0.84, 0.0), EffectType.BUFF,
+		"디버프를 받을 때 신물 1을 소모하여 디버프를 무효화한다.", false, false
+	)
+	_registry["intangible"] = StatusEffectData.new(
+		"intangible", "무형", "👻", Color(0.7, 0.7, 1.0), EffectType.BUFF,
+		"받는 피해와 HP 손실이 1로 감소한다.", true, false
+	)
+	_registry["regeneration"] = StatusEffectData.new(
+		"regeneration", "재생", "💚", Color(0.2, 0.8, 0.4), EffectType.BUFF,
+		"턴 종료 시 재생 수치만큼 HP를 회복하고 재생이 1 감소한다.", true, false
+	)
+	_registry["ritual"] = StatusEffectData.new(
+		"ritual", "의식", "🕯", Color(0.8, 0.2, 0.5), EffectType.BUFF,
+		"턴 종료 시 의식 수치만큼 힘을 획득한다.", false, true
+	)
+	_registry["metallicize"] = StatusEffectData.new(
+		"metallicize", "금속화", "⛏", Color(0.6, 0.6, 0.7), EffectType.BUFF,
+		"턴 종료 시 방어도를 수치만큼 획득한다.", false, true
+	)
+	_registry["barricade"] = StatusEffectData.new(
+		"barricade", "보루", "🏰", Color(0.4, 0.4, 0.8), EffectType.BUFF,
+		"방어도가 턴 종료 시 사라지지 않는다.", false, true
+	)
+	_registry["no_draw"] = StatusEffectData.new(
+		"no_draw", "드로우 불가", "🚫", Color(0.5, 0.5, 0.5), EffectType.DEBUFF,
+		"다음 턴에 카드를 드로우할 수 없다.", true, false
+	)
+	_registry["entangle"] = StatusEffectData.new(
+		"entangle", "속박", "🕸", Color(0.4, 0.3, 0.2), EffectType.DEBUFF,
+		"이번 턴에 공격 카드를 사용할 수 없다.", true, false
+	)

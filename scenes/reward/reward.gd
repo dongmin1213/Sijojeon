@@ -8,6 +8,7 @@ var reward_gold: int = 0
 var card_offers: Array[String] = []  # 제시된 카드 ID 목록
 var card_selected: bool = false
 var relic_offer_id: String = ""  # 유물 보상 ID (빈 문자열이면 유물 없음)
+var boss_relic_offers: Array[String] = []  # 보스 유물 3택 목록
 var relic_claimed: bool = false
 
 @onready var title_label: Label = $RewardPanel/VBoxContainer/TitleLabel
@@ -65,6 +66,17 @@ func _try_relic_reward() -> void:
 		if GameManager.run_data.current_node_type == MapData.NodeType.BOSS:
 			source = "boss"
 
+	if source == "boss":
+		# 보스 처치 시 3개 유물 중 1택 (StS 방식)
+		boss_relic_offers.clear()
+		for _i in 3:
+			var rolled := RelicManager.roll_relic_reward("boss")
+			if rolled != "" and rolled not in boss_relic_offers:
+				boss_relic_offers.append(rolled)
+		if not boss_relic_offers.is_empty():
+			_display_boss_relic_choice()
+		return
+
 	relic_offer_id = RelicManager.roll_relic_reward(source)
 	if relic_offer_id != "":
 		_display_relic_offer()
@@ -114,6 +126,70 @@ func _display_relic_offer() -> void:
 	# 카드 섹션 앞에 삽입
 	$RewardPanel/VBoxContainer.add_child(relic_section)
 	$RewardPanel/VBoxContainer.move_child(relic_section, $RewardPanel/VBoxContainer.get_children().find(card_section))
+
+
+func _display_boss_relic_choice() -> void:
+	## 보스 유물 3택 UI (StS 방식: 보스 처치 후 3개 중 1개 선택)
+	var section := VBoxContainer.new()
+	section.name = "BossRelicSection"
+
+	var label := Label.new()
+	label.text = tr("REWARD_BOSS_RELIC")
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", 30)
+	label.add_theme_color_override("font_color", Color(1.0, 0.84, 0.0))
+	section.add_child(label)
+
+	var hbox := HBoxContainer.new()
+	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	hbox.add_theme_constant_override("separation", 16)
+	section.add_child(hbox)
+
+	for i in boss_relic_offers.size():
+		var rid: String = boss_relic_offers[i]
+		var btn := Button.new()
+		btn.custom_minimum_size = Vector2(280, 120)
+		var rname := RelicManager.get_relic_display_name(rid)
+		var rdesc := RelicManager.get_relic_description(rid)
+		btn.text = "✦ %s\n%s" % [rname, rdesc]
+		btn.add_theme_font_size_override("font_size", 20)
+		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
+		var rcolor := RelicManager.get_relic_rarity_color(rid)
+		var style := StyleBoxFlat.new()
+		style.bg_color = Color(0.08, 0.07, 0.06, 0.95)
+		style.border_color = rcolor
+		style.set_border_width_all(2)
+		style.set_corner_radius_all(14)
+		style.set_content_margin_all(12)
+		btn.add_theme_stylebox_override("normal", style)
+
+		var hover_style := style.duplicate()
+		hover_style.bg_color = Color(0.14, 0.12, 0.10, 0.95)
+		hover_style.set_border_width_all(3)
+		btn.add_theme_stylebox_override("hover", hover_style)
+
+		btn.pressed.connect(_on_boss_relic_chosen.bind(i))
+		hbox.add_child(btn)
+
+	$RewardPanel/VBoxContainer.add_child(section)
+	$RewardPanel/VBoxContainer.move_child(section, $RewardPanel/VBoxContainer.get_children().find(card_section))
+
+
+func _on_boss_relic_chosen(index: int) -> void:
+	if relic_claimed:
+		return
+	relic_claimed = true
+	var chosen_id: String = boss_relic_offers[index]
+	RelicManager.acquire_relic(chosen_id)
+
+	var section = $RewardPanel/VBoxContainer.get_node_or_null("BossRelicSection")
+	if section:
+		for child in section.get_children():
+			if child is HBoxContainer:
+				for btn in child.get_children():
+					if btn is Button:
+						btn.disabled = true
 
 
 func _on_relic_claimed() -> void:

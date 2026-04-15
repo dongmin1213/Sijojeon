@@ -1,0 +1,122 @@
+{
+  "version": "0.1",
+  "type": "potion_pool",
+  "description": "포션 풀. 전투 중 즉시 사용 가능한 소모품. 최대 3슬롯.",
+  "max_potion_slots": 3,
+  "drop_rates": {
+    "normal_combat": 0.4,
+    "elite_combat": 0.6,
+    "boss_combat": 1.0
+  },
+  "potions": [
+    {
+      "id": "POT_HP",
+      "rarity": "common",
+      "name": {"ko": "회복탕", "en": "Healing Brew"},
+      "effect": {"ko": "HP 20을 회복한다.", "en": "Restore 20 HP."},
+      "values": {"heal": 20},
+      "target": "self",
+      "flavor": {"ko": "산삼과 감초를 달인 탕약. 몸에 온기가 돈다.", "en": "A decoction of wild ginseng and licorice. Warmth spreads through the body."}
+    },
+    {
+      "id": "POT_FIRE",
+      "rarity": "common",
+      "name": {"ko": "화공탕", "en": "Fire Brew"},
+      "effect": {"ko": "적에게 20 피해를 준다.", "en": "Deal 20 damage to an enemy."},
+      "values": {"damage": 20},
+      "target": "enemy",
+      "flavor": {"ko": "화약과 유황을 섞은 위험한 약. 던지면 폭발한다.", "en": "A volatile mix of gunpowder and sulfur. Explodes on impact."}
+    },
+    {
+      "id": "POT_BLOCK",
+      "rarity": "common",
+      "name": {"ko": "방어산", "en": "Block Potion"},
+      "effect": {"ko": "방어도 12를 획득한다.", "en": "Gain 12 Block."},
+      "values": {"block": 12},
+      "target": "self",
+      "flavor": {"ko": "거북 등껍질을 곱게 간 가루. 피부가 단단해진다.", "en": "Finely ground turtle shell powder. Skin hardens momentarily."}
+    },
+    {
+      "id": "POT_STRENGTH",
+      "rarity": "uncommon",
+      "name": {"ko": "역사탕", "en": "Strength Potion"},
+      "effect": {"ko": "힘 2를 획득한다.", "en": "Gain 2 Strength."},
+      "values": {"strength": 2},
+      "target": "self",
+      "flavor": {"ko": "호랑이 뼈를 우린 술. 힘이 솟구친다.", "en": "Liquor brewed from tiger bones. Power surges through your veins."}
+    },
+    {
+      "id": "POT_DEX",
+      "rarity": "uncommon",
+      "name": {"ko": "경신탕", "en": "Dexterity Potion"},
+      "effect": {"ko": "민첩 2를 획득한다.", "en": "Gain 2 Dexterity."},
+      "values": {"dexterity": 2},
+      "target": "self",
+      "flavor": {"ko": "살쾡이 발톱을 담근 약. 몸이 가벼워진다.", "en": "A tincture of wildcat claws. Your body feels lighter."}
+    },
+    {
+      "id": "POT_ENERGY",
+      "rarity": "uncommon",
+      "name": {"ko": "기력탕", "en": "Energy Potion"},
+      "effect": {"ko": "기 2를 획득한다.", "en": "Gain 2 Qi."},
+      "values": {"qi": 2},
+      "target": "self",
+      "flavor": {"ko": "녹용 정수. 마시는 순간 기운이 솟는다.", "en": "Deer antler essence. Energy surges the moment you drink."}
+    },
+    {
+      "id": "POT_DRAW",
+      "rarity": "uncommon",
+      "name": {"ko": "명안산", "en": "Swift Potion"},
+      "effect": {"ko": "카드 3장을 드로우한다.", "en": "Draw 3 cards."},
+      "values": {"draw": 3},
+      "target": "self",
+      "flavor": {"ko": "매의 눈에서 채취한 영약. 전장이 또렷이 보인다.", "en": "A remedy from hawk's eyes. The battlefield comes into sharp focus."}
+    },
+    {
+      "id": "POT_POISON",
+      "rarity": "uncommon",
+      "name": {"ko": "독약", "en": "Poison Potion"},
+      "effect": {"ko": "적에게 독 6을 부여한다.", "en": "Apply 6 Poison to an enemy."},
+      "values": {"poison": 6},
+      "target": "enemy",
+      "flavor": {"ko": "복어 내장에서 추출한 맹독. 한 방울이면 충분하다.", "en": "Lethal toxin from pufferfish innards. A single drop suffices."}
+    },
+    {
+      "id": "POT_WEAK",
+      "rarity": "common",
+      "name": {"ko": "쇠약제", "en": "Weak Potion"},
+      "effect": {"ko": "적에게 약화 3을 부여한다.", "en": "Apply 3 Weak to an enemy."},
+      "values": {"weaken": 3},
+      "target": "enemy",
+      "flavor": {"ko": "뱀의 독선에서 뽑은 진액. 적의 힘을 빼앗는다.", "en": "Extract from a serpent's venom gland. Saps the enemy's power."}
+    },
+    {
+      "id": "POT_FEAR",
+      "rarity": "uncommon",
+      "name": {"ko": "공포약", "en": "Fear Potion"},
+      "effect": {"ko": "적에게 취약 3을 부여한다.", "en": "Apply 3 Vulnerable to an enemy."},
+      "values": {"vulnerable": 3},
+      "target": "enemy",
+      "flavor": {"ko": "도깨비의 눈물을 담은 병. 적이 두려움에 떤다.", "en": "A vial of dokkaebi tears. The enemy trembles with dread."}
+    },
+    {
+      "id": "POT_FAIRY",
+      "rarity": "rare",
+      "name": {"ko": "선녀수", "en": "Fairy in a Bottle"},
+      "effect": {"ko": "HP가 0이 되면 자동 사용. HP 30%를 회복한다.", "en": "When HP reaches 0, auto-use. Restore 30% HP."},
+      "values": {"revive_percent": 30},
+      "target": "self",
+      "auto_trigger": "on_death",
+      "flavor": {"ko": "선녀가 눈물을 떨어뜨린 옥병. 죽음의 문턱에서 돌아온다.", "en": "A jade bottle blessed by a fairy's tear. Returns you from death's door."}
+    },
+    {
+      "id": "POT_EXPLOSIVE",
+      "rarity": "rare",
+      "name": {"ko": "화통탕", "en": "Explosive Potion"},
+      "effect": {"ko": "모든 적에게 10 피해를 준다.", "en": "Deal 10 damage to ALL enemies."},
+      "values": {"damage": 10, "is_aoe": true},
+      "target": "all_enemies",
+      "flavor": {"ko": "신기전의 화약을 농축한 병. 전장 전체가 불바다가 된다.", "en": "Concentrated Singijeon rocket fuel. The entire battlefield erupts in flames."}
+    }
+  ]
+}

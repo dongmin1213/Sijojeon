@@ -1,0 +1,127 @@
+{
+  "version": "0.1",
+  "type": "curse_and_status_cards",
+  "description": "저주(Curse) 및 상태(Status) 카드. 덱을 오염시키는 부정적 카드.",
+  "cards": [
+    {
+      "id": "CUR001",
+      "name": {"ko": "원혼", "en": "Ascender's Bane"},
+      "cost": -1,
+      "type": "curse",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 소멸 불가.", "en": "Unplayable. Cannot be Exhausted."},
+      "values": {"unplayable": true, "ethereal": false, "innate": false, "exhaust_immune": true},
+      "design_notes": {"role": "어센션 전용 저주. 덱에 영구 오염."}
+    },
+    {
+      "id": "CUR002",
+      "name": {"ko": "괴질", "en": "Parasite"},
+      "cost": -1,
+      "type": "curse",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 제거하면 최대 HP 3 증가.", "en": "Unplayable. If removed, gain 3 Max HP."},
+      "values": {"unplayable": true, "on_remove_max_hp": 3},
+      "design_notes": {"role": "제거 인센티브 저주."}
+    },
+    {
+      "id": "CUR003",
+      "name": {"ko": "빚문서", "en": "Regret"},
+      "cost": -1,
+      "type": "curse",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 턴 종료 시 손패에 있으면 손패 장수만큼 HP를 잃는다.", "en": "Unplayable. At end of turn, lose HP equal to cards in hand."},
+      "values": {"unplayable": true, "end_turn_hp_loss_per_hand": true},
+      "design_notes": {"role": "손패 관리 압박 저주."}
+    },
+    {
+      "id": "CUR004",
+      "name": {"ko": "역병", "en": "Decay"},
+      "cost": -1,
+      "type": "curse",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 턴 종료 시 손패에 있으면 HP 2를 잃는다.", "en": "Unplayable. At end of turn, if in hand, lose 2 HP."},
+      "values": {"unplayable": true, "end_turn_hp_loss": 2},
+      "design_notes": {"role": "기본 저주. 지속 HP 손실."}
+    },
+    {
+      "id": "CUR005",
+      "name": {"ko": "미혹", "en": "Clumsy"},
+      "cost": -1,
+      "type": "curse",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 소멸.", "en": "Unplayable. Ethereal."},
+      "values": {"unplayable": true, "ethereal": true},
+      "design_notes": {"role": "가벼운 저주. 1턴 드로우 낭비 후 소멸."}
+    },
+    {
+      "id": "CUR006",
+      "name": {"ko": "치욕", "en": "Shame"},
+      "cost": -1,
+      "type": "curse",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 드로우 시 허약 1을 받는다.", "en": "Unplayable. When drawn, gain 1 Frail."},
+      "values": {"unplayable": true, "on_draw_frail": 1},
+      "design_notes": {"role": "드로우 페널티 저주."}
+    },
+    {
+      "id": "CUR007",
+      "name": {"ko": "고뇌", "en": "Doubt"},
+      "cost": -1,
+      "type": "curse",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 턴 종료 시 손패에 있으면 약화 1을 받는다.", "en": "Unplayable. At end of turn, if in hand, gain 1 Weak."},
+      "values": {"unplayable": true, "end_turn_weaken": 1},
+      "design_notes": {"role": "디버프형 저주."}
+    },
+    {
+      "id": "STA001",
+      "name": {"ko": "상처", "en": "Wound"},
+      "cost": -1,
+      "type": "status",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가.", "en": "Unplayable."},
+      "values": {"unplayable": true},
+      "design_notes": {"role": "기본 상태 카드. 손패 공간 낭비."}
+    },
+    {
+      "id": "STA002",
+      "name": {"ko": "화독", "en": "Burn"},
+      "cost": -1,
+      "type": "status",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 턴 종료 시 손패에 있으면 HP 2를 잃는다.", "en": "Unplayable. At end of turn, take 2 damage if in hand."},
+      "values": {"unplayable": true, "end_turn_hp_loss": 2},
+      "design_notes": {"role": "화상 연계 상태 카드."}
+    },
+    {
+      "id": "STA003",
+      "name": {"ko": "멍", "en": "Dazed"},
+      "cost": -1,
+      "type": "status",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 소멸.", "en": "Unplayable. Ethereal."},
+      "values": {"unplayable": true, "ethereal": true},
+      "design_notes": {"role": "가벼운 상태 카드. 1턴 드로우 낭비."}
+    },
+    {
+      "id": "STA004",
+      "name": {"ko": "공허", "en": "Void"},
+      "cost": -1,
+      "type": "status",
+      "rarity": 0,
+      "effect": {"ko": "사용 불가. 소멸. 드로우 시 기 1을 잃는다.", "en": "Unplayable. Ethereal. When drawn, lose 1 Qi."},
+      "values": {"unplayable": true, "ethereal": true, "on_draw_qi_loss": 1},
+      "design_notes": {"role": "에너지 페널티 상태 카드."}
+    },
+    {
+      "id": "STA005",
+      "name": {"ko": "점액", "en": "Slimed"},
+      "cost": 1,
+      "type": "status",
+      "rarity": 0,
+      "effect": {"ko": "효과 없음. 소멸.", "en": "No effect. Exhaust."},
+      "values": {"exhaust": true},
+      "design_notes": {"role": "에너지 낭비형 상태 카드. 1기 소비하여 소멸 가능."}
+    }
+  ]
+}
