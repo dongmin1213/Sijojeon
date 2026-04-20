@@ -126,8 +126,8 @@
         {
           "id": "qi_disrupt",
           "name": {
-            "ko": "",
-            "en": "Sijo Disruption"
+            "ko": "기 교란",
+            "en": "Qi Disruption"
           },
           "intent": "special",
           "effects": [
@@ -137,8 +137,8 @@
             }
           ],
           "description": {
-            "ko": "",
-            "en": ""
+            "ko": "플레이어에게 냉기 1을 적용한다.",
+            "en": "Applies 1 Chill to the player."
           }
         }
       ],
@@ -237,8 +237,8 @@
         {
           "id": "qi_shatter",
           "name": {
-            "ko": "",
-            "en": "Sijo Shatter"
+            "ko": "기 파쇄",
+            "en": "Qi Shatter"
           },
           "intent": "special",
           "effects": [
@@ -248,8 +248,8 @@
             }
           ],
           "description": {
-            "ko": "",
-            "en": ""
+            "ko": "플레이어에게 냉기 2를 적용한다.",
+            "en": "Applies 2 Chill to the player."
           }
         },
         {

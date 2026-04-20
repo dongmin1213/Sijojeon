@@ -232,8 +232,8 @@
       },
       "category": "mechanic",
       "description": {
-        "ko": "도사 전용 능력. 전투 시작 시",
-        "en": "Taoist exclusive ability. At battle start, automatically fills the first 2 Sijo slots."
+        "ko": "도사 전용 능력. 전투 시작 시 기 2를 추가로 획득한다.",
+        "en": "Taoist exclusive ability. At battle start, gain 2 additional Qi."
       },
       "color": "#CC66FF"
     },

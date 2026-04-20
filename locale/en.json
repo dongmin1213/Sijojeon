@@ -11,7 +11,7 @@
       "name": "Daoist Sorcerer",
       "short": "Sorcerer",
       "description": "A master of Qi manipulation and Daoist Arts. Uses spells, summons, and DoT effects.",
-      "mechanic": "Qi Mastery: Manipulate Qi directly to draw cards and gain buffs. Completing a Sijo recovers 1 extra Qi via the Heavenly Qi passive."
+      "mechanic": "Qi Mastery: Manipulate Qi directly to draw cards and gain buffs."
     },
     "mugwan": {
       "name": "Military Officer",
@@ -120,8 +120,7 @@
       "intent_debuff": "Debuff",
       "intent_unknown": "???",
       "card_exhausted": "Card Exhausted",
-      "cost": "Cost",
-      "beat": "Beat"
+      "cost": "Cost"
     },
     "map": {
       "act_1": "Act I — Hanyang",
@@ -242,17 +241,15 @@
     },
     "M011": {
       "name": "Exuberance",
-      "effect": "Draw 1 card. This card can be placed in any Sijo slot.",
-      "effect_upgraded": "Draw 2 cards. Can be placed in any Sijo slot.",
-      "flavor": "When the spirit rises, the rhythm flows — it slips naturally wherever music goes.",
-      "beat_note": "WILD — fills any slot ([3] or [4])"
+      "effect": "Draw 1 card.",
+      "effect_upgraded": "Draw 2 cards.",
+      "flavor": "When the spirit rises, the rhythm flows — it slips naturally wherever music goes."
     },
     "M012": {
       "name": "Blank Verse",
-      "effect": "Gain 2 Block. This card can be placed in any Sijo slot.",
-      "effect_upgraded": "Gain 4 Block. Can be placed in any Sijo slot.",
-      "flavor": "Empty space is part of the poem too — one who fills the void completes the Sijo.",
-      "beat_note": "WILD — fills any slot ([3] or [4])"
+      "effect": "Gain 2 Block.",
+      "effect_upgraded": "Gain 4 Block.",
+      "flavor": "Empty space is part of the poem too — there are those who know how to fill the void."
     },
     "D001": {
       "name": "Qi Cultivation",
@@ -610,8 +607,8 @@
     },
     "W010": {
       "name": "Evasive Rhetoric",
-      "effect": "Gain 5 Block. If 3+ Sijo slots are filled this turn, gain 2 more knowledge.",
-      "effect_upgraded": "Gain 7 Block. knowledge bonus becomes 3.",
+      "effect": "Gain 5 Block. Gain 1 knowledge.",
+      "effect_upgraded": "Gain 7 Block. Gain 2 knowledge.",
       "flavor": "Deflect with words, deflect with motion — rhetoric and footwork are one."
     },
     "W011": {
@@ -790,10 +787,6 @@
       "name": "Nameless Dagger",
       "effect": "Recover 1 Qi immediately whenever you kill an enemy."
     },
-    "R019": {
-      "name": "Axe Talisman",
-      "effect": "Recover 1 extra Qi each time you complete the First Verse (2 slots)."
-    },
     "R020": {
       "name": "Diamond",
       "effect": "Gain 8 Block at the start of combat."
@@ -806,10 +799,6 @@
       "name": "Obsidian Seal",
       "effect": "Reduce the cost of removing a card at the shop by 25 gold."
     },
-    "R023": {
-      "name": "Moonlight Mirror",
-      "effect": "Draw 1 extra card each time you complete a Sijo. (1 → 2 cards drawn.)"
-    },
     "R024": {
       "name": "Blood Oath",
       "effect": "Gain 15 extra gold after defeating an Elite."
@@ -817,10 +806,6 @@
     "R025": {
       "name": "Five Elements Combat Tactics",
       "effect": "At the start of combat, gain Strength +1 and max Qi +1 for this combat. Resets after combat."
-    },
-    "R026": {
-      "name": "Star Map",
-      "effect": "Sijo completion bonus becomes ×2.5 instead of ×2."
     },
     "R027": {
       "name": "Royal Seal",
@@ -830,25 +815,9 @@
       "name": "Immortal Talisman",
       "effect": "Once per run: survive lethal damage with 1 HP."
     },
-    "RM001": {
-      "name": "Military Manual",
-      "effect": "Gain 1 extra Qi each time you play a Combat Tactics card."
-    },
-    "RW001": {
-      "name": "Royal Portrait",
-      "effect": "Recover 5% of max HP each time you fully spend your knowledge. (Scholar only.)"
-    },
-    "RD001": {
-      "name": "Immortal's Cinnabar",
-      "effect": "Gain 1 extra Qi each time you play a Spell card. (Sorcerer only.)"
-    },
-    "RD002": {
-      "name": "Yin-Yang Token",
-      "effect": "Draw 1 card each time a summoned token dies. (Sorcerer only.)"
-    },
-    "RS004": {
-      "name": "Sijo Anthology",
-      "effect": "On the turn after completing a Sijo, carry over 1 Qi to the next turn. (Exception to the no-carryover rule.)"
+    "R029": {
+      "name": "Armor Ring",
+      "effect": "At the start of each turn, retain up to 15 Block instead of losing all of it."
     },
     "RS005": {
       "name": "Rhythm Drum",
@@ -861,10 +830,6 @@
     "RB002": {
       "name": "Twin-Head Tiger Hide",
       "effect": "Gain Strength +3 at the start of combat. Resets after combat."
-    },
-    "RB003": {
-      "name": "Traitor Minister's Official Seal",
-      "effect": "Sijo completion bonus becomes ×3 instead of ×2. (Does not stack with Star Map R026; max ×3.)"
     }
   },
   "enemies": {

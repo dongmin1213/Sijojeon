@@ -61,8 +61,6 @@ HANDLED_TRIGGERS = {
     "on_deck_shuffle",
     "on_kill_enemy",
     "on_card_exhaust",
-    "sijo_milestone_2",
-    "sijo_complete",
     "passive",
     "on_first_card_play_per_turn",
     "on_apply_poison",
@@ -122,8 +120,7 @@ def load_json(path: Path) -> dict | list | None:
 
 
 # ── 1. 카드 데이터 무결성 ──────────────────────────────────────────────────
-CARD_REQUIRED_FIELDS = ["id", "name", "beat", "cost", "type", "effect", "values"]
-VALID_BEAT_VALUES    = {0, 3, 4}   # 0 = 와일드카드 (ZER-101)
+CARD_REQUIRED_FIELDS = ["id", "name", "cost", "type", "effect", "values"]
 VALID_CARD_TYPES     = {"attack", "defense", "formation", "skill", "power",
                          "movement", "curse", "spell"}
 COST_RANGE           = (0, 4)      # 현행 스펙: 기 0~4
@@ -162,14 +159,6 @@ def validate_cards(verbose: bool = False) -> ValidationResult:
                         r.warn(f"카드 {cid} — name.{lang} 비어있음")
             else:
                 r.err(f"카드 {cid} — name 필드가 object 아님")
-
-            # beat 값 검증
-            beat = card.get("beat")
-            if beat is not None:
-                if beat not in VALID_BEAT_VALUES:
-                    r.err(f"카드 {cid} — beat={beat} (허용값: {VALID_BEAT_VALUES})")
-                else:
-                    r.ok()
 
             # cost 범위 검증
             cost = card.get("cost")
@@ -372,7 +361,6 @@ BALANCE_SPEC = {
         "mungwan": 65,
     },
     "max_status_stack":    999, # 게임 내 최대 스택 (무한 루프 방지)
-    "wildcard_beat":       0,   # 와일드카드 beat 값 (ZER-101)
 }
 
 
@@ -422,22 +410,6 @@ def validate_balance_corner_cases(verbose: bool = False) -> ValidationResult:
                     f"조건부 효과가 없다면 과잉."
                 )
             elif blk > 0:
-                r.ok()
-
-        # 와일드카드 beat=0: balance_rationale 또는 sijo_position 에 설명 있는지 확인 (ZER-101)
-        beat = card.get("beat")
-        if beat == BALANCE_SPEC["wildcard_beat"]:
-            combined = (
-                str(card.get("effect", "")) +
-                str(card.get("balance_rationale", "")) +
-                str(card.get("sijo_position", ""))
-            )
-            if "wildcard" not in combined.lower() and "와일드" not in combined:
-                r.warn(
-                    f"카드 {cid} — beat=0(와일드카드)이지만 "
-                    f"어떤 필드에도 와일드카드 설명 없음."
-                )
-            else:
                 r.ok()
 
     # 스타터 덱 ID 유효성 검증

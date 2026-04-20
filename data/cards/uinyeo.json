@@ -981,8 +981,8 @@
       "id": "H025",
       "name": {
         "ko": "처방전",
-        "romanized": "Sijo Cheobbang",
-        "en": "Verse Prescription"
+        "romanized": "Cheobbangjeon",
+        "en": "Prescription Note"
       },
       "cost": 1,
       "type": "skill",

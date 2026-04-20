@@ -341,7 +341,6 @@
         "romanized": "Heung",
         "en": "Excitement"
       },
-      "beat_note": "와일드 — 어느",
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -376,7 +375,6 @@
         "romanized": "Yeobaek",
         "en": "Empty Space"
       },
-      "beat_note": "와일드 — 어느",
       "cost": 0,
       "type": "defense",
       "subtypes": [
@@ -394,8 +392,8 @@
         "en": "Gain 6 Block. Can be placed in any slot."
       },
       "flavor_text": {
-        "ko": "빈 공간도 시의 일부다 — 여백을 채울 줄 아는 자가",
-        "en": "Empty space is part of the poem — one who knows how to fill the gaps completes the Sijo."
+        "ko": "빈 공간도 시의 일부다 — 여백을 채울 줄 아는 자가 있다.",
+        "en": "Empty space is part of the poem — and there are those who know how to fill the gaps."
       },
       "balance_rationale": "0코스트 방어 4 + 와일드 슬롯. 0코스트 카드는 덱당 최대 1장 권장.",
       "upgrade_cost": 50,
@@ -449,11 +447,11 @@
       "rarity_stars": "★★★★☆",
       "effect": {
         "ko": "적에게 13 피해를 입힌다.",
-        "en": "Deal 13 damage to an enemy. If you completed a Sijo line this turn, deal 7 additional damage."
+        "en": "Deal 13 damage to an enemy."
       },
       "effect_upgraded": {
         "ko": "적에게 18 피해를 입힌다.",
-        "en": "Deal 18 damage to an enemy. Deal 10 additional damage on Sijo completion."
+        "en": "Deal 18 damage to an enemy."
       },
       "flavor_text": {
         "ko": "마지막 구절을 노래로 맺으며 — 하늘을 찌르는 기세로 적을 베어낸다.",
@@ -482,11 +480,11 @@
       "rarity_stars": "★★★☆☆",
       "effect": {
         "ko": "카드 1장을 드로우한다.",
-        "en": "Draw 1 card. If you completed a Sijo line this turn, gain 2 Qi."
+        "en": "Draw 1 card."
       },
       "effect_upgraded": {
         "ko": "카드 2장을 드로우한다.",
-        "en": "Draw 2 cards. Gain 3 Qi on Sijo completion."
+        "en": "Draw 2 cards."
       },
       "flavor_text": {
         "ko": "시 한 줄이 끝나도 여운이 남아 — 그 흐름에서 새로운 힘이 솟아난다.",
@@ -571,7 +569,6 @@
         "romanized": "Gyeoryeon",
         "en": "Fateful Bond"
       },
-      "beat_note": "와일드 — 어느",
       "cost": 1,
       "type": "skill",
       "subtypes": [
@@ -858,8 +855,7 @@
       "balance_rationale": "1코스트 드로우 2.",
       "upgrade_cost": 75,
       "values": {
-        "draw": 2,
-        "draw_if_no_beat_match": 1
+        "draw": 2
       }
     },
     {
@@ -912,11 +908,11 @@
       "rarity_stars": "★★☆☆☆",
       "effect": {
         "ko": "기 2를 획득한다.",
-        "en": "Gain 2 Qi. If you complete a Sijo line (first or second) this turn, draw 1 card."
+        "en": "Gain 2 Qi."
       },
       "effect_upgraded": {
         "ko": "기 3을 획득한다.",
-        "en": "Gain 3 Qi. Draw 2 cards on Sijo line completion."
+        "en": "Gain 3 Qi."
       },
       "flavor_text": {
         "ko": "시가 떠오르면 — 몸에 기가 차오르고 머리가 맑아진다.",
@@ -944,12 +940,12 @@
       "rarity": 4,
       "rarity_stars": "★★★★☆",
       "effect": {
-        "ko": "기 1을 획득하고 카드 1장을 드로우한다. 이번 턴",
-        "en": "Gain 1 Qi and draw 1 card. If you complete a Sijo this turn, gain 3 additional Qi and draw 2 additional cards."
+        "ko": "기 1을 획득하고 카드 1장을 드로우한다.",
+        "en": "Gain 1 Qi and draw 1 card."
       },
       "effect_upgraded": {
         "ko": "기 2를 획득하고 카드 2장을 드로우한다.",
-        "en": "Gain 2 Qi and draw 2 cards. On Sijo completion, gain 4 Qi + draw 2 additional cards."
+        "en": "Gain 2 Qi and draw 2 cards."
       },
       "flavor_text": {
         "ko": "하늘에서 내려온 영감이 — 종장을 완성하고 모든 것을 열어젖힌다.",
@@ -1816,12 +1812,6 @@
   ],
   "card_count_summary": {
     "total": 54,
-    "by_beat": {
-      "beat_3": 22,
-      "beat_4": 24,
-      "beat_5": 5,
-      "wildcard_0": 3
-    },
     "by_type": {
       "defense": 8,
       "attack": 14,

@@ -111,8 +111,8 @@
             }
           ],
           "description": {
-            "ko": "플레이어의 (ZER-101",
-            "en": "Resets 1 of the player's Sijo progress slots."
+            "ko": "플레이어에게 냉기 1을 적용한다.",
+            "en": "Applies 1 Chill to the player."
           }
         },
         {

@@ -350,30 +350,6 @@ def generate_enemy_attack() -> list[float]:
     return result
 
 
-def generate_sijo_slot() -> list[float]:
-    """시 슬롯 배치 효과음 - 맑은 종소리."""
-    n = int(SAMPLE_RATE * 0.2)
-    result = []
-    for i in range(n):
-        t = i / SAMPLE_RATE
-        env = max(0, 1 - t / 0.2) ** 1.2
-        s = 0.3 * math.sin(2 * math.pi * 880 * t)
-        s += 0.2 * math.sin(2 * math.pi * 1320 * t)
-        result.append(env * s)
-    return result
-
-
-def generate_sijo_complete() -> list[float]:
-    """시 완성 효과음 - 화려한 팡파르."""
-    notes = [PENTATONIC[2], PENTATONIC[4], PENTATONIC_HIGH[0], PENTATONIC_HIGH[0]]
-    parts = []
-    for i, freq in enumerate(notes):
-        dur = 0.2 if i < 3 else 0.6
-        note = envelope(sine_wave(freq, dur, 0.5), attack=0.01, release=0.1)
-        parts.append(note)
-    return concat(*parts)
-
-
 def generate_end_turn() -> list[float]:
     """턴 종료 효과음 - 짧은 벨."""
     n = int(SAMPLE_RATE * 0.15)
@@ -433,8 +409,6 @@ def main():
         "buff": generate_buff,
         "debuff": generate_debuff,
         "enemy_attack": generate_enemy_attack,
-        "sijo_slot": generate_sijo_slot,
-        "sijo_complete": generate_sijo_complete,
         "end_turn": generate_end_turn,
         "upgrade": generate_upgrade,
     }
