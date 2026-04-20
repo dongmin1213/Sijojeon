@@ -16,11 +16,21 @@ const CHARACTER_ART_MAP := {
 	"sangin": "res://art/characters/sangin.svg",
 }
 
+const ASCENSION_MAX_LEVEL := 10
+
 var _selected_index: int = -1
 var _character_list: Array[Dictionary] = []
 var _unlock_data: Array[Dictionary] = []
 # 터치 탭/드래그 구분용 — 터치 시작 위치 저장
 var _card_press_pos: Dictionary = {}
+# 승급(귀신 단계) 피커 상태
+var _selected_ascension_level: int = 0
+var _ascension_picker_root: PanelContainer = null
+var _ascension_level_label: Label = null
+var _ascension_name_label: Label = null
+var _ascension_desc_label: Label = null
+var _ascension_prev_button: Button = null
+var _ascension_next_button: Button = null
 
 @onready var title_label: Label = $TitleLabel
 @onready var card_container: HBoxContainer = $CardScroll/CardContainer
@@ -61,6 +71,7 @@ func _ready() -> void:
 	_build_character_list()
 	_build_character_cards()
 	_build_achievement_button()
+	_build_ascension_picker()
 	# 가이드 오버레이는 카드 렌더링 후 표시 (deferred)
 	call_deferred("_show_first_play_guide")
 
@@ -165,7 +176,7 @@ func _build_character_list() -> void:
 		var class_hanja: String = fallback.get("class_hanja", "")
 
 		var description: String = char_entry.get("description_ko", "")
-		var archetype: String = char_entry.get("archetype", "")
+		# archetype은 개발자 용어이므로 플레이어 노출 안 함 (build_hint 비움)
 
 		_character_list.append({
 			"id": char_id,
@@ -183,7 +194,7 @@ func _build_character_list() -> void:
 			"active_name": "",
 			"active_desc": "",
 			"fantasy_desc": description,
-			"build_hint": archetype,
+			"build_hint": "",
 		})
 
 	if _character_list.is_empty():
@@ -424,6 +435,8 @@ func _select_character(index: int) -> void:
 	_selected_index = index
 	start_button.disabled = false
 	start_button.text = tr("CHARSEL_START_FMT") % _character_list[index]["name"]
+	# 캐릭터별 해금 상한이 다르므로 피커 갱신
+	_refresh_ascension_picker()
 
 	# v5: 선택 하이라이트 — 금박 테두리 강화 + 비선택 카드 어둡게
 	for i in card_container.get_child_count():
@@ -472,10 +485,14 @@ func _show_detail_panel(character: Dictionary) -> void:
 	# BottomBar 영역 초과 방지 — 상세 패널 최대 높이 제한
 	var bottom_bar_h: float = $BottomBar.size.y
 	var button_row_h: float = 100.0  # ButtonRow + 여백
-	_detail_panel.custom_minimum_size = Vector2(0, 0)
+	var picker_h: float = 160.0  # 승급 피커 예상 높이
+	# 가로는 뷰포트 기준 최소 폭 강제 — VBox 레이아웃 경쟁으로 너비 0 되는 것 방지
+	var min_detail_w: float = maxf(vp_size.x - 80.0, 600.0)
+	_detail_panel.custom_minimum_size = Vector2(min_detail_w, 0)
 	_detail_panel.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-	_detail_panel.clip_contents = true
-	var max_detail_h: float = maxf(bottom_bar_h - button_row_h - 40.0, 120.0)
+	# clip_contents는 내부가 덜 계산된 상태에서 0너비로 잘리는 문제 유발 — 끔
+	_detail_panel.clip_contents = false
+	var max_detail_h: float = maxf(bottom_bar_h - button_row_h - picker_h - 40.0, 120.0)
 
 	# 반투명 다크 배경으로 가독성 확보
 	var style := StyleBoxFlat.new()
@@ -568,8 +585,11 @@ func _show_detail_panel(character: Dictionary) -> void:
 	var detail_scroll := ScrollContainer.new()
 	detail_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	detail_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	detail_scroll.custom_minimum_size = Vector2(0, min(max_detail_h, 200))
+	# 가로 최소 폭도 함께 강제해 내부 label autowrap이 1글자 폭으로 잘리는 버그 방지
+	detail_scroll.custom_minimum_size = Vector2(min_detail_w - 40.0, min(max_detail_h, 200))
 	detail_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	detail_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	detail_scroll.add_child(margin)
 	_detail_panel.add_child(detail_scroll)
 
@@ -582,7 +602,153 @@ func _on_start_pressed() -> void:
 	if _selected_index < 0:
 		return
 	var character_id: String = _character_list[_selected_index]["id"]
-	GameManager.start_new_run(character_id)
+	# 해금 레벨 상한으로 다시 클램프 (런치 시점 방어)
+	var max_level := SaveManager.get_max_ascension_level(character_id)
+	var level := clampi(_selected_ascension_level, 0, min(max_level, ASCENSION_MAX_LEVEL))
+	GameManager.start_new_run(character_id, level)
+
+
+# ──────────────────────────────────────────────────────────────
+# 승급(귀신 단계) 피커 — StS ascension 대응
+# ──────────────────────────────────────────────────────────────
+
+func _build_ascension_picker() -> void:
+	## 캐릭터 카드 아래, 시작 버튼 위에 승급 레벨 피커를 삽입한다.
+	_ascension_picker_root = PanelContainer.new()
+	_ascension_picker_root.name = "AscensionPicker"
+	# 가로 전체 채우기 + 세로는 내용 크기로 고정 (상세 패널 공간 보존)
+	_ascension_picker_root.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_ascension_picker_root.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.08, 0.08, 0.10, 0.85)
+	sb.border_color = Color(0.76, 0.23, 0.13, 0.35)
+	sb.set_border_width_all(1)
+	sb.set_corner_radius_all(8)
+	sb.content_margin_left = 16
+	sb.content_margin_right = 16
+	sb.content_margin_top = 8
+	sb.content_margin_bottom = 8
+	_ascension_picker_root.add_theme_stylebox_override("panel", sb)
+
+	var outer := VBoxContainer.new()
+	outer.add_theme_constant_override("separation", 4)
+	outer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+	# 상단: ◀ [레벨 이름: Lv.N] ▶
+	var row := HBoxContainer.new()
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", 18)
+
+	_ascension_prev_button = Button.new()
+	_ascension_prev_button.text = "◀"
+	_ascension_prev_button.custom_minimum_size = Vector2(64, 48)
+	_ascension_prev_button.add_theme_font_size_override("font_size", 24)
+	_ascension_prev_button.pressed.connect(_on_ascension_prev_pressed)
+
+	_ascension_level_label = Label.new()
+	_ascension_level_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_ascension_level_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_ascension_level_label.add_theme_font_size_override("font_size", 22)
+	_ascension_level_label.add_theme_color_override("font_color", Color(1.0, 0.93, 0.58))
+
+	_ascension_next_button = Button.new()
+	_ascension_next_button.text = "▶"
+	_ascension_next_button.custom_minimum_size = Vector2(64, 48)
+	_ascension_next_button.add_theme_font_size_override("font_size", 24)
+	_ascension_next_button.pressed.connect(_on_ascension_next_pressed)
+
+	row.add_child(_ascension_prev_button)
+	row.add_child(_ascension_level_label)
+	row.add_child(_ascension_next_button)
+	outer.add_child(row)
+
+	# 이름 + 설명을 한 줄로 (공간 절약)
+	_ascension_desc_label = Label.new()
+	_ascension_desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_ascension_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_ascension_desc_label.add_theme_font_size_override("font_size", 16)
+	_ascension_desc_label.add_theme_color_override("font_color", Color(0.78, 0.78, 0.78))
+	outer.add_child(_ascension_desc_label)
+	# 이름 라벨은 생성은 하되 사용 안 함 (호환성 유지)
+	_ascension_name_label = _ascension_desc_label
+
+	_ascension_picker_root.add_child(outer)
+
+	# BottomBar 안, 버튼 행 바로 위에 삽입
+	var bb: VBoxContainer = $BottomBar/VBoxContainer
+	bb.add_child(_ascension_picker_root)
+	var button_row := bb.get_node_or_null("ButtonRow")
+	if button_row:
+		bb.move_child(_ascension_picker_root, button_row.get_index())
+
+	_refresh_ascension_picker()
+
+
+func _on_ascension_prev_pressed() -> void:
+	if _selected_ascension_level <= 0:
+		return
+	_selected_ascension_level -= 1
+	_refresh_ascension_picker()
+
+
+func _on_ascension_next_pressed() -> void:
+	var max_level := _current_max_ascension_level()
+	if _selected_ascension_level >= max_level:
+		return
+	_selected_ascension_level += 1
+	_refresh_ascension_picker()
+
+
+func _current_max_ascension_level() -> int:
+	## 현재 선택된 캐릭터 기준 해금된 최고 레벨. 미선택 시 0.
+	if _selected_index < 0 or _selected_index >= _character_list.size():
+		return 0
+	var char_id: String = _character_list[_selected_index]["id"]
+	var max_unlocked := SaveManager.get_max_ascension_level(char_id)
+	return min(max_unlocked, ASCENSION_MAX_LEVEL)
+
+
+func _refresh_ascension_picker() -> void:
+	if not _ascension_picker_root:
+		return
+
+	# 캐릭터 미선택 시 피커 감춤
+	if _selected_index < 0:
+		_ascension_picker_root.visible = false
+		return
+
+	var max_level := _current_max_ascension_level()
+	# 해금 상한이 0인 신규 플레이어에게는 피커 표시 안 함 — 첫 클리어 후 자동 노출
+	if max_level <= 0:
+		_ascension_picker_root.visible = false
+		return
+	_ascension_picker_root.visible = true
+	# 선택 레벨을 해금 상한으로 클램프
+	_selected_ascension_level = clampi(_selected_ascension_level, 0, max_level)
+
+	var asc: Dictionary = DataLoader.get_ascension_level(_selected_ascension_level)
+	var asc_name: String = ""
+	var asc_desc: String = ""
+	if asc is Dictionary and not asc.is_empty():
+		var name_data = asc.get("name", {})
+		if name_data is Dictionary:
+			asc_name = name_data.get("ko", "")
+		var desc_data = asc.get("description", {})
+		if desc_data is Dictionary:
+			asc_desc = desc_data.get("ko", "")
+
+	_ascension_level_label.text = "귀신 단계 %d / %d" % [_selected_ascension_level, max_level]
+	# 이름 + 설명 합쳐 한 줄로
+	var combined := ""
+	if asc_name != "":
+		combined = asc_name
+	if asc_desc != "":
+		combined = "%s — %s" % [combined, asc_desc] if combined != "" else asc_desc
+	_ascension_desc_label.text = combined
+
+	_ascension_prev_button.disabled = _selected_ascension_level <= 0
+	_ascension_next_button.disabled = _selected_ascension_level >= max_level
 
 
 func _on_back_pressed() -> void:
