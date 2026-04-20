@@ -199,8 +199,11 @@ func _create_deck_pill_label(font_color: Color) -> PanelContainer:
 	pill.add_theme_stylebox_override("panel", pill_style)
 
 	var lbl := Label.new()
-	lbl.add_theme_font_size_override("font_size", 22)
+	lbl.add_theme_font_size_override("font_size", 28)
 	lbl.add_theme_color_override("font_color", font_color)
+	lbl.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.9))
+	lbl.add_theme_constant_override("shadow_offset_x", 2)
+	lbl.add_theme_constant_override("shadow_offset_y", 2)
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	pill.add_child(lbl)
 	return pill
@@ -212,8 +215,8 @@ func _create_floating_ui() -> void:
 	# v8: 턴 종료 버튼 — 크고 눈에 띄는 배치, 넓은 터치 영역
 	end_turn_button = Button.new()
 	end_turn_button.text = tr("BATTLE_END_TURN")
-	end_turn_button.custom_minimum_size = Vector2(200, 80)
-	end_turn_button.add_theme_font_size_override("font_size", 30)
+	end_turn_button.custom_minimum_size = Vector2(260, 110)
+	end_turn_button.add_theme_font_size_override("font_size", 38)
 	var btn_style := StyleBoxFlat.new()
 	btn_style.bg_color = Color(0.78, 0.29, 0.19, 0.95)
 	btn_style.set_border_width_all(2)
@@ -246,7 +249,7 @@ func _create_floating_ui() -> void:
 
 	# v12: 턴 표시 오버레이 — HUD 좌측 (노치 아래)
 	_turn_overlay_label = Label.new()
-	_turn_overlay_label.add_theme_font_size_override("font_size", 16)
+	_turn_overlay_label.add_theme_font_size_override("font_size", 24)
 	_turn_overlay_label.add_theme_color_override("font_color", Color(0.70, 0.64, 0.50, 0.85))
 	_turn_overlay_label.anchor_left = 0.02
 	_turn_overlay_label.anchor_top = 0.035
@@ -357,23 +360,27 @@ func _update_enemy_ui() -> void:
 			var combat_type: String = enemy.get("combat_type", "")
 
 			# v6: 적 일러스트 — TextureManager에서 SVG/placeholder 로드
+			# v15 (UX): 모바일 가독성을 위해 2배 이상 확대
 			var enemy_id: String = enemy.get("id", "")
 			var enemy_art := TextureRect.new()
-			enemy_art.custom_minimum_size = Vector2(120, 100)
+			enemy_art.custom_minimum_size = Vector2(240, 200)
 			enemy_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			enemy_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			enemy_art.texture = TextureManager.get_enemy_texture(enemy_id)
 			# 보스/엘리트는 더 크게
 			if combat_type == "boss":
-				enemy_art.custom_minimum_size = Vector2(160, 130)
+				enemy_art.custom_minimum_size = Vector2(320, 260)
 			elif combat_type == "elite":
-				enemy_art.custom_minimum_size = Vector2(140, 110)
+				enemy_art.custom_minimum_size = Vector2(280, 220)
 
 			# 적 이름
 			var name_label := Label.new()
 			name_label.text = enemy_name
 			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			name_label.add_theme_font_size_override("font_size", 22)
+			name_label.add_theme_font_size_override("font_size", 36)
+			name_label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.85))
+			name_label.add_theme_constant_override("shadow_offset_x", 2)
+			name_label.add_theme_constant_override("shadow_offset_y", 2)
 			# v6: 보스/엘리트 이름 색상 구분
 			if combat_type == "boss":
 				name_label.add_theme_color_override("font_color", Color(0.78, 0.29, 0.19, 0.95))
@@ -382,9 +389,9 @@ func _update_enemy_ui() -> void:
 			else:
 				name_label.add_theme_color_override("font_color", Color(0.92, 0.88, 0.80))
 
-			# HP 바 (ProgressBar + 오버레이 텍스트)
+			# HP 바 (ProgressBar + 오버레이 텍스트) — v15: 모바일 크기로 확대
 			var hp_container := Control.new()
-			hp_container.custom_minimum_size = Vector2(180, 22)
+			hp_container.custom_minimum_size = Vector2(260, 36)
 			var hp_bar := ProgressBar.new()
 			hp_bar.min_value = 0
 			hp_bar.max_value = enemy["max_hp"]
@@ -399,20 +406,28 @@ func _update_enemy_ui() -> void:
 			hp_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			hp_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			hp_lbl.set_anchors_preset(Control.PRESET_FULL_RECT)
-			hp_lbl.add_theme_font_size_override("font_size", 16)
-			hp_lbl.add_theme_color_override("font_color", Color(1, 1, 1, 0.95))
+			hp_lbl.add_theme_font_size_override("font_size", 26)
+			hp_lbl.add_theme_color_override("font_color", Color(1, 1, 1, 1.0))
+			hp_lbl.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 1.0))
+			hp_lbl.add_theme_constant_override("shadow_offset_x", 2)
+			hp_lbl.add_theme_constant_override("shadow_offset_y", 2)
 			hp_container.add_child(hp_lbl)
 
-			# 인텐트 — 배경색 있는 라벨
+			# 인텐트 — 배경색 있는 라벨 (가장 중요한 정보이므로 크게 강조)
 			var intent_panel := PanelContainer.new()
 			var intent_style := StyleBoxFlat.new()
-			intent_style.bg_color = Color(0.1, 0.08, 0.15, 0.6)
-			intent_style.set_corner_radius_all(4)
-			intent_style.set_content_margin_all(3)
+			intent_style.bg_color = Color(0.12, 0.10, 0.16, 0.92)
+			intent_style.border_color = Color(0.76, 0.23, 0.13, 0.5)
+			intent_style.set_border_width_all(1)
+			intent_style.set_corner_radius_all(8)
+			intent_style.set_content_margin_all(8)
 			intent_panel.add_theme_stylebox_override("panel", intent_style)
 			var intent_label := Label.new()
 			intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			intent_label.add_theme_font_size_override("font_size", 18)
+			intent_label.add_theme_font_size_override("font_size", 32)
+			intent_label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.9))
+			intent_label.add_theme_constant_override("shadow_offset_x", 2)
+			intent_label.add_theme_constant_override("shadow_offset_y", 2)
 			var intent := battle_manager._get_enemy_intent(i)
 			intent_label.text = _format_intent(intent)
 			intent_label.add_theme_color_override("font_color", _get_intent_color(intent))
@@ -421,7 +436,7 @@ func _update_enemy_ui() -> void:
 			var block_val: int = enemy.get("block", 0)
 			var enemy_block_label := Label.new()
 			enemy_block_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			enemy_block_label.add_theme_font_size_override("font_size", 18)
+			enemy_block_label.add_theme_font_size_override("font_size", 26)
 			enemy_block_label.text = tr("BATTLE_ENEMY_BLOCK_FMT") % block_val
 			enemy_block_label.visible = block_val > 0
 
@@ -429,14 +444,15 @@ func _update_enemy_ui() -> void:
 			status_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 			_build_status_icons(status_hbox, "enemy_%d" % i)
 
+			# v15: 인텐트를 적 위에 배치 — StS 스타일, 가장 중요한 정보를 최상단에
+			vbox.add_child(intent_panel)
 			vbox.add_child(enemy_art)
 			vbox.add_child(name_label)
 			vbox.add_child(hp_container)
 			vbox.add_child(enemy_block_label)
 			vbox.add_child(status_hbox)
-			vbox.add_child(intent_panel)
 			panel.add_child(vbox)
-			panel.custom_minimum_size = Vector2(200, 0)
+			panel.custom_minimum_size = Vector2(320, 0)
 			enemy_container.add_child(panel)
 
 			_enemy_ui_cache[i] = {
@@ -485,7 +501,13 @@ func _get_enemy_silhouette(enemy: Dictionary) -> String:
 
 func _format_intent(intent: Dictionary) -> String:
 	var intent_type: String = intent.get("intent", intent.get("type", ""))
-	var name_str: String = intent.get("name", "")
+	# name 필드는 Dictionary {ko,en} 또는 String 둘 다 대응
+	var name_raw = intent.get("name", "")
+	var name_str: String = ""
+	if name_raw is Dictionary:
+		name_str = name_raw.get("ko", "")
+	else:
+		name_str = str(name_raw)
 	match intent_type:
 		"attack", "attack_debuff":
 			var dmg: int = intent.get("damage", 0)
@@ -972,11 +994,17 @@ func _init_potion_ui() -> void:
 	## 포션 슬롯 버튼 초기화 및 시그널 연결
 	var potion_bar := get_node_or_null("PotionBar")
 	if not potion_bar:
+		push_warning("[Battle] PotionBar 노드를 찾을 수 없어 포션 UI를 초기화하지 못함")
 		return
+	var missing_slots: Array[int] = []
 	for i in 3:
 		var slot := potion_bar.get_node_or_null("PotionSlot%d" % i)
 		if slot and slot is Button:
 			slot.pressed.connect(_on_potion_slot_pressed.bind(i))
+		else:
+			missing_slots.append(i)
+	if not missing_slots.is_empty():
+		push_warning("[Battle] PotionSlot %s 노드 누락 — .tscn 확인 필요" % str(missing_slots))
 	_refresh_potion_ui()
 
 
@@ -1011,5 +1039,5 @@ func _on_potion_slot_pressed(slot_index: int) -> void:
 	## 포션 슬롯 터치 시 포션 사용
 	if battle_manager.use_potion(slot_index):
 		_refresh_potion_ui()
-		AudioManager.play_sfx("buff")
+		AudioManager.play_sfx_by_key("buff")
 

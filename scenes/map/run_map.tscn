@@ -109,25 +109,34 @@ theme_override_constants/separation = 16
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 40
 theme_override_colors/font_color = Color(0.96, 0.94, 0.91, 1.0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1.0)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 24
+theme_override_constants/separation = 32
 
 [node name="HPLabel" type="Label" parent="HUD/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "HP: 70/70"
-theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.78, 0.29, 0.19, 1.0)
+theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(0.92, 0.30, 0.20, 1.0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1.0)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 
 [node name="GoldLabel" type="Label" parent="HUD/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = ""
-theme_override_font_sizes/font_size = 26
-theme_override_colors/font_color = Color(0.96, 0.94, 0.91, 1.0)
+theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(0.98, 0.84, 0.30, 1.0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1.0)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 
 [node name="MinshimLabel" type="Label" parent="HUD/VBoxContainer/HBoxContainer"]
 layout_mode = 2

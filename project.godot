@@ -19,10 +19,10 @@ config/description="조선시대 배경 덱빌딩 로그라이크 (Slay the Spir
 config/version="0.1.0"
 run/main_scene="res://scenes/title/title_screen.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
 run/max_fps=60
 run/low_processor_mode=true
 run/low_processor_mode_sleep_usec=8000
+config/icon="res://icon.svg"
 
 [autoload]
 
@@ -44,7 +44,6 @@ window/size/viewport_height=1920
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
-window/vsync/vsync_mode=1
 
 [gui]
 
@@ -61,7 +60,6 @@ touch={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=true
 
 [internationalization]
 

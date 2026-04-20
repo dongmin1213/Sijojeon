@@ -33,17 +33,17 @@ const NODE_ICONS := {
 
 ## 기준 뷰포트 너비 (1080 기반 비례 스케일링)
 const BASE_VIEWPORT_WIDTH := 1080.0
-const BASE_NODE_SIZE := Vector2(80, 80)  # v11: 모바일 터치 타겟 확대 (64→80)
-const BASE_ROW_SPACING := 180.0  # v10: 고정 행 간격 (스크롤 맵)
-const BASE_MAP_PADDING_X := 20.0  # v11: 좌우 여백 확대 (잘림 방지)
+const BASE_NODE_SIZE := Vector2(120, 120)  # v16 UX: 터치 타겟 + 가시성 (80→120)
+const BASE_ROW_SPACING := 220.0  # v16 UX: 노드 확대에 맞춰 간격도 증가
+const BASE_MAP_PADDING_X := 30.0  # v16: 더 넓은 좌우 여백
 const BASE_MAP_PADDING_TOP := 140.0  # v9: 플로팅 HUD 아래 시작
-const BASE_MAP_PADDING_BOTTOM := 140.0  # v11: 하단 잘림 방지 여백 확대
+const BASE_MAP_PADDING_BOTTOM := 160.0  # v16: 하단 여백
 
-## 막별 맵 배경 색상 (오방색 기반)
+## 막별 맵 배경 오버레이 색 (반투명 — map_bg.png 위에 틴트만 입힘)
 const ACT_BG_COLORS := {
-	1: Color(0.10, 0.10, 0.10),  # 한양 — 먹색 (흑)
-	2: Color(0.05, 0.1, 0.06),   # 지리산 — 어두운 녹색
-	3: Color(0.12, 0.04, 0.04),  # 경복궁 — 어두운 적색
+	1: Color(0.08, 0.08, 0.10, 0.55),  # 한양 — 먹색 틴트
+	2: Color(0.05, 0.12, 0.07, 0.60),  # 지리산 — 녹색 틴트
+	3: Color(0.14, 0.05, 0.05, 0.60),  # 경복궁 — 적색 틴트
 }
 
 @onready var scroll_container: ScrollContainer = $ScrollContainer
@@ -570,5 +570,3 @@ func _on_node_pressed(node_id: int) -> void:
 			GameManager.change_state(GameManager.GameState.REST)
 		MapData.NodeType.EVENT:
 			GameManager.change_state(GameManager.GameState.EVENT)
-
-

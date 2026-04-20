@@ -72,8 +72,11 @@ vertical_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="TitleArea"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-theme_override_colors/font_color = Color(0.70, 0.62, 0.46, 0.85)
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.86, 0.76, 0.54, 1.0)
+theme_override_colors/font_shadow_color = Color(0.0, 0.0, 0.0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 text = "UI_SUBTITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
