@@ -214,6 +214,10 @@ func start_battle(deck: Array[String], enemy_data: Array[Dictionary], hp: int, m
 	for i in enemies.size():
 		init_boss_puzzle(i)
 
+	# 전투 시작 시 HUD 동기화 — 캐릭터별 HP/기가 .tscn 기본값과 다를 때 UI 반영
+	hp_changed.emit(player_hp, player_max_hp)
+	block_changed.emit(player_block)
+
 	begin_player_turn()
 
 func begin_player_turn() -> void:
@@ -222,11 +226,16 @@ func begin_player_turn() -> void:
 	cards_played_this_turn = 0
 
 	# 갑주(영구 방어막) 처리: 갑주가 있으면 block을 갑주 값으로 유지, 없으면 리셋
+	# 블록 이월 유물(R029 갑옷 고리 등)이 있으면 상한까지 방어도를 유지
 	var dot_result := status_effects.process_turn_start("player")
 	var armor: int = dot_result.get("armor", 0)
+	var carryover_cap: int = RelicManager.get_block_carryover_cap()
 	if armor > 0:
 		# 갑주: 기존 block을 리셋하되 갑주만큼 유지
-		player_block = armor
+		player_block = maxi(armor, mini(player_block, carryover_cap))
+	elif carryover_cap > 0:
+		# 방어도 이월: 기존 block을 상한까지 유지
+		player_block = mini(player_block, carryover_cap)
 	else:
 		player_block = 0
 	block_changed.emit(player_block)

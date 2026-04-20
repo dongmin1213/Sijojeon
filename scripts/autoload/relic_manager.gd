@@ -204,6 +204,21 @@ func trigger_turn_start(battle_manager: BattleManager) -> void:
 				relic_triggered.emit(relic_id, tr("RELIC_TURN_BLOCK_FMT") % values["block_per_turn"])
 
 
+func get_block_carryover_cap() -> int:
+	## 소유 유물이 제공하는 "턴 시작 시 유지할 방어도 상한"을 반환한다.
+	## 0 = 유지하지 않음(기본), N = 턴 시작 시 방어도를 최대 N까지 유지.
+	## 동일 효과 유물 복수 보유 시 최댓값을 사용(중첩 아님).
+	var cap := 0
+	for relic_id in get_owned_relics():
+		var relic := DataLoader.get_relic(relic_id)
+		if relic.is_empty():
+			continue
+		var values: Dictionary = relic.get("values", {})
+		if values.has("block_carryover_max"):
+			cap = maxi(cap, int(values["block_carryover_max"]))
+	return cap
+
+
 func trigger_combat_victory() -> void:
 	## 전투 승리 시 발동하는 유물 효과를 처리한다.
 	if GameManager.run_data == null:

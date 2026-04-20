@@ -1193,8 +1193,8 @@
         "en": ""
       },
       "flavor_text": {
-        "ko": "먹물을 담는 작은 그릇. 지식이 흐르면 시도 따라 흐른다.",
-        "en": "A small vessel for ink. When scholarship flows, so does the Sijo."
+        "ko": "먹물을 담는 작은 그릇. 지식이 흐르면 붓끝도 따라 흐른다.",
+        "en": "A small vessel for ink. When scholarship flows, the brush follows."
       },
       "balance_rationale": "선비 전용 시너지. 지식 소비 카드를 쓰면 고급 등급 적합.",
       "obtain_from": [
@@ -1203,6 +1203,38 @@
         "shop"
       ],
       "values": {}
+    },
+    {
+      "id": "R029",
+      "name": {
+        "ko": "갑옷 고리",
+        "romanized": "Gabot Gori",
+        "en": "Armor Ring"
+      },
+      "rarity": 3,
+      "class_restriction": null,
+      "trigger": "passive",
+      "effect": {
+        "ko": "매 턴 시작 시 방어도가 초기화되지 않고 최대 15까지 유지된다.",
+        "en": "At the start of each turn, retain up to 15 Block instead of losing all of it."
+      },
+      "effect_description": {
+        "ko": "턴 시작 시 방어도 최대 15 유지",
+        "en": "Carry over up to 15 Block between turns"
+      },
+      "flavor_text": {
+        "ko": "손때 묻은 쇠고리 — 한 번 걸친 방어는 쉽게 풀리지 않는다.",
+        "en": "A worn iron ring — defense once set does not easily give way."
+      },
+      "balance_rationale": "희귀 유물. StS Calipers 대응. 방어 아키타입(수비 대형/갑주 시너지) 보상. 누적 블록으로 장기 턴 생존력 강화. 보스 전 구간에서 효과 큼.",
+      "obtain_from": [
+        "boss_reward",
+        "elite_reward",
+        "shop"
+      ],
+      "values": {
+        "block_carryover_max": 15
+      }
     }
   ],
   "status_conditions_referenced": [
