@@ -79,8 +79,13 @@ func _load_keywords() -> void:
 	for kw in keywords:
 		if kw is Dictionary and kw.has("id"):
 			_keyword_cache[kw["id"]] = kw
-			# 한글 이름으로도 조회 가능하게
-			var name_str: String = kw.get("name", "")
+			# 한글 이름으로도 조회 가능하게 (name 필드가 Dictionary {ko,en} 또는 String 둘 다 대응)
+			var name_raw = kw.get("name", "")
+			var name_str: String = ""
+			if name_raw is Dictionary:
+				name_str = name_raw.get("ko", "")
+			else:
+				name_str = str(name_raw)
 			if name_str != "" and name_str != kw["id"]:
 				_keyword_cache[name_str] = kw
 

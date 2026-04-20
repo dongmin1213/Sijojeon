@@ -59,21 +59,21 @@ const _C := "ScrollArea/VBoxContainer/MarginContainer/ContentVBox"
 @onready var title_label: Label = $MerchantArea/HBoxContainer/VBox/TitleLabel
 @onready var gold_label: Label = $MerchantArea/HBoxContainer/GoldLabel
 @onready var _merchant_dialogue: Label = $MerchantArea/HBoxContainer/VBox/MerchantDialogue
-@onready var card_container: HBoxContainer = get_node(_C + "/CardSection/CardContainer")
-@onready var card_section_label: Label = get_node(_C + "/CardSection/CardSectionLabel")
-@onready var refresh_button: Button = get_node(_C + "/CardSection/RefreshButton")
-@onready var remove_section: VBoxContainer = get_node(_C + "/RemoveSection")
-@onready var remove_button: Button = get_node(_C + "/RemoveSection/RemoveButton")
-@onready var remove_info: Label = get_node(_C + "/RemoveSection/RemoveInfo")
-@onready var deck_container: GridContainer = get_node(_C + "/RemoveSection/DeckScrollContainer/DeckContainer")
-@onready var deck_scroll: ScrollContainer = get_node(_C + "/RemoveSection/DeckScrollContainer")
-@onready var extra_section: VBoxContainer = get_node(_C + "/ExtraSection")
-@onready var upgrade_button: Button = get_node(_C + "/ExtraSection/UpgradeButton")
-@onready var upgrade_info: Label = get_node(_C + "/ExtraSection/UpgradeInfo")
-@onready var upgrade_scroll: ScrollContainer = get_node(_C + "/ExtraSection/UpgradeScrollContainer")
-@onready var upgrade_deck_container: GridContainer = get_node(_C + "/ExtraSection/UpgradeScrollContainer/UpgradeDeckContainer")
-@onready var rations_button: Button = get_node(_C + "/ExtraSection/RationsButton")
-@onready var relic_container: HBoxContainer = get_node(_C + "/RelicSection/RelicContainer")
+@onready var card_container: HBoxContainer = get_node_or_null(_C + "/CardSection/CardContainer")
+@onready var card_section_label: Label = get_node_or_null(_C + "/CardSection/CardSectionLabel")
+@onready var refresh_button: Button = get_node_or_null(_C + "/CardSection/RefreshButton")
+@onready var remove_section: VBoxContainer = get_node_or_null(_C + "/RemoveSection")
+@onready var remove_button: Button = get_node_or_null(_C + "/RemoveSection/RemoveButton")
+@onready var remove_info: Label = get_node_or_null(_C + "/RemoveSection/RemoveInfo")
+@onready var deck_container: GridContainer = get_node_or_null(_C + "/RemoveSection/DeckScrollContainer/DeckContainer")
+@onready var deck_scroll: ScrollContainer = get_node_or_null(_C + "/RemoveSection/DeckScrollContainer")
+@onready var extra_section: VBoxContainer = get_node_or_null(_C + "/ExtraSection")
+@onready var upgrade_button: Button = get_node_or_null(_C + "/ExtraSection/UpgradeButton")
+@onready var upgrade_info: Label = get_node_or_null(_C + "/ExtraSection/UpgradeInfo")
+@onready var upgrade_scroll: ScrollContainer = get_node_or_null(_C + "/ExtraSection/UpgradeScrollContainer")
+@onready var upgrade_deck_container: GridContainer = get_node_or_null(_C + "/ExtraSection/UpgradeScrollContainer/UpgradeDeckContainer")
+@onready var rations_button: Button = get_node_or_null(_C + "/ExtraSection/RationsButton")
+@onready var relic_container: HBoxContainer = get_node_or_null(_C + "/RelicSection/RelicContainer")
 @onready var leave_button: Button = $Footer/LeaveButton
 
 
@@ -781,8 +781,9 @@ func _display_shop_potions() -> void:
 	if shop_potions.is_empty():
 		_generate_shop_potions()
 
-	var shop_panel := $ShopPanel/VBoxContainer as VBoxContainer
+	var shop_panel := get_node_or_null(_C) as VBoxContainer
 	if not shop_panel:
+		push_warning("[Shop] ContentVBox 노드를 찾을 수 없어 포션 섹션을 표시하지 못함")
 		return
 
 	# 기존 포션 섹션 제거
@@ -869,7 +870,7 @@ func _on_buy_potion(index: int) -> void:
 	GameManager.run_data.gold -= price
 	GameManager.run_data.potions[slot_index] = entry["potion_id"]
 	shop_potions[index]["sold"] = true
-	AudioManager.play_sfx("coin")
+	AudioManager.play_sfx_by_key("coin")
 	_display_shop_potions()
 	_update_gold_display()
 

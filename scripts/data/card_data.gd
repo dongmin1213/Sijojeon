@@ -34,6 +34,7 @@ extends Resource
 @export var bonus_on_poison: int = 0  # 대상 독≥2 시 추가 피해 (흑염 D017)
 @export var vulnerable_stacks: int = 0  # 취약 부여 스택
 @export var weaken_stacks: int = 0  # 약화 부여 스택 (후퇴 M003 등)
+@export var remove_buffs: bool = false  # 적 버프 제거 여부 (파직 W018 등)
 
 
 
@@ -97,6 +98,7 @@ static func from_dict(data: Dictionary, card_pool: String) -> CardData:
 		card.bonus_on_poison = values.get("bonus_on_poison", 0)
 		card.vulnerable_stacks = values.get("vulnerable", 0)
 		card.weaken_stacks = values.get("weaken", 0)
+		card.remove_buffs = bool(values.get("remove_buffs", false))
 
 	return card
 
@@ -162,4 +164,5 @@ func duplicate_card() -> CardData:
 	copy.bonus_on_poison = bonus_on_poison
 	copy.vulnerable_stacks = vulnerable_stacks
 	copy.weaken_stacks = weaken_stacks
+	copy.remove_buffs = remove_buffs
 	return copy

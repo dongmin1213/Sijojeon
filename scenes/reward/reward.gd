@@ -81,20 +81,30 @@ func _try_potion_drop() -> void:
 
 func _try_relic_reward() -> void:
 	## 전투 보상에서 유물 드롭을 시도한다.
-	var rewards = GameManager.run_data.get_meta("battle_rewards", {}) if GameManager.run_data else {}
-	var relic_chance: float = rewards.get("relic_chance", 0.0)
-	if relic_chance <= 0.0:
+	## StS 표준: 엘리트/보스는 100% 유물 드롭, 일반 전투는 `relic_chance` 메타 기반.
+	if not GameManager.run_data:
 		return
 
-	# 확률 체크
-	if randf() > relic_chance:
-		return
+	# 노드 타입에 따라 소스 결정 및 보장 드롭 여부 판단
+	var source := ""
+	var guaranteed := false
+	if GameManager.run_data.current_node_type >= 0:
+		match GameManager.run_data.current_node_type:
+			MapData.NodeType.BOSS:
+				source = "boss"
+				guaranteed = true
+			MapData.NodeType.ELITE:
+				source = "elite"
+				guaranteed = true
+			_:
+				source = "elite"  # 이벤트/특수 보상의 기본 풀
 
-	# 노드 타입에 따라 소스 결정
-	var source := "elite"
-	if GameManager.run_data and GameManager.run_data.current_node_type >= 0:
-		if GameManager.run_data.current_node_type == MapData.NodeType.BOSS:
-			source = "boss"
+	# 보장 드롭이 아니면 전투 보상 메타의 확률 체크
+	if not guaranteed:
+		var rewards = GameManager.run_data.get_meta("battle_rewards", {})
+		var relic_chance: float = rewards.get("relic_chance", 0.0)
+		if relic_chance <= 0.0 or randf() > relic_chance:
+			return
 
 	if source == "boss":
 		# 보스 처치 시 3개 유물 중 1택 (StS 방식)
